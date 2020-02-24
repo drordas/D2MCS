@@ -1,0 +1,64 @@
+#' @title <<tittle>>
+#'
+#' @description NoProbability
+#'
+#' @docType class
+#'
+#' @format NULL
+#'
+#' @details <<details>
+#'
+#' @seealso \code{\link{SummaryFunction}}
+#'
+#' @keywords NULL
+#'
+#' @import R6
+#'
+#' @export NoProbability
+
+NoProbability <- R6::R6Class(
+  classname = "NoProbability",
+  inherit = SummaryFunction,
+  portable = TRUE,
+  public = list(
+    #'
+    #' @description
+    #'
+    initialize = function() {
+      super$initialize(c("Kappa", "Accuracy", "TCR_9", "MCC", "PPV"))
+    },
+    #'
+    #' @description <<description>>
+    #'
+    #' @param data <<description>>
+    #' @param lev <<description>>
+    #' @param model <<description>>
+    #'
+    #' @return <<return>>
+    #'
+    #' @import caret
+    #' @importFrom mltools mcc
+    #'
+    execute = function(data, lev = NULL, model = NULL) {
+      lvls <- levels(data$obs)
+      if (length(lvls) > 2)
+        stop("[", class(self)[1], "][FATAL] Your outcome has ", length(lvls),
+             " levels. The 'defaultSummary' function is not appropriate. Aborting...")
+
+      if (!all(levels(data[, "pred"]) == lvls))
+        stop("[", class(self)[1], "][FATAL] Levels of observed and ",
+             "predicted data do not match. Aborting...")
+
+      data$y = as.numeric(data$obs == lvls[2])
+      data$z = as.numeric(data$pred == lvls[2])
+
+      confMat <- caret::confusionMatrix(table(data$z, data$y), positive = "1")
+      fn_tcr_9 <- (9 * confMat$table[1, 2] + confMat$table[2, 1]) / (9 * (confMat$table[1, 2] + confMat$table[2, 2]) + confMat$table[2, 1] + confMat$table[1, 1])
+      mcc <- mltools::mcc(TP = confMat$table[1, 1], FP = confMat$table[1, 2], TN = confMat$table[2, 2], FN = confMat$table[2, 1])
+      ppv <- (confMat$table[1, 1] / (confMat$table[1, 1] + confMat$table[1, 2]))
+      out <- c(confMat$overall['Kappa'], confMat$overall['Accuracy'], fn_tcr_9, mcc, ppv)
+      names(out) <- c("Kappa", "Accuracy", "TCR_9", "MCC", "PPV")
+      out
+    }
+  )
+)

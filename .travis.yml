@@ -1,0 +1,20 @@
+language: r
+
+cache: packages
+
+r_packages:
+  - covr
+  - styler
+
+before_cache:
+  - Rscript -e 'styler::style_pkg(scope = "spaces", strict = FALSE, start_comments_with_one_space = FALSE, math_token_spacing = styler::tidyverse_math_token_spacing())'
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+
+notifications:
+  email:
+    recipients:
+      - miguel.ferreiro.diaz@gmail.com
+    on_success: change
+    on_failure: always
