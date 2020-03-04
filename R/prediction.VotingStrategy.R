@@ -1,16 +1,12 @@
-#' @title <<tittle>>
+#' @title Voting Strategy template.
 #'
-#' @description VotingStrategy
+#' @description Abstract class used to define new \code{\link{SingleVoting}} and  \code{\link{CombinedVoting}} schemes.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{DDMCS}}, \code{\link{SingleVoting}}, \code{\link{CombinedVoting}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{DDMCS}}
-#'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'
@@ -21,39 +17,35 @@ VotingStrategy <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Abstract method used to initialize the object arguments during runtime.
     #'
-    initialize = function() {
-      # private$final.pred <- FinalPred$new()
-    },
+    initialize = function() { },
     #'
-    #' @description <<description>>
+    #' @description The function returns the voting schemes that will participate in the voting strategy.
     #'
-    #' @return <<description>>
+    #' @return A vector of object inheriting from \code{\link{VotingStrategy}} class.
     #'
     getVotingSchemes = function() { private$voting.schemes },
     #'
-    #' @description <<description>>
+    #' @description The function is used to get the metric that will be used during the voting strategy.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector.
     #'
     getMetrics = function() { private$metrics },
     #'
-    #' @description <<description>>
+    #' @description Abstract function used to implement the operation of the voting schemes.
     #'
-    #' @param predictions <<description>>
-    #' @param ... <<description>>
-    #'
-    #' @return <<description>>
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing de prediction achieved for each cluster.
+    #' @param ... Further arguments passed down to \code{execute} function.
     #'
     execute = function(predictions, ...) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",
            "Method should be defined in inherited class. Aborting...")
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the name of the voting scheme.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of size 1.
     #'
     getName = function() { class(self)[1] }
   ),

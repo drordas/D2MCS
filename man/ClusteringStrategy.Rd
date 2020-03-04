@@ -3,16 +3,19 @@
 \docType{class}
 \name{ClusteringStrategy}
 \alias{ClusteringStrategy}
-\title{<<tittle>>}
+\title{Abstract Feature Clustering Strategy class.}
 \description{
-ClusteringStrategy
+Abstract class used as a template to ensure the proper definition
+of new customized clustering strategies.
 }
 \details{
-<<details>
+The \link{ClusteringStrategy} is an archetype class so it cannot be instantiated.
 }
 \seealso{
-\code{\link{Subset}}
+\code{\link{Subset}}, \code{\link{GenericHeuristic}}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -33,7 +36,7 @@ ClusteringStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+A function responsible for creating a \link{ClusteringStrategy} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$new(subset, heuristic, description, configuration)}\if{html}{\out{</div>}}
 }
@@ -41,13 +44,14 @@ ClusteringStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{subset}}{<<description>>}
+\item{\code{subset}}{a \link{Subset} object to perform the clustering strategy.}
 
-\item{\code{heuristic}}{<<description>>}
+\item{\code{heuristic}}{the heuristic to be applied. Must inherite from \link{GenericHeuristic} class.}
 
-\item{\code{description}}{<<description>>}
+\item{\code{description}}{a \link{character} vector describing the strategy operation.}
 
-\item{\code{configuration}}{<<description>>}
+\item{\code{configuration}}{optional customized configuration parameters for the strategy.
+Must inherited from \link{StrategyConfiguration} abstract class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -55,67 +59,69 @@ ClusteringStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDescription"></a>}}
 \subsection{Method \code{getDescription()}}{
-<<description>>
+the function is used to obtain the description of the strategie.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$getDescription()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector of \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getHeuristic"></a>}}
 \subsection{Method \code{getHeuristic()}}{
-<<description>>
+the function returns the heuristic applied for the clustering strategy.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$getHeuristic()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+an object inherited from \link{ClusteringStrategy} class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getConfiguration"></a>}}
 \subsection{Method \code{getConfiguration()}}{
-<<description>>
+the function returns the configuration parameters used to perform the clustering strategy.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$getConfiguration()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+an object inherited from \link{StrategyConfiguration} class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getBestClusterDistribution"></a>}}
 \subsection{Method \code{getBestClusterDistribution()}}{
-<<description>>
+the function obtains the best clustering distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$getBestClusterDistribution()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{list} of clusters. Each list element represents a feature group.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getUnclustered"></a>}}
 \subsection{Method \code{getUnclustered()}}{
-<<description>>
+the function is used to return the features that cannot be clustered due to
+incompatibilities with the used heuristic.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$getUnclustered()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector containing the unclassified features.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+abstract function responsible of performing the clustering
+strategy over the defined \link{Subset}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$execute(verbose, ...)}\if{html}{\out{</div>}}
 }
@@ -123,9 +129,9 @@ ClusteringStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{verbose}}{<<description>>}
+\item{\code{verbose}}{a logical value to specify if more verbosity is needed.}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -133,7 +139,8 @@ ClusteringStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDistribution"></a>}}
 \subsection{Method \code{getDistribution()}}{
-<<description>>
+abstract function used to obtain the set of features following
+an specific clustering distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$getDistribution(
   num.clusters = NULL,
@@ -145,22 +152,23 @@ ClusteringStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.clusters}}{<<description>>}
+\item{\code{num.clusters}}{a numeric value to select the number of clusters (define the distribution).}
 
-\item{\code{num.groups}}{<<description>>}
+\item{\code{num.groups}}{a single or \link{numeric} vector value to identify a specific group that
+forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{<<description>>}
+\item{\code{include.unclustered}}{a logical value to determine if unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{list} with the features comprising an specific clustering distribution.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createTrain"></a>}}
 \subsection{Method \code{createTrain()}}{
-<<description>>
+Abstract function in charge of creating a \link{Trainset} object for training purposes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$createTrain(
   subset,
@@ -173,13 +181,14 @@ ClusteringStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{subset}}{<<description>>}
+\item{\code{subset}}{A \link{Subset} object used as a basis to create the \link{Trainset}}
 
-\item{\code{num.cluster}}{<<description>>}
+\item{\code{num.cluster}}{A \link{numeric} value to select the number of clusters (define the distribution).}
 
-\item{\code{num.groups}}{<<description>>}
+\item{\code{num.groups}}{A single or \link{numeric} vector value to identify a specific group that
+forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{<<description>>}
+\item{\code{include.unclustered}}{A logical value to determine if unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
@@ -187,7 +196,7 @@ ClusteringStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \subsection{Method \code{plot()}}{
-<<description>>
+Abstract function responsible of creating a plot to visualize the clustering distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$plot(dir.path = NULL, file.name = NULL, ...)}\if{html}{\out{</div>}}
 }
@@ -195,11 +204,12 @@ ClusteringStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{An optional argument to define the name of the directory where the exported plot will be saved.
+If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.}
 
-\item{\code{file.name}}{<<description>>}
+\item{\code{file.name}}{The name of the PDF file where the plot is exported.}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -207,7 +217,7 @@ ClusteringStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-saveCSV"></a>}}
 \subsection{Method \code{saveCSV()}}{
-<<description>>
+abstract function to save the clustering distribution to a CSV file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusteringStrategy$saveCSV(dir.path, name, num.clusters = NULL)}\if{html}{\out{</div>}}
 }
@@ -215,11 +225,12 @@ ClusteringStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{The name of the directory to save the CSV file.}
 
-\item{\code{name}}{<<description>>}
+\item{\code{name}}{Defines the name of the CSV file.}
 
-\item{\code{num.clusters}}{<<description>>}
+\item{\code{num.clusters}}{An optional parameter to select the number of clusters to be saved.
+If not defined, all clusters will be saved.}
 }
 \if{html}{\out{</div>}}
 }

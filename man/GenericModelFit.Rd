@@ -3,16 +3,14 @@
 \docType{class}
 \name{GenericModelFit}
 \alias{GenericModelFit}
-\title{<<tittle>>}
+\title{Abstract class for defining model fitting method.}
 \description{
-GenericModelFit
-}
-\details{
-<<details>
+Template to create a \code{\link[recipes]{recipe}} or \code{\link{formula}} objects used in model training stage.
 }
 \seealso{
-\code{\link{DefaultModelFit}}
+\code{\link{DefaultModelFit}}, \code{\link[caret]{train}}
 }
+\keyword{misc}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -25,7 +23,7 @@ GenericModelFit
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$new(instances, class.name)}\if{html}{\out{</div>}}
 }
@@ -33,9 +31,9 @@ GenericModelFit
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{instances}}{<<description>}
+\item{\code{instances}}{An \code{\link{data.frame}} containing the data used to train the M.L. models.}
 
-\item{\code{class.name}}{<<description>>}
+\item{\code{class.name}}{A \code{\link{character}} of length 1 defining the name of the target class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -43,7 +41,7 @@ GenericModelFit
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createFormula"></a>}}
 \subsection{Method \code{createFormula()}}{
-<<description>>
+The function is responsible of creating a \code{\link{formula}} for M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$createFormula(simplify = TRUE)}\if{html}{\out{</div>}}
 }
@@ -51,24 +49,24 @@ GenericModelFit
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{simplify}}{<<description>>}
+\item{\code{simplify}}{A \code{\link{logical}} argument defining whether the formula should be generated as simple as posible.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{formula}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createRecipe"></a>}}
 \subsection{Method \code{createRecipe()}}{
-<<description>>
+The function is responsible of creating a \code{\link[recipes]{recipe}} for M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$createRecipe()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A object of class \code{\link[recipes]{recipe}}.
 }
 }
 \if{html}{\out{<hr>}}

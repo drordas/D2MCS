@@ -1,16 +1,15 @@
-#' @title <<tittle>>
+#' @title Computes the Kappa Cohen value.
 #'
-#' @description Kappa
+#' @description Cohen's Kappa measures the agreement between two raters who each classify
+#' N items into C mutually exclusive categories.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @details \deqn{\kappa \equiv \frac{p_o-p_e}{1-p_e} = 1 - \frac{1-p_0}{1-p_e}}
 #'
-#' @details <<details>
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
 #'
-#' @seealso \code{\link{MeasureFunction}}
-#'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -22,19 +21,24 @@ Kappa <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} used as basis
+    #' to compute the performance.
+    #'
+    #' @return An \code{\link{Kappa}} object.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description <<description>>
+    #' @description The function computes the \code{Kappa} achieved by the M.L. model.
     #'
-    #' @param performance.output <<description>>
-    #'
-    #' @return <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to define the type
+    #' of object used as basis to compute the \code{Kappa} measure.
+    #' @details This function is automatically invoked by the \link{ClassificationOutput} object.
+    #' @seealso \code{\link{ConfMatrix}}
+    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

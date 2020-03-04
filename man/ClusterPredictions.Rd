@@ -3,16 +3,15 @@
 \docType{class}
 \name{ClusterPredictions}
 \alias{ClusterPredictions}
-\title{<<tittle>>}
+\title{Manages the predictions achieved on a cluster.}
 \description{
-ClusterPredictions
-}
-\details{
-<<details>
+Stores the predictions achieved by the best M.L. of each cluster.
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{DDMCS}}, \code{\link{ClassificationOutput}}, \code{\link{Prediction}}
 }
+\keyword{math}
+\keyword{methods}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -29,7 +28,7 @@ ClusterPredictions
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$new(class.values, positive.class)}\if{html}{\out{</div>}}
 }
@@ -37,9 +36,9 @@ ClusterPredictions
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{class.values}}{<<description>>}
+\item{\code{class.values}}{A \code{\link{character}} vector contaning the values of the target class.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{A \code{\link{character}} with the value of the positive class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -47,7 +46,7 @@ ClusterPredictions
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
 \subsection{Method \code{add()}}{
-<<description>>
+The function is used to add the prediction achieved by a specific M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$add(prediction)}\if{html}{\out{</div>}}
 }
@@ -55,18 +54,15 @@ ClusterPredictions
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{prediction}}{<<description>>}
+\item{\code{prediction}}{A \code{\link{Prediction}} object containing the computed predictions.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get"></a>}}
 \subsection{Method \code{get()}}{
-<<description>>
+The function returns the predictions placed at specific position.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$get(position)}\if{html}{\out{</div>}}
 }
@@ -74,60 +70,60 @@ ClusterPredictions
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{position}}{<<description>>}
+\item{\code{position}}{A \code{\link{numeric}} value indicating the position of the predicions to be obtained.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{Prediction}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getAll"></a>}}
 \subsection{Method \code{getAll()}}{
-<<description>>
+The function returns all the predictions.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$getAll()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{list}} containing all computed predictions.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-size"></a>}}
 \subsection{Method \code{size()}}{
-<<description>>
+The function returns the number of computed predictions.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$size()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
 \subsection{Method \code{getPositiveClass()}}{
-<<description>>
+The function gets the value of the positive class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$getPositiveClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
 \subsection{Method \code{getClassValues()}}{
-<<description>>
+The function returns all the values of the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$getClassValues()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector containing all target values.
 }
 }
 \if{html}{\out{<hr>}}

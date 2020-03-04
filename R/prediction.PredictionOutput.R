@@ -1,16 +1,13 @@
-#' @title <<tittle>>
+#' @title Encapsulates the achieved predictions.
 #'
-#' @description PredictionOutput
+#' @description The class used to encapsulates all the computed predictions to facilitate
+#' their access and maintenance.
 #'
 #' @docType class
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
 #' @seealso \code{\link{DDMCS}}
 #'
-#' @keywords NULL
+#' @keywords math misc
 #'
 #' @import R6
 #'
@@ -21,13 +18,15 @@ PredictionOutput <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param predictions <<description>>
-    #' @param type <<description>>
-    #' @param target <<description>>
+    #' @param predictions A \code{\link{list}} of \code{\link{FinalPred}} elements.
+    #' @param type A \code{\link{character}} to define which type of predictions should be returned. If not defined
+    #' all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+    #' 'class' values are returned.
+    #' @param target A \code{\link{character}} defining the value of the positive class.
     #'
-    #' @return <<description>>
+    #' @return An \code{\link{PredictionOutput}} object.
     #'
     initialize = function(predictions, type, target) {
       private$predictions <- predictions
@@ -35,21 +34,24 @@ PredictionOutput <- R6::R6Class(
       private$target <- target
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the final predictions.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{list}} containing the final predictions or
+    #' \code{\link{NULL}} if classification stage was not succesfully performed.
     #'
     getPredictions = function() { private$predictions },
     #'
-    #' @description <<description>>
+    #' @description The function returns the type of prediction should be returned.
+    #' If "prob" or "raw" is defined then computed 'probabilistic' or
+    #' 'class' values are returned.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} value.
     #'
     getType = function() { private$type },
     #'
-    #' @description <<description>>
+    #' @description The function returns the value of the target class.
     #'
-    #' @return <<description>>
+    #' @return  A \code{\link{character}} value.
     #'
     getTarget = function() { private$target }
   ),

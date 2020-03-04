@@ -4,16 +4,15 @@
 \docType{class}
 \name{InformationGainHeuristic}
 \alias{InformationGainHeuristic}
-\title{<<tittle>>}
+\title{Feature-clustering based on InformationGain methodology.}
 \description{
-InformationGainHeuristic
-}
-\details{
-<<details>
+Performs the feature-clustering using entropy-based filters.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}}, \code{\link[FSelector]{information.gain}}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{InformationGainHeuristic}
 }
@@ -34,16 +33,21 @@ InformationGainHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{InformationGainHeuristic} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{InformationGainHeuristic$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{InformationGainHeuristic} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+The algorithm find weights of discrete attributes basing on
+their correlation with continous class attribute. Particularly
+Information Gain uses \code{H(Class) + H(Attribute) - H(Class, Attribute)}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{InformationGainHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -51,16 +55,18 @@ InformationGainHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{a numeric vector or matrix required to perform the
+clustering operation.}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{a numeric vector or matrix to perform the clustering operation.}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{an optional \link{character} vector with the names of
+both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 }
 \if{html}{\out{<hr>}}

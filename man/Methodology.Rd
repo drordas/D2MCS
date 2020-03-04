@@ -3,7 +3,7 @@
 \docType{class}
 \name{Methodology}
 \alias{Methodology}
-\title{<<tittle>>}
+\title{<<miguel>>}
 \description{
 Methodology
 }
@@ -13,6 +13,8 @@ Methodology
 \seealso{
 \code{\link{ProbBasedMethodology}}
 }
+\keyword{math}
+\keyword{misc}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

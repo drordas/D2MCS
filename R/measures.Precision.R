@@ -1,16 +1,15 @@
-#' @title <<tittle>>
+#' @title Computes the Precision Value.
 #'
-#' @description Precision
+#' @description Precision is the fraction of relevant instances among the retrieved instances
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @details \deqn{precision = \frac{TP}{TP+FP}}
 #'
-#' @details <<details>
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+#' \code{\link{ConfMatrix}}
 #'
-#' @seealso \code{\link{MeasureFunction}}
-#'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -22,19 +21,24 @@ Precision <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the measure.
+    #'
+    #' @return An \code{\link{Precision}} object.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description <<description>>
+    #' @description The function computes the \code{Precision} achieved by the M.L. model.
     #'
-    #' @param performance.output <<description>>
-    #'
-    #' @return <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to define
+    #' the type of object used as basis to compute the \code{Precision} measure.
+    #' @details This function is automatically invoque by the \link{ClassificationOutput} object.
+    #' @seealso \code{\link{ConfMatrix}}
+    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

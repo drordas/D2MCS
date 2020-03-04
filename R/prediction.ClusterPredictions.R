@@ -1,16 +1,12 @@
-#' @title <<tittle>>
+#' @title Manages the predictions achieved on a cluster.
 #'
-#' @description ClusterPredictions
+#' @description Stores the predictions achieved by the best M.L. of each cluster.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassificationOutput}}, \code{\link{Prediction}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{DDMCS}}
-#'
-#' @keywords NULL
+#' @keywords methods math
 #'
 #' @import R6
 #'
@@ -21,10 +17,10 @@ ClusterPredictions <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param class.values <<description>>
-    #' @param positive.class <<description>>
+    #' @param class.values A \code{\link{character}} vector contaning the values of the target class.
+    #' @param positive.class A \code{\link{character}} with the value of the positive class.
     #'
     initialize = function(class.values, positive.class) {
 
@@ -37,11 +33,9 @@ ClusterPredictions <- R6::R6Class(
       private$pred <- list()
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to add the prediction achieved by a specific M.L. model.
     #'
-    #' @param prediction <<description>>
-    #'
-    #' @return <<description>>
+    #' @param prediction A \code{\link{Prediction}} object containing the computed predictions.
     #'
     add = function(prediction) {
       if ("Prediction" %in% class(prediction)) {
@@ -50,11 +44,11 @@ ClusterPredictions <- R6::R6Class(
                  "defined as 'Prediction' object. Aborting... ")
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the predictions placed at specific position.
     #'
-    #' @param position <<description>>
+    #' @param position A \code{\link{numeric}} value indicating the position of the predicions to be obtained.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{Prediction}} object.
     #'
     get = function(position) {
       if (position > 0 && position <= length(private$pred)) {
@@ -62,27 +56,27 @@ ClusterPredictions <- R6::R6Class(
       } else stop("[", class(self)[1], "][FATAL] Position exceeds list size. Aborting...")
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns all the predictions.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{list}} containing all computed predictions.
     #'
     getAll = function() { private$pred },
     #'
-    #' @description <<description>>
+    #' @description The function returns the number of computed predictions.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{numeric}} value.
     #'
     size = function() { length(private$pred) },
     #'
-    #' @description <<description>>
+    #' @description The function gets the value of the positive class.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of size 1.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description <<description>>
+    #' @description The function returns all the values of the target class.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector containing all target values.
     #'
     getClassValues = function() { private$class.values }
   ),

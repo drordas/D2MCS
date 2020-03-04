@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Abstract class to computing performance across resamples.
 #'
-#' @description SummaryFunction
+#' @description Abstract used as template to define customized metrics to compute model performance during train.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @details This class is an archetype, so it cannot be instantiated.
 #'
-#' @details <<details>
+#' @seealso \code{\link{NoProbability}}, \code{\link{UseProbability}}
 #'
-#' @seealso \code{\link{NoProbability}}
-#'
-#' @keywords NULL
+#' @keywords misc
 #'
 #' @import R6
 #'
@@ -21,9 +19,9 @@ SummaryFunction <- R6::R6Class(
   portable = TRUE,
   public = list(
     # '
-    #' @description <<description>>
+    #' @description The function carries out the initialization of parameters during runtime.
     #'
-    #' @param measures
+    #' @param measures A \code{\link{character}} vector with the measures used.
     #'
     initialize = function(measures) {
       if (is.null(measures))
@@ -31,18 +29,17 @@ SummaryFunction <- R6::R6Class(
       private$measures <- measures
     },
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<description>>
+    #' @description Abstract funtion used to implement the performance calculator method.
+    #' To guarantee a proper operation, this method is automatically invoked by \code{\link{DDMCS}} framework.
     #'
     execute = function() {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",
            "Method should be defined in inherited class. Aborting...")
     },
     #'
-    #' @description <<description>>
+    #' @description The function obtains the measures used to compute the performance across resamples.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of \code{\link{NULL}} if measures are not defined.
     #'
     getMeasures = function() {
       private$measures

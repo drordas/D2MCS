@@ -1,16 +1,12 @@
-#' @title <<tittle>>
+#' @title Iterator over a \link{Subset} object
 #'
-#' @description DIterator
+#' @description Creates an \link{DIterator} object to iterate over the \link{Subset}.
 #'
 #' @docType class
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
 #' @seealso \code{\link{Dataset}}
 #'
-#' @keywords NULL
+#' @keywords internal manip datagen
 #'
 #' @import R6
 #'
@@ -21,11 +17,14 @@ DIterator <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Creates the \link{DIterator} object.
     #'
-    #' @param data <<description>>
-    #' @param chunk.size <<description>>
-    #' @param verbose <<description>>
+    #' @param data a \link{data.frame} structure to be iterated.
+    #' @param chunk.size an integer value indicating the size of chunks taken
+    #' over each iteration. By default chunk.size is defied as 10000.
+    #' @param verbose a logical value to specify if more verbosity is needed.
+    #'
+    #' @return an \link{DIterator} object
     #'
     initialize = function(data, chunk.size, verbose) {
       private$chunk.size  <- chunk.size
@@ -36,9 +35,12 @@ DIterator <- R6::R6Class(
       private$data <- data
     },
     #'
-    #' @description <<description>>
+    #' @description Gets the next chunk of data. Each iteration returns the same instances
+    #' (data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
+    #' all the remaining data is returned. Conversely, \link{NULL} when there is no more
+    #' pending data. By default chunk.size is defied as 10000.
     #'
-    #' @return <<return>>
+    #' @return a \link{data.frame} of \link{NULL} if all the data have been previously returned.
     #'
     getNext = function() {
       if (self$isLast()) return(NULL)
@@ -61,15 +63,13 @@ DIterator <- R6::R6Class(
       data.chunk
     },
     #'
-    #' @description <<description>>
+    #' @description Checks if the \link{DIterator} object reached the end of the \link{data.frame}
     #'
-    #' @return <<return>>
+    #' @return a logical value indicating if the end of \link{data.frame} has been reached.
     #'
     isLast = function() { private$end >= nrow(private$data) },
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
+    #' @description Destroys the \link{DIterator} object.
     #'
     finalize = function() {}
   ),

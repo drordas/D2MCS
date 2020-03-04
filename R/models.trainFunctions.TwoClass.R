@@ -1,12 +1,10 @@
-#' @title <<tittle>>
+#' @title Control parameters for train stage (Bi-class problem).
 #'
-#' @description TwoClass
+#' @description Implementation to control the computational nuances of train function for bi-class problems.
 #'
 #' @docType class
 #'
 #' @format NULL
-#'
-#' @details <<details>
 #'
 #' @seealso \code{\link{TrainFunction}}
 #'
@@ -22,15 +20,23 @@ TwoClass <- R6::R6Class(
   inherit = TrainFunction,
   public = list(
     #'
-    #' @description <<description>>
+    #' @param method The resampling method: "boot", "boot632", "optimism_boot", "boot_all", "cv",
+    #' "repeatedcv", "LOOCV", "LGOCV" (for repeated training/test splits), "none" (only fits one
+    #' model to the entire training set), "oob" (only for random forest, bagged trees, bagged earth,
+    #' bagged flexible discriminant analysis, or conditional tree forest models), timeslice, "adaptive_cv",
+    #' "adaptive_boot" or "adaptive_LGOCV"
+    #' @param number Either the number of folds or number of resampling iterations
+    #' @param savePredictions An indicator of how much of the hold-out predictions for each resample
+    #' should be saved. Values can be either "all", "final", or "none". A logical value can also be
+    #' used that convert to "all" (for true) or "none" (for false). "final" saves the predictions
+    #' for the optimal tuning parameters.
+    #' @param classProbs A \code{\link{logical}} value. Should class probabilities be computed for
+    #' classification models (along with predicted values) in each resample?
+    #' @param allowParallel A \code{\link{logical}} value. If a parallel backend is loaded and available, should the function use it?
+    #' @param verboseIter A \code{\link{logical}} for printing a training log.
+    #' @param seed An optional \code{\link{integer}} that will be used to set the seed during model training stage.
     #'
-    #' @param method <<description>>
-    #' @param number <<description>>
-    #' @param savePredictions <<description>>
-    #' @param classProbs <<description>>
-    #' @param allowParallel <<description>>
-    #' @param verboseIter <<description>>
-    #' @param seed <<description>>
+    #' @return A \code{\link{TwoClass}} object.
     #'
     initialize = function(method, number, savePredictions, classProbs,
                           allowParallel, verboseIter, seed = NULL) {
@@ -39,13 +45,12 @@ TwoClass <- R6::R6Class(
                        allowParallel, verboseIter, seed)
     },
     #'
-    #' @description <<description>
+    #' @description Creates a \code{\link[caret]{trainControl}} requires for the training stage.
     #'
-    #' @param summaryFunction <<description>>
-    #' @param search.method <<description>>
-    #' @param class.probs <<description>>
-    #'
-    #' @return <<description>>
+    #' @param summaryFunction An object inherited from \code{\link{SummaryFunction}} class.
+    #' @param search.method Either "grid" or "random", describing how the tuning parameter grid is determined.
+    #' @param class.probs A \code{\link{logical}}. Should class probabilities be computed for classification
+    #' models (along with predicted values) in each resample?
     #'
     #' @import caret
     #'
@@ -80,9 +85,9 @@ TwoClass <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>
+    #' @description Function used to return the \code{\link[caret]{trainControl}} object.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link[caret]{trainControl}} object.
     #'
     getTrFunction = function() {
       if (is.null(private$trFunction))
@@ -91,11 +96,10 @@ TwoClass <- R6::R6Class(
       private$trFunction
     },
     #'
-    #' @description <<description>
+    #' @description The function allows changing the class computation capabilities.
     #'
-    #' @param class.probs <<description>>
-    #'
-    #' @return <<description>>
+    #' @param class.probs A \code{\link{logical}} value. \code{\link{TRUE}} implies classification probabilities should be computed for
+    #' classification models and \code{\link{FALSE}} otherwise.
     #'
     setClassProbs = function(class.probs) {
       if (is.null(class.probs) || !is.logical(class.probs))
@@ -112,23 +116,21 @@ TwoClass <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>
+    #' @description Returns the measures used to optimize model hyperparameters.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector.
     #'
     getMeasures = function() { private$measures },
     #'
-    #' @description <<description>
+    #' @description Obtains the type of classification problem ("Bi-class" or "Multi-class").
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector with "Bi-class" value.
     #'
     getType = function() { private$type },
     #'
-    #' @description <<description>
+    #' @description Function used to change the \code{\link{SummaryFunction}} used in the training stage.
     #'
-    #' @param summaryFunction <<description>>
-    #'
-    #' @return <<description>>
+    #' @param summaryFunction An object inherited from \code{\link{SummaryFunction}} class.
     #'
     setSummaryFunction = function(summaryFunction) {
       if (is.null(summaryFunction) || !inherit(summaryFunction, "SummaryFunction")) {

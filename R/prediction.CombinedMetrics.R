@@ -1,16 +1,12 @@
-#' @title <<tittle>>
+#' @title <<miguel>>
 #'
 #' @description CombinedMetrics
 #'
 #' @docType class
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
 #' @seealso \code{\link{CombinedVoting}}
 #'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'
@@ -27,7 +23,7 @@ CombinedMetrics <- R6::R6Class(
     #'
     initialize = function(required.metrics) {
       if (is.null(required.metrics) || !is.character(required.metrics) || length(required.metrics) < 2) {
-        stop("[", class(self)[1], "][FATAL] Required.metrics parameter must be ",
+        stop("[", class(self)[1], "][FATAL] The required.metrics parameter must be ",
              "defined as 'character' type. Aborting...")
       }
       private$required.metrics <- required.metrics

@@ -3,16 +3,17 @@
 \docType{class}
 \name{Dataset}
 \alias{Dataset}
-\title{<<tittle>>}
+\title{Simple Dataset handler}
 \description{
-Dataset
-}
-\details{
-<<details>
+Creates a valid simple dataset object.
 }
 \seealso{
 \code{\link{HDDataset}}
 }
+\keyword{attribute}
+\keyword{datagen}
+\keyword{datasets}
+\keyword{manip}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -40,7 +41,7 @@ Dataset
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates the \code{\link{Dataset}} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$new(
   filepath,
@@ -58,49 +59,57 @@ Dataset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{filepath}}{<<description>>}
+\item{\code{filepath}}{filepath the name of the file which the data are to be read from.
+Each row of the table appears as one line of the file.
+If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, ‘getwd()’.}
 
-\item{\code{header}}{<<description>>}
+\item{\code{header}}{a logical value indicating whether the file contains the names of the variables as its first line.
+If missing, the value is determined from the file format: ‘header’ is set to ‘TRUE’ if and only if the
+first row contains one fewer field than the number of columns.}
 
-\item{\code{sep}}{<<description>>}
+\item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
 
-\item{\code{skip}}{<<description>>}
+\item{\code{skip}}{defines the number of header lines should be skipped.}
 
 \item{\code{target.class}}{<<description>>}
 
 \item{\code{positive.class}}{<<description>>}
 
-\item{\code{normalize.names}}{<<description>>}
+\item{\code{normalize.names}}{a logical value indicating whether the columns names should be automatically renamed
+to ensure R compatibility.}
 
-\item{\code{string.as.factor}}{<<description>>}
+\item{\code{string.as.factor}}{a logical value indicating if character columns should be converted to factors (default = FALSE).}
 
-\item{\code{ignore.columns}}{<<description>>}
+\item{\code{ignore.columns}}{specify the columns from the input file that should be ignored.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a \link{Dataset} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
 \subsection{Method \code{getColumnNames()}}{
-<<description>>
+get the name of the columns comprising the dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$getColumnNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a character vector with the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDataset"></a>}}
 \subsection{Method \code{getDataset()}}{
-<<description>>
+gets the full dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$getDataset()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{data.frame} with all the loaded information.
 }
 }
 \if{html}{\out{<hr>}}
@@ -154,25 +163,25 @@ Dataset
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
 \subsection{Method \code{getNcol()}}{
-<<description>>
+obtains the number of columns present in the Dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$getNcol()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+an \link{integer} of length 1 or \link{NULL}
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNrow"></a>}}
 \subsection{Method \code{getNrow()}}{
-<<description>>
+obtains the number of rows present in the Dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$getNrow()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+an \link{integer} of length 1 or \link{NULL}
 }
 }
 \if{html}{\out{<hr>}}
@@ -190,13 +199,13 @@ Dataset
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRemovedColumns"></a>}}
 \subsection{Method \code{getRemovedColumns()}}{
-<<description>>
+get the columns removed or ignored.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$getRemovedColumns()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{list} containing the name of the removed columns.
 }
 }
 \if{html}{\out{<hr>}}
@@ -213,9 +222,6 @@ Dataset
 \item{\code{positive.class}}{<<description>>}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}
@@ -235,9 +241,6 @@ Dataset
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-<<return>>
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setClassName"></a>}}
@@ -256,14 +259,11 @@ Dataset
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-<<return>>
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-cleanData"></a>}}
 \subsection{Method \code{cleanData()}}{
-<<description>>
+removes \link{data.frame} columns matchimg some criterion.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$cleanData(remove.funcs = NULL, remove.na = TRUE, remove.const = FALSE)}\if{html}{\out{</div>}}
 }
@@ -271,22 +271,19 @@ Dataset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{remove.funcs}}{<<description>>}
+\item{\code{remove.funcs}}{a vector of functions use to define which columns must be removed.}
 
-\item{\code{remove.na}}{<<description>>}
+\item{\code{remove.na}}{a logical value indicating whether \link{NA} values should be removed.}
 
-\item{\code{remove.const}}{<<description>>}
+\item{\code{remove.const}}{a logical value used to indicate if constant values should be removed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-removeColumns"></a>}}
 \subsection{Method \code{removeColumns()}}{
-<<description>>
+applies \code{cleanData} function over an specific set of columns.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$removeColumns(
   columns,
@@ -299,24 +296,21 @@ Dataset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{columns}}{<<description>>}
+\item{\code{columns}}{set of columns (numeric or character) where removal operation should be applied.}
 
-\item{\code{remove.funcs}}{<<description>>}
+\item{\code{remove.funcs}}{a vector of functions use to define which columns must be removed.}
 
-\item{\code{remove.na}}{<<description>>}
+\item{\code{remove.na}}{a logical value indicating whether \code{\link{NA}} values should be removed.}
 
-\item{\code{remove.const}}{<<description>>}
+\item{\code{remove.const}}{a logical value used to indicate if constant values should be removed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createPartitions"></a>}}
 \subsection{Method \code{createPartitions()}}{
-<<description>>
+creates a k-folds partition from the initial dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createPartitions(
   num.folds = NULL,
@@ -328,22 +322,20 @@ Dataset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.folds}}{<<description>>}
+\item{\code{num.folds}}{an integer for the number of folds (partitions)}
 
-\item{\code{percent.folds}}{<<description>>}
+\item{\code{percent.folds}}{an integer vector with the percentaje of instances containing each fold.}
 
-\item{\code{class.balance}}{<<description>>}
+\item{\code{class.balance}}{a logical value indicating if class balance should be kept.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createSubset"></a>}}
 \subsection{Method \code{createSubset()}}{
-<<description>>
+create a \link{Subset} for testing or classification purposes. A target class should be provided for
+testing purposes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createSubset(
   num.folds,
@@ -355,22 +347,25 @@ Dataset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.folds}}{<<description>>}
+\item{\code{num.folds}}{an integer defining the number of folds that should we used to build the \link{Subset}.}
 
-\item{\code{column.id}}{<<description>>}
+\item{\code{column.id}}{an integer or character indicating the column (number or name respectively) identifier. Default \link{NULL} value
+is valid ignores defining a identification column.}
 
-\item{\code{opts}}{<<description>>}
+\item{\code{opts}}{a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
+remove.const (ignore columns with constant values).}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+\link{Subset}
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createTrain"></a>}}
 \subsection{Method \code{createTrain()}}{
-<<description>>
+creates a set for training purposes. A class should be defined to guarantee full-compatibility
+with supervised models.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createTrain(
   num.folds = NULL,
@@ -381,14 +376,15 @@ Dataset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.folds}}{<<description>>}
+\item{\code{num.folds}}{an integer defining the number of folds that should we used to build the \link{Subset}.}
 
-\item{\code{opts}}{<<description>>}
+\item{\code{opts}}{a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
+remove.const (ignore columns with constant values).}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+\link{Trainset}
 }
 }
 }

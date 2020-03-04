@@ -3,16 +3,23 @@
 \docType{class}
 \name{PearsonHeuristic}
 \alias{PearsonHeuristic}
-\title{<<tittle>>}
+\title{Feature-clustering based on Pearson Correlation Test.}
 \description{
-PearsonHeuristic
+Performs the feature-clustering using Pearson correlation tests.
+Valid for both, bi-class and multi-class problems.
 }
 \details{
-<<details>
+The test statistic is based on Pearson's product moment correlation
+coefficient cor(x, y) and follows a t distribution with length(x)-2 degrees of
+freedom if the samples follow independent normal distributions.
+If there are at least 4 complete pairs of observation,
+an asymptotic confidence interval is given based on Fisher's Z transform.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}} \link{cor.test}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{PearsonHeuristic}
 }
@@ -33,16 +40,19 @@ PearsonHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{PearsonHeuristic} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{PearsonHeuristic$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{PearsonHeuristic} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+Test for association between paired samples using Pearsons test.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{PearsonHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -50,16 +60,18 @@ PearsonHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{a numeric vector or matrix required to perform the
+clustering operation.}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{a numeric vector or matrix to perform the clustering operation.}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{an optional \link{character} vector with the names of
+both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 }
 \if{html}{\out{<hr>}}

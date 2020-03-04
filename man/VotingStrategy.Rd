@@ -3,16 +3,16 @@
 \docType{class}
 \name{VotingStrategy}
 \alias{VotingStrategy}
-\title{<<tittle>>}
+\title{Voting Strategy template.}
 \description{
-VotingStrategy
-}
-\details{
-<<details>
+Abstract class used to define new \code{\link{SingleVoting}} and  \code{\link{CombinedVoting}} schemes.
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{DDMCS}}, \code{\link{SingleVoting}}, \code{\link{CombinedVoting}}
 }
+\keyword{math}
+\keyword{methods}
+\keyword{models}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -27,7 +27,7 @@ VotingStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Abstract method used to initialize the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$new()}\if{html}{\out{</div>}}
 }
@@ -36,31 +36,31 @@ VotingStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getVotingSchemes"></a>}}
 \subsection{Method \code{getVotingSchemes()}}{
-<<description>>
+The function returns the voting schemes that will participate in the voting strategy.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$getVotingSchemes()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A vector of object inheriting from \code{\link{VotingStrategy}} class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMetrics"></a>}}
 \subsection{Method \code{getMetrics()}}{
-<<description>>
+The function is used to get the metric that will be used during the voting strategy.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$getMetrics()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+Abstract function used to implement the operation of the voting schemes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$execute(predictions, ...)}\if{html}{\out{</div>}}
 }
@@ -68,26 +68,23 @@ VotingStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{<<description>>}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing de prediction achieved for each cluster.}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getName"></a>}}
 \subsection{Method \code{getName()}}{
-<<description>>
+The function returns the name of the voting scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$getName()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}

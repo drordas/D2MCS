@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Pseudo-abstract class for creating feature clustering plots.
 #'
-#' @description GenericPlot
+#' @description The \link{GenericPlot} implements a basic plot.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
-#'
 #' @seealso \code{\link{BinaryPlot}}
 #'
-#' @keywords NULL
+#' @keywords device color hplot
 #'
 #' @import R6
 #'
@@ -20,15 +18,17 @@ GenericPlot <- R6::R6Class(
   classname = "GenericPlot",
   portable = TRUE,
   public = list(
-    #' @description
+    #'
+    #' @description empty function used to initalize the object arguments in runtime.
+    #' @return a \link{GenericPlot} object.
+    #'
     initialize = function() { },
     #'
-    #' @description <<description>>
+    #' @description implements a generic plot to visualize basic feature-clustering data.
     #'
-    #' @param summary <<description>>
-    #' @param ... <<description>>
+    #' @param summary a \link{data.frame} comprising the elements to be plotted.
+    #' @param ... further arguments passed down to \code{plot} function.
     #'
-    #' @return <<description>>
     #' @import ggplot2 ggrepel
     #'
     plot = function(summary, ...) {

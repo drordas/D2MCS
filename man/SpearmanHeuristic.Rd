@@ -3,16 +3,20 @@
 \docType{class}
 \name{SpearmanHeuristic}
 \alias{SpearmanHeuristic}
-\title{<<tittle>>}
+\title{Feature-clustering based on Spearman Correlation Test.}
 \description{
-SpearmanHeuristic
+Performs the feature-clustering using Spearman's rho statistic.
 }
 \details{
-<<details>
+Spearman's rho statistic is to estimate a rank-based measure of
+association. These tests may be used if the data do not necessarily come from a
+bivariate normal distribution.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}} \link{cor.test}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{SpearmanHeuristic}
 }
@@ -33,16 +37,19 @@ SpearmanHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{SpearmanHeuristic} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SpearmanHeuristic$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{SpearmanHeuristic} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+Test for correlation between paired samples using Spearman rho statistic.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SpearmanHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -50,16 +57,17 @@ SpearmanHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{\link{numeric} vectors of data values.}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{\link{numeric} vectors of data values with same length as col1.}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{an optional \link{character} vector with the names of
+both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 }
 \if{html}{\out{<hr>}}

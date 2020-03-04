@@ -3,16 +3,22 @@
 \docType{class}
 \name{Subset}
 \alias{Subset}
-\title{<<tittle>>}
+\title{Classification set.}
 \description{
-Subset
+The \code{Subset} is used for testing or classification purposes.
+If a target class is defined the \link{Subset} can be used as test and classification,
+otherwise the \link{Subset} only classification is compatible.
 }
 \details{
-<<details>
+Use \link{Dataset} to ensure the creation of a valid \code{\link{Subset}} object.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}}, \code{\link{DatasetLoader}}, \code{\link{Trainset}}
 }
+\keyword{attribute}
+\keyword{datagen}
+\keyword{datasets}
+\keyword{manip}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -34,7 +40,7 @@ Subset
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{Subset} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$new(
   dataset,
@@ -48,35 +54,39 @@ Subset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dataset}}{<<description>>}
+\item{\code{dataset}}{a fully filled \link{data.frame}.}
 
-\item{\code{class.index}}{<<description>>}
+\item{\code{class.index}}{a \link{numeric} value identifying the column representing
+the target class}
 
-\item{\code{class.values}}{<<description>>}
+\item{\code{class.values}}{a \link{character} vector containing all the values of the target class.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{a \link{character} value representing the positive class value.}
 
-\item{\code{feature.id}}{<<description>>}
+\item{\code{feature.id}}{a \link{numeric} value specifying the column number used as identifier.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\link{Subset} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatureNames"></a>}}
 \subsection{Method \code{getFeatureNames()}}{
-<<description>>
+get the name of the columns comprising the subset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getFeatureNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector containing the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatures"></a>}}
 \subsection{Method \code{getFeatures()}}{
-<<description>>
+get the values of a specific feature.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getFeatures(feature.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -84,30 +94,31 @@ Subset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{feature.names}}{<<description>>}
+\item{\code{feature.names}}{a \link{character} vector comprising the name of the
+features to be obtained.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+a \link{character} vector or NULL if subset is empty.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getID"></a>}}
 \subsection{Method \code{getID()}}{
-<<description>>
+get the column name used as identifier.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getID()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector of size 1 of NULL if column id is not defined.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getIterator"></a>}}
 \subsection{Method \code{getIterator()}}{
-<<description>>
+areates the \link{DIterator} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getIterator(chunk.size = private$chunk.size, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -115,32 +126,34 @@ Subset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{chunk.size}}{<<description>>}
+\item{\code{chunk.size}}{chunk.size an integer value indicating the size of chunks taken
+over each iteration. By default chunk.size is defied as 10000.}
 
-\item{\code{verbose}}{<<description>>}
+\item{\code{verbose}}{a logical value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+a \link{DIterator} object to trasverse through \link{Subset} instances.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
 \subsection{Method \code{getClassValues()}}{
-<<description>>
+gets all the values of the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getClassValues()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{factor} vector with all the values of the target class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassBalance"></a>}}
 \subsection{Method \code{getClassBalance()}}{
-<<description>>
+the function is used to compute the ratio of each class value
+in the \link{Subset}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getClassBalance(target.value = NULL)}\if{html}{\out{</div>}}
 }
@@ -148,84 +161,90 @@ Subset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{target.value}}{<<description>>}
+\item{\code{target.value}}{the class value used as reference to perform the comparison.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{numeric} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassIndex"></a>}}
 \subsection{Method \code{getClassIndex()}}{
-<<description>>
+the function is used to obtain the index of the column
+containing the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getClassIndex()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{numeric} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassName"></a>}}
 \subsection{Method \code{getClassName()}}{
-<<description>>
+the function is used to specify the name of the column
+containing the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getClassName()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
 \subsection{Method \code{getNcol()}}{
-<<description>>
+the function is in charge of obtaining the number of columns
+comprising the \link{Subset}. See \link{ncol} for more information.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getNcol()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+an \link{integer} of length 1 or \link{NULL}.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNrow"></a>}}
 \subsection{Method \code{getNrow()}}{
-<<description>>
+the function is used to determine the number of rows present in
+the \link{Subset}. See \link{nrow} for more information.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getNrow()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+an \link{integer} of length 1 or \link{NULL}.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
 \subsection{Method \code{getPositiveClass()}}{
-<<description>>
+the function returns the value of the positive class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getPositiveClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector of size 1 or \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isBlinded"></a>}}
 \subsection{Method \code{isBlinded()}}{
-<<description>>
+the function is used to check if the \link{Subset} contains
+a target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$isBlinded()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{logical} value where \link{TRUE} represents the abscense
+of target class and \link{FALSE} its presence.
 }
 }
 }

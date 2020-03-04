@@ -3,7 +3,7 @@
 \docType{class}
 \name{MinimizeFP}
 \alias{MinimizeFP}
-\title{<<tittle>>}
+\title{Minimizes FP errors.}
 \description{
 MinimizeFP
 }
@@ -13,6 +13,8 @@ MinimizeFP
 \seealso{
 \code{\link{CombinedMetrics}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Super class}{
 \code{\link[DDMCS:CombinedMetrics]{DDMCS::CombinedMetrics}} -> \code{MinimizeFP}
 }

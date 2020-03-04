@@ -1,16 +1,17 @@
-#' @title <<tittle>>
+#' @title Trainning set.
 #'
-#' @description Trainset
+#' @description The \code{Trainset} is used to perform training operations over M.L. models.
+#' A target class should be defined to guarantee a full compatibility with supervised models.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @details Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset}} object.
 #'
-#' @seealso \code{\link{Dataset}}
+#' @seealso \link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{ClusteringStrategy}
 #'
-#' @keywords NULL
+#' @keywords datasets manip attribute programming utilities
 #'
 #' @import R6
 #'
@@ -22,12 +23,15 @@ Trainset <- R6::R6Class(
   cloneable = FALSE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Creates a \link{Trainset} object.
     #'
-    #' @param cluster.dist <<description>>
-    #' @param class.name <<description>>
-    #' @param class.values <<description>>
-    #' @param positive.class <<description>>
+    #' @param cluster.dist the type of cluster distribution used as basis
+    #' to build the \link{Trainset}. See \link{ClusteringStrategy} for more information.
+    #' @param class.name used to specify the name of the column containing the target class.
+    #' @param class.values specifies all the posible values of the target class.
+    #' @param positive.class defines the positive class value.
+    #'
+    #' @return a fully operative \link{Trainset} object.
     #'
     initialize = function(cluster.dist, class.name, class.values, positive.class) {
 
@@ -47,29 +51,31 @@ Trainset <- R6::R6Class(
       private$class.values <- class.values
     },
     #'
-    #' @description <<description>>
+    #' @description the function is used to obtain the value of the positive class.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} value with the positive class value.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description <<description>>
+    #' @description the function is used to return the name of the target class.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} vector with length 1.
     #'
     getClassName = function() { private$class.name },
     #'
-    #' @description <<description>>
+    #' @description the function is used to compute all the posible target class values.
     #'
-    #' @return <<return>>
+    #' @return a \link{factor} value.
     #'
     getClassValues = function() { private$class.values },
     #'
-    #' @description <<description>>
+    #' @description the function returns the name of the columns comprising
+    #' an specific cluster distribution.
     #'
-    #' @param num.cluster <<description>>
+    #' @param num.cluster a numeric value used to specify the cluster number
+    #' of the cluster distribution used when creating the \link{Trainset}.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} vector with all column names.
     #'
     getFeatureNames = function(num.cluster) {
       if (any(!is.numeric(num.cluster),
@@ -81,11 +87,14 @@ Trainset <- R6::R6Class(
       names(private$clusters[[num.cluster]])
     },
     #'
-    #' @description <<description>>
+    #' @description the function returns the values of the columns comprising
+    #' an specific cluster distribution. Target class is omitted.
     #'
-    #' @param num.cluster <<description>>
+    #' @param num.cluster a numeric value used to specify the cluster number
+    #' of the cluster distribution used when creating the \link{Trainset}.
     #'
-    #' @return <<return>>
+    #' @return a \link{data.frame} with the values of the features comprising
+    #' the selected cluster distribution.
     #'
     getFeatureValues = function(num.cluster) {
       if (any(!is.numeric(num.cluster),
@@ -98,11 +107,14 @@ Trainset <- R6::R6Class(
       private$clusters[[num.cluster]]
     },
     #'
-    #' @description <<description>>
+    #' @description the function returns the values of the columns comprising
+    #' an specific cluster distribution. Target class is included as the last column.
     #'
-    #' @param num.cluster <<description>>
+    #' @param num.cluster num.cluster a numeric value used to specify the cluster number
+    #' of the cluster distribution used when creating the \link{Trainset}.
     #'
-    #' @return <<return>>
+    #' @return a \link{data.frame} with the values of the features comprising the
+    #' selected cluster distribution.
     #'
     getInstances = function(num.cluster) {
       if (any(is.null(num.cluster), !is.numeric(num.cluster),
@@ -117,9 +129,10 @@ Trainset <- R6::R6Class(
       instances
     },
     #'
-    #' @description <<description>>
+    #' @description the function obtains the number of groups (clusters) that forms
+    #' the cluster distribution.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of size 1.
     #'
     getNumClusters = function() { length(private$clusters) }
   ),

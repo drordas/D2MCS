@@ -1,16 +1,16 @@
-#' @title <<tittle>>
+#' @title Classification set.
 #'
-#' @description Subset
+#' @description The \code{Subset} is used for testing or classification purposes.
+#' If a target class is defined the \link{Subset} can be used as test and classification,
+#' otherwise the \link{Subset} only classification is compatible.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @details Use \link{Dataset} to ensure the creation of a valid \code{\link{Subset}} object.
 #'
-#' @details <<details>
+#' @seealso \code{\link{Dataset}}, \code{\link{DatasetLoader}}, \code{\link{Trainset}}
 #'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords datasets manip attribute datagen
 #'
 #' @import R6
 #'
@@ -22,13 +22,16 @@ Subset <- R6::R6Class(
   cloneable = FALSE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Creates a \link{Subset} object.
     #'
-    #' @param dataset <<description>>
-    #' @param class.index <<description>>
-    #' @param class.values <<description>>
-    #' @param positive.class <<description>>
-    #' @param feature.id <<description>>
+    #' @param dataset a fully filled \link{data.frame}.
+    #' @param class.index a \link{numeric} value identifying the column representing
+    #' the target class
+    #' @param class.values a \link{character} vector containing all the values of the target class.
+    #' @param positive.class a \link{character} value representing the positive class value.
+    #' @param feature.id a \link{numeric} value specifying the column number used as identifier.
+    #'
+    #' @return \link{Subset} object.
     #'
     initialize = function(dataset, class.index, class.values,
                           positive.class, feature.id = NULL) {
@@ -64,17 +67,18 @@ Subset <- R6::R6Class(
       private$feature.names <- names(private$data[, -private$class.index])
     },
     #'
-    #' @description <<description>>
+    #' @description get the name of the columns comprising the subset.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} vector containing the name of each column.
     #'
     getFeatureNames = function() { private$feature.names },
     #'
-    #' @description <<description>>
+    #' @description get the values of a specific feature.
     #'
-    #' @param feature.names <<description>>
+    #' @param feature.names a \link{character} vector comprising the name of the
+    #' features to be obtained.
     #'
-    #' @return <<description>>
+    #' @return a \link{character} vector or NULL if subset is empty.
     #'
     getFeatures = function(feature.names = NULL) {
       if (is.vector(feature.names) && length(feature.names) > 0) {
@@ -82,9 +86,9 @@ Subset <- R6::R6Class(
       } else { private$data[, -private$class.index] }
     },
     #'
-    #' @description <<description>>
+    #' @description get the column name used as identifier.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} vector of size 1 of NULL if column id is not defined.
     #'
     getID = function() {
       if (!is.null(private$feature.id))
@@ -92,12 +96,13 @@ Subset <- R6::R6Class(
       else private$feature.id
     },
     #'
-    #' @description <<description>>
+    #' @description areates the \link{DIterator} object.
     #'
-    #' @param chunk.size <<description>>
-    #' @param verbose <<description>>
+    #' @param chunk.size chunk.size an integer value indicating the size of chunks taken
+    #' over each iteration. By default chunk.size is defied as 10000.
+    #' @param verbose a logical value to specify if more verbosity is needed.
     #'
-    #' @return <<description>>
+    #' @return a \link{DIterator} object to trasverse through \link{Subset} instances.
     #'
     getIterator = function(chunk.size = private$chunk.size, verbose = FALSE) {
       if (!is.numeric(chunk.size)) {
@@ -115,17 +120,18 @@ Subset <- R6::R6Class(
                     verbose = verbose)
     },
     #'
-    #' @description <<description>>
+    #' @description gets all the values of the target class.
     #'
-    #' @return <<return>>
+    #' @return a \link{factor} vector with all the values of the target class.
     #'
     getClassValues = function() { private$data[, private$class.index] },
     #'
-    #' @description <<description>>
+    #' @description the function is used to compute the ratio of each class value
+    #' in the \link{Subset}.
     #'
-    #' @param target.value <<description>>
+    #' @param target.value the class value used as reference to perform the comparison.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} value.
     #'
     getClassBalance = function(target.value = NULL) {
       if (is.null(target.value)) {
@@ -141,39 +147,45 @@ Subset <- R6::R6Class(
       round(count[, target.value] / sum(count[, which(names(count) != target.value)]), digits = 3)
     },
     #'
-    #' @description <<description>>
+    #' @description the function is used to obtain the index of the column
+    #' containing the target class.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} value.
     #'
     getClassIndex = function() { private$class.index },
     #'
-    #' @description <<description>>
+    #' @description the function is used to specify the name of the column
+    #' containing the target class.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} value.
     #'
     getClassName = function() { private$class.name },
     #'
-    #' @description <<description>>
+    #' @description the function is in charge of obtaining the number of columns
+    #' comprising the \link{Subset}. See \link{ncol} for more information.
     #'
-    #' @return <<return>>
+    #' @return an \link{integer} of length 1 or \link{NULL}.
     #'
     getNcol = function() { ncol(private$data) },
     #'
-    #' @description <<description>>
+    #' @description the function is used to determine the number of rows present in
+    #' the \link{Subset}. See \link{nrow} for more information.
     #'
-    #' @return <<return>>
+    #' @return an \link{integer} of length 1 or \link{NULL}.
     #'
     getNrow = function() { nrow(private$data) },
     #'
-    #' @description <<description>>
+    #' @description the function returns the value of the positive class.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} vector of size 1 or \link{NULL} if not defined.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description <<description>>
+    #' @description the function is used to check if the \link{Subset} contains
+    #' a target class.
     #'
-    #' @return <<return>>
+    #' @return a \link{logical} value where \link{TRUE} represents the abscense
+    #' of target class and \link{FALSE} its presence.
     #'
     isBlinded = function() { FALSE }
   ),

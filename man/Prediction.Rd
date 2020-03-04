@@ -13,6 +13,9 @@ Prediction
 \seealso{
 \code{\link{ClusterPredictions}}
 }
+\keyword{internal}
+\keyword{math}
+\keyword{misc}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Default model fitting implementation.
 #'
-#' @description DefaultModelFit
+#' @description Creates a default \code{\link[recipes]{recipe}} and \code{\link{formula}} objects used in model training stage.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{GenericModelFit}}, \code{\link[caret]{train}}
 #'
-#' @seealso \code{\link{GenericModelFit}}
-#'
-#' @keywords NULL
+#' @keywords misc
 #'
 #' @import R6
 #'
@@ -22,31 +20,33 @@ DefaultModelFit <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param instances <<description>
-    #' @param class.name <<description>>
+    #' @param instances An \code{\link{data.frame}} containing the data used to train the M.L. models.
+    #' @param class.name A \code{\link{character}} of length 1 defining the name of the target class.
     #'
     initialize = function(instances, class.name) {
       super$initialize(instances, class.name)
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of creating a \code{\link{formula}} for M.L. model.
     #'
-    #' @param simplify <<description>>
+    #' @param simplify A \code{\link{logical}} argument defining whether the formula should be generated as simple as posible.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{formula}} object.
     #'
     createFormula = function(simplify = FALSE) {
       if (isTRUE(simplify))
         as.formula(paste0(sprintf("`%s`", private$class.name), " ~ ."))
       else as.formula(paste0(paste0(sprintf("`%s`", private$class.name), " ~ "),
-                              paste0(sprintf("`%s`", private$feature.names), collapse = "+")))
+                             paste0(sprintf("`%s`", private$feature.names), collapse = "+")))
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of creating a \code{\link[recipes]{recipe}} with five operations over the data:
+    #' \code{\link[recipes]{step_zv}}, \code{\link[recipes]{step_nzv}}, \code{\link[recipes]{step_corr}},
+    #' \code{\link[recipes]{step_center}}, \code{\link[recipes]{step_scale}}
     #'
-    #' @return <<description>>
+    #' @return A object of class \code{\link[recipes]{recipe}}.
     #'
     #' @import recipes
     #'

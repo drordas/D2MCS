@@ -3,16 +3,23 @@
 \docType{class}
 \name{BinaryPlot}
 \alias{BinaryPlot}
-\title{<<tittle>>}
+\title{Plotting feature clusters following bi-class problem.}
 \description{
-BinaryPlot
+Plotting feature clusters following bi-class problem.
+
+Plotting feature clusters following bi-class problem.
 }
 \details{
 <<details>
 }
 \seealso{
 \code{\link{GenericPlot}}
+
+for more information see \code{plot} function from \code{GenericPlot} class.
 }
+\keyword{color}
+\keyword{device}
+\keyword{hplot}
 \section{Super class}{
 \code{\link[DDMCS:GenericPlot]{DDMCS::GenericPlot}} -> \code{BinaryPlot}
 }
@@ -33,16 +40,19 @@ BinaryPlot
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-
+empty function used to initalize the object arguments in runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{BinaryPlot$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{BinaryPlot} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \subsection{Method \code{plot()}}{
-<<description>>
+plots feature-clustering data from a bi-class problem.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{BinaryPlot$plot(summary, ...)}\if{html}{\out{</div>}}
 }
@@ -50,14 +60,11 @@ BinaryPlot
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{summary}}{<<description>>}
+\item{\code{summary}}{a \link{data.frame} comprising the elements to be plotted.}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{further arguments passed down to \code{plot} function.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}

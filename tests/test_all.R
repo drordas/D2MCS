@@ -1,2 +1,1 @@
-library(testthat)
-test_check("DDMCS")
+testthat::test_check("DDMCS")

@@ -1,4 +1,4 @@
-#' @title <<tittle>>
+#' @title <<miguel>>
 #'
 #' @description ProbBasedMethodology
 #'
@@ -10,7 +10,7 @@
 #'
 #' @seealso \code{\link{Methodology}}
 #'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'

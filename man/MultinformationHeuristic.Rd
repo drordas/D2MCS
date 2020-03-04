@@ -4,16 +4,16 @@
 \docType{class}
 \name{MultinformationHeuristic}
 \alias{MultinformationHeuristic}
-\title{<<tittle>>}
+\title{Feature-clustering based on Mutual Information Computation theory.}
 \description{
-MultinformationHeuristic
-}
-\details{
-<<details>
+Performs the feature-clustering using MCC score.
+Valid for both bi-class and multi-class problems. Only valid for bi-class problems.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}}, \code{\link[infotheo]{mutinformation}}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{MultinformationHeuristic}
 }
@@ -34,16 +34,20 @@ MultinformationHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{MultinformationHeuristic} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MultinformationHeuristic$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{MultinformationHeuristic} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+mutinformation takes two random variables as input and computes the
+mutual information in nats according to the entropy estimator method.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MultinformationHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -51,16 +55,19 @@ MultinformationHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{vector/factor denoting a random variable or a data.frame denoting a
+random vector where columns contain variables/features and rows contain
+outcomes/samples.}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{another random variable or random vector (vector/factor or data.frame).}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{an optional \link{character} vector with the names of
+both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+returns the mutual information I(X;Y) in nats.
 }
 }
 \if{html}{\out{<hr>}}

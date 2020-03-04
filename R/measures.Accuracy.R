@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Computes the Accuracy measure.
 #'
-#' @description Accuracy
+#' @description Computes the ratio of number of correct predictions to the total number of input samples.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @details \deqn{Accuracy=\frac{Number Correct Predictions}{Total Number of Predictions}}
 #'
-#' @details <<details>
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}.
 #'
-#' @seealso \code{\link{MeasureFunction}}
-#'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -22,19 +20,24 @@ Accuracy <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} used as basis
+    #' to compute the performance.
+    #'
+    #' @return An \code{\link{Accuracy}} object.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description <<description>>
+    #' @description The function computes the \code{Accuracy} achieved by the M.L. model.
     #'
-    #' @param performance.output <<description>>
-    #'
-    #' @return <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to define the type
+    #' of object used as basis to compute the \code{Accuracy} measure.
+    #' @details This function is automatically invoque by the \link{ClassificationOutput} object.
+    #' @seealso \code{\link{ConfMatrix}}
+    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

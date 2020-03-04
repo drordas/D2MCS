@@ -3,16 +3,31 @@
 \docType{class}
 \name{DatasetLoader}
 \alias{DatasetLoader}
-\title{<<tittle>>}
+\title{Dataset creation.}
 \description{
-DatasetLoader
+Wrapper class able to automatically create a \code{\link{Dataset}}, \code{\link{HDDataset}} according to the input data.
 }
-\details{
-<<details>
+\examples{
+\dontrun{
+  # Create Dataset Handler object.
+  loader <- DatasetLoader$new()
+
+  #Load input file.
+  data <- loader$load(filepath = system.file(file.path("examples","hcc-data-complete-balanced.csv"),
+                                             package = "DDMCS"),
+                      header = T, normalize.names = T)
+}
+
 }
 \seealso{
 \code{\link{Dataset}}, \code{\link{HDDataset}}
 }
+\keyword{attribute}
+\keyword{connection}
+\keyword{datagen}
+\keyword{datasets}
+\keyword{file}
+\keyword{manip}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -23,19 +38,19 @@ DatasetLoader
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates the \code{\link{DatasetLoader}} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DatasetLoader$new()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+DatasetLoader object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-load"></a>}}
 \subsection{Method \code{load()}}{
-<<description>>
+Stores the input source into a \code{\link{Dataset}} or \code{\link{HDDataset}} type object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DatasetLoader$load(
   filepath,
@@ -53,28 +68,33 @@ DatasetLoader
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{filepath}}{<<description>>}
+\item{\code{filepath}}{the name of the file which the data are to be read from.
+Each row of the table appears as one line of the file.
+If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, ‘getwd()’.}
 
-\item{\code{header}}{<<description>>}
+\item{\code{header}}{a logical value indicating whether the file contains the names of the variables as its first line.
+If missing, the value is determined from the file format: ‘header’ is set to ‘TRUE’ if and only if the
+first row contains one fewer field than the number of columns.}
 
-\item{\code{sep}}{<<description>>}
+\item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
 
-\item{\code{skip.lines}}{<<description>>}
+\item{\code{skip.lines}}{defines the number of header lines should be skipped.}
 
 \item{\code{target.class}}{<<description>>}
 
 \item{\code{positive.class}}{<<description>>}
 
-\item{\code{normalize.names}}{<<description>>}
+\item{\code{normalize.names}}{a logical value indicating whether the columns names should be automatically renamed
+to ensure R compatibility.}
 
-\item{\code{string.as.factor}}{<<description>>}
+\item{\code{string.as.factor}}{a logical value indicating if character columns should be converted to factors (default = FALSE).}
 
-\item{\code{ignore.columns}}{<<description>>}
+\item{\code{ignore.columns}}{specify the columns from the input file that should be ignored.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<descriptionReturn>>
+\code{\link{Dataset}}, \code{\link{HDDataset}} object.
 }
 }
 }

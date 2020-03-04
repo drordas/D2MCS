@@ -3,16 +3,19 @@
 \docType{class}
 \name{TrainOutput}
 \alias{TrainOutput}
-\title{<<tittle>>}
+\title{Stores the results achieved during training.}
 \description{
-TrainOutput
-}
-\details{
-<<details>
+This class manages the results achieved during training stage (such as optimized hyperparameters,
+model information, utilized metrics).
 }
 \seealso{
 \code{\link{DDMCS}}
 }
+\keyword{attribute}
+\keyword{datasets}
+\keyword{manip}
+\keyword{programming}
+\keyword{utilities}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -31,7 +34,7 @@ TrainOutput
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Function used to initialize the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$new(models, class.values, positive.class)}\if{html}{\out{</div>}}
 }
@@ -39,11 +42,11 @@ TrainOutput
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{models}}{<<descrription>>}
+\item{\code{models}}{A \code{\link{list}} containing the best M.L. model for each cluster.}
 
-\item{\code{class.values}}{<<descrription>>}
+\item{\code{class.values}}{A \code{\link{character}} vector containing the values of the target class.}
 
-\item{\code{positive.class}}{<<descrription>>}
+\item{\code{positive.class}}{A \code{\link{character}} with the value of the positive class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -51,7 +54,7 @@ TrainOutput
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModels"></a>}}
 \subsection{Method \code{getModels()}}{
-<<description>>
+The function is used to obtain the best M.L. model of each cluster.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$getModels(metric)}\if{html}{\out{</div>}}
 }
@@ -59,18 +62,18 @@ TrainOutput
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{metric}}{<<descrription>>}
+\item{\code{metric}}{A \code{\link{character}} vector which specifies the metric(s) used for configuring M.L. hyperparameters.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{list}} is returned of class train.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPerformance"></a>}}
 \subsection{Method \code{getPerformance()}}{
-<<description>>
+The function returns the performance value of M.L. models during training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$getPerformance(metrics = NULL)}\if{html}{\out{</div>}}
 }
@@ -78,18 +81,18 @@ TrainOutput
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{metrics}}{<<descrription>>}
+\item{\code{metrics}}{A \code{\link{character}} vector which specifies the metric(s) used to train the M.L. models.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector containing the metrics used for configuring M.L. hyperparameters.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-savePerformance"></a>}}
 \subsection{Method \code{savePerformance()}}{
-<<description>>
+The function is used to save into CSV file the performance achieved by the M.L. models during training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$savePerformance(dir.path, metrics = NULL)}\if{html}{\out{</div>}}
 }
@@ -97,20 +100,19 @@ TrainOutput
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{The location to store the into a CSV file the performance of the trained M.L.}
 
-\item{\code{metrics}}{<<descrription>>}
+\item{\code{metrics}}{An optional parameter specifying the metric(s) used to train the M.L. models.
+If not defined, all the metrics used in train stage will be saved.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \subsection{Method \code{plot()}}{
-<<description>>
+The function is responsible for creating a plot to visualize the performance achieved by
+the best M.L. model on each cluster.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$plot(dir.path, metrics = NULL)}\if{html}{\out{</div>}}
 }
@@ -118,62 +120,61 @@ TrainOutput
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{The location to store the into a CSV file the performance of the trained M.L.}
 
-\item{\code{metrics}}{<<descrription>>}
+\item{\code{metrics}}{An optional parameter specifying the metric(s) used to train the M.L. models.
+If not defined, all the metrics used in train stage will be saved.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMetrics"></a>}}
 \subsection{Method \code{getMetrics()}}{
-<<description>>
+The function returns all metrics used for configuring M.L. hyperparameters during train stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$getMetrics()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
 \subsection{Method \code{getClassValues()}}{
-<<description>>
+The function is used to get the values of the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$getClassValues()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} containing the values of the target class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
 \subsection{Method \code{getPositiveClass()}}{
-<<description>>
+The function returns the value of the positive class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$getPositiveClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getSize"></a>}}
 \subsection{Method \code{getSize()}}{
-<<description>>
+The function is used to get the number of the trained M.L. models.
+Each cluster contains the best M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainOutput$getSize()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} value or \code{\link{NULL}} trainning was not succesfully performed.
 }
 }
 \if{html}{\out{<hr>}}

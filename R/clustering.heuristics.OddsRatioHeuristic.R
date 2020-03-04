@@ -1,16 +1,13 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on Odds Ratio measure.
 #'
-#' @description OddsRatioHeuristic
+#' @description Performs the feature-clustering using Odds Ratio methodology.
+#' Valid only for bi-class problems.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{Dataset}}, \code{\link[questionr]{odds.ratio}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,16 +18,20 @@ OddsRatioHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #'
+    #' @description Creates a \link{OddsRatioHeuristic} object.
+    #' @return a \link{OddsRatioHeuristic} object.
+    #'
     initialize = function() { },
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description Calculates the Odds Ratio method.
     #'
-    #' @description <<description>>
+    #' @param col1 object from whom odds ratio will be computed
+    #' @param col2 a second \link{factor} or \link{numeric} object.
+    #' @param column.names column.names an optional \link{character} vector with the names of
+    #' both columns.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #' @importFrom questionr odds.ratio
     #'
     heuristic = function(col1, col2, column.names = NULL) {

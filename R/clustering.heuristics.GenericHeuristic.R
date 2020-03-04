@@ -1,16 +1,16 @@
-#' @title <<tittle>>
+#' @title Abstract Feature Clustering heuristic object.
 #'
-#' @description GenericHeuristic
+#' @description Abstract class used as a template to define new customized clustering heuristics.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @details The \link{GenericHeuristic} is an archetype class so it cannot be instantiated.
 #'
 #' @seealso \code{\link{Dataset}}
 #'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -20,17 +20,19 @@ GenericHeuristic <- R6::R6Class(
   classname = "GenericHeuristic",
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #' @description Empty function used to initalize the object arguments in runtime.
+    #' @return a \link{GenericHeuristic} object.
     initialize = function() { },
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
-    #' @param ... <<description>>
+    #' @description Function used to implement the clustering heuristic.
     #'
-    #' @description <<description>>
+    #' @param col1 A \link{numeric} vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 A \link{numeric} vector or matrix to perform the clustering operation.
+    #' @param column.names An optional \link{character} vector with the names of both columns
+    #' @param ... Further arguments passed down to \code{heuristic} function.
     #'
-    #' @return <<return>>
+    #' @return A \link{numeric} vector of length 1.
     #'
     heuristic = function(col1, col2, column.names = NULL, ...) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",

@@ -3,16 +3,15 @@
 \docType{class}
 \name{FinalPred}
 \alias{FinalPred}
-\title{<<tittle>>}
+\title{Stores the prediction for a specific voting scheme.}
 \description{
-FinalPred
-}
-\details{
-<<details>
+The class is used to store the computed probability after executing an specific voting scheme.
 }
 \seealso{
-\code{\link{Prediction}}
+\code{\link{Prediction}} \code{\link{SimpleVoting}} \code{\link{SingleVoting}}
+\code{\link{CombinedVoting}} \code{\link{VotingStrategy}}
 }
+\keyword{internal}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

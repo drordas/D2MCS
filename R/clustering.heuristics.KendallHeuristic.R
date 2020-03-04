@@ -1,16 +1,17 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on Kendall Correlation Test.
 #'
-#' @description KendallHeuristic
+#' @description Performs the feature-clustering using Kendall correlation tests.
+#'
+#' @details The method estimate the association between paired samples and
+#' compute a test of the value being zero. They use different measures of association,
+#' all in the range [-1, 1] with 0 indicating no association.
+#' Method valid only for bi-class problems.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{Dataset}}, \link{cor.test}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,17 +22,22 @@ KendallHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #'
+    #' @description Creates a \link{KendallHeuristic} object.
+    #' @return a \link{KendallHeuristic} object.
+    #'
     initialize = function() { },
     # Heuristic valid for continuous variables
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description Test for association between paired samples using Kendall's tau value.
     #'
-    #' @description <<description>>
+    #' @param col1 a numeric vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #'
-    #' @return <<return>>
     #' @importFrom stats cor.test
     #'
     heuristic = function(col1, col2, column.names = NULL) {

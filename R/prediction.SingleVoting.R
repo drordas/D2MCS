@@ -1,16 +1,15 @@
-#' @title <<tittle>>
+#' @title Manages the execution of Simple Votings.
 #'
-#' @description SingleVoting
+#' @description The class is responsible of initializating and executing voting schemes.
+#' Additionally, to ensure a proper operation, the class automatically checks the compatiblity of defined voting schemes.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{DDMCS}}, \code{\link{SimpleVoting}}, \code{\link{CombinedVoting}}
 #'
-#' @seealso \code{\link{DDMCS}}
-#'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'
@@ -22,10 +21,10 @@ SingleVoting <- R6::R6Class(
   inherit = VotingStrategy,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description The function initializes the object arguments during runtime.
     #'
-    #' @param voting.schemes <<descrription>>
-    #' @param metrics <<descrription>>
+    #' @param voting.schemes A \code{vector} of voting schemes inheriting from \code{\link{SimpleVoting}} class.
+    #' @param metrics A \code{\link{list}} containing the metrics used as basis to perform the voting strategy.
     #'
     initialize = function(voting.schemes, metrics) {
       if (is.null(voting.schemes) || !is.vector(voting.schemes) ||
@@ -46,20 +45,19 @@ SingleVoting <- R6::R6Class(
       private$metrics <- metrics
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to execute all the previously defined (and compatible) voting schemes.
     #'
-    #' @param predictions <<descrription>>
-    #' @param verbose <<descrription>>
-    #'
-    #' @return <<return>>
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing all the
+    #' predictions computed in the classification stage.
+    #' @param verbose A logical value to specify if more verbosity is needed.
     #'
     execute = function(predictions, verbose = FALSE) {
 
       if (is.null(predictions) || !is.vector(predictions) ||
           !all(sapply(predictions, function(pred) {
-        !inherits(pred, "ClusterPrediction") }))) {
+                      inherits(pred, "ClusterPredictions") }))) {
         stop("[", class(self)[1], "][FATAL] Predictions parameter must be a ",
-             "list comprised of 'ClusterPrediction' objects. Aborting...")
+             "list comprised of 'ClusterPredictions' objects. Aborting...")
       }
 
       if (any(sapply(predictions, function(pred) { pred$size() <= 0 }))) {

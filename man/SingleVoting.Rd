@@ -3,16 +3,17 @@
 \docType{class}
 \name{SingleVoting}
 \alias{SingleVoting}
-\title{<<tittle>>}
+\title{Manages the execution of Simple Votings.}
 \description{
-SingleVoting
-}
-\details{
-<<details>
+The class is responsible of initializating and executing voting schemes.
+Additionally, to ensure a proper operation, the class automatically checks the compatiblity of defined voting schemes.
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{DDMCS}}, \code{\link{SimpleVoting}}, \code{\link{CombinedVoting}}
 }
+\keyword{math}
+\keyword{methods}
+\keyword{models}
 \section{Super class}{
 \code{\link[DDMCS:VotingStrategy]{DDMCS::VotingStrategy}} -> \code{SingleVoting}
 }
@@ -36,7 +37,7 @@ SingleVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+The function initializes the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SingleVoting$new(voting.schemes, metrics)}\if{html}{\out{</div>}}
 }
@@ -44,9 +45,9 @@ SingleVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{voting.schemes}}{<<descrription>>}
+\item{\code{voting.schemes}}{A \code{vector} of voting schemes inheriting from \code{\link{SimpleVoting}} class.}
 
-\item{\code{metrics}}{<<descrription>>}
+\item{\code{metrics}}{A \code{\link{list}} containing the metrics used as basis to perform the voting strategy.}
 }
 \if{html}{\out{</div>}}
 }
@@ -54,7 +55,7 @@ SingleVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+The function is used to execute all the previously defined (and compatible) voting schemes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SingleVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -62,14 +63,12 @@ SingleVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{<<descrription>>}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all the
+predictions computed in the classification stage.}
 
-\item{\code{verbose}}{<<descrription>>}
+\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}

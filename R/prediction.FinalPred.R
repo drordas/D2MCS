@@ -1,20 +1,15 @@
-#' @title <<tittle>>
+#' @title Stores the prediction for a specific voting scheme.
 #'
-#' @description FinalPred
+#' @description The class is used to store the computed probability after executing an specific voting scheme.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{Prediction}} \code{\link{SimpleVoting}} \code{\link{SingleVoting}}
+#' \code{\link{CombinedVoting}} \code{\link{VotingStrategy}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{Prediction}}
-#'
-#' @keywords NULL
+#' @keywords internal
 #'
 #' @import R6
-#'
-#' @export FinalPred
 
 FinalPred <- R6::R6Class(
   classname = "FinalPred",

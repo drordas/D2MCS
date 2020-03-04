@@ -1,16 +1,12 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on ChiSquare method.
 #'
-#' @description ChiSquareHeuristic
+#' @description Performs feature-clustering based on ChiSquare method.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{GenericHeuristic}} \link{chisq.test}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{GenericHeuristic}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,17 +17,20 @@ ChiSquareHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #' @description Creates a \link{ChiSquareHeuristic} class.
     initialize = function() { },
     # Heuristic valid for both discrete and continuous variables
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description functions responsible of performing the ChiSquare feature-clustering
+    #' operation.
     #'
-    #' @description <<description>>
+    #' @param col1 a numeric vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #' @importFrom stats chisq.test
     #'
     heuristic = function(col1, col2, column.names = NULL) {

@@ -3,16 +3,14 @@
 \docType{class}
 \name{NoProbability}
 \alias{NoProbability}
-\title{<<tittle>>}
+\title{Compute performance across resamples.}
 \description{
-NoProbability
-}
-\details{
-<<details>
+Computes the performance across resamples when class probabilities cannot be computed.
 }
 \seealso{
 \code{\link{SummaryFunction}}
 }
+\keyword{misc}
 \section{Super class}{
 \code{\link[DDMCS:SummaryFunction]{DDMCS::SummaryFunction}} -> \code{NoProbability}
 }
@@ -34,16 +32,19 @@ NoProbability
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-
+The function defined during runtime the usage of five measures: 'Kappa', 'Accuracy', 'TCR_9', 'MCC' and 'PPV'.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{NoProbability$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{\link{NoProbability}} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+The function computes the performance across resamples using the previously defined measures.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{NoProbability$execute(data, lev = NULL, model = NULL)}\if{html}{\out{</div>}}
 }
@@ -51,16 +52,16 @@ NoProbability
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{data}}{<<description>>}
+\item{\code{data}}{A \code{\link{data.frame}} containing the data used to compute the performance.}
 
-\item{\code{lev}}{<<description>>}
+\item{\code{lev}}{An optional value used to define the levels of the target class.}
 
-\item{\code{model}}{<<description>>}
+\item{\code{model}}{An optional value used to define the M.L. model used.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A vector of performance estimates.
 }
 }
 \if{html}{\out{<hr>}}

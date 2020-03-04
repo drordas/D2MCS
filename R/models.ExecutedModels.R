@@ -1,29 +1,25 @@
-#' @title <<tittle>>
+#' @title Handles training of M.L. models
 #'
-#' @description ExecutedModels
+#' @description Allows to manage the executed M.L. models.
 #'
 #' @docType class
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
 #' @seealso \code{\link{Model}}
 #'
-#' @keywords NULL
+#' @keywords internal methods error utilities misc
 #'
 #' @import R6
-#'
-#' @export ExecutedModels
 
 ExecutedModels <- R6::R6Class(
   classname = "ExecutedModels",
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param dir.path <<description>>
+    #' @param dir.path The location were the executed models will be saved.
+    #'
+    #' @return An \code{\link{ExecutedModels}} object.
     #'
     initialize = function(dir.path) {
       private$dir.path <- gsub("\\/$", "", dir.path)
@@ -59,9 +55,9 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to obtain the name of the ML model achieved the best performance during training stage.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of length 1 of \code{\link{NULL}} if no ML model have been trainned.
     #'
     getNames = function() {
       if (!is.null(private$best.model)) {
@@ -69,9 +65,9 @@ ExecutedModels <- R6::R6Class(
       } else { NULL }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of returning the model achieving the best performance value during training stage.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{Model}} oject.
     #'
     getBest = function() {
       if (!is.null(private$best.model)) {
@@ -82,12 +78,11 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function inserts a new model to the list of executed models.
     #'
-    #' @param model <<description>>
-    #' @param keep.best <<description>>
-    #'
-    #' @return <<description>>
+    #' @param model A previously trained model (in \code{\link{Model}} object).
+    #' @param keep.best A \code{logical} value to define the saving operation.
+    #' If \code{TRUE} only saves the best model, otherwise all executed models are saved.
     #'
     add = function(model, keep.best = TRUE) {
       if (!inherits(model, "Model")) {
@@ -120,11 +115,11 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to discern if a specific model has been executed previously.
     #'
-    #' @param model.name <<description>>
+    #' @param model.name A \code{\łink{character}} vector with the name of the model to check for existence.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{logical}} value. \link{TRUE} if the model exists and \link{FALSE} otherwise.
     #'
     exist = function(model.name) {
       if (!is.character(model.name) || is.null(private$models$model)) {
@@ -132,17 +127,15 @@ ExecutedModels <- R6::R6Class(
       } else { model.name %in% (private$models$model) }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to compute the number of executed ML models.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{numeric}} vector or size 1.
     #'
     size = function() {
       ifelse(is.null(private$models), 0, nrow(private$models))
     },
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<description>>
+    #' @description The function is responsible of saving the information of all executed models into a hidden file.
     #'
     save = function() {
       if (nrow(private$models) > 0) {
@@ -152,13 +145,10 @@ ExecutedModels <- R6::R6Class(
         message("[", class(self)[1], "][ERROR] File is empty. ",
                 "Task not performed")
       }
-    },
+    },    #'
+    #' @description The function removes an specific model.
     #'
-    #' @description <<description>>
-    #'
-    #' @param model.name <<description>>
-    #'
-    #' @return <<description>>
+    #' @param model.name A \code{\link{character}} vector with the name of the model to be removed.
     #'
     delete = function(model.name) {
       if (self$exist(model.name)) {

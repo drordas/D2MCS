@@ -3,16 +3,16 @@
 \docType{class}
 \name{OddsRatioHeuristic}
 \alias{OddsRatioHeuristic}
-\title{<<tittle>>}
+\title{Feature-clustering based on Odds Ratio measure.}
 \description{
-OddsRatioHeuristic
-}
-\details{
-<<details>
+Performs the feature-clustering using Odds Ratio methodology.
+Valid only for bi-class problems.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}}, \code{\link[questionr]{odds.ratio}}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{OddsRatioHeuristic}
 }
@@ -33,16 +33,19 @@ OddsRatioHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{OddsRatioHeuristic} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{OddsRatioHeuristic$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{OddsRatioHeuristic} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+Calculates the Odds Ratio method.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{OddsRatioHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -50,16 +53,17 @@ OddsRatioHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{object from whom odds ratio will be computed}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{a second \link{factor} or \link{numeric} object.}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{column.names an optional \link{character} vector with the names of
+both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 }
 \if{html}{\out{<hr>}}

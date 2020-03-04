@@ -3,16 +3,22 @@
 \docType{class}
 \name{Specificity}
 \alias{Specificity}
-\title{<<tittle>>}
+\title{Computes the Specificity Value.}
 \description{
-Specificity
+Specificity is defined as the proportion of actual negatives, which got predicted
+as the negative (or true negative). This implies that there will be another proportion of
+actual negative, which got predicted as positive and could be termed as false positives.
 }
 \details{
-<<details>
+\deqn{Specificity = \frac{(True Negative)}{(True Negative + False Positive)}}
 }
 \seealso{
-\code{\link{MeasureFunction}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
+
+\code{\link{ConfMatrix}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Super class}{
 \code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Specificity}
 }
@@ -33,7 +39,7 @@ Specificity
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Specificity$new(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -41,15 +47,19 @@ Specificity
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define the type of
+object used as basis to compute the measure.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+An \code{\link{Specificity}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+The function computes the \code{Specificity} achieved by the M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Specificity$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -57,12 +67,17 @@ Specificity
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define the
+type of object used as basis to compute the \code{Specificity} measure.}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Details}{
+This function is automatically invoque by the \link{ClassificationOutput} object.
+}
+
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
 }
 }
 \if{html}{\out{<hr>}}

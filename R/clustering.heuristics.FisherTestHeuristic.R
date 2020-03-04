@@ -1,16 +1,13 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on Fisher's Exact Test.
 #'
-#' @description FisherTestHeuristic
+#' @description Performs feature-clustering based on Fisher's exact test for testing
+#' the null of independence of rows and columns in a contingency table with fixed marginals.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{Dataset}}, \link{fisher.test}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,19 +18,23 @@ FisherTestHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #' @description Creates the \link{FisherTestHeuristic} object.
+    #'
+    #' @return a \link{FisherTestHeuristic} object.
+    #'
     initialize = function() { },
     # Heuristic valid for discrete variables
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description Performs the Fisher's exact test for testing the null of independence
+    #' between two columns (col1 and col2).
     #'
+    #' @param col1 a numeric vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
     #'
-    #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #' @importFrom stats fisher.test
     #'
     heuristic = function(col1, col2, column.names = NULL) {

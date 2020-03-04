@@ -1,16 +1,17 @@
-#' @title <<tittle>>
+#' @title Computes the Negative Predictive Value.
 #'
-#' @description NPV
+#' @description Negative Predictive Values are the proportions of negative results in statistics
+#' and diagnostic tests that are true negative results.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @details \deqn{NPV=\frac{TN}{TN+FN}}
 #'
-#' @seealso \code{\link{MeasureFunction}}
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
 #'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -22,19 +23,24 @@ NPV <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to define the type of
+    #' object used as basis to compute the \code{NPV} measure.
+    #'
+    #' @return An \code{\link{NPV}} object.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description <<description>>
+    #' @description The function computes the \code{NPV} achieved by the M.L. model.
     #'
-    #' @param performance.output <<description>>
-    #'
-    #' @return <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}}  parameter to define
+    #' the type of object used as basis to compute the \code{NPV} measure.
+    #' @details This function is automatically invoque by the \link{ClassificationOutput} object.
+    #' @seealso \code{\link{ConfMatrix}}
+    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

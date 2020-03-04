@@ -3,16 +3,17 @@
 \docType{class}
 \name{SummaryFunction}
 \alias{SummaryFunction}
-\title{<<tittle>>}
+\title{Abstract class to computing performance across resamples.}
 \description{
-SummaryFunction
+Abstract used as template to define customized metrics to compute model performance during train.
 }
 \details{
-<<details>
+This class is an archetype, so it cannot be instantiated.
 }
 \seealso{
-\code{\link{NoProbability}}
+\code{\link{NoProbability}}, \code{\link{UseProbability}}
 }
+\keyword{misc}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -25,7 +26,7 @@ SummaryFunction
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+The function carries out the initialization of parameters during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SummaryFunction$new(measures)}\if{html}{\out{</div>}}
 }
@@ -33,7 +34,7 @@ SummaryFunction
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{measures}}{}
+\item{\code{measures}}{A \code{\link{character}} vector with the measures used.}
 }
 \if{html}{\out{</div>}}
 }
@@ -41,25 +42,23 @@ SummaryFunction
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+Abstract funtion used to implement the performance calculator method.
+To guarantee a proper operation, this method is automatically invoked by \code{\link{DDMCS}} framework.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SummaryFunction$execute()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-<<description>>
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMeasures"></a>}}
 \subsection{Method \code{getMeasures()}}{
-<<description>>
+The function obtains the measures used to compute the performance across resamples.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SummaryFunction$getMeasures()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector of \code{\link{NULL}} if measures are not defined.
 }
 }
 \if{html}{\out{<hr>}}

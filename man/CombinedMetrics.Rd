@@ -3,16 +3,16 @@
 \docType{class}
 \name{CombinedMetrics}
 \alias{CombinedMetrics}
-\title{<<tittle>>}
+\title{<<miguel>>}
 \description{
 CombinedMetrics
-}
-\details{
-<<details>
 }
 \seealso{
 \code{\link{CombinedVoting}}
 }
+\keyword{math}
+\keyword{methods}
+\keyword{models}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

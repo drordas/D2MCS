@@ -1,16 +1,16 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on Spearman Correlation Test.
 #'
-#' @description SpearmanHeuristic
+#' @description Performs the feature-clustering using Spearman's rho statistic.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @details  Spearman's rho statistic is to estimate a rank-based measure of
+#' association. These tests may be used if the data do not necessarily come from a
+#' bivariate normal distribution.
 #'
-#' @details <<details>
+#' @seealso \code{\link{Dataset}} \link{cor.test}
 #'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,17 +21,21 @@ SpearmanHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #'
+    #' @description Creates a \link{SpearmanHeuristic} object.
+    #' @return a \link{SpearmanHeuristic} object.
+    #'
     initialize = function() { },
     # Heuristic valid for both discrete and continuous variables
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description Test for correlation between paired samples using Spearman rho statistic.
     #'
-    #' @description <<description>>
+    #' @param col1 \link{numeric} vectors of data values.
+    #' @param col2 \link{numeric} vectors of data values with same length as col1.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #' @importFrom stats cor.test
     #'
     heuristic = function(col1, col2, column.names = NULL) {

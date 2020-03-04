@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Data Driven Multiple Classifier System
 #'
-#' @description DDMCS
+#' @description The class is responsible of managing the whole process. Concretely builds the M.L. models (optimizes models hyperparameters),
+#' selects the best M.L. model for each cluster and executes the classification stage.
 #'
 #' @docType class
 #'
-#' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{Dataset}}, \code{\link{Subset}}, \code{\link{Trainset}}
 #'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords programming methods utilities classif
 #'
 #' @import R6
 #' @importFrom devtools loaded_packages
@@ -22,13 +20,18 @@ DDMCS <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description The function is used to initialize all parameters needed to build a Multiple Classifier System.
     #'
-    #' @param dir.path <<description>>
-    #' @param num.cores <<description>>
-    #' @param socket.type <<description>>
-    #' @param outfile <<description>>
-    #' @param serialize <<description>>
+    #' @param dir.path A \code{\link{character}} defining location were the trained models should be saved.
+    #' @param num.cores An optional \code{\link{numeric}} value specifiying the number of CPU cores used for training the models (only if
+    #' parallelization is allowed). If not defined (num.cores - 2) cores will be used.
+    #' @param socket.type A \code{\link{character}} value defining the type of socket used to communicate the workers.
+    #' The default type, \code{"PSOCK"}, calls makePSOCKcluster. Type \code{"FORK"} calls makeForkCluster.
+    #' For more information see \code{\link[parallel]{makeCluster}}
+    #' @param outfile Where to direct the stdout and stderr connection output from the workers. "" indicates no
+    #' redirection (which may only be useful for workers on the local machine). Defaults to ‘/dev/null’
+    #' @param serialize A \code{\link{logical}} value. If true (default) serialization will use XDR: where large amounts of data are to be
+    #' transferred and all the nodes are little-endian, communication may be substantially faster if this is set to false.
     #'
     #' @import parallel
     #'
@@ -98,17 +101,27 @@ DDMCS <- R6::R6Class(
       private$cluster.obj <- NULL
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of performing the M.L. model training stage.
+    #' @param train.set A \code{\link{Trainset}} object used as training input for the M.L. models
+    #' @param train.function A \code{\link{TrainFunction}} defining the training configuration options.
+    #' @param num.clusters An \code{\link{numeric}} value used to define the number of
+    #' clusters from the \code{\link{Trainset}} that should be utilized during the training stage.
+    #' If not defined all clusters will we taken into account for training.
+    #' @param ex.classifiers A \code{\link{character}} vector containing the name of the M.L.
+    #' models used in training stage. See \code{\link[caret]{getModelInfo}} and
+    #' \url{https://topepo.github.io/caret/available-models.html} for more information about all
+    #' the available models.
+    #' @param ig.classifiers A \code{\link{character}} vector containing the name of the M.L.
+    #' that should be ignored when performing the training stage. See \code{\link[caret]{getModelInfo}}
+    #' and \url{https://topepo.github.io/caret/available-models.html} for more information about all
+    #' the available models.
+    #' @param metrics A \code{\link{character}} vector containing the metrics used to perform the M.L. model
+    #' hyperparameter optimization during the training stage. See \code{\link{SummaryFunction}},
+    #' \code{\link{UseProbability}} and \code{\link{NoProbability}} for more information.
+    #' @param saveAllModels A \code{\link{logical}} parameter. A \code{\link{TRUE}} saves all trained models
+    #' while A \code{\link{FALSE}} saves only the M.L. model achieving the best performance on each cluster.
     #'
-    #' @param train.set <<description>>
-    #' @param train.function <<description>>
-    #' @param num.clusters <<description>>
-    #' @param ex.classifiers <<description>>
-    #' @param ig.classifiers <<description>>
-    #' @param metrics <<description>>
-    #' @param saveAllModels <<description>>
-    #'
-    #' @return <<description>>
+    #' @return A \code{\link{TrainOutput}} object containing all the information computed during the training stage.
     #'
     #' @import parallel
     #'
@@ -290,14 +303,16 @@ DDMCS <- R6::R6Class(
                       positive.class = train.set$getPositiveClass())
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible for executing the classification stage.
     #'
-    #' @param train.output <<description>>
-    #' @param subset <<description>>
-    #' @param voting.types <<description>>
-    #' @param positive.class <<description>>
+    #' @param train.output The \code{\link{TrainOutput}} object computed in the train stage.
+    #' @param subset A \code{\link{Subset}} containing the data to be classified.
+    #' @param voting.types A \code{\link{list}} containing
+    #' \code{\link{SingleVoting}} or \code{\link{CombinedVoting}} objects.
+    #' @param positive.class An optional \code{\link{character}} parameter used to define
+    #' the positive class value.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{ClassificationOutput}} with all the values computed during classification stage.
     #'
     classify = function(train.output, subset, voting.types, positive.class = NULL) {
 
@@ -396,7 +411,7 @@ DDMCS <- R6::R6Class(
             instances <- iterator$getNext()
             pred$execute(instances, class.values, positive.class)
           }
-          iterator$finalize()
+          #iterator$finalize()
           rm(iterator)
           predictions$add(pred)
         }
@@ -443,9 +458,9 @@ DDMCS <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function obtains all the available M.L. models.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{data.frame}} containing the information of the available M.L. models.
     #'
     getAvailableModels = function() { private$availableModels[, c(1, 2)] }
   ),

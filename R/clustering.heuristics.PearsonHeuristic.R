@@ -1,16 +1,21 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on Pearson Correlation Test.
 #'
-#' @description PearsonHeuristic
+#' @description Performs the feature-clustering using Pearson correlation tests.
+#' Valid for both, bi-class and multi-class problems.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @details The test statistic is based on Pearson's product moment correlation
+#' coefficient cor(x, y) and follows a t distribution with length(x)-2 degrees of
+#' freedom if the samples follow independent normal distributions.
+#' If there are at least 4 complete pairs of observation,
+#' an asymptotic confidence interval is given based on Fisher's Z transform.
 #'
-#' @seealso \code{\link{Dataset}}
+#' @seealso \code{\link{Dataset}} \link{cor.test}
 #'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,17 +26,21 @@ PearsonHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #'
+    #' @description Creates a \link{PearsonHeuristic} object.
+    #' @return a \link{PearsonHeuristic} object.
+    #'
     initialize = function() { },
     # Heuristic valid for both discrete and continuous variables
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description Test for association between paired samples using Pearsons test.
+    #' @param col1 a numeric vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
     #' @importFrom stats cor
     #'
     heuristic = function(col1, col2, column.names = NULL) {

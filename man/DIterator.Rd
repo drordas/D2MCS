@@ -3,16 +3,16 @@
 \docType{class}
 \name{DIterator}
 \alias{DIterator}
-\title{<<tittle>>}
+\title{Iterator over a \link{Subset} object}
 \description{
-DIterator
-}
-\details{
-<<details>
+Creates an \link{DIterator} object to iterate over the \link{Subset}.
 }
 \seealso{
 \code{\link{Dataset}}
 }
+\keyword{datagen}
+\keyword{internal}
+\keyword{manip}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -26,7 +26,7 @@ DIterator
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates the \link{DIterator} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$new(data, chunk.size, verbose)}\if{html}{\out{</div>}}
 }
@@ -34,50 +34,54 @@ DIterator
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{data}}{<<description>>}
+\item{\code{data}}{a \link{data.frame} structure to be iterated.}
 
-\item{\code{chunk.size}}{<<description>>}
+\item{\code{chunk.size}}{an integer value indicating the size of chunks taken
+over each iteration. By default chunk.size is defied as 10000.}
 
-\item{\code{verbose}}{<<description>>}
+\item{\code{verbose}}{a logical value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+an \link{DIterator} object
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNext"></a>}}
 \subsection{Method \code{getNext()}}{
-<<description>>
+Gets the next chunk of data. Each iteration returns the same instances
+(data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
+all the remaining data is returned. Conversely, \link{NULL} when there is no more
+pending data. By default chunk.size is defied as 10000.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$getNext()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{data.frame} of \link{NULL} if all the data have been previously returned.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isLast"></a>}}
 \subsection{Method \code{isLast()}}{
-<<description>>
+Checks if the \link{DIterator} object reached the end of the \link{data.frame}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$isLast()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a logical value indicating if the end of \link{data.frame} has been reached.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize"></a>}}
 \subsection{Method \code{finalize()}}{
-<<description>>
+Destroys the \link{DIterator} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$finalize()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-<<return>>
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

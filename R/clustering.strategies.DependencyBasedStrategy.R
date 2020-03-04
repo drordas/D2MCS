@@ -1,16 +1,16 @@
-#' @title <<tittle>>
+#' @title <<miguel>>
 #'
-#' @description DependencyBasedStrategy
+#' @description Features are distributed according to their independence values. <<miguel>>
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @details <<miguel>
 #'
-#' @seealso \code{\link{ClusteringStrategy}}
+#' @seealso \code{\link{ClusteringStrategy}},  \code{\link{StrategyConfiguration}}
 #'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -22,11 +22,13 @@ DependencyBasedStrategy <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object parameters during runtime.
     #'
-    #' @param subset <<description>>
-    #' @param heuristic <<description>>
-    #' @param configuration <<description>>
+    #' @param subset The \link{Subset} used to apply the feature-clustering strategy.
+    #' @param heuristic The heuristic used to compute the relevance of each feature.
+    #' Must inherit from \link{GenericHeuristic} abstract class.
+    #' @param configuration optional paramter tocustomize configuration parameters for the strategy.
+    #' Must inherited from \link{StrategyConfiguration} abstract class.
     #'
     initialize = function(subset, heuristic, configuration = DependencyBasedStrategyConfiguration$new()) {
       if (!inherits(subset, "Subset")) {
@@ -85,12 +87,12 @@ DependencyBasedStrategy <- R6::R6Class(
                        description = description, configuration = configuration)
     },
     #'
-    #' @description <<description>>
+    #' @description Function responsible of performing the dependency-based feature clustering
+    #' strategy over the defined \link{Subset}.
     #'
-    #' @param verbose <<description>>
-    #' @param ... <<description>>
+    #' @param verbose A logical value to specify if more verbosity is needed.
+    #' @param ... Further arguments passed down to \code{execute} function.
     #'
-    #' @return <<return>>
     #'
     execute = function(verbose = TRUE, ...) {
 
@@ -210,13 +212,15 @@ DependencyBasedStrategy <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description Function used to obtain a specific cluster distribution.
     #'
-    #' @param num.clusters <<description>>
-    #' @param num.groups <<description>>
-    #' @param include.unclustered <<description>>
+    #' @param num.clusters A numeric value to select the number of clusters (define the distribution).
+    #' @param num.groups A single or \link{numeric} vector value to identify a specific group that
+    #' forms the clustering distribution.
+    #' @param include.unclustered A logical value to determine if unclustered features should be included.
     #'
-    #' @return <<return>>
+    #' @return A \link{list} with the features comprising an specific clustering distribution.
+    #'
     #'
      getDistribution = function(num.clusters = NULL, num.groups = NULL,
                                include.unclustered = FALSE) {
@@ -296,14 +300,15 @@ DependencyBasedStrategy <- R6::R6Class(
       return(distribution)
     },
     #'
-    #' @description <<description>>
+    #' @param subset The \link{Subset} object used as a basis to create the train set (see \link{Trainset} class).
+    #' @param num.clusters A \link{numeric} value to select the number of clusters (define the distribution).
+    #' @param num.groups A single or \link{numeric} vector value to identify a specific group that
+    #' forms the clustering distribution.
+    #' @param include.unclustered A logical value to determine if unclustered features should be included.
     #'
-    #' @param subset <<description>>
-    #' @param num.clusters <<description>>
-    #' @param num.groups <<description>>
-    #' @param include.unclustered <<description>>
+    #' @details If num.clusters and num.groups are not defined, best clustering distribution is used to create the train set.
     #'
-    #' @return <<return>>
+    #' @description The function is used to create a \link{Trainset} object from a specific clustering distribution.
     #'
     createTrain = function(subset, num.clusters = NULL, num.groups = NULL,
                            include.unclustered = FALSE) {
@@ -331,13 +336,12 @@ DependencyBasedStrategy <- R6::R6Class(
                     positive.class = subset$getPositiveClass())
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible for creating a plot to visualize the clustering distribution.
     #'
-    #' @param dir.path <<description>>
-    #' @param file.name <<description>>
-    #' @param ... <<description>>
-    #'
-    #' @return <<return>>
+    #' @param dir.path An optional argument to define the name of the directory where the exported plot will be saved.
+    #' If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.
+    #' @param file.name A character to define the name of the PDF file where the plot is exported.
+    #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @import ggplot2
     #' @importFrom gridExtra grid.arrange
@@ -381,13 +385,12 @@ DependencyBasedStrategy <- R6::R6Class(
       plot
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to save the clustering distribution to a CSV file.
     #'
-    #' @param dir.path <<description>>
-    #' @param name <<description>>
-    #' @param num.clusters <<description>>
-    #'
-    #' @return <<return>>
+    #' @param dir.path The name of the directory to save the CSV file.
+    #' @param name Defines the name of the CSV file.
+    #' @param num.clusters An optional parameter to select the number of clusters to be saved.
+    #' If not defined, all cluster distributions will be saved.
     #'
     saveCSV = function(dir.path = NULL, name = NULL, num.clusters = NULL) {
       if (is.null(dir.path))

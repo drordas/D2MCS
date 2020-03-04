@@ -3,16 +3,16 @@
 \docType{class}
 \name{FisherTestHeuristic}
 \alias{FisherTestHeuristic}
-\title{<<tittle>>}
+\title{Feature-clustering based on Fisher's Exact Test.}
 \description{
-FisherTestHeuristic
-}
-\details{
-<<details>
+Performs feature-clustering based on Fisher's exact test for testing
+the null of independence of rows and columns in a contingency table with fixed marginals.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}}, \link{fisher.test}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{FisherTestHeuristic}
 }
@@ -33,16 +33,20 @@ FisherTestHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates the \link{FisherTestHeuristic} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FisherTestHeuristic$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{FisherTestHeuristic} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+Performs the Fisher's exact test for testing the null of independence
+between two columns (col1 and col2).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FisherTestHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -50,16 +54,18 @@ FisherTestHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{a numeric vector or matrix required to perform the
+clustering operation.}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{a numeric vector or matrix to perform the clustering operation.}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{an optional \link{character} vector with the names of
+both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 }
 \if{html}{\out{<hr>}}

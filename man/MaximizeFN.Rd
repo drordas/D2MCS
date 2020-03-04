@@ -3,7 +3,7 @@
 \docType{class}
 \name{MaximizeFN}
 \alias{MaximizeFN}
-\title{<<tittle>>}
+\title{<<miguel>>}
 \description{
 MaximizeFN
 }
@@ -13,6 +13,8 @@ MaximizeFN
 \seealso{
 \code{\link{CombinedMetrics}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Super class}{
 \code{\link[DDMCS:CombinedMetrics]{DDMCS::CombinedMetrics}} -> \code{MaximizeFN}
 }

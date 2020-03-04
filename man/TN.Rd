@@ -3,16 +3,19 @@
 \docType{class}
 \name{TN}
 \alias{TN}
-\title{<<tittle>>}
+\title{Computes the True Negative value.}
 \description{
-TN
-}
-\details{
-<<details>
+This is the number of individuals with a negative condition for which the test result is
+negative. The value entered here must be non-negative.
 }
 \seealso{
-\code{\link{MeasureFunction}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+\code{\link{ConfMatrix}}
+
+\code{\link{ConfMatrix}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Super class}{
 \code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{TN}
 }
@@ -33,7 +36,7 @@ TN
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TN$new(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -41,15 +44,19 @@ TN
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define the type of
+object used to compute the \code{TN} measure.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+An \code{\link{TN}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+The function computes the \code{TN} achieved by the M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TN$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -57,12 +64,17 @@ TN
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to
+define the type of object used as basis to compute the \code{TN} measure.}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Details}{
+This function is automatically invoque by the \link{ClassificationOutput} object.
+}
+
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
 }
 }
 \if{html}{\out{<hr>}}

@@ -3,16 +3,22 @@
 \docType{class}
 \name{Trainset}
 \alias{Trainset}
-\title{<<tittle>>}
+\title{Trainning set.}
 \description{
-Trainset
+The \code{Trainset} is used to perform training operations over M.L. models.
+A target class should be defined to guarantee a full compatibility with supervised models.
 }
 \details{
-<<details>
+Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset}} object.
 }
 \seealso{
-\code{\link{Dataset}}
+\link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{ClusteringStrategy}
 }
+\keyword{attribute}
+\keyword{datasets}
+\keyword{manip}
+\keyword{programming}
+\keyword{utilities}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -29,7 +35,7 @@ Trainset
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{Trainset} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$new(cluster.dist, class.name, class.values, positive.class)}\if{html}{\out{</div>}}
 }
@@ -37,57 +43,62 @@ Trainset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cluster.dist}}{<<description>>}
+\item{\code{cluster.dist}}{the type of cluster distribution used as basis
+to build the \link{Trainset}. See \link{ClusteringStrategy} for more information.}
 
-\item{\code{class.name}}{<<description>>}
+\item{\code{class.name}}{used to specify the name of the column containing the target class.}
 
-\item{\code{class.values}}{<<description>>}
+\item{\code{class.values}}{specifies all the posible values of the target class.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{defines the positive class value.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a fully operative \link{Trainset} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
 \subsection{Method \code{getPositiveClass()}}{
-<<description>>
+the function is used to obtain the value of the positive class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getPositiveClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{numeric} value with the positive class value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassName"></a>}}
 \subsection{Method \code{getClassName()}}{
-<<description>>
+the function is used to return the name of the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getClassName()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector with length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
 \subsection{Method \code{getClassValues()}}{
-<<description>>
+the function is used to compute all the posible target class values.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getClassValues()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{factor} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatureNames"></a>}}
 \subsection{Method \code{getFeatureNames()}}{
-<<description>>
+the function returns the name of the columns comprising
+an specific cluster distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getFeatureNames(num.cluster)}\if{html}{\out{</div>}}
 }
@@ -95,18 +106,20 @@ Trainset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{<<description>>}
+\item{\code{num.cluster}}{a numeric value used to specify the cluster number
+of the cluster distribution used when creating the \link{Trainset}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{character} vector with all column names.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatureValues"></a>}}
 \subsection{Method \code{getFeatureValues()}}{
-<<description>>
+the function returns the values of the columns comprising
+an specific cluster distribution. Target class is omitted.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getFeatureValues(num.cluster)}\if{html}{\out{</div>}}
 }
@@ -114,18 +127,21 @@ Trainset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{<<description>>}
+\item{\code{num.cluster}}{a numeric value used to specify the cluster number
+of the cluster distribution used when creating the \link{Trainset}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{data.frame} with the values of the features comprising
+the selected cluster distribution.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getInstances"></a>}}
 \subsection{Method \code{getInstances()}}{
-<<description>>
+the function returns the values of the columns comprising
+an specific cluster distribution. Target class is included as the last column.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getInstances(num.cluster)}\if{html}{\out{</div>}}
 }
@@ -133,24 +149,27 @@ Trainset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{<<description>>}
+\item{\code{num.cluster}}{num.cluster a numeric value used to specify the cluster number
+of the cluster distribution used when creating the \link{Trainset}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{data.frame} with the values of the features comprising the
+selected cluster distribution.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNumClusters"></a>}}
 \subsection{Method \code{getNumClusters()}}{
-<<description>>
+the function obtains the number of groups (clusters) that forms
+the cluster distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getNumClusters()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{numeric} vector of size 1.
 }
 }
 }

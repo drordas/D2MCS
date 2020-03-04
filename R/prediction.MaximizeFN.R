@@ -1,4 +1,4 @@
-#' @title <<tittle>>
+#' @title <<miguel>>
 #'
 #' @description MaximizeFN
 #'
@@ -10,7 +10,7 @@
 #'
 #' @seealso \code{\link{CombinedMetrics}}
 #'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'

@@ -3,16 +3,21 @@
 \docType{class}
 \name{Precision}
 \alias{Precision}
-\title{<<tittle>>}
+\title{Computes the Precision Value.}
 \description{
-Precision
+Precision is the fraction of relevant instances among the retrieved instances
 }
 \details{
-<<details>
+\deqn{precision = \frac{TP}{TP+FP}}
 }
 \seealso{
-\code{\link{MeasureFunction}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+\code{\link{ConfMatrix}}
+
+\code{\link{ConfMatrix}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Super class}{
 \code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Precision}
 }
@@ -33,7 +38,7 @@ Precision
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Precision$new(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -41,15 +46,19 @@ Precision
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used as basis to compute the measure.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+An \code{\link{Precision}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+The function computes the \code{Precision} achieved by the M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Precision$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -57,12 +66,17 @@ Precision
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define
+the type of object used as basis to compute the \code{Precision} measure.}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Details}{
+This function is automatically invoque by the \link{ClassificationOutput} object.
+}
+
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
 }
 }
 \if{html}{\out{<hr>}}

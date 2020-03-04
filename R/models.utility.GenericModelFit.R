@@ -1,16 +1,12 @@
-#' @title <<tittle>>
+#' @title Abstract class for defining model fitting method.
 #'
-#' @description GenericModelFit
+#' @description Template to create a \code{\link[recipes]{recipe}} or \code{\link{formula}} objects used in model training stage.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{DefaultModelFit}}, \code{\link[caret]{train}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{DefaultModelFit}}
-#'
-#' @keywords NULL
+#' @keywords misc
 #'
 #' @import R6
 #'
@@ -21,10 +17,10 @@ GenericModelFit <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param instances <<description>
-    #' @param class.name <<description>>
+    #' @param instances An \code{\link{data.frame}} containing the data used to train the M.L. models.
+    #' @param class.name A \code{\link{character}} of length 1 defining the name of the target class.
     #'
     initialize = function(instances, class.name) {
       if (any(!"data.frame" %in% class(instances), nrow(instances) == 0)) {
@@ -42,20 +38,20 @@ GenericModelFit <- R6::R6Class(
       private$instances <- instances
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of creating a \code{\link{formula}} for M.L. model.
     #'
-    #' @param simplify <<description>>
+    #' @param simplify A \code{\link{logical}} argument defining whether the formula should be generated as simple as posible.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{formula}} object.
     #'
     createFormula = function(simplify = TRUE) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",
            "Method should be defined in inherited class. Aborting...")
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of creating a \code{\link[recipes]{recipe}} for M.L. model.
     #'
-    #' @return <<description>>
+    #' @return A object of class \code{\link[recipes]{recipe}}.
     #'
     createRecipe = function() {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",

@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on GainRatio methodology.
 #'
-#' @description GainRatioHeuristic
+#' @description Performs the feature-clustering using entropy-based filters.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{Dataset}}, \code{\link[FSelector]{gain.ratio}}
 #'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,17 +19,22 @@ GainRatioHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #' @description Creates the \link{GainRatioHeuristic} object.
+    #' @return a \link{GainRatioHeuristic} object.
+    #'
     initialize = function() { },
     # Heuristic valid for continuous variables (col2) where col1 is binary or categorical
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description The algorithms find weights of discrete attributes basing on their
+    #' correlation with continous class attribute.
     #'
-    #' @description <<description>>
+    #' @param col1 a numeric vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #' @importFrom FSelector gain.ratio
     #'
     heuristic = function(col1, col2, column.names = NULL) {

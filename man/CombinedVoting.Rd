@@ -3,16 +3,18 @@
 \docType{class}
 \name{CombinedVoting}
 \alias{CombinedVoting}
-\title{<<tittle>>}
+\title{Abtract class to define combined voting schemes.}
 \description{
-CombinedVoting
-}
-\details{
-<<details>
+Abstract class used as a template to define new customized combined-based voting schemes.
 }
 \seealso{
-\code{\link{VotingStrategy}}
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
+\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
+\code{\link{SimpleVoting}}
 }
+\keyword{math}
+\keyword{methods}
+\keyword{models}
 \section{Super class}{
 \code{\link[DDMCS:VotingStrategy]{DDMCS::VotingStrategy}} -> \code{CombinedVoting}
 }
@@ -39,7 +41,7 @@ CombinedVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$new(voting.schemes, combined.metrics, methodology, metrics)}\if{html}{\out{</div>}}
 }
@@ -47,13 +49,16 @@ CombinedVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{voting.schemes}}{<<description>}
+\item{\code{voting.schemes}}{A \code{\link{list}} of elements inherited from \code{\link{SimpleVoting}}.}
 
-\item{\code{combined.metrics}}{<<description>}
+\item{\code{combined.metrics}}{An object defining the metrics used to combine the voting schemes.
+The object must inherit from \code{\link{CombinedMetrics}} class.}
 
-\item{\code{methodology}}{<<description>}
+\item{\code{methodology}}{An object specifiying the methodology used to execute the combined votings.
+Object inherited from \code{\link{Methodology}} object}
 
-\item{\code{metrics}}{<<description>}
+\item{\code{metrics}}{A \code{\link{character}} vector twith the name of the metrics used to perform
+the combined voting operations. Metrics should be previously defined during training stage.}
 }
 \if{html}{\out{</div>}}
 }
@@ -61,31 +66,31 @@ CombinedVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getCombinedMetrics"></a>}}
 \subsection{Method \code{getCombinedMetrics()}}{
-<<description>>
+The function returns the metrics used to combine the voting schemes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$getCombinedMetrics()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+An object inherited from \code{\link{CombinedMetrics}} class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMethodology"></a>}}
 \subsection{Method \code{getMethodology()}}{
-<<description>>
+The function gets the methodology used to execute the combined votings.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$getMethodology()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+An object inherited from \code{\link{Methodology}} class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPred"></a>}}
 \subsection{Method \code{getFinalPred()}}{
-<<description>>
+The function returns the predictions obtained after executing the combined-voting methodology.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$getFinalPred(type = NULL, target = NULL, filter = NULL)}\if{html}{\out{</div>}}
 }
@@ -93,22 +98,27 @@ CombinedVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{type}}{<<description>>}
+\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
+all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+'class' values are returned.}
 
-\item{\code{target}}{<<description>>}
+\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
 
-\item{\code{filter}}{<<description>>}
+\item{\code{filter}}{A \code{\link{logical}} value used to specify if only predictions
+matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
+predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
+the function returns all the predictions.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{data.frame}} with the computed predictions.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+The function implements the weighted-based voting scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -116,14 +126,11 @@ CombinedVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{<<description>>}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing the predictions computed for each cluster.}
 
-\item{\code{verbose}}{<<description>>}
+\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}

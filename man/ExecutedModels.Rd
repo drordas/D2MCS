@@ -3,16 +3,18 @@
 \docType{class}
 \name{ExecutedModels}
 \alias{ExecutedModels}
-\title{<<tittle>>}
+\title{Handles training of M.L. models}
 \description{
-ExecutedModels
-}
-\details{
-<<details>
+Allows to manage the executed M.L. models.
 }
 \seealso{
 \code{\link{Model}}
 }
+\keyword{error}
+\keyword{internal}
+\keyword{methods}
+\keyword{misc}
+\keyword{utilities}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -30,7 +32,7 @@ ExecutedModels
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$new(dir.path)}\if{html}{\out{</div>}}
 }
@@ -38,39 +40,42 @@ ExecutedModels
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{The location were the executed models will be saved.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+An \code{\link{ExecutedModels}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNames"></a>}}
 \subsection{Method \code{getNames()}}{
-<<description>>
+The function is used to obtain the name of the ML model achieved the best performance during training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$getNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector of length 1 of \code{\link{NULL}} if no ML model have been trainned.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getBest"></a>}}
 \subsection{Method \code{getBest()}}{
-<<description>>
+The function is responsible of returning the model achieving the best performance value during training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$getBest()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{Model}} oject.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
 \subsection{Method \code{add()}}{
-<<description>>
+The function inserts a new model to the list of executed models.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$add(model, keep.best = TRUE)}\if{html}{\out{</div>}}
 }
@@ -78,20 +83,18 @@ ExecutedModels
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{model}}{<<description>>}
+\item{\code{model}}{A previously trained model (in \code{\link{Model}} object).}
 
-\item{\code{keep.best}}{<<description>>}
+\item{\code{keep.best}}{A \code{logical} value to define the saving operation.
+If \code{TRUE} only saves the best model, otherwise all executed models are saved.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-exist"></a>}}
 \subsection{Method \code{exist()}}{
-<<description>>
+The function is used to discern if a specific model has been executed previously.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$exist(model.name)}\if{html}{\out{</div>}}
 }
@@ -99,42 +102,39 @@ ExecutedModels
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{model.name}}{<<description>>}
+\item{\code{model.name}}{A \code{\łink{character}} vector with the name of the model to check for existence.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{logical}} value. \link{TRUE} if the model exists and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-size"></a>}}
 \subsection{Method \code{size()}}{
-<<description>>
+The function is used to compute the number of executed ML models.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$size()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector or size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
 \subsection{Method \code{save()}}{
-<<description>>
+The function is responsible of saving the information of all executed models into a hidden file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$save()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-<<description>>
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-delete"></a>}}
 \subsection{Method \code{delete()}}{
-<<description>>
+The function removes an specific model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$delete(model.name)}\if{html}{\out{</div>}}
 }
@@ -142,12 +142,9 @@ ExecutedModels
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{model.name}}{<<description>>}
+\item{\code{model.name}}{A \code{\link{character}} vector with the name of the model to be removed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}

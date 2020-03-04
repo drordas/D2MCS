@@ -1,16 +1,15 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on Matthews Correlation Coefficient score.
 #'
-#' @description MCCHeuristic
+#' @description Performs the feature-clustering using MCC score.
+#' Valid for both bi-class and multi-class problems
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{Dataset}}, \code{\link[mccr]{mccr}}
 #'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,17 +20,19 @@ MCCHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #' @description Creates a \link{MCCHeuristic} object.
+    #' @return a \link{MCCHeuristic} object.
     initialize = function() { },
     # Heuristic valid for discrete variables
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description Calculates the Matthews correlation Coefficient (MCC) score.
+    #' @param col1 a numeric vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #' @importFrom mccr mccr
     #'
     heuristic = function(col1, col2, column.names = NULL) {

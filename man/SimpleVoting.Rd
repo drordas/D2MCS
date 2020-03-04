@@ -3,16 +3,18 @@
 \docType{class}
 \name{SimpleVoting}
 \alias{SimpleVoting}
-\title{<<tittle>>}
+\title{Abtract class to define simple voting schemes.}
 \description{
-SimpleVoting
-}
-\details{
-<<details>
+Abstract class used as a template to define new customized simple voting schemes.
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
+\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
+\code{\link{CombinedVoting}}
 }
+\keyword{math}
+\keyword{methods}
+\keyword{models}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -26,7 +28,7 @@ SimpleVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$new(cutoff = NULL)}\if{html}{\out{</div>}}
 }
@@ -34,7 +36,8 @@ SimpleVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cutoff}}{<<descrription>>}
+\item{\code{cutoff}}{A \code{\link{character}} vector defining the minimum probability used to perform a
+a positive classification. If is not defined, 0.5 will be used as default value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -42,19 +45,19 @@ SimpleVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getCutoff"></a>}}
 \subsection{Method \code{getCutoff()}}{
-<<description>>
+The function obtains the minimum probabilistic value used to perform a positive classification.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$getCutoff()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+A \code{\link{numeric}} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPred"></a>}}
 \subsection{Method \code{getFinalPred()}}{
-<<description>>
+The function is used to return the prediction values computed by a voting stratety.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$getFinalPred(type = NULL, target = NULL, filter = NULL)}\if{html}{\out{</div>}}
 }
@@ -62,37 +65,39 @@ SimpleVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{type}}{<<descrription>>}
+\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
+all type of probabilities will be returned. Conversely if 'prob' or 'raw' is defined then computed 'probabilistic' or
+'class' values are returned.}
 
-\item{\code{target}}{<<descrription>>}
+\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
 
-\item{\code{filter}}{<<descrription>>}
+\item{\code{filter}}{A \code{\link{logical}} value used to specify if only predictions
+matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
+predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
+the function returns all the predictions.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \code{\link{FinalPred}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+Abstract function used to implement the operation of the voting scheme.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$execute(predictions, metric = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{<<descrription>>}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.}
 
-\item{\code{metric}}{<<descrription>>}
+\item{\code{verbose}}{A \code{\link{logical}} value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}

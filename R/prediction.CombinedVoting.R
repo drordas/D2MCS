@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Abtract class to define combined voting schemes.
 #'
-#' @description CombinedVoting
+#' @description Abstract class used as a template to define new customized combined-based voting schemes.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
+#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
+#' \code{\link{SimpleVoting}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{VotingStrategy}}
-#'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'
@@ -22,12 +20,15 @@ CombinedVoting <- R6::R6Class(
   inherit = VotingStrategy,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param voting.schemes <<description>
-    #' @param combined.metrics <<description>
-    #' @param methodology <<description>
-    #' @param metrics <<description>
+    #' @param voting.schemes A \code{\link{list}} of elements inherited from \code{\link{SimpleVoting}}.
+    #' @param combined.metrics An object defining the metrics used to combine the voting schemes.
+    #' The object must inherit from \code{\link{CombinedMetrics}} class.
+    #' @param methodology An object specifiying the methodology used to execute the combined votings.
+    #' Object inherited from \code{\link{Methodology}} object
+    #' @param metrics A \code{\link{character}} vector twith the name of the metrics used to perform
+    #' the combined voting operations. Metrics should be previously defined during training stage.
     #'
     initialize = function(voting.schemes, combined.metrics, methodology, metrics) {
       if (!inherits(voting.schemes, "SimpleVoting")) {
@@ -55,25 +56,30 @@ CombinedVoting <- R6::R6Class(
       private$final.pred <- FinalPred$new()
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the metrics used to combine the voting schemes.
     #'
-    #' @return <<description>>
+    #' @return An object inherited from \code{\link{CombinedMetrics}} class.
     #'
     getCombinedMetrics = function() { private$combined.metrics },
     #'
-    #' @description <<description>>
+    #' @description The function gets the methodology used to execute the combined votings.
     #'
-    #' @return <<description>>
+    #' @return An object inherited from \code{\link{Methodology}} class.
     #'
     getMethodology = function() { private$methodology },
     #'
-    #' @description <<description>>
+    #' @description The function returns the predictions obtained after executing the combined-voting methodology.
     #'
-    #' @param type <<description>>
-    #' @param target <<description>>
-    #' @param filter <<description>>
+    #' @param type A \code{\link{character}} to define which type of predictions should be returned. If not defined
+    #' all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+    #' 'class' values are returned.
+    #' @param target A \code{\link{character}} defining the value of the positive class.
+    #' @param filter A \code{\link{logical}} value used to specify if only predictions
+    #' matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
+    #' predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
+    #' the function returns all the predictions.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{data.frame}} with the computed predictions.
     #'
     getFinalPred = function(type = NULL, target = NULL, filter = NULL) {
       if (any(is.null(type), !(type %in% c("raw", "prob")))) {
@@ -112,20 +118,18 @@ CombinedVoting <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function implements the weighted-based voting scheme.
     #'
-    #' @param predictions <<description>>
-    #' @param verbose <<description>>
-    #'
-    #' @return <<description>>
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing the predictions computed for each cluster.
+    #' @param verbose A logical value to specify if more verbosity is needed.
     #'
     execute = function(predictions, verbose = FALSE) {
 
       if (is.null(predictions) || !is.vector(predictions) ||
            !all(sapply(predictions, function(pred) {
-        !inherits(pred, "ClusterPrediction") }))) {
+                       inherits(pred, "ClusterPredictions") } ))) {
         stop("[", class(self)[1], "][FATAL] Predictions parameter must be a ",
-             "list comprised of 'ClusterPrediction' objects. Aborting...")
+             "list comprised of 'ClusterPredictions' objects. Aborting...")
       }
 
       if (any(sapply(predictions, function(pred) { pred$size() <= 0 }))) {

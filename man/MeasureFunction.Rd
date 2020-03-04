@@ -3,16 +3,19 @@
 \docType{class}
 \name{MeasureFunction}
 \alias{MeasureFunction}
-\title{<<tittle>>}
+\title{Archetype to define customized measures.}
 \description{
-MeasureFunction
+Abstract class used as a template to define new M.L. performance measures.
 }
 \details{
-<<details>
+The \link{GenericHeuristic} is an full-abstract class so it cannot be instantiated.
+To ensure the proper operation, \code{compute} method is automatically invoke by \link{DDMCS} framework when needed.
 }
 \seealso{
 \code{\link{MeasureFunction}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -24,7 +27,7 @@ MeasureFunction
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MeasureFunction$new(performance = NULL)}\if{html}{\out{</div>}}
 }
@@ -32,7 +35,8 @@ MeasureFunction
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance}}{<<description>>}
+\item{\code{performance}}{An optional \link{ConfMatrix} parameter to
+define the type of object used to compute the measure.}
 }
 \if{html}{\out{</div>}}
 }
@@ -40,7 +44,7 @@ MeasureFunction
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+The function implements the metric used to measure the performance achieved by the M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MeasureFunction$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -48,12 +52,17 @@ MeasureFunction
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \link{ConfMatrix} parameter to
+define the type of object used to compute the measure.}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Details}{
+This function is automatically invoque by the \link{DDMCS} framework.
+}
+
 \subsection{Returns}{
-<<description>>
+A \link{numeric} vector of size 1 or \link{NULL} if an error occured.
 }
 }
 \if{html}{\out{<hr>}}

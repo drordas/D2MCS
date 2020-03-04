@@ -1,4 +1,4 @@
-#' @title <<tittle>>
+#' @title Minimizes FP errors.
 #'
 #' @description MinimizeFP
 #'
@@ -10,7 +10,7 @@
 #'
 #' @seealso \code{\link{CombinedMetrics}}
 #'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'

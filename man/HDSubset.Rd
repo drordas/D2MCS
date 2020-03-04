@@ -3,16 +3,22 @@
 \docType{class}
 \name{HDSubset}
 \alias{HDSubset}
-\title{<<tittle>>}
+\title{High Dimensional Subset handler}
 \description{
-HDSubset
+Creates a high dimensional subset from a \link{HDDataset} object.
+Only the required instances are loaded in memory to avoid
+unnecesary use of resources and memory.
 }
 \details{
-<<details>
+Use \link{HDDataset} to ensure the creation of a valid \code{\link{HDSubset}} object.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{HDDataset}}, \code{\link{DatasetLoader}}
 }
+\keyword{attribute}
+\keyword{datagen}
+\keyword{datasets}
+\keyword{manip}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -29,7 +35,7 @@ HDSubset
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates the \code{\link{HDSubset}} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDSubset$new(
   file.path,
@@ -44,61 +50,72 @@ HDSubset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{file.path}}{<<description>>}
+\item{\code{file.path}}{the name of the file which the data are to be read from.
+Each row of the table appears as one line of the file.
+If it does not contain an _absolute_ path, the file name is _relative_ to the current
+working directory, ‘getwd()’.}
 
-\item{\code{feature.names}}{<<description>>}
+\item{\code{feature.names}}{a \link{character} vector specifying the name of the features
+that should be included in the \link{HDDataset} object.}
 
-\item{\code{feature.id}}{<<description>>}
+\item{\code{feature.id}}{an integer or character indicating the column (number or name
+respectively) identifier. Default \link{NULL} value
+is valid ignores defining a identification column.}
 
-\item{\code{start.at}}{<<description>>}
+\item{\code{start.at}}{a numeric value to identify the reading start position.}
 
-\item{\code{sep}}{<<description>>}
+\item{\code{sep}}{the field separator character. Values on each line of the file are
+separated by this character.}
 
-\item{\code{chunk.size}}{<<description>>}
+\item{\code{chunk.size}}{an integer value indicating the size of chunks taken
+over each iteration. By default chunk.size is defied as 10000.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a \link{HDSubset} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatureNames"></a>}}
 \subsection{Method \code{getFeatureNames()}}{
-<<description>>
+get the name of the columns comprising the subset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDSubset$getFeatureNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector containing the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
 \subsection{Method \code{getNcol()}}{
-<<description>>
+obtains the number of columns present in the Dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDSubset$getNcol()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{numeric} value or 0 if is empty.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getID"></a>}}
 \subsection{Method \code{getID()}}{
-<<description>>
+obtains the column identifier.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDSubset$getID()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getIterator"></a>}}
 \subsection{Method \code{getIterator()}}{
-<<description>>
+Creates the \link{FIterator} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDSubset$getIterator(chunk.size = private$chunk.size, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -106,38 +123,37 @@ HDSubset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{chunk.size}}{<<description>>}
+\item{\code{chunk.size}}{an integer value indicating the size of chunks taken
+over each iteration. By default chunk.size is defied as 10000.}
 
-\item{\code{verbose}}{<<description>>}
+\item{\code{verbose}}{a logical value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{FIterator} object to trasverse through \link{HDSubset} instances
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize"></a>}}
 \subsection{Method \code{finalize()}}{
-<<description>>
+releases the resources used to manage high dimensional
+datasets (such as file handlers).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDSubset$finalize()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-<<return>>
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isBlinded"></a>}}
 \subsection{Method \code{isBlinded()}}{
-<<description>>
+checks if the subset contains a target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDSubset$isBlinded()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<return>>
+a \link{logical} to specify if the subset contains a target class or not.
 }
 }
 \if{html}{\out{<hr>}}

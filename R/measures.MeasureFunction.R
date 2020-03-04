@@ -1,16 +1,17 @@
-#' @title <<tittle>>
+#' @title Archetype to define customized measures.
 #'
-#' @description MeasureFunction
+#' @description Abstract class used as a template to define new M.L. performance measures.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @details The \link{GenericHeuristic} is an full-abstract class so it cannot be instantiated.
+#' To ensure the proper operation, \code{compute} method is automatically invoke by \link{DDMCS} framework when needed.
 #'
 #' @seealso \code{\link{MeasureFunction}}
 #'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -21,9 +22,10 @@ MeasureFunction <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance <<description>>
+    #' @param performance An optional \link{ConfMatrix} parameter to
+    #' define the type of object used to compute the measure.
     #'
     initialize = function(performance = NULL) {
       if (!is.null(performance) && !inherits(performance, c("MinResult", "ConfMatrix")))
@@ -33,11 +35,13 @@ MeasureFunction <- R6::R6Class(
       private$performance <- performance
     },
     #'
-    #' @description <<description>>
+    #' @description The function implements the metric used to measure the performance achieved by the M.L. model.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \link{ConfMatrix} parameter to
+    #' define the type of object used to compute the measure.
     #'
-    #' @return <<description>>
+    #' @details This function is automatically invoque by the \link{DDMCS} framework.
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error occured.
     #'
     compute = function(performance.output = NULL) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",

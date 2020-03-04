@@ -3,16 +3,16 @@
 \docType{class}
 \name{GenericPlot}
 \alias{GenericPlot}
-\title{<<tittle>>}
+\title{Pseudo-abstract class for creating feature clustering plots.}
 \description{
-GenericPlot
-}
-\details{
-<<details>
+The \link{GenericPlot} implements a basic plot.
 }
 \seealso{
 \code{\link{BinaryPlot}}
 }
+\keyword{color}
+\keyword{device}
+\keyword{hplot}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -24,16 +24,19 @@ GenericPlot
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-
+empty function used to initalize the object arguments in runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericPlot$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{GenericPlot} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \subsection{Method \code{plot()}}{
-<<description>>
+implements a generic plot to visualize basic feature-clustering data.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericPlot$plot(summary, ...)}\if{html}{\out{</div>}}
 }
@@ -41,14 +44,11 @@ GenericPlot
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{summary}}{<<description>>}
+\item{\code{summary}}{a \link{data.frame} comprising the elements to be plotted.}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{further arguments passed down to \code{plot} function.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}

@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Feature-clustering based on InformationGain methodology.
 #'
-#' @description InformationGainHeuristic
+#' @description Performs the feature-clustering using entropy-based filters.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{Dataset}}, \code{\link[FSelector]{information.gain}}
 #'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,16 +19,21 @@ InformationGainHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #' @description Creates a \link{InformationGainHeuristic} object.
+    #' @return a \link{InformationGainHeuristic} object.
     initialize = function() { },
     #'
-    #' @param col1 <<description>>
-    #' @param col2 <<description>>
-    #' @param column.names <<description>>
+    #' @description The algorithm find weights of discrete attributes basing on
+    #' their correlation with continous class attribute. Particularly
+    #' Information Gain uses \code{H(Class) + H(Attribute) - H(Class, Attribute)}
     #'
-    #' @description <<description>>
+    #' @param col1 a numeric vector or matrix required to perform the
+    #' clustering operation.
+    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param column.names an optional \link{character} vector with the names of
+    #' both columns.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
     #'
     #' @importFrom FSelector information.gain
     #'

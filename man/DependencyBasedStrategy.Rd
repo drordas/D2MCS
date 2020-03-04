@@ -3,16 +3,18 @@
 \docType{class}
 \name{DependencyBasedStrategy}
 \alias{DependencyBasedStrategy}
-\title{<<tittle>>}
+\title{<<miguel>>}
 \description{
-DependencyBasedStrategy
+Features are distributed according to their independence values. <<miguel>>
 }
 \details{
-<<details>
+<<miguel>
 }
 \seealso{
-\code{\link{ClusteringStrategy}}
+\code{\link{ClusteringStrategy}},  \code{\link{StrategyConfiguration}}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:ClusteringStrategy]{DDMCS::ClusteringStrategy}} -> \code{DependencyBasedStrategy}
 }
@@ -42,7 +44,7 @@ DependencyBasedStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object parameters during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$new(
   subset,
@@ -54,11 +56,13 @@ DependencyBasedStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{subset}}{<<description>>}
+\item{\code{subset}}{The \link{Subset} used to apply the feature-clustering strategy.}
 
-\item{\code{heuristic}}{<<description>>}
+\item{\code{heuristic}}{The heuristic used to compute the relevance of each feature.
+Must inherit from \link{GenericHeuristic} abstract class.}
 
-\item{\code{configuration}}{<<description>>}
+\item{\code{configuration}}{optional paramter tocustomize configuration parameters for the strategy.
+Must inherited from \link{StrategyConfiguration} abstract class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -66,7 +70,8 @@ DependencyBasedStrategy
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+Function responsible of performing the dependency-based feature clustering
+strategy over the defined \link{Subset}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$execute(verbose = TRUE, ...)}\if{html}{\out{</div>}}
 }
@@ -74,20 +79,17 @@ DependencyBasedStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{verbose}}{<<description>>}
+\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDistribution"></a>}}
 \subsection{Method \code{getDistribution()}}{
-<<description>>
+Function used to obtain a specific cluster distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$getDistribution(
   num.clusters = NULL,
@@ -99,22 +101,23 @@ DependencyBasedStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.clusters}}{<<description>>}
+\item{\code{num.clusters}}{A numeric value to select the number of clusters (define the distribution).}
 
-\item{\code{num.groups}}{<<description>>}
+\item{\code{num.groups}}{A single or \link{numeric} vector value to identify a specific group that
+forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{<<description>>}
+\item{\code{include.unclustered}}{A logical value to determine if unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{list} with the features comprising an specific clustering distribution.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createTrain"></a>}}
 \subsection{Method \code{createTrain()}}{
-<<description>>
+The function is used to create a \link{Trainset} object from a specific clustering distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$createTrain(
   subset,
@@ -127,24 +130,26 @@ DependencyBasedStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{subset}}{<<description>>}
+\item{\code{subset}}{The \link{Subset} object used as a basis to create the train set (see \link{Trainset} class).}
 
-\item{\code{num.clusters}}{<<description>>}
+\item{\code{num.clusters}}{A \link{numeric} value to select the number of clusters (define the distribution).}
 
-\item{\code{num.groups}}{<<description>>}
+\item{\code{num.groups}}{A single or \link{numeric} vector value to identify a specific group that
+forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{<<description>>}
+\item{\code{include.unclustered}}{A logical value to determine if unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-<<return>>
+\subsection{Details}{
+If num.clusters and num.groups are not defined, best clustering distribution is used to create the train set.
 }
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \subsection{Method \code{plot()}}{
-<<description>>
+The function is responsible for creating a plot to visualize the clustering distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$plot(dir.path = NULL, file.name = NULL, ...)}\if{html}{\out{</div>}}
 }
@@ -152,22 +157,20 @@ DependencyBasedStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{An optional argument to define the name of the directory where the exported plot will be saved.
+If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.}
 
-\item{\code{file.name}}{<<description>>}
+\item{\code{file.name}}{A character to define the name of the PDF file where the plot is exported.}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-saveCSV"></a>}}
 \subsection{Method \code{saveCSV()}}{
-<<description>>
+The function is used to save the clustering distribution to a CSV file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$saveCSV(
   dir.path = NULL,
@@ -179,16 +182,14 @@ DependencyBasedStrategy
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{The name of the directory to save the CSV file.}
 
-\item{\code{name}}{<<description>>}
+\item{\code{name}}{Defines the name of the CSV file.}
 
-\item{\code{num.clusters}}{<<description>>}
+\item{\code{num.clusters}}{An optional parameter to select the number of clusters to be saved.
+If not defined, all cluster distributions will be saved.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}

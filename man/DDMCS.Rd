@@ -3,16 +3,18 @@
 \docType{class}
 \name{DDMCS}
 \alias{DDMCS}
-\title{<<tittle>>}
+\title{Data Driven Multiple Classifier System}
 \description{
-DDMCS
-}
-\details{
-<<details>
+The class is responsible of managing the whole process. Concretely builds the M.L. models (optimizes models hyperparameters),
+selects the best M.L. model for each cluster and executes the classification stage.
 }
 \seealso{
-\code{\link{Dataset}}
+\code{\link{Dataset}}, \code{\link{Subset}}, \code{\link{Trainset}}
 }
+\keyword{classif}
+\keyword{methods}
+\keyword{programming}
+\keyword{utilities}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -26,7 +28,7 @@ DDMCS
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+The function is used to initialize all parameters needed to build a Multiple Classifier System.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DDMCS$new(
   dir.path,
@@ -40,15 +42,20 @@ DDMCS
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{<<description>>}
+\item{\code{dir.path}}{A \code{\link{character}} defining location were the trained models should be saved.}
 
-\item{\code{num.cores}}{<<description>>}
+\item{\code{num.cores}}{An optional \code{\link{numeric}} value specifiying the number of CPU cores used for training the models (only if
+parallelization is allowed). If not defined (num.cores - 2) cores will be used.}
 
-\item{\code{socket.type}}{<<description>>}
+\item{\code{socket.type}}{A \code{\link{character}} value defining the type of socket used to communicate the workers.
+The default type, \code{"PSOCK"}, calls makePSOCKcluster. Type \code{"FORK"} calls makeForkCluster.
+For more information see \code{\link[parallel]{makeCluster}}}
 
-\item{\code{outfile}}{<<description>>}
+\item{\code{outfile}}{Where to direct the stdout and stderr connection output from the workers. "" indicates no
+redirection (which may only be useful for workers on the local machine). Defaults to ‘/dev/null’}
 
-\item{\code{serialize}}{<<description>>}
+\item{\code{serialize}}{A \code{\link{logical}} value. If true (default) serialization will use XDR: where large amounts of data are to be
+transferred and all the nodes are little-endian, communication may be substantially faster if this is set to false.}
 }
 \if{html}{\out{</div>}}
 }
@@ -56,7 +63,7 @@ DDMCS
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train"></a>}}
 \subsection{Method \code{train()}}{
-<<description>>
+The function is responsible of performing the M.L. model training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DDMCS$train(
   train.set,
@@ -72,30 +79,41 @@ DDMCS
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{train.set}}{<<description>>}
+\item{\code{train.set}}{A \code{\link{Trainset}} object used as training input for the M.L. models}
 
-\item{\code{train.function}}{<<description>>}
+\item{\code{train.function}}{A \code{\link{TrainFunction}} defining the training configuration options.}
 
-\item{\code{num.clusters}}{<<description>>}
+\item{\code{num.clusters}}{An \code{\link{numeric}} value used to define the number of
+clusters from the \code{\link{Trainset}} that should be utilized during the training stage.
+If not defined all clusters will we taken into account for training.}
 
-\item{\code{ex.classifiers}}{<<description>>}
+\item{\code{ex.classifiers}}{A \code{\link{character}} vector containing the name of the M.L.
+models used in training stage. See \code{\link[caret]{getModelInfo}} and
+\url{https://topepo.github.io/caret/available-models.html} for more information about all
+the available models.}
 
-\item{\code{ig.classifiers}}{<<description>>}
+\item{\code{ig.classifiers}}{A \code{\link{character}} vector containing the name of the M.L.
+that should be ignored when performing the training stage. See \code{\link[caret]{getModelInfo}}
+and \url{https://topepo.github.io/caret/available-models.html} for more information about all
+the available models.}
 
-\item{\code{metrics}}{<<description>>}
+\item{\code{metrics}}{A \code{\link{character}} vector containing the metrics used to perform the M.L. model
+hyperparameter optimization during the training stage. See \code{\link{SummaryFunction}},
+\code{\link{UseProbability}} and \code{\link{NoProbability}} for more information.}
 
-\item{\code{saveAllModels}}{<<description>>}
+\item{\code{saveAllModels}}{A \code{\link{logical}} parameter. A \code{\link{TRUE}} saves all trained models
+while A \code{\link{FALSE}} saves only the M.L. model achieving the best performance on each cluster.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{TrainOutput}} object containing all the information computed during the training stage.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-classify"></a>}}
 \subsection{Method \code{classify()}}{
-<<description>>
+The function is responsible for executing the classification stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DDMCS$classify(train.output, subset, voting.types, positive.class = NULL)}\if{html}{\out{</div>}}
 }
@@ -103,30 +121,32 @@ DDMCS
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{train.output}}{<<description>>}
+\item{\code{train.output}}{The \code{\link{TrainOutput}} object computed in the train stage.}
 
-\item{\code{subset}}{<<description>>}
+\item{\code{subset}}{A \code{\link{Subset}} containing the data to be classified.}
 
-\item{\code{voting.types}}{<<description>>}
+\item{\code{voting.types}}{A \code{\link{list}} containing
+\code{\link{SingleVoting}} or \code{\link{CombinedVoting}} objects.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{An optional \code{\link{character}} parameter used to define
+the positive class value.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \code{\link{ClassificationOutput}} with all the values computed during classification stage.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getAvailableModels"></a>}}
 \subsection{Method \code{getAvailableModels()}}{
-<<description>>
+The function obtains all the available M.L. models.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DDMCS$getAvailableModels()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{data.frame}} containing the information of the available M.L. models.
 }
 }
 \if{html}{\out{<hr>}}

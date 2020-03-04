@@ -105,7 +105,7 @@ testthat::test_that("CombinedVoting: execute function checks parameter type", {
   predictions <- NULL
   testthat::expect_error(voting$execute(predictions = predictions,
                                         verbose = FALSE),
-                         "[CombinedVoting][FATAL] Predictions parameter must be a list comprised of 'ClusterPrediction' objects. Aborting...",
+                         "[CombinedVoting][FATAL] Predictions parameter must be a list comprised of 'ClusterPredictions' objects. Aborting...",
                          fixed = TRUE)
 
   predictions <- list(ClusterPredictions$new(class.values = c(1, 0, 1, 1),

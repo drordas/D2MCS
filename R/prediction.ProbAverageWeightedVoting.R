@@ -1,16 +1,16 @@
-#' @title <<tittle>>
+#' @title Implementation of Probabilistic Average Weighted voting.
 #'
-#' @description ProbAverageWeightedVoting
+#' @description Computes the final prediction by perfoming the weighted mean of
+#' the probability achieved by each cluster prediction. By default,
+#' weight values are consistent with the performance value
+#' achieved by the best M.L. model on each cluster.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
+#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{SimpleVoting}}
-#'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'
@@ -22,27 +22,27 @@ ProbAverageWeightedVoting <- R6::R6Class(
   inherit = SimpleVoting,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param cutoff <<description>>
-    #' @param weights <<description>>
+    #' @param cutoff A \code{\link{character}} vector defining the minimum probability used to perform a
+    #' a positive classification. If is not defined, 0.5 will be used as default value.
+    #' @param weights A \code{\link{numeric}} vector with the weigths of each cluster. If \code{\link{NULL}} performance
+    #' achieved during training will be used as default.
     #'
     initialize = function(cutoff = 0.5, weights = NULL) {
       super$initialize(cutoff = cutoff)
       private$weights <- weights
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the value of the majority class.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of length 1 with the name of the majority class.
     #'
     getWeights = function() { private$weights },
     #'
-    #' @description <<description>>
+    #' @description The funtion allows changing the value of the weights.
     #'
-    #' @param weights <<description>>
-    #'
-    #' @return <<description>>
+    #' @param weights A \code{\link{numeric}} vector containing the new weights.
     #'
     setWeights = function(weights) {
       if (missing(weights) || is.null(weights)) {
@@ -62,12 +62,11 @@ ProbAverageWeightedVoting <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function implements the cluster-weighted probabilistic voting procedure.
     #'
-    #' @param predictions <<description>>
-    #' @param verbose <<description>>
-    #'
-    #' @return <<description>>
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing all
+    #' the predictions achieved for each cluster.
+    #' @param verbose A \code{\link{logical}} value to specify if more verbosity is needed.
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {

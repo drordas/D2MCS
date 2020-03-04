@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title Implementation of Mayority Voting voting
 #'
-#' @description ClassMajorityVoting
+#' @description Implementation of the parliamentary 'majority voting' procedure. The majority class value is defined as final class.
+#' All class values have the same importance.
 #'
 #' @docType class
 #'
-#' @format NULL
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
+#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{SimpleVoting}}
-#'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'
@@ -22,11 +20,14 @@ ClassMajorityVoting <- R6::R6Class(
   inherit = SimpleVoting,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param cutoff <<description>>
-    #' @param class.tie <<description>>
-    #' @param majority.class <<description>>
+    #' @param cutoff A \code{\link{character}} vector defining the minimum probability used to perform a
+    #' a positive classification. If is not defined, 0.5 will be used as default value.
+    #' @param class.tie A \code{\link{character}} used to define the target class value used when a tie is found.
+    #' If \code{\link{NULL}} positive class value will be assigned.
+    #' @param majority.class A \code{\link{character}} defining the value of the majority class.
+    #' If \code{\link{NULL}} will be used same value as trainning stage.
     #'
     initialize = function(cutoff = 0.5, class.tie = NULL, majority.class = NULL) {
       if (all(!is.null(class.tie), !is.character(class.tie))) {
@@ -37,24 +38,22 @@ ClassMajorityVoting <- R6::R6Class(
       private$majority.class <- majority.class
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the value of the majority class.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of length 1 with the name of the majority class.
     #'
     getMajorityClass = function() { private$majority.class },
     #'
-    #' @description <<description>>
+    #' @description The function gets the class value assigned to solve ties.
     #'
-    #' @return <<description>>
+    #' @return \code{\link{character}} vector of length 1.
     #'
     getClassTie = function() { private$class.tie },
     #'
-    #' @description <<description>>
+    #' @description The function implements the majority voting procedure.
     #'
-    #' @param predictions <<description>>
-    #' @param verbose <<description>>
-    #'
-    #' @return <<description>>
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.
+    #' @param verbose A \code{\link{logical}} value to specify if more verbosity is needed.
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {

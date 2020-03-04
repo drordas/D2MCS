@@ -1,16 +1,15 @@
-#' @title <<tittle>>
+#' @title Stores the results achieved during training.
 #'
-#' @description TrainOutput
+#' @description This class manages the results achieved during training stage (such as optimized hyperparameters,
+#' model information, utilized metrics).
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
-#'
 #' @seealso \code{\link{DDMCS}}
 #'
-#' @keywords NULL
+#' @keywords datasets manip attribute programming utilities
 #'
 #' @import R6
 #'
@@ -21,11 +20,11 @@ TrainOutput <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Function used to initialize the object arguments during runtime.
     #'
-    #' @param models <<descrription>>
-    #' @param class.values <<descrription>>
-    #' @param positive.class <<descrription>>
+    #' @param models A \code{\link{list}} containing the best M.L. model for each cluster.
+    #' @param class.values A \code{\link{character}} vector containing the values of the target class.
+    #' @param positive.class A \code{\link{character}} with the value of the positive class.
     #'
     initialize = function(models, class.values, positive.class) {
       if (is.null(models) || !is.list(models)) {
@@ -45,11 +44,11 @@ TrainOutput <- R6::R6Class(
       private$positive.class <- positive.class
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to obtain the best M.L. model of each cluster.
     #'
-    #' @param metric <<descrription>>
+    #' @param metric A \code{\link{character}} vector which specifies the metric(s) used for configuring M.L. hyperparameters.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{list}} is returned of class train.
     #'
     getModels = function(metric) {
       if (is.null(metric) || is.list(metric) || !metric %in% self$getMetrics()) {
@@ -58,11 +57,11 @@ TrainOutput <- R6::R6Class(
       private$models[[metric]]
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the performance value of M.L. models during training stage.
     #'
-    #' @param metrics <<descrription>>
+    #' @param metrics A \code{\link{character}} vector which specifies the metric(s) used to train the M.L. models.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector containing the metrics used for configuring M.L. hyperparameters.
     #'
     getPerformance = function(metrics = NULL) {
       if (is.null(metrics) || !is.character(metrics) ||
@@ -87,12 +86,11 @@ TrainOutput <- R6::R6Class(
       performance
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to save into CSV file the performance achieved by the M.L. models during training stage.
     #'
-    #' @param dir.path <<description>>
-    #' @param metrics <<descrription>>
-    #'
-    #' @return <<description>>
+    #' @param dir.path The location to store the into a CSV file the performance of the trained M.L.
+    #' @param metrics An optional parameter specifying the metric(s) used to train the M.L. models.
+    #' If not defined, all the metrics used in train stage will be saved.
     #'
     savePerformance = function(dir.path, metrics = NULL) {
       if (is.null(dir.path))
@@ -134,12 +132,12 @@ TrainOutput <- R6::R6Class(
               path)
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible for creating a plot to visualize the performance achieved by
+    #' the best M.L. model on each cluster.
     #'
-    #' @param dir.path <<description>>
-    #' @param metrics <<descrription>>
-    #'
-    #' @return <<description>>
+    #' @param dir.path The location to store the into a CSV file the performance of the trained M.L.
+    #' @param metrics An optional parameter specifying the metric(s) used to train the M.L. models.
+    #' If not defined, all the metrics used in train stage will be saved.
     #'
     plot = function(dir.path, metrics = NULL) {
       if (is.null(dir.path))
@@ -212,27 +210,28 @@ TrainOutput <- R6::R6Class(
       }))
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns all metrics used for configuring M.L. hyperparameters during train stage.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} value.
     #'
     getMetrics = function() { names(private$models) },
     #'
-    #' @description <<description>>
+    #' @description The function is used to get the values of the target class.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} containing the values of the target class.
     #'
     getClassValues = function() { private$class.values },
     #'
-    #' @description <<description>>
+    #' @description The function returns the value of the positive class.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of size 1.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description <<description>>
+    #' @description The function is used to get the number of the trained M.L. models.
+    #' Each cluster contains the best M.L. model.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{numeric}} value or \code{\link{NULL}} trainning was not succesfully performed.
     #'
     getSize = function() { length(names(private$models)) }
   ),

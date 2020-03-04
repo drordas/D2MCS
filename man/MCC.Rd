@@ -3,16 +3,25 @@
 \docType{class}
 \name{MCC}
 \alias{MCC}
-\title{<<tittle>>}
+\title{Computes the Matthews correlation coefficient.}
 \description{
-MCC
+The Matthews correlation coefficient is used in machine learning as a
+measure of the quality of binary (two-class) classifications. It takes into account
+true and false positives and negatives and is generally regarded as a balanced measure
+which can be used even if the classes are of very different sizes. The MCC is in essence
+a correlation coefficient between the observed and predicted binary classifications;
+it returns a value between −1 and +1.
 }
 \details{
-<<details>
+\deqn{MCC = \frac{TP\timesTN-FP\timesFN}{\sqrt{(TP+FP)\times(TP+FN)\times(TN+FP)\times(TN+FN)}}}
 }
 \seealso{
-\code{\link{MeasureFunction}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
+
+\code{\link{ConfMatrix}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Super class}{
 \code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{MCC}
 }
@@ -33,7 +42,7 @@ MCC
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MCC$new(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -41,15 +50,19 @@ MCC
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+used as basis to compute the \code{MCC} measure.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+An \code{\link{MCC}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+The function computes the \code{MCC} achieved by the M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MCC$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -57,12 +70,17 @@ MCC
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define
+the type of object used as basis to compute the \code{MCC} measure.}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Details}{
+This function is automatically invoque by the \link{ClassificationOutput} object.
+}
+
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
 }
 }
 \if{html}{\out{<hr>}}

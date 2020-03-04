@@ -3,16 +3,15 @@
 \docType{class}
 \name{ConfMatrix}
 \alias{ConfMatrix}
-\title{<<tittle>>}
+\title{Confusion matrix wrapper.}
 \description{
-ConfMatrix
-}
-\details{
-<<details>
+Creates a \link{R6} confusion matrix from the \code{\link[caret]{confusionMatrix}} caret package.
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{DDMCS}}, \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -28,7 +27,7 @@ ConfMatrix
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method to create a confusion matrix object from a \code{caret} \code{\link[caret]{confusionMatrix}}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$new(confMatrix)}\if{html}{\out{</div>}}
 }
@@ -36,7 +35,7 @@ ConfMatrix
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{confMatrix}}{<<description>>}
+\item{\code{confMatrix}}{A \code{caret} \link[caret]{confusionMatrix} argument.}
 }
 \if{html}{\out{</div>}}
 }
@@ -44,61 +43,62 @@ ConfMatrix
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getConfusionMatrix"></a>}}
 \subsection{Method \code{getConfusionMatrix()}}{
-<<description>>
+The function obtains the \code{\link[caret]{confusionMatrix}} following the same structured
+as defined in the \code{caret} package
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getConfusionMatrix()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link[caret]{confusionMatrix}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTP"></a>}}
 \subsection{Method \code{getTP()}}{
-<<description>>
+The function is used to compute the number of True Positive values achieved.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getTP()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTN"></a>}}
 \subsection{Method \code{getTN()}}{
-<<description>>
+The function computes the True Negative values.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getTN()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFN"></a>}}
 \subsection{Method \code{getFN()}}{
-<<description>>
+The function returns the number of Type II errors (False Negative).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getFN()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFP"></a>}}
 \subsection{Method \code{getFP()}}{
-<<description>>
+The function returns the number of Type I errors (False Negative).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getFP()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}

@@ -1,16 +1,16 @@
-#' @title <<tittle>>
+#' @title Abtract class to define simple voting schemes.
 #'
-#' @description SimpleVoting
+#' @description Abstract class used as a template to define new customized simple voting schemes.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
+#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
+#' \code{\link{CombinedVoting}}
 #'
-#' @seealso \code{\link{DDMCS}}
-#'
-#' @keywords NULL
+#' @keywords models methods math
 #'
 #' @import R6
 #'
@@ -21,9 +21,10 @@ SimpleVoting <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param cutoff <<descrription>>
+    #' @param cutoff A \code{\link{character}} vector defining the minimum probability used to perform a
+    #' a positive classification. If is not defined, 0.5 will be used as default value.
     #'
     initialize = function(cutoff = NULL) {
       if (!is.null(cutoff) && !is.numeric(cutoff)) {
@@ -37,19 +38,24 @@ SimpleVoting <- R6::R6Class(
       private$final.pred <- FinalPred$new()
     },
     #'
-    #' @description <<description>>
+    #' @description The function obtains the minimum probabilistic value used to perform a positive classification.
     #'
-    #' @return <<return>>
+    #' @return A \code{\link{numeric}} value.
     #'
     getCutoff = function() { private$cutoff },
     #'
-    #' @description <<description>>
+    #' @description The function is used to return the prediction values computed by a voting stratety.
     #'
-    #' @param type <<descrription>>
-    #' @param target <<descrription>>
-    #' @param filter <<descrription>>
+    #' @param type A \code{\link{character}} to define which type of predictions should be returned. If not defined
+    #' all type of probabilities will be returned. Conversely if 'prob' or 'raw' is defined then computed 'probabilistic' or
+    #' 'class' values are returned.
+    #' @param target A \code{\link{character}} defining the value of the positive class.
+    #' @param filter A \code{\link{logical}} value used to specify if only predictions
+    #' matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
+    #' predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
+    #' the function returns all the predictions.
     #'
-    #' @return <<return>>
+    #' @return A \code{\link{FinalPred}} object.
     #'
     getFinalPred = function(type = NULL, target = NULL, filter = NULL) {
       if (any(is.null(type), !(type %in% c("raw", "prob")))) {
@@ -88,14 +94,12 @@ SimpleVoting <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description Abstract function used to implement the operation of the voting scheme.
     #'
-    #' @param predictions <<descrription>>
-    #' @param metric <<descrription>>
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.
+    #' @param verbose A \code{\link{logical}} value to specify if more verbosity is needed.
     #'
-    #' @return <<return>>
-    #'
-    execute = function(predictions, metric = NULL) {
+    execute = function(predictions, verbose = FALSE) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",
            "Method should be defined in inherited class. Aborting...")
     }

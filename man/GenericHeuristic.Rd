@@ -3,16 +3,18 @@
 \docType{class}
 \name{GenericHeuristic}
 \alias{GenericHeuristic}
-\title{<<tittle>>}
+\title{Abstract Feature Clustering heuristic object.}
 \description{
-GenericHeuristic
+Abstract class used as a template to define new customized clustering heuristics.
 }
 \details{
-<<details>
+The \link{GenericHeuristic} is an archetype class so it cannot be instantiated.
 }
 \seealso{
 \code{\link{Dataset}}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -24,16 +26,19 @@ GenericHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Empty function used to initalize the object arguments in runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericHeuristic$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link{GenericHeuristic} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+Function used to implement the clustering heuristic.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericHeuristic$heuristic(col1, col2, column.names = NULL, ...)}\if{html}{\out{</div>}}
 }
@@ -41,18 +46,19 @@ GenericHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{A \link{numeric} vector or matrix required to perform the
+clustering operation.}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{A \link{numeric} vector or matrix to perform the clustering operation.}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{An optional \link{character} vector with the names of both columns}
 
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{heuristic} function.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}

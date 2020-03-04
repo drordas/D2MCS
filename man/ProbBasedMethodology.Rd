@@ -3,7 +3,7 @@
 \docType{class}
 \name{ProbBasedMethodology}
 \alias{ProbBasedMethodology}
-\title{<<tittle>>}
+\title{<<miguel>>}
 \description{
 ProbBasedMethodology
 }
@@ -13,6 +13,9 @@ ProbBasedMethodology
 \seealso{
 \code{\link{Methodology}}
 }
+\keyword{math}
+\keyword{methods}
+\keyword{models}
 \section{Super class}{
 \code{\link[DDMCS:Methodology]{DDMCS::Methodology}} -> \code{ProbBasedMethodology}
 }

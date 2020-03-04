@@ -3,16 +3,20 @@
 \docType{class}
 \name{Sensitivity}
 \alias{Sensitivity}
-\title{<<tittle>>}
+\title{Computes the Sensitivity Value.}
 \description{
-Sensitivity
+Sensitivity is a measure of the proportion of actual positive cases that got predicted as positive (or true positive).
 }
 \details{
-<<details>
+\deqn{Sensitivity = \frac{(TP)}{(TP + FN)}}
 }
 \seealso{
-\code{\link{MeasureFunction}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
+
+\code{\link{ConfMatrix}}
 }
+\keyword{classif}
+\keyword{math}
 \section{Super class}{
 \code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Sensitivity}
 }
@@ -33,7 +37,7 @@ Sensitivity
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Sensitivity$new(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -41,15 +45,19 @@ Sensitivity
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to
+define the type of object used as basis to compute the \code{Sensitivity} measure.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+An \code{\link{Sensitivity}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+The function computes the \code{Sensitivity} achieved by the M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Sensitivity$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -57,12 +65,17 @@ Sensitivity
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{<<description>>}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define the
+type of object used as basis to compute the \code{Sensitivity} measure.}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Details}{
+This function is automatically invoque by the \link{ClassificationOutput} object.
+}
+
 \subsection{Returns}{
-<<description>>
+A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
 }
 }
 \if{html}{\out{<hr>}}

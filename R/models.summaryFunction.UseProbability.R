@@ -1,16 +1,12 @@
-#' @title <<tittle>>
+#' @title Compute performance across resamples.
 #'
-#' @description UseProbability
+#' @description Computes the performance across resamples when class probabilities can be computed.
 #'
 #' @docType class
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
 #' @seealso \code{\link{SummaryFunction}}
 #'
-#' @keywords NULL
+#' @keywords misc
 #'
 #' @import R6
 #'
@@ -22,19 +18,21 @@ UseProbability <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description
+    #' @description The function defined during runtime the usage of seven measures: 'ROC', 'Sens', 'Kappa', 'Accuracy',
+    #' 'TCR_9', 'MCC' and 'PPV'.
+    #' @return A \code{\link{UseProbability}} object.
     #'
     initialize = function() {
-      super$initialize(c("ROC", "Sens", "Spec", "Kappa", "Accuracy", "TCR_9", "MCC", "PPV"))
+      super$initialize(c("ROC", "Sens", "Spec", "Kappa", "Accuracy", "TCR_9", "MCC", "PPV" ))
     },
     #'
-    #' @description <<description>>
+    #' @description The function computes the performance across resamples using the previously defined measures.
     #'
-    #' @param data <<description>>
-    #' @param lev <<description>>
-    #' @param model <<description>>
+    #' @param data A \code{\link{data.frame}} containing the data used to compute the performance.
+    #' @param lev An optional value used to define the levels of the target class.
+    #' @param model An optional value used to define the M.L. model used.
     #'
-    #' @return <<return>>
+    #' @return A vector of performance estimates.
     #'
     #' @import caret
     #' @importFrom mltools mcc

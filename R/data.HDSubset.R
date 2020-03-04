@@ -1,16 +1,18 @@
-#' @title <<tittle>>
+#' @title High Dimensional Subset handler
 #'
-#' @description HDSubset
+#' @description Creates a high dimensional subset from a \link{HDDataset} object.
+#' Only the required instances are loaded in memory to avoid
+#' unnecesary use of resources and memory.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @details Use \link{HDDataset} to ensure the creation of a valid \code{\link{HDSubset}} object.
 #'
-#' @seealso \code{\link{Dataset}}
+#' @seealso \code{\link{HDDataset}}, \code{\link{DatasetLoader}}
 #'
-#' @keywords NULL
+#' @keywords datasets manip attribute datagen
 #'
 #' @import R6
 #'
@@ -21,14 +23,25 @@ HDSubset <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Creates the \code{\link{HDSubset}} object.
     #'
-    #' @param file.path <<description>>
-    #' @param feature.names <<description>>
-    #' @param feature.id <<description>>
-    #' @param start.at <<description>>
-    #' @param sep <<description>>
-    #' @param chunk.size <<description>>
+    #' @param file.path the name of the file which the data are to be read from.
+    #' Each row of the table appears as one line of the file.
+    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current
+    #' working directory, ‘getwd()’.
+    #'
+    #' @param feature.names a \link{character} vector specifying the name of the features
+    #' that should be included in the \link{HDDataset} object.
+    #' @param feature.id an integer or character indicating the column (number or name
+    #' respectively) identifier. Default \link{NULL} value
+    #' is valid ignores defining a identification column.
+    #' @param start.at a numeric value to identify the reading start position.
+    #' @param sep the field separator character. Values on each line of the file are
+    #' separated by this character.
+    #' @param chunk.size an integer value indicating the size of chunks taken
+    #' over each iteration. By default chunk.size is defied as 10000.
+    #'
+    #' @return a \link{HDSubset} object.
     #'
     initialize = function(file.path, feature.names, feature.id, start.at = 0,
                           sep = ",", chunk.size) {
@@ -53,30 +66,31 @@ HDSubset <- R6::R6Class(
       } else private$start.at <- start.at
     },
     #'
-    #' @description <<description>>
+    #' @description get the name of the columns comprising the subset.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} vector containing the name of each column.
     #'
     getFeatureNames = function() { private$feature.names },
     #'
-    #' @description <<description>>
+    #' @description obtains the number of columns present in the Dataset.
     #'
-    #' @return <<return>>
+    #' @return a \link{numeric} value or 0 if is empty.
     #'
     getNcol = function() { length(private$feature.names) },
     #'
-    #' @description <<description>>
+    #' @description obtains the column identifier.
     #'
-    #' @return <<return>>
+    #' @return a \link{character} vector of size 1.
     #'
     getID = function() { private$feature.names[private$feature.id] },
     #'
-    #' @description <<description>>
+    #' @description Creates the \link{FIterator} object.
     #'
-    #' @param chunk.size <<description>>
-    #' @param verbose <<description>>
+    #' @param chunk.size an integer value indicating the size of chunks taken
+    #' over each iteration. By default chunk.size is defied as 10000.
+    #' @param verbose a logical value to specify if more verbosity is needed.
     #'
-    #' @return <<return>>
+    #' @return a \link{FIterator} object to trasverse through \link{HDSubset} instances
     #'
     getIterator = function(chunk.size = private$chunk.size, verbose = FALSE) {
       if (!is.numeric(chunk.size)) {
@@ -98,9 +112,8 @@ HDSubset <- R6::R6Class(
       FIterator$new(it.params, chunk.size, verbose = verbose)
     },
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
+    #' @description releases the resources used to manage high dimensional
+    #' datasets (such as file handlers).
     #'
     finalize = function() {
       if (!is.null(private$conetion))
@@ -108,9 +121,9 @@ HDSubset <- R6::R6Class(
       private$conection <- NULL
     },
     #'
-    #' @description <<description>>
+    #' @description checks if the subset contains a target class.
     #'
-    #' @return <<return>>
+    #' @return a \link{logical} to specify if the subset contains a target class or not.
     #'
     isBlinded = function() { TRUE }
   ),

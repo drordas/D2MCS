@@ -4,16 +4,15 @@
 \docType{class}
 \name{DependencyBasedStrategyConfiguration}
 \alias{DependencyBasedStrategyConfiguration}
-\title{<<tittle>>}
+\title{<<miguel>>}
 \description{
-DependencyBasedStrategyConfiguration
-}
-\details{
-<<details>
+Define the default configuration parameters for the \link{DependencyBasedStrategy} strategy.
 }
 \seealso{
-\code{\link{StrategyConfiguration}}
+\code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategy}}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:StrategyConfiguration]{DDMCS::StrategyConfiguration}} -> \code{DependencyBasedStrategyConfiguration}
 }
@@ -40,16 +39,19 @@ DependencyBasedStrategyConfiguration
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Empty function used to initalize the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \link{StrategyConfiguration} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-minNumClusters"></a>}}
 \subsection{Method \code{minNumClusters()}}{
-<<description>>
+Function used to return the minimum number of clusters distributions used. By default the minimum is set in 2.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$minNumClusters(...)}\if{html}{\out{</div>}}
 }
@@ -57,18 +59,19 @@ DependencyBasedStrategyConfiguration
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{minNumClusters} function.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-maxNumClusters"></a>}}
 \subsection{Method \code{maxNumClusters()}}{
-<<description>>
+The function is responsible of returning the maximum number of cluster distributions used.
+By default the maximum number is set in 50.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$maxNumClusters(...)}\if{html}{\out{</div>}}
 }
@@ -76,18 +79,18 @@ DependencyBasedStrategyConfiguration
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{maxNumClusters} function.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getBinaryCutoff"></a>}}
 \subsection{Method \code{getBinaryCutoff()}}{
-<<description>>
+The function is used to define the interval to consider the dependency between binary features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$getBinaryCutoff()}\if{html}{\out{</div>}}
 }
@@ -95,18 +98,18 @@ DependencyBasedStrategyConfiguration
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{maxNumClusters} function.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRealCutoff"></a>}}
 \subsection{Method \code{getRealCutoff()}}{
-<<description>>
+The function allows defining the cutoff to consider the dependency between real features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$getRealCutoff()}\if{html}{\out{</div>}}
 }
@@ -114,18 +117,18 @@ DependencyBasedStrategyConfiguration
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{<<description>>}
+\item{\code{...}}{Further arguments passed down to \code{maxNumClusters} function.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tiebreak"></a>}}
 \subsection{Method \code{tiebreak()}}{
-<<description>>
+The function solves the ties between two (or more) features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$tiebreak(
   feature,
@@ -141,9 +144,9 @@ DependencyBasedStrategyConfiguration
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{feature}}{<<description>>}
+\item{\code{feature}}{A \link{character} containing the name of the feature}
 
-\item{\code{clus.candidates}}{<<description>>}
+\item{\code{clus.candidates}}{The}
 
 \item{\code{fea.dep.dist.clus}}{<<description>>}
 
@@ -156,9 +159,6 @@ DependencyBasedStrategyConfiguration
 \item{\code{class.name}}{<<description>>}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<return>>
 }
 }
 \if{html}{\out{<hr>}}

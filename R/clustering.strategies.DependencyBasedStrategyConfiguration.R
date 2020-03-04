@@ -1,16 +1,14 @@
-#' @title <<tittle>>
+#' @title <<miguel>>
 #'
-#' @description DependencyBasedStrategyConfiguration
+#' @description Define the default configuration parameters for the \link{DependencyBasedStrategy} strategy.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<details>
+#' @seealso \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategy}}
 #'
-#' @seealso \code{\link{StrategyConfiguration}}
-#'
-#' @keywords NULL
+#' @keywords cluster manip
 #'
 #' @import R6
 #'
@@ -21,25 +19,29 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
   inherit = StrategyConfiguration,
   portable = TRUE,
   public = list(
-    #' @description <<description>>
+    #'
+    #' @description Empty function used to initalize the object arguments during runtime.
+    #' @return A \link{StrategyConfiguration} object.
+    #'
     initialize = function() { },
     #'
-    #' @description <<description>>
+    #' @description Function used to return the minimum number of clusters distributions used. By default the minimum is set in 2.
     #'
-    #' @param ... <<description>>
+    #' @param ... Further arguments passed down to \code{minNumClusters} function.
     #'
-    #' @return <<return>>
+    #' @return A \link{numeric} vector of length 1.
     #'
     minNumClusters = function(...) {
       features <- eval.parent(substitute(alist(...))[["features"]])
       2
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of returning the maximum number of cluster distributions used.
+    #' By default the maximum number is set in 50.
     #'
-    #' @param ... <<description>>
+    #' @param ... Further arguments passed down to \code{maxNumClusters} function.
     #'
-    #' @return <<return>>
+    #' @return A \link{numeric} vector of length 1.
     #'
     maxNumClusters = function(...) {
       features <- eval.parent(substitute(alist(...))[["features"]])
@@ -47,39 +49,37 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
       if (is.infinite(max)) { 3 } else { max }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to define the interval to consider the dependency between binary features.
     #'
-    #' @param ... <<description>>
+    #' @param ... Further arguments passed down to \code{maxNumClusters} function.
     #'
-    #' @return <<return>>
+    #' @return A \link{numeric} vector of length 1.
     #'
     getBinaryCutoff = function() { 0.6 },
     #'
-    #' @description <<description>>
+    #' @description The function allows defining the cutoff to consider the dependency between real features.
     #'
-    #' @param ... <<description>>
+    #' @param ... Further arguments passed down to \code{maxNumClusters} function.
     #'
-    #' @return <<return>>
+    #' @return A \link{numeric} vector of length 1.
     #'
     getRealCutoff = function() { 0.7 },
     #'
-    #' @param feature <<description>>
-    #' @param clus.candidates <<description>>
+    #' @param feature A \link{character} containing the name of the feature
+    #' @param clus.candidates The
     #' @param fea.dep.dist.clus <<description>>
     #' @param corpus <<description>>
     #' @param heuristic <<description>>
     #' @param class <<description>>
     #' @param class.name <<description>>
     #'
-    #' @description <<description>>
+    #' @description The function solves the ties between two (or more) features.
     #'
-    #' @return <<return>>
     #'
     tiebreak = function(feature, clus.candidates, fea.dep.dist.clus, corpus,
                         heuristic, class, class.name) {
       private$lfdcTiebreak(feature, clus.candidates, fea.dep.dist.clus,
                            corpus, heuristic)
-      # private$ltdcTiebreak(feature, clus.candidates, fea.dep.dist.clus, corpus, heuristic, class, class.name)
     },
     #'
     #' @param clusters <<description>>

@@ -3,16 +3,15 @@
 \docType{class}
 \name{ChiSquareHeuristic}
 \alias{ChiSquareHeuristic}
-\title{<<tittle>>}
+\title{Feature-clustering based on ChiSquare method.}
 \description{
-ChiSquareHeuristic
-}
-\details{
-<<details>
+Performs feature-clustering based on ChiSquare method.
 }
 \seealso{
-\code{\link{GenericHeuristic}}
+\code{\link{GenericHeuristic}} \link{chisq.test}
 }
+\keyword{cluster}
+\keyword{manip}
 \section{Super class}{
 \code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{ChiSquareHeuristic}
 }
@@ -33,7 +32,7 @@ ChiSquareHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Creates a \link{ChiSquareHeuristic} class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ChiSquareHeuristic$new()}\if{html}{\out{</div>}}
 }
@@ -42,7 +41,8 @@ ChiSquareHeuristic
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \subsection{Method \code{heuristic()}}{
-<<description>>
+functions responsible of performing the ChiSquare feature-clustering
+operation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ChiSquareHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -50,16 +50,18 @@ ChiSquareHeuristic
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{<<description>>}
+\item{\code{col1}}{a numeric vector or matrix required to perform the
+clustering operation.}
 
-\item{\code{col2}}{<<description>>}
+\item{\code{col2}}{a numeric vector or matrix to perform the clustering operation.}
 
-\item{\code{column.names}}{<<description>>}
+\item{\code{column.names}}{an optional \link{character} vector with the names of
+both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 }
 \if{html}{\out{<hr>}}

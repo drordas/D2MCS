@@ -3,16 +3,17 @@
 \docType{class}
 \name{ProbAverageVoting}
 \alias{ProbAverageVoting}
-\title{<<tittle>>}
+\title{Implementation of Probabilistic Average voting.}
 \description{
-ProbAverageVoting
-}
-\details{
-<<details>
+Computes the final prediction by perfoming the mean value of the probability achieved by each prediction.
 }
 \seealso{
-\code{\link{SimpleVoting}}
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
+\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 }
+\keyword{math}
+\keyword{methods}
+\keyword{models}
 \section{Super class}{
 \code{\link[DDMCS:SimpleVoting]{DDMCS::SimpleVoting}} -> \code{ProbAverageVoting}
 }
@@ -37,7 +38,7 @@ ProbAverageVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbAverageVoting$new(cutoff = 0.5, class.tie = NULL, majority.class = NULL)}\if{html}{\out{</div>}}
 }
@@ -45,11 +46,14 @@ ProbAverageVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cutoff}}{<<description>>}
+\item{\code{cutoff}}{A \code{\link{character}} vector defining the minimum probability used to perform a
+a positive classification. If is not defined, 0.5 will be used as default value.}
 
-\item{\code{class.tie}}{<<description>>}
+\item{\code{class.tie}}{A \code{\link{character}} used to define the target class value used when a tie is found.
+If \code{\link{NULL}} positive class value will be assigned.}
 
-\item{\code{majority.class}}{<<description>>}
+\item{\code{majority.class}}{A \code{\link{character}} defining the value of the majority class.
+If \code{\link{NULL}} will be used same value as trainning stage.}
 }
 \if{html}{\out{</div>}}
 }
@@ -57,31 +61,31 @@ ProbAverageVoting
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMajorityClass"></a>}}
 \subsection{Method \code{getMajorityClass()}}{
-<<description>>
+The function returns the value of the majority class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbAverageVoting$getMajorityClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector of length 1 with the name of the majority class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassTie"></a>}}
 \subsection{Method \code{getClassTie()}}{
-<<description>>
+The function gets the class value assigned to solve ties.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbAverageVoting$getClassTie()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+\code{\link{character}} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-<<description>>
+The function implements the majority voting procedure.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbAverageVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -89,14 +93,11 @@ ProbAverageVoting
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{<<description>>}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.}
 
-\item{\code{verbose}}{<<description>>}
+\item{\code{verbose}}{A \code{\link{logical}} value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}

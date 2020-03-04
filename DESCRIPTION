@@ -3,14 +3,18 @@ Type: Package
 Title: Data Driving Multiple Classifier System 
 Version: 0.1.0
 Authors@R: 
-    c(person(given = "Miguel", 
-             family = "Ferreiro-Díaz", 
-             role = c("aut","cre"),
-             email = "miguel.ferreiro.diaz@gmail.com"),
-      person(given = "David", 
+    c(person(given = "David", 
              family = "Ruano-Ordás",
              role = c("aut","ctr"),
              email = "drordas@uvigo.es"),
+      person(given = "Miguel", 
+             family = "Ferreiro-Díaz", 
+             role = c("aut","cre"),
+             email = "miguel.ferreiro.diaz@gmail.com"),
+     person(given = "José Ramón", 
+             family = "Méndez",
+             role = c("aut","ctr"),
+             email = "moncho.mendez@uvigo.es"),
       person(given = "University of Vigo", 
              role = c("cph")))
 Description: 

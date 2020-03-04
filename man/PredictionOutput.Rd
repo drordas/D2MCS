@@ -3,16 +3,16 @@
 \docType{class}
 \name{PredictionOutput}
 \alias{PredictionOutput}
-\title{<<tittle>>}
+\title{Encapsulates the achieved predictions.}
 \description{
-PredictionOutput
-}
-\details{
-<<details>
+The class used to encapsulates all the computed predictions to facilitate
+their access and maintenance.
 }
 \seealso{
 \code{\link{DDMCS}}
 }
+\keyword{math}
+\keyword{misc}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -26,7 +26,7 @@ PredictionOutput
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{PredictionOutput$new(predictions, type, target)}\if{html}{\out{</div>}}
 }
@@ -34,52 +34,57 @@ PredictionOutput
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{<<description>>}
+\item{\code{predictions}}{A \code{\link{list}} of \code{\link{FinalPred}} elements.}
 
-\item{\code{type}}{<<description>>}
+\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
+all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+'class' values are returned.}
 
-\item{\code{target}}{<<description>>}
+\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+An \code{\link{PredictionOutput}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPredictions"></a>}}
 \subsection{Method \code{getPredictions()}}{
-<<description>>
+The function returns the final predictions.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{PredictionOutput$getPredictions()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{list}} containing the final predictions or
+\code{\link{NULL}} if classification stage was not succesfully performed.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getType"></a>}}
 \subsection{Method \code{getType()}}{
-<<description>>
+The function returns the type of prediction should be returned.
+If "prob" or "raw" is defined then computed 'probabilistic' or
+'class' values are returned.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{PredictionOutput$getType()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTarget"></a>}}
 \subsection{Method \code{getTarget()}}{
-<<description>>
+The function returns the value of the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{PredictionOutput$getTarget()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} value.
 }
 }
 \if{html}{\out{<hr>}}

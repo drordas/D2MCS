@@ -10,7 +10,7 @@
 #'
 #' @seealso \code{\link{ClusterPredictions}}
 #'
-#' @keywords NULL
+#' @keywords internal math misc
 #'
 #' @import R6
 #' @importFrom devtools loaded_packages
