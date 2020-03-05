@@ -73,15 +73,14 @@ SimpleVoting <- R6::R6Class(
                  if (is.null(target) || !(target %in% class.values)) {
                    message("[", class(self)[1], "][WARNING] Target not ",
                            "specified or invalid. Using '",
-                           paste0(private$final.pred$getClassValues(),
-                                   collapse = ", "), "'")
-                   target <- private$final.pred$getClassValues()
+                           paste0(class.values, collapse = ", "), "'")
+                   target <- class.values
                  }
                  if (filter) {
                    private$final.pred$getProb()[private$final.pred$getRaw() == target,
-                                                target, drop = FALSE]
+                                                as.character(target), drop = FALSE]
                  } else {
-                   private$final.pred$getProb()[, target, drop = FALSE]
+                   private$final.pred$getProb()[, as.character(target), drop = FALSE]
                  }
                },
                "raw" = {

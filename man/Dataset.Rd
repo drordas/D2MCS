@@ -20,17 +20,9 @@ Creates a valid simple dataset object.
 \item \href{#method-new}{\code{Dataset$new()}}
 \item \href{#method-getColumnNames}{\code{Dataset$getColumnNames()}}
 \item \href{#method-getDataset}{\code{Dataset$getDataset()}}
-\item \href{#method-getClassName}{\code{Dataset$getClassName()}}
-\item \href{#method-getClassIndex}{\code{Dataset$getClassIndex()}}
-\item \href{#method-getClassValues}{\code{Dataset$getClassValues()}}
-\item \href{#method-getPositiveClass}{\code{Dataset$getPositiveClass()}}
 \item \href{#method-getNcol}{\code{Dataset$getNcol()}}
 \item \href{#method-getNrow}{\code{Dataset$getNrow()}}
-\item \href{#method-getClassSummary}{\code{Dataset$getClassSummary()}}
 \item \href{#method-getRemovedColumns}{\code{Dataset$getRemovedColumns()}}
-\item \href{#method-setPositiveClass}{\code{Dataset$setPositiveClass()}}
-\item \href{#method-setClassIndex}{\code{Dataset$setClassIndex()}}
-\item \href{#method-setClassName}{\code{Dataset$setClassName()}}
 \item \href{#method-cleanData}{\code{Dataset$cleanData()}}
 \item \href{#method-removeColumns}{\code{Dataset$removeColumns()}}
 \item \href{#method-createPartitions}{\code{Dataset$createPartitions()}}
@@ -48,8 +40,6 @@ Creates the \code{\link{Dataset}} object.
   header = TRUE,
   sep = ",",
   skip = 0,
-  target.class,
-  positive.class,
   normalize.names = FALSE,
   string.as.factor = FALSE,
   ignore.columns = NULL
@@ -70,10 +60,6 @@ first row contains one fewer field than the number of columns.}
 \item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
 
 \item{\code{skip}}{defines the number of header lines should be skipped.}
-
-\item{\code{target.class}}{<<description>>}
-
-\item{\code{positive.class}}{<<description>>}
 
 \item{\code{normalize.names}}{a logical value indicating whether the columns names should be automatically renamed
 to ensure R compatibility.}
@@ -113,54 +99,6 @@ a \link{data.frame} with all the loaded information.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassName"></a>}}
-\subsection{Method \code{getClassName()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$getClassName()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-<<return>>
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassIndex"></a>}}
-\subsection{Method \code{getClassIndex()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$getClassIndex()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-<<return>>
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassValues"></a>}}
-\subsection{Method \code{getClassValues()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$getClassValues()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-<<return>>
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPositiveClass"></a>}}
-\subsection{Method \code{getPositiveClass()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$getPositiveClass()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-<<return>>
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
 \subsection{Method \code{getNcol()}}{
 obtains the number of columns present in the Dataset.
@@ -185,18 +123,6 @@ an \link{integer} of length 1 or \link{NULL}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassSummary"></a>}}
-\subsection{Method \code{getClassSummary()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$getClassSummary()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-<<return>>
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRemovedColumns"></a>}}
 \subsection{Method \code{getRemovedColumns()}}{
 get the columns removed or ignored.
@@ -206,58 +132,6 @@ get the columns removed or ignored.
 
 \subsection{Returns}{
 a \link{list} containing the name of the removed columns.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setPositiveClass"></a>}}
-\subsection{Method \code{setPositiveClass()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$setPositiveClass(positive.class)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{positive.class}}{<<description>>}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setClassIndex"></a>}}
-\subsection{Method \code{setClassIndex()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$setClassIndex(class.index, positive.class)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{class.index}}{<<description>>}
-
-\item{\code{positive.class}}{<<description>>}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setClassName"></a>}}
-\subsection{Method \code{setClassName()}}{
-<<description>>
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$setClassName(class.name, positive.class)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{class.name}}{<<description>>}
-
-\item{\code{positive.class}}{<<description>>}
-}
-\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -315,7 +189,7 @@ creates a k-folds partition from the initial dataset.
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createPartitions(
   num.folds = NULL,
   percent.folds = NULL,
-  class.balance = TRUE
+  class.balance = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -338,9 +212,11 @@ create a \link{Subset} for testing or classification purposes. A target class sh
 testing purposes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createSubset(
-  num.folds,
+  num.folds = NULL,
   column.id = NULL,
-  opts = list(remove.na = TRUE, remove.const = FALSE)
+  opts = list(remove.na = TRUE, remove.const = FALSE),
+  class.index = NULL,
+  positive.class = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -354,6 +230,11 @@ is valid ignores defining a identification column.}
 
 \item{\code{opts}}{a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
 remove.const (ignore columns with constant values).}
+
+\item{\code{class.index}}{a \link{numeric} value identifying the column representing
+the target class}
+
+\item{\code{positive.class}}{defines the positive class value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -368,6 +249,8 @@ creates a set for training purposes. A class should be defined to guarantee full
 with supervised models.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createTrain(
+  class.index,
+  positive.class,
   num.folds = NULL,
   opts = list(remove.na = TRUE, remove.const = FALSE)
 )}\if{html}{\out{</div>}}
@@ -376,6 +259,11 @@ with supervised models.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{class.index}}{a \link{numeric} value identifying the column representing
+the target class}
+
+\item{\code{positive.class}}{defines the positive class value.}
+
 \item{\code{num.folds}}{an integer defining the number of folds that should we used to build the \link{Subset}.}
 
 \item{\code{opts}}{a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and

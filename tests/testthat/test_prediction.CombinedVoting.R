@@ -1,4 +1,4 @@
-test_that("CombinedVoting: initialize checks parameter type", {
+testthat::test_that("CombinedVoting: initialize checks parameter type", {
 
   voting.schemes <- NULL
   combined.metrics <- MinimizeFP$new()
@@ -70,6 +70,13 @@ testthat::test_that("CombinedVoting: getFinalPred function works", {
                                           target = target,
                                           filter = filter))
 
+  type <- "raw"
+  target <- NULL
+  filter <- TRUE
+  testthat::expect_null(voting$getFinalPred(type = type,
+                                            target = target,
+                                            filter = filter))
+
   type <- "prob"
   target <- NULL
   filter <- NULL
@@ -87,6 +94,13 @@ testthat::test_that("CombinedVoting: getFinalPred function works", {
   type <- "prob"
   target <- NULL
   filter <- NULL
+  testthat::expect_null(voting$getFinalPred(type = type,
+                                            target = target,
+                                            filter = filter))
+
+  type <- "prob"
+  target <- NULL
+  filter <- TRUE
   testthat::expect_null(voting$getFinalPred(type = type,
                                             target = target,
                                             filter = filter))

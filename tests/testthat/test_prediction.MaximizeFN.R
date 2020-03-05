@@ -105,7 +105,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Positive class parameter must be defined as 'character' type. Aborting...",
+                         "[MaximizeFN][FATAL] Positive class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -119,7 +119,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Negative class parameter must be defined as 'character' type. Aborting...",
+                         "[MaximizeFN][FATAL] Negative class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
 })

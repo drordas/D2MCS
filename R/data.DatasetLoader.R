@@ -47,8 +47,6 @@ DatasetLoader <- R6::R6Class(
     #' first row contains one fewer field than the number of columns.
     #' @param sep the field separator character. Values on each line of the file are separated by this character.
     #' @param skip.lines defines the number of header lines should be skipped.
-    #' @param target.class <<description>>
-    #' @param positive.class <<description>>
     #' @param normalize.names a logical value indicating whether the columns names should be automatically renamed
     #' to ensure R compatibility.
     #' @param string.as.factor a logical value indicating if character columns should be converted to factors (default = FALSE).
@@ -58,39 +56,22 @@ DatasetLoader <- R6::R6Class(
     #' @importFrom dplyr between
     #'
     load = function(filepath, header = TRUE, sep = ",", skip.lines = 0,
-                    target.class = NULL, positive.class = NULL,
                     normalize.names = FALSE, string.as.factor = FALSE,
-                    ignore.columns = NULL ){
+                    ignore.columns = NULL) {
 
       if (is.null(filepath) || !file.exists(filepath)) {
-        stop("[",class(self)[1],"][FATAL] Corpus cannot be found at defined ",
+        stop("[", class(self)[1], "][FATAL] Corpus cannot be found at defined ",
              "location. Aborting...")
       }
 
       dt.size <- (file.info(filepath)$size / 2^30)
 
-      if ( dplyr::between(dt.size,0,1) ){
-
-        if (is.null(positive.class)){
-          stop("[",class(self)[1],"][FATAL] Positive class was not defined. ",
-               "Aborting...")
-        }
-
-        if( !inherits(target.class, c("character","numeric") )){
-          stop("[",class(self)[1],"][FATAL] Target class parameter must be ",
-               "defined as 'numerical' or 'character' type. Aborting...")
-        }else{
-          if ( is.character(target.class) && !isTRUE(header)) {
-            stop("[",class(self)[1],"][FATAL] Cannot name target class ",
-                 "without columns names. Aborting...")
-          }
-        }
+      if (dplyr::between(dt.size, 0, 1)) {
 
         dataset <- Dataset$new(filepath = filepath, header = header, sep = sep,
                                skip = skip.lines, normalize.names = normalize.names,
-                               target.class = target.class,  positive.class = positive.class,
                                ignore.columns = ignore.columns)
-      }else{
+      } else {
         dataset <- HDDataset$new(filepath = filepath, header = header, sep = sep,
                                  skip = skip.lines, normalize.names = normalize.names,
                                  ignore.columns = ignore.columns)

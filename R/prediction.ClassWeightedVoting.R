@@ -108,7 +108,7 @@ ClassWeightedVoting <- R6::R6Class(
 
       for (row in seq_len(nrow(raw.pred))) {
         values <- unique(factor(as.matrix(raw.pred[row, ]),
-                                 levels = predictions$getClassValues()))
+                                levels = predictions$getClassValues()))
 
         row.sum <- c()
         for (val in values) {
@@ -136,8 +136,8 @@ ClassWeightedVoting <- R6::R6Class(
       }
 
       private$final.pred$set(final.prob, final.raw,
-                              predictions$getClassValues(),
-                              predictions$getPositiveClass())
+                             predictions$getClassValues(),
+                             predictions$getPositiveClass())
     }
   ),
   private = list(

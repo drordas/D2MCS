@@ -11,20 +11,21 @@ testthat::test_that("Subset: initialize", {
 
   testthat::expect_is(Subset$new(dataset = corpus,
                                  class.index = 50,
-                                 class.values = c(1, 0),
+                                 class.values = factor(corpus[[50]]),
                                  positive.class = 1),
+                      "Subset")
+
+  testthat::expect_is(Subset$new(dataset = corpus),
                       "Subset")
 })
 
-
 testthat::test_that("Subset: initialize function checks parameter type", {
-
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
 
   testthat::expect_error(Subset$new(dataset = NULL,
                                     class.index = 50,
-                                    class.values = c(1, 0),
+                                    class.values = factor(corpus[[50]]),
                                     positive.class = 1),
                          "[Subset][FATAL] Dataset empty or incorrect (must be a data.frame). Aborting...",
                          fixed = TRUE)
@@ -37,24 +38,32 @@ testthat::test_that("Subset: initialize function checks parameter type", {
                                     split = ","))
 
   testthat::expect_error(Subset$new(dataset = corpus,
-                                    class.index = NULL,
-                                    class.values = c(1, 0),
+                                    class.index = "a",
+                                    class.values = factor(corpus[[50]]),
                                     positive.class = 1),
-                         "[Subset][FATAL] Class index paramenter is incorrect. Must be between 1 and 50. Aborting...",
-                         fixed = TRUE)
-
-  testthat::expect_error(Subset$new(dataset = corpus,
-                                    class.index = 50,
-                                    class.values = c(1, 0),
-                                    positive.class = 2),
-                         "[Subset][FATAL] Positive Class parameter is incorrect. Must be '1' '0'. Aborting...",
+                         "[Subset][FATAL] Class index parameter is incorrect. Must be between 1 and 50. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(Subset$new(dataset = corpus,
                                     class.index = 50,
                                     class.values = 3,
                                     positive.class = 1),
-                         "[Subset][FATAL] Class values parameter is incorrect. Must be '1' '0'. Aborting...",
+                         "[Subset][FATAL] Class values parameter must be defined as 'factor' type. Aborting...",
+                         fixed = TRUE)
+
+  set.seed(123)
+  testthat::expect_error(Subset$new(dataset = corpus,
+                                    class.index = 50,
+                                    class.values = factor(sample(c(0, 1), nrow(corpus), replace = TRUE)),
+                                    positive.class = 1),
+                         "[Subset][FATAL] Class values parameter is incorrect. Must match with the values in column 50 in the dataset. Aborting...",
+                         fixed = TRUE)
+
+  testthat::expect_error(Subset$new(dataset = corpus,
+                                    class.index = 50,
+                                    class.values = factor(corpus[[50]]),
+                                    positive.class = 2),
+                         "[Subset][FATAL] Positive Class parameter is incorrect. Must be '0' '1'. Aborting...",
                          fixed = TRUE)
 })
 
@@ -71,7 +80,7 @@ testthat::test_that("Subset: getFeatureNames function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1)
 
   testthat::expect_equal(subset$getFeatureNames(), names(corpus[, -50]))
@@ -90,12 +99,21 @@ testthat::test_that("Subset: getFeatures function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1)
 
-  testthat::expect_equal(subset$getFeatures(), corpus[, -50])
+  testthat::expect_true(all(subset$getFeatures(feature.names = NULL) == corpus[, -50]))
 
-  testthat::expect_equal(subset$getFeatures("Gender"), corpus[, "Gender"])
+  testthat::expect_equal(subset$getFeatures(feature.names = "Gender"), corpus[["Gender"]])
+
+  subset <- Subset$new(dataset = corpus,
+                       class.index = NULL,
+                       class.values = NULL,
+                       positive.class = NULL)
+
+  testthat::expect_true(all(subset$getFeatures(feature.names = NULL) == subset$.__enclos_env__$private$data))
+
+  testthat::expect_equal(subset$getFeatures(feature.names = "Gender"), corpus[["Gender"]])
 })
 
 testthat::test_that("Subset: getID function works", {
@@ -111,7 +129,7 @@ testthat::test_that("Subset: getID function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
@@ -119,7 +137,7 @@ testthat::test_that("Subset: getID function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = 2)
 
@@ -139,7 +157,7 @@ testthat::test_that("Subset: getIterator function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
@@ -171,11 +189,11 @@ testthat::test_that("Subset: getClassValues function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
-  testthat::expect_equal(subset$getClassValues(), corpus[, 50])
+  testthat::expect_true(all(subset$getClassValues() == factor(corpus[[50]])))
 })
 
 testthat::test_that("Subset: getClassBalance function works", {
@@ -191,13 +209,23 @@ testthat::test_that("Subset: getClassBalance function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
   testthat::expect_equal(subset$getClassBalance(target.value = NULL), 1)
   testthat::expect_message(subset$getClassBalance(target.value = 2),
                            "[Subset][WARNING] Target class not found. Assuming default '1' value",
+                           fixed = TRUE)
+
+  subset <- Subset$new(dataset = corpus,
+                       class.index = NULL,
+                       class.values = NULL,
+                       positive.class = NULL,
+                       feature.id = NULL)
+
+  testthat::expect_message(subset$getClassBalance(target.value = 2),
+                           "[Subset][WARNING] Subset has no associated class. Task not performed",
                            fixed = TRUE)
 })
 
@@ -214,7 +242,7 @@ testthat::test_that("Subset: getClassIndex function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
@@ -234,7 +262,7 @@ testthat::test_that("Subset: getClassName function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
@@ -254,7 +282,7 @@ testthat::test_that("Subset: getNcol function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
@@ -274,7 +302,7 @@ testthat::test_that("Subset: getNrow function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
@@ -294,7 +322,7 @@ testthat::test_that("Subset: getPositiveClass function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 
@@ -314,7 +342,7 @@ testthat::test_that("Subset: isBlinded function works", {
 
   subset <- Subset$new(dataset = corpus,
                        class.index = 50,
-                       class.values = c(1, 0),
+                       class.values = factor(corpus[[50]]),
                        positive.class = 1,
                        feature.id = NULL)
 

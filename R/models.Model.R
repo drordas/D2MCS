@@ -139,9 +139,9 @@ Model <- R6::R6Class(
           tictoc::tic(quiet = TRUE)
           set.seed(trFunction$getSeed())
           private$model.train$model.data <- caret::train(x = fitting, data = train.set,
-                                                          method = private$model.info$name,
-                                                          trControl = trFunction$getTrFunction(),
-                                                          metric = metric)
+                                                         method = private$model.info$name,
+                                                         trControl = trFunction$getTrFunction(),
+                                                         metric = metric)
           time <- tictoc::toc(quiet = TRUE)
           private$model.train$model.performance <- self$getPerformance()
 

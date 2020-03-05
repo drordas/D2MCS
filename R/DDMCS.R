@@ -97,7 +97,7 @@ DDMCS <- R6::R6Class(
       private$path <- dir.path
 
       private$cluster.conf <- list(cores = cores, socket = socket,
-                                    outfile = outfile, xdr = xdr)
+                                   outfile = outfile, xdr = xdr)
       private$cluster.obj <- NULL
     },
     #'
@@ -132,16 +132,16 @@ DDMCS <- R6::R6Class(
       # CHECK IF TRAIN.SET IS VALID
       if (!"Trainset" %in% class(train.set)) {
         stop("[", class(self)[1], "][FATAL] Train set parameter must be ",
-              "defined as 'Trainset' type. Aborting...")
+             "defined as 'Trainset' type. Aborting...")
       }
 
       if (!"TrainFunction" %in% class(train.function)) {
         stop("[", class(self)[1], "][FATAL] Train function parameter must be ",
-              "defined as 'TrainFunction' type. Aborting...")
+             "defined as 'TrainFunction' type. Aborting...")
       }
 
       if (any(is.null(num.clusters), !is.numeric(num.clusters),
-               !is.vector(num.clusters))) {
+              !is.vector(num.clusters))) {
         message("[", class(self)[1], "][WARNING] Number of clusters not set ",
                 "(must be numeric or vector). Using all clusters")
         num.clusters <- c(1:train.set$getNumClusters())
@@ -177,9 +177,9 @@ DDMCS <- R6::R6Class(
               private$cluster.conf$cores, " cores")
 
       private$cluster.obj <- parallel::makeCluster(private$cluster.conf$cores,
-                                                    type = private$cluster.conf$socket,
-                                                    outfile = private$cluster.conf$outfile,
-                                                    useXDR = private$cluster.conf$xdr)
+                                                   type = private$cluster.conf$socket,
+                                                   outfile = private$cluster.conf$outfile,
+                                                   useXDR = private$cluster.conf$xdr)
 
       cluster.models <- lapply(metrics, function(x) vector(mode = "list",
                                                            length = train.set$getNumClusters()))
@@ -217,8 +217,8 @@ DDMCS <- R6::R6Class(
             #   next
             # }
             model.path <- file.path(private$path, current.metric,
-                                     paste0("C[", current.cluster, "-",
-                                            train.set$getNumClusters(), "]"))
+                                    paste0("C[", current.cluster, "-",
+                                           train.set$getNumClusters(), "]"))
             executed.models <- ExecutedModels$new(model.path)
 
             if (!executed.models$exist(current.model$name)) {
@@ -232,8 +232,8 @@ DDMCS <- R6::R6Class(
               # LOAD REQUIRED PACKAGES
               if (!loaded.packages) {
                 if (!is.null(current.model$model.libs) &&
-                     !is.na(current.model$model.libs) &&
-                     !current.model$model.libs %in% "NA") {
+                    !is.na(current.model$model.libs) &&
+                    !current.model$model.libs %in% "NA") {
                   len.init.packages <- length(.packages())
                   len.init.DLLs <- length(.dynLibs())
                   message("[", class(self)[1], "][INFO][", current.model$name, "] ",
@@ -253,6 +253,12 @@ DDMCS <- R6::R6Class(
               )
 
               model.instances <- train.set$getInstances(current.cluster)
+
+              class.values <- relevel(x = factor(make.names(model.instances[[train.set$getClassName()]])),
+                                      levels = unique(make.names(model.instances[[train.set$getClassName()]])),
+                                      ref = as.character(make.names(train.set$getPositiveClass())))
+              model.instances[[train.set$getClassName()]] <- class.values
+
               model.recipe <- DefaultModelFit$new(model.instances,
                                                   train.set$getClassName())$createRecipe()
               model.type <- Model$new(dir = model.path, model = current.model)
@@ -279,8 +285,8 @@ DDMCS <- R6::R6Class(
         }
         # UNLOAD REQUIRED PACKAGES
         if (loaded.packages && !is.null(current.model$model.libs) &&
-             !is.na(current.model$model.libs) &&
-             !current.model$model.libs %in% "NA") {
+            !is.na(current.model$model.libs) &&
+            !current.model$model.libs %in% "NA") {
           message("[", class(self)[1], "][INFO][", current.model$name, "] ",
                   "Detaching required packages...")
           private$unloadPackages(len.init.packages, len.init.DLLs)
@@ -324,8 +330,8 @@ DDMCS <- R6::R6Class(
         stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
              "'Subset' or 'HDSubset' type. Aborting...")
 
-      if (missing(voting.types)) {
-        stop("[", class(self)[1], "][FATAL] Voting types parameter are missing.",
+      if (is.null(voting.types)) {
+        stop("[", class(self)[1], "][FATAL] Voting types parameter is not defined. ",
              "Aborting...")
       }
 
@@ -340,8 +346,7 @@ DDMCS <- R6::R6Class(
              "defined as 'SingleVoting' or 'CombinedVoting' types. Aborting...")
       }
 
-      class.values <- unique(train.output$getClassValues())
-      if (is.factor(class.values)) class.values <- levels(class.values)
+      class.values <- levels(train.output$getClassValues())
 
       if (subset$isBlinded()) {
         if (is.null(positive.class)) {
@@ -372,7 +377,6 @@ DDMCS <- R6::R6Class(
         }
       }
 
-
       exec.metrics <- unique(unlist(sapply(voting.types, function(voting) {
         voting$getMetrics() })))
 
@@ -388,7 +392,7 @@ DDMCS <- R6::R6Class(
           next
         }
         predictions <- ClusterPredictions$new(class.values = class.values,
-                                               positive.class = positive.class)
+                                              positive.class = positive.class)
         num.clusters <- length(train.output$getModels(metric))
         message("[", class(self)[1], "][INFO] ********************************",
                 "***********************")
@@ -401,6 +405,7 @@ DDMCS <- R6::R6Class(
                   "-------------------------")
           message("[", class(self)[1], "][INFO] Computing cluster '",
                   cluster, "' of '", num.clusters, "'")
+
           pred <- Prediction$new(model = train.output$getModels(metric)[[cluster]],
                                  feature.id = subset$getID())
           final.models <- append(final.models, list(train.output$getModels(metric)))
@@ -420,10 +425,9 @@ DDMCS <- R6::R6Class(
         cluster.predictions[[metric]] <- predictions
       }
 
-
       for (voting.type in voting.types) {
         valid.metrics <- intersect(voting.type$getMetrics(),
-                                    names(cluster.predictions))
+                                   names(cluster.predictions))
         if (length(valid.metrics) == 0) {
           message("[DDMCS][INFO] Metrics for '", voting.type$getName(), "' were ",
                   "not computed. Ignoring voting type...")
@@ -476,7 +480,7 @@ DDMCS <- R6::R6Class(
 
       models <- do.call(rbind, apply(t(model.names), 2, function(name, modelList) {
         if (!name %in% c("null") &&
-            all(modelList[[name]]$type %in% "Classification")) {
+            any(modelList[[name]]$type %in% "Classification")) {
           data.frame(name = name, description = modelList[[name]]$label,
                       family = base::trimws(modelList[[name]]$tags[1]),
                       library = I(list(modelList[[name]]$library)),

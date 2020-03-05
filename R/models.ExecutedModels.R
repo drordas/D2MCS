@@ -37,7 +37,8 @@ ExecutedModels <- R6::R6Class(
       } else {
         private$models <- read.csv(file = file.path(private$dir.path, ".executed"),
                                     header = TRUE, stringsAsFactors = FALSE, sep = ",")
-        best.perf <- private$models[which.max(private$models$performance), ]
+
+        best.perf <- private$models[max(which(private$models$performance == max(private$models$performance))), ]
 
         if (length(which(best.perf$performance != 0)) != 0) {
           best.path <- file.path(private$dir.path, paste0(best.perf$model, ".rds"))
@@ -48,7 +49,7 @@ ExecutedModels <- R6::R6Class(
                                        train = readRDS(best.path)
             )
           } else {
-            message("[", class(self)[1], "][WARNING] Best model cannot be loaded.")
+            message("[", class(self)[1], "][WARNING] Best model cannot be loaded.", best.path)
             private$best.model <- NULL
           }
         }
@@ -97,8 +98,10 @@ ExecutedModels <- R6::R6Class(
 
         if (isTRUE(keep.best)) { # SAVE ONLY BEST MODELS. REMOVE WORST
 
-          if (any(is.null(private$best.model), # IS BEST MODEL
-                  model$getPerformance() > private$best.model$performance)) {
+          if (is.null(private$best.model) || # IS BEST MODEL
+              model$getPerformance() > private$best.model$performance ||
+              isTRUE(all.equal.numeric(model$getPerformance(), private$best.model$performance))) {
+
             if (!is.null(private$best.model)) {
               message("[", class(self)[1], "][INFO] Best model found. Replacing '",
                       private$best.model$model, "' with '",
@@ -106,9 +109,9 @@ ExecutedModels <- R6::R6Class(
               self$delete(private$best.model$model)
             }
             private$best.model <- list(model = model$getName(),
-                                        performance = model$getPerformance(),
-                                        exec.time = model$getExecutionTime(),
-                                        train = model$getTrainedModel())
+                                       performance = model$getPerformance(),
+                                       exec.time = model$getExecutionTime(),
+                                       train = model$getTrainedModel())
             model$save()
           }
         } else { model$save() }

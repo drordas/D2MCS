@@ -33,38 +33,57 @@ Subset <- R6::R6Class(
     #'
     #' @return \link{Subset} object.
     #'
-    initialize = function(dataset, class.index, class.values,
-                          positive.class, feature.id = NULL) {
+    initialize = function(dataset, class.index = NULL, class.values = NULL,
+                          positive.class = NULL, feature.id = NULL) {
       if (any(is.null(dataset), nrow(dataset) == 0, !is.data.frame(dataset))) {
         stop("[", class(self)[1], "][FATAL] Dataset empty or incorrect ",
              "(must be a data.frame). Aborting...")
       }
-
-      if (is.null(class.index) ||
-          !(class.index %in% c(1:ncol(dataset)))) {
-        stop("[", class(self)[1], "][FATAL] Class index paramenter is incorrect. ",
-             "Must be between 1 and ", ncol(dataset), ". Aborting...")
-      }
-
-      if (!(positive.class %in% as.character(unique(dataset[, class.index])))) {
-        stop("[", class(self)[1], "][FATAL] Positive Class parameter is incorrect. ",
-             "Must be '", paste(as.character(unique(dataset[, class.index])), collapse = "' '"),
-             "'. Aborting...")
-      }
-
-      if (!all(class.values %in% as.character(unique(dataset[, class.index])))) {
-        stop("[", class(self)[1], "][FATAL] Class values parameter is incorrect. ",
-             "Must be '", paste(as.character(unique(dataset[, class.index])), collapse = "' '"),
-             "'. Aborting...")
-      }
-
       private$data <- dataset
+      if (any(is.null(class.index), is.null(class.values), is.null(positive.class))) {
+        message("[", class(self)[1], "][INFO] Subset created without an associated class")
+        class.index <- NULL
+        class.values <- NULL
+        positive.class <- NULL
+        private$class.name <- NULL
+        private$positive.class <- NULL
+        private$feature.names <- names(private$data)
+      } else {
+        if (!is.numeric(class.index) || !class.index %in% c(1:ncol(dataset))) {
+          stop("[", class(self)[1], "][FATAL] Class index parameter is incorrect. ",
+               "Must be between 1 and ", ncol(dataset), ". Aborting...")
+        }
+
+        if (!is.factor(class.values)) {
+          stop("[", class(self)[1], "][FATAL] Class values parameter must be defined ",
+               "as 'factor' type. Aborting...")
+        }
+        private$positive.class <- positive.class
+
+        if (!private$positive.class %in% dataset[[class.index]]) {
+          stop("[", class(self)[1], "][FATAL] Positive Class parameter is incorrect. ",
+               "Must be '", paste(levels(class.values), collapse = "' '"), "'. Aborting...")
+        }
+
+        class.values <- relevel(x = factor(class.values,
+                                           levels = unique(class.values)),
+                                ref = as.character(private$positive.class))
+
+        if (!all(class.values == relevel(x = factor(dataset[[class.index]],
+                                                    levels = unique(dataset[[class.index]])),
+                                         ref = as.character(private$positive.class)))) {
+          stop("[", class(self)[1], "][FATAL] Class values parameter is incorrect. ",
+               "Must match with the values in column ", class.index, " in the ",
+               "dataset. Aborting...")
+        }
+
+        private$class.name <- names(private$data)[class.index]
+        private$feature.names <- names(private$data[, -class.index])
+      }
+
       private$class.index <- class.index
       private$feature.id <- feature.id
-      private$positive.class <- positive.class
-      private$class.name <- names(private$data)[private$class.index]
       private$class.values <- class.values
-      private$feature.names <- names(private$data[, -private$class.index])
     },
     #'
     #' @description get the name of the columns comprising the subset.
@@ -82,8 +101,18 @@ Subset <- R6::R6Class(
     #'
     getFeatures = function(feature.names = NULL) {
       if (is.vector(feature.names) && length(feature.names) > 0) {
-        private$data[, intersect(names(private$data[, -private$class.index]), feature.names)]
-      } else { private$data[, -private$class.index] }
+        if (is.null(private$class.index)) {
+          private$data[, feature.names]
+        } else {
+          private$data[, intersect(names(private$data[, -private$class.index]), feature.names)]
+        }
+      } else {
+        if (is.null(private$class.index)) {
+          private$data
+        } else {
+          private$data[, -private$class.index]
+        }
+      }
     },
     #'
     #' @description get the column name used as identifier.
@@ -124,7 +153,7 @@ Subset <- R6::R6Class(
     #'
     #' @return a \link{factor} vector with all the values of the target class.
     #'
-    getClassValues = function() { private$data[, private$class.index] },
+    getClassValues = function() { private$class.values },
     #'
     #' @description the function is used to compute the ratio of each class value
     #' in the \link{Subset}.
@@ -134,17 +163,22 @@ Subset <- R6::R6Class(
     #' @return a \link{numeric} value.
     #'
     getClassBalance = function(target.value = NULL) {
-      if (is.null(target.value)) {
-        target.value <- private$positive.class
+      if (is.null(private$class.index)) {
+        message("[", class(self)[1], "][WARNING] Subset has no associated class. ",
+                "Task not performed")
       } else {
-        if (!(target.value %in% private$class.values)) {
-          message("[", class(self)[1], "][WARNING] Target class not found. ",
-                  "Assuming default '", private$positive.class, "' value")
+        if (is.null(target.value)) {
           target.value <- private$positive.class
+        } else {
+          if (!(target.value %in% private$class.values)) {
+            message("[", class(self)[1], "][WARNING] Target class not found. ",
+                    "Assuming default '", private$positive.class, "' value")
+            target.value <- private$positive.class
+          }
         }
+        count <- as.data.frame(t(as.matrix(table(private$data[, private$class.index]))))
+        round(count[, target.value] / sum(count[, which(names(count) != target.value)]), digits = 3)
       }
-      count <- as.data.frame(t(as.matrix(table(private$data[, private$class.index]))))
-      round(count[, target.value] / sum(count[, which(names(count) != target.value)]), digits = 3)
     },
     #'
     #' @description the function is used to obtain the index of the column

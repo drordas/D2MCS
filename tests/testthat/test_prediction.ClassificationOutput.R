@@ -1,4 +1,4 @@
-test_that("ClassificationOutput: initialize checks parameter type", {
+testthat::test_that("ClassificationOutput: initialize checks parameter type", {
 
   testthat::expect_error(ClassificationOutput$new(voting.schemes = NULL, models = list()),
                          "[ClassificationOutput][FATAL] Voting Schemes not executed. Aborting...",
@@ -32,7 +32,7 @@ testthat::test_that("ClassificationOutput: getPositiveClass function works", {
   classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
-  testthat::expect_equal(classificationOutput$getPositiveClass(), "class0")
+  testthat::expect_equal(classificationOutput$getPositiveClass(), 1)
 })
 
 testthat::test_that("ClassificationOutput: getModelInfo function works", {
@@ -55,7 +55,7 @@ testthat::test_that("ClassificationOutput: getPerformances function works", {
   classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   measures <- c(PPV$new(), MCC$new())
 
   testthat::expect_is(classificationOutput$getPerformances(test.set = test.set,
@@ -72,7 +72,7 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
   classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   measures <- c(PPV$new(), MCC$new())
 
   testthat::expect_error(classificationOutput$getPerformances(test.set = NULL,
@@ -119,13 +119,13 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                            all = FALSE)
 
   test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
-
+  test.set$.__enclos_env__$private$positive.class <- "0"
   testthat::expect_error(classificationOutput$getPerformances(test.set = test.set,
                                                               measures = measures,
                                                               voting.names = "a",
                                                               metric.names = "MCC",
                                                               cutoff.values = 0.7),
-                         "[ClassificationOutput][FATAL] Positive class values missmatch. ['1' vs 'class0'] used in classification and test respectively. Aborting...",
+                         "[ClassificationOutput][FATAL] Positive class values missmatch. ['0' vs '1'] used in classification and test respectively. Aborting...",
                          fixed = TRUE)
 })
 
@@ -136,7 +136,7 @@ testthat::test_that("ClassificationOutput: savePerformances function works", {
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   measures <- c(MCC$new())
   testthat::expect_message(classificationOutput$savePerformances(dir.path = dir.path,
                                                                  test.set = test.set,
@@ -159,7 +159,7 @@ testthat::test_that("ClassificationOutput: savePerformances function checks para
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   measures <- c(MCC$new())
   testthat::expect_error(classificationOutput$savePerformances(dir.path = NULL,
                                                                test.set = test.set,
@@ -175,7 +175,7 @@ testthat::test_that("ClassificationOutput: plotPerformances function works", {
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   measures <- c(MCC$new())
   testthat::expect_message(classificationOutput$plotPerformances(dir.path = dir.path,
                                                                  test.set = test.set,
@@ -200,7 +200,7 @@ testthat::test_that("ClassificationOutput: plotPerformances function checks para
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   measures <- c(MCC$new())
   testthat::expect_error(classificationOutput$plotPerformances(dir.path = NULL,
                                                                test.set = test.set,
@@ -239,12 +239,12 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                       "PredictionOutput")
 
   testthat::expect_message(classificationOutput$getPredictions(voting.names = voting.names,
-                                                          metric.names = metric.names,
-                                                          cutoff.values = cutoff.values,
-                                                          type = "prob",
-                                                          target = NULL,
-                                                          filter = filter),
-                           "[ClassificationOutput][WARNING] Target value does not match with actual target values: 'class0, class1'. Assuming 'class0' as default value",
+                                                               metric.names = metric.names,
+                                                               cutoff.values = cutoff.values,
+                                                               type = "prob",
+                                                               target = NULL,
+                                                               filter = filter),
+                           "[ClassificationOutput][WARNING] Target value does not match with actual target values: '1, 0'. Assuming '1' as default value",
                            fixed = TRUE,
                            all = FALSE)
 
@@ -330,10 +330,10 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        metric.names = metric.names,
                                        cutoff.values = cutoff.values,
                                        type = type,
-                                       target = "class0",
+                                       target = "0",
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_raw_class0.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_raw_0.csv")))
 
   unlink(dir.path, recursive = TRUE, force = TRUE)
   classificationOutput$savePredictions(dir.path = dir.path,
@@ -344,7 +344,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = target,
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_class0.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_1.csv")))
   unlink(dir.path, recursive = TRUE, force = TRUE)
 
   classificationOutput$savePredictions(dir.path = dir.path,
@@ -352,10 +352,10 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        metric.names = metric.names,
                                        cutoff.values = cutoff.values,
                                        type = "raw",
-                                       target = "class0",
+                                       target = "0",
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_class0.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_0.csv")))
   unlink(dir.path, recursive = TRUE, force = TRUE)
 
   classificationOutput$savePredictions(dir.path = dir.path,

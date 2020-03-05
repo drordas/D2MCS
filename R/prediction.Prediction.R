@@ -61,15 +61,16 @@ Prediction <- R6::R6Class(
       if (isTRUE(private$model$model.data$control$classProbs)) {
 
         prob.aux <- predict(object = private$model$model.data,
-                             newdata = pred.values, type = "prob")
+                            newdata = pred.values, type = "prob")
         private$results$prob <- rbind(private$results$prob, prob.aux)
+        names(private$results$prob) <- class.values
 
         raw.aux <- factor(apply(prob.aux, 1, function(row, names, pclass, cutoff) {
           pos <- which(row > cutoff)
           ifelse(length(pos) == 1, names[pos], pclass)
         }, names = class.values, pclass = positive.class, cutoff = 0.5),
         levels = class.values)
-        relevel(raw.aux, ref = positive.class)
+        relevel(raw.aux, ref = as.character(positive.class))
 
         private$results$raw <- rbind(private$results$raw, data.frame(raw.aux))
 
@@ -84,8 +85,7 @@ Prediction <- R6::R6Class(
         private$results$raw <- rbind(private$results$raw, raw.aux)
 
         if (is.null(private$results$prob)) {
-          names(private$results$prob) <- c(positive.class,
-                                           setdiff(class.values, positive.class))
+          names(private$results$prob) <- class.values
         }
 
         prob.aux <- do.call(rbind, apply(raw.aux, 1, function(row, class.values) {
@@ -121,7 +121,7 @@ Prediction <- R6::R6Class(
                           class.names[1], "' as default value")
                   target <- class.names[1]
                 }
-                ret <- private$results$prob[, target, drop = FALSE]
+                ret <- private$results$prob[, as.character(target), drop = FALSE]
               },
               "raw" = { ret <- as.data.frame(private$results$raw) }
       )
@@ -161,9 +161,9 @@ Prediction <- R6::R6Class(
                 length(new.packages), "packages needed to execute aplication\n",
                 "Installing packages...")
         suppressMessages(install.packages(new.packages,
-                                           repos = "https://ftp.cixug.es/CRAN/",
-                                           dependencies = TRUE,
-                                           quiet = TRUE, verbose = FALSE))
+                                          repos = "https://ftp.cixug.es/CRAN/",
+                                          dependencies = TRUE,
+                                          quiet = TRUE, verbose = FALSE))
       }
       lapply(pkgName, function(pkg) {
         if (!pkg %in% devtools::loaded_packages()) {

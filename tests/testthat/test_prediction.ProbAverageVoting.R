@@ -13,7 +13,7 @@ testthat::test_that("ProbAverageVoting: initialize", {
 testthat::test_that("ProbAverageVoting: initialize checks parameter type", {
 
   cutoff <- 0.5
-  class.tie <- 1
+  class.tie <- list()
   majority.class <- "Positive"
 
   testthat::expect_error(ProbAverageVoting$new(cutoff = cutoff,

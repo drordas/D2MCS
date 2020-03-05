@@ -40,13 +40,18 @@ Trainset <- R6::R6Class(
              "Aborting...")
       }
 
-      if (!(positive.class %in% as.character(unique(class.values)))) {
+      if (!is.factor(class.values)) {
+        stop("[", class(self)[1], "][FATAL] Class.values parameter must be ",
+             "defined as 'factor' type. Aborting...")
+      }
+
+      if (is.null(positive.class) || !positive.class %in% class.values) {
         stop("[", class(self)[1], "][FATAL] Positive Class parameter is incorrect. Must be '",
-             paste0(as.character(unique(class.values)), collapse = "' '"), "'. Aborting...")
+             paste(levels(class.values), collapse = "' '"), "'. Aborting...")
       }
 
       private$clusters <- cluster.dist
-      private$positive.class <- as.character(positive.class)
+      private$positive.class <- positive.class
       private$class.name <- class.name
       private$class.values <- class.values
     },

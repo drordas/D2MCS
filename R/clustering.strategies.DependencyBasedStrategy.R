@@ -492,7 +492,7 @@ DependencyBasedStrategy <- R6::R6Class(
 
       positive.class <- private$subset$getPositiveClass()
       class.values <- private$subset$getClassValues()
-      col.index <- which(levels(as.factor(class.values)) == positive.class)
+      col.index <- which(levels(class.values) == positive.class)
       class <- varhandle::to.dummy(as.character(class.values),
                                    as.character(positive.class))[, col.index]
 

@@ -116,7 +116,7 @@ ProbAverageWeightedVoting <- R6::R6Class(
 
       names(final.prob) <- c(predictions$getPositiveClass(),
                               setdiff(predictions$getClassValues(),
-                                       predictions$getPositiveClass()))
+                                      predictions$getPositiveClass()))
 
       final.raw <- c()
 
@@ -128,7 +128,7 @@ ProbAverageWeightedVoting <- R6::R6Class(
           if (identical(max.value, predictions$getPositiveClass()) &&
               row[max.col] < self$getCutoff()) {
             entry <- setdiff(predictions$getClassValues(),
-                              predictions$getPositiveClass())
+                             predictions$getPositiveClass())
           } else { entry <- names(row)[max.col] }
         } else {
           max.values <- names(row)[max.col]
@@ -147,8 +147,8 @@ ProbAverageWeightedVoting <- R6::R6Class(
       }
 
       private$final.pred$set(final.prob, final.raw,
-                              predictions$getClassValues(),
-                              predictions$getPositiveClass())
+                             predictions$getClassValues(),
+                             predictions$getPositiveClass())
     }
   ),
   private = list(

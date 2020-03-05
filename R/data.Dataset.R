@@ -30,8 +30,6 @@ Dataset <- R6::R6Class(
     #' first row contains one fewer field than the number of columns.
     #' @param sep the field separator character. Values on each line of the file are separated by this character.
     #' @param skip defines the number of header lines should be skipped.
-    #' @param target.class <<description>>
-    #' @param positive.class <<description>>
     #' @param normalize.names a logical value indicating whether the columns names should be automatically renamed
     #' to ensure R compatibility.
     #' @param string.as.factor a logical value indicating if character columns should be converted to factors (default = FALSE).
@@ -42,34 +40,12 @@ Dataset <- R6::R6Class(
     #' @importFrom utils read.csv
     #'
     initialize = function(filepath, header = TRUE, sep = ",", skip = 0,
-                           target.class, positive.class, normalize.names = FALSE,
-                           string.as.factor = FALSE, ignore.columns = NULL) {
+                          normalize.names = FALSE, string.as.factor = FALSE,
+                          ignore.columns = NULL) {
 
       if (is.null(filepath) || !file.exists(filepath)) {
         stop("[", class(self)[1], "][FATAL] Corpus cannot be found at defined ",
              "location. Aborting...")
-      }
-
-      if (is.null(target.class)) {
-        stop("[", class(self)[1], "][FATAL] Target class parameter should be defined. ",
-             "Aborting...")
-      }
-
-      if (is.null(positive.class)) {
-        stop("[", class(self)[1], "][FATAL] Positive class parameter should be defined. ",
-             "Aborting...")
-      }
-
-      if (!inherits(target.class, c("character", "numeric"))) {
-        stop("[", class(self)[1], "][FATAL] Target class is incorrect. ",
-             "Must contain a numerical or character value. Aborting...")
-      } else {
-        if (is.character(target.class) && !isTRUE(header)) {
-          stop("[", class(self)[1], "][FATAL] Cannot name target class ",
-               "without columns names. Aborting...")
-        } else {
-          class.index <- target.class
-        }
       }
 
       dt.size <- (file.info(filepath)$size / 2^30)
@@ -86,30 +62,12 @@ Dataset <- R6::R6Class(
 
       if (isTRUE(header)) {
         private$corpus <- read.csv(filepath, header = header,
-                                    skip = (skip + 1), sep = sep,
-                                    stringsAsFactors = string.as.factor)
+                                   skip = (skip + 1), sep = sep,
+                                   stringsAsFactors = string.as.factor)
 
         columnNames <- unlist(strsplit(scan(file = filepath, nlines = 1,
                                             what = "character", quiet = TRUE),
                                        split = sep))
-
-        if (is.numeric(target.class)) {
-          if (!(target.class %in% 1:ncol(private$corpus))) {
-            stop("[", class(self)[1], "][FATAL] Class index exceeds dataset limits. ",
-                 "Must be between 1 and ", ncol(private$corpus), ". Aborting...")
-          } else {
-            class.index <- target.class
-          }
-        } else {
-          class.index <- which(target.class == columnNames)
-          if (length(class.index) == 0) {
-            stop("[", class(self)[1], "][FATAL] There are no columns named as '",
-                 target.class, "'. Aborting...")
-          } else {
-            message("[", class(self)[1], "][INFO] Target class value found ",
-                    "at position: ", class.index)
-          }
-        }
 
         if (isTRUE(normalize.names)) {
           columnNames <- make.names(columnNames, unique = TRUE)
@@ -121,26 +79,13 @@ Dataset <- R6::R6Class(
         columnNames <- colnames(private$corpus)
       }
 
-      private$class.index <- class.index
-      private$class.name <- columnNames[class.index]
       private$removed.columns <- list()
 
       if (is.numeric(ignore.columns)) { self$removeColumns(ignore.columns) }
 
-      if (positive.class %in% private$corpus[, private$class.index]) {
-        private$positive.class <- positive.class
-        private$class.values <- as.character(unique(private$corpus[, private$class.index]))
-      } else {
-        stop("[", class(self)[1], "][FATAL] Positive class value not found. ",
-             "Aborting...")
-      }
-
       message("[", class(self)[1], "][INFO] Load finished! Total: ",
               nrow(private$corpus), " rows and ",
               ncol(private$corpus), " columns")
-      message("[", class(self)[1], "][INFO] Class values: ",
-              paste0(self$getClassValues(), collapse = ", "))
-
     },
     #'
     #' @description get the name of the columns comprising the dataset.
@@ -155,30 +100,6 @@ Dataset <- R6::R6Class(
     #'
     getDataset = function() { private$corpus },
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
-    #'
-    getClassName = function() { private$class.name },
-    #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
-    #'
-    getClassIndex = function() { private$class.index },
-    #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
-    #'
-    getClassValues = function() { private$class.values },
-    #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
-    #'
-    getPositiveClass = function() { private$positive.class },
-    #'
     #' @description obtains the number of columns present in the Dataset.
     #'
     #' @return an \link{integer} of length 1 or \link{NULL}
@@ -191,64 +112,11 @@ Dataset <- R6::R6Class(
     #'
     getNrow = function() { nrow(private$corpus) },
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<return>>
-    #'
-    getClassSummary = function() {
-      if (is.null(private$class.index) | is.null(private$corpus)) {
-        stop("[", class(self)[1], "][FATAL] Dataset was not loaded. Aborting...")
-      } else data.frame("N. Instances" = as.matrix(table(private$corpus[, private$class.index])))
-    },
-    #'
     #' @description get the columns removed or ignored.
     #'
     #' @return a \link{list} containing the name of the removed columns.
     #'
     getRemovedColumns = function() { private$removed.columns },
-    #'
-    #' @description <<description>>
-    #'
-    #' @param positive.class <<description>>
-    #'
-    setPositiveClass = function(positive.class) {
-      if (positive.class %in% private$class.values) {
-        private$positive.class <- positive.class
-      } else { message("[", class(self)[1], "][ERROR] Positive class value not found. ",
-                     "Task not performed") }
-    },
-    #'
-    #' @description <<description>>
-    #'
-    #' @param class.index <<description>>
-    #' @param positive.class <<description>>
-    #'
-    setClassIndex = function(class.index, positive.class) {
-      if (class.index %in% 1:ncol(private$corpus)) {
-        if ((positive.class %in% as.character(unique(private$corpus[, class.index])))) {
-          private$class.values <- as.character(unique(private$corpus[, class.index]))
-          private$class.index <- class.index
-          private$class.name  <- names(private$corpus)[class.index]
-          private$positive.class <- positive.class
-        } else { message("[", class(self)[1], "][ERROR] Positive class value not found. ",
-                       "Task not performed")}
-      } else {
-        message("[", class(self)[1], "][ERROR] Class index exceeds dataset limits. ",
-                "Must be between 1 and ", ncol(private$corpus), ". Task not performed")
-      }
-    },
-    #'
-    #' @description <<description>>
-    #'
-    #' @param class.name <<description>>
-    #' @param positive.class <<description>>
-    #'
-    setClassName = function(class.name, positive.class) {
-      if ((length(which(self$getColumnNames() == class.name)) == 0)) {
-        message("[", class(self)[1], "][ERROR] Class name not found. ",
-                "Task not performed") }
-      else { self$setClassIndex(which(names(private$corpus) == class.name), positive.class) }
-    },
     #'
     #' @description removes \link{data.frame} columns matchimg some criterion.
     #'
@@ -259,24 +127,20 @@ Dataset <- R6::R6Class(
     cleanData = function(remove.funcs = NULL, remove.na = TRUE,
                          remove.const = FALSE) {
       if (isTRUE(remove.na) || isTRUE(remove.const) ||
-          (!is.null(remove.funcs) && length(remove.funcs) > 0)) {
-        subset <- private$corpus[, -private$class.index]
-
-        if ((!is.null(remove.funcs) && length(remove.funcs) > 0)) {
-          for (func in remove.funcs) {
-            subset.names <- names(subset)
-            subset <- Filter(func(col), subset)
-            subset.removed <- setdiff(subset.names, names(subset))
-            if (length(subset.removed) > 0) {
-              private$removed.columns[["remove.funcs"]] <- append(private$removed.columns[["remove.funcs"]],
-                                                                  subset.removed)
-            }
+         (!is.null(remove.funcs) && length(remove.funcs) > 0)) {
+        subset <- private$corpus
+        for (func in remove.funcs) {
+          subset.names <- names(subset)
+          subset <- Filter(func, subset)
+          subset.removed <- setdiff(subset.names, names(subset))
+          if (length(subset.removed) > 0) {
+            private$removed.columns[["remove.funcs"]] <- append(private$removed.columns[["remove.funcs"]],
+                                                                subset.removed)
           }
-          message("[", class(self)[1], "][INFO] Total ",
-                  length(private$removed.columns[["remove.funcs"]]),
-                  " columns were succesfully removed")
         }
-
+        message("[", class(self)[1], "][INFO] Total ",
+                length(private$removed.columns[["remove.funcs"]]),
+                " columns were succesfully removed")
 
         if (isTRUE(remove.na)) {
           subset.names <- names(subset)
@@ -302,20 +166,6 @@ Dataset <- R6::R6Class(
                   " const columns were succesfully removed")
         }
 
-        if (private$class.index >= ncol(subset)) {
-          subset <- cbind(subset, private$corpus[, private$class.index])
-          private$class.index <- ncol(subset)
-
-        } else {
-          if (private$class.index == 1) {
-            subset <- cbind(subset[, private$class.index], subset)
-          } else {
-            subset <- cbind(subset[1:private$class.index - 1],
-                             private$corpus[, private$class.index],
-                             subset[private$class.index:ncol(subset)])
-          }
-        }
-        names(subset)[private$class.index] <- private$class.name
         private$corpus <- subset
       }
     },
@@ -333,30 +183,24 @@ Dataset <- R6::R6Class(
                              remove.const = FALSE) {
       if (is.character(columns)) {
         if (any(columns %in% names(private$corpus))) {
-          if (private$class.name %in% columns) {
-            columns <- setdiff(columns, private$class.name)
-            message("[", class(self)[1], "][INFO] Target class was defined for removal. ",
-                    "Ignoring...")
-          }
+
           valid.columns  <- intersect(names(private$corpus), columns)
           private$corpus <- private$corpus[, -which(names(private$corpus) %in% valid.columns)]
-          private$class.index <- which(names(private$corpus) == private$class.name)
-          private$removed.columns[["manually"]] <- append(private$removed.columns[["manually"]], valid.columns)
+          private$removed.columns[["manually"]] <- append(private$removed.columns[["manually"]],
+                                                          valid.columns)
           message("[", class(self)[1], "][INFO] Total ", length(valid.columns),
                   " columns were succesfully removed")
         } else {
           message("[", class(self)[1], "][ERROR] Defined column(s) are not valid.",
-                  " Task not performed")
+                  " Ignoring removal operation")
         }
       } else {
-        if (is.numeric(columns) && !private$class.index %in% columns  &&
-            all(dplyr::between(columns, 1, ncol(private$corpus)))) {
+        if (is.numeric(columns) && all(dplyr::between(columns, 1, ncol(private$corpus)))) {
           private$removed.columns <- c(private$removed.columns,
                                         names(private$corpus)[columns])
           private$corpus <- private$corpus[, -columns]
-          private$class.index <- which(names(private$corpus) == private$class.name)
-          message("[", class(self)[1], "][INFO] Total ", length(columns),
-                  " columns were succesfully removed")
+          message("[", class(self)[1], "][INFO] ", length(columns),
+                  " columns were manually removed")
         } else {
           message("[", class(self)[1], "][ERROR] Selected columns are not valid. ",
                   "Must be between [1-", ncol(private$corpus), "]. ",
@@ -377,24 +221,51 @@ Dataset <- R6::R6Class(
     #' @importFrom caret createFolds
     #'
     createPartitions = function(num.folds = NULL, percent.folds = NULL,
-                                class.balance = TRUE) {
+                                class.balance = NULL) {
+
+      if (!is.null(class.balance)) {
+        if (all(is.numeric(class.balance), class.balance %in% 1:ncol(private$corpus))) {
+          class.values <- factor(private$corpus[, class.balance])
+          class.index <- class.balance
+          class.balance <- TRUE
+        } else {
+          if (all(is.character(class.balance), class.balance %in% names(private$corpus))) {
+            class.values <- factor(private$corpus[, class.balance])
+            class.index <- names(private$corpus)[which(class.balance %in% names(private$corpus))]
+            class.balance <- TRUE
+          } else {
+            class.values <- NULL
+            class.index <- NULL
+            message("[", class(self)[1], "][WARNING] Class not found into dataset ",
+                    "limits")
+          }
+        }
+      }
+
       if (((!is.numeric(num.folds) || length(num.folds) != 1) &&
            !is.numeric(percent.folds))) {
+
+        if (is.null(class.balance) || is.null(class.index)) {
+          stop("[", class(self)[1], "][FATAL] Class not defined. ",
+               "Aborting...")
+        }
         message("[", class(self)[1], "][WARNING] Parameters are invalid. ",
                 "Assuming division with default k=10 folds")
-        private$partitions <- caret::createFolds(private$corpus[, private$class.index],
+        private$partitions <- caret::createFolds(private$corpus[, class.index],
                                                   k = 10, list = TRUE)
       } else {
         if (is.numeric(num.folds) && length(num.folds) == 1 && !is.numeric(percent.folds)) {
-          message("[", class(self)[1], "][INFO] Perfoming dataset partitioning into ",
-                   num.folds, " groups using class balance")
-          private$partitions <- caret::createFolds(private$corpus[, private$class.index],
-                                                    k = num.folds, list = TRUE)
-        } else {
-          if (!is.logical(class.balance)) {
-            stop("[", class(self)[1], "][FATAL] class.balance not defined. ",
+
+          if (is.null(class.balance) || is.null(class.index)) {
+            stop("[", class(self)[1], "][FATAL] Class not defined. ",
                  "Aborting...")
           }
+
+          message("[", class(self)[1], "][INFO] Perfoming dataset partitioning into ",
+                   num.folds, " groups using class balance")
+          private$partitions <- caret::createFolds(private$corpus[, class.index],
+                                                    k = num.folds, list = TRUE)
+        } else {
           if (is.numeric(num.folds) && length(num.folds) == 1 && is.numeric(percent.folds)) {
             if (length(percent.folds) == num.folds &&
                 (sum(percent.folds) == 100 || sum(percent.folds) == 1)) {
@@ -406,22 +277,24 @@ Dataset <- R6::R6Class(
               remaining <- private$corpus
 
               numElemFolds <- round(percent.folds * nrow(private$corpus))
-              class.percents <- table(private$corpus[, self$getClassIndex()]) / nrow(private$corpus)
+
               for (index in 1:(num.folds - 1)) {
                 message("===============================================================")
                 message("[", class(self)[1], "][INFO] Spliting ", index,
                         " group with ", percent.folds[index])
                 message("===============================================================")
                 if (isTRUE(class.balance)) {
-                  if (length(self$getClassValues()) != 2) {
+                  if (length(levels(class.values)) != 2) {
                     stop("[", class(self)[1], "][ERROR] Create partitions with ",
                          "option of class.balance for multiclass data is not ",
                          "still available. Aborting...")
                   }
-                  split1 <- sample(which(remaining[, self$getClassIndex()] == names(class.percents)[1]),
+                  class.percents <- table(private$corpus[, class.index]) / nrow(private$corpus)
+
+                  split1 <- sample(which(remaining[, class.index] == names(class.percents)[1]),
                                    round(numElemFolds[[index]] * class.percents[[1]]),
                                    replace = FALSE)
-                  split2 <- sample(which(remaining[, self$getClassIndex()] == names(class.percents)[2]),
+                  split2 <- sample(which(remaining[, class.index] == names(class.percents)[2]),
                                    round(numElemFolds[[index]] * class.percents[[2]]),
                                    replace = FALSE)
                   split <- c(split1, split2)
@@ -458,22 +331,25 @@ Dataset <- R6::R6Class(
               remaining <- private$corpus
 
               numElemFolds <- round(percent.folds * nrow(private$corpus))
-              class.percents <- table(private$corpus[, self$getClassIndex()]) / nrow(private$corpus)
+
               for (index in 1:(length(percent.folds) - 1)) {
                 message("===============================================================")
                 message("[", class(self)[1], "][INFO] Spliting ", index,
                         " group with ", percent.folds[index])
                 message("===============================================================")
                 if (isTRUE(class.balance)) {
-                  if (length(self$getClassValues()) != 2) {
+                  if (length(levels(class.values)) != 2) {
                     stop("[", class(self)[1], "][ERROR] Create partitions with ",
                          "option of class.balance for multiclass data is not ",
                          "still available. Aborting...")
                   }
-                  split1 <- sample(which(remaining[, self$getClassIndex()] == names(class.percents)[1]),
+
+                  class.percents <- table(private$corpus[, class.index]) / nrow(private$corpus)
+
+                  split1 <- sample(which(remaining[, class.index] == names(class.percents)[1]),
                                    round(numElemFolds[[index]] * class.percents[[1]]),
                                    replace = FALSE)
-                  split2 <- sample(which(remaining[, self$getClassIndex()] == names(class.percents)[2]),
+                  split2 <- sample(which(remaining[, class.index] == names(class.percents)[2]),
                                    round(numElemFolds[[index]] * class.percents[[2]]),
                                    replace = FALSE)
                   split <- c(split1, split2)
@@ -513,19 +389,25 @@ Dataset <- R6::R6Class(
     #' is valid ignores defining a identification column.
     #' @param opts a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
     #' remove.const (ignore columns with constant values).
+    #' @param class.index  a \link{numeric} value identifying the column representing
+    #' the target class
+    #' @param positive.class defines the positive class value.
     #'
     #' @return \link{Subset}
     #'
     #' @importFrom dplyr between
     #'
-    createSubset = function(num.folds, column.id = NULL,
-                            opts = list(remove.na = TRUE, remove.const = FALSE)) {
+    createSubset = function(num.folds = NULL, column.id = NULL,
+                            opts = list(remove.na = TRUE, remove.const = FALSE),
+                            class.index = NULL,
+                            positive.class = NULL) {
       subset <- NULL
       if (is.null(private$partitions)) {
         message("[", class(self)[1], "][ERROR] Dataset distribution is null. ",
                 "Task not performed")
         return(NULL)
       }
+
       if (is.null(num.folds) || !is.numeric(num.folds) ||
            !(max(num.folds) %in% c(1:length(private$partitions))))
       {
@@ -542,57 +424,99 @@ Dataset <- R6::R6Class(
       }
 
       subset <- private$corpus[ sort(Reduce(union, private$partitions[num.folds])), ]
-      class.index <- private$class.index
+
+      if (is.null(class.index)) {
+        message("[", class(self)[1], "][INFO] Creating subset without an associated class")
+        class.values <- NULL
+      } else {
+        if (all(is.character(class.index), class.index %in% names(subset))) {
+          class.index <- which(class.index %in% names(subset))
+        } else {
+          if (!all(is.numeric(class.index), class.index %in% 1:ncol(subset))) {
+            stop("[", class(self)[1], "][FATAL] Class not found into dataset ",
+                 "limits. Aborting...")
+          }
+        }
+
+        if (any(is.null(positive.class), !positive.class %in% subset[, class.index])) {
+          stop("[", class(self)[1], "][FATAL] Positive class value not found. ",
+               "Aborting...")
+        }
+        class.values <- relevel(x = factor(subset[, class.index]),
+                                levels = unique(subset[, class.index]),
+                                ref = as.character(positive.class))
+        class.name <- names(subset)[class.index]
+      }
 
       if (is.list(opts) && (exists("remove.na", opts) && isTRUE(opts$remove.na) ||
                             exists("remove.const", opts) && isTRUE(opts$remove.const))) {
         na.remov <- 0
         const.remov <- 0
-        filtered <- subset[, -private$class.index]
+        if (!is.null(class.index)) {
+          filtered <- subset[, -class.index]
+        } else {
+          filtered <- subset
+        }
 
         if (exists("remove.na", opts) && isTRUE(opts$remove.na)) {
           filtered <- Filter(function(col) !all(is.na(col)), filtered)
-          na.remov <- ((ncol(subset) - 1) - ncol(filtered))
-          message("[", class(self)[1], "][INFO] Removed columns containing NA ",
-                  "values (total of ", na.remov, ")")
+          if (!is.null(class.index)) {
+            na.remov <- ((ncol(subset) - 1) - ncol(filtered))
+          } else {
+            na.remov <- (ncol(subset) - ncol(filtered))
+          }
+          message("[", class(self)[1], "][INFO] Removed columns containing ",
+                  "NA values (total of ", na.remov, ")")
         }
         if (exists("remove.const", opts) && isTRUE(opts$remove.const)) {
           filtered <- Filter(function(col) all(length(unique(col)) != 1), filtered)
-          const.remov <- ((ncol(subset) - 1) - ncol(filtered))
+          if (!is.null(class.index)) {
+            const.remov <- ((ncol(subset) - 1) - ncol(filtered)) + na.remov
+          } else {
+            const.remov <- (ncol(subset) - ncol(filtered)) + na.remov
+          }
           message("[", class(self)[1], "][INFO] Removed columns containing ",
                   "constant values (total of ", const.remov, ")")
         }
-
-        if (private$class.index >= ncol(filtered)) {
-          subset <- cbind(filtered, subset[, private$class.index])
-          class.index <- ncol(filtered) + 1
-        } else {
-          if (private$class.index == 1) {
-            subset <- cbind(subset[, private$class.index], filtered)
+        if (!is.null(class.index)) {
+          if (class.index >= ncol(filtered)) {
+            subset <- cbind(filtered, subset[, class.index])
+            class.index <- ncol(filtered) + 1
           } else {
-            subset <- cbind(filtered[1:private$class.index - 1],
-                             subset[, private$class.index],
-                             filtered[private$class.index:ncol(filtered)])
+            if (class.index == 1) {
+              subset <- cbind(subset[, class.index], filtered)
+            } else {
+              subset <- cbind(filtered[1:class.index - 1],
+                              subset[, class.index],
+                              filtered[class.index:ncol(filtered)])
+            }
           }
+          names(subset)[class.index] <- class.name
         }
-        names(subset)[class.index] <- private$class.name
+      }
+
+      if (!is.null(class.index)) {
+        subset[[class.index]] <- class.values
       }
 
       Subset$new(dataset = subset, class.index = class.index,
-                  class.values = self$getClassValues(),
-                  positive.class = self$getPositiveClass())
+                 class.values = class.values,
+                 positive.class = positive.class)
     },
     #'
     #' @description creates a set for training purposes. A class should be defined to guarantee full-compatibility
     #' with supervised models.
     #'
+    #' @param class.index a \link{numeric} value identifying the column representing
+    #' the target class
+    #' @param positive.class defines the positive class value.
     #' @param num.folds an integer defining the number of folds that should we used to build the \link{Subset}.
     #' @param opts a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
     #' remove.const (ignore columns with constant values).
     #'
     #' @return \link{Trainset}
     #'
-    createTrain = function(num.folds = NULL,
+    createTrain = function(class.index, positive.class, num.folds = NULL,
                            opts = list(remove.na = TRUE, remove.const = FALSE)) {
       trainSet <- NULL
       if (is.null(private$partitions)) {
@@ -600,9 +524,18 @@ Dataset <- R6::R6Class(
                 "Task not performed")
         return(NULL)
       }
+
+      if (all(is.character(class.index), class.index %in% names(private$corpus))) {
+        class.index <- which(class.index %in% names(private$corpus))
+      } else {
+        if (!all(is.numeric(class.index), class.index %in% 1:ncol(private$corpus))) {
+          stop("[", class(self)[1], "][FATAL] Class not found into dataset ",
+               "limits. Aborting...")
+        }
+      }
+
       if (is.null(num.folds) || !is.numeric(num.folds) ||
-           !(max(num.folds) %in% c(1:length(private$partitions))))
-      {
+           !(max(num.folds) %in% c(1:length(private$partitions)))) {
         message("[", class(self)[1], "][WARNING] Incorrect number of folds. ",
                 "Must be between 1 and ", length(private$partitions),
                 ". Assuming whole dataset")
@@ -610,11 +543,21 @@ Dataset <- R6::R6Class(
       }
 
       trainSet <- private$corpus[ sort(Reduce(union, private$partitions[num.folds])), ]
-      class.index <- private$class.index
+
+      if (is.null(positive.class) || !positive.class %in% trainSet[, class.index]) {
+        stop("[", class(self)[1], "][FATAL] Positive class value not found. ",
+             "Aborting...")
+      }
+
+      class.values <- relevel(x = factor(trainSet[, class.index],
+                                         levels = unique(trainSet[, class.index])),
+                              ref = as.character(positive.class))
+      class.name <- names(trainSet)[class.index]
+
       if (is.list(opts)) {
         na.remov <- 0
         const.remov <- 0
-        filtered <- trainSet[, -private$class.index]
+        filtered <- trainSet[, -class.index]
 
         if (exists("remove.na", opts) && isTRUE(opts$remove.na)) {
           filtered <- Filter(function(col) !all(is.na(col)), filtered)
@@ -624,38 +567,35 @@ Dataset <- R6::R6Class(
         }
         if (exists("remove.const", opts) && isTRUE(opts$remove.const)) {
           filtered <- Filter(function(col) all(length(unique(col)) != 1), filtered)
-          const.remov <- ((ncol(trainSet) - 1) - ncol(filtered))
+          const.remov <- ((ncol(trainSet) - 1) - ncol(filtered)) + na.remov
           message("[", class(self)[1], "][INFO] Removed columns containing ",
                   "constant values (total of ", const.remov, ")")
         }
-
-        if (private$class.index >= ncol(filtered)) {
-          trainSet <- cbind(filtered, trainSet[, private$class.index])
+        if (class.index >= ncol(filtered)) {
+          trainSet <- cbind(filtered, trainSet[, class.index])
           class.index <- ncol(filtered) + 1
         } else {
-          if (private$class.index == 1) {
-            trainSet <- cbind(trainSet[, private$class.index], filtered)
+          if (class.index == 1) {
+            trainSet <- cbind(trainSet[, class.index], filtered)
           } else {
-            trainSet <- cbind(filtered[1:private$class.index - 1],
-                               trainSet[, private$class.index],
-                               filtered[private$class.index:ncol(filtered)])
+            trainSet <- cbind(filtered[1:class.index - 1],
+                              trainSet[, class.index],
+                              filtered[class.index:ncol(filtered)])
           }
         }
-        names(trainSet)[class.index] <- private$class.name
+        names(trainSet)[class.index] <- class.name
       }
 
-      Trainset$new(cluster.dist = list(trainSet), class.name = self$getClassName(),
-                    class.values = trainSet[, class.index],
-                    positive.class = self$getPositiveClass())
+      trainSet[[class.index]] <- class.values
+
+      Trainset$new(cluster.dist = list(trainSet), class.name = class.name,
+                   class.values = class.values,
+                   positive.class = positive.class)
     }
   ),
   private = list(
-    positive.class = NULL,
     removed.columns = NULL,
     corpus = NULL,
-    class.index = NULL,
-    class.name = NULL,
-    class.values = NULL,
     partitions = NULL
   )
 )

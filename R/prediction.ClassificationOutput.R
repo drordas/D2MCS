@@ -168,7 +168,7 @@ ClassificationOutput <- R6::R6Class(
 
       real.values <- test.set$getClassValues()
 
-      if (!all(unique(real.values) %in% union(private$positive.class,
+      if (!all(levels(real.values) %in% union(private$positive.class,
                                               private$negative.class))) {
         stop("[", class(self)[1], "][FATAL] Predicted values and Real values ",
              "missmatch, Aborting...")
@@ -231,8 +231,8 @@ ClassificationOutput <- R6::R6Class(
       if (!is.factor(real.values)) {
         real.values <- relevel(x = factor(real.values,
                                           levels = c(private$positive.class,
-                                                   private$negative.class)),
-                               ref = private$positive.class)
+                                                     private$negative.class)),
+                               ref = as.character(private$positive.class))
       }
 
       for (voting.name in names(valid.votings)) {
@@ -257,7 +257,7 @@ ClassificationOutput <- R6::R6Class(
           pred.values <- relevel(x = factor(pred.values,
                                             levels = c(voting.positive,
                                                        voting.negative)),
-                                 ref = voting.positive)
+                                 ref = as.character(voting.positive))
         }
 
         performance <- do.call(rbind, lapply(measures, function(entry, cf) {
@@ -268,7 +268,7 @@ ClassificationOutput <- R6::R6Class(
           df
         }, cf = ConfMatrix$new(caret::confusionMatrix(data = pred.values,
                                                       reference = real.values,
-                                                      positive = private$positive.class))))
+                                                      positive = as.character(private$positive.class)))))
         performances[[voting.name]] <- performance
       }
       performances
@@ -408,12 +408,11 @@ ClassificationOutput <- R6::R6Class(
       }
 
       if (!isTRUE(all.equal(type, "raw")) &&
-          (is.null(target) || !(target %in% private$positive.class)))
-      {
+          (is.null(target) || !(target %in% private$positive.class))) {
         message("[", class(self)[1], "][WARNING] Target value does not match with",
                 " actual target values: '", paste(private$positive.class,
-                                                 private$negative.class,
-                                                 sep = ", "), "'. Assuming '",
+                                                  private$negative.class,
+                                                  sep = ", "), "'. Assuming '",
                 private$positive.class, "' as default value")
         target <- private$positive.class
       }
@@ -482,7 +481,7 @@ ClassificationOutput <- R6::R6Class(
       for (voting.name in names(valid.votings)) {
         voting <- valid.votings[[voting.name]]
         prediction <- voting$getFinalPred(type = type, target = target,
-                                           filter = filter)
+                                          filter = filter)
         predictions[[voting.name]] <- prediction
       }
 

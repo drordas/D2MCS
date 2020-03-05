@@ -1,15 +1,15 @@
-test_that("ClusterPredictions: initialize", {
+testthat::test_that("ClusterPredictions: initialize", {
 
-  testthat::expect_is(ClusterPredictions$new(class.values = c(1, 0, 1, 1),
+  testthat::expect_is(ClusterPredictions$new(class.values = c(0, 1),
                                              positive.class = 1),
                       "ClusterPredictions")
 })
 
-test_that("ClusterPredictions: initialize checks parameter type", {
+testthat::test_that("ClusterPredictions: initialize checks parameter type", {
 
-  testthat::expect_error(ClusterPredictions$new(class.values = c(1, 0, 1, 1),
+  testthat::expect_error(ClusterPredictions$new(class.values = c(0, 1),
                                                 positive.class = 2),
-                         "[ClusterPredictions][FATAL] Positive class not found. Should be 1 or 0. Aborting...",
+                         "[ClusterPredictions][FATAL] Positive class not found. Should be 0 or 1. Aborting...",
                          fixed = TRUE)
 })
 
@@ -24,7 +24,7 @@ test_that("ClusterPredictions: initialize checks parameter type", {
 #   testthat::expect_invisible(clusterPrediction$add(prediction = prediction))
 # })
 
-test_that("ClusterPredictions: add function checks parameter type", {
+testthat::test_that("ClusterPredictions: add function checks parameter type", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)
@@ -47,7 +47,7 @@ test_that("ClusterPredictions: add function checks parameter type", {
 #   testthat::expect_invisible(clusterPrediction$add(prediction = prediction))
 # })
 
-test_that("ClusterPredictions: get function checks parameter type", {
+testthat::test_that("ClusterPredictions: get function checks parameter type", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)
@@ -59,7 +59,7 @@ test_that("ClusterPredictions: get function checks parameter type", {
                          fixed = TRUE)
 })
 
-test_that("ClusterPredictions: getAll function works", {
+testthat::test_that("ClusterPredictions: getAll function works", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)
@@ -67,7 +67,7 @@ test_that("ClusterPredictions: getAll function works", {
   testthat::expect_is(clusterPrediction$getAll(), "list")
 })
 
-test_that("ClusterPredictions: size function works", {
+testthat::test_that("ClusterPredictions: size function works", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)
@@ -75,7 +75,7 @@ test_that("ClusterPredictions: size function works", {
   testthat::expect_equal(clusterPrediction$size(), 0)
 })
 
-test_that("ClusterPredictions: getPositiveClass function works", {
+testthat::test_that("ClusterPredictions: getPositiveClass function works", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)
@@ -83,7 +83,7 @@ test_that("ClusterPredictions: getPositiveClass function works", {
   testthat::expect_equal(clusterPrediction$getPositiveClass(), 1)
 })
 
-test_that("ClusterPredictions: getClassValues function works", {
+testthat::test_that("ClusterPredictions: getClassValues function works", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)

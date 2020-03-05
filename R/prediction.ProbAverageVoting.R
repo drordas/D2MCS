@@ -29,7 +29,7 @@ ProbAverageVoting <- R6::R6Class(
     #' If \code{\link{NULL}} will be used same value as trainning stage.
     #'
     initialize = function(cutoff = 0.5, class.tie = NULL, majority.class = NULL) {
-      if (all(!is.null(class.tie), !is.character(class.tie))) {
+      if (!is.null(class.tie) && (!is.character(class.tie) && !is.numeric(class.tie))) {
         stop("[", class(self)[1], "][FATAL] Invalid class tie value. Aborting...")
       }
 
@@ -94,7 +94,7 @@ ProbAverageVoting <- R6::R6Class(
                                 row.names = row.names(prob.pred))
       names(final.prob) <- c(predictions$getPositiveClass(),
                               setdiff(predictions$getClassValues(),
-                                       predictions$getPositiveClass()))
+                                      predictions$getPositiveClass()))
       final.raw <- c()
 
       for (pos in seq_len(nrow(final.prob))) {
@@ -105,7 +105,7 @@ ProbAverageVoting <- R6::R6Class(
           if (identical(max.value, predictions$getPositiveClass()) &&
               row[max.col] < self$getCutoff()) {
             entry <- setdiff(predictions$getClassValues(),
-                              predictions$getPositiveClass())
+                             predictions$getPositiveClass())
           } else { entry <- names(row)[max.col] }
         } else {
           max.values <- names(row)[max.col]
@@ -128,7 +128,6 @@ ProbAverageVoting <- R6::R6Class(
     }
   ),
   private = list(
-    final.prediction = NULL,
     majority.class = NULL,
     class.tie = NULL
   )

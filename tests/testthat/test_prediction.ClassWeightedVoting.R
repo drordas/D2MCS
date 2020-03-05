@@ -34,8 +34,8 @@ testthat::test_that("ClassWeightedVoting: setWeights function checks parameter t
 
   testthat::expect_message(ClassWeightedVoting$new(cutoff = cutoff,
                                                    weights = weights)$setWeights(weights = NULL),
-                          "[ClassWeightedVoting][WARNING] Weights values not changed due to inconsistency error",
-                          fixed = TRUE)
+                           "[ClassWeightedVoting][WARNING] Weights values not changed due to inconsistency error",
+                           fixed = TRUE)
 })
 
 testthat::test_that("ClassWeightedVoting: execute function checks parameter type", {

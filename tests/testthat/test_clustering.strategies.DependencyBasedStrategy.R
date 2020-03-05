@@ -1,4 +1,4 @@
-test_that("DependencyBasedStrategy: initialize", {
+testthat::test_that("DependencyBasedStrategy: initialize", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
@@ -201,18 +201,18 @@ testthat::test_that("DependencyBasedStrategy works", {
                          "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
-  suppressWarnings(strategy$execute(verbose = TRUE))
+  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
 
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
 
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 7)
+  testthat::expect_equal(length(strategy$getDistribution()), 4)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1)), 0)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 5)
-  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 8)
+  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 3)
+  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 4)
 
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
@@ -249,7 +249,7 @@ testthat::test_that("DependencyBasedStrategy works", {
 
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
                                             num.clusters = list(2:60, 2:60)),
-                           "[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and 2. Ignoring clustering for real type features...",
+                           paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
                            fixed = TRUE,
                            all = FALSE)
 

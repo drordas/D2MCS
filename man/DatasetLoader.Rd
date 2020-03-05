@@ -57,8 +57,6 @@ Stores the input source into a \code{\link{Dataset}} or \code{\link{HDDataset}} 
   header = TRUE,
   sep = ",",
   skip.lines = 0,
-  target.class = NULL,
-  positive.class = NULL,
   normalize.names = FALSE,
   string.as.factor = FALSE,
   ignore.columns = NULL
@@ -79,10 +77,6 @@ first row contains one fewer field than the number of columns.}
 \item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
 
 \item{\code{skip.lines}}{defines the number of header lines should be skipped.}
-
-\item{\code{target.class}}{<<description>>}
-
-\item{\code{positive.class}}{<<description>>}
 
 \item{\code{normalize.names}}{a logical value indicating whether the columns names should be automatically renamed
 to ensure R compatibility.}

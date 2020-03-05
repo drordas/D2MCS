@@ -44,9 +44,9 @@ Creates a \link{Subset} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$new(
   dataset,
-  class.index,
-  class.values,
-  positive.class,
+  class.index = NULL,
+  class.values = NULL,
+  positive.class = NULL,
   feature.id = NULL
 )}\if{html}{\out{</div>}}
 }

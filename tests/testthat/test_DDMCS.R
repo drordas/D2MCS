@@ -103,7 +103,7 @@ testthat::test_that("DDMCS: train function works", {
 
   train.set <- readRDS(file.path("resourceFiles", "data", "trainset.rds"))
   train.function <- TwoClass$new(method = "cv", number = 10, savePredictions = "final",
-                                  classProbs = TRUE, allowParallel = TRUE, verboseIter = FALSE)
+                                 classProbs = TRUE, allowParallel = TRUE, verboseIter = FALSE)
   num.clusters <- NULL
   ex.classifiers <- c("nb", "ranger", "lda", "lda2")
   ig.classifiers <- c()
@@ -138,7 +138,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
 
   train.set <- readRDS(file.path("resourceFiles", "data", "trainset.rds"))
   train.function <- TwoClass$new(method = "cv", number = 10, savePredictions = "final",
-                                  classProbs = TRUE, allowParallel = TRUE, verboseIter = FALSE)
+                                 classProbs = TRUE, allowParallel = TRUE, verboseIter = FALSE)
   num.clusters <- NULL
   ex.classifiers <- c("nb", "ranger", "lda", "lda2")
   ig.classifiers <- c()
@@ -172,9 +172,9 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         ig.classifiers = ig.classifiers,
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
-                         "[DDMCS][WARNING] Number of clusters not set (must be numeric or vector). Using all clusters",
-                         fixed = TRUE,
-                         all = FALSE)
+                           "[DDMCS][WARNING] Number of clusters not set (must be numeric or vector). Using all clusters",
+                           fixed = TRUE,
+                           all = FALSE)
 
   testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
                                                         train.function = train.function,
@@ -205,12 +205,11 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                      ig.classifiers = ig.classifiers,
                                      metrics = NULL,
                                      saveAllModels = saveAllModels),
-                           "[DDMCS][FATAL] Invalid values of metrics",
-                           fixed = TRUE)
+                         "[DDMCS][FATAL] Invalid values of metrics",
+                         fixed = TRUE)
 
   unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
 })
-
 
 testthat::test_that("DDMCS: getAvailableModels function works", {
   dir.path <- file.path("resourceFiles", "DDMCS")
@@ -244,17 +243,17 @@ testthat::test_that("DDMCS: classify function works", {
                      serialize = serialize)
 
   train.output <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
-  subset <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   voting.types <- c(SingleVoting$new(voting.schemes = c(ClassWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageVoting$new(cutoff = 0.7),
                                                         ClassMajorityVoting$new(cutoff = 0.7)),
-                    metrics = c("MCC")),
+                                     metrics = c("MCC")),
                     CombinedVoting$new(voting.schemes = ClassWeightedVoting$new(),
                                        combined.metrics = MinimizeFP$new(),
                                        methodology = ProbBasedMethodology$new(),
                                        metrics = c("MCC", "PPV")))
-  positive.class <- "class0"
+  positive.class <- 0
 
   testthat::expect_is(suppressWarnings(ddmcs$classify(train.output = train.output,
                                                       subset = subset,
@@ -262,6 +261,21 @@ testthat::test_that("DDMCS: classify function works", {
                                                       positive.class = positive.class)),
                       "ClassificationOutput")
 
+  testthat::expect_message(suppressWarnings(ddmcs$classify(train.output = train.output,
+                                                           subset = subset,
+                                                           voting.types = voting.types,
+                                                           positive.class = NULL)),
+                           "[DDMCS][WARNING] Positive class not set. Asuming positive class value used during training stage '1'",
+                           fixed = TRUE,
+                           all = FALSE)
+
+  testthat::expect_message(suppressWarnings(ddmcs$classify(train.output = train.output,
+                                                           subset = subset,
+                                                           voting.types = voting.types,
+                                                           positive.class = 10)),
+                           "[DDMCS][WARNING] Positive class value is invalid. Must be [1, 0]. Assuming positive class used during training stage (1)",
+                           fixed = TRUE,
+                           all = FALSE)
 
   unlink(file.path("resourceFiles", "DDMCS-classify"), recursive = TRUE, force = TRUE)
 })
@@ -281,7 +295,7 @@ testthat::test_that("DDMCS: classify function checks type parameter", {
                      serialize = serialize)
 
   train.output <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
-  subset <- readRDS(file.path("resourceFiles", "data", "subset-DDMCS-classify.rds"))
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   voting.types <- c(SingleVoting$new(voting.schemes = c(ClassWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageVoting$new(cutoff = 0.7),
@@ -291,7 +305,7 @@ testthat::test_that("DDMCS: classify function checks type parameter", {
                                        combined.metrics = MinimizeFP$new(),
                                        methodology = ProbBasedMethodology$new(),
                                        metrics = c("MCC", "PPV")))
-  positive.class <- "class0"
+  positive.class <- "0"
 
   testthat::expect_error(ddmcs$classify(train.output = NULL,
                                         subset = subset,
@@ -310,6 +324,13 @@ testthat::test_that("DDMCS: classify function checks type parameter", {
   testthat::expect_error(ddmcs$classify(train.output = train.output,
                                         subset = subset,
                                         voting.types = NULL,
+                                        positive.class = positive.class),
+                         "[DDMCS][FATAL] Voting types parameter is not defined. Aborting...",
+                         fixed = TRUE)
+
+  testthat::expect_error(ddmcs$classify(train.output = train.output,
+                                        subset = subset,
+                                        voting.types = c("wrong"),
                                         positive.class = positive.class),
                          "[DDMCS][FATAL] Voting Schemes parameter must be defined as 'SingleVoting' or 'CombinedVoting' types. Aborting...",
                          fixed = TRUE)

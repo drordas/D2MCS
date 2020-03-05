@@ -1,18 +1,7 @@
 testthat::test_that("ClusteringStrategy: initialize", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -25,19 +14,8 @@ testthat::test_that("ClusteringStrategy: initialize", {
 
 testthat::test_that("ClusteringStrategy: initialize checks parameter type", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- NULL
   configuration <- StrategyConfiguration$new()
@@ -61,10 +39,8 @@ testthat::test_that("ClusteringStrategy: initialize checks parameter type", {
                          "[ClusteringStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+
   heuristic <- NULL
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -76,10 +52,8 @@ testthat::test_that("ClusteringStrategy: initialize checks parameter type", {
                          "[ClusteringStrategy][FATAL] Heuristics is not correct (must inherit from 'GenericHeuristic' class). Aborting...",
                          fixed = TRUE)
 
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+
   heuristic <- list()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -91,10 +65,8 @@ testthat::test_that("ClusteringStrategy: initialize checks parameter type", {
                          "[ClusteringStrategy][FATAL] Adequate heuristics not found (must inherit from 'GenericHeuristic' class). Aborting...",
                          fixed = TRUE)
 
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- NULL
@@ -109,19 +81,8 @@ testthat::test_that("ClusteringStrategy: initialize checks parameter type", {
 
 testthat::test_that("ClusteringStrategy: getDescription function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -136,19 +97,8 @@ testthat::test_that("ClusteringStrategy: getDescription function works", {
 
 testthat::test_that("ClusteringStrategy: getHeuristic function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -163,19 +113,8 @@ testthat::test_that("ClusteringStrategy: getHeuristic function works", {
 
 testthat::test_that("ClusteringStrategy: getConfiguration function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -190,19 +129,8 @@ testthat::test_that("ClusteringStrategy: getConfiguration function works", {
 
 testthat::test_that("ClusteringStrategy: getBestClusterDistribution function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -217,19 +145,8 @@ testthat::test_that("ClusteringStrategy: getBestClusterDistribution function wor
 
 testthat::test_that("ClusteringStrategy: getUnclustered function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -244,19 +161,8 @@ testthat::test_that("ClusteringStrategy: getUnclustered function works", {
 
 testthat::test_that("ClusteringStrategy: execute function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -273,19 +179,8 @@ testthat::test_that("ClusteringStrategy: execute function works", {
 
 testthat::test_that("ClusteringStrategy: getDistribution function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -302,19 +197,8 @@ testthat::test_that("ClusteringStrategy: getDistribution function works", {
 
 testthat::test_that("ClusteringStrategy: createTrain function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -331,19 +215,8 @@ testthat::test_that("ClusteringStrategy: createTrain function works", {
 
 testthat::test_that("ClusteringStrategy: plot function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()
@@ -360,19 +233,8 @@ testthat::test_that("ClusteringStrategy: plot function works", {
 
 testthat::test_that("ClusteringStrategy: saveCSV function works", {
 
-  file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
+  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
-  corpus <- read.csv(file = file.path, header = TRUE,
-                     skip = 2, sep = ",", stringsAsFactors = FALSE)
-
-  names(corpus) <-  unlist(strsplit(scan(file = file.path, nlines = 1,
-                                         what = "character", quiet = TRUE),
-                                    split = ","))
-
-  subset <- Subset$new(dataset = corpus,
-                       class.index = 50,
-                       class.values = c(1, 0),
-                       positive.class = 1)
   heuristic <- MCCHeuristic$new()
   description <- "example"
   configuration <- StrategyConfiguration$new()

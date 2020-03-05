@@ -53,8 +53,15 @@ testthat::test_that("SimpleVoting: getFinalPred works", {
   target <- NULL
   filter <- TRUE
   testthat::expect_null(SimpleVoting$new()$getFinalPred(type = type,
-                                                           target = target,
-                                                           filter = filter))
+                                                        target = target,
+                                                        filter = filter))
+
+  type <- "raw"
+  target <- 1
+  filter <- TRUE
+  testthat::expect_null(SimpleVoting$new()$getFinalPred(type = type,
+                                                        target = target,
+                                                        filter = filter))
 
   type <- "prob"
   target <- NULL
@@ -69,6 +76,4 @@ testthat::test_that("SimpleVoting: getFinalPred works", {
   testthat::expect_null(SimpleVoting$new()$getFinalPred(type = type,
                                                         target = target,
                                                         filter = filter))
-
-
 })

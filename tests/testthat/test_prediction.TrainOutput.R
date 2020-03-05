@@ -9,13 +9,13 @@ testthat::test_that("TrainOutput: initialize checks parameter type", {
   testthat::expect_error(TrainOutput$new(models = list("example"),
                                          class.values = NULL,
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Class.values parameter must be defined as 'character' type. Aborting...",
+                         "[TrainOutput][FATAL] Class.values parameter must be defined as 'factor' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(TrainOutput$new(models = list("example"),
-                                         class.values = "class",
+                                         class.values = factor(c(0, 1, 1, 0)),
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Positive.class parameter must be defined as 'character' type. Aborting...",
+                         "[TrainOutput][FATAL] Positive class parameter not found. Aborting...",
                          fixed = TRUE)
 })
 
@@ -147,7 +147,7 @@ testthat::test_that("TrainOutput: getPositiveClass function works", {
                                  positive.class = trainOutputObject$.__enclos_env__$private$positive.class)
 
   testthat::expect_equal(trainOutput$getPositiveClass(),
-                         "class0")
+                         1)
 })
 
 testthat::test_that("TrainOutput: getSize function works", {

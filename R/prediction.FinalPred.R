@@ -55,7 +55,7 @@ FinalPred <- R6::R6Class(
       if (!is.factor(raw)) {
         private$raw <- factor(raw, levels = union(private$positive.class,
                                                   private$negative.class))
-        private$raw <- relevel(private$raw, ref = private$positive.class)
+        private$raw <- relevel(private$raw, ref = as.character(private$positive.class))
       } else {
         private$raw <- raw
         private$prob <- prob

@@ -75,7 +75,7 @@ testthat::test_that("BinaryRealTypeStrategy works", {
 
   strategy <- BinaryRealTypeStrategy$new(subset.cluster, heuristics, configuration)
 
-  suppressWarnings(strategy$execute(verbose = TRUE))
+  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
 
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
 
@@ -112,16 +112,16 @@ testthat::test_that("BinaryRealTypeStrategy works", {
                          "[BinaryRealTypeStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
-  suppressWarnings(strategy$execute(verbose = TRUE))
+  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
 
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 7)
+  testthat::expect_equal(length(strategy$getDistribution()), 5)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 2)), 2)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
   testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 4)
-  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 8)
+  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 5)
 
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
@@ -162,5 +162,6 @@ testthat::test_that("BinaryRealTypeStrategy works", {
                            fixed = TRUE,
                            all = FALSE)
 
+  file.remove("Rplots.pdf")
   unlink(file.path("resourceFiles", "outputs", "saveCSV"), recursive = TRUE, force = TRUE)
 })
