@@ -632,7 +632,7 @@ ClassificationOutput <- R6::R6Class(
                     "value '", target, "'")
             for (i in c("prob", "raw")) {
               path <- file.path(dir.path, paste0(voting.name, "_",
-                                                 i, "_", private$positive.class,
+                                                 i, "_", target,
                                                  ".csv"))
               df <- data.frame(voting.scheme$getFinalPred(i, target, filter = filter))
               names(df) <- target
