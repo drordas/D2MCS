@@ -64,7 +64,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
       }
       description <- "Binary features are sorted by descendant according to the relevance value obtained after applying an specific heuristic. Next, features are distributed into N clusters following a card-dealing methodology. Finally best distribution is assigned to the cluster distribution having highest homogeneity"
       super$initialize(subset = subset, heuristic = heuristic,
-                        description = description, configuration = configuration)
+                       description = description, configuration = configuration)
     },
     #'
     #' @description Function responsible of performing the clustering
@@ -78,7 +78,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
     execute = function(verbose = FALSE, ...) {
       col.index <- which(levels(as.factor(private$subset$getClassValues())) == private$subset$getPositiveClass())
       class <- varhandle::to.dummy(as.character(private$subset$getClassValues()),
-                                    as.character(private$subset$getPositiveClass()))[, col.index]
+                                   as.character(private$subset$getPositiveClass()))[, col.index]
 
       minClusters <- private$configuration$minNumClusters()
       maxClusters <- private$configuration$maxNumClusters()
@@ -101,8 +101,8 @@ BinaryRealTypeStrategy <- R6::R6Class(
 
           bheuristic.values <- sapply(names(binary.data), function(col.name, class) {
             abs(private$heuristic[[1]]$heuristic(col1 = binary.data[, col.name],
-                                                  col2 = class,
-                                                  column.names = c(col.name, private$subset$getClassName())))
+                                                 col2 = class,
+                                                 column.names = c(col.name, private$subset$getClassName())))
           }, class)
 
           binary.valid <- bheuristic.values[complete.cases(bheuristic.values)]
@@ -113,7 +113,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
             ## DISTRIBUTE FEATURES IN CLUSTERS (2 >= k <= maxClusters)
             if (isTRUE(verbose)) {
               message("[", class(self)[1], "][INFO] Performing binary feature clustering using '",
-                       class(private$heuristic[[1]])[1], "' heuristic")
+                      class(private$heuristic[[1]])[1], "' heuristic")
               pb <- txtProgressBar(min = 0, max = (maxClusters - 1), style = 3)
             }
 
@@ -167,7 +167,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
                      length(binary.invalid), " features were incompatible with '",
                      class(private$heuristic[[1]])[1], "' heuristic")
             private$not.distribution[[1]] <- data.frame(cluster = 1,
-                                                         dist = I(list(binary.invalid)))
+                                                        dist = I(list(binary.invalid)))
           }
         } else {
           message("[", class(self)[1], "][INFO] Not binary features for clustering")
@@ -176,7 +176,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
         message("[", class(self)[1], "][INFO] ", class(self)[1], " has not ",
                 "heuristic to binary features. Assuming one cluster by default")
         private$all.distribution[[1]] <- data.frame(k = 1, deltha = 0,
-                                                     dist = I(list(names(binary.data))))
+                                                    dist = I(list(names(binary.data))))
         private$best.distribution[[1]] <- data.frame(cluster = 1,
                                                      dist = I(list(names(binary.data))))
       }
@@ -191,12 +191,12 @@ BinaryRealTypeStrategy <- R6::R6Class(
         if (nrow(real.data) > 0) {
           real.bestDistribution <- data.frame(cluster = integer(), dist = I(list()))
           real.allDistribution <- data.frame(k = integer(), deltha = numeric(),
-                                              dist = I(list()))
+                                             dist = I(list()))
 
           rheuristic.values <- sapply(names(real.data), function(col.name, class) {
             abs(private$heuristic[[2]]$heuristic(col1 = real.data[, col.name], col2 = class,
-                                                  column.names = c(col.name,
-                                                                   private$subset$getClassName())))
+                                                 column.names = c(col.name,
+                                                                  private$subset$getClassName())))
           }, class)
 
           real.valid <- rheuristic.values[complete.cases(rheuristic.values)]
@@ -213,7 +213,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
           if (length(real.valid) > 0) {
             for (k in minClusters:maxClusters) {
               clustering <- rep(c(1:k, (k:1)),
-                                 length(real.sorted) / (2 * k) + 1)[1:length(real.sorted)]
+                                length(real.sorted) / (2 * k) + 1)[1:length(real.sorted)]
 
               cluster <- vector(mode = "list", length = length(real.sorted))
               names(cluster) <- names(real.sorted)
@@ -257,7 +257,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
                      length(real.invalid), " features were incompatible with '",
                      class(private$heuristic[[2]])[1], "' heuristic.")
             private$not.distribution[[2]] <- data.frame(cluster = 1,
-                                                         dist = I(list(real.invalid)))
+                                                        dist = I(list(real.invalid)))
           }
 
         } else {
@@ -269,9 +269,9 @@ BinaryRealTypeStrategy <- R6::R6Class(
         message("[", class(self)[1], "][INFO] ", class(self)[1],
                 " has not heuristic to real features. Assuming one cluster by default")
         private$all.distribution[[2]] <- data.frame(k = 1, deltha = 0,
-                                                     dist = I(list(names(real.data))))
+                                                    dist = I(list(names(real.data))))
         private$best.distribution[[2]] <- data.frame(cluster = 1,
-                                                      dist = I(list(names(real.data))))
+                                                     dist = I(list(names(real.data))))
       }
     },
     #'
@@ -296,8 +296,8 @@ BinaryRealTypeStrategy <- R6::R6Class(
       }
 
       if (is.null(num.clusters) || !is.numeric(num.clusters)) {
-        dist.binary <- sapply(private$best.distribution[[1]]$dist, function(x) {x})
-        dist.real <- sapply(private$best.distribution[[2]]$dist, function(x) {x})
+        dist.binary <- lapply(private$best.distribution[[1]]$dist, function(x) {x})
+        dist.real <- lapply(private$best.distribution[[2]]$dist, function(x) {x})
       } else {
         all.binary <- private$all.distribution[[1]]
         all.real <- private$all.distribution[[2]]
@@ -315,7 +315,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
           dist.binary <- NULL
         } else {
           dist.binary <- unlist(all.binary[which(all.binary$k == num.clusters[1]), ]$dist,
-                                 recursive = FALSE)
+                                recursive = FALSE)
         }
 
         if (!(num.clusters[2] %in% c(min(all.real$k):max(all.real$k)))) {
@@ -325,7 +325,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
           dist.real <- NULL
         } else {
           dist.real <- unlist(all.real[which(all.real$k == num.clusters[2]), ]$dist,
-                               recursive = FALSE)
+                              recursive = FALSE)
         }
       }
 
@@ -375,7 +375,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
     #' @return A \link{Trainset} object.
     #'
     createTrain = function(subset, num.clusters = NULL, num.groups = NULL,
-                            include.unclustered = FALSE) {
+                           include.unclustered = FALSE) {
       if (!inherits(subset, "Subset")) {
         stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
              "'Subset' type. Aborting...")
@@ -387,8 +387,8 @@ BinaryRealTypeStrategy <- R6::R6Class(
       }
 
       distribution <- self$getDistribution(num.clusters = num.clusters,
-                                            num.groups = num.groups,
-                                            include.unclustered = include.unclustered)
+                                           num.groups = num.groups,
+                                           include.unclustered = include.unclustered)
 
       train.dist <- lapply(distribution, function(group) {
         subset$getFeatures(feature.names = group)
@@ -396,8 +396,8 @@ BinaryRealTypeStrategy <- R6::R6Class(
       })
 
       Trainset$new(cluster.dist = train.dist, class.name = subset$getClassName(),
-                    class.values = subset$getClassValues(),
-                    positive.class = subset$getPositiveClass())
+                   class.values = subset$getClassValues(),
+                   positive.class = subset$getPositiveClass())
     },
     #'
     #' @description The function is responsible for creating a plot to visualize the clustering distribution.
@@ -413,12 +413,12 @@ BinaryRealTypeStrategy <- R6::R6Class(
     plot = function(dir.path = NULL, file.name = NULL, ...) {
 
       binary.summary <- data.frame(k = private$all.distribution[[1]]$k,
-                                    dispersion = private$all.distribution[[1]]$deltha,
-                                    row.names = NULL)
+                                   dispersion = private$all.distribution[[1]]$deltha,
+                                   row.names = NULL)
 
       real.summary <- data.frame(k = private$all.distribution[[2]]$k,
-                                  dispersion = private$all.distribution[[2]]$deltha,
-                                  row.names = NULL)
+                                 dispersion = private$all.distribution[[2]]$deltha,
+                                 row.names = NULL)
 
       if (nrow(binary.summary) > 1 && nrow(real.summary) > 1) {
         plot <- gridExtra::grid.arrange(
@@ -451,7 +451,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
           }
         }
         ggplot2::ggsave(paste0(file.path(dir.path, file.name), ".pdf"), device = "pdf",
-                         plot = plot, limitsize = FALSE)
+                        plot = plot, limitsize = FALSE)
         message("[", class(self)[1], "][INFO] Plot has been succesfully saved at: ",
                 file.path(dir.path, file.name, ".pdf"))
       } # else { plot }
@@ -523,11 +523,11 @@ BinaryRealTypeStrategy <- R6::R6Class(
                 "Must be between ", min(all.binary$k), " and ", max(all.binary$k),
                 ". Ignoring clustering for binary type features...")
         dist.binary <- data.frame(k = numeric(), dispersion = numeric(),
-                                   feature_type = character())
+                                  feature_type = character())
       } else {
         dist.binary <- data.frame(k = all.binary[c(all.binary$k %in% unlist(num.clusters[[1]])), "k"],
-                                   dispersion = all.binary[c(all.binary$k %in% unlist(num.clusters[[1]])), "deltha"],
-                                   feature_type = "binary", row.names = NULL)
+                                  dispersion = all.binary[c(all.binary$k %in% unlist(num.clusters[[1]])), "deltha"],
+                                  feature_type = "binary", row.names = NULL)
       }
 
       if (!all(unlist(num.clusters[[2]]) %in% all.real$k)) {
@@ -535,7 +535,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
                 "Must be between ", min(all.real$k), " and ", max(all.real$k),
                 ". Ignoring clustering for real type features...")
         dist.real <- data.frame(k = numeric(), dispersion = numeric(),
-                                 feature_type = character())
+                                feature_type = character())
       } else {
         dist.real <- data.frame(k = all.real[c(all.real$k %in% unlist(num.clusters[[2]])), "k"],
                                 dispersion = all.real[c(all.real$k %in% unlist(num.clusters[[2]])), "deltha"],
@@ -543,8 +543,8 @@ BinaryRealTypeStrategy <- R6::R6Class(
       }
 
       write.table(rbind(dist.binary, dist.real),
-                   file = file.path(dir.path, paste0(name, ".csv")),
-                   row.names = FALSE, col.names = TRUE, sep = ";")
+                  file = file.path(dir.path, paste0(name, ".csv")),
+                  row.names = FALSE, col.names = TRUE, sep = ";")
     }
   ),
   private = list(
