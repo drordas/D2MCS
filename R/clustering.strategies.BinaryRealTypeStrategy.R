@@ -70,7 +70,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
     #' @description Function responsible of performing the clustering
     #' strategy over the defined \link{Subset}.
     #'
-    #' @param verbose A logical value to specify if more verbosity is needed.
+    #' @param verbose A \link{logical} value to specify if more verbosity is needed.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @importFrom varhandle to.dummy
@@ -277,10 +277,10 @@ BinaryRealTypeStrategy <- R6::R6Class(
     #'
     #' @description Function used to obtain a specific cluster distribution.
     #'
-    #' @param num.clusters A numeric value to select the number of clusters (define the distribution).
+    #' @param num.clusters A \link{numeric} value to select the number of clusters (define the distribution).
     #' @param num.groups A single or \link{numeric} vector value to identify a specific group that
     #' forms the clustering distribution.
-    #' @param include.unclustered A logical value to determine if unclustered features should be included.
+    #' @param include.unclustered A \link{logical} value to determine if unclustered features should be included.
     #'
     #' @return A \link{list} with the features comprising an specific clustering distribution.
     #'
@@ -366,7 +366,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
     #' @param num.clusters A \link{numeric} value to select the number of clusters (define the distribution).
     #' @param num.groups A single or \link{numeric} vector value to identify a specific group that
     #' forms the clustering distribution.
-    #' @param include.unclustered A logical value to determine if unclustered features should be included.
+    #' @param include.unclustered A \link{logical} value to determine if unclustered features should be included.
     #'
     #' @details If num.clusters and num.groups are not defined, best clustering distribution is used to create the train set.
     #'
@@ -402,9 +402,9 @@ BinaryRealTypeStrategy <- R6::R6Class(
     #'
     #' @description The function is responsible for creating a plot to visualize the clustering distribution.
     #'
-    #' @param dir.path An optional argument to define the name of the directory where the exported plot will be saved.
-    #' If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.
-    #' @param file.name A character to define the name of the PDF file where the plot is exported.
+    #' @param dir.path An optional \link{character} argument to define the name of the directory where the exported plot will be saved.
+    #' If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.
+    #' @param file.name A \link{character} to define the name of the PDF file where the plot is exported.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @import ggplot2

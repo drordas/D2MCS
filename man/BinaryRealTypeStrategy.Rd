@@ -82,7 +82,7 @@ strategy over the defined \link{Subset}.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is needed.}
 
 \item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
@@ -104,12 +104,12 @@ Function used to obtain a specific cluster distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.clusters}}{A numeric value to select the number of clusters (define the distribution).}
+\item{\code{num.clusters}}{A \link{numeric} value to select the number of clusters (define the distribution).}
 
 \item{\code{num.groups}}{A single or \link{numeric} vector value to identify a specific group that
 forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{A logical value to determine if unclustered features should be included.}
+\item{\code{include.unclustered}}{A \link{logical} value to determine if unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
@@ -140,7 +140,7 @@ The function is used to create a \link{Trainset} object from a specific clusteri
 \item{\code{num.groups}}{A single or \link{numeric} vector value to identify a specific group that
 forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{A logical value to determine if unclustered features should be included.}
+\item{\code{include.unclustered}}{A \link{logical} value to determine if unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
@@ -163,10 +163,10 @@ The function is responsible for creating a plot to visualize the clustering dist
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{An optional argument to define the name of the directory where the exported plot will be saved.
-If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.}
+\item{\code{dir.path}}{An optional \link{character} argument to define the name of the directory where the exported plot will be saved.
+If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.}
 
-\item{\code{file.name}}{A character to define the name of the PDF file where the plot is exported.}
+\item{\code{file.name}}{A \link{character} to define the name of the PDF file where the plot is exported.}
 
 \item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }

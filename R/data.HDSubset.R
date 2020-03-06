@@ -1,4 +1,4 @@
-#' @title High Dimensional Subset handler
+#' @title High Dimensional Subset handler.
 #'
 #' @description Creates a high dimensional subset from a \link{HDDataset} object.
 #' Only the required instances are loaded in memory to avoid
@@ -28,7 +28,7 @@ HDSubset <- R6::R6Class(
     #' @param file.path the name of the file which the data are to be read from.
     #' Each row of the table appears as one line of the file.
     #' If it does not contain an _absolute_ path, the file name is _relative_ to the current
-    #' working directory, ‘getwd()’.
+    #' working directory, 'getwd()'.
     #'
     #' @param feature.names a \link{character} vector specifying the name of the features
     #' that should be included in the \link{HDDataset} object.

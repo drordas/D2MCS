@@ -7,9 +7,6 @@
 \description{
 Computes the ratio of number of Type II errors achieved by the final M.L. model.
 }
-\details{
-<<details>
-}
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
 

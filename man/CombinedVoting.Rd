@@ -3,9 +3,10 @@
 \docType{class}
 \name{CombinedVoting}
 \alias{CombinedVoting}
-\title{Abtract class to define combined voting schemes.}
+\title{Implementation of Combined Voting.}
 \description{
-Abstract class used as a template to define new customized combined-based voting schemes.
+Calculates the final prediction by performing the result of the
+preditions of different metrics obtained through a \code{\link{SimpleVoting}} class.
 }
 \seealso{
 \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
@@ -57,7 +58,7 @@ The object must inherit from \code{\link{CombinedMetrics}} class.}
 \item{\code{methodology}}{An object specifiying the methodology used to execute the combined votings.
 Object inherited from \code{\link{Methodology}} object}
 
-\item{\code{metrics}}{A \code{\link{character}} vector twith the name of the metrics used to perform
+\item{\code{metrics}}{A \code{\link{character}} vector with the name of the metrics used to perform
 the combined voting operations. Metrics should be previously defined during training stage.}
 }
 \if{html}{\out{</div>}}
@@ -66,7 +67,7 @@ the combined voting operations. Metrics should be previously defined during trai
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getCombinedMetrics"></a>}}
 \subsection{Method \code{getCombinedMetrics()}}{
-The function returns the metrics used to combine the voting schemes.
+The function returns the metrics used to combine the metrics results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$getCombinedMetrics()}\if{html}{\out{</div>}}
 }
@@ -118,7 +119,7 @@ A \code{\link{data.frame}} with the computed predictions.
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \subsection{Method \code{execute()}}{
-The function implements the weighted-based voting scheme.
+The function implements the combined voting scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -128,7 +129,7 @@ The function implements the weighted-based voting scheme.
 \describe{
 \item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing the predictions computed for each cluster.}
 
-\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
 }

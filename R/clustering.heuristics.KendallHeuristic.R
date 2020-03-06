@@ -31,9 +31,9 @@ KendallHeuristic <- R6::R6Class(
     #'
     #' @description Test for association between paired samples using Kendall's tau value.
     #'
-    #' @param col1 a numeric vector or matrix required to perform the
+    #' @param col1 a \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
     #' @param column.names an optional \link{character} vector with the names of
     #' both columns.
     #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.

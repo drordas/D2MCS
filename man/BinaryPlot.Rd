@@ -5,12 +5,7 @@
 \alias{BinaryPlot}
 \title{Plotting feature clusters following bi-class problem.}
 \description{
-Plotting feature clusters following bi-class problem.
-
-Plotting feature clusters following bi-class problem.
-}
-\details{
-<<details>
+The \link{BinaryPlot} implements a basic plot for bi-class problem.
 }
 \seealso{
 \code{\link{GenericPlot}}

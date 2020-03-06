@@ -3,7 +3,7 @@
 \docType{class}
 \name{Dataset}
 \alias{Dataset}
-\title{Simple Dataset handler}
+\title{Simple Dataset handler.}
 \description{
 Creates a valid simple dataset object.
 }
@@ -51,20 +51,20 @@ Creates the \code{\link{Dataset}} object.
 \describe{
 \item{\code{filepath}}{filepath the name of the file which the data are to be read from.
 Each row of the table appears as one line of the file.
-If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, ‘getwd()’.}
+If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, 'getwd()'.}
 
-\item{\code{header}}{a logical value indicating whether the file contains the names of the variables as its first line.
-If missing, the value is determined from the file format: ‘header’ is set to ‘TRUE’ if and only if the
+\item{\code{header}}{a \link{logical} value indicating whether the file contains the names of the variables as its first line.
+If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
 first row contains one fewer field than the number of columns.}
 
 \item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
 
 \item{\code{skip}}{defines the number of header lines should be skipped.}
 
-\item{\code{normalize.names}}{a logical value indicating whether the columns names should be automatically renamed
+\item{\code{normalize.names}}{a \link{logical} value indicating whether the columns names should be automatically renamed
 to ensure R compatibility.}
 
-\item{\code{string.as.factor}}{a logical value indicating if character columns should be converted to factors (default = FALSE).}
+\item{\code{string.as.factor}}{a \link{logical} value indicating if character columns should be converted to factors (default = FALSE).}
 
 \item{\code{ignore.columns}}{specify the columns from the input file that should be ignored.}
 }
@@ -83,7 +83,7 @@ get the name of the columns comprising the dataset.
 }
 
 \subsection{Returns}{
-a character vector with the name of each column.
+a \link{character} vector with the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
@@ -147,9 +147,9 @@ removes \link{data.frame} columns matchimg some criterion.
 \describe{
 \item{\code{remove.funcs}}{a vector of functions use to define which columns must be removed.}
 
-\item{\code{remove.na}}{a logical value indicating whether \link{NA} values should be removed.}
+\item{\code{remove.na}}{a \link{logical} value indicating whether \link{NA} values should be removed.}
 
-\item{\code{remove.const}}{a logical value used to indicate if constant values should be removed.}
+\item{\code{remove.const}}{a \link{logical} value used to indicate if constant values should be removed.}
 }
 \if{html}{\out{</div>}}
 }
@@ -170,13 +170,13 @@ applies \code{cleanData} function over an specific set of columns.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{columns}}{set of columns (numeric or character) where removal operation should be applied.}
+\item{\code{columns}}{set of columns (\link{numeric} or \link{character}) where removal operation should be applied.}
 
 \item{\code{remove.funcs}}{a vector of functions use to define which columns must be removed.}
 
-\item{\code{remove.na}}{a logical value indicating whether \code{\link{NA}} values should be removed.}
+\item{\code{remove.na}}{a \link{logical} value indicating whether \code{\link{NA}} values should be removed.}
 
-\item{\code{remove.const}}{a logical value used to indicate if constant values should be removed.}
+\item{\code{remove.const}}{a \link{logical} value used to indicate if constant values should be removed.}
 }
 \if{html}{\out{</div>}}
 }
@@ -196,11 +196,11 @@ creates a k-folds partition from the initial dataset.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.folds}}{an integer for the number of folds (partitions)}
+\item{\code{num.folds}}{an \link{numeric} for the number of folds (partitions)}
 
-\item{\code{percent.folds}}{an integer vector with the percentaje of instances containing each fold.}
+\item{\code{percent.folds}}{an \link{numeric} vector with the percentaje of instances containing each fold.}
 
-\item{\code{class.balance}}{a logical value indicating if class balance should be kept.}
+\item{\code{class.balance}}{a \link{logical} value indicating if class balance should be kept.}
 }
 \if{html}{\out{</div>}}
 }
@@ -223,9 +223,9 @@ testing purposes.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.folds}}{an integer defining the number of folds that should we used to build the \link{Subset}.}
+\item{\code{num.folds}}{an \link{numeric} defining the number of folds that should we used to build the \link{Subset}.}
 
-\item{\code{column.id}}{an integer or character indicating the column (number or name respectively) identifier. Default \link{NULL} value
+\item{\code{column.id}}{an \link{numeric} or \link{character} indicating the column (number or name respectively) identifier. Default \link{NULL} value
 is valid ignores defining a identification column.}
 
 \item{\code{opts}}{a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
@@ -264,7 +264,7 @@ the target class}
 
 \item{\code{positive.class}}{defines the positive class value.}
 
-\item{\code{num.folds}}{an integer defining the number of folds that should we used to build the \link{Subset}.}
+\item{\code{num.folds}}{an \link{numeric} defining the number of folds that should we used to build the \link{Subset}.}
 
 \item{\code{opts}}{a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
 remove.const (ignore columns with constant values).}

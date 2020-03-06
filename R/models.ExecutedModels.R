@@ -120,7 +120,7 @@ ExecutedModels <- R6::R6Class(
     #'
     #' @description The function is used to discern if a specific model has been executed previously.
     #'
-    #' @param model.name A \code{\łink{character}} vector with the name of the model to check for existence.
+    #' @param model.name A \code{\link{character}} vector with the name of the model to check for existence.
     #'
     #' @return A \code{\link{logical}} value. \link{TRUE} if the model exists and \link{FALSE} otherwise.
     #'

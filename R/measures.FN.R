@@ -6,8 +6,6 @@
 #'
 #' @format NULL
 #'
-#' @details <<details>
-#'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
 #'
 #' @keywords classif math

@@ -1,12 +1,8 @@
-#' @title <<miguel>>
+#' @title Methodology to obtain the combination of the probability of different metrics
 #'
-#' @description ProbBasedMethodology
+#' @description Calculates the mean of the probabilities of the different metrics.
 #'
 #' @docType class
-#'
-#' @format NULL
-#'
-#' @details <<details>
 #'
 #' @seealso \code{\link{Methodology}}
 #'
@@ -22,9 +18,9 @@ ProbBasedMethodology <- R6::R6Class(
   inherit = Methodology,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param required.metrics <<description>>
+    #' @param required.metrics A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.
     #'
     initialize = function(required.metrics = c("MCC", "PPV")) {
       if (any(is.null(required.metrics),
@@ -35,14 +31,14 @@ ProbBasedMethodology <- R6::R6Class(
       super$initialize(required.metrics = required.metrics)
     },
     #'
-    #' @description <<description>>
+    #' @description Function to compute the probability of the final prediction based on different metrics.
     #'
-    #' @param raw.pred <<description>>
-    #' @param prob.pred <<description>>
-    #' @param positive.class <<description>>
-    #' @param negative.class <<description>>
+    #' @param raw.pred A \code{\link{character}} list of length greater than 2 with the class value of the predictions made by the metrics.
+    #' @param prob.pred A \code{\link{numeric}} list of length greater than 2 with the probability of the predictions made by the metrics.
+    #' @param positive.class A \code{\link{character}} with the value of the positive class.
+    #' @param negative.class A \code{\link{character}} with the value of the negative class.
     #'
-    #' @return <<description>>
+    #' @return A \link{numeric} value indicating the probability of the instance is predicted as positive class.
     #'
     compute = function(raw.pred, prob.pred, positive.class, negative.class) {
       if (is.null(raw.pred) || !is.list(raw.pred)) {

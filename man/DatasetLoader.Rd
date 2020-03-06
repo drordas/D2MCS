@@ -68,20 +68,20 @@ Stores the input source into a \code{\link{Dataset}} or \code{\link{HDDataset}} 
 \describe{
 \item{\code{filepath}}{the name of the file which the data are to be read from.
 Each row of the table appears as one line of the file.
-If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, ‘getwd()’.}
+If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, 'getwd()'.}
 
-\item{\code{header}}{a logical value indicating whether the file contains the names of the variables as its first line.
-If missing, the value is determined from the file format: ‘header’ is set to ‘TRUE’ if and only if the
+\item{\code{header}}{a \link{logical} value indicating whether the file contains the names of the variables as its first line.
+If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
 first row contains one fewer field than the number of columns.}
 
 \item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
 
 \item{\code{skip.lines}}{defines the number of header lines should be skipped.}
 
-\item{\code{normalize.names}}{a logical value indicating whether the columns names should be automatically renamed
+\item{\code{normalize.names}}{a \link{logical} value indicating whether the columns names should be automatically renamed
 to ensure R compatibility.}
 
-\item{\code{string.as.factor}}{a logical value indicating if character columns should be converted to factors (default = FALSE).}
+\item{\code{string.as.factor}}{a \link{logical} value indicating if character columns should be converted to factors (default = FALSE).}
 
 \item{\code{ignore.columns}}{specify the columns from the input file that should be ignored.}
 }

@@ -1,4 +1,4 @@
-#' @title Implementation of Mayority Voting voting
+#' @title Implementation of Mayority Voting voting.
 #'
 #' @description Implementation of the parliamentary 'majority voting' procedure. The majority class value is defined as final class.
 #' All class values have the same importance.

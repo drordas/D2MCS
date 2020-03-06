@@ -129,7 +129,7 @@ Subset <- R6::R6Class(
     #'
     #' @param chunk.size chunk.size an integer value indicating the size of chunks taken
     #' over each iteration. By default chunk.size is defied as 10000.
-    #' @param verbose a logical value to specify if more verbosity is needed.
+    #' @param verbose a \link{logical} value to specify if more verbosity is needed.
     #'
     #' @return a \link{DIterator} object to trasverse through \link{Subset} instances.
     #'

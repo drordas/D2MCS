@@ -1,10 +1,10 @@
 #' @title Plotting feature clusters following bi-class problem.
 #'
+#' @description The \link{BinaryPlot} implements a basic plot for bi-class problem.
+#'
 #' @docType class
 #'
 #' @format NULL
-#'
-#' @details <<details>
 #'
 #' @seealso \code{\link{GenericPlot}}
 #'

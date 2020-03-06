@@ -24,9 +24,9 @@ ChiSquareHeuristic <- R6::R6Class(
     #' @description functions responsible of performing the ChiSquare feature-clustering
     #' operation.
     #'
-    #' @param col1 a numeric vector or matrix required to perform the
+    #' @param col1 a \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
     #' @param column.names an optional \link{character} vector with the names of
     #' both columns.
     #'

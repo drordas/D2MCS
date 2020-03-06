@@ -1,6 +1,7 @@
-#' @title Abtract class to define combined voting schemes.
+#' @title Implementation of Combined Voting.
 #'
-#' @description Abstract class used as a template to define new customized combined-based voting schemes.
+#' @description Calculates the final prediction by performing the result of the
+#' preditions of different metrics obtained through a \code{\link{SimpleVoting}} class.
 #'
 #' @docType class
 #'
@@ -27,7 +28,7 @@ CombinedVoting <- R6::R6Class(
     #' The object must inherit from \code{\link{CombinedMetrics}} class.
     #' @param methodology An object specifiying the methodology used to execute the combined votings.
     #' Object inherited from \code{\link{Methodology}} object
-    #' @param metrics A \code{\link{character}} vector twith the name of the metrics used to perform
+    #' @param metrics A \code{\link{character}} vector with the name of the metrics used to perform
     #' the combined voting operations. Metrics should be previously defined during training stage.
     #'
     initialize = function(voting.schemes, combined.metrics, methodology, metrics) {
@@ -56,7 +57,7 @@ CombinedVoting <- R6::R6Class(
       private$final.pred <- FinalPred$new()
     },
     #'
-    #' @description The function returns the metrics used to combine the voting schemes.
+    #' @description The function returns the metrics used to combine the metrics results.
     #'
     #' @return An object inherited from \code{\link{CombinedMetrics}} class.
     #'
@@ -118,10 +119,10 @@ CombinedVoting <- R6::R6Class(
       }
     },
     #'
-    #' @description The function implements the weighted-based voting scheme.
+    #' @description The function implements the combined voting scheme.
     #'
     #' @param predictions A \code{\link{ClusterPredictions}} object containing the predictions computed for each cluster.
-    #' @param verbose A logical value to specify if more verbosity is needed.
+    #' @param verbose A \link{logical} value to specify if more verbosity is needed.
     #'
     execute = function(predictions, verbose = FALSE) {
 

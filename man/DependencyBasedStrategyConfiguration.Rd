@@ -4,7 +4,7 @@
 \docType{class}
 \name{DependencyBasedStrategyConfiguration}
 \alias{DependencyBasedStrategyConfiguration}
-\title{<<miguel>>}
+\title{Custom Strategy Configuration handler for the DependencyBasedStrategy strategy.}
 \description{
 Define the default configuration parameters for the \link{DependencyBasedStrategy} strategy.
 }
@@ -146,17 +146,19 @@ The function solves the ties between two (or more) features.
 \describe{
 \item{\code{feature}}{A \link{character} containing the name of the feature}
 
-\item{\code{clus.candidates}}{The}
+\item{\code{clus.candidates}}{A single or \link{numeric} vector value to identify
+the candidate groups to insert the feature.}
 
-\item{\code{fea.dep.dist.clus}}{<<description>>}
+\item{\code{fea.dep.dist.clus}}{A \link{list} containing the groups chosen for the features.}
 
-\item{\code{corpus}}{<<description>>}
+\item{\code{corpus}}{A \link{data.frame} containing the features of the initial data.}
 
-\item{\code{heuristic}}{<<description>>}
+\item{\code{heuristic}}{The heuristic used to compute the relevance of each feature.
+Must inherit from \link{GenericHeuristic} abstract class.}
 
-\item{\code{class}}{<<description>>}
+\item{\code{class}}{a \link{character} vector containing all the values of the target class.}
 
-\item{\code{class.name}}{<<description>>}
+\item{\code{class.name}}{A \link{character} value representing the name of the target class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -164,7 +166,7 @@ The function solves the ties between two (or more) features.
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-qualityOfCluster"></a>}}
 \subsection{Method \code{qualityOfCluster()}}{
-<<description>>
+The function determines the quality of a cluster.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$qualityOfCluster(clusters, metrics)}\if{html}{\out{</div>}}
 }
@@ -172,20 +174,20 @@ The function solves the ties between two (or more) features.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{clusters}}{<<description>>}
+\item{\code{clusters}}{A \link{list} with the feature distribution of each cluster.}
 
-\item{\code{metrics}}{<<description>>}
+\item{\code{metrics}}{A numeric \link{list} with the metrics associated to the cluster (dependency between all features and dependency between the features and the class).}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isImprovingClustering"></a>}}
 \subsection{Method \code{isImprovingClustering()}}{
-<<description>>
+The function indicates if clustering is getting better as the number of them increases.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$isImprovingClustering(clusters.deltha)}\if{html}{\out{</div>}}
 }
@@ -193,12 +195,12 @@ The function solves the ties between two (or more) features.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{clusters.deltha}}{<<description>>}
+\item{\code{clusters.deltha}}{A \link{numeric} vector value with the quality values of the built clusters.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<return>>
+A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}

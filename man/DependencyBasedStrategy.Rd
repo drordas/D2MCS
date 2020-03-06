@@ -3,15 +3,38 @@
 \docType{class}
 \name{DependencyBasedStrategy}
 \alias{DependencyBasedStrategy}
-\title{<<miguel>>}
+\title{Clustering strategy based on dependency between features}
 \description{
-Features are distributed according to their independence values. <<miguel>>
+Features are distributed according to their independence values.
+This strategy is divided into two steps. The first phase focuses on forming
+groups with those features most dependent on each other. This step also
+identifies those that are independent from all the others in the group.
+The second step is to try out different numbers of clusters until you find
+the one you think is best. These clusters are formed by inserting in all the
+independent characteristics identified previously and trying to distribute
+the features of the groups formed in the previous step in separate clusters.
+In this way, it seeks to ensure that the features are as independent as possible
+from those found in the same cluster.
 }
 \details{
-<<miguel>
+The strategy is suitable only for binary and real features. Other
+features are automatically grouped into a specific cluster named as 'unclustered'.
+This class requires the \code{\link{StrategyConfiguration}} type object implements the following methods:
+
+- \code{getBinaryCutoff()}: The function is used to define the interval to consider the dependency between binary features.
+
+- \code{getRealCutoff()}: The function allows defining the cutoff to consider the dependency between real features.
+
+- \code{tiebreak(feature, clus.candidates, fea.dep.dist.clus, corpus, heuristic, class, class.name)}: The function solves the ties between two (or more) features.
+
+- \code{qualityOfCluster(clusters, metrics)}: The function determines the quality of a cluster
+
+- \code{isImprovingClustering(clusters.deltha)}: The function indicates if clustering is getting better as the number of them increases.
+
+An example of implementation with the description of each parameter is the \code{\link{DependencyBasedStrategyConfiguration}} class.
 }
 \seealso{
-\code{\link{ClusteringStrategy}},  \code{\link{StrategyConfiguration}}
+\code{\link{ClusteringStrategy}}, \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategyConfiguration}}
 }
 \keyword{cluster}
 \keyword{manip}
@@ -158,7 +181,7 @@ The function is responsible for creating a plot to visualize the clustering dist
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{dir.path}}{An optional argument to define the name of the directory where the exported plot will be saved.
-If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.}
+If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.}
 
 \item{\code{file.name}}{A character to define the name of the PDF file where the plot is exported.}
 

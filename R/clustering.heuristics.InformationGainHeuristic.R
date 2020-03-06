@@ -27,9 +27,9 @@ InformationGainHeuristic <- R6::R6Class(
     #' their correlation with continous class attribute. Particularly
     #' Information Gain uses \code{H(Class) + H(Attribute) - H(Class, Attribute)}
     #'
-    #' @param col1 a numeric vector or matrix required to perform the
+    #' @param col1 a \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
     #' @param column.names an optional \link{character} vector with the names of
     #' both columns.
     #'

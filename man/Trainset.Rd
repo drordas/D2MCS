@@ -50,7 +50,7 @@ to build the \link{Trainset}. See \link{ClusteringStrategy} for more information
 
 \item{\code{class.values}}{specifies all the posible values of the target class.}
 
-\item{\code{positive.class}}{defines the positive class value.}
+\item{\code{positive.class}}{a \code{\link{character}} with the value of the positive class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -106,7 +106,7 @@ an specific cluster distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{a numeric value used to specify the cluster number
+\item{\code{num.cluster}}{a \link{numeric} value used to specify the cluster number
 of the cluster distribution used when creating the \link{Trainset}.}
 }
 \if{html}{\out{</div>}}
@@ -127,7 +127,7 @@ an specific cluster distribution. Target class is omitted.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{a numeric value used to specify the cluster number
+\item{\code{num.cluster}}{a \link{numeric} value used to specify the cluster number
 of the cluster distribution used when creating the \link{Trainset}.}
 }
 \if{html}{\out{</div>}}
@@ -149,7 +149,7 @@ an specific cluster distribution. Target class is included as the last column.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{num.cluster a numeric value used to specify the cluster number
+\item{\code{num.cluster}}{a \link{numeric} value used to specify the cluster number
 of the cluster distribution used when creating the \link{Trainset}.}
 }
 \if{html}{\out{</div>}}

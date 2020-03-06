@@ -5,7 +5,7 @@
 #' true and false positives and negatives and is generally regarded as a balanced measure
 #' which can be used even if the classes are of very different sizes. The MCC is in essence
 #' a correlation coefficient between the observed and predicted binary classifications;
-#' it returns a value between −1 and +1.
+#' it returns a value between -1 and +1.
 #'
 #' @docType class
 #'

@@ -29,7 +29,7 @@ Trainset <- R6::R6Class(
     #' to build the \link{Trainset}. See \link{ClusteringStrategy} for more information.
     #' @param class.name used to specify the name of the column containing the target class.
     #' @param class.values specifies all the posible values of the target class.
-    #' @param positive.class defines the positive class value.
+    #' @param positive.class a \code{\link{character}} with the value of the positive class.
     #'
     #' @return a fully operative \link{Trainset} object.
     #'
@@ -77,7 +77,7 @@ Trainset <- R6::R6Class(
     #' @description the function returns the name of the columns comprising
     #' an specific cluster distribution.
     #'
-    #' @param num.cluster a numeric value used to specify the cluster number
+    #' @param num.cluster a \link{numeric} value used to specify the cluster number
     #' of the cluster distribution used when creating the \link{Trainset}.
     #'
     #' @return a \link{character} vector with all column names.
@@ -95,7 +95,7 @@ Trainset <- R6::R6Class(
     #' @description the function returns the values of the columns comprising
     #' an specific cluster distribution. Target class is omitted.
     #'
-    #' @param num.cluster a numeric value used to specify the cluster number
+    #' @param num.cluster a \link{numeric} value used to specify the cluster number
     #' of the cluster distribution used when creating the \link{Trainset}.
     #'
     #' @return a \link{data.frame} with the values of the features comprising
@@ -115,7 +115,7 @@ Trainset <- R6::R6Class(
     #' @description the function returns the values of the columns comprising
     #' an specific cluster distribution. Target class is included as the last column.
     #'
-    #' @param num.cluster num.cluster a numeric value used to specify the cluster number
+    #' @param num.cluster a \link{numeric} value used to specify the cluster number
     #' of the cluster distribution used when creating the \link{Trainset}.
     #'
     #' @return a \link{data.frame} with the values of the features comprising the

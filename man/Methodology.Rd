@@ -3,12 +3,11 @@
 \docType{class}
 \name{Methodology}
 \alias{Methodology}
-\title{<<miguel>>}
+\title{Abstract class to compute the probability prediction based on
+combination between metrics.}
 \description{
-Methodology
-}
-\details{
-<<details>
+Abstract class used as a template to define new customized
+strategies to combine the probability predictions made by different metrics.
 }
 \seealso{
 \code{\link{ProbBasedMethodology}}
@@ -27,7 +26,7 @@ Methodology
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Methodology$new(required.metrics)}\if{html}{\out{</div>}}
 }
@@ -35,7 +34,8 @@ Methodology
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{required.metrics}}{<<description>>}
+\item{\code{required.metrics}}{A \code{\link{character}} vector of length greater
+than 2 with the name of the required metrics.}
 }
 \if{html}{\out{</div>}}
 }
@@ -43,19 +43,22 @@ Methodology
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRequiredMetrics"></a>}}
 \subsection{Method \code{getRequiredMetrics()}}{
-<<description>>
+The function returns the required metrics that will
+participate in the methodology to compute a metric based on all of them.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Methodology$getRequiredMetrics()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+A \code{\link{character}} vector of length greater than 2 with
+the name of the required metrics.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+Function to compute the probability of the final prediction
+based on different metrics.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Methodology$compute(raw.pred, prob.pred, positive.class, negative.class)}\if{html}{\out{</div>}}
 }
@@ -63,18 +66,23 @@ Methodology
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{raw.pred}}{<<description>>}
+\item{\code{raw.pred}}{A \code{\link{character}} list of length greater than 2
+with the class value of the predictions made by the metrics.}
 
-\item{\code{prob.pred}}{<<description>>}
+\item{\code{prob.pred}}{A \code{\link{numeric}} list of length greater than 2
+with the probability of the predictions made by the metrics.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{A \code{\link{character}} with the value of the
+positive class.}
 
-\item{\code{negative.class}}{<<description>>}
+\item{\code{negative.class}}{A \code{\link{character}} with the value of the
+negative class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \link{numeric} value indicating the probability of the instance
+is predicted as positive class.
 }
 }
 \if{html}{\out{<hr>}}

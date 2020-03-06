@@ -3,7 +3,7 @@
 \docType{class}
 \name{DDMCS}
 \alias{DDMCS}
-\title{Data Driven Multiple Classifier System}
+\title{Data Driven Multiple Classifier System.}
 \description{
 The class is responsible of managing the whole process. Concretely builds the M.L. models (optimizes models hyperparameters),
 selects the best M.L. model for each cluster and executes the classification stage.
@@ -52,7 +52,7 @@ The default type, \code{"PSOCK"}, calls makePSOCKcluster. Type \code{"FORK"} cal
 For more information see \code{\link[parallel]{makeCluster}}}
 
 \item{\code{outfile}}{Where to direct the stdout and stderr connection output from the workers. "" indicates no
-redirection (which may only be useful for workers on the local machine). Defaults to ‘/dev/null’}
+redirection (which may only be useful for workers on the local machine). Defaults to '/dev/null'}
 
 \item{\code{serialize}}{A \code{\link{logical}} value. If true (default) serialization will use XDR: where large amounts of data are to be
 transferred and all the nodes are little-endian, communication may be substantially faster if this is set to false.}

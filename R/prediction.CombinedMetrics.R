@@ -1,6 +1,8 @@
-#' @title <<miguel>>
+#' @title Abstract class to compute the class prediction based on combination
+#' between metrics.
 #'
-#' @description CombinedMetrics
+#' @description Abstract class used as a template to define new customized
+#' strategies to combine the class predictions made by different metrics.
 #'
 #' @docType class
 #'
@@ -17,9 +19,9 @@ CombinedMetrics <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param required.metrics <<description>>
+    #' @param required.metrics A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.
     #'
     initialize = function(required.metrics) {
       if (is.null(required.metrics) || !is.character(required.metrics) || length(required.metrics) < 2) {
@@ -29,20 +31,20 @@ CombinedMetrics <- R6::R6Class(
       private$required.metrics <- required.metrics
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the required metrics that will participate in the combined metric process.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.
     #'
     getRequiredMetrics = function() { private$required.metrics },
     #'
-    #' @description <<description>>
+    #' @description Function used to implement the strategy to obtain the final prediction based on different metrics.
     #'
-    #' @param raw.pred <<description>>
-    #' @param prob.pred <<description>>
-    #' @param positive.class <<description>>
-    #' @param negative.class <<description>>
+    #' @param raw.pred A \code{\link{character}} list of length greater than 2 with the class value of the predictions made by the metrics.
+    #' @param prob.pred A \code{\link{numeric}} list of length greater than 2 with the probability of the predictions made by the metrics.
+    #' @param positive.class A \code{\link{character}} with the value of the positive class.
+    #' @param negative.class A \code{\link{character}} with the value of the negative class.
     #'
-    #' @return <<description>>
+    #' @return A \link{logical} value indicating if the instance is predicted as positive class or not.
     #'
     getFinalPrediction = function(raw.pred, prob.pred, positive.class, negative.class) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",

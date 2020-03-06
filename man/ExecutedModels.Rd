@@ -102,7 +102,7 @@ The function is used to discern if a specific model has been executed previously
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{model.name}}{A \code{\łink{character}} vector with the name of the model to check for existence.}
+\item{\code{model.name}}{A \code{\link{character}} vector with the name of the model to check for existence.}
 }
 \if{html}{\out{</div>}}
 }

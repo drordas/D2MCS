@@ -3,12 +3,9 @@
 \docType{class}
 \name{ProbBasedMethodology}
 \alias{ProbBasedMethodology}
-\title{<<miguel>>}
+\title{Methodology to obtain the combination of the probability of different metrics}
 \description{
-ProbBasedMethodology
-}
-\details{
-<<details>
+Calculates the mean of the probabilities of the different metrics.
 }
 \seealso{
 \code{\link{Methodology}}
@@ -37,7 +34,7 @@ ProbBasedMethodology
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbBasedMethodology$new(required.metrics = c("MCC", "PPV"))}\if{html}{\out{</div>}}
 }
@@ -45,7 +42,7 @@ ProbBasedMethodology
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{required.metrics}}{<<description>>}
+\item{\code{required.metrics}}{A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.}
 }
 \if{html}{\out{</div>}}
 }
@@ -53,7 +50,7 @@ ProbBasedMethodology
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \subsection{Method \code{compute()}}{
-<<description>>
+Function to compute the probability of the final prediction based on different metrics.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbBasedMethodology$compute(
   raw.pred,
@@ -66,18 +63,18 @@ ProbBasedMethodology
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{raw.pred}}{<<description>>}
+\item{\code{raw.pred}}{A \code{\link{character}} list of length greater than 2 with the class value of the predictions made by the metrics.}
 
-\item{\code{prob.pred}}{<<description>>}
+\item{\code{prob.pred}}{A \code{\link{numeric}} list of length greater than 2 with the probability of the predictions made by the metrics.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{A \code{\link{character}} with the value of the positive class.}
 
-\item{\code{negative.class}}{<<description>>}
+\item{\code{negative.class}}{A \code{\link{character}} with the value of the negative class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \link{numeric} value indicating the probability of the instance is predicted as positive class.
 }
 }
 \if{html}{\out{<hr>}}

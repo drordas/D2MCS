@@ -1,14 +1,37 @@
-#' @title <<miguel>>
+#' @title Clustering strategy based on dependency between features
 #'
-#' @description Features are distributed according to their independence values. <<miguel>>
+#' @description Features are distributed according to their independence values.
+#' This strategy is divided into two steps. The first phase focuses on forming
+#' groups with those features most dependent on each other. This step also
+#' identifies those that are independent from all the others in the group.
+#' The second step is to try out different numbers of clusters until you find
+#' the one you think is best. These clusters are formed by inserting in all the
+#' independent characteristics identified previously and trying to distribute
+#' the features of the groups formed in the previous step in separate clusters.
+#' In this way, it seeks to ensure that the features are as independent as possible
+#' from those found in the same cluster.
 #'
 #' @docType class
 #'
 #' @format NULL
 #'
-#' @details <<miguel>
+#' @details The strategy is suitable only for binary and real features. Other
+#' features are automatically grouped into a specific cluster named as 'unclustered'.
+#' This class requires the \code{\link{StrategyConfiguration}} type object implements the following methods:
 #'
-#' @seealso \code{\link{ClusteringStrategy}},  \code{\link{StrategyConfiguration}}
+#' - \code{getBinaryCutoff()}: The function is used to define the interval to consider the dependency between binary features.
+#'
+#' - \code{getRealCutoff()}: The function allows defining the cutoff to consider the dependency between real features.
+#'
+#' - \code{tiebreak(feature, clus.candidates, fea.dep.dist.clus, corpus, heuristic, class, class.name)}: The function solves the ties between two (or more) features.
+#'
+#' - \code{qualityOfCluster(clusters, metrics)}: The function determines the quality of a cluster
+#'
+#' - \code{isImprovingClustering(clusters.deltha)}: The function indicates if clustering is getting better as the number of them increases.
+#'
+#' An example of implementation with the description of each parameter is the \code{\link{DependencyBasedStrategyConfiguration}} class.
+#'
+#' @seealso \code{\link{ClusteringStrategy}}, \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategyConfiguration}}
 #'
 #' @keywords cluster manip
 #'
@@ -92,7 +115,6 @@ DependencyBasedStrategy <- R6::R6Class(
     #'
     #' @param verbose A logical value to specify if more verbosity is needed.
     #' @param ... Further arguments passed down to \code{execute} function.
-    #'
     #'
     execute = function(verbose = TRUE, ...) {
 
@@ -221,7 +243,6 @@ DependencyBasedStrategy <- R6::R6Class(
     #'
     #' @return A \link{list} with the features comprising an specific clustering distribution.
     #'
-    #'
      getDistribution = function(num.clusters = NULL, num.groups = NULL,
                                include.unclustered = FALSE) {
       distribution <- list()
@@ -300,6 +321,8 @@ DependencyBasedStrategy <- R6::R6Class(
       return(distribution)
     },
     #'
+    #' @description The function is used to create a \link{Trainset} object from a specific clustering distribution.
+    #'
     #' @param subset The \link{Subset} object used as a basis to create the train set (see \link{Trainset} class).
     #' @param num.clusters A \link{numeric} value to select the number of clusters (define the distribution).
     #' @param num.groups A single or \link{numeric} vector value to identify a specific group that
@@ -307,8 +330,6 @@ DependencyBasedStrategy <- R6::R6Class(
     #' @param include.unclustered A logical value to determine if unclustered features should be included.
     #'
     #' @details If num.clusters and num.groups are not defined, best clustering distribution is used to create the train set.
-    #'
-    #' @description The function is used to create a \link{Trainset} object from a specific clustering distribution.
     #'
     createTrain = function(subset, num.clusters = NULL, num.groups = NULL,
                            include.unclustered = FALSE) {
@@ -339,7 +360,7 @@ DependencyBasedStrategy <- R6::R6Class(
     #' @description The function is responsible for creating a plot to visualize the clustering distribution.
     #'
     #' @param dir.path An optional argument to define the name of the directory where the exported plot will be saved.
-    #' If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.
+    #' If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.
     #' @param file.name A character to define the name of the PDF file where the plot is exported.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'

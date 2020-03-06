@@ -214,7 +214,7 @@ SimpleStrategy <- R6::R6Class(
     #' @description The function is responsible for creating a plot to visualize the clustering distribution.
     #'
     #' @param dir.path An optional argument to define the name of the directory where the exported plot will be saved.
-    #' If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.
+    #' If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.
     #' @param file.name A character to define the name of the PDF file where the plot is exported.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'

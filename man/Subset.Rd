@@ -129,7 +129,7 @@ areates the \link{DIterator} object.
 \item{\code{chunk.size}}{chunk.size an integer value indicating the size of chunks taken
 over each iteration. By default chunk.size is defied as 10000.}
 
-\item{\code{verbose}}{a logical value to specify if more verbosity is needed.}
+\item{\code{verbose}}{a \link{logical} value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
 }

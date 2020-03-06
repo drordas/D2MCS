@@ -60,10 +60,10 @@ Test for association between paired samples using Pearsons test.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{a numeric vector or matrix required to perform the
+\item{\code{col1}}{a \link{numeric} vector or matrix required to perform the
 clustering operation.}
 
-\item{\code{col2}}{a numeric vector or matrix to perform the clustering operation.}
+\item{\code{col2}}{a \link{numeric} vector or matrix to perform the clustering operation.}
 
 \item{\code{column.names}}{an optional \link{character} vector with the names of
 both columns.}

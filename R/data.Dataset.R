@@ -1,4 +1,4 @@
-#' @title Simple Dataset handler
+#' @title Simple Dataset handler.
 #'
 #' @description Creates a valid simple dataset object.
 #'
@@ -24,15 +24,15 @@ Dataset <- R6::R6Class(
     #'
     #' @param filepath filepath the name of the file which the data are to be read from.
     #' Each row of the table appears as one line of the file.
-    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, ‘getwd()’.
-    #' @param header a logical value indicating whether the file contains the names of the variables as its first line.
-    #' If missing, the value is determined from the file format: ‘header’ is set to ‘TRUE’ if and only if the
+    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, 'getwd()'.
+    #' @param header a \link{logical} value indicating whether the file contains the names of the variables as its first line.
+    #' If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
     #' first row contains one fewer field than the number of columns.
     #' @param sep the field separator character. Values on each line of the file are separated by this character.
     #' @param skip defines the number of header lines should be skipped.
-    #' @param normalize.names a logical value indicating whether the columns names should be automatically renamed
+    #' @param normalize.names a \link{logical} value indicating whether the columns names should be automatically renamed
     #' to ensure R compatibility.
-    #' @param string.as.factor a logical value indicating if character columns should be converted to factors (default = FALSE).
+    #' @param string.as.factor a \link{logical} value indicating if character columns should be converted to factors (default = FALSE).
     #' @param ignore.columns specify the columns from the input file that should be ignored.
     #'
     #' @return a \link{Dataset} object.
@@ -90,7 +90,7 @@ Dataset <- R6::R6Class(
     #'
     #' @description get the name of the columns comprising the dataset.
     #'
-    #' @return a character vector with the name of each column.
+    #' @return a \link{character} vector with the name of each column.
     #'
     getColumnNames = function() { names(private$corpus) },
     #'
@@ -121,8 +121,8 @@ Dataset <- R6::R6Class(
     #' @description removes \link{data.frame} columns matchimg some criterion.
     #'
     #' @param remove.funcs a vector of functions use to define which columns must be removed.
-    #' @param remove.na a logical value indicating whether \link{NA} values should be removed.
-    #' @param remove.const a logical value used to indicate if constant values should be removed.
+    #' @param remove.na a \link{logical} value indicating whether \link{NA} values should be removed.
+    #' @param remove.const a \link{logical} value used to indicate if constant values should be removed.
     #'
     cleanData = function(remove.funcs = NULL, remove.na = TRUE,
                          remove.const = FALSE) {
@@ -172,10 +172,10 @@ Dataset <- R6::R6Class(
     #'
     #' @description applies \code{cleanData} function over an specific set of columns.
     #'
-    #' @param columns set of columns (numeric or character) where removal operation should be applied.
+    #' @param columns set of columns (\link{numeric} or \link{character}) where removal operation should be applied.
     #' @param remove.funcs a vector of functions use to define which columns must be removed.
-    #' @param remove.na a logical value indicating whether \code{\link{NA}} values should be removed.
-    #' @param remove.const a logical value used to indicate if constant values should be removed.
+    #' @param remove.na a \link{logical} value indicating whether \code{\link{NA}} values should be removed.
+    #' @param remove.const a \link{logical} value used to indicate if constant values should be removed.
     #'
     #' @importFrom dplyr between
     #'
@@ -214,9 +214,9 @@ Dataset <- R6::R6Class(
     #'
     #' @description creates a k-folds partition from the initial dataset.
     #'
-    #' @param num.folds an integer for the number of folds (partitions)
-    #' @param percent.folds an integer vector with the percentaje of instances containing each fold.
-    #' @param class.balance a logical value indicating if class balance should be kept.
+    #' @param num.folds an \link{numeric} for the number of folds (partitions)
+    #' @param percent.folds an \link{numeric} vector with the percentaje of instances containing each fold.
+    #' @param class.balance a \link{logical} value indicating if class balance should be kept.
     #'
     #' @importFrom caret createFolds
     #'
@@ -384,8 +384,8 @@ Dataset <- R6::R6Class(
     #' @description create a \link{Subset} for testing or classification purposes. A target class should be provided for
     #' testing purposes.
     #'
-    #' @param num.folds an integer defining the number of folds that should we used to build the \link{Subset}.
-    #' @param column.id an integer or character indicating the column (number or name respectively) identifier. Default \link{NULL} value
+    #' @param num.folds an \link{numeric} defining the number of folds that should we used to build the \link{Subset}.
+    #' @param column.id an \link{numeric} or \link{character} indicating the column (number or name respectively) identifier. Default \link{NULL} value
     #' is valid ignores defining a identification column.
     #' @param opts a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
     #' remove.const (ignore columns with constant values).
@@ -510,7 +510,7 @@ Dataset <- R6::R6Class(
     #' @param class.index a \link{numeric} value identifying the column representing
     #' the target class
     #' @param positive.class defines the positive class value.
-    #' @param num.folds an integer defining the number of folds that should we used to build the \link{Subset}.
+    #' @param num.folds an \link{numeric} defining the number of folds that should we used to build the \link{Subset}.
     #' @param opts a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
     #' remove.const (ignore columns with constant values).
     #'

@@ -3,7 +3,7 @@
 \docType{class}
 \name{ClassificationOutput}
 \alias{ClassificationOutput}
-\title{DDMCS Classification Output}
+\title{DDMCS Classification Output.}
 \description{
 Allows computing the classification performance values achieved by DDMCS.
 The class is automatically created when \code{\link{DDMCS}} classification method is invoked.

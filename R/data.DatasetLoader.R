@@ -41,15 +41,15 @@ DatasetLoader <- R6::R6Class(
     #'
     #' @param filepath the name of the file which the data are to be read from.
     #' Each row of the table appears as one line of the file.
-    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, ‘getwd()’.
-    #' @param header a logical value indicating whether the file contains the names of the variables as its first line.
-    #' If missing, the value is determined from the file format: ‘header’ is set to ‘TRUE’ if and only if the
+    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, 'getwd()'.
+    #' @param header a \link{logical} value indicating whether the file contains the names of the variables as its first line.
+    #' If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
     #' first row contains one fewer field than the number of columns.
     #' @param sep the field separator character. Values on each line of the file are separated by this character.
     #' @param skip.lines defines the number of header lines should be skipped.
-    #' @param normalize.names a logical value indicating whether the columns names should be automatically renamed
+    #' @param normalize.names a \link{logical} value indicating whether the columns names should be automatically renamed
     #' to ensure R compatibility.
-    #' @param string.as.factor a logical value indicating if character columns should be converted to factors (default = FALSE).
+    #' @param string.as.factor a \link{logical} value indicating if character columns should be converted to factors (default = FALSE).
     #' @param ignore.columns specify the columns from the input file that should be ignored.
     #'
     #' @return \code{\link{Dataset}}, \code{\link{HDDataset}} object.

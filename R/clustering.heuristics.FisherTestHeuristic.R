@@ -28,9 +28,9 @@ FisherTestHeuristic <- R6::R6Class(
     #' @description Performs the Fisher's exact test for testing the null of independence
     #' between two columns (col1 and col2).
     #'
-    #' @param col1 a numeric vector or matrix required to perform the
+    #' @param col1 a \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
     #' @param column.names an optional \link{character} vector with the names of
     #' both columns.
     #'

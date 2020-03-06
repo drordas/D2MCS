@@ -189,7 +189,7 @@ The function is responsible for creating a plot to visualize the clustering dist
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{dir.path}}{An optional argument to define the name of the directory where the exported plot will be saved.
-If not defined, the file path will be automatically assigned to the current working directory, ‘getwd()’.}
+If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.}
 
 \item{\code{file.name}}{A character to define the name of the PDF file where the plot is exported.}
 

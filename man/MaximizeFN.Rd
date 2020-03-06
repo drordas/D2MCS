@@ -3,12 +3,11 @@
 \docType{class}
 \name{MaximizeFN}
 \alias{MaximizeFN}
-\title{<<miguel>>}
+\title{Combined metric strategy to maximize FN errors.}
 \description{
-MaximizeFN
-}
-\details{
-<<details>
+Calculates if the positive class is the predicted one in any of
+the metrics, otherwise, the instance is not considered to have the positive
+class associated.
 }
 \seealso{
 \code{\link{CombinedMetrics}}
@@ -36,7 +35,7 @@ MaximizeFN
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MaximizeFN$new(required.metrics = c("MCC", "PPV"))}\if{html}{\out{</div>}}
 }
@@ -44,7 +43,8 @@ MaximizeFN
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{required.metrics}}{<<description>>}
+\item{\code{required.metrics}}{A \code{\link{character}} vector of length 1
+with the name of the required metrics.}
 }
 \if{html}{\out{</div>}}
 }
@@ -52,7 +52,8 @@ MaximizeFN
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPrediction"></a>}}
 \subsection{Method \code{getFinalPrediction()}}{
-<<description>>
+Function to obtain the final prediction based on different
+metrics.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MaximizeFN$getFinalPrediction(
   raw.pred,
@@ -65,18 +66,23 @@ MaximizeFN
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{raw.pred}}{<<description>>}
+\item{\code{raw.pred}}{A \code{\link{character}} list of length greater than 2
+with the class value of the predictions made by the metrics.}
 
-\item{\code{prob.pred}}{<<description>>}
+\item{\code{prob.pred}}{A \code{\link{numeric}} list of length greater than 2
+with the probability of the predictions made by the metrics.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{A \code{\link{character}} with the value of the
+positive class.}
 
-\item{\code{negative.class}}{<<description>>}
+\item{\code{negative.class}}{A \code{\link{character}} with the value of the
+negative class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \link{logical} value indicating if the instance is predicted
+as positive class or not.
 }
 }
 \if{html}{\out{<hr>}}

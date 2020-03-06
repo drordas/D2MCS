@@ -28,9 +28,9 @@ GainRatioHeuristic <- R6::R6Class(
     #' @description The algorithms find weights of discrete attributes basing on their
     #' correlation with continous class attribute.
     #'
-    #' @param col1 a numeric vector or matrix required to perform the
+    #' @param col1 a \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a numeric vector or matrix to perform the clustering operation.
+    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
     #' @param column.names an optional \link{character} vector with the names of
     #' both columns.
     #'
