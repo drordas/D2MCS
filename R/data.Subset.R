@@ -90,7 +90,7 @@ Subset <- R6::R6Class(
     #'
     #' @return a \link{character} vector containing the name of each column.
     #'
-    getFeatureNames = function() { private$feature.names },
+    getColumnNames = function() { private$feature.names },
     #'
     #' @description get the values of a specific feature.
     #'

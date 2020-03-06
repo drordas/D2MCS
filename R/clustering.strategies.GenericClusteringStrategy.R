@@ -5,7 +5,7 @@
 #'
 #' @docType class
 #'
-#' @details The \link{ClusteringStrategy} is an archetype class so it cannot be instantiated.
+#' @details The \link{GenericClusteringStrategy} is an archetype class so it cannot be instantiated.
 #'
 #' @seealso \code{\link{Subset}}, \code{\link{GenericHeuristic}}
 #'
@@ -13,13 +13,13 @@
 #'
 #' @import R6
 #'
-#' @export ClusteringStrategy
+#' @export GenericClusteringStrategy
 
-ClusteringStrategy <- R6::R6Class(
-  classname = "ClusteringStrategy",
+GenericClusteringStrategy <- R6::R6Class(
+  classname = "GenericClusteringStrategy",
   public = list(
     #'
-    #' @description A function responsible for creating a \link{ClusteringStrategy} object.
+    #' @description A function responsible for creating a \link{GenericClusteringStrategy} object.
     #'
     #' @param subset a \link{Subset} object to perform the clustering strategy.
     #' @param heuristic the heuristic to be applied. Must inherite from \link{GenericHeuristic} class.
@@ -70,7 +70,7 @@ ClusteringStrategy <- R6::R6Class(
     #'
     #' @description the function returns the heuristic applied for the clustering strategy.
     #'
-    #' @return an object inherited from \link{ClusteringStrategy} class.
+    #' @return an object inherited from \link{GenericClusteringStrategy} class.
     #'
     getHeuristic = function() { private$heuristic },
     #'

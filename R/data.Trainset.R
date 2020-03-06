@@ -9,7 +9,7 @@
 #'
 #' @details Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset}} object.
 #'
-#' @seealso \link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{ClusteringStrategy}
+#' @seealso \link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{GenericClusteringStrategy}
 #'
 #' @keywords datasets manip attribute programming utilities
 #'
@@ -26,7 +26,7 @@ Trainset <- R6::R6Class(
     #' @description Creates a \link{Trainset} object.
     #'
     #' @param cluster.dist the type of cluster distribution used as basis
-    #' to build the \link{Trainset}. See \link{ClusteringStrategy} for more information.
+    #' to build the \link{Trainset}. See \link{GenericClusteringStrategy} for more information.
     #' @param class.name used to specify the name of the column containing the target class.
     #' @param class.values specifies all the posible values of the target class.
     #' @param positive.class a \code{\link{character}} with the value of the positive class.
@@ -82,7 +82,7 @@ Trainset <- R6::R6Class(
     #'
     #' @return a \link{character} vector with all column names.
     #'
-    getFeatureNames = function(num.cluster) {
+    getColumnNames = function(num.cluster) {
       if (any(!is.numeric(num.cluster),
                 !num.cluster %in% c(1:length(private$clusters)))) {
         stop("[", class(self)[1], "][FATAL] Position not defined or incorrect. ",

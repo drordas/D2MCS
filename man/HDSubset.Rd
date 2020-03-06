@@ -23,7 +23,7 @@ Use \link{HDDataset} to ensure the creation of a valid \code{\link{HDSubset}} ob
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{HDSubset$new()}}
-\item \href{#method-getFeatureNames}{\code{HDSubset$getFeatureNames()}}
+\item \href{#method-getColumnNames}{\code{HDSubset$getColumnNames()}}
 \item \href{#method-getNcol}{\code{HDSubset$getNcol()}}
 \item \href{#method-getID}{\code{HDSubset$getID()}}
 \item \href{#method-getIterator}{\code{HDSubset$getIterator()}}
@@ -77,11 +77,11 @@ a \link{HDSubset} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFeatureNames"></a>}}
-\subsection{Method \code{getFeatureNames()}}{
+\if{html}{\out{<a id="method-getColumnNames"></a>}}
+\subsection{Method \code{getColumnNames()}}{
 get the name of the columns comprising the subset.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{HDSubset$getFeatureNames()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{HDSubset$getColumnNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

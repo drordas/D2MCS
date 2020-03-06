@@ -1,4 +1,4 @@
-#' @title Combined metric strategy to maximize FN errors.
+#' @title Combined metric strategy to minimize FN errors.
 #'
 #' @description Calculates if the positive class is the predicted one in any of
 #' the metrics, otherwise, the instance is not considered to have the positive
@@ -12,10 +12,10 @@
 #'
 #' @import R6
 #'
-#' @export MaximizeFN
+#' @export MinimizeFN
 
-MaximizeFN <- R6::R6Class(
-  classname = "MaximizeFN",
+MinimizeFN <- R6::R6Class(
+  classname = "MinimizeFN",
   portable = TRUE,
   inherit = CombinedMetrics,
   public = list(

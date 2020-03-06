@@ -12,7 +12,7 @@ A target class should be defined to guarantee a full compatibility with supervis
 Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset}} object.
 }
 \seealso{
-\link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{ClusteringStrategy}
+\link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{GenericClusteringStrategy}
 }
 \keyword{attribute}
 \keyword{datasets}
@@ -26,7 +26,7 @@ Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset
 \item \href{#method-getPositiveClass}{\code{Trainset$getPositiveClass()}}
 \item \href{#method-getClassName}{\code{Trainset$getClassName()}}
 \item \href{#method-getClassValues}{\code{Trainset$getClassValues()}}
-\item \href{#method-getFeatureNames}{\code{Trainset$getFeatureNames()}}
+\item \href{#method-getColumnNames}{\code{Trainset$getColumnNames()}}
 \item \href{#method-getFeatureValues}{\code{Trainset$getFeatureValues()}}
 \item \href{#method-getInstances}{\code{Trainset$getInstances()}}
 \item \href{#method-getNumClusters}{\code{Trainset$getNumClusters()}}
@@ -44,7 +44,7 @@ Creates a \link{Trainset} object.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{cluster.dist}}{the type of cluster distribution used as basis
-to build the \link{Trainset}. See \link{ClusteringStrategy} for more information.}
+to build the \link{Trainset}. See \link{GenericClusteringStrategy} for more information.}
 
 \item{\code{class.name}}{used to specify the name of the column containing the target class.}
 
@@ -95,12 +95,12 @@ a \link{factor} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFeatureNames"></a>}}
-\subsection{Method \code{getFeatureNames()}}{
+\if{html}{\out{<a id="method-getColumnNames"></a>}}
+\subsection{Method \code{getColumnNames()}}{
 the function returns the name of the columns comprising
 an specific cluster distribution.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Trainset$getFeatureNames(num.cluster)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Trainset$getColumnNames(num.cluster)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

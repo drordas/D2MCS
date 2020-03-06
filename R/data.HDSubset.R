@@ -70,7 +70,7 @@ HDSubset <- R6::R6Class(
     #'
     #' @return a \link{character} vector containing the name of each column.
     #'
-    getFeatureNames = function() { private$feature.names },
+    getColumnNames = function() { private$feature.names },
     #'
     #' @description obtains the number of columns present in the Dataset.
     #'
@@ -108,7 +108,7 @@ HDSubset <- R6::R6Class(
       it.params <- list(file.path = private$file.path,
                         feature.names = private$feature.names,
                         start = private$start.at, sep = private$sep,
-                        col.names = self$getFeatureNames())
+                        col.names = self$getColumnNames())
       FIterator$new(it.params, chunk.size, verbose = verbose)
     },
     #'

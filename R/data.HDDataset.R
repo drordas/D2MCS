@@ -91,7 +91,7 @@ HDDataset <- R6::R6Class(
     #'
     #' @return a character vector with the name of each column.
     #'
-    getFeatureNames = function() { names(private$corpus) },
+    getColumnNames = function() { names(private$corpus) },
     #'
     #' @description obtains the number of columns present in the Dataset.
     #'

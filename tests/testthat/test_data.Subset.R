@@ -67,7 +67,7 @@ testthat::test_that("Subset: initialize function checks parameter type", {
                          fixed = TRUE)
 })
 
-testthat::test_that("Subset: getFeatureNames function works", {
+testthat::test_that("Subset: getColumnNames function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
 
@@ -83,7 +83,7 @@ testthat::test_that("Subset: getFeatureNames function works", {
                        class.values = factor(corpus[[50]]),
                        positive.class = 1)
 
-  testthat::expect_equal(subset$getFeatureNames(), names(corpus[, -50]))
+  testthat::expect_equal(subset$getColumnNames(), names(corpus[, -50]))
 })
 
 testthat::test_that("Subset: getFeatures function works", {

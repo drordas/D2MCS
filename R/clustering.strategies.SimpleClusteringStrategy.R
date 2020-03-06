@@ -11,17 +11,17 @@
 #' @details The strategy is suitable only for binary features. Non-binary features are automatically grouped into a
 #' specific cluster named as 'unclustered'.
 #'
-#' @seealso \code{\link{ClusteringStrategy}}, \code{\link{StrategyConfiguration}}
+#' @seealso \code{\link{GenericClusteringStrategy}}, \code{\link{StrategyConfiguration}}
 #'
 #' @keywords cluster manip
 #'
 #' @import R6
 #'
-#' @export SimpleStrategy
+#' @export SimpleGenericClusteringStrategy
 
-SimpleStrategy <- R6::R6Class(
-  classname = "SimpleStrategy",
-  inherit = ClusteringStrategy,
+SimpleGenericClusteringStrategy <- R6::R6Class(
+  classname = "SimpleGenericClusteringStrategy",
+  inherit = GenericClusteringStrategy,
   portable = TRUE,
   public = list(
     #'

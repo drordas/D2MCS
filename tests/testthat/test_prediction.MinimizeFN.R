@@ -1,19 +1,19 @@
-testthat::test_that("MaximizeFN: initialize", {
+testthat::test_that("MinimizeFN: initialize", {
 
-  testthat::expect_is(MaximizeFN$new(required.metrics = c("MCC", "PPV")),
-                      "MaximizeFN")
+  testthat::expect_is(MinimizeFN$new(required.metrics = c("MCC", "PPV")),
+                      "MinimizeFN")
 })
 
-testthat::test_that("MaximizeFN: initialize checks parameter type", {
+testthat::test_that("MinimizeFN: initialize checks parameter type", {
 
-  testthat::expect_error(MaximizeFN$new(required.metrics = NULL),
-                         "[MaximizeFN][FATAL] Invalid values of required.metrics. Aborting...",
+  testthat::expect_error(MinimizeFN$new(required.metrics = NULL),
+                         "[MinimizeFN][FATAL] Invalid values of required.metrics. Aborting...",
                          fixed = TRUE)
 })
 
-testthat::test_that("MaximizeFN: getFinalPrediction function works", {
+testthat::test_that("MinimizeFN: getFinalPrediction function works", {
 
-  maxFN <- MaximizeFN$new(required.metrics = c("MCC", "PPV"))
+  maxFN <- MinimizeFN$new(required.metrics = c("MCC", "PPV"))
 
   raw.pred <- list("Positive", "Negative")
   names(raw.pred) <- c("MCC", "PPV")
@@ -36,9 +36,9 @@ testthat::test_that("MaximizeFN: getFinalPrediction function works", {
                                                   negative.class = negative.class))
 })
 
-testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter type", {
+testthat::test_that("MinimizeFN: getFinalPrediction function checks parameter type", {
 
-  maxFN <- MaximizeFN$new(required.metrics = c("MCC", "PPV"))
+  maxFN <- MinimizeFN$new(required.metrics = c("MCC", "PPV"))
 
   raw.pred <- NULL
   prob.pred <- list(0.6, 0.5)
@@ -50,7 +50,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Raw.pred parameter must be defined as 'list' type. Aborting...",
+                         "[MinimizeFN][FATAL] Raw.pred parameter must be defined as 'list' type. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -64,7 +64,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Raw.pred parameter must have required metrics. MCC PPV. Aborting...",
+                         "[MinimizeFN][FATAL] Raw.pred parameter must have required metrics. MCC PPV. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -77,7 +77,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Prob.pred parameter must be defined as 'list' type. Aborting...",
+                         "[MinimizeFN][FATAL] Prob.pred parameter must be defined as 'list' type. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -91,7 +91,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Prob.pred parameter must have required metrics. MCC PPV. Aborting...",
+                         "[MinimizeFN][FATAL] Prob.pred parameter must have required metrics. MCC PPV. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -105,7 +105,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Positive class parameter must be defined. Aborting...",
+                         "[MinimizeFN][FATAL] Positive class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -119,7 +119,7 @@ testthat::test_that("MaximizeFN: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MaximizeFN][FATAL] Negative class parameter must be defined. Aborting...",
+                         "[MinimizeFN][FATAL] Negative class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
 })

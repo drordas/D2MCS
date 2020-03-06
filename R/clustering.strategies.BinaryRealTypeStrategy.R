@@ -11,7 +11,7 @@
 #'
 #' @format NULL
 #'
-#' @seealso \code{\link{ClusteringStrategy}}, \code{\link{StrategyConfiguration}}
+#' @seealso \code{\link{GenericClusteringStrategy}}, \code{\link{StrategyConfiguration}}
 #'
 #' @keywords cluster manip
 #'
@@ -21,7 +21,7 @@
 
 BinaryRealTypeStrategy <- R6::R6Class(
   classname = "BinaryRealTypeStrategy",
-  inherit = ClusteringStrategy,
+  inherit = GenericClusteringStrategy,
   portable = TRUE,
   public = list(
     #'

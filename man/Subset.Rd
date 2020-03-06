@@ -23,7 +23,7 @@ Use \link{Dataset} to ensure the creation of a valid \code{\link{Subset}} object
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Subset$new()}}
-\item \href{#method-getFeatureNames}{\code{Subset$getFeatureNames()}}
+\item \href{#method-getColumnNames}{\code{Subset$getColumnNames()}}
 \item \href{#method-getFeatures}{\code{Subset$getFeatures()}}
 \item \href{#method-getID}{\code{Subset$getID()}}
 \item \href{#method-getIterator}{\code{Subset$getIterator()}}
@@ -72,11 +72,11 @@ the target class}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFeatureNames"></a>}}
-\subsection{Method \code{getFeatureNames()}}{
+\if{html}{\out{<a id="method-getColumnNames"></a>}}
+\subsection{Method \code{getColumnNames()}}{
 get the name of the columns comprising the subset.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Subset$getFeatureNames()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Subset$getColumnNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

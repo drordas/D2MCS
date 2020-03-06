@@ -1,20 +1,20 @@
-testthat::test_that("SimpleStrategy: initialize", {
+testthat::test_that("SimpleGenericClusteringStrategy: initialize", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   heuristic <- ChiSquareHeuristic$new()
   configuration <- StrategyConfiguration$new()
 
-  testthat::expect_is(SimpleStrategy$new(subset.cluster, heuristic, configuration),
-                      "SimpleStrategy")
+  testthat::expect_is(SimpleGenericClusteringStrategy$new(subset.cluster, heuristic, configuration),
+                      "SimpleGenericClusteringStrategy")
 })
 
-testthat::test_that("SimpleStrategy works", {
+testthat::test_that("SimpleGenericClusteringStrategy works", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   heuristic <- ChiSquareHeuristic$new()
   configuration <- StrategyConfiguration$new()
 
-  strategy <- SimpleStrategy$new(subset.cluster, heuristic, configuration)
+  strategy <- SimpleGenericClusteringStrategy$new(subset.cluster, heuristic, configuration)
 
   capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
 
@@ -23,17 +23,17 @@ testthat::test_that("SimpleStrategy works", {
   heuristic <- MCCHeuristic$new()
   configuration <- StrategyConfiguration$new()
 
-  strategy <- SimpleStrategy$new(subset.cluster, heuristic, configuration)
+  strategy <- SimpleGenericClusteringStrategy$new(subset.cluster, heuristic, configuration)
 
   testthat::expect_error(strategy$getDistribution(),
-                         "[SimpleStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[SimpleGenericClusteringStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
-                         "[SimpleStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[SimpleGenericClusteringStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
   testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
-                         "[SimpleStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[SimpleGenericClusteringStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
@@ -50,7 +50,7 @@ testthat::test_that("SimpleStrategy works", {
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
   testthat::expect_error(strategy$createTrain(subset = NULL),
-                         "[SimpleStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                         "[SimpleGenericClusteringStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_equal(c("gg", "ggplot"), class(strategy$plot()))
@@ -59,38 +59,38 @@ testthat::test_that("SimpleStrategy works", {
     file.remove("Rplots.pdf")
   }
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "simpleStrategyPlot"),
-                           "[SimpleStrategy][INFO] Plot has been succesfully saved at",
+  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "SimpleGenericClusteringStrategyPlot"),
+                           "[SimpleGenericClusteringStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
   unlink(file.path("resourceFiles", "outputs", "plots"), recursive = TRUE, force = TRUE)
 
   testthat::expect_error(strategy$saveCSV(dir.path = NULL),
-                         "[SimpleStrategy][FATAL] Path not defined. Aborting...",
+                         "[SimpleGenericClusteringStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
-                           "[SimpleStrategy][WARNING] File name not defined. Using 'MCCHeuristic.csv'",
+                           "[SimpleGenericClusteringStrategy][WARNING] File name not defined. Using 'MCCHeuristic.csv'",
                            fixed = TRUE)
 
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
-                           "[SimpleStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
+                           "[SimpleGenericClusteringStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
                                             num.clusters = 2),
-                           "[SimpleStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
+                           "[SimpleGenericClusteringStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
                                             num.clusters = list(2:60)),
-                           "[SimpleStrategy][WARNING] Number of clusters exceeds maximum number of clusters. Saving all cluster configurations",
+                           "[SimpleGenericClusteringStrategy][WARNING] Number of clusters exceeds maximum number of clusters. Saving all cluster configurations",
                            fixed = TRUE,
                            all = FALSE)
 
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
                                             num.clusters = list(0:3)),
-                           "[SimpleStrategy][WARNING] Number of clusters exceeds the range of minimum and maximum number of clusters. Saving all cluster configurations",
+                           "[SimpleGenericClusteringStrategy][WARNING] Number of clusters exceeds the range of minimum and maximum number of clusters. Saving all cluster configurations",
                            fixed = TRUE,
                            all = FALSE)
 

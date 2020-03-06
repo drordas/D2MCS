@@ -23,7 +23,7 @@ unnecesary of resources and memmory
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{HDDataset$new()}}
-\item \href{#method-getFeatureNames}{\code{HDDataset$getFeatureNames()}}
+\item \href{#method-getColumnNames}{\code{HDDataset$getColumnNames()}}
 \item \href{#method-getNcol}{\code{HDDataset$getNcol()}}
 \item \href{#method-createSubset}{\code{HDDataset$createSubset()}}
 }
@@ -71,11 +71,11 @@ a \link{HDDataset} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFeatureNames"></a>}}
-\subsection{Method \code{getFeatureNames()}}{
+\if{html}{\out{<a id="method-getColumnNames"></a>}}
+\subsection{Method \code{getColumnNames()}}{
 get the name of the columns comprising the dataset
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{HDDataset$getFeatureNames()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{HDDataset$getColumnNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

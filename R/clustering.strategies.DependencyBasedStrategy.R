@@ -31,7 +31,7 @@
 #'
 #' An example of implementation with the description of each parameter is the \code{\link{DependencyBasedStrategyConfiguration}} class.
 #'
-#' @seealso \code{\link{ClusteringStrategy}}, \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategyConfiguration}}
+#' @seealso \code{\link{GenericClusteringStrategy}}, \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategyConfiguration}}
 #'
 #' @keywords cluster manip
 #'
@@ -41,7 +41,7 @@
 
 DependencyBasedStrategy <- R6::R6Class(
   classname = "DependencyBasedStrategy",
-  inherit = ClusteringStrategy,
+  inherit = GenericClusteringStrategy,
   portable = TRUE,
   public = list(
     #'

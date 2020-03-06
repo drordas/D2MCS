@@ -106,7 +106,7 @@ testthat::test_that("Trainset: getClassValues function works", {
   testthat::expect_equal(trainset$getClassValues(), factor(corpus[[50]]))
 })
 
-testthat::test_that("Trainset: getFeatureNames function works", {
+testthat::test_that("Trainset: getColumnNames function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
 
@@ -122,10 +122,10 @@ testthat::test_that("Trainset: getFeatureNames function works", {
                            class.values = factor(corpus[[50]]),
                            positive.class = 1)
 
-  testthat::expect_equal(trainset$getFeatureNames(1), names(corpus)[1:49])
+  testthat::expect_equal(trainset$getColumnNames(1), names(corpus)[1:49])
 })
 
-testthat::test_that("Trainset: getFeatureNames function checks parameter type", {
+testthat::test_that("Trainset: getColumnNames function checks parameter type", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
 
@@ -141,7 +141,7 @@ testthat::test_that("Trainset: getFeatureNames function checks parameter type", 
                            class.values = factor(corpus[[50]]),
                            positive.class = 1)
 
-  testthat::expect_error(trainset$getFeatureNames(-50),
+  testthat::expect_error(trainset$getColumnNames(-50),
                          "[Trainset][FATAL] Position not defined or incorrect. Must be included between 1 and 1. Aborting...",
                          fixed = TRUE)
 })

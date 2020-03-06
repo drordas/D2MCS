@@ -34,12 +34,12 @@ This class requires the \code{\link{StrategyConfiguration}} type object implemen
 An example of implementation with the description of each parameter is the \code{\link{DependencyBasedStrategyConfiguration}} class.
 }
 \seealso{
-\code{\link{ClusteringStrategy}}, \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategyConfiguration}}
+\code{\link{GenericClusteringStrategy}}, \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategyConfiguration}}
 }
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:ClusteringStrategy]{DDMCS::ClusteringStrategy}} -> \code{DependencyBasedStrategy}
+\code{\link[DDMCS:GenericClusteringStrategy]{DDMCS::GenericClusteringStrategy}} -> \code{DependencyBasedStrategy}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -56,11 +56,11 @@ An example of implementation with the description of each parameter is the \code
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="ClusteringStrategy" data-id="getBestClusterDistribution">}\href{../../DDMCS/html/ClusteringStrategy.html#method-getBestClusterDistribution}{\code{DDMCS::ClusteringStrategy$getBestClusterDistribution()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="ClusteringStrategy" data-id="getConfiguration">}\href{../../DDMCS/html/ClusteringStrategy.html#method-getConfiguration}{\code{DDMCS::ClusteringStrategy$getConfiguration()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="ClusteringStrategy" data-id="getDescription">}\href{../../DDMCS/html/ClusteringStrategy.html#method-getDescription}{\code{DDMCS::ClusteringStrategy$getDescription()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="ClusteringStrategy" data-id="getHeuristic">}\href{../../DDMCS/html/ClusteringStrategy.html#method-getHeuristic}{\code{DDMCS::ClusteringStrategy$getHeuristic()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="ClusteringStrategy" data-id="getUnclustered">}\href{../../DDMCS/html/ClusteringStrategy.html#method-getUnclustered}{\code{DDMCS::ClusteringStrategy$getUnclustered()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getBestClusterDistribution">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getBestClusterDistribution}{\code{DDMCS::GenericClusteringStrategy$getBestClusterDistribution()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getConfiguration">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getConfiguration}{\code{DDMCS::GenericClusteringStrategy$getConfiguration()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getDescription">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getDescription}{\code{DDMCS::GenericClusteringStrategy$getDescription()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getHeuristic">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getHeuristic}{\code{DDMCS::GenericClusteringStrategy$getHeuristic()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getUnclustered">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getUnclustered}{\code{DDMCS::GenericClusteringStrategy$getUnclustered()}}\out{</span>}
 }
 \out{</details>}
 }
