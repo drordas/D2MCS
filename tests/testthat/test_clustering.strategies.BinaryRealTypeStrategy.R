@@ -67,6 +67,8 @@ testthat::test_that("BinaryRealTypeStrategy: initialize checks parameter type", 
                            all = FALSE)
 })
 
+testthat::setup(dir.create(file.path("resourceFiles", "outputs")))
+
 testthat::test_that("BinaryRealTypeStrategy works", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
@@ -135,8 +137,6 @@ testthat::test_that("BinaryRealTypeStrategy works", {
                            "[BinaryRealTypeStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
-  unlink(file.path("resourceFiles", "outputs", "plots"), recursive = TRUE, force = TRUE)
-
   testthat::expect_error(strategy$saveCSV(dir.path = NULL),
                          "[BinaryRealTypeStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
@@ -161,7 +161,14 @@ testthat::test_that("BinaryRealTypeStrategy works", {
                            "[BinaryRealTypeStrategy][WARNING] Number of clusters incorrect. Must be between 2 and 50. Ignoring clustering for real type features...",
                            fixed = TRUE,
                            all = FALSE)
+})
 
-  file.remove("Rplots.pdf")
-  unlink(file.path("resourceFiles", "outputs", "saveCSV"), recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "outputs"))) {
+    unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
+  }
+
+  if (file.exists("Rplots.pdf")) {
+    file.remove("Rplots.pdf")
+  }
 })

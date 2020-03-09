@@ -19,9 +19,12 @@ testthat::test_that("DDMCS: initialize", {
                                 outfile = outfile,
                                 serialize = TRUE),
                       "DDMCS")
+})
 
-  unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
-
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
+    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("DDMCS: initialize checks parameter type", {
@@ -54,7 +57,6 @@ testthat::test_that("DDMCS: initialize checks parameter type", {
                            paste0("[DDMCS][INFO] Logs path not defined '", outfile, "' does not exist. Creating..."),
                            fixed = TRUE,
                            all = FALSE)
-  file.remove(outfile)
 
   dir.path <- file.path("resourceFiles", "DDMCS")
   num.core <- NULL
@@ -84,8 +86,12 @@ testthat::test_that("DDMCS: initialize checks parameter type", {
                            "[DDMCS][WARNING] Invalid serialization option. Assuming not serialization",
                            fixed = TRUE,
                            all = FALSE)
+})
 
-  unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
+    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("DDMCS: train function works", {
@@ -118,8 +124,12 @@ testthat::test_that("DDMCS: train function works", {
                                                    metrics = metrics,
                                                    saveAllModels = saveAllModels)),
                       "TrainOutput")
+})
 
-  unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
+    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("DDMCS: train function checks parameter types", {
@@ -207,8 +217,12 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                      saveAllModels = saveAllModels),
                          "[DDMCS][FATAL] Invalid values of metrics",
                          fixed = TRUE)
+})
 
-  unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
+    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("DDMCS: getAvailableModels function works", {
@@ -226,6 +240,12 @@ testthat::test_that("DDMCS: getAvailableModels function works", {
 
   testthat::expect_is(ddmcs$getAvailableModels(),
                       "data.frame")
+})
+
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
+    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("DDMCS: classify function works", {
@@ -276,8 +296,12 @@ testthat::test_that("DDMCS: classify function works", {
                            "[DDMCS][WARNING] Positive class value is invalid. Must be [1, 0]. Assuming positive class used during training stage (1)",
                            fixed = TRUE,
                            all = FALSE)
+})
 
-  unlink(file.path("resourceFiles", "DDMCS-classify"), recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "DDMCS-classify"))) {
+    unlink(file.path("resourceFiles", "DDMCS-classify"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("DDMCS: classify function checks type parameter", {
@@ -334,6 +358,10 @@ testthat::test_that("DDMCS: classify function checks type parameter", {
                                         positive.class = positive.class),
                          "[DDMCS][FATAL] Voting Schemes parameter must be defined as 'SingleVoting' or 'CombinedVoting' types. Aborting...",
                          fixed = TRUE)
+})
 
-  unlink(file.path("resourceFiles", "DDMCS-classify"), recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "DDMCS-classify"))) {
+    unlink(file.path("resourceFiles", "DDMCS-classify"), recursive = TRUE, force = TRUE)
+  }
 })

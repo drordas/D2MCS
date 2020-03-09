@@ -149,7 +149,12 @@ testthat::test_that("ClassificationOutput: savePerformances function works", {
                            "[ClassificationOutput][INFO] Folder already exists",
                            fixed = TRUE,
                            all = FALSE)
-  unlink(dir.path, recursive = TRUE, force = TRUE)
+})
+
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("ClassificationOutput: savePerformances function checks parameter type", {
@@ -189,8 +194,12 @@ testthat::test_that("ClassificationOutput: plotPerformances function works", {
                            "[ClassificationOutput][INFO] Folder already exists",
                            fixed = TRUE,
                            all = FALSE)
+})
 
-  unlink(dir.path, recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("ClassificationOutput: plotPerformances function checks parameter type", {
@@ -323,7 +332,6 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                            "[ClassificationOutput][INFO] Folder already exists",
                            fixed = TRUE,
                            all = FALSE)
-  unlink(dir.path, recursive = TRUE, force = TRUE)
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
@@ -335,7 +343,6 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
 
   testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_raw_0.csv")))
 
-  unlink(dir.path, recursive = TRUE, force = TRUE)
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
                                        metric.names = metric.names,
@@ -345,7 +352,6 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        filter = filter)
 
   testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_1.csv")))
-  unlink(dir.path, recursive = TRUE, force = TRUE)
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
@@ -356,7 +362,6 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        filter = filter)
 
   testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_0.csv")))
-  unlink(dir.path, recursive = TRUE, force = TRUE)
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = "ProbAverageWeightedVoting",
@@ -367,7 +372,6 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        filter = filter)
 
   testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_raw_Predictions.csv")))
-  unlink(dir.path, recursive = TRUE, force = TRUE)
 
   testthat::expect_message(classificationOutput$savePredictions(dir.path = dir.path,
                                                                 voting.names = voting.names,
@@ -401,9 +405,12 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                            "[ClassificationOutput][WARNING] Defined votings are not available. Using all votings",
                            fixed = TRUE,
                            all = FALSE)
+})
 
-  unlink(dir.path, recursive = TRUE, force = TRUE)
-
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("ClassificationOutput: savePredictions function checks parameter type", {

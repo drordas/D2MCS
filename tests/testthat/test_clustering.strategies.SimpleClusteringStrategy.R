@@ -8,6 +8,8 @@ testthat::test_that("SimpleGenericClusteringStrategy: initialize", {
                       "SimpleGenericClusteringStrategy")
 })
 
+testthat::setup(dir.create(file.path("resourceFiles", "outputs")))
+
 testthat::test_that("SimpleGenericClusteringStrategy works", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
@@ -55,15 +57,9 @@ testthat::test_that("SimpleGenericClusteringStrategy works", {
 
   testthat::expect_equal(c("gg", "ggplot"), class(strategy$plot()))
 
-  if (file.exists("Rplots.pdf")) {
-    file.remove("Rplots.pdf")
-  }
-
   testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "SimpleGenericClusteringStrategyPlot"),
                            "[SimpleGenericClusteringStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
-
-  unlink(file.path("resourceFiles", "outputs", "plots"), recursive = TRUE, force = TRUE)
 
   testthat::expect_error(strategy$saveCSV(dir.path = NULL),
                          "[SimpleGenericClusteringStrategy][FATAL] Path not defined. Aborting...",
@@ -93,6 +89,14 @@ testthat::test_that("SimpleGenericClusteringStrategy works", {
                            "[SimpleGenericClusteringStrategy][WARNING] Number of clusters exceeds the range of minimum and maximum number of clusters. Saving all cluster configurations",
                            fixed = TRUE,
                            all = FALSE)
+})
 
-  unlink(file.path("resourceFiles", "outputs", "saveCSV"), recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "outputs"))) {
+    unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
+  }
+
+  if (file.exists("Rplots.pdf")) {
+    file.remove("Rplots.pdf")
+  }
 })

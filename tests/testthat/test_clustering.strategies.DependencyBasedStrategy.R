@@ -181,6 +181,8 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
                          fixed = TRUE)
 })
 
+testthat::setup(dir.create(file.path("resourceFiles", "outputs")))
+
 testthat::test_that("DependencyBasedStrategy works", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
@@ -226,8 +228,6 @@ testthat::test_that("DependencyBasedStrategy works", {
                            "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
-  unlink(file.path("resourceFiles", "outputs", "plots"), recursive = TRUE, force = TRUE)
-
   testthat::expect_error(strategy$saveCSV(dir.path = NULL),
                          "[DependencyBasedStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
@@ -252,7 +252,10 @@ testthat::test_that("DependencyBasedStrategy works", {
                            paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
                            fixed = TRUE,
                            all = FALSE)
+})
 
-  unlink(file.path("resourceFiles", "outputs", "saveCSV"), recursive = TRUE, force = TRUE)
-
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "outputs"))) {
+    unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
+  }
 })

@@ -71,8 +71,12 @@ testthat::test_that("TrainOutput: savePerformance function works", {
   testthat::expect_message(trainOutput$savePerformance(dir.path = dir.path),
                            "[TrainOutput][INFO] Folder already exists",
                            fixed = TRUE)
+})
 
-  unlink(dir.path, recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
+    unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("TrainOutput: savePerformance function checks parameter type", {
@@ -101,8 +105,12 @@ testthat::test_that("TrainOutput: plot function works", {
   testthat::expect_message(trainOutput$plot(dir.path = dir.path),
                            "[TrainOutput][INFO] Folder already exists",
                            fixed = TRUE)
+})
 
-  unlink(dir.path, recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
+    unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("TrainOutput: plot function checks parameter type", {
