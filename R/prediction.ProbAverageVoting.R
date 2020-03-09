@@ -2,8 +2,6 @@
 #'
 #' @description Computes the final prediction by perfoming the mean value of the probability achieved by each prediction.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
 #' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'

@@ -3,10 +3,6 @@
 #' @description This class manages the results achieved during training stage (such as optimized hyperparameters,
 #' model information, utilized metrics).
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{DDMCS}}
 #'
 #' @keywords datasets manip attribute programming utilities

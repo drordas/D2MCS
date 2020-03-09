@@ -3,10 +3,6 @@
 #' @description Performs the feature-clustering using MCC score.
 #' Valid for both bi-class and multi-class problems. Only valid for bi-class problems.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{Dataset}}, \code{\link[infotheo]{mutinformation}}
 #'
 #' @keywords cluster manip

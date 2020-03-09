@@ -2,10 +2,6 @@
 #'
 #' @description Abstract class used as a template to define new M.L. performance measures.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details The \link{GenericHeuristic} is an full-abstract class so it cannot be instantiated.
 #' To ensure the proper operation, \code{compute} method is automatically invoke by \link{DDMCS} framework when needed.
 #'

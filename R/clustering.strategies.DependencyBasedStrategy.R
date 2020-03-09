@@ -11,10 +11,6 @@
 #' In this way, it seeks to ensure that the features are as independent as possible
 #' from those found in the same cluster.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details The strategy is suitable only for binary and real features. Other
 #' features are automatically grouped into a specific cluster named as 'unclustered'.
 #' This class requires the \code{\link{StrategyConfiguration}} type object implements the following methods:

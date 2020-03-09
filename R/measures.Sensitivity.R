@@ -2,8 +2,6 @@
 #'
 #' @description Sensitivity is a measure of the proportion of actual positive cases that got predicted as positive (or true positive).
 #'
-#' @docType class
-#'
 #' @details \deqn{Sensitivity = \frac{(TP)}{(TP + FN)}}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}

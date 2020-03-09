@@ -4,8 +4,6 @@
 #' metrics, otherwise, the instance is not considered to have the positive
 #' class associated.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{CombinedMetrics}}
 #'
 #' @keywords classif math

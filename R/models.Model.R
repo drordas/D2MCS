@@ -2,8 +2,6 @@
 #'
 #' @description Encapsulates and handles all the information and operations associated with a M.L. model.
 #'
-#' @docType class
-#'
 #' @keywords internal misc
 #'
 #' @seealso \code{\link{DDMCS}}, \code{\link{TrainFunction}}

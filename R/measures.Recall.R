@@ -3,8 +3,6 @@
 #' @description Recall (also known as sensitivity) is the fraction of the total amount of
 #' relevant instances that were actually retrieved.
 #'
-#' @docType class
-#'
 #' @details \deqn{recall = \frac{TP}{TP+FN}}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},

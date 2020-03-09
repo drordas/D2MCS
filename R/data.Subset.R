@@ -4,8 +4,6 @@
 #' If a target class is defined the \link{Subset} can be used as test and classification,
 #' otherwise the \link{Subset} only classification is compatible.
 #'
-#' @docType class
-#'
 #' @details Use \link{Dataset} to ensure the creation of a valid \code{\link{Subset}} object.
 #'
 #' @seealso \code{\link{Dataset}}, \code{\link{DatasetLoader}}, \code{\link{Trainset}}

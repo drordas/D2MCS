@@ -2,10 +2,6 @@
 #'
 #' @description Creates a valid simple dataset object.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{HDDataset}}
 #'
 #' @keywords datasets manip attribute datagen

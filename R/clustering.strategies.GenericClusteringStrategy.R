@@ -3,8 +3,6 @@
 #' @description Abstract class used as a template to ensure the proper definition
 #' of new customized clustering strategies.
 #'
-#' @docType class
-#'
 #' @details The \link{GenericClusteringStrategy} is an archetype class so it cannot be instantiated.
 #'
 #' @seealso \code{\link{Subset}}, \code{\link{GenericHeuristic}}

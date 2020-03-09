@@ -3,8 +3,6 @@
 #' @description This is the number of individuals with a negative condition for which the test result is
 #' negative. The value entered here must be non-negative.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}
 #'

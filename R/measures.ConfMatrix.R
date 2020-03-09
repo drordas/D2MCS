@@ -2,10 +2,6 @@
 #'
 #' @description Creates a \link{R6} confusion matrix from the \code{\link[caret]{confusionMatrix}} caret package.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}
 #'
 #' @keywords classif math

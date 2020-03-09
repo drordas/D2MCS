@@ -2,10 +2,6 @@
 #'
 #' @description Creates a default \code{\link[recipes]{recipe}} and \code{\link{formula}} objects used in model training stage.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{GenericModelFit}}, \code{\link[caret]{train}}
 #'
 #' @keywords misc

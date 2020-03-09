@@ -3,8 +3,6 @@
 #' @description Calculates the final prediction by performing the result of the
 #' preditions of different metrics obtained through a \code{\link{SimpleVoting}} class.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
 #' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
 #' \code{\link{SimpleVoting}}

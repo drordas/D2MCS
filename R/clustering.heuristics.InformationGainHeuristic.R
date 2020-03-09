@@ -2,10 +2,6 @@
 #'
 #' @description Performs the feature-clustering using entropy-based filters.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{Dataset}}, \code{\link[FSelector]{information.gain}}
 #'
 #' @keywords cluster manip

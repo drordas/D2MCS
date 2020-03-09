@@ -3,8 +3,6 @@
 #' @description The class is responsible of managing the whole process. Concretely builds the M.L. models (optimizes models hyperparameters),
 #' selects the best M.L. model for each cluster and executes the classification stage.
 #'
-#' @docType class
-#'
 #'
 #' @seealso \code{\link{Dataset}}, \code{\link{Subset}}, \code{\link{Trainset}}
 #'

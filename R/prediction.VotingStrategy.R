@@ -2,8 +2,6 @@
 #'
 #' @description Abstract class used to define new \code{\link{SingleVoting}} and  \code{\link{CombinedVoting}} schemes.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{SingleVoting}}, \code{\link{CombinedVoting}}
 #'
 #' @keywords models methods math

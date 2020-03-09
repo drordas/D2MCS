@@ -7,8 +7,6 @@
 #' a correlation coefficient between the observed and predicted binary classifications;
 #' it returns a value between -1 and +1.
 #'
-#' @docType class
-#'
 #' @details \deqn{MCC = \frac{TP\timesTN-FP\timesFN}{\sqrt{(TP+FP)\times(TP+FN)\times(TN+FP)\times(TN+FN)}}}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}

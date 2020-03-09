@@ -2,10 +2,6 @@
 #'
 #' @description Wrapper class able to automatically create a \code{\link{Dataset}}, \code{\link{HDDataset}} according to the input data.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{Dataset}}, \code{\link{HDDataset}}
 #'
 #' @keywords datasets manip attribute connection file datagen

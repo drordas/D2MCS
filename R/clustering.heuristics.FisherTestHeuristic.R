@@ -3,8 +3,6 @@
 #' @description Performs feature-clustering based on Fisher's exact test for testing
 #' the null of independence of rows and columns in a contingency table with fixed marginals.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{Dataset}}, \link{fisher.test}
 #'
 #' @keywords cluster manip

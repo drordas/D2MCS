@@ -4,10 +4,6 @@
 #' Only the required instances are loaded in memory to avoid
 #' unnecesary of resources and memmory
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details <<details>
 #'
 #' @seealso \code{\link{Dataset}}, \code{\link{HDSubset}}, \code{\link{DatasetLoader}}

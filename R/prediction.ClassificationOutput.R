@@ -3,10 +3,6 @@
 #' @description Allows computing the classification performance values achieved by DDMCS.
 #' The class is automatically created when \code{\link{DDMCS}} classification method is invoked.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{DDMCS}}
 #'
 #' @keywords datasets manip attribute datagen

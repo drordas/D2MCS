@@ -2,10 +2,6 @@
 #'
 #' @description Implementation to control the computational nuances of train function for bi-class problems.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{TrainFunction}}
 #'
 #' @keywords NULL

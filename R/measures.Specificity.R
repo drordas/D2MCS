@@ -4,8 +4,6 @@
 #' as the negative (or true negative). This implies that there will be another proportion of
 #' actual negative, which got predicted as positive and could be termed as false positives.
 #'
-#' @docType class
-#'
 #' @details \deqn{Specificity = \frac{(True Negative)}{(True Negative + False Positive)}}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}

@@ -3,8 +3,6 @@
 #' @description The class used to encapsulates all the computed predictions to facilitate
 #' their access and maintenance.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DDMCS}}
 #'
 #' @keywords math misc

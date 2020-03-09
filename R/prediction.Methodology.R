@@ -4,8 +4,6 @@
 #' @description Abstract class used as a template to define new customized
 #' strategies to combine the probability predictions made by different metrics.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{ProbBasedMethodology}}
 #'
 #' @keywords math misc

@@ -2,8 +2,6 @@
 #'
 #' @description Creates an \link{FIterator} object to iterate over high dimensional files.
 #'
-#' @docType class
-#'
 #' @details Use \link{HDDataset} class to ensure the creation of a valid
 #' \code{\link{FIterator}} object.
 #'

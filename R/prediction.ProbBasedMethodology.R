@@ -2,8 +2,6 @@
 #'
 #' @description Calculates the mean of the probabilities of the different metrics.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{Methodology}}
 #'
 #' @keywords models methods math

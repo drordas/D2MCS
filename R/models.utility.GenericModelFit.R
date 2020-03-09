@@ -2,8 +2,6 @@
 #'
 #' @description Template to create a \code{\link[recipes]{recipe}} or \code{\link{formula}} objects used in model training stage.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DefaultModelFit}}, \code{\link[caret]{train}}
 #'
 #' @keywords misc

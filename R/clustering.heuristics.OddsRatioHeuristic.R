@@ -3,8 +3,6 @@
 #' @description Performs the feature-clustering using Odds Ratio methodology.
 #' Valid only for bi-class problems.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{Dataset}}, \code{\link[questionr]{odds.ratio}}
 #'
 #' @keywords cluster manip

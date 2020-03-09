@@ -2,8 +2,6 @@
 #'
 #' @description Creates an \link{DIterator} object to iterate over the \link{Subset}.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{Dataset}}
 #'
 #' @keywords internal manip datagen

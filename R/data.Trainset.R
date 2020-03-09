@@ -3,10 +3,6 @@
 #' @description The \code{Trainset} is used to perform training operations over M.L. models.
 #' A target class should be defined to guarantee a full compatibility with supervised models.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset}} object.
 #'
 #' @seealso \link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{GenericClusteringStrategy}

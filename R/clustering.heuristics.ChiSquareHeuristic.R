@@ -2,8 +2,6 @@
 #'
 #' @description Performs feature-clustering based on ChiSquare method.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{GenericHeuristic}} \link{chisq.test}
 #'
 #' @keywords cluster manip

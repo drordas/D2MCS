@@ -2,8 +2,6 @@
 #'
 #' @description Abstract used as template to define customized metrics to compute model performance during train.
 #'
-#' @docType class
-#'
 #' @details This class is an archetype, so it cannot be instantiated.
 #'
 #' @seealso \code{\link{NoProbability}}, \code{\link{UseProbability}}

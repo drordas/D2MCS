@@ -2,8 +2,6 @@
 #'
 #' @description Computes the ratio of number of correct predictions to the total number of input samples.
 #'
-#' @docType class
-#'
 #' @details \deqn{Accuracy=\frac{Number Correct Predictions}{Total Number of Predictions}}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}.

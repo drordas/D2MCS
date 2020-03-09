@@ -2,8 +2,6 @@
 #'
 #' @description Performs the feature-clustering using Spearman's rho statistic.
 #'
-#' @docType class
-#'
 #' @details  Spearman's rho statistic is to estimate a rank-based measure of
 #' association. These tests may be used if the data do not necessarily come from a
 #' bivariate normal distribution.

@@ -5,8 +5,6 @@
 #' weight values are consistent with the performance value
 #' achieved by the best M.L. model on each cluster.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
 #' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'

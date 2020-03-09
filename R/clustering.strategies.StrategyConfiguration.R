@@ -2,10 +2,6 @@
 #'
 #' @description Define default configuration parameters for the clustering strategies.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details The \link{StrategyConfiguration} can be used to define the default configuration parameters for
 #' a feature clustering strategy or as an archetype to define new customized parameters.
 #'

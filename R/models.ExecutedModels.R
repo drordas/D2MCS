@@ -2,8 +2,6 @@
 #'
 #' @description Allows to manage the executed M.L. models.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{Model}}
 #'
 #' @keywords internal methods error utilities misc

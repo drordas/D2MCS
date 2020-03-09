@@ -4,10 +4,6 @@
 #' Only the required instances are loaded in memory to avoid
 #' unnecesary use of resources and memory.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details Use \link{HDDataset} to ensure the creation of a valid \code{\link{HDSubset}} object.
 #'
 #' @seealso \code{\link{HDDataset}}, \code{\link{DatasetLoader}}

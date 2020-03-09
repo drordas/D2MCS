@@ -2,8 +2,6 @@
 #'
 #' @description Precision is the fraction of relevant instances among the retrieved instances
 #'
-#' @docType class
-#'
 #' @details \deqn{precision = \frac{TP}{TP+FP}}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},

@@ -2,8 +2,6 @@
 #'
 #' @description The class is used to store the computed probability after executing an specific voting scheme.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{Prediction}} \code{\link{SimpleVoting}} \code{\link{SingleVoting}}
 #' \code{\link{CombinedVoting}} \code{\link{VotingStrategy}}
 #'

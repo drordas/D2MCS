@@ -2,10 +2,6 @@
 #'
 #' @description Prediction
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details <<details>
 #'
 #' @seealso \code{\link{ClusterPredictions}}

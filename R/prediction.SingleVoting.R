@@ -3,10 +3,6 @@
 #' @description The class is responsible of initializating and executing voting schemes.
 #' Additionally, to ensure a proper operation, the class automatically checks the compatiblity of defined voting schemes.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{SimpleVoting}}, \code{\link{CombinedVoting}}
 #'
 #' @keywords models methods math

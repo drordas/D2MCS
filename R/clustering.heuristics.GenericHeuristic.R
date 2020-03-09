@@ -2,10 +2,6 @@
 #'
 #' @description Abstract class used as a template to define new customized clustering heuristics.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details The \link{GenericHeuristic} is an archetype class so it cannot be instantiated.
 #'
 #' @seealso \code{\link{Dataset}}

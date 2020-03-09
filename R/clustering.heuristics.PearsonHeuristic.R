@@ -3,10 +3,6 @@
 #' @description Performs the feature-clustering using Pearson correlation tests.
 #' Valid for both, bi-class and multi-class problems.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details The test statistic is based on Pearson's product moment correlation
 #' coefficient cor(x, y) and follows a t distribution with length(x)-2 degrees of
 #' freedom if the samples follow independent normal distributions.

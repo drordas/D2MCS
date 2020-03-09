@@ -2,8 +2,6 @@
 #'
 #' @description Abstract class used as template to define customized functions to control the computational nuances of train function.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{TwoClass}}
 #'
 #' @keywords misc

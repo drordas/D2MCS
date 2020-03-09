@@ -4,12 +4,8 @@
 #' an specific heuristic. Next, features are distributed into N clusters following a card-dealing methodology. Finally best
 #' distribution is assigned to the distribution having highest homogeneity.
 #'
-#' @docType class
-#'
 #' @details The strategy is suitable only for binary and real features. Other features are automatically grouped into a
 #' specific cluster named as 'unclustered'.
-#'
-#' @format NULL
 #'
 #' @seealso \code{\link{GenericClusteringStrategy}}, \code{\link{StrategyConfiguration}}
 #'

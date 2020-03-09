@@ -2,8 +2,6 @@
 #'
 #' @description Stores the predictions achieved by the best M.L. of each cluster.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{ClassificationOutput}}, \code{\link{Prediction}}
 #'
 #' @keywords methods math

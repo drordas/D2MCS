@@ -2,8 +2,6 @@
 #'
 #' @description Computes the performance across resamples when class probabilities can be computed.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{SummaryFunction}}
 #'
 #' @keywords misc

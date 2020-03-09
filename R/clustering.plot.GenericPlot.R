@@ -2,10 +2,6 @@
 #'
 #' @description The \link{GenericPlot} implements a basic plot.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{BinaryPlot}}
 #'
 #' @keywords device color hplot

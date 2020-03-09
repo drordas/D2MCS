@@ -2,10 +2,6 @@
 #'
 #' @description Computes the ratio of number of Type II errors achieved by the final M.L. model.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
 #'
 #' @keywords classif math

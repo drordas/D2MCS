@@ -2,10 +2,6 @@
 #'
 #' @description An new implementation of \code{\link{ClassMajorityVoting}} where each class value has different values (weights).
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
 #' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'

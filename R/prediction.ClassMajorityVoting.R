@@ -3,8 +3,6 @@
 #' @description Implementation of the parliamentary 'majority voting' procedure. The majority class value is defined as final class.
 #' All class values have the same importance.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
 #' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'

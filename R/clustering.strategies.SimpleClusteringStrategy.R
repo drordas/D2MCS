@@ -4,10 +4,6 @@
 #' an specific heuristic. Next, features are distributed into N clusters following a card-dealing methodology. Finally best
 #' distribution is assigned to the distribution having highest homogeneity.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @details The strategy is suitable for all features that are valid for the indicated heuristics.
 #' Invalid features are automatically grouped into a specific cluster named as 'unclustered'.
 #'

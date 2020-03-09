@@ -2,10 +2,6 @@
 #'
 #' @description The \link{BinaryPlot} implements a basic plot for bi-class problem.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{GenericPlot}}
 #'
 #' @keywords device color hplot

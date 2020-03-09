@@ -2,10 +2,6 @@
 #'
 #' @description Define the default configuration parameters for the \link{DependencyBasedStrategy} strategy.
 #'
-#' @docType class
-#'
-#' @format NULL
-#'
 #' @seealso \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategy}}
 #'
 #' @keywords cluster manip

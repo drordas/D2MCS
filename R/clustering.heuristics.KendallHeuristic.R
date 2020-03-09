@@ -7,8 +7,6 @@
 #' all in the range [-1, 1] with 0 indicating no association.
 #' Method valid only for bi-class problems.
 #'
-#' @docType class
-#'
 #' @seealso \code{\link{Dataset}}, \link{cor.test}
 #'
 #' @keywords cluster manip
