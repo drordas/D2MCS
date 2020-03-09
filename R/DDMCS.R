@@ -132,16 +132,16 @@ DDMCS <- R6::R6Class(
       # CHECK IF TRAIN.SET IS VALID
       if (!"Trainset" %in% class(train.set)) {
         stop("[", class(self)[1], "][FATAL] Train set parameter must be ",
-             "defined as 'Trainset' type. Aborting...")
+              "defined as 'Trainset' type. Aborting...")
       }
 
       if (!"TrainFunction" %in% class(train.function)) {
         stop("[", class(self)[1], "][FATAL] Train function parameter must be ",
-             "defined as 'TrainFunction' type. Aborting...")
+              "defined as 'TrainFunction' type. Aborting...")
       }
 
       if (any(is.null(num.clusters), !is.numeric(num.clusters),
-              !is.vector(num.clusters))) {
+               !is.vector(num.clusters))) {
         message("[", class(self)[1], "][WARNING] Number of clusters not set ",
                 "(must be numeric or vector). Using all clusters")
         num.clusters <- c(1:train.set$getNumClusters())
@@ -156,11 +156,12 @@ DDMCS <- R6::R6Class(
 
       # VERIFY IF EX.CLASSIFIERS PARAMETER IS DEFINED (AND VALID)
       if (all(is.character(ex.classifiers), length(ex.classifiers) > 0)) {
-        usedModels <- ex.classifiers
+        usedModels <- intersect(ex.classifiers, private$availableModels$name)
       } else { usedModels <- private$availableModels$name }
 
       # VERIFY IF IG.CLASSIFIERS PARAMETER IS DEFINED (AND VALID)
-      if (all(is.character(ig.classifiers), length(ig.classifiers) > 0)) {
+      if (all(is.character(ig.classifiers), length(ig.classifiers) > 0,
+               length(usedModels) > 0)) {
         message("[", class(self)[1], "][INFO] Ignoring '",
                 length(ig.classifiers), "' M.L models")
         usedModels <- setdiff(usedModels, ig.classifiers)
@@ -168,9 +169,15 @@ DDMCS <- R6::R6Class(
                 "' M.L models available")
       }
 
+      if (length(usedModels) == 0) {
+        stop("[", class(self)[1], "][FATAL] Not valid M.L models were selected.",
+             " Aborting...")
+      }
+
       # VERIFY IF METRIC PARAMETER IS DEFINED (AND VALID)
       if (!all(is.character(metrics), length(metrics) > 0)) {
-        stop("[", class(self)[1], "][FATAL] Invalid values of metrics")
+        stop("[", class(self)[1], "][FATAL] Invalid values of metrics.",
+             " Aborting...")
       }
 
       message("[", class(self)[1], "][INFO] Making parallel socket cluster with ",
@@ -184,14 +191,16 @@ DDMCS <- R6::R6Class(
       cluster.models <- lapply(metrics, function(x) vector(mode = "list",
                                                            length = train.set$getNumClusters()))
       names(cluster.models) <- metrics
-      available.models <- private$availableModels[(private$availableModels$name %in% usedModels), ]
+
+      exec.models <- private$availableModels[private$availableModels$name %in% usedModels, ]
+
       # START TRAINING PROCESS
-      for (row in 1:nrow(available.models)) {
-        current.model <- available.models[row, ]
+      for (row in 1:nrow(exec.models)) {
+        current.model <- exec.models[row, ]
         message("[", class(self)[1], "][INFO][", current.model$name, "]",
                 " ***********************************************************************")
         message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                "'Model [", row, "-", nrow(available.models), "]': Start training")
+                "'Model [", row, "-", nrow(exec.models), "]': Start training")
         message("[", class(self)[1], "][INFO][", current.model$name, "]",
                 " ***********************************************************************")
         loaded.packages <- FALSE
@@ -217,8 +226,8 @@ DDMCS <- R6::R6Class(
             #   next
             # }
             model.path <- file.path(private$path, current.metric,
-                                    paste0("C[", current.cluster, "-",
-                                           train.set$getNumClusters(), "]"))
+                                     paste0("C[", current.cluster, "-",
+                                            train.set$getNumClusters(), "]"))
             executed.models <- ExecutedModels$new(model.path)
 
             if (!executed.models$exist(current.model$name)) {
@@ -230,17 +239,16 @@ DDMCS <- R6::R6Class(
               message("[", class(self)[1], "][INFO][", current.model$name, "]",
                       " ----------------------------------------------------------------------")
               # LOAD REQUIRED PACKAGES
-              if (!loaded.packages) {
-                if (!is.null(current.model$model.libs) &&
-                    !is.na(current.model$model.libs) &&
-                    !current.model$model.libs %in% "NA") {
+              if (!isTRUE(loaded.packages)) {
+                packages <- unlist(current.model$library)
+                if (!any(is.null(packages), is.na(packages), identical(packages, "NA"))) {
                   len.init.packages <- length(.packages())
                   len.init.DLLs <- length(.dynLibs())
                   message("[", class(self)[1], "][INFO][", current.model$name, "] ",
                           "Loading required packages...")
-                  private$loadPackages(current.model$model.libs)
+                  private$loadPackages(packages)
+                  loaded.packages <- TRUE
                 }
-                loaded.packages <- TRUE
               }
 
               ifelse(isTRUE(current.model$prob),
@@ -275,6 +283,14 @@ DDMCS <- R6::R6Class(
                 executed.models$add(model.type, keep.best = !isTRUE(saveAllModels))
                 executed.models$save()
               }
+
+              # UNLOAD REQUIRED PACKAGES
+              if (isTRUE(loaded.packages)) {
+                message("[", class(self)[1], "][INFO][", current.model$name, "] ",
+                        "Detaching required packages...")
+                private$unloadPackages(len.init.packages, len.init.DLLs)
+              }
+
             } else {
               message("[", class(self)[1], "][INFO][", current.model$name, "] ",
                       "'Cluster[", current.cluster, "-", train.set$getNumClusters(), "]': ",
@@ -282,14 +298,6 @@ DDMCS <- R6::R6Class(
             }
             cluster.models[[current.metric]][[current.cluster]] <- executed.models$getBest()$train
           }
-        }
-        # UNLOAD REQUIRED PACKAGES
-        if (loaded.packages && !is.null(current.model$model.libs) &&
-            !is.na(current.model$model.libs) &&
-            !current.model$model.libs %in% "NA") {
-          message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                  "Detaching required packages...")
-          private$unloadPackages(len.init.packages, len.init.DLLs)
         }
       }
 
@@ -416,7 +424,7 @@ DDMCS <- R6::R6Class(
             instances <- iterator$getNext()
             pred$execute(instances, class.values, positive.class)
           }
-          #iterator$finalize()
+          # iterator$finalize()
           rm(iterator)
           predictions$add(pred)
         }
@@ -473,42 +481,46 @@ DDMCS <- R6::R6Class(
       model.list <- caret::getModelInfo()
 
       if (is.null(model.list)) {
-        stop("[", class(self)[1], "][FALTAL] Models not found in caret library. ",
+        stop("[", class(self)[1], "][FATAL] Models not found in caret library. ",
              "Aborting...")
       }
-      model.names <- names(model.list)
 
-      models <- do.call(rbind, apply(t(model.names), 2, function(name, modelList) {
+      supported.packages <- unique(available.packages(repos = "https://ftp.cixug.es/CRAN/",
+                                   filters = c("R_version", "OS_type"))[, 1])
+      supported.models <- names(model.list[sapply(model.list, function(model) {
+                                all(model$library %in% supported.packages) })])
+
+      models <- do.call(rbind, apply(t(supported.models), 2, function(name, modelList) {
         if (!name %in% c("null") &&
             any(modelList[[name]]$type %in% "Classification")) {
           data.frame(name = name, description = modelList[[name]]$label,
-                      family = base::trimws(modelList[[name]]$tags[1]),
-                      library = I(list(modelList[[name]]$library)),
-                      prob = (!is.null(modelList[[name]]$prob) &&
-                              length(grep("response", deparse(modelList[[name]]$prob))) == 0),
-                      stringsAsFactors = FALSE)
+                     family = base::trimws(modelList[[name]]$tags[1]),
+                     library = I(list(modelList[[name]]$library)),
+                     prob = (!is.null(modelList[[name]]$prob) &&
+                               length(grep("response", deparse(modelList[[name]]$prob))) == 0),
+                     stringsAsFactors = FALSE)
         }
       }, modelList = model.list))
 
       message("[", class(self)[1], "][INFO] ", nrow(models),
-              " classifiers has been succesfully loaded")
+              " M.L. classifiers has been succesfully loaded")
       models <- with(models, models[order(models$family, models$name), ])
       models
     },
     loadPackages = function(pkgName) {
-      pkgName <- pkgName[pkgName %in% available.packages()[, 1] ]
       if (length(pkgName) > 0) {
         new.packages <- pkgName[!(pkgName %in% installed.packages()[, "Package"])]
         if (length(new.packages) > 0) {
-          message("[", class(self)[1], "][INFO]", length(new.packages),
-                  " packages needed. Installing packages ...")
+          message("[", class(self)[1], "][INFO] ", length(new.packages),
+                  " packages needed. Installing packages '",
+                  paste0(new.packages, collapse = ","), "'...")
           suppressMessages(install.packages(new.packages,
-                                             repos = "https://ftp.cixug.es/CRAN/",
-                                             dependencies = TRUE,
-                                             quiet = TRUE, verbose = FALSE))
+                                            repos = "https://cloud.r-project.org",
+                                            # dependencies = TRUE,
+                                            quiet = TRUE, verbose = FALSE))
         }
         lapply(pkgName, function(pkg) {
-          if (!pkg %in% devtools::loaded_packages()) {
+          if (!pkg %in% loaded_packages()) {
             suppressMessages(library(pkg, character.only = TRUE, warn.conflicts = FALSE,
                                      verbose = FALSE, quietly = TRUE,
                                      attach.required = TRUE))
