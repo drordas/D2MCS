@@ -24,31 +24,33 @@ Template to create a \code{\link[recipes]{recipe}} or \code{\link{formula}} obje
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$new(instances, class.name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{instances}}{An \code{\link{data.frame}} containing the data used to train the M.L. models.}
-
-\item{\code{class.name}}{A \code{\link{character}} of length 1 defining the name of the target class.}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+A \code{\link{GenericModelFit}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createFormula"></a>}}
 \subsection{Method \code{createFormula()}}{
-The function is responsible of creating a \code{\link{formula}} for M.L. model.
+The function is responsible of creating a
+\code{\link{formula}} for M.L. model.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$createFormula(simplify = TRUE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$createFormula(instances, class.name, simplify = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{simplify}}{A \code{\link{logical}} argument defining whether the formula should be generated as simple as posible.}
+\item{\code{instances}}{A \code{\link{data.frame}} containing the instances
+used to create the recipe.}
+
+\item{\code{class.name}}{A \code{\link{character}} vector representing
+the name of the target class.}
+
+\item{\code{simplify}}{A \code{\link{logical}} argument defining whether
+the formula should be generated as simple as posible.}
 }
 \if{html}{\out{</div>}}
 }
@@ -59,11 +61,23 @@ A \code{\link{formula}} object.
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createRecipe"></a>}}
 \subsection{Method \code{createRecipe()}}{
-The function is responsible of creating a \code{\link[recipes]{recipe}} for M.L. model.
+The function is responsible of creating a
+\code{\link[recipes]{recipe}} for M.L. model.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$createRecipe()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$createRecipe(instances, class.name)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{instances}}{A \code{\link{data.frame}} containing the instances
+used to create the recipe.}
+
+\item{\code{class.name}}{A \code{\link{character}} vector representing
+the name of the target class.}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 A object of class \code{\link[recipes]{recipe}}.
 }

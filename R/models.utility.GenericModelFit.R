@@ -16,49 +16,41 @@ GenericModelFit <- R6::R6Class(
   public = list(
     #'
     #' @description Method for initializing the object arguments during runtime.
+    #' @return A \code{\link{GenericModelFit}} object.
     #'
-    #' @param instances An \code{\link{data.frame}} containing the data used to train the M.L. models.
-    #' @param class.name A \code{\link{character}} of length 1 defining the name of the target class.
+    initialize = function() { },
     #'
-    initialize = function(instances, class.name) {
-      if (any(!"data.frame" %in% class(instances), nrow(instances) == 0)) {
-        stop("[", class(self)[1], "][FATAL] Instances must be a non-empty data.frame. ",
-             "Aborting...")
-      }
-
-      if (!(class.name %in% names(instances))) {
-        stop("[", class(self)[1], "][FATAL] Class name not included in instances ",
-             "data.frame. Aborting...")
-      }
-
-      private$class.name <- class.name
-      private$feature.names <- names(instances)
-      private$instances <- instances
-    },
+    #' @description The function is responsible of creating a
+    #' \code{\link{formula}} for M.L. model.
     #'
-    #' @description The function is responsible of creating a \code{\link{formula}} for M.L. model.
-    #'
-    #' @param simplify A \code{\link{logical}} argument defining whether the formula should be generated as simple as posible.
+    #' @param instances A \code{\link{data.frame}} containing the instances
+    #' used to create the recipe.
+    #' @param class.name A \code{\link{character}} vector representing
+    #' the name of the target class.
+    #' @param simplify A \code{\link{logical}} argument defining whether
+    #' the formula should be generated as simple as posible.
     #'
     #' @return A \code{\link{formula}} object.
     #'
-    createFormula = function(simplify = TRUE) {
+    createFormula = function(instances, class.name, simplify = TRUE) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",
            "Method should be defined in inherited class. Aborting...")
     },
     #'
-    #' @description The function is responsible of creating a \code{\link[recipes]{recipe}} for M.L. model.
+    #' @description The function is responsible of creating a
+    #' \code{\link[recipes]{recipe}} for M.L. model.
+    #'
+    #' @param instances A \code{\link{data.frame}} containing the instances
+    #' used to create the recipe.
+    #' @param class.name A \code{\link{character}} vector representing
+    #' the name of the target class.
     #'
     #' @return A object of class \code{\link[recipes]{recipe}}.
     #'
-    createRecipe = function() {
+    createRecipe = function(instances, class.name) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",
            "Method should be defined in inherited class. Aborting...")
     }
   ),
-  private = list(
-    class.name = NULL,
-    feature.names = NULL,
-    instances = NULL
-  )
+  private = list()
 )

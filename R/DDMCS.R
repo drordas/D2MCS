@@ -63,6 +63,15 @@ DDMCS <- R6::R6Class(
       }
       else { message("[", class(self)[1], "][INFO] Directory already exists") }
 
+      private$logs <- file.path(dir.path,"logs")
+
+      if(!dir.exists(private$logs)){
+        dir.create(private$logs, recursive = TRUE)
+        if(!dir.exists(private$logs)) {
+          private$logs <- NULL
+        }
+      }
+
       if (any(is.null(num.cores), (num.cores >= parallel::detectCores()), num.cores > 10)) {
         if (parallel::detectCores() > 10) {
           message("[", class(self)[1], "][WARNING] Invalid number of cores ",
@@ -102,6 +111,7 @@ DDMCS <- R6::R6Class(
     #' @description The function is responsible of performing the M.L. model training stage.
     #' @param train.set A \code{\link{Trainset}} object used as training input for the M.L. models
     #' @param train.function A \code{\link{TrainFunction}} defining the training configuration options.
+    #' @param model.recipe An unprepared recipe object inherited from \code{\link{GenericModelFit}} class.
     #' @param num.clusters An \code{\link{numeric}} value used to define the number of
     #' clusters from the \code{\link{Trainset}} that should be utilized during the training stage.
     #' If not defined all clusters will we taken into account for training.
@@ -124,18 +134,25 @@ DDMCS <- R6::R6Class(
     #' @import parallel
     #'
     train = function(train.set, train.function, num.clusters = NULL,
+                     model.recipe = DefaultModelFit$new(),
                      ex.classifiers = c(), ig.classifiers = c(),
                      metrics = NULL, saveAllModels = FALSE) {
 
       # CHECK IF TRAIN.SET IS VALID
-      if (!"Trainset" %in% class(train.set)) {
-        stop("[", class(self)[1], "][FATAL] Train set parameter must be ",
+      if (!inherits(train.set,"Trainset") ) {
+        stop( "[", class(self)[1], "][FATAL] Train set parameter must be ",
               "defined as 'Trainset' type. Aborting...")
       }
 
-      if (!"TrainFunction" %in% class(train.function)) {
-        stop("[", class(self)[1], "][FATAL] Train function parameter must be ",
-              "defined as 'TrainFunction' type. Aborting...")
+      if ( !inherits(train.function,"TrainFunction") ) {
+        stop( "[", class(self)[1], "][FATAL] Train function parameter must be ",
+              "defined as 'TrainFunction' type. Aborting..." )
+      }
+
+      if( !inherits(model.recipe,"GenericModelFit") ){
+        message("[",class(self)[1],"][WARNING] Model fit must inherit from ",
+                "'GenericModelFit' type. Using 'DefaultModelFit' class.")
+        model.recipe <- DefaultModelFit$new()
       }
 
       if (any(is.null(num.clusters), !is.numeric(num.clusters),
@@ -265,11 +282,12 @@ DDMCS <- R6::R6Class(
                                       ref = as.character(make.names(train.set$getPositiveClass())))
               model.instances[[train.set$getClassName()]] <- class.values
 
-              model.recipe <- DefaultModelFit$new(model.instances,
-                                                  train.set$getClassName())$createRecipe()
+              recipe <- model.recipe$createRecipe(model.instances,
+                                                  class.name = train.set$getClassName())
               model.type <- Model$new(dir = model.path, model = current.model)
-              model.type$train(train.set = model.instances, fitting = model.recipe,
-                               trFunction = train.function, metric = current.metric)
+              model.type$train(train.set = model.instances, fitting = recipe,
+                               trFunction = train.function, metric = current.metric,
+                               logs = private$logs)
               if (model.type$isTrained()) {
                 message("[", class(self)[1], "][INFO][", current.model$name, "] ",
                         "Model has been succesfully trained")
@@ -555,6 +573,7 @@ DDMCS <- R6::R6Class(
     cluster.conf = NULL,
     cluster.obj = NULL,
     availableModels = NULL,
-    path = NULL
+    path = NULL,
+    logs = NULL
   )
 )

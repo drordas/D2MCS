@@ -68,6 +68,7 @@ The function is responsible of performing the M.L. model training stage.
   train.set,
   train.function,
   num.clusters = NULL,
+  model.recipe = DefaultModelFit$new(),
   ex.classifiers = c(),
   ig.classifiers = c(),
   metrics = NULL,
@@ -85,6 +86,8 @@ The function is responsible of performing the M.L. model training stage.
 \item{\code{num.clusters}}{An \code{\link{numeric}} value used to define the number of
 clusters from the \code{\link{Trainset}} that should be utilized during the training stage.
 If not defined all clusters will we taken into account for training.}
+
+\item{\code{model.recipe}}{An unprepared recipe object inherited from \code{\link{GenericModelFit}} class.}
 
 \item{\code{ex.classifiers}}{A \code{\link{character}} vector containing the name of the M.L.
 models used in training stage. See \code{\link[caret]{getModelInfo}} and

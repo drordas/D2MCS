@@ -91,14 +91,20 @@ Model <- R6::R6Class(
     #'
     #' @description The function is responsible of performing model training operation.
     #'
-    #' @param train.set A \code{\link{data.frame}} with the data used for training the model.
-    #' @param fitting The model fitting formula. Must inherit from \code{\link{GenericModelFit}} class.
-    #' @param trFunction An object inherited from \code{\link{TrainFunction}} used to define how the training acts.
-    #' @param metric A \code{\link{character}} vector containing the metrics used to optimized model parameters.
+    #' @param train.set A \code{\link{data.frame}} with the data used for
+    #' training the model.
+    #' @param fitting The model fitting formula. Must inherit from
+    #' \code{\link{GenericModelFit}} class.
+    #' @param trFunction An object inherited from \code{\link{TrainFunction}}
+    #' used to define how the training acts.
+    #' @param metric A \code{\link{character}} vector containing the metrics
+    #' used to optimized model parameters.
+    #' @param logs A \code{\link{character}} vector containing the path to
+    #' store the error logs.
     #'
     #' @import caret tictoc
     #'
-    train = function(train.set, fitting, trFunction, metric) {
+    train = function(train.set, fitting, trFunction, metric, logs) {
       if (is.null(private$model.train) ||
           any(sapply(private$model.train, is.null))) {
         message("[", class(self)[1], "][INFO][", self$getName(), "] Model ",
@@ -152,8 +158,12 @@ Model <- R6::R6Class(
                     "Unable to train model. Task not performed")
           }
         }, error = function(err) {
-          message("[", class(self)[1], "][ERROR][", self$getName(), "] Model ",
-                  "could not be trained for current data.")
+          message("[",class(self)[1],"][ERROR][",self$getName(),"] Model ",
+                  "could not be trained for current data. See '",logs,
+                  "' for more information.")
+          writeLines( paste0(format(Sys.time(),"%H:%m:%S %d/%m/%Y"),
+                             ": [",class(self)[1],"][",self$getName(),"] ",err),
+                      file.path(logs,"error.log") )
           private$model.train$model.performance <- 0.0
           private$model.train$exec.time <- 0.0
         })
@@ -175,7 +185,8 @@ Model <- R6::R6Class(
       } else { private$model.train }
     },
     #'
-    #' @description The function is used to compute the time taken to perform training operation.
+    #' @description The function is used to compute the time taken to
+    #' perform training operation.
     #'
     #' @return A \code{\link{numeric}} vector with length 1.
     #'

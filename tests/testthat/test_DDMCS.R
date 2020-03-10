@@ -150,6 +150,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
   train.function <- TwoClass$new(method = "cv", number = 10, savePredictions = "final",
                                  classProbs = TRUE, allowParallel = TRUE, verboseIter = FALSE)
   num.clusters <- NULL
+  model.recipe <- DefaultModelFit$new()
   ex.classifiers <- c("nb", "ranger", "lda", "lda2")
   ig.classifiers <- c()
   metrics <- c("MCC", "PPV")
@@ -158,6 +159,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
   testthat::expect_error(ddmcs$train(train.set = NULL,
                                      train.function = train.function,
                                      num.clusters = num.clusters,
+                                     model.recipe = model.recipe,
                                      ex.classifiers = ex.classifiers,
                                      ig.classifiers = ig.classifiers,
                                      metrics = metrics,
@@ -168,6 +170,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
   testthat::expect_error(ddmcs$train(train.set = train.set,
                                      train.function = NULL,
                                      num.clusters = num.clusters,
+                                     model.recipe = model.recipe,
                                      ex.classifiers = ex.classifiers,
                                      ig.classifiers = ig.classifiers,
                                      metrics = metrics,
@@ -178,6 +181,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
   testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
                                                         train.function = train.function,
                                                         num.clusters = NULL,
+                                                        model.recipe = model.recipe,
                                                         ex.classifiers = ex.classifiers,
                                                         ig.classifiers = ig.classifiers,
                                                         metrics = metrics,
@@ -188,7 +192,20 @@ testthat::test_that("DDMCS: train function checks parameter types", {
 
   testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
                                                         train.function = train.function,
+                                                        num.clusters = num.clusters,
+                                                        model.recipe = NULL,
+                                                        ex.classifiers = ex.classifiers,
+                                                        ig.classifiers = ig.classifiers,
+                                                        metrics = metrics,
+                                                        saveAllModels = saveAllModels)),
+                           "[DDMCS][WARNING] Model fit must inherit from 'GenericModelFit' type. Using 'DefaultModelFit' class.",
+                           fixed = TRUE,
+                           all = FALSE)
+
+  testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
+                                                        train.function = train.function,
                                                         num.clusters = 10000,
+                                                        model.recipe = model.recipe,
                                                         ex.classifiers = ex.classifiers,
                                                         ig.classifiers = ig.classifiers,
                                                         metrics = metrics,
@@ -200,6 +217,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
   testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
                                                         train.function = train.function,
                                                         num.clusters = num.clusters,
+                                                        model.recipe = model.recipe,
                                                         ex.classifiers = ex.classifiers,
                                                         ig.classifiers = c("ranger"),
                                                         metrics = metrics,
@@ -211,6 +229,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
   testthat::expect_error(ddmcs$train(train.set = train.set,
                                      train.function = train.function,
                                      num.clusters = num.clusters,
+                                     model.recipe = model.recipe,
                                      ex.classifiers = ex.classifiers,
                                      ig.classifiers = ig.classifiers,
                                      metrics = NULL,

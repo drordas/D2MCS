@@ -113,19 +113,26 @@ The function allows obtaining the description associated with an specific ML mod
 \subsection{Method \code{train()}}{
 The function is responsible of performing model training operation.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Model$train(train.set, fitting, trFunction, metric)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Model$train(train.set, fitting, trFunction, metric, logs)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{train.set}}{A \code{\link{data.frame}} with the data used for training the model.}
+\item{\code{train.set}}{A \code{\link{data.frame}} with the data used for
+training the model.}
 
-\item{\code{fitting}}{The model fitting formula. Must inherit from \code{\link{GenericModelFit}} class.}
+\item{\code{fitting}}{The model fitting formula. Must inherit from
+\code{\link{GenericModelFit}} class.}
 
-\item{\code{trFunction}}{An object inherited from \code{\link{TrainFunction}} used to define how the training acts.}
+\item{\code{trFunction}}{An object inherited from \code{\link{TrainFunction}}
+used to define how the training acts.}
 
-\item{\code{metric}}{A \code{\link{character}} vector containing the metrics used to optimized model parameters.}
+\item{\code{metric}}{A \code{\link{character}} vector containing the metrics
+used to optimized model parameters.}
+
+\item{\code{logs}}{A \code{\link{character}} vector containing the path to
+store the error logs.}
 }
 \if{html}{\out{</div>}}
 }
@@ -145,7 +152,8 @@ A \code{\link[caret]{train}} class.
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getExecutionTime"></a>}}
 \subsection{Method \code{getExecutionTime()}}{
-The function is used to compute the time taken to perform training operation.
+The function is used to compute the time taken to
+perform training operation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$getExecutionTime()}\if{html}{\out{</div>}}
 }

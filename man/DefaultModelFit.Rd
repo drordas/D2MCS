@@ -33,17 +33,11 @@ Creates a default \code{\link[recipes]{recipe}} and \code{\link{formula}} object
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DefaultModelFit$new(instances, class.name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DefaultModelFit$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{instances}}{An \code{\link{data.frame}} containing the data used to train the M.L. models.}
-
-\item{\code{class.name}}{A \code{\link{character}} of length 1 defining the name of the target class.}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+A \code{\link{DefaultModelFit}} object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -51,13 +45,20 @@ Method for initializing the object arguments during runtime.
 \subsection{Method \code{createFormula()}}{
 The function is responsible of creating a \code{\link{formula}} for M.L. model.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DefaultModelFit$createFormula(simplify = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DefaultModelFit$createFormula(instances, class.name, simplify = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{simplify}}{A \code{\link{logical}} argument defining whether the formula should be generated as simple as posible.}
+\item{\code{instances}}{A \code{\link{data.frame}} containing the instances
+used to create the recipe.}
+
+\item{\code{class.name}}{A \code{\link{character}} vector representing
+the name of the target class.}
+
+\item{\code{simplify}}{A \code{\link{logical}} argument defining whether the
+formula should be generated as simple as posible.}
 }
 \if{html}{\out{</div>}}
 }
@@ -68,11 +69,29 @@ A \code{\link{formula}} object.
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createRecipe"></a>}}
 \subsection{Method \code{createRecipe()}}{
-The function is responsible of creating a \code{\link[recipes]{recipe}} with five operations over the data:
-\code{\link[recipes]{step_zv}}, \code{\link[recipes]{step_nzv}}, \code{\link[recipes]{step_corr}},
+The function is responsible of creating a
+\code{\link[recipes]{recipe}} with five operations over the data:
+\code{\link[recipes]{step_zv}}, \code{\link[recipes]{step_nzv}},
+\code{\link[recipes]{step_corr}},
 \code{\link[recipes]{step_center}}, \code{\link[recipes]{step_scale}}
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DefaultModelFit$createRecipe()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DefaultModelFit$createRecipe(instances, class.name)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{instances}}{A \code{\link{data.frame}} containing the instances
+used to create the recipe.}
+
+\item{\code{class.name}}{A \code{\link{character}} vector representing
+the name of the target class.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Details}{
+This function is automatically invoked by \code{DDMCS} during
+model training stage. If
 }
 
 \subsection{Returns}{
