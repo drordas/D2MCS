@@ -12,24 +12,116 @@
 #' @importFrom devtools loaded_packages
 #'
 #' @export DDMCS
+#'
+#' @examples
+#'
+#'   ## Create Dataset Handler object.
+#'   loader <- DatasetLoader$new()
+#'
+#'   ## Load 'hcc-data-complete-balanced.csv' dataset file.
+#'   data <- loader$load(filepath = system.file(file.path("examples",
+#'                                  "hcc-data-complete-balanced.csv"),
+#'                                              package = "DDMCS"),
+#'                       header = TRUE, normalize.names = TRUE)
+#'   ## Get column names
+#'   data$getColumnNames()
+#'
+#'   ## Split data into 4 partitions keeping balance ratio of 'Class' column.
+#'   data$createPartitions(num.folds = 4, class.balance = "Class")
+#'
+#'   ## Create a subset comprising the first 2 partitions for clustering purposes.
+#'   cluster.subset <- data$createSubset( num.folds = c(1,2), class.index = "Class",
+#'                                    positive.class = "1" )
+#'
+#'   ## Create a subset comprising second and third partitions for trainning purposes.
+#'   train.subset <- data$createSubset( num.folds = c(2,3), class.index = "Class",
+#'                                      positive.class = "1" )
+#'
+#'   ## Create a subset comprising last partitions for testing purposes.
+#'   test.subset <- data$createSubset( num.folds = 4, class.index = "Class",
+#'                                     positive.class = "1" )
+#'
+#'   ## Distribute the features into clusters using MCC heuristic.
+#'   distribution <- SimpleClusteringStrategy$new(subset = cluster.subset,
+#'                                                heuristic = MCCHeuristic$new() )
+#'   distribution$execute()
+#'
+#'   ## Get the best achieved distribution
+#'   distribution$getBestClusterDistribution()
+#'
+#'   ## Create a train set from the computed clustering distribution
+#'   train.set <- distribution$createTrain(subset = train.subset)
+#'
+#'   ## Initialization of DDMCS configuration parameters.
+#'   ##  - Defining training operation.
+#'   ##    + 10-fold cross-validation
+#'   ##    + Use only 1 CPU core.
+#'   ##    + Seed was set to ensure straightforward reproductivity of experiments.
+#'   trFunction <- TwoClass$new( method = "cv", number = 1, savePredictions = "final",
+#'                               classProbs = TRUE, allowParallel = TRUE,
+#'                               verboseIter = FALSE, seed = 1234 )
+#'   ## - Specify the models to be trained
+#'   ex.classifiers <- c("ranger","lda","lda2")
+#'
+#'   ## Initialize DDMCS
+#'   ddmcs <- DDMCS$new(dir.path = file.path(system.file("examples",
+#'                                         package = "DDMCS"),"MCC_CLUSTERING"))
+#'
+#'   ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
+#'   \donttest{ trained.models <- ddmcs$train( train.set = train.set,
+#'                                  train.function = trFunction,
+#'                                  ex.classifiers = ex.classifiers,
+#'                                  metrics = c("MCC","PPV") )
+#'   ## Execute classification stage using two different voting schemes
+#'   predictions <- ddmcs$classify(train.output = trained.models,
+#'                                 subset = test.subset,
+#'                                 voting.types = c(SingleVoting$new(
+#'                                      c( ClassMajorityVoting$new(),ClassWeightedVoting$new()),
+#'                                      metrics=c("MCC","PPV") ) ))
+#'   ## Compute the performance of each voting scheme using PPV and MMC measures.
+#'   predictions$getPerformances(test.subset,measures = list(MCC$new(),PPV$new()))
+#'
+#'   ## Execute classification stage using multiple voting schemes (simple and combined)
+#'   predictions <- ddmcs$classify(train.output = trained.models,
+#'                                 subset = test.subset,
+#'                                 voting.types = c(
+#'                                     SingleVoting$new( voting.schemes = c(ClassMajorityVoting$new(),
+#'                                                                          ClassWeightedVoting$new()),
+#'                                                       metrics=c("MCC","PPV") ),
+#'                                     CombinedVoting$new( voting.scheme = ClassMajorityVoting$new(),
+#'                                                         combined.metrics = MinimizeFP$new(),
+#'                                                         methodology = ProbBasedMethodology$new(),
+#'                                                         metrics = c("MCC","PPV") ) ))
+#'   ## Compute the performance of each voting scheme using PPV and MMC measures.
+#'   predictions$getPerformances(test.subset,measures = list(MCC$new(),PPV$new()))
+#'  }
 
 DDMCS <- R6::R6Class(
   classname = "DDMCS",
   portable = TRUE,
   public = list(
     #'
-    #' @description The function is used to initialize all parameters needed to build a Multiple Classifier System.
+    #' @description The function is used to initialize all parameters needed
+    #' to build a Multiple Classifier System.
     #'
-    #' @param dir.path A \code{\link{character}} defining location were the trained models should be saved.
-    #' @param num.cores An optional \code{\link{numeric}} value specifiying the number of CPU cores used for training the models (only if
+    #' @param dir.path A \code{\link{character}} defining location were the
+    #' trained models should be saved.
+    #' @param num.cores An optional \code{\link{numeric}} value specifiying
+    #' the number of CPU cores used for training the models (only if
     #' parallelization is allowed). If not defined (num.cores - 2) cores will be used.
-    #' @param socket.type A \code{\link{character}} value defining the type of socket used to communicate the workers.
-    #' The default type, \code{"PSOCK"}, calls makePSOCKcluster. Type \code{"FORK"} calls makeForkCluster.
+    #' @param socket.type A \code{\link{character}} value defining the type
+    #' of socket used to communicate the workers.
+    #' The default type, \code{"PSOCK"}, calls makePSOCKcluster.
+    #' Type \code{"FORK"} calls makeForkCluster.
     #' For more information see \code{\link[parallel]{makeCluster}}
-    #' @param outfile Where to direct the stdout and stderr connection output from the workers. "" indicates no
-    #' redirection (which may only be useful for workers on the local machine). Defaults to '/dev/null'
-    #' @param serialize A \code{\link{logical}} value. If true (default) serialization will use XDR: where large amounts of data are to be
-    #' transferred and all the nodes are little-endian, communication may be substantially faster if this is set to false.
+    #' @param outfile Where to direct the stdout and stderr connection output
+    #' from the workers. "" indicates no
+    #' redirection (which may only be useful for workers on the local machine).
+    #' Defaults to '/dev/null'
+    #' @param serialize A \code{\link{logical}} value. If true (default)
+    #' serialization will use XDR: where large amounts of data are to be
+    #' transferred and all the nodes are little-endian, communication may be
+    #' substantially faster if this is set to false.
     #'
     #' @import parallel
     #'
