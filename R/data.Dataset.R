@@ -62,7 +62,7 @@ Dataset <- R6::R6Class(
                                    stringsAsFactors = string.as.factor)
 
         columnNames <- unlist(strsplit(scan(file = filepath, nlines = 1,
-                                            what = "character", quiet = TRUE),
+                                            what = "character", quiet = TRUE, sep = sep),
                                        split = sep))
 
         if (isTRUE(normalize.names)) {
