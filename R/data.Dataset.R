@@ -567,22 +567,23 @@ Dataset <- R6::R6Class(
           message("[", class(self)[1], "][INFO] Removed columns containing ",
                   "constant values (total of ", const.remov, ")")
         }
-        if (class.index >= ncol(filtered)) {
-          trainSet <- cbind(filtered, trainSet[, class.index])
-          class.index <- ncol(filtered) + 1
-        } else {
-          if (class.index == 1) {
-            trainSet <- cbind(trainSet[, class.index], filtered)
-          } else {
-            trainSet <- cbind(filtered[1:class.index - 1],
-                              trainSet[, class.index],
-                              filtered[class.index:ncol(filtered)])
-          }
-        }
-        names(trainSet)[class.index] <- class.name
+        # if (class.index >= ncol(filtered)) {
+        #   trainSet <- cbind(filtered, trainSet[, class.index])
+        #   class.index <- ncol(filtered) + 1
+        # } else {
+        #   if (class.index == 1) {
+        #     trainSet <- cbind(trainSet[, class.index], filtered)
+        #   } else {
+        #     trainSet <- cbind(filtered[1:class.index - 1],
+        #                       trainSet[, class.index],
+        #                       filtered[class.index:ncol(filtered)])
+        #   }
+        # }
+        # names(trainSet)[class.index] <- class.name
+        trainSet <- filtered
       }
 
-      trainSet[[class.index]] <- class.values
+      # trainSet[[class.index]] <- class.values
 
       Trainset$new(cluster.dist = list(trainSet), class.name = class.name,
                    class.values = class.values,
