@@ -227,7 +227,7 @@ Dataset <- R6::R6Class(
         } else {
           if (all(is.character(class.balance), class.balance %in% names(private$corpus))) {
             class.values <- factor(private$corpus[, class.balance])
-            class.index <- names(private$corpus)[which(class.balance %in% names(private$corpus))]
+            class.index <- which(class.balance == names(private$corpus))
             class.balance <- TRUE
           } else {
             class.values <- NULL
