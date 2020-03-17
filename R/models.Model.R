@@ -158,12 +158,12 @@ Model <- R6::R6Class(
                     "Unable to train model. Task not performed")
           }
         }, error = function(err) {
-          message("[",class(self)[1],"][ERROR][",self$getName(),"] Model ",
-                  "could not be trained for current data. See '",logs,
+          message("[", class(self)[1], "][ERROR][", self$getName(), "] Model ",
+                  "could not be trained for current data. See '", logs,
                   "' for more information.")
-          writeLines( paste0(format(Sys.time(),"%H:%m:%S %d/%m/%Y"),
-                             ": [",class(self)[1],"][",self$getName(),"] ",err),
-                      file.path(logs,"error.log") )
+          writeLines(paste0(format(Sys.time(), "%H:%m:%S %d/%m/%Y"),
+                             ": [", class(self)[1], "][", self$getName(), "] ", err),
+                      file.path(logs, "error.log"))
           private$model.train$model.performance <- 0.0
           private$model.train$exec.time <- 0.0
         })

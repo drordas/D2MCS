@@ -33,11 +33,11 @@ DefaultModelFit <- R6::R6Class(
     #' @return A \code{\link{formula}} object.
     #'
     createFormula = function(instances, class.name, simplify = FALSE) {
-      if(isTRUE(simplify))
-        as.formula( paste0(sprintf("`%s`", class.name )," ~ .") )
-      else as.formula(paste0( paste0(sprintf("`%s`", class.name )," ~ "),
-                              paste0(sprintf("`%s`",names(instances) ),
-                                     collapse = "+" )) )
+      if (isTRUE(simplify))
+        as.formula(paste0(sprintf("`%s`", class.name), " ~ ."))
+      else as.formula(paste0(paste0(sprintf("`%s`", class.name), " ~ "),
+                             paste0(sprintf("`%s`", names(instances)),
+                                    collapse = "+")))
     },
     #'
     #' @description The function is responsible of creating a
@@ -58,14 +58,14 @@ DefaultModelFit <- R6::R6Class(
     #' @import recipes
     #'
     createRecipe = function(instances, class.name) {
-      recipe <- recipe( self$createFormula(instances, class.name,
-                                           simplify = TRUE),
-                        data = instances )
-      recipe %>% step_zv( all_predictors() ) %>%
-        step_nzv( all_predictors() ) %>%
-        step_corr( all_predictors() ) %>%
-        step_center( all_predictors() ) %>%
-        step_scale( all_predictors() )
+      recipe <- recipes::recipe(self$createFormula(instances, class.name,
+                                                   simplify = TRUE),
+                                data = instances)
+      recipe %>% recipes::step_zv(recipes::all_predictors()) %>%
+        recipes::step_nzv(recipes::all_predictors()) %>%
+        recipes::step_corr(recipes::all_predictors()) %>%
+        recipes::step_center(recipes::all_predictors()) %>%
+        recipes::step_scale(recipes::all_predictors())
     }
   )
 )

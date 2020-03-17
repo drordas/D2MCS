@@ -145,7 +145,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
 
             bestK <- which.min(binary.allDistribution$deltha)
             aux.dist <- unlist(binary.allDistribution[bestK, ]$dist,
-                                recursive = FALSE)
+                               recursive = FALSE)
 
             binary.bestDistribution <- data.frame(cluster = integer(), dist = I(list()))
 
@@ -280,7 +280,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
     #'
     #' @return A \link{list} with the features comprising an specific clustering distribution.
     #'
-    getDistribution = function( num.clusters = NULL, num.groups = NULL,
+    getDistribution = function(num.clusters = NULL, num.groups = NULL,
                                 include.unclustered = FALSE) {
       distribution <- list()
       if (is.null(private$best.distribution) ||
@@ -339,7 +339,7 @@ BinaryRealTypeStrategy <- R6::R6Class(
 
         if (!(num.groups[2] %in% c(1:length(dist.real)))) {
           message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                   "Returning all groups ...")
+                  "Returning all groups ...")
 
         } else { dist.real <- dist.real[num.groups[2]] }
       }
@@ -349,10 +349,10 @@ BinaryRealTypeStrategy <- R6::R6Class(
       if (isTRUE(include.unclustered)) {
         if (!is.null(private$not.distribution[[1]]) && nrow(private$not.distribution[[1]]) > 0)
           distribution <- append(distribution, lapply(private$not.distribution[[1]]$dist,
-                                                     function(x) {x}))
+                                                      function(x) {x}))
         if (!is.null(private$not.distribution[[2]]) && nrow(private$not.distribution[[2]]) > 0)
           distribution <- append(distribution, lapply(private$not.distribution[[2]]$dist,
-                                                     function(x) {x}))
+                                                      function(x) {x}))
       }
 
       return(distribution)
@@ -492,13 +492,13 @@ BinaryRealTypeStrategy <- R6::R6Class(
 
       if (is.null(num.clusters)) {
         message("[", class(self)[1], "][WARNING] Number of clusters not defined. ",
-                 "Saving all cluster configurations")
+                "Saving all cluster configurations")
         num.clusters <- list(list(1:max(private$all.distribution[[1]]$k)),
                              list(1:max(private$all.distribution[[2]]$k)))
       } else {
         if (!(is.list(num.clusters) && length(num.clusters) >= 0)) {
           message("[", class(self)[1], "][WARNING] Type of num.clusters not valid ",
-                   "(must be NULL or list type). Saving all cluster configurations")
+                  "(must be NULL or list type). Saving all cluster configurations")
           num.clusters <- list(list(1:max(private$all.distribution[[1]]$k)),
                                list(1:max(private$all.distribution[[2]]$k)))
         } else {

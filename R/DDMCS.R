@@ -15,7 +15,7 @@
 #'
 #' @examples
 #'
-#'   ## Create Dataset Handler object.
+#' ## Create Dataset Handler object.
 #'   loader <- DatasetLoader$new()
 #'
 #'   ## Load 'hcc-data-complete-balanced.csv' dataset file.
@@ -30,20 +30,20 @@
 #'   data$createPartitions(num.folds = 4, class.balance = "Class")
 #'
 #'   ## Create a subset comprising the first 2 partitions for clustering purposes.
-#'   cluster.subset <- data$createSubset( num.folds = c(1,2), class.index = "Class",
-#'                                    positive.class = "1" )
+#'   cluster.subset <- data$createSubset(num.folds = c(1, 2), class.index = "Class",
+#'                                    positive.class = "1")
 #'
 #'   ## Create a subset comprising second and third partitions for trainning purposes.
-#'   train.subset <- data$createSubset( num.folds = c(2,3), class.index = "Class",
-#'                                      positive.class = "1" )
+#'   train.subset <- data$createSubset(num.folds = c(2, 3), class.index = "Class",
+#'                                      positive.class = "1")
 #'
 #'   ## Create a subset comprising last partitions for testing purposes.
-#'   test.subset <- data$createSubset( num.folds = 4, class.index = "Class",
-#'                                     positive.class = "1" )
+#'   test.subset <- data$createSubset(num.folds = 4, class.index = "Class",
+#'                                     positive.class = "1")
 #'
 #'   ## Distribute the features into clusters using MCC heuristic.
 #'   distribution <- SimpleClusteringStrategy$new(subset = cluster.subset,
-#'                                                heuristic = MCCHeuristic$new() )
+#'                                                heuristic = MCCHeuristic$new())
 #'   distribution$execute()
 #'
 #'   ## Get the best achieved distribution
@@ -57,45 +57,46 @@
 #'   ##    + 10-fold cross-validation
 #'   ##    + Use only 1 CPU core.
 #'   ##    + Seed was set to ensure straightforward reproductivity of experiments.
-#'   trFunction <- TwoClass$new( method = "cv", number = 1, savePredictions = "final",
+#'   trFunction <- TwoClass$new(method = "cv", number = 1, savePredictions = "final",
 #'                               classProbs = TRUE, allowParallel = TRUE,
-#'                               verboseIter = FALSE, seed = 1234 )
+#'                               verboseIter = FALSE, seed = 1234)
 #'   ## - Specify the models to be trained
-#'   ex.classifiers <- c("ranger","lda","lda2")
+#'   ex.classifiers <- c("ranger", "lda", "lda2")
 #'
 #'   ## Initialize DDMCS
 #'   ddmcs <- DDMCS$new(dir.path = file.path(system.file("examples",
-#'                                         package = "DDMCS"),"MCC_CLUSTERING"))
+#'                                         package = "DDMCS"), "MCC_CLUSTERING"))
 #'
 #'   ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
-#'   \donttest{ trained.models <- ddmcs$train( train.set = train.set,
+#' \donttest{
+#' trained.models <- ddmcs$train(train.set = train.set,
 #'                                  train.function = trFunction,
 #'                                  ex.classifiers = ex.classifiers,
-#'                                  metrics = c("MCC","PPV") )
+#'                                  metrics = c("MCC", "PPV"))
 #'   ## Execute classification stage using two different voting schemes
 #'   predictions <- ddmcs$classify(train.output = trained.models,
 #'                                 subset = test.subset,
 #'                                 voting.types = c(SingleVoting$new(
-#'                                      c( ClassMajorityVoting$new(),ClassWeightedVoting$new()),
-#'                                      metrics=c("MCC","PPV") ) ))
+#'                                      c(ClassMajorityVoting$new(), ClassWeightedVoting$new()),
+#'                                      metrics = c("MCC", "PPV"))))
 #'   ## Compute the performance of each voting scheme using PPV and MMC measures.
-#'   predictions$getPerformances(test.subset,measures = list(MCC$new(),PPV$new()))
+#'   predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 #'
 #'   ## Execute classification stage using multiple voting schemes (simple and combined)
 #'   predictions <- ddmcs$classify(train.output = trained.models,
 #'                                 subset = test.subset,
 #'                                 voting.types = c(
-#'                                     SingleVoting$new( voting.schemes = c(ClassMajorityVoting$new(),
+#'                                     SingleVoting$new(voting.schemes = c(ClassMajorityVoting$new(),
 #'                                                                          ClassWeightedVoting$new()),
-#'                                                       metrics=c("MCC","PPV") ),
-#'                                     CombinedVoting$new( voting.scheme = ClassMajorityVoting$new(),
+#'                                                       metrics = c("MCC", "PPV")),
+#'                                     CombinedVoting$new(voting.scheme = ClassMajorityVoting$new(),
 #'                                                         combined.metrics = MinimizeFP$new(),
 #'                                                         methodology = ProbBasedMethodology$new(),
-#'                                                         metrics = c("MCC","PPV") ) ))
+#'                                                         metrics = c("MCC", "PPV"))))
 #'   ## Compute the performance of each voting scheme using PPV and MMC measures.
-#'   predictions$getPerformances(test.subset,measures = list(MCC$new(),PPV$new()))
-#'  }
-
+#'   predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
+#' }
+#'
 DDMCS <- R6::R6Class(
   classname = "DDMCS",
   portable = TRUE,
@@ -155,11 +156,11 @@ DDMCS <- R6::R6Class(
       }
       else { message("[", class(self)[1], "][INFO] Directory already exists") }
 
-      private$logs <- file.path(dir.path,"logs")
+      private$logs <- file.path(dir.path, "logs")
 
-      if(!dir.exists(private$logs)){
+      if (!dir.exists(private$logs)) {
         dir.create(private$logs, recursive = TRUE)
-        if(!dir.exists(private$logs)) {
+        if (!dir.exists(private$logs)) {
           private$logs <- NULL
         }
       }
@@ -231,18 +232,18 @@ DDMCS <- R6::R6Class(
                      metrics = NULL, saveAllModels = FALSE) {
 
       # CHECK IF TRAIN.SET IS VALID
-      if (!inherits(train.set,"Trainset") ) {
-        stop( "[", class(self)[1], "][FATAL] Train set parameter must be ",
-              "defined as 'Trainset' type. Aborting...")
+      if (!inherits(train.set, "Trainset")) {
+        stop("[", class(self)[1], "][FATAL] Train set parameter must be ",
+             "defined as 'Trainset' type. Aborting...")
       }
 
-      if ( !inherits(train.function,"TrainFunction") ) {
-        stop( "[", class(self)[1], "][FATAL] Train function parameter must be ",
-              "defined as 'TrainFunction' type. Aborting..." )
+      if (!inherits(train.function, "TrainFunction")) {
+        stop("[", class(self)[1], "][FATAL] Train function parameter must be ",
+             "defined as 'TrainFunction' type. Aborting...")
       }
 
-      if( !inherits(model.recipe,"GenericModelFit") ){
-        message("[",class(self)[1],"][WARNING] Model fit must inherit from ",
+      if (!inherits(model.recipe, "GenericModelFit")) {
+        message("[", class(self)[1], "][WARNING] Model fit must inherit from ",
                 "'GenericModelFit' type. Using 'DefaultModelFit' class.")
         model.recipe <- DefaultModelFit$new()
       }
@@ -628,7 +629,7 @@ DDMCS <- R6::R6Class(
                                             quiet = TRUE, verbose = FALSE))
         }
         lapply(pkgName, function(pkg) {
-          if (!pkg %in% loaded_packages()) {
+          if (!pkg %in% devtools::loaded_packages()) {
             suppressMessages(library(pkg, character.only = TRUE, warn.conflicts = FALSE,
                                      verbose = FALSE, quietly = TRUE,
                                      attach.required = TRUE))

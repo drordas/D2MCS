@@ -8,14 +8,16 @@ Wrapper class able to automatically create a \code{\link{Dataset}}, \code{\link{
 }
 \examples{
 \dontrun{
-  # Create Dataset Handler object.
+# Create Dataset Handler object.
   loader <- DatasetLoader$new()
 
-  #Load input file.
-  data <- loader$load(filepath = system.file(file.path("examples","hcc-data-complete-balanced.csv"),
+  # Load input file.
+  data <- loader$load(filepath = system.file(file.path("examples",
+                                                       "hcc-data-complete-balanced.csv"),
                                              package = "DDMCS"),
                       header = T, normalize.names = T)
 }
+
 
 }
 \seealso{

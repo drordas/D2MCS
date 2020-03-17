@@ -193,7 +193,7 @@ Dataset <- R6::R6Class(
       } else {
         if (is.numeric(columns) && all(dplyr::between(columns, 1, ncol(private$corpus)))) {
           private$removed.columns <- c(private$removed.columns,
-                                        names(private$corpus)[columns])
+                                       names(private$corpus)[columns])
           private$corpus <- private$corpus[, -columns]
           message("[", class(self)[1], "][INFO] ", length(columns),
                   " columns were manually removed")
@@ -248,7 +248,7 @@ Dataset <- R6::R6Class(
         message("[", class(self)[1], "][WARNING] Parameters are invalid. ",
                 "Assuming division with default k=10 folds")
         private$partitions <- caret::createFolds(private$corpus[, class.index],
-                                                  k = 10, list = TRUE)
+                                                 k = 10, list = TRUE)
       } else {
         if (is.numeric(num.folds) && length(num.folds) == 1 && !is.numeric(percent.folds)) {
 
@@ -260,7 +260,7 @@ Dataset <- R6::R6Class(
           message("[", class(self)[1], "][INFO] Perfoming dataset partitioning into ",
                    num.folds, " groups using class balance")
           private$partitions <- caret::createFolds(private$corpus[, class.index],
-                                                    k = num.folds, list = TRUE)
+                                                   k = num.folds, list = TRUE)
         } else {
           if (is.numeric(num.folds) && length(num.folds) == 1 && is.numeric(percent.folds)) {
             if (length(percent.folds) == num.folds &&
@@ -567,23 +567,8 @@ Dataset <- R6::R6Class(
           message("[", class(self)[1], "][INFO] Removed columns containing ",
                   "constant values (total of ", const.remov, ")")
         }
-        # if (class.index >= ncol(filtered)) {
-        #   trainSet <- cbind(filtered, trainSet[, class.index])
-        #   class.index <- ncol(filtered) + 1
-        # } else {
-        #   if (class.index == 1) {
-        #     trainSet <- cbind(trainSet[, class.index], filtered)
-        #   } else {
-        #     trainSet <- cbind(filtered[1:class.index - 1],
-        #                       trainSet[, class.index],
-        #                       filtered[class.index:ncol(filtered)])
-        #   }
-        # }
-        # names(trainSet)[class.index] <- class.name
         trainSet <- filtered
       }
-
-      # trainSet[[class.index]] <- class.values
 
       Trainset$new(cluster.dist = list(trainSet), class.name = class.name,
                    class.values = class.values,

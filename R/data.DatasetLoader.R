@@ -12,15 +12,16 @@
 #'
 #' @examples
 #' \dontrun{
-#'   # Create Dataset Handler object.
+#' # Create Dataset Handler object.
 #'   loader <- DatasetLoader$new()
 #'
-#'   #Load input file.
-#'   data <- loader$load(filepath = system.file(file.path("examples","hcc-data-complete-balanced.csv"),
+#'   # Load input file.
+#'   data <- loader$load(filepath = system.file(file.path("examples",
+#'                                                        "hcc-data-complete-balanced.csv"),
 #'                                              package = "DDMCS"),
 #'                       header = T, normalize.names = T)
-#'}
-
+#' }
+#'
 DatasetLoader <- R6::R6Class(
   classname = "DatasetLoader",
   portable = TRUE,

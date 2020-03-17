@@ -80,7 +80,7 @@ Trainset <- R6::R6Class(
     #'
     getColumnNames = function(num.cluster) {
       if (any(!is.numeric(num.cluster),
-                !num.cluster %in% c(1:length(private$clusters)))) {
+              !num.cluster %in% c(1:length(private$clusters)))) {
         stop("[", class(self)[1], "][FATAL] Position not defined or incorrect. ",
              "Must be included between 1 and ", length(private$clusters),
              ". Aborting...")
@@ -99,7 +99,7 @@ Trainset <- R6::R6Class(
     #'
     getFeatureValues = function(num.cluster) {
       if (any(!is.numeric(num.cluster),
-               !num.cluster %in% c(1:length(private$clusters))))
+              !num.cluster %in% c(1:length(private$clusters))))
       {
         stop("[", class(self)[1], "][FATAL] Position not defined or incorrect. ",
              "Must be included between 1 and ", length(private$clusters),
@@ -119,7 +119,7 @@ Trainset <- R6::R6Class(
     #'
     getInstances = function(num.cluster) {
       if (any(is.null(num.cluster), !is.numeric(num.cluster),
-               !num.cluster %in% c(1:length(private$clusters))))
+              !num.cluster %in% c(1:length(private$clusters))))
       {
         stop("[", class(self)[1], "][FATAL] Position not defined or incorrect. ",
              "Must be included between 1 and ", length(private$clusters),

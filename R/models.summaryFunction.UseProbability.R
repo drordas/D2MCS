@@ -21,7 +21,7 @@ UseProbability <- R6::R6Class(
     #' @return A \code{\link{UseProbability}} object.
     #'
     initialize = function() {
-      super$initialize(c("ROC", "Sens", "Spec", "Kappa", "Accuracy", "TCR_9", "MCC", "PPV" ))
+      super$initialize(c("ROC", "Sens", "Spec", "Kappa", "Accuracy", "TCR_9", "MCC", "PPV"))
     },
     #'
     #' @description The function computes the performance across resamples using the previously defined measures.

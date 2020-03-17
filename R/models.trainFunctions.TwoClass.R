@@ -69,13 +69,13 @@ TwoClass <- R6::R6Class(
                                      class.probs,  super$getClassProbs())
 
         private$trFunction <- caret::trainControl(method = super$getResamplingMethod(),
-                                                   number = super$getNumberFolds(),
-                                                   savePredictions = super$getSavePredictions(),
-                                                   classProbs = class.probability,
-                                                   summaryFunction = private$summaryFunction,
-                                                   search = private$search,
-                                                   allowParallel = super$getAllowParallel(),
-                                                   verboseIter = super$getVerboseIter())
+                                                  number = super$getNumberFolds(),
+                                                  savePredictions = super$getSavePredictions(),
+                                                  classProbs = class.probability,
+                                                  summaryFunction = private$summaryFunction,
+                                                  search = private$search,
+                                                  allowParallel = super$getAllowParallel(),
+                                                  verboseIter = super$getVerboseIter())
 
         private$measures <- summaryFunction$getMeasures()
       }

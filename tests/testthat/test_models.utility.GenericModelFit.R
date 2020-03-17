@@ -4,7 +4,7 @@ testthat::test_that("GenericModelFit: initialize", {
 
   colnames(instances) <- c("C1", "Class")
 
-  testthat::expect_is(GenericModelFit$new(),"GenericModelFit")
+  testthat::expect_is(GenericModelFit$new(), "GenericModelFit")
 
 })
 

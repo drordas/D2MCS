@@ -166,7 +166,7 @@ SimpleClusteringStrategy <- R6::R6Class(
 
       if (isTRUE(include.unclustered) && nrow(private$not.distribution) > 0) {
         distribution <- append(distribution, lapply(private$not.distribution$dist,
-                                                   function(x) {x}))
+                                                    function(x) {x}))
       }
       return(distribution)
     },
@@ -240,7 +240,7 @@ SimpleClusteringStrategy <- R6::R6Class(
                         plot = plot, limitsize = FALSE)
         message("[", class(self)[1], "][INFO] Plot has been succesfully saved ",
                 "at: ", file.path(dir.path, file.name, ".pdf"))
-      } else {  show(plot) }
+      } else { show(plot) }
       plot
     },
     #'

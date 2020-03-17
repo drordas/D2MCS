@@ -1,6 +1,6 @@
 testthat::test_that("DefaultModelFit: initialize", {
 
-  testthat::expect_is(DefaultModelFit$new(),"DefaultModelFit")
+  testthat::expect_is(DefaultModelFit$new(), "DefaultModelFit")
 
 })
 
@@ -25,6 +25,6 @@ testthat::test_that("DefaultModelFit: createRecipe function works", {
 
   colnames(instances) <- c("C1", "Class")
 
-  testthat::expect_is(DefaultModelFit$new()$createRecipe(instances,"Class"),
+  testthat::expect_is(DefaultModelFit$new()$createRecipe(instances, "Class"),
                         "recipe")
 })
