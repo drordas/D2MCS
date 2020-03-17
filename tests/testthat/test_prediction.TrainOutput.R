@@ -9,7 +9,7 @@ testthat::test_that("TrainOutput: initialize checks parameter type", {
   testthat::expect_error(TrainOutput$new(models = list("example"),
                                          class.values = NULL,
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Class.values parameter must be defined as 'factor' type. Aborting...",
+                         "[TrainOutput][FATAL] Class values parameter must be defined as 'factor' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(TrainOutput$new(models = list("example"),

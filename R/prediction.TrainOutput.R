@@ -28,7 +28,7 @@ TrainOutput <- R6::R6Class(
              "'list' type. Aborting...")
       }
       if (is.null(class.values) || !is.factor(class.values) && levels(class.values) < 2) {
-        stop("[", class(self)[1], "][FATAL] Class.values parameter must be defined as ",
+        stop("[", class(self)[1], "][FATAL] Class values parameter must be defined as ",
              "'factor' type. Aborting...")
       }
       if (is.null(positive.class) || !positive.class %in% class.values) {
