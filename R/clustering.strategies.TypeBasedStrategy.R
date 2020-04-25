@@ -13,10 +13,10 @@
 #'
 #' @import R6
 #'
-#' @export BinaryRealTypeStrategy
+#' @export TypeBasedStrategy
 
-BinaryRealTypeStrategy <- R6::R6Class(
-  classname = "BinaryRealTypeStrategy",
+TypeBasedStrategy <- R6::R6Class(
+  classname = "TypeBasedStrategy",
   inherit = GenericClusteringStrategy,
   portable = TRUE,
   public = list(

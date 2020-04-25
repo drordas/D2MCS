@@ -224,7 +224,7 @@ testthat::test_that("DependencyBasedStrategy works", {
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "BinaryRealTypeStrategyPlot"),
+  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "TypeBasedStrategyPlot"),
                            "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
