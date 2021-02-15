@@ -25,6 +25,7 @@ To ensure the proper operation, \code{compute} method is automatically invoke by
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -42,6 +43,7 @@ define the type of object used to compute the measure.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function implements the metric used to measure the performance achieved by the M.L. model.
 \subsection{Usage}{
@@ -66,6 +68,7 @@ A \link{numeric} vector of size 1 or \link{NULL} if an error occured.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

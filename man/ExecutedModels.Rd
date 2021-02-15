@@ -30,6 +30,7 @@ Allows to manage the executed M.L. models.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,6 +50,7 @@ An \code{\link{ExecutedModels}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNames"></a>}}
+\if{latex}{\out{\hypertarget{method-getNames}{}}}
 \subsection{Method \code{getNames()}}{
 The function is used to obtain the name of the ML model achieved the best performance during training stage.
 \subsection{Usage}{
@@ -61,6 +63,7 @@ A \code{\link{character}} vector of length 1 of \code{\link{NULL}} if no ML mode
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getBest"></a>}}
+\if{latex}{\out{\hypertarget{method-getBest}{}}}
 \subsection{Method \code{getBest()}}{
 The function is responsible of returning the model achieving the best performance value during training stage.
 \subsection{Usage}{
@@ -73,6 +76,7 @@ A \code{\link{Model}} oject.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
+\if{latex}{\out{\hypertarget{method-add}{}}}
 \subsection{Method \code{add()}}{
 The function inserts a new model to the list of executed models.
 \subsection{Usage}{
@@ -92,6 +96,7 @@ If \code{TRUE} only saves the best model, otherwise all executed models are save
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-exist"></a>}}
+\if{latex}{\out{\hypertarget{method-exist}{}}}
 \subsection{Method \code{exist()}}{
 The function is used to discern if a specific model has been executed previously.
 \subsection{Usage}{
@@ -111,6 +116,7 @@ A \code{\link{logical}} value. \link{TRUE} if the model exists and \link{FALSE} 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-size"></a>}}
+\if{latex}{\out{\hypertarget{method-size}{}}}
 \subsection{Method \code{size()}}{
 The function is used to compute the number of executed ML models.
 \subsection{Usage}{
@@ -123,6 +129,7 @@ A \code{\link{numeric}} vector or size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
+\if{latex}{\out{\hypertarget{method-save}{}}}
 \subsection{Method \code{save()}}{
 The function is responsible of saving the information of all executed models into a hidden file.
 \subsection{Usage}{
@@ -132,6 +139,7 @@ The function is responsible of saving the information of all executed models int
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-delete"></a>}}
+\if{latex}{\out{\hypertarget{method-delete}{}}}
 \subsection{Method \code{delete()}}{
 The function removes an specific model.
 \subsection{Usage}{
@@ -148,6 +156,7 @@ The function removes an specific model.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

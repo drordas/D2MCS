@@ -33,6 +33,7 @@ Use \link{HDDataset} to ensure the creation of a valid \code{\link{HDSubset}} ob
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \code{\link{HDSubset}} object.
 \subsection{Usage}{
@@ -77,6 +78,7 @@ a \link{HDSubset} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 get the name of the columns comprising the subset.
 \subsection{Usage}{
@@ -89,6 +91,7 @@ a \link{character} vector containing the name of each column.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 obtains the number of columns present in the Dataset.
 \subsection{Usage}{
@@ -101,6 +104,7 @@ a \link{numeric} value or 0 if is empty.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getID"></a>}}
+\if{latex}{\out{\hypertarget{method-getID}{}}}
 \subsection{Method \code{getID()}}{
 obtains the column identifier.
 \subsection{Usage}{
@@ -113,6 +117,7 @@ a \link{character} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getIterator"></a>}}
+\if{latex}{\out{\hypertarget{method-getIterator}{}}}
 \subsection{Method \code{getIterator()}}{
 Creates the \link{FIterator} object.
 \subsection{Usage}{
@@ -135,6 +140,7 @@ a \link{FIterator} object to trasverse through \link{HDSubset} instances
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize"></a>}}
+\if{latex}{\out{\hypertarget{method-finalize}{}}}
 \subsection{Method \code{finalize()}}{
 releases the resources used to manage high dimensional
 datasets (such as file handlers).
@@ -145,6 +151,7 @@ datasets (such as file handlers).
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isBlinded"></a>}}
+\if{latex}{\out{\hypertarget{method-isBlinded}{}}}
 \subsection{Method \code{isBlinded()}}{
 checks if the subset contains a target class.
 \subsection{Usage}{
@@ -157,6 +164,7 @@ a \link{logical} to specify if the subset contains a target class or not.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

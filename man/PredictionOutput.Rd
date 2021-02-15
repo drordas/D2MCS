@@ -24,6 +24,7 @@ their access and maintenance.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,6 +50,7 @@ An \code{\link{PredictionOutput}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-getPredictions}{}}}
 \subsection{Method \code{getPredictions()}}{
 The function returns the final predictions.
 \subsection{Usage}{
@@ -62,6 +64,7 @@ A \code{\link{list}} containing the final predictions or
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-getType}{}}}
 \subsection{Method \code{getType()}}{
 The function returns the type of prediction should be returned.
 If "prob" or "raw" is defined then computed 'probabilistic' or
@@ -76,6 +79,7 @@ A \code{\link{character}} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTarget"></a>}}
+\if{latex}{\out{\hypertarget{method-getTarget}{}}}
 \subsection{Method \code{getTarget()}}{
 The function returns the value of the target class.
 \subsection{Usage}{
@@ -88,6 +92,7 @@ A \code{\link{character}} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

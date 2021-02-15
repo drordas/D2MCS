@@ -24,6 +24,7 @@ This class is an archetype, so it cannot be instantiated.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 The function carries out the initialization of parameters during runtime.
 \subsection{Usage}{
@@ -40,6 +41,7 @@ The function carries out the initialization of parameters during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 Abstract funtion used to implement the performance calculator method.
 To guarantee a proper operation, this method is automatically invoked by \code{\link{DDMCS}} framework.
@@ -50,6 +52,7 @@ To guarantee a proper operation, this method is automatically invoked by \code{\
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMeasures"></a>}}
+\if{latex}{\out{\hypertarget{method-getMeasures}{}}}
 \subsection{Method \code{getMeasures()}}{
 The function obtains the measures used to compute the performance across resamples.
 \subsection{Usage}{
@@ -62,6 +65,7 @@ A \code{\link{character}} vector of \code{\link{NULL}} if measures are not defin
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

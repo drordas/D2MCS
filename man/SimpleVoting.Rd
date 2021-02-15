@@ -26,6 +26,7 @@ Abstract class used as a template to define new customized simple voting schemes
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -43,6 +44,7 @@ a positive classification. If is not defined, 0.5 will be used as default value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getCutoff"></a>}}
+\if{latex}{\out{\hypertarget{method-getCutoff}{}}}
 \subsection{Method \code{getCutoff()}}{
 The function obtains the minimum probabilistic value used to perform a positive classification.
 \subsection{Usage}{
@@ -55,6 +57,7 @@ A \code{\link{numeric}} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPred"></a>}}
+\if{latex}{\out{\hypertarget{method-getFinalPred}{}}}
 \subsection{Method \code{getFinalPred()}}{
 The function is used to return the prediction values computed by a voting stratety.
 \subsection{Usage}{
@@ -83,6 +86,7 @@ A \code{\link{FinalPred}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 Abstract function used to implement the operation of the voting scheme.
 \subsection{Usage}{
@@ -101,6 +105,7 @@ Abstract function used to implement the operation of the voting scheme.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

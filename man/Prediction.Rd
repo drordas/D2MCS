@@ -28,6 +28,7 @@ Prediction
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 <<description>>
 \subsection{Usage}{
@@ -46,6 +47,7 @@ Prediction
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 <<description>>
 \subsection{Usage}{
@@ -69,6 +71,7 @@ Prediction
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPrediction"></a>}}
+\if{latex}{\out{\hypertarget{method-getPrediction}{}}}
 \subsection{Method \code{getPrediction()}}{
 <<description>>
 \subsection{Usage}{
@@ -90,6 +93,7 @@ Prediction
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModelName"></a>}}
+\if{latex}{\out{\hypertarget{method-getModelName}{}}}
 \subsection{Method \code{getModelName()}}{
 <<description>>
 \subsection{Usage}{
@@ -102,6 +106,7 @@ Prediction
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModelPerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-getModelPerformance}{}}}
 \subsection{Method \code{getModelPerformance()}}{
 <<description>>
 \subsection{Usage}{
@@ -114,6 +119,7 @@ Prediction
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -38,6 +38,7 @@ Wrapper class able to automatically create a \code{\link{Dataset}}, \code{\link{
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \code{\link{DatasetLoader}} object.
 \subsection{Usage}{
@@ -50,6 +51,7 @@ DatasetLoader object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-load"></a>}}
+\if{latex}{\out{\hypertarget{method-load}{}}}
 \subsection{Method \code{load()}}{
 Stores the input source into a \code{\link{Dataset}} or \code{\link{HDDataset}} type object.
 \subsection{Usage}{

@@ -38,6 +38,7 @@ an asymptotic confidence interval is given based on Fisher's Z transform.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{PearsonHeuristic} object.
 \subsection{Usage}{
@@ -50,6 +51,7 @@ a \link{PearsonHeuristic} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Test for association between paired samples using Pearsons test.
 \subsection{Usage}{
@@ -75,6 +77,7 @@ a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

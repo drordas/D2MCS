@@ -33,6 +33,7 @@ Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{Trainset} object.
 \subsection{Usage}{
@@ -59,6 +60,7 @@ a fully operative \link{Trainset} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 the function is used to obtain the value of the positive class.
 \subsection{Usage}{
@@ -71,6 +73,7 @@ a \link{numeric} value with the positive class value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassName"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassName}{}}}
 \subsection{Method \code{getClassName()}}{
 the function is used to return the name of the target class.
 \subsection{Usage}{
@@ -83,6 +86,7 @@ a \link{character} vector with length 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 the function is used to compute all the posible target class values.
 \subsection{Usage}{
@@ -95,6 +99,7 @@ a \link{factor} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 the function returns the name of the columns comprising
 an specific cluster distribution.
@@ -116,6 +121,7 @@ a \link{character} vector with all column names.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatureValues"></a>}}
+\if{latex}{\out{\hypertarget{method-getFeatureValues}{}}}
 \subsection{Method \code{getFeatureValues()}}{
 the function returns the values of the columns comprising
 an specific cluster distribution. Target class is omitted.
@@ -138,6 +144,7 @@ the selected cluster distribution.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getInstances"></a>}}
+\if{latex}{\out{\hypertarget{method-getInstances}{}}}
 \subsection{Method \code{getInstances()}}{
 the function returns the values of the columns comprising
 an specific cluster distribution. Target class is included as the last column.
@@ -160,6 +167,7 @@ selected cluster distribution.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-getNumClusters}{}}}
 \subsection{Method \code{getNumClusters()}}{
 the function obtains the number of groups (clusters) that forms
 the cluster distribution.

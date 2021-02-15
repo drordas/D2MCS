@@ -25,6 +25,7 @@ Creates a \link{R6} confusion matrix from the \code{\link[caret]{confusionMatrix
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method to create a confusion matrix object from a \code{caret} \code{\link[caret]{confusionMatrix}}
 \subsection{Usage}{
@@ -41,6 +42,7 @@ Method to create a confusion matrix object from a \code{caret} \code{\link[caret
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getConfusionMatrix"></a>}}
+\if{latex}{\out{\hypertarget{method-getConfusionMatrix}{}}}
 \subsection{Method \code{getConfusionMatrix()}}{
 The function obtains the \code{\link[caret]{confusionMatrix}} following the same structured
 as defined in the \code{caret} package
@@ -54,6 +56,7 @@ A \code{\link[caret]{confusionMatrix}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTP"></a>}}
+\if{latex}{\out{\hypertarget{method-getTP}{}}}
 \subsection{Method \code{getTP()}}{
 The function is used to compute the number of True Positive values achieved.
 \subsection{Usage}{
@@ -66,6 +69,7 @@ A \code{\link{numeric}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTN"></a>}}
+\if{latex}{\out{\hypertarget{method-getTN}{}}}
 \subsection{Method \code{getTN()}}{
 The function computes the True Negative values.
 \subsection{Usage}{
@@ -78,6 +82,7 @@ A \code{\link{numeric}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFN"></a>}}
+\if{latex}{\out{\hypertarget{method-getFN}{}}}
 \subsection{Method \code{getFN()}}{
 The function returns the number of Type II errors (False Negative).
 \subsection{Usage}{
@@ -90,6 +95,7 @@ A \code{\link{numeric}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFP"></a>}}
+\if{latex}{\out{\hypertarget{method-getFP}{}}}
 \subsection{Method \code{getFP()}}{
 The function returns the number of Type I errors (False Negative).
 \subsection{Usage}{
@@ -102,6 +108,7 @@ A \code{\link{numeric}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

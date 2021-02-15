@@ -38,6 +38,7 @@ Use \link{Dataset} to ensure the creation of a valid \code{\link{Subset}} object
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{Subset} object.
 \subsection{Usage}{
@@ -72,6 +73,7 @@ the target class}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 get the name of the columns comprising the subset.
 \subsection{Usage}{
@@ -84,6 +86,7 @@ a \link{character} vector containing the name of each column.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatures"></a>}}
+\if{latex}{\out{\hypertarget{method-getFeatures}{}}}
 \subsection{Method \code{getFeatures()}}{
 get the values of a specific feature.
 \subsection{Usage}{
@@ -104,6 +107,7 @@ a \link{character} vector or NULL if subset is empty.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getID"></a>}}
+\if{latex}{\out{\hypertarget{method-getID}{}}}
 \subsection{Method \code{getID()}}{
 get the column name used as identifier.
 \subsection{Usage}{
@@ -116,6 +120,7 @@ a \link{character} vector of size 1 of NULL if column id is not defined.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getIterator"></a>}}
+\if{latex}{\out{\hypertarget{method-getIterator}{}}}
 \subsection{Method \code{getIterator()}}{
 areates the \link{DIterator} object.
 \subsection{Usage}{
@@ -138,6 +143,7 @@ a \link{DIterator} object to trasverse through \link{Subset} instances.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 gets all the values of the target class.
 \subsection{Usage}{
@@ -150,6 +156,7 @@ a \link{factor} vector with all the values of the target class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassBalance"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassBalance}{}}}
 \subsection{Method \code{getClassBalance()}}{
 the function is used to compute the ratio of each class value
 in the \link{Subset}.
@@ -170,6 +177,7 @@ a \link{numeric} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassIndex"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassIndex}{}}}
 \subsection{Method \code{getClassIndex()}}{
 the function is used to obtain the index of the column
 containing the target class.
@@ -183,6 +191,7 @@ a \link{numeric} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassName"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassName}{}}}
 \subsection{Method \code{getClassName()}}{
 the function is used to specify the name of the column
 containing the target class.
@@ -196,6 +205,7 @@ a \link{character} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 the function is in charge of obtaining the number of columns
 comprising the \link{Subset}. See \link{ncol} for more information.
@@ -209,6 +219,7 @@ an \link{integer} of length 1 or \link{NULL}.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNrow"></a>}}
+\if{latex}{\out{\hypertarget{method-getNrow}{}}}
 \subsection{Method \code{getNrow()}}{
 the function is used to determine the number of rows present in
 the \link{Subset}. See \link{nrow} for more information.
@@ -222,6 +233,7 @@ an \link{integer} of length 1 or \link{NULL}.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 the function returns the value of the positive class.
 \subsection{Usage}{
@@ -234,6 +246,7 @@ a \link{character} vector of size 1 or \link{NULL} if not defined.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isBlinded"></a>}}
+\if{latex}{\out{\hypertarget{method-isBlinded}{}}}
 \subsection{Method \code{isBlinded()}}{
 the function is used to check if the \link{Subset} contains
 a target class.

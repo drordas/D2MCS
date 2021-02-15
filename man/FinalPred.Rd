@@ -26,6 +26,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 <<description>>
 \subsection{Usage}{
@@ -35,6 +36,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set"></a>}}
+\if{latex}{\out{\hypertarget{method-set}{}}}
 \subsection{Method \code{set()}}{
 <<description>>
 \subsection{Usage}{
@@ -60,6 +62,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getProb"></a>}}
+\if{latex}{\out{\hypertarget{method-getProb}{}}}
 \subsection{Method \code{getProb()}}{
 <<description>>
 \subsection{Usage}{
@@ -72,6 +75,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRaw"></a>}}
+\if{latex}{\out{\hypertarget{method-getRaw}{}}}
 \subsection{Method \code{getRaw()}}{
 <<description>>
 \subsection{Usage}{
@@ -84,6 +88,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 <<description>>
 \subsection{Usage}{
@@ -96,6 +101,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 <<description>>
 \subsection{Usage}{
@@ -108,6 +114,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNegativeClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getNegativeClass}{}}}
 \subsection{Method \code{getNegativeClass()}}{
 <<description>>
 \subsection{Usage}{
@@ -120,6 +127,7 @@ The class is used to store the computed probability after executing an specific 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

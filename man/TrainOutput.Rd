@@ -32,6 +32,7 @@ model information, utilized metrics).
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Function used to initialize the object arguments during runtime.
 \subsection{Usage}{
@@ -52,6 +53,7 @@ Function used to initialize the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModels"></a>}}
+\if{latex}{\out{\hypertarget{method-getModels}{}}}
 \subsection{Method \code{getModels()}}{
 The function is used to obtain the best M.L. model of each cluster.
 \subsection{Usage}{
@@ -71,6 +73,7 @@ A \code{\link{list}} is returned of class train.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-getPerformance}{}}}
 \subsection{Method \code{getPerformance()}}{
 The function returns the performance value of M.L. models during training stage.
 \subsection{Usage}{
@@ -90,6 +93,7 @@ A \code{\link{character}} vector containing the metrics used for configuring M.L
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-savePerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-savePerformance}{}}}
 \subsection{Method \code{savePerformance()}}{
 The function is used to save into CSV file the performance achieved by the M.L. models during training stage.
 \subsection{Usage}{
@@ -109,6 +113,7 @@ If not defined, all the metrics used in train stage will be saved.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
 The function is responsible for creating a plot to visualize the performance achieved by
 the best M.L. model on each cluster.
@@ -129,6 +134,7 @@ If not defined, all the metrics used in train stage will be saved.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-getMetrics}{}}}
 \subsection{Method \code{getMetrics()}}{
 The function returns all metrics used for configuring M.L. hyperparameters during train stage.
 \subsection{Usage}{
@@ -141,6 +147,7 @@ A \code{\link{character}} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 The function is used to get the values of the target class.
 \subsection{Usage}{
@@ -153,6 +160,7 @@ A \code{\link{character}} containing the values of the target class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function returns the value of the positive class.
 \subsection{Usage}{
@@ -165,6 +173,7 @@ A \code{\link{character}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getSize"></a>}}
+\if{latex}{\out{\hypertarget{method-getSize}{}}}
 \subsection{Method \code{getSize()}}{
 The function is used to get the number of the trained M.L. models.
 Each cluster contains the best M.L. model.
@@ -178,6 +187,7 @@ A \code{\link{numeric}} value or \code{\link{NULL}} trainning was not succesfull
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

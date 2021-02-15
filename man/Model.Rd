@@ -32,6 +32,7 @@ Encapsulates and handles all the information and operations associated with a M.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -50,6 +51,7 @@ Method for initializing the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isTrained"></a>}}
+\if{latex}{\out{\hypertarget{method-isTrained}{}}}
 \subsection{Method \code{isTrained()}}{
 The function is used to determine is the model has been already trained.
 \subsection{Usage}{
@@ -62,6 +64,7 @@ A \code{\link{logical}} value. \code{\link{TRUE}} if the model has been trained 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDir"></a>}}
+\if{latex}{\out{\hypertarget{method-getDir}{}}}
 \subsection{Method \code{getDir()}}{
 The function returns the location path of the specific model.
 \subsection{Usage}{
@@ -74,6 +77,7 @@ The function returns the location path of the specific model.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-getName}{}}}
 \subsection{Method \code{getName()}}{
 The function is used to obtain the name of the model.
 \subsection{Usage}{
@@ -86,6 +90,7 @@ The function is used to obtain the name of the model.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFamily"></a>}}
+\if{latex}{\out{\hypertarget{method-getFamily}{}}}
 \subsection{Method \code{getFamily()}}{
 The function gets the family of the model.
 \subsection{Usage}{
@@ -98,6 +103,7 @@ The function gets the family of the model.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-getDescription}{}}}
 \subsection{Method \code{getDescription()}}{
 The function allows obtaining the description associated with an specific ML model.
 \subsection{Usage}{
@@ -110,6 +116,7 @@ The function allows obtaining the description associated with an specific ML mod
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train"></a>}}
+\if{latex}{\out{\hypertarget{method-train}{}}}
 \subsection{Method \code{train()}}{
 The function is responsible of performing model training operation.
 \subsection{Usage}{
@@ -139,6 +146,7 @@ store the error logs.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTrainedModel"></a>}}
+\if{latex}{\out{\hypertarget{method-getTrainedModel}{}}}
 \subsection{Method \code{getTrainedModel()}}{
 The function allows obtaining the trained model.
 \subsection{Usage}{
@@ -151,6 +159,7 @@ A \code{\link[caret]{train}} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getExecutionTime"></a>}}
+\if{latex}{\out{\hypertarget{method-getExecutionTime}{}}}
 \subsection{Method \code{getExecutionTime()}}{
 The function is used to compute the time taken to
 perform training operation.
@@ -164,6 +173,7 @@ A \code{\link{numeric}} vector with length 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-getPerformance}{}}}
 \subsection{Method \code{getPerformance()}}{
 The function obtains the performance achieved by the model during training stage.
 \subsection{Usage}{
@@ -183,6 +193,7 @@ A \code{\link{numeric}} value with the performance achieved.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getConfiguration"></a>}}
+\if{latex}{\out{\hypertarget{method-getConfiguration}{}}}
 \subsection{Method \code{getConfiguration()}}{
 The function is used to get the configuration parameters achieved by the ML model after the training stage.
 \subsection{Usage}{
@@ -195,6 +206,7 @@ A \code{\link{list}} object with the configuration parameters.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
+\if{latex}{\out{\hypertarget{method-save}{}}}
 \subsection{Method \code{save()}}{
 The function is responsible of saving the model to disc into a RDS file.
 \subsection{Usage}{
@@ -212,6 +224,7 @@ The function is responsible of saving the model to disc into a RDS file.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-remove"></a>}}
+\if{latex}{\out{\hypertarget{method-remove}{}}}
 \subsection{Method \code{remove()}}{
 The function is used to delete a model from disc.
 \subsection{Usage}{
@@ -221,6 +234,7 @@ The function is used to delete a model from disc.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

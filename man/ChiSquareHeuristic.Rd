@@ -30,6 +30,7 @@ Performs feature-clustering based on ChiSquare method.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{ChiSquareHeuristic} class.
 \subsection{Usage}{
@@ -39,6 +40,7 @@ Creates a \link{ChiSquareHeuristic} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 functions responsible of performing the ChiSquare feature-clustering
 operation.
@@ -65,6 +67,7 @@ a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

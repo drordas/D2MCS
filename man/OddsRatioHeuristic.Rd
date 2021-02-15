@@ -31,6 +31,7 @@ Valid only for bi-class problems.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{OddsRatioHeuristic} object.
 \subsection{Usage}{
@@ -43,6 +44,7 @@ a \link{OddsRatioHeuristic} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Calculates the Odds Ratio method.
 \subsection{Usage}{
@@ -67,6 +69,7 @@ a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -30,6 +30,7 @@ Use \link{HDDataset} class to ensure the creation of a valid
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \link{FIterator} object.
 \subsection{Usage}{
@@ -54,6 +55,7 @@ An \link{FIterator} object
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNext"></a>}}
+\if{latex}{\out{\hypertarget{method-getNext}{}}}
 \subsection{Method \code{getNext()}}{
 Gets the next chunk of data. Each iteration returns the same instances
 (data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
@@ -69,6 +71,7 @@ A \link{data.frame} of \link{NULL} if all the data have been previously returned
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isLast"></a>}}
+\if{latex}{\out{\hypertarget{method-isLast}{}}}
 \subsection{Method \code{isLast()}}{
 Checks if the \link{FIterator} object reached the end of the \link{data.frame}
 \subsection{Usage}{
@@ -81,6 +84,7 @@ A logical value indicating if the end of \link{data.frame} has been reached.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize"></a>}}
+\if{latex}{\out{\hypertarget{method-finalize}{}}}
 \subsection{Method \code{finalize()}}{
 Destroys the \link{FIterator} object.
 \subsection{Usage}{
@@ -90,6 +94,7 @@ Destroys the \link{FIterator} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

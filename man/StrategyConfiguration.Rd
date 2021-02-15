@@ -26,6 +26,7 @@ a feature clustering strategy or as an archetype to define new customized parame
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initalize the object arguments during runtime.
 \subsection{Usage}{
@@ -38,6 +39,7 @@ A \link{StrategyConfiguration} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-minNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-minNumClusters}{}}}
 \subsection{Method \code{minNumClusters()}}{
 Function used to return the minimum number of clusters distributions used. By default the minimum is set in 2.
 \subsection{Usage}{
@@ -57,6 +59,7 @@ A \link{numeric} vector of length 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-maxNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-maxNumClusters}{}}}
 \subsection{Method \code{maxNumClusters()}}{
 The function is responsible of returning the maximum number of cluster distributions used.
 By default the maximum number is set in 50.
@@ -77,6 +80,7 @@ A \link{numeric} vector of length 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

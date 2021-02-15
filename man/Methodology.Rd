@@ -24,6 +24,7 @@ strategies to combine the probability predictions made by different metrics.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -41,6 +42,7 @@ than 2 with the name of the required metrics.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRequiredMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-getRequiredMetrics}{}}}
 \subsection{Method \code{getRequiredMetrics()}}{
 The function returns the required metrics that will
 participate in the methodology to compute a metric based on all of them.
@@ -55,6 +57,7 @@ the name of the required metrics.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
 Function to compute the probability of the final prediction
 based on different metrics.
@@ -86,6 +89,7 @@ is predicted as positive class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

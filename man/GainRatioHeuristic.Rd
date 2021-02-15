@@ -30,6 +30,7 @@ Performs the feature-clustering using entropy-based filters.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \link{GainRatioHeuristic} object.
 \subsection{Usage}{
@@ -42,6 +43,7 @@ a \link{GainRatioHeuristic} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 The algorithms find weights of discrete attributes basing on their
 correlation with continous class attribute.
@@ -68,6 +70,7 @@ a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

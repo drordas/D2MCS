@@ -33,6 +33,7 @@ class associated.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -50,6 +51,7 @@ than 2 with the name of the required metrics.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPrediction"></a>}}
+\if{latex}{\out{\hypertarget{method-getFinalPrediction}{}}}
 \subsection{Method \code{getFinalPrediction()}}{
 Function to obtain the final prediction based on different metrics.
 \subsection{Usage}{
@@ -85,6 +87,7 @@ as positive class or not.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

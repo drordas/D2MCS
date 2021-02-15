@@ -24,6 +24,7 @@ The \link{GenericHeuristic} is an archetype class so it cannot be instantiated.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initalize the object arguments in runtime.
 \subsection{Usage}{
@@ -36,6 +37,7 @@ a \link{GenericHeuristic} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Function used to implement the clustering heuristic.
 \subsection{Usage}{
@@ -62,6 +64,7 @@ A \link{numeric} vector of length 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

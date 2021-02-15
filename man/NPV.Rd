@@ -36,6 +36,7 @@ and diagnostic tests that are true negative results.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -56,6 +57,7 @@ An \code{\link{NPV}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \code{NPV} achieved by the M.L. model.
 \subsection{Usage}{
@@ -80,6 +82,7 @@ A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occur
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

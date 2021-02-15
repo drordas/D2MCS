@@ -29,6 +29,7 @@ unnecesary of resources and memmory
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \code{\link{HDDataset}} object.
 \subsection{Usage}{
@@ -71,6 +72,7 @@ a \link{HDDataset} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 get the name of the columns comprising the dataset
 \subsection{Usage}{
@@ -83,6 +85,7 @@ a character vector with the name of each column.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 obtains the number of columns present in the Dataset.
 \subsection{Usage}{
@@ -95,6 +98,7 @@ an \link{integer} of length 1 or \link{NULL}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createSubset"></a>}}
+\if{latex}{\out{\hypertarget{method-createSubset}{}}}
 \subsection{Method \code{createSubset()}}{
 create a blinded \link{HDSubset} for classification purposes.
 \subsection{Usage}{

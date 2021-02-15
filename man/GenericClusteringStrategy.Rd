@@ -35,6 +35,7 @@ The \link{GenericClusteringStrategy} is an archetype class so it cannot be insta
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 A function responsible for creating a \link{GenericClusteringStrategy} object.
 \subsection{Usage}{
@@ -58,6 +59,7 @@ Must inherited from \link{StrategyConfiguration} abstract class.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-getDescription}{}}}
 \subsection{Method \code{getDescription()}}{
 the function is used to obtain the description of the strategie.
 \subsection{Usage}{
@@ -70,6 +72,7 @@ a \link{character} vector of \link{NULL} if not defined.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getHeuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-getHeuristic}{}}}
 \subsection{Method \code{getHeuristic()}}{
 the function returns the heuristic applied for the clustering strategy.
 \subsection{Usage}{
@@ -82,6 +85,7 @@ an object inherited from \link{GenericClusteringStrategy} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getConfiguration"></a>}}
+\if{latex}{\out{\hypertarget{method-getConfiguration}{}}}
 \subsection{Method \code{getConfiguration()}}{
 the function returns the configuration parameters used to perform the clustering strategy.
 \subsection{Usage}{
@@ -94,6 +98,7 @@ an object inherited from \link{StrategyConfiguration} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getBestClusterDistribution"></a>}}
+\if{latex}{\out{\hypertarget{method-getBestClusterDistribution}{}}}
 \subsection{Method \code{getBestClusterDistribution()}}{
 the function obtains the best clustering distribution.
 \subsection{Usage}{
@@ -106,6 +111,7 @@ a \link{list} of clusters. Each list element represents a feature group.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getUnclustered"></a>}}
+\if{latex}{\out{\hypertarget{method-getUnclustered}{}}}
 \subsection{Method \code{getUnclustered()}}{
 the function is used to return the features that cannot be clustered due to
 incompatibilities with the used heuristic.
@@ -119,6 +125,7 @@ a \link{character} vector containing the unclassified features.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 abstract function responsible of performing the clustering
 strategy over the defined \link{Subset}.
@@ -138,6 +145,7 @@ strategy over the defined \link{Subset}.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDistribution"></a>}}
+\if{latex}{\out{\hypertarget{method-getDistribution}{}}}
 \subsection{Method \code{getDistribution()}}{
 abstract function used to obtain the set of features following
 an specific clustering distribution.
@@ -167,6 +175,7 @@ a \link{list} with the features comprising an specific clustering distribution.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createTrain"></a>}}
+\if{latex}{\out{\hypertarget{method-createTrain}{}}}
 \subsection{Method \code{createTrain()}}{
 Abstract function in charge of creating a \link{Trainset} object for training purposes.
 \subsection{Usage}{
@@ -195,6 +204,7 @@ forms the clustering distribution.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
 Abstract function responsible of creating a plot to visualize the clustering distribution.
 \subsection{Usage}{
@@ -216,6 +226,7 @@ If not defined, the file path will be automatically assigned to the current work
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-saveCSV"></a>}}
+\if{latex}{\out{\hypertarget{method-saveCSV}{}}}
 \subsection{Method \code{saveCSV()}}{
 abstract function to save the clustering distribution to a CSV file.
 \subsection{Usage}{
@@ -237,6 +248,7 @@ If not defined, all clusters will be saved.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

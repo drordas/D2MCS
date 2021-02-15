@@ -25,6 +25,7 @@ Abstract class used to define new \code{\link{SingleVoting}} and  \code{\link{Co
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Abstract method used to initialize the object arguments during runtime.
 \subsection{Usage}{
@@ -34,6 +35,7 @@ Abstract method used to initialize the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getVotingSchemes"></a>}}
+\if{latex}{\out{\hypertarget{method-getVotingSchemes}{}}}
 \subsection{Method \code{getVotingSchemes()}}{
 The function returns the voting schemes that will participate in the voting strategy.
 \subsection{Usage}{
@@ -46,6 +48,7 @@ A vector of object inheriting from \code{\link{VotingStrategy}} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-getMetrics}{}}}
 \subsection{Method \code{getMetrics()}}{
 The function is used to get the metric that will be used during the voting strategy.
 \subsection{Usage}{
@@ -58,6 +61,7 @@ A \code{\link{character}} vector.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 Abstract function used to implement the operation of the voting schemes.
 \subsection{Usage}{
@@ -76,6 +80,7 @@ Abstract function used to implement the operation of the voting schemes.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-getName}{}}}
 \subsection{Method \code{getName()}}{
 The function returns the name of the voting scheme.
 \subsection{Usage}{
@@ -88,6 +93,7 @@ A \code{\link{character}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

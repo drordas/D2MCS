@@ -40,6 +40,7 @@ Implementation to control the computational nuances of train function for bi-cla
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TwoClass$new(
@@ -86,6 +87,7 @@ A \code{\link{TwoClass}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-create"></a>}}
+\if{latex}{\out{\hypertarget{method-create}{}}}
 \subsection{Method \code{create()}}{
 Creates a \code{\link[caret]{trainControl}} requires for the training stage.
 \subsection{Usage}{
@@ -107,6 +109,7 @@ models (along with predicted values) in each resample?}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTrFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-getTrFunction}{}}}
 \subsection{Method \code{getTrFunction()}}{
 Function used to return the \code{\link[caret]{trainControl}} object.
 \subsection{Usage}{
@@ -119,6 +122,7 @@ A \code{\link[caret]{trainControl}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setClassProbs"></a>}}
+\if{latex}{\out{\hypertarget{method-setClassProbs}{}}}
 \subsection{Method \code{setClassProbs()}}{
 The function allows changing the class computation capabilities.
 \subsection{Usage}{
@@ -136,6 +140,7 @@ classification models and \code{\link{FALSE}} otherwise.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMeasures"></a>}}
+\if{latex}{\out{\hypertarget{method-getMeasures}{}}}
 \subsection{Method \code{getMeasures()}}{
 Returns the measures used to optimize model hyperparameters.
 \subsection{Usage}{
@@ -148,6 +153,7 @@ A \code{\link{character}} vector.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-getType}{}}}
 \subsection{Method \code{getType()}}{
 Obtains the type of classification problem ("Bi-class" or "Multi-class").
 \subsection{Usage}{
@@ -160,6 +166,7 @@ A \code{\link{character}} vector with "Bi-class" value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setSummaryFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-setSummaryFunction}{}}}
 \subsection{Method \code{setSummaryFunction()}}{
 Function used to change the \code{\link{SummaryFunction}} used in the training stage.
 \subsection{Usage}{
@@ -176,6 +183,7 @@ Function used to change the \code{\link{SummaryFunction}} used in the training s
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

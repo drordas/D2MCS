@@ -35,6 +35,7 @@ Additionally, to ensure a proper operation, the class automatically checks the c
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 The function initializes the object arguments during runtime.
 \subsection{Usage}{
@@ -53,6 +54,7 @@ The function initializes the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function is used to execute all the previously defined (and compatible) voting schemes.
 \subsection{Usage}{
@@ -72,6 +74,7 @@ predictions computed in the classification stage.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

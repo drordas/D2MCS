@@ -33,6 +33,7 @@ for more information see \code{plot} function from \code{GenericPlot} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 empty function used to initalize the object arguments in runtime.
 \subsection{Usage}{
@@ -45,6 +46,7 @@ a \link{BinaryPlot} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
 plots feature-clustering data from a bi-class problem.
 \subsection{Usage}{
@@ -63,6 +65,7 @@ plots feature-clustering data from a bi-class problem.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

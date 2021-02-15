@@ -22,6 +22,7 @@ The \link{GenericPlot} implements a basic plot.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 empty function used to initalize the object arguments in runtime.
 \subsection{Usage}{
@@ -34,6 +35,7 @@ a \link{GenericPlot} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
 implements a generic plot to visualize basic feature-clustering data.
 \subsection{Usage}{
@@ -52,6 +54,7 @@ implements a generic plot to visualize basic feature-clustering data.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

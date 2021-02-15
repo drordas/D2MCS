@@ -65,6 +65,7 @@ An example of implementation with the description of each parameter is the \code
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object parameters during runtime.
 \subsection{Usage}{
@@ -91,6 +92,7 @@ Must inherited from \link{StrategyConfiguration} abstract class.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 Function responsible of performing the dependency-based feature clustering
 strategy over the defined \link{Subset}.
@@ -110,6 +112,7 @@ strategy over the defined \link{Subset}.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDistribution"></a>}}
+\if{latex}{\out{\hypertarget{method-getDistribution}{}}}
 \subsection{Method \code{getDistribution()}}{
 Function used to obtain a specific cluster distribution.
 \subsection{Usage}{
@@ -138,6 +141,7 @@ A \link{list} with the features comprising an specific clustering distribution.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createTrain"></a>}}
+\if{latex}{\out{\hypertarget{method-createTrain}{}}}
 \subsection{Method \code{createTrain()}}{
 The function is used to create a \link{Trainset} object from a specific clustering distribution.
 \subsection{Usage}{
@@ -170,6 +174,7 @@ If num.clusters and num.groups are not defined, best clustering distribution is 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
 The function is responsible for creating a plot to visualize the clustering distribution.
 \subsection{Usage}{
@@ -191,6 +196,7 @@ If not defined, the file path will be automatically assigned to the current work
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-saveCSV"></a>}}
+\if{latex}{\out{\hypertarget{method-saveCSV}{}}}
 \subsection{Method \code{saveCSV()}}{
 The function is used to save the clustering distribution to a CSV file.
 \subsection{Usage}{
@@ -216,6 +222,7 @@ If not defined, all cluster distributions will be saved.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

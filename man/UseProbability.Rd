@@ -30,6 +30,7 @@ Computes the performance across resamples when class probabilities can be comput
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 The function defined during runtime the usage of seven measures: 'ROC', 'Sens', 'Kappa', 'Accuracy',
 'TCR_9', 'MCC' and 'PPV'.
@@ -43,6 +44,7 @@ A \code{\link{UseProbability}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function computes the performance across resamples using the previously defined measures.
 \subsection{Usage}{
@@ -66,6 +68,7 @@ A vector of performance estimates.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -24,6 +24,7 @@ Creates an \link{DIterator} object to iterate over the \link{Subset}.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \link{DIterator} object.
 \subsection{Usage}{
@@ -48,6 +49,7 @@ an \link{DIterator} object
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNext"></a>}}
+\if{latex}{\out{\hypertarget{method-getNext}{}}}
 \subsection{Method \code{getNext()}}{
 Gets the next chunk of data. Each iteration returns the same instances
 (data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
@@ -63,6 +65,7 @@ a \link{data.frame} of \link{NULL} if all the data have been previously returned
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isLast"></a>}}
+\if{latex}{\out{\hypertarget{method-isLast}{}}}
 \subsection{Method \code{isLast()}}{
 Checks if the \link{DIterator} object reached the end of the \link{data.frame}
 \subsection{Usage}{
@@ -75,6 +78,7 @@ a logical value indicating if the end of \link{data.frame} has been reached.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize"></a>}}
+\if{latex}{\out{\hypertarget{method-finalize}{}}}
 \subsection{Method \code{finalize()}}{
 Destroys the \link{DIterator} object.
 \subsection{Usage}{
@@ -84,6 +88,7 @@ Destroys the \link{DIterator} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

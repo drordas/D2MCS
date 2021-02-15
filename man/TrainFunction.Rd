@@ -32,6 +32,7 @@ Abstract class used as template to define customized functions to control the co
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Function used to initialize the object parameters during execution time.
 \subsection{Usage}{
@@ -79,6 +80,7 @@ A \code{\link{TrainFunction}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-create"></a>}}
+\if{latex}{\out{\hypertarget{method-create}{}}}
 \subsection{Method \code{create()}}{
 Creates a \code{\link[caret]{trainControl}} requires for the training stage.
 \subsection{Usage}{
@@ -100,6 +102,7 @@ models (along with predicted values) in each resample?}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getResamplingMethod"></a>}}
+\if{latex}{\out{\hypertarget{method-getResamplingMethod}{}}}
 \subsection{Method \code{getResamplingMethod()}}{
 Return the resampling method used during training staged.
 \subsection{Usage}{
@@ -112,6 +115,7 @@ A \code{\link{character}} vector or length 1 or \code{\link{NULL}} if not define
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNumberFolds"></a>}}
+\if{latex}{\out{\hypertarget{method-getNumberFolds}{}}}
 \subsection{Method \code{getNumberFolds()}}{
 Returns the number or folds or number of iterations used during training.
 \subsection{Usage}{
@@ -124,6 +128,7 @@ A \code{\link{integer}} vector or length 1 or \code{\link{NULL}} if not defined.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getSavePredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-getSavePredictions}{}}}
 \subsection{Method \code{getSavePredictions()}}{
 Indicates if the predictions for each resample should be saved.
 \subsection{Usage}{
@@ -136,6 +141,7 @@ A \code{\link{logical}} value or \code{\link{NULL}} if not defined.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassProbs"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassProbs}{}}}
 \subsection{Method \code{getClassProbs()}}{
 Indicates if class probabilities should be computed for
 classification models in each resample.
@@ -149,6 +155,7 @@ A \code{\link{logical}} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getAllowParallel"></a>}}
+\if{latex}{\out{\hypertarget{method-getAllowParallel}{}}}
 \subsection{Method \code{getAllowParallel()}}{
 Determines if model training is performed in parallel.
 \subsection{Usage}{
@@ -161,6 +168,7 @@ A \code{\link{logical}} value. \code{\link{TRUE}} indicates parallelization is e
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getVerboseIter"></a>}}
+\if{latex}{\out{\hypertarget{method-getVerboseIter}{}}}
 \subsection{Method \code{getVerboseIter()}}{
 Determines if training log should be printed.
 \subsection{Usage}{
@@ -173,6 +181,7 @@ A \code{\link{logical}} value. \code{\link{TRUE}} indicates training log is enab
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTrFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-getTrFunction}{}}}
 \subsection{Method \code{getTrFunction()}}{
 Function used to return the \code{\link[caret]{trainControl}} object.
 \subsection{Usage}{
@@ -185,6 +194,7 @@ A \code{\link[caret]{trainControl}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMeasures"></a>}}
+\if{latex}{\out{\hypertarget{method-getMeasures}{}}}
 \subsection{Method \code{getMeasures()}}{
 Returns the measures used to optimize model hyperparameters.
 \subsection{Usage}{
@@ -197,6 +207,7 @@ A \code{\link{character}} vector.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-getType}{}}}
 \subsection{Method \code{getType()}}{
 Obtains the type of classification problem ("Bi-class" or "Multi-class").
 \subsection{Usage}{
@@ -209,6 +220,7 @@ A \code{\link{character}} vector with length 1. Either "Bi-class" or "Multi-clas
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getSeed"></a>}}
+\if{latex}{\out{\hypertarget{method-getSeed}{}}}
 \subsection{Method \code{getSeed()}}{
 Indicates seed used during model training stage.
 \subsection{Usage}{
@@ -221,6 +233,7 @@ An \code{\link{integer}} value or \code{\link{NULL}} if not defined.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setSummaryFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-setSummaryFunction}{}}}
 \subsection{Method \code{setSummaryFunction()}}{
 Function used to change the \code{\link{SummaryFunction}} used in the training stage.
 \subsection{Usage}{
@@ -237,6 +250,7 @@ Function used to change the \code{\link{SummaryFunction}} used in the training s
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setClassProbs"></a>}}
+\if{latex}{\out{\hypertarget{method-setClassProbs}{}}}
 \subsection{Method \code{setClassProbs()}}{
 The function allows changing the class computation capabilities.
 \subsection{Usage}{
@@ -254,6 +268,7 @@ classification models and \code{\link{FALSE}} otherwise.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

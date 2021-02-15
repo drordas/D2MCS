@@ -32,6 +32,7 @@ Valid for both bi-class and multi-class problems. Only valid for bi-class proble
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{MultinformationHeuristic} object.
 \subsection{Usage}{
@@ -44,6 +45,7 @@ a \link{MultinformationHeuristic} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 mutinformation takes two random variables as input and computes the
 mutual information in nats according to the entropy estimator method.
@@ -71,6 +73,7 @@ returns the mutual information I(X;Y) in nats.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

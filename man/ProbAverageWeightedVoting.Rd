@@ -39,6 +39,7 @@ achieved by the best M.L. model on each cluster.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -59,6 +60,7 @@ achieved during training will be used as default.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-getWeights}{}}}
 \subsection{Method \code{getWeights()}}{
 The function returns the value of the majority class.
 \subsection{Usage}{
@@ -71,6 +73,7 @@ A \code{\link{character}} vector of length 1 with the name of the majority class
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-setWeights}{}}}
 \subsection{Method \code{setWeights()}}{
 The funtion allows changing the value of the weights.
 \subsection{Usage}{
@@ -87,6 +90,7 @@ The funtion allows changing the value of the weights.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the cluster-weighted probabilistic voting procedure.
 \subsection{Usage}{
@@ -106,6 +110,7 @@ the predictions achieved for each cluster.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

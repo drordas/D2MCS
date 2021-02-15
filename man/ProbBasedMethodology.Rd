@@ -32,6 +32,7 @@ Calculates the mean of the probabilities of the different metrics.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -48,6 +49,7 @@ Method for initializing the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
 Function to compute the probability of the final prediction based on different metrics.
 \subsection{Usage}{
@@ -78,6 +80,7 @@ A \link{numeric} value indicating the probability of the instance is predicted a
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

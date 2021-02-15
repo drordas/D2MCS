@@ -31,6 +31,7 @@ the null of independence of rows and columns in a contingency table with fixed m
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \link{FisherTestHeuristic} object.
 \subsection{Usage}{
@@ -43,6 +44,7 @@ a \link{FisherTestHeuristic} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Performs the Fisher's exact test for testing the null of independence
 between two columns (col1 and col2).
@@ -69,6 +71,7 @@ a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

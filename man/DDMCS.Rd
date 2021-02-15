@@ -112,6 +112,7 @@ trained.models <- ddmcs$train(train.set = train.set,
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 The function is used to initialize all parameters needed
 to build a Multiple Classifier System.
@@ -156,6 +157,7 @@ substantially faster if this is set to false.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train"></a>}}
+\if{latex}{\out{\hypertarget{method-train}{}}}
 \subsection{Method \code{train()}}{
 The function is responsible of performing the M.L. model training stage.
 \subsection{Usage}{
@@ -209,6 +211,7 @@ A \code{\link{TrainOutput}} object containing all the information computed durin
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-classify"></a>}}
+\if{latex}{\out{\hypertarget{method-classify}{}}}
 \subsection{Method \code{classify()}}{
 The function is responsible for executing the classification stage.
 \subsection{Usage}{
@@ -236,6 +239,7 @@ A \code{\link{ClassificationOutput}} with all the values computed during classif
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getAvailableModels"></a>}}
+\if{latex}{\out{\hypertarget{method-getAvailableModels}{}}}
 \subsection{Method \code{getAvailableModels()}}{
 The function obtains all the available M.L. models.
 \subsection{Usage}{
@@ -248,6 +252,7 @@ A \code{\link{data.frame}} containing the information of the available M.L. mode
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

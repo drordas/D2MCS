@@ -36,6 +36,7 @@ An new implementation of \code{\link{ClassMajorityVoting}} where each class valu
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -56,6 +57,7 @@ achieved during training will be used as default.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-getWeights}{}}}
 \subsection{Method \code{getWeights()}}{
 The funtion returns the weights used to perform the voting scheme.
 \subsection{Usage}{
@@ -68,6 +70,7 @@ A \code{\link{numeric}} vector.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-setWeights}{}}}
 \subsection{Method \code{setWeights()}}{
 The funtion allows changing the value of the weights.
 \subsection{Usage}{
@@ -84,6 +87,7 @@ The funtion allows changing the value of the weights.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the cluster-weighted majority voting procedure.
 \subsection{Usage}{
@@ -102,6 +106,7 @@ The function implements the cluster-weighted majority voting procedure.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

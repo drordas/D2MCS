@@ -40,6 +40,7 @@ preditions of different metrics obtained through a \code{\link{SimpleVoting}} cl
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -65,6 +66,7 @@ the combined voting operations. Metrics should be previously defined during trai
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getCombinedMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-getCombinedMetrics}{}}}
 \subsection{Method \code{getCombinedMetrics()}}{
 The function returns the metrics used to combine the metrics results.
 \subsection{Usage}{
@@ -77,6 +79,7 @@ An object inherited from \code{\link{CombinedMetrics}} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMethodology"></a>}}
+\if{latex}{\out{\hypertarget{method-getMethodology}{}}}
 \subsection{Method \code{getMethodology()}}{
 The function gets the methodology used to execute the combined votings.
 \subsection{Usage}{
@@ -89,6 +92,7 @@ An object inherited from \code{\link{Methodology}} class.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPred"></a>}}
+\if{latex}{\out{\hypertarget{method-getFinalPred}{}}}
 \subsection{Method \code{getFinalPred()}}{
 The function returns the predictions obtained after executing the combined-voting methodology.
 \subsection{Usage}{
@@ -117,6 +121,7 @@ A \code{\link{data.frame}} with the computed predictions.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the combined voting scheme.
 \subsection{Usage}{
@@ -135,6 +140,7 @@ The function implements the combined voting scheme.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

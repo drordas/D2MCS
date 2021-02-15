@@ -26,6 +26,7 @@ Stores the predictions achieved by the best M.L. of each cluster.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -44,6 +45,7 @@ Method for initializing the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
+\if{latex}{\out{\hypertarget{method-add}{}}}
 \subsection{Method \code{add()}}{
 The function is used to add the prediction achieved by a specific M.L. model.
 \subsection{Usage}{
@@ -60,6 +62,7 @@ The function is used to add the prediction achieved by a specific M.L. model.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get"></a>}}
+\if{latex}{\out{\hypertarget{method-get}{}}}
 \subsection{Method \code{get()}}{
 The function returns the predictions placed at specific position.
 \subsection{Usage}{
@@ -79,6 +82,7 @@ A \code{\link{Prediction}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getAll"></a>}}
+\if{latex}{\out{\hypertarget{method-getAll}{}}}
 \subsection{Method \code{getAll()}}{
 The function returns all the predictions.
 \subsection{Usage}{
@@ -91,6 +95,7 @@ A \code{\link{list}} containing all computed predictions.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-size"></a>}}
+\if{latex}{\out{\hypertarget{method-size}{}}}
 \subsection{Method \code{size()}}{
 The function returns the number of computed predictions.
 \subsection{Usage}{
@@ -103,6 +108,7 @@ A \code{\link{numeric}} value.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function gets the value of the positive class.
 \subsection{Usage}{
@@ -115,6 +121,7 @@ A \code{\link{character}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 The function returns all the values of the target class.
 \subsection{Usage}{
@@ -127,6 +134,7 @@ A \code{\link{character}} vector containing all target values.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

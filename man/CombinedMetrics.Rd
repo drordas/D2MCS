@@ -25,6 +25,7 @@ strategies to combine the class predictions made by different metrics.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -41,6 +42,7 @@ Method for initializing the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRequiredMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-getRequiredMetrics}{}}}
 \subsection{Method \code{getRequiredMetrics()}}{
 The function returns the required metrics that will participate in the combined metric process.
 \subsection{Usage}{
@@ -53,6 +55,7 @@ A \code{\link{character}} vector of length greater than 2 with the name of the r
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPrediction"></a>}}
+\if{latex}{\out{\hypertarget{method-getFinalPrediction}{}}}
 \subsection{Method \code{getFinalPrediction()}}{
 Function used to implement the strategy to obtain the final prediction based on different metrics.
 \subsection{Usage}{
@@ -83,6 +86,7 @@ A \link{logical} value indicating if the instance is predicted as positive class
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

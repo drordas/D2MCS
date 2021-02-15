@@ -31,6 +31,7 @@ Creates a valid simple dataset object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Creates the \code{\link{Dataset}} object.
 \subsection{Usage}{
@@ -75,6 +76,7 @@ a \link{Dataset} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 get the name of the columns comprising the dataset.
 \subsection{Usage}{
@@ -87,6 +89,7 @@ a \link{character} vector with the name of each column.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDataset"></a>}}
+\if{latex}{\out{\hypertarget{method-getDataset}{}}}
 \subsection{Method \code{getDataset()}}{
 gets the full dataset.
 \subsection{Usage}{
@@ -99,6 +102,7 @@ a \link{data.frame} with all the loaded information.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 obtains the number of columns present in the Dataset.
 \subsection{Usage}{
@@ -111,6 +115,7 @@ an \link{integer} of length 1 or \link{NULL}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNrow"></a>}}
+\if{latex}{\out{\hypertarget{method-getNrow}{}}}
 \subsection{Method \code{getNrow()}}{
 obtains the number of rows present in the Dataset.
 \subsection{Usage}{
@@ -123,6 +128,7 @@ an \link{integer} of length 1 or \link{NULL}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRemovedColumns"></a>}}
+\if{latex}{\out{\hypertarget{method-getRemovedColumns}{}}}
 \subsection{Method \code{getRemovedColumns()}}{
 get the columns removed or ignored.
 \subsection{Usage}{
@@ -135,6 +141,7 @@ a \link{list} containing the name of the removed columns.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-cleanData"></a>}}
+\if{latex}{\out{\hypertarget{method-cleanData}{}}}
 \subsection{Method \code{cleanData()}}{
 removes \link{data.frame} columns matchimg some criterion.
 \subsection{Usage}{
@@ -155,6 +162,7 @@ removes \link{data.frame} columns matchimg some criterion.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-removeColumns"></a>}}
+\if{latex}{\out{\hypertarget{method-removeColumns}{}}}
 \subsection{Method \code{removeColumns()}}{
 applies \code{cleanData} function over an specific set of columns.
 \subsection{Usage}{
@@ -182,6 +190,7 @@ applies \code{cleanData} function over an specific set of columns.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createPartitions"></a>}}
+\if{latex}{\out{\hypertarget{method-createPartitions}{}}}
 \subsection{Method \code{createPartitions()}}{
 creates a k-folds partition from the initial dataset.
 \subsection{Usage}{
@@ -206,6 +215,7 @@ creates a k-folds partition from the initial dataset.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createSubset"></a>}}
+\if{latex}{\out{\hypertarget{method-createSubset}{}}}
 \subsection{Method \code{createSubset()}}{
 create a \link{Subset} for testing or classification purposes. A target class should be provided for
 testing purposes.
@@ -243,6 +253,7 @@ the target class}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createTrain"></a>}}
+\if{latex}{\out{\hypertarget{method-createTrain}{}}}
 \subsection{Method \code{createTrain()}}{
 creates a set for training purposes. A class should be defined to guarantee full-compatibility
 with supervised models.

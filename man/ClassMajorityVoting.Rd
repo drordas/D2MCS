@@ -37,6 +37,7 @@ All class values have the same importance.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -60,6 +61,7 @@ If \code{\link{NULL}} will be used same value as trainning stage.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMajorityClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getMajorityClass}{}}}
 \subsection{Method \code{getMajorityClass()}}{
 The function returns the value of the majority class.
 \subsection{Usage}{
@@ -72,6 +74,7 @@ A \code{\link{character}} vector of length 1 with the name of the majority class
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassTie"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassTie}{}}}
 \subsection{Method \code{getClassTie()}}{
 The function gets the class value assigned to solve ties.
 \subsection{Usage}{
@@ -84,6 +87,7 @@ The function gets the class value assigned to solve ties.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the majority voting procedure.
 \subsection{Usage}{
@@ -102,6 +106,7 @@ The function implements the majority voting procedure.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

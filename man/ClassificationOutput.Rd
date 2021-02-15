@@ -31,6 +31,7 @@ The class is automatically created when \code{\link{DDMCS}} classification metho
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,6 +50,7 @@ Method for initializing the object arguments during runtime.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-getMetrics}{}}}
 \subsection{Method \code{getMetrics()}}{
 The function returns the measures used during training stage.
 \subsection{Usage}{
@@ -62,6 +64,7 @@ training was not performed.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function gets the name of the positive class used for
 training/classification.
@@ -75,6 +78,7 @@ A \code{\link{character}} vector of size 1.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModelInfo"></a>}}
+\if{latex}{\out{\hypertarget{method-getModelInfo}{}}}
 \subsection{Method \code{getModelInfo()}}{
 The function compilled all the information concerning to
 the M.L. models used during training/classification.
@@ -96,6 +100,7 @@ A \code{\link{list}} with the information of each M.L. model.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPerformances"></a>}}
+\if{latex}{\out{\hypertarget{method-getPerformances}{}}}
 \subsection{Method \code{getPerformances()}}{
 The function is used to compute the performance of DDMCS.
 \subsection{Usage}{
@@ -137,6 +142,7 @@ A \code{\link{list}} of performance values.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-savePerformances"></a>}}
+\if{latex}{\out{\hypertarget{method-savePerformances}{}}}
 \subsection{Method \code{savePerformances()}}{
 The function is used to save the computed predictions into a CSV file.
 \subsection{Usage}{
@@ -176,6 +182,7 @@ into account.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plotPerformances"></a>}}
+\if{latex}{\out{\hypertarget{method-plotPerformances}{}}}
 \subsection{Method \code{plotPerformances()}}{
 The function allows to graphically visualizate the computed performance.
 \subsection{Usage}{
@@ -215,6 +222,7 @@ into account.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-getPredictions}{}}}
 \subsection{Method \code{getPredictions()}}{
 The function is used to obtain the computed predictions.
 \subsection{Usage}{
@@ -261,6 +269,7 @@ A \code{\link{PredictionOutput}} object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-savePredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-savePredictions}{}}}
 \subsection{Method \code{savePredictions()}}{
 The function saves the predictions into a CSV file.
 \subsection{Usage}{
@@ -307,6 +316,7 @@ the function returns all the predictions.}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
