@@ -3,7 +3,7 @@ testthat::test_that("InformationGainHeuristic: heuristic function works", {
   heuristic <- InformationGainHeuristic$new()
 
   col1 <- c(1, 0, 2)
-  col2 <- c(3, 2, 3)
+  col2 <- c("3", "2", "3")
   column.names <- c("ex", "Class")
   testthat::expect_type(heuristic$heuristic(col1 = col1,
                                             col2 = col2,

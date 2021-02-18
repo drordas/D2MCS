@@ -14,7 +14,7 @@
 #' @export DDMCS
 #'
 #' @examples
-#'
+#' \dontrun{
 #' ## Create Dataset Handler object.
 #'   loader <- DatasetLoader$new()
 #'
@@ -66,9 +66,9 @@
 #'   ## Initialize DDMCS
 #'   ddmcs <- DDMCS$new(dir.path = file.path(system.file("examples",
 #'                                         package = "DDMCS"), "MCC_CLUSTERING"))
-#'
+#' }
 #'   ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
-#' \donttest{
+#' \dontrun{
 #' trained.models <- ddmcs$train(train.set = train.set,
 #'                                  train.function = trFunction,
 #'                                  ex.classifiers = ex.classifiers,

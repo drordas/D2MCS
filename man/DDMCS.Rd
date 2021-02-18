@@ -8,7 +8,7 @@ The class is responsible of managing the whole process. Concretely builds the M.
 selects the best M.L. model for each cluster and executes the classification stage.
 }
 \examples{
-
+\dontrun{
 ## Create Dataset Handler object.
   loader <- DatasetLoader$new()
 
@@ -60,9 +60,9 @@ selects the best M.L. model for each cluster and executes the classification sta
   ## Initialize DDMCS
   ddmcs <- DDMCS$new(dir.path = file.path(system.file("examples",
                                         package = "DDMCS"), "MCC_CLUSTERING"))
-
+}
   ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
-\donttest{
+\dontrun{
 trained.models <- ddmcs$train(train.set = train.set,
                                  train.function = trFunction,
                                  ex.classifiers = ex.classifiers,
