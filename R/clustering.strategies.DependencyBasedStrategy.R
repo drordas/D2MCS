@@ -130,7 +130,7 @@ DependencyBasedStrategy <- R6::R6Class(
       if (!is.null(binary.heuristic)) {
         message("[", class(self)[1], "][INFO] Using '", class(binary.heuristic)[1],
                 "' heuristic to distribute binary features")
-        if (nrow(binary.data) > 0) {
+        if (ncol(binary.data) > 0) {
           private$computeGrouping(binary.data, binary.heuristic, binary.cutoff,
                                   verbose, binary = T)
           message("[", class(self)[1], "][INFO] Computing the distributions to ",
@@ -182,7 +182,7 @@ DependencyBasedStrategy <- R6::R6Class(
       if (!is.null(real.heuristic)) {
         message("[", class(self)[1], "][INFO] Using '", class(real.heuristic)[1],
                 "' heuristic to distribute real features")
-        if (nrow(real.data) > 0) {
+        if (ncol(real.data) > 0) {
           private$computeGrouping(real.data, real.heuristic, real.cutoff,
                                   verbose, binary = F)
           message("[", class(self)[1], "][INFO] Computing the distributions to ",

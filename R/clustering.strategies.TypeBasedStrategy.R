@@ -86,7 +86,7 @@ TypeBasedStrategy <- R6::R6Class(
       binary.data <- private$getBinaryFeatures(private$subset$getFeatures())
       ## COMPUTING HEURISTIC FOR BINARY DATA (BETWEEN EACH FEATURE AND THE CLASS)
       if (!is.null(private$heuristic[[1]])) {
-        if (nrow(binary.data) > 0) {
+        if (ncol(binary.data) > 0) {
           binary.bestDistribution <- data.frame(cluster = integer(), dist = I(list()))
           binary.allDistribution <- data.frame(k = integer(), deltha = numeric(),
                                                dist = I(list()))
@@ -184,7 +184,7 @@ TypeBasedStrategy <- R6::R6Class(
       if (!is.null(private$heuristic[[2]])) {
         message("[", class(self)[1], "][INFO] Using '", class(private$heuristic[[2]])[1],
                 "' heuristic to distribute real features")
-        if (nrow(real.data) > 0) {
+        if (ncol(real.data) > 0) {
           real.bestDistribution <- data.frame(cluster = integer(), dist = I(list()))
           real.allDistribution <- data.frame(k = integer(), deltha = numeric(),
                                              dist = I(list()))
