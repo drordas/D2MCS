@@ -13,10 +13,10 @@
 #'
 #' @import R6
 #'
-#' @export SimpleClusteringStrategy
+#' @export SimpleStrategy
 
-SimpleClusteringStrategy <- R6::R6Class(
-  classname = "SimpleClusteringStrategy",
+SimpleStrategy <- R6::R6Class(
+  classname = "SimpleStrategy",
   inherit = GenericClusteringStrategy,
   portable = TRUE,
   public = list(

@@ -36,8 +36,8 @@ selects the best M.L. model for each cluster and executes the classification sta
                                     positive.class = "1")
 
   ## Distribute the features into clusters using MCC heuristic.
-  distribution <- SimpleClusteringStrategy$new(subset = cluster.subset,
-                                               heuristic = MCCHeuristic$new())
+  distribution <- SimpleStrategy$new(subset = cluster.subset,
+                                     heuristic = MCCHeuristic$new())
   distribution$execute()
 
   ## Get the best achieved distribution
