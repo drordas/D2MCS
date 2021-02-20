@@ -16,22 +16,26 @@ Dataset <- R6::R6Class(
   cloneable = FALSE,
   public = list(
     #'
-    #' @description Creates the \code{\link{Dataset}} object.
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param filepath filepath the name of the file which the data are to be read from.
-    #' Each row of the table appears as one line of the file.
-    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, 'getwd()'.
-    #' @param header a \link{logical} value indicating whether the file contains the names of the variables as its first line.
-    #' If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
-    #' first row contains one fewer field than the number of columns.
-    #' @param sep the field separator character. Values on each line of the file are separated by this character.
-    #' @param skip defines the number of header lines should be skipped.
-    #' @param normalize.names a \link{logical} value indicating whether the columns names should be automatically renamed
-    #' to ensure R compatibility.
-    #' @param string.as.factor a \link{logical} value indicating if character columns should be converted to factors (default = FALSE).
-    #' @param ignore.columns specify the columns from the input file that should be ignored.
-    #'
-    #' @return a \link{Dataset} object.
+    #' @param filepath The name of the file which the data are to be read from.
+    #' Each row of the table appears as one line of the file. If it does not
+    #' contain an _absolute_ path, the file name is _relative_ to the current
+    #' working directory, '\code{getwd()}'.
+    #' @param header A \link{logical} value indicating whether the file contains
+    #' the names of the variables as its first line. If missing, the value is
+    #' determined from the file format: '\code{header}' is set to '\link{TRUE}'
+    #' if and only if the first row contains one fewer field than the number of
+    #' columns.
+    #' @param sep The field separator character. Values on each line of the file
+    #' are separated by this character.
+    #' @param skip Defines the number of header lines should be skipped.
+    #' @param normalize.names A \link{logical} value indicating whether the
+    #' columns names should be automatically renamed to ensure R compatibility.
+    #' @param string.as.factor A \link{logical} value indicating if character
+    #' columns should be converted to factors (\code{default = FALSE}).
+    #' @param ignore.columns Specify the columns from the input file that should
+    #' be ignored.
     #'
     #' @importFrom utils read.csv
     #'
@@ -84,41 +88,44 @@ Dataset <- R6::R6Class(
               ncol(private$corpus), " columns")
     },
     #'
-    #' @description get the name of the columns comprising the dataset.
+    #' @description Get the name of the columns comprising the dataset.
     #'
-    #' @return a \link{character} vector with the name of each column.
+    #' @return A \link{character} vector with the name of each column.
     #'
     getColumnNames = function() { names(private$corpus) },
     #'
-    #' @description gets the full dataset.
+    #' @description Gets the full dataset.
     #'
-    #' @return a \link{data.frame} with all the loaded information.
+    #' @return A \link{data.frame} with all the loaded information.
     #'
     getDataset = function() { private$corpus },
     #'
-    #' @description obtains the number of columns present in the Dataset.
+    #' @description Obtains the number of columns present in the dataset.
     #'
-    #' @return an \link{integer} of length 1 or \link{NULL}
+    #' @return An \link{integer} of length 1 or \link{NULL}
     #'
     getNcol = function() { ncol(private$corpus) },
     #'
-    #' @description obtains the number of rows present in the Dataset.
+    #' @description Obtains the number of rows present in the dataset.
     #'
-    #' @return an \link{integer} of length 1 or \link{NULL}
+    #' @return An \link{integer} of length 1 or \link{NULL}
     #'
     getNrow = function() { nrow(private$corpus) },
     #'
-    #' @description get the columns removed or ignored.
+    #' @description Get the columns removed or ignored.
     #'
-    #' @return a \link{list} containing the name of the removed columns.
+    #' @return A \link{list} containing the name of the removed columns.
     #'
     getRemovedColumns = function() { private$removed.columns },
     #'
-    #' @description removes \link{data.frame} columns matchimg some criterion.
+    #' @description Removes \link{data.frame} columns matching some criterion.
     #'
-    #' @param remove.funcs a vector of functions use to define which columns must be removed.
-    #' @param remove.na a \link{logical} value indicating whether \link{NA} values should be removed.
-    #' @param remove.const a \link{logical} value used to indicate if constant values should be removed.
+    #' @param remove.funcs A vector of functions use to define which columns
+    #' must be removed.
+    #' @param remove.na A \link{logical} value indicating whether \link{NA}
+    #' values should be removed.
+    #' @param remove.const A \link{logical} value used to indicate if constant
+    #' values should be removed.
     #'
     cleanData = function(remove.funcs = NULL, remove.na = TRUE,
                          remove.const = FALSE) {
@@ -166,12 +173,17 @@ Dataset <- R6::R6Class(
       }
     },
     #'
-    #' @description applies \code{cleanData} function over an specific set of columns.
+    #' @description Applies \code{cleanData} function over an specific set of
+    #' columns.
     #'
-    #' @param columns set of columns (\link{numeric} or \link{character}) where removal operation should be applied.
-    #' @param remove.funcs a vector of functions use to define which columns must be removed.
-    #' @param remove.na a \link{logical} value indicating whether \code{\link{NA}} values should be removed.
-    #' @param remove.const a \link{logical} value used to indicate if constant values should be removed.
+    #' @param columns Set of columns (\link{numeric} or \link{character}) where
+    #' removal operation should be applied.
+    #' @param remove.funcs A vector of functions use to define which columns
+    #' must be removed.
+    #' @param remove.na A \link{logical} value indicating whether
+    #' \code{\link{NA}} values should be removed.
+    #' @param remove.const A \link{logical} value used to indicate if constant
+    #' values should be removed.
     #'
     #' @importFrom dplyr between
     #'
@@ -208,11 +220,13 @@ Dataset <- R6::R6Class(
               ncol(private$corpus), " columns")
     },
     #'
-    #' @description creates a k-folds partition from the initial dataset.
+    #' @description Creates a k-folds partition from the initial dataset.
     #'
-    #' @param num.folds an \link{numeric} for the number of folds (partitions)
-    #' @param percent.folds an \link{numeric} vector with the percentaje of instances containing each fold.
-    #' @param class.balance a \link{logical} value indicating if class balance should be kept.
+    #' @param num.folds A \link{numeric} for the number of folds (partitions)
+    #' @param percent.folds A \link{numeric} vector with the percentage of
+    #' instances containing each fold.
+    #' @param class.balance A \link{logical} value indicating if class balance
+    #' should be kept.
     #'
     #' @importFrom caret createFolds
     #'
@@ -377,19 +391,22 @@ Dataset <- R6::R6Class(
       }
     },
     #'
-    #' @description create a \link{Subset} for testing or classification purposes. A target class should be provided for
-    #' testing purposes.
+    #' @description Create a \code{\link{Subset}} for testing or classification
+    #' purposes. A target class should be provided for testing purposes.
     #'
-    #' @param num.folds an \link{numeric} defining the number of folds that should we used to build the \link{Subset}.
-    #' @param column.id an \link{numeric} or \link{character} indicating the column (number or name respectively) identifier. Default \link{NULL} value
-    #' is valid ignores defining a identification column.
-    #' @param opts a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
-    #' remove.const (ignore columns with constant values).
-    #' @param class.index  a \link{numeric} value identifying the column representing
-    #' the target class
-    #' @param positive.class defines the positive class value.
+    #' @param num.folds A \link{numeric} defining the number of folds that
+    #' should we used to build the \link{Subset}.
+    #' @param column.id A \link{numeric} or \link{character} indicating the
+    #' column (number or name respectively) identifier. Default \link{NULL}
+    #' value is valid ignores defining a identification column.
+    #' @param opts A list with optional parameters. Valid arguments are
+    #' \code{remove.na} (removes columns with \link{NA} values) and
+    #' \code{remove.const} (ignore columns with constant values).
+    #' @param class.index  A \link{numeric} value identifying the column
+    #' representing the target class
+    #' @param positive.class Defines the positive class value.
     #'
-    #' @return \link{Subset}
+    #' @return A \link{Subset} object.
     #'
     #' @importFrom dplyr between
     #'
@@ -500,17 +517,19 @@ Dataset <- R6::R6Class(
                  positive.class = positive.class)
     },
     #'
-    #' @description creates a set for training purposes. A class should be defined to guarantee full-compatibility
-    #' with supervised models.
+    #' @description Creates a set for training purposes. A class should be
+    #' defined to guarantee full-compatibility with supervised models.
     #'
-    #' @param class.index a \link{numeric} value identifying the column representing
-    #' the target class
-    #' @param positive.class defines the positive class value.
-    #' @param num.folds an \link{numeric} defining the number of folds that should we used to build the \link{Subset}.
-    #' @param opts a list with optional parameters. Valid arguments are remove.na (removes columns with \link{NA} values) and
-    #' remove.const (ignore columns with constant values).
+    #' @param class.index A \link{numeric} value identifying the column
+    #' representing the target class
+    #' @param positive.class Defines the positive class value.
+    #' @param num.folds A \link{numeric} defining the number of folds that
+    #' should we used to build the \code{\link{Subset}}.
+    #' @param opts A list with optional parameters. Valid arguments are
+    #' \code{remove.na} (removes columns with \link{NA} values) and
+    #' \code{remove.const} (ignore columns with constant values).
     #'
-    #' @return \link{Trainset}
+    #' @return A \code{\link{Trainset}} object.
     #'
     createTrain = function(class.index, positive.class, num.folds = NULL,
                            opts = list(remove.na = TRUE, remove.const = FALSE)) {

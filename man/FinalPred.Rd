@@ -4,11 +4,13 @@
 \alias{FinalPred}
 \title{Stores the prediction for a specific voting scheme.}
 \description{
-The class is used to store the computed probability after executing an specific voting scheme.
+The class is used to store the computed probability after
+executing an specific voting scheme.
 }
 \seealso{
-\code{\link{Prediction}} \code{\link{SimpleVoting}} \code{\link{SingleVoting}}
-\code{\link{CombinedVoting}} \code{\link{VotingStrategy}}
+\code{\link{Prediction}}, \code{\link{SimpleVoting}},
+\code{\link{SingleVoting}}, \code{\link{CombinedVoting}},
+\code{\link{VotingStrategy}}
 }
 \keyword{internal}
 \section{Methods}{

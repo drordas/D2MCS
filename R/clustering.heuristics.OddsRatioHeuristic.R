@@ -17,19 +17,21 @@ OddsRatioHeuristic <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Creates a \link{OddsRatioHeuristic} object.
-    #' @return a \link{OddsRatioHeuristic} object.
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { },
     #'
     #' @description Calculates the Odds Ratio method.
     #'
-    #' @param col1 object from whom odds ratio will be computed
-    #' @param col2 a second \link{factor} or \link{numeric} object.
-    #' @param column.names column.names an optional \link{character} vector with the names of
+    #' @param col1 The object from whom odds ratio will be computed.
+    #' @param col2 A second \link{factor} or \link{numeric} object.
+    #' @param column.names An optional \link{character} vector with the names of
     #' both columns.
     #'
-    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+    #' @return A \link{numeric} vector of length 1 or \link{NA} if an error
+    #' occurs.
+    #'
     #' @importFrom questionr odds.ratio
     #'
     heuristic = function(col1, col2, column.names = NULL) {

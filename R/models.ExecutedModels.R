@@ -17,8 +17,6 @@ ExecutedModels <- R6::R6Class(
     #'
     #' @param dir.path The location were the executed models will be saved.
     #'
-    #' @return An \code{\link{ExecutedModels}} object.
-    #'
     initialize = function(dir.path) {
       private$dir.path <- gsub("\\/$", "", dir.path)
       if (!file.exists(private$dir.path)) {
@@ -54,9 +52,11 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description The function is used to obtain the name of the ML model achieved the best performance during training stage.
+    #' @description The function is used to obtain the name of the ML model
+    #' achieved the best performance during training stage.
     #'
-    #' @return A \code{\link{character}} vector of length 1 of \code{\link{NULL}} if no ML model have been trainned.
+    #' @return A \link{character} vector of length 1 of \link{NULL}
+    #' if no ML model have been trained.
     #'
     getNames = function() {
       if (!is.null(private$best.model)) {
@@ -64,9 +64,10 @@ ExecutedModels <- R6::R6Class(
       } else { NULL }
     },
     #'
-    #' @description The function is responsible of returning the model achieving the best performance value during training stage.
+    #' @description The function is responsible of returning the model achieving
+    #' the best performance value during training stage.
     #'
-    #' @return A \code{\link{Model}} oject.
+    #' @return A \code{\link{Model}} object.
     #'
     getBest = function() {
       if (!is.null(private$best.model)) {
@@ -77,11 +78,13 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description The function inserts a new model to the list of executed models.
+    #' @description The function inserts a new model to the list of executed
+    #' models.
     #'
     #' @param model A previously trained model (in \code{\link{Model}} object).
-    #' @param keep.best A \code{logical} value to define the saving operation.
-    #' If \code{TRUE} only saves the best model, otherwise all executed models are saved.
+    #' @param keep.best A \link{logical} value to define the saving operation.
+    #' If \link{TRUE} only saves the best model, otherwise all executed models
+    #' are saved.
     #'
     add = function(model, keep.best = TRUE) {
       if (!inherits(model, "Model")) {
@@ -116,11 +119,14 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description The function is used to discern if a specific model has been executed previously.
+    #' @description The function is used to discern if a specific model has been
+    #' executed previously.
     #'
-    #' @param model.name A \code{\link{character}} vector with the name of the model to check for existence.
+    #' @param model.name A \link{character} vector with the name of the
+    #' model to check for existence.
     #'
-    #' @return A \code{\link{logical}} value. \link{TRUE} if the model exists and \link{FALSE} otherwise.
+    #' @return A \link{logical} value. \link{TRUE} if the model exists
+    #' and \link{FALSE} otherwise.
     #'
     exist = function(model.name) {
       if (!is.character(model.name) || is.null(private$models$model)) {
@@ -128,15 +134,17 @@ ExecutedModels <- R6::R6Class(
       } else { model.name %in% (private$models$model) }
     },
     #'
-    #' @description The function is used to compute the number of executed ML models.
+    #' @description The function is used to compute the number of executed ML
+    #' models.
     #'
-    #' @return A \code{\link{numeric}} vector or size 1.
+    #' @return A \link{numeric} vector or size 1.
     #'
     size = function() {
       ifelse(is.null(private$models), 0, nrow(private$models))
     },
     #'
-    #' @description The function is responsible of saving the information of all executed models into a hidden file.
+    #' @description The function is responsible of saving the information of all
+    #' executed models into a hidden file.
     #'
     save = function() {
       if (nrow(private$models) > 0) {
@@ -146,10 +154,12 @@ ExecutedModels <- R6::R6Class(
         message("[", class(self)[1], "][ERROR] File is empty. ",
                 "Task not performed")
       }
-    },    #'
+    },
+    #'
     #' @description The function removes an specific model.
     #'
-    #' @param model.name A \code{\link{character}} vector with the name of the model to be removed.
+    #' @param model.name A \link{character} vector with the name of the
+    #' model to be removed.
     #'
     delete = function(model.name) {
       if (self$exist(model.name)) {

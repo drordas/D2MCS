@@ -3,11 +3,11 @@
 #' @description Performs the feature-clustering using Kendall correlation tests.
 #'
 #' @details The method estimate the association between paired samples and
-#' compute a test of the value being zero. They use different measures of association,
-#' all in the range [-1, 1] with 0 indicating no association.
+#' compute a test of the value being zero. They use different measures of
+#' association, all in the range [-1, 1] with 0 indicating no association.
 #' Method valid only for bi-class problems.
 #'
-#' @seealso \code{\link{Dataset}}, \link{cor.test}
+#' @seealso \code{\link{Dataset}}, \code{\link[stats]{cor.test}}
 #'
 #' @keywords cluster manip
 #'
@@ -21,20 +21,24 @@ KendallHeuristic <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Creates a \link{KendallHeuristic} object.
-    #' @return a \link{KendallHeuristic} object.
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { },
     # Heuristic valid for continuous variables
     #'
-    #' @description Test for association between paired samples using Kendall's tau value.
+    #' @description Test for association between paired samples using Kendall's
+    #' tau value.
     #'
-    #' @param col1 a \link{numeric} vector or matrix required to perform the
+    #' @param col1 A \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
-    #' @param column.names an optional \link{character} vector with the names of
+    #' @param col2 A \link{numeric} vector or matrix to perform the clustering
+    #' operation.
+    #' @param column.names An optional \link{character} vector with the names of
     #' both columns.
-    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+    #'
+    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error
+    #' occurs.
     #'
     #' @importFrom stats cor.test
     #'

@@ -4,11 +4,13 @@
 \alias{MeasureFunction}
 \title{Archetype to define customized measures.}
 \description{
-Abstract class used as a template to define new M.L. performance measures.
+Abstract class used as a template to define new M.L. performance
+measures.
 }
 \details{
-The \link{GenericHeuristic} is an full-abstract class so it cannot be instantiated.
-To ensure the proper operation, \code{compute} method is automatically invoke by \link{DDMCS} framework when needed.
+The \code{\link{GenericHeuristic}} is an full-abstract class so it cannot
+be instantiated. To ensure the proper operation, \code{compute} method is
+automatically invoke by \code{\link{DDMCS}} framework when needed.
 }
 \seealso{
 \code{\link{MeasureFunction}}
@@ -35,7 +37,7 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance}}{An optional \link{ConfMatrix} parameter to
+\item{\code{performance}}{An optional \code{\link{ConfMatrix}} parameter to
 define the type of object used to compute the measure.}
 }
 \if{html}{\out{</div>}}
@@ -45,7 +47,8 @@ define the type of object used to compute the measure.}
 \if{html}{\out{<a id="method-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
-The function implements the metric used to measure the performance achieved by the M.L. model.
+The function implements the metric used to measure the
+performance achieved by the M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MeasureFunction$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -53,17 +56,19 @@ The function implements the metric used to measure the performance achieved by t
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \link{ConfMatrix} parameter to
-define the type of object used to compute the measure.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used to compute the measure.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is automatically invoque by the \link{DDMCS} framework.
+This function is automatically invoke by the \code{\link{DDMCS}}
+framework.
 }
 
 \subsection{Returns}{
-A \link{numeric} vector of size 1 or \link{NULL} if an error occured.
+A \link{numeric} vector of size 1 or \link{NULL} if an error
+occurred.
 }
 }
 \if{html}{\out{<hr>}}

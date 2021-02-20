@@ -1,8 +1,11 @@
-#' @title Custom Strategy Configuration handler for the DependencyBasedStrategy strategy.
+#' @title Custom Strategy Configuration handler for the DependencyBasedStrategy
+#' strategy.
 #'
-#' @description Define the default configuration parameters for the \link{DependencyBasedStrategy} strategy.
+#' @description Define the default configuration parameters for the
+#' \link{DependencyBasedStrategy} strategy.
 #'
-#' @seealso \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategy}}
+#' @seealso \code{\link{StrategyConfiguration}},
+#' \code{\link{DependencyBasedStrategy}}
 #'
 #' @keywords cluster manip
 #'
@@ -16,15 +19,16 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Empty function used to initalize the object arguments during runtime.
-    #'
-    #' @return A \link{StrategyConfiguration} object.
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { },
     #'
-    #' @description Function used to return the minimum number of clusters distributions used. By default the minimum is set in 2.
+    #' @description Function used to return the minimum number of clusters
+    #' distributions used. By default the minimum is set in 2.
     #'
-    #' @param ... Further arguments passed down to \code{minNumClusters} function.
+    #' @param ... Further arguments passed down to \code{minNumClusters}
+    #' function.
     #'
     #' @return A \link{numeric} vector of length 1.
     #'
@@ -33,10 +37,11 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
       2
     },
     #'
-    #' @description The function is responsible of returning the maximum number of cluster distributions used.
-    #' By default the maximum number is set in 50.
+    #' @description The function is responsible of returning the maximum number
+    #' of cluster distributions used. By default the maximum number is set in 50.
     #'
-    #' @param ... Further arguments passed down to \code{maxNumClusters} function.
+    #' @param ... Further arguments passed down to \code{maxNumClusters}
+    #' function.
     #'
     #' @return A \link{numeric} vector of length 1.
     #'
@@ -46,17 +51,21 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
       if (is.infinite(max)) { 3 } else { max }
     },
     #'
-    #' @description The function is used to define the interval to consider the dependency between binary features.
+    #' @description The function is used to define the interval to consider the
+    #' dependency between binary features.
     #'
-    #' @param ... Further arguments passed down to \code{maxNumClusters} function.
+    #' @param ... Further arguments passed down to \code{getBinaryCutoff}
+    #' function.
     #'
     #' @return A \link{numeric} vector of length 1.
     #'
     getBinaryCutoff = function() { 0.6 },
     #'
-    #' @description The function allows defining the cutoff to consider the dependency between real features.
+    #' @description The function allows defining the cutoff to consider the
+    #' dependency between real features.
     #'
-    #' @param ... Further arguments passed down to \code{maxNumClusters} function.
+    #' @param ... Further arguments passed down to \code{getRealCutoff}
+    #' function.
     #'
     #' @return A \link{numeric} vector of length 1.
     #'
@@ -65,14 +74,18 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     #' @description The function solves the ties between two (or more) features.
     #'
     #' @param feature A \link{character} containing the name of the feature
-    #' @param clus.candidates A single or \link{numeric} vector value to identify
-    #' the candidate groups to insert the feature.
-    #' @param fea.dep.dist.clus A \link{list} containing the groups chosen for the features.
-    #' @param corpus A \link{data.frame} containing the features of the initial data.
-    #' @param heuristic The heuristic used to compute the relevance of each feature.
-    #' Must inherit from \link{GenericHeuristic} abstract class.
-    #' @param class a \link{character} vector containing all the values of the target class.
-    #' @param class.name A \link{character} value representing the name of the target class.
+    #' @param clus.candidates A single or \link{numeric} vector value to
+    #' identify the candidate groups to insert the feature.
+    #' @param fea.dep.dist.clus A \link{list} containing the groups chosen for
+    #' the features.
+    #' @param corpus A \link{data.frame} containing the features of the initial
+    #' data.
+    #' @param heuristic The heuristic used to compute the relevance of each
+    #' feature. Must inherit from \link{GenericHeuristic} abstract class.
+    #' @param class A \link{character} vector containing all the values of the
+    #' target class.
+    #' @param class.name A \link{character} value representing the name of the
+    #' target class.
     #'
     tiebreak = function(feature, clus.candidates, fea.dep.dist.clus, corpus,
                         heuristic, class, class.name) {
@@ -82,8 +95,11 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     #'
     #' @description The function determines the quality of a cluster.
     #'
-    #' @param clusters A \link{list} with the feature distribution of each cluster.
-    #' @param metrics A numeric \link{list} with the metrics associated to the cluster (dependency between all features and dependency between the features and the class).
+    #' @param clusters A \link{list} with the feature distribution of each
+    #' cluster.
+    #' @param metrics A numeric \link{list} with the metrics associated to the
+    #' cluster (dependency between all features and dependency between the
+    #' features and the class).
     #'
     #' @return A \link{numeric} vector of length 1.
     #'
@@ -91,9 +107,11 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
       mean(metrics[["dep.tar"]])
     },
     #'
-    #' @description The function indicates if clustering is getting better as the number of them increases.
+    #' @description The function indicates if clustering is getting better as
+    #' the number of them increases.
     #'
-    #' @param clusters.deltha A \link{numeric} vector value with the quality values of the built clusters.
+    #' @param clusters.deltha A \link{numeric} vector value with the quality
+    #' values of the built clusters.
     #'
     #' @return A \link{numeric} vector of length 1.
     #'

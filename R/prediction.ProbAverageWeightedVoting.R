@@ -1,12 +1,13 @@
 #' @title Implementation of Probabilistic Average Weighted voting.
 #'
 #' @description Computes the final prediction by perfoming the weighted mean of
-#' the probability achieved by each cluster prediction. By default,
-#' weight values are consistent with the performance value
-#' achieved by the best M.L. model on each cluster.
+#' the probability achieved by each cluster prediction. By default, weight
+#' values are consistent with the performance value achieved by the best M.L.
+#' model on each cluster.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+#' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'
 #' @keywords models methods math
 #'
@@ -22,10 +23,12 @@ ProbAverageWeightedVoting <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param cutoff A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, 0.5 will be used as default value.
-    #' @param weights A \code{\link{numeric}} vector with the weigths of each cluster. If \code{\link{NULL}} performance
-    #' achieved during training will be used as default.
+    #' @param cutoff A \link{character} vector defining the minimum probability
+    #' used to perform a positive classification. If is not defined, 0.5 will be
+    #' used as default value.
+    #' @param weights A \link{numeric} vector with the weights of each cluster.
+    #' If \link{NULL} performance achieved during training will be used as
+    #' default.
     #'
     initialize = function(cutoff = 0.5, weights = NULL) {
       super$initialize(cutoff = cutoff)
@@ -34,13 +37,14 @@ ProbAverageWeightedVoting <- R6::R6Class(
     #'
     #' @description The function returns the value of the majority class.
     #'
-    #' @return A \code{\link{character}} vector of length 1 with the name of the majority class.
+    #' @return A \link{character} vector of length 1 with the name of the
+    #' majority class.
     #'
     getWeights = function() { private$weights },
     #'
-    #' @description The funtion allows changing the value of the weights.
+    #' @description The function allows changing the value of the weights.
     #'
-    #' @param weights A \code{\link{numeric}} vector containing the new weights.
+    #' @param weights A \link{numeric} vector containing the new weights.
     #'
     setWeights = function(weights) {
       if (missing(weights) || is.null(weights)) {
@@ -60,11 +64,13 @@ ProbAverageWeightedVoting <- R6::R6Class(
       }
     },
     #'
-    #' @description The function implements the cluster-weighted probabilistic voting procedure.
+    #' @description The function implements the cluster-weighted probabilistic
+    #' voting procedure.
     #'
-    #' @param predictions A \code{\link{ClusterPredictions}} object containing all
-    #' the predictions achieved for each cluster.
-    #' @param verbose A \code{\link{logical}} value to specify if more verbosity is needed.
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing
+    #' all the predictions achieved for each cluster.
+    #' @param verbose A \link{logical} value to specify if more verbosity is
+    #' needed.
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {

@@ -1,8 +1,10 @@
 #' @title Confusion matrix wrapper.
 #'
-#' @description Creates a \link{R6} confusion matrix from the \code{\link[caret]{confusionMatrix}} caret package.
+#' @description Creates a \code{\link{R6}} confusion matrix from the
+#' \code{\link[caret]{confusionMatrix}} caret package.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}
+#' @seealso \code{\link{DDMCS}}, \code{\link{MeasureFunction}},
+#' \code{\link{ClassificationOutput}}
 #'
 #' @keywords classif math
 #'
@@ -15,7 +17,8 @@ ConfMatrix <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Method to create a confusion matrix object from a \code{caret} \code{\link[caret]{confusionMatrix}}
+    #' @description Method to create a confusion matrix object from a
+    #' \code{caret} \code{\link[caret]{confusionMatrix}}
     #'
     #' @param confMatrix A \code{caret} \link[caret]{confusionMatrix} argument.
     #'
@@ -29,34 +32,37 @@ ConfMatrix <- R6::R6Class(
       private$confusionMatrix <- confMatrix
     },
     #'
-    #' @description The function obtains the \code{\link[caret]{confusionMatrix}} following the same structured
-    #' as defined in the \code{caret} package
+    #' @description The function obtains the \code{\link[caret]{confusionMatrix}}
+    #' following the same structured as defined in the \code{caret} package
     #'
     #' @return A \code{\link[caret]{confusionMatrix}} object.
     #'
     getConfusionMatrix = function() { private$confusionMatrix },
     #'
-    #' @description The function is used to compute the number of True Positive values achieved.
+    #' @description The function is used to compute the number of True Positive
+    #' values achieved.
     #'
-    #' @return A \code{\link{numeric}} vector of size 1.
+    #' @return A \link{numeric} vector of size 1.
     #'
     getTP = function() { private$confusionMatrix$table[private$positive.class, private$positive.class] },
     #'
     #' @description The function computes the True Negative values.
     #'
-    #' @return A \code{\link{numeric}} vector of size 1.
+    #' @return A \link{numeric} vector of size 1.
     #'
     getTN = function() { private$confusionMatrix$table[private$negative.class, private$negative.class] },
     #'
-    #' @description The function returns the number of Type II errors (False Negative).
+    #' @description The function returns the number of Type II errors
+    #' (False Negative).
     #'
-    #' @return A \code{\link{numeric}} vector of size 1.
+    #' @return A \link{numeric} vector of size 1.
     #'
     getFN = function() { private$confusionMatrix$table[private$negative.class, private$positive.class] },
     #'
-    #' @description The function returns the number of Type I errors (False Negative).
+    #' @description The function returns the number of Type I errors
+    #' (False Negative).
     #'
-    #' @return A \code{\link{numeric}} vector of size 1.
+    #' @return A \link{numeric} vector of size 1.
     #'
     getFP = function() { private$confusionMatrix$table[private$positive.class, private$negative.class] }
   ),

@@ -4,12 +4,13 @@
 \alias{BinaryPlot}
 \title{Plotting feature clusters following bi-class problem.}
 \description{
-The \link{BinaryPlot} implements a basic plot for bi-class problem.
+The \code{\link{BinaryPlot}} implements a basic plot for
+bi-class problem.
 }
 \seealso{
 \code{\link{GenericPlot}}
 
-for more information see \code{plot} function from \code{GenericPlot} class.
+\code{\link{GenericPlot}}
 }
 \keyword{color}
 \keyword{device}
@@ -35,20 +36,18 @@ for more information see \code{plot} function from \code{GenericPlot} class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-empty function used to initalize the object arguments in runtime.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{BinaryPlot$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{BinaryPlot} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
-plots feature-clustering data from a bi-class problem.
+Plots feature-clustering data from a bi-class problem.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{BinaryPlot$plot(summary, ...)}\if{html}{\out{</div>}}
 }
@@ -56,9 +55,9 @@ plots feature-clustering data from a bi-class problem.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{summary}}{a \link{data.frame} comprising the elements to be plotted.}
+\item{\code{summary}}{A \link{data.frame} comprising the elements to be plotted.}
 
-\item{\code{...}}{further arguments passed down to \code{plot} function.}
+\item{\code{...}}{Further arguments passed down to \code{plot} function.}
 }
 \if{html}{\out{</div>}}
 }

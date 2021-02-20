@@ -1,9 +1,10 @@
 #' @title Feature-clustering based on Fisher's Exact Test.
 #'
-#' @description Performs feature-clustering based on Fisher's exact test for testing
-#' the null of independence of rows and columns in a contingency table with fixed marginals.
+#' @description Performs feature-clustering based on Fisher's exact test for
+#' testing the null of independence of rows and columns in a contingency table
+#' with fixed marginals.
 #'
-#' @seealso \code{\link{Dataset}}, \link{fisher.test}
+#' @seealso \code{\link{Dataset}}, \code{\link[stats]{fisher.test}}
 #'
 #' @keywords cluster manip
 #'
@@ -16,23 +17,26 @@ FisherTestHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description Creates the \link{FisherTestHeuristic} object.
     #'
-    #' @return a \link{FisherTestHeuristic} object.
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { },
     # Heuristic valid for discrete variables
     #'
-    #' @description Performs the Fisher's exact test for testing the null of independence
-    #' between two columns (col1 and col2).
+    #' @description Performs the Fisher's exact test for testing the null of
+    #' independence between two columns (col1 and col2).
     #'
-    #' @param col1 a \link{numeric} vector or matrix required to perform the
+    #' @param col1 A \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
-    #' @param column.names an optional \link{character} vector with the names of
+    #' @param col2 A \link{numeric} vector or matrix to perform the clustering
+    #' operation.
+    #' @param column.names An optional \link{character} vector with the names of
     #' both columns.
     #'
-    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+    #' @return A \link{numeric} vector of length 1 or \link{NA} if an error
+    #' occurs.
+    #'
     #' @importFrom stats fisher.test
     #'
     heuristic = function(col1, col2, column.names = NULL) {

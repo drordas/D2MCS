@@ -1,6 +1,7 @@
 #' @title Dataset creation.
 #'
-#' @description Wrapper class able to automatically create a \code{\link{Dataset}}, \code{\link{HDDataset}} according to the input data.
+#' @description Wrapper class able to automatically create a
+#' \code{\link{Dataset}}, \code{\link{HDDataset}} according to the input data.
 #'
 #' @seealso \code{\link{Dataset}}, \code{\link{HDDataset}}
 #'
@@ -28,28 +29,35 @@ DatasetLoader <- R6::R6Class(
   cloneable = FALSE,
   public = list(
     #'
-    #' @description Creates the \code{\link{DatasetLoader}} object.
-    #'
-    #' @return DatasetLoader object.
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { self },
     #'
-    #' @description Stores the input source into a \code{\link{Dataset}} or \code{\link{HDDataset}} type object.
+    #' @description Stores the input source into a \code{\link{Dataset}} or
+    #' \code{\link{HDDataset}} type object.
     #'
-    #' @param filepath the name of the file which the data are to be read from.
-    #' Each row of the table appears as one line of the file.
-    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, 'getwd()'.
-    #' @param header a \link{logical} value indicating whether the file contains the names of the variables as its first line.
-    #' If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
-    #' first row contains one fewer field than the number of columns.
-    #' @param sep the field separator character. Values on each line of the file are separated by this character.
-    #' @param skip.lines defines the number of header lines should be skipped.
-    #' @param normalize.names a \link{logical} value indicating whether the columns names should be automatically renamed
-    #' to ensure R compatibility.
-    #' @param string.as.factor a \link{logical} value indicating if character columns should be converted to factors (default = FALSE).
-    #' @param ignore.columns specify the columns from the input file that should be ignored.
+    #' @param filepath The name of the file which the data are to be read from.
+    #' Each row of the table appears as one line of the file. If it does not
+    #' contain an _absolute_ path, the file name is _relative_ to the current
+    #' working directory, '\code{getwd()}'.
+    #' @param header A \link{logical} value indicating whether the file contains
+    #' the names of the variables as its first line. If missing, the value is
+    #' determined from the file format: '\code{header}' is set to '\link{TRUE}'
+    #' if and only if the first row contains one fewer field than the number of
+    #' columns.
+    #' @param sep The field separator character. Values on each line of the file
+    #' are separated by this character.
+    #' @param skip.lines Defines the number of header lines should be skipped.
+    #' @param normalize.names A \link{logical} value indicating whether the
+    #' columns names should be automatically renamed to ensure R compatibility.
+    #' @param string.as.factor A \link{logical} value indicating if character
+    #' columns should be converted to factors (default = FALSE).
+    #' @param ignore.columns Specify the columns from the input file that should
+    #' be ignored.
     #'
-    #' @return \code{\link{Dataset}}, \code{\link{HDDataset}} object.
+    #' @return A \code{\link{Dataset}} or \code{\link{HDDataset}} object.
+    #'
     #' @importFrom dplyr between
     #'
     load = function(filepath, header = TRUE, sep = ",", skip.lines = 0,

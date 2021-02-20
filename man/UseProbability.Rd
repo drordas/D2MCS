@@ -4,7 +4,8 @@
 \alias{UseProbability}
 \title{Compute performance across resamples.}
 \description{
-Computes the performance across resamples when class probabilities can be computed.
+Computes the performance across resamples when class
+probabilities can be computed.
 }
 \seealso{
 \code{\link{SummaryFunction}}
@@ -32,21 +33,19 @@ Computes the performance across resamples when class probabilities can be comput
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-The function defined during runtime the usage of seven measures: 'ROC', 'Sens', 'Kappa', 'Accuracy',
-'TCR_9', 'MCC' and 'PPV'.
+The function defined during runtime the usage of seven
+measures: 'ROC', 'Sens', 'Kappa', 'Accuracy', 'TCR_9', 'MCC' and 'PPV'.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{UseProbability$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-A \code{\link{UseProbability}} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-The function computes the performance across resamples using the previously defined measures.
+The function computes the performance across resamples using
+the previously defined measures.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{UseProbability$execute(data, lev = NULL, model = NULL)}\if{html}{\out{</div>}}
 }
@@ -54,9 +53,11 @@ The function computes the performance across resamples using the previously defi
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{data}}{A \code{\link{data.frame}} containing the data used to compute the performance.}
+\item{\code{data}}{A \link{data.frame} containing the data used to compute the
+performance.}
 
-\item{\code{lev}}{An optional value used to define the levels of the target class.}
+\item{\code{lev}}{An optional value used to define the levels of the target
+class.}
 
 \item{\code{model}}{An optional value used to define the M.L. model used.}
 }

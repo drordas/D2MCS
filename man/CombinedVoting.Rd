@@ -5,11 +5,13 @@
 \title{Implementation of Combined Voting.}
 \description{
 Calculates the final prediction by performing the result of the
-preditions of different metrics obtained through a \code{\link{SimpleVoting}} class.
+predictions of different metrics obtained through a \code{\link{SimpleVoting}}
+class.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+\code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
 \code{\link{SimpleVoting}}
 }
 \keyword{math}
@@ -50,16 +52,20 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{voting.schemes}}{A \code{\link{list}} of elements inherited from \code{\link{SimpleVoting}}.}
+\item{\code{voting.schemes}}{A \link{list} of elements inherited from
+\code{\link{SimpleVoting}}.}
 
-\item{\code{combined.metrics}}{An object defining the metrics used to combine the voting schemes.
-The object must inherit from \code{\link{CombinedMetrics}} class.}
+\item{\code{combined.metrics}}{An object defining the metrics used to combine
+the voting schemes. The object must inherit from
+\code{\link{CombinedMetrics}} class.}
 
-\item{\code{methodology}}{An object specifiying the methodology used to execute the combined votings.
-Object inherited from \code{\link{Methodology}} object}
+\item{\code{methodology}}{An object specifying the methodology used to execute
+the combined voting. Object inherited from \code{\link{Methodology}}
+object}
 
-\item{\code{metrics}}{A \code{\link{character}} vector with the name of the metrics used to perform
-the combined voting operations. Metrics should be previously defined during training stage.}
+\item{\code{metrics}}{A \link{character} vector with the name of the
+metrics used to perform the combined voting operations. Metrics should be
+previously defined during training stage.}
 }
 \if{html}{\out{</div>}}
 }
@@ -68,7 +74,8 @@ the combined voting operations. Metrics should be previously defined during trai
 \if{html}{\out{<a id="method-getCombinedMetrics"></a>}}
 \if{latex}{\out{\hypertarget{method-getCombinedMetrics}{}}}
 \subsection{Method \code{getCombinedMetrics()}}{
-The function returns the metrics used to combine the metrics results.
+The function returns the metrics used to combine the metrics
+results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$getCombinedMetrics()}\if{html}{\out{</div>}}
 }
@@ -81,7 +88,8 @@ An object inherited from \code{\link{CombinedMetrics}} class.
 \if{html}{\out{<a id="method-getMethodology"></a>}}
 \if{latex}{\out{\hypertarget{method-getMethodology}{}}}
 \subsection{Method \code{getMethodology()}}{
-The function gets the methodology used to execute the combined votings.
+The function gets the methodology used to execute the
+combined votings.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$getMethodology()}\if{html}{\out{</div>}}
 }
@@ -94,7 +102,8 @@ An object inherited from \code{\link{Methodology}} class.
 \if{html}{\out{<a id="method-getFinalPred"></a>}}
 \if{latex}{\out{\hypertarget{method-getFinalPred}{}}}
 \subsection{Method \code{getFinalPred()}}{
-The function returns the predictions obtained after executing the combined-voting methodology.
+The function returns the predictions obtained after
+executing the combined-voting methodology.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$getFinalPred(type = NULL, target = NULL, filter = NULL)}\if{html}{\out{</div>}}
 }
@@ -102,21 +111,24 @@ The function returns the predictions obtained after executing the combined-votin
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
-all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
-'class' values are returned.}
+\item{\code{type}}{A \link{character} to define which type of predictions
+should be returned. If not defined all type of probabilities will be
+returned. Conversely if "prob" or "raw" is defined then computed
+'probabilistic' or 'class' values are returned.}
 
-\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
+\item{\code{target}}{A \link{character} defining the value of the
+positive class.}
 
-\item{\code{filter}}{A \code{\link{logical}} value used to specify if only predictions
-matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
-predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
-the function returns all the predictions.}
+\item{\code{filter}}{A \link{logical} value used to specify if only predictions
+matching the target value should be returned or not. If \link{TRUE} the
+function returns only the predictions matching the target value.
+Conversely if \link{FALSE} (by default) the function returns all the
+predictions.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{data.frame}} with the computed predictions.
+A \link{data.frame} with the computed predictions.
 }
 }
 \if{html}{\out{<hr>}}
@@ -131,9 +143,11 @@ The function implements the combined voting scheme.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing the predictions computed for each cluster.}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
+the predictions computed for each cluster.}
 
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 }
 \if{html}{\out{</div>}}
 }

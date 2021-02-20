@@ -1,9 +1,10 @@
 #' @title Computes the False Positive value.
 #'
-#' @description This is the number of individuals with a negative condition for which the test result is
-#' positive. The value entered here must be non-negative.
+#' @description This is the number of individuals with a negative condition for
+#' which the test result is positive. The value entered here must be non-negative.
 #'
-#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+#' \code{\link{ConfMatrix}}
 #'
 #' @keywords classif math
 #'
@@ -19,22 +20,27 @@ FP <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter used
-    #' as basis to define the type of compute the \code{Type I} error.
-    #'
-    #' @return An \code{\link{FP}} object.
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' used as basis to define the type of compute the \code{FP} measure.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description The function computes the \code{FP} achieved by the M.L. model.
+    #' @description The function computes the \strong{FP} achieved by the M.L.
+    #' model.
     #'
-    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to
-    #' define the type of object used as basis to compute the \code{Tipe I} measure.
-    #' @details This function is automatically invoked by the \link{ClassificationOutput} object.
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the \code{FP}
+    #' measure.
+    #'
+    #' @details This function is automatically invoked by the
+    #' \code{\link{ClassificationOutput}} object.
+    #'
     #' @seealso \code{\link{ConfMatrix}}
-    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+    #'
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if
+    #' an error occurred.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

@@ -44,41 +44,42 @@ Method for initializing the object arguments during runtime.
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-An \code{\link{ExecutedModels}} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNames"></a>}}
 \if{latex}{\out{\hypertarget{method-getNames}{}}}
 \subsection{Method \code{getNames()}}{
-The function is used to obtain the name of the ML model achieved the best performance during training stage.
+The function is used to obtain the name of the ML model
+achieved the best performance during training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$getNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of length 1 of \code{\link{NULL}} if no ML model have been trainned.
+A \link{character} vector of length 1 of \link{NULL}
+if no ML model have been trained.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getBest"></a>}}
 \if{latex}{\out{\hypertarget{method-getBest}{}}}
 \subsection{Method \code{getBest()}}{
-The function is responsible of returning the model achieving the best performance value during training stage.
+The function is responsible of returning the model achieving
+the best performance value during training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$getBest()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{Model}} oject.
+A \code{\link{Model}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
 \if{latex}{\out{\hypertarget{method-add}{}}}
 \subsection{Method \code{add()}}{
-The function inserts a new model to the list of executed models.
+The function inserts a new model to the list of executed
+models.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$add(model, keep.best = TRUE)}\if{html}{\out{</div>}}
 }
@@ -88,8 +89,9 @@ The function inserts a new model to the list of executed models.
 \describe{
 \item{\code{model}}{A previously trained model (in \code{\link{Model}} object).}
 
-\item{\code{keep.best}}{A \code{logical} value to define the saving operation.
-If \code{TRUE} only saves the best model, otherwise all executed models are saved.}
+\item{\code{keep.best}}{A \link{logical} value to define the saving operation.
+If \link{TRUE} only saves the best model, otherwise all executed models
+are saved.}
 }
 \if{html}{\out{</div>}}
 }
@@ -98,7 +100,8 @@ If \code{TRUE} only saves the best model, otherwise all executed models are save
 \if{html}{\out{<a id="method-exist"></a>}}
 \if{latex}{\out{\hypertarget{method-exist}{}}}
 \subsection{Method \code{exist()}}{
-The function is used to discern if a specific model has been executed previously.
+The function is used to discern if a specific model has been
+executed previously.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$exist(model.name)}\if{html}{\out{</div>}}
 }
@@ -106,32 +109,36 @@ The function is used to discern if a specific model has been executed previously
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{model.name}}{A \code{\link{character}} vector with the name of the model to check for existence.}
+\item{\code{model.name}}{A \link{character} vector with the name of the
+model to check for existence.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{logical}} value. \link{TRUE} if the model exists and \link{FALSE} otherwise.
+A \link{logical} value. \link{TRUE} if the model exists
+and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-size"></a>}}
 \if{latex}{\out{\hypertarget{method-size}{}}}
 \subsection{Method \code{size()}}{
-The function is used to compute the number of executed ML models.
+The function is used to compute the number of executed ML
+models.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$size()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector or size 1.
+A \link{numeric} vector or size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
 \if{latex}{\out{\hypertarget{method-save}{}}}
 \subsection{Method \code{save()}}{
-The function is responsible of saving the information of all executed models into a hidden file.
+The function is responsible of saving the information of all
+executed models into a hidden file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExecutedModels$save()}\if{html}{\out{</div>}}
 }
@@ -149,7 +156,8 @@ The function removes an specific model.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{model.name}}{A \code{\link{character}} vector with the name of the model to be removed.}
+\item{\code{model.name}}{A \link{character} vector with the name of the
+model to be removed.}
 }
 \if{html}{\out{</div>}}
 }

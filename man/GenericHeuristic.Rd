@@ -4,10 +4,12 @@
 \alias{GenericHeuristic}
 \title{Abstract Feature Clustering heuristic object.}
 \description{
-Abstract class used as a template to define new customized clustering heuristics.
+Abstract class used as a template to define new customized
+clustering heuristics.
 }
 \details{
-The \link{GenericHeuristic} is an archetype class so it cannot be instantiated.
+The \link{GenericHeuristic} is an archetype class so it cannot be
+instantiated.
 }
 \seealso{
 \code{\link{Dataset}}
@@ -26,14 +28,12 @@ The \link{GenericHeuristic} is an archetype class so it cannot be instantiated.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Empty function used to initalize the object arguments in runtime.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericHeuristic$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{GenericHeuristic} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
@@ -50,9 +50,11 @@ Function used to implement the clustering heuristic.
 \item{\code{col1}}{A \link{numeric} vector or matrix required to perform the
 clustering operation.}
 
-\item{\code{col2}}{A \link{numeric} vector or matrix to perform the clustering operation.}
+\item{\code{col2}}{A \link{numeric} vector or matrix to perform the clustering
+operation.}
 
-\item{\code{column.names}}{An optional \link{character} vector with the names of both columns}
+\item{\code{column.names}}{An optional \link{character} vector with the names of
+both columns}
 
 \item{\code{...}}{Further arguments passed down to \code{heuristic} function.}
 }

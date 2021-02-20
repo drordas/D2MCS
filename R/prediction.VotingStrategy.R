@@ -1,8 +1,10 @@
 #' @title Voting Strategy template.
 #'
-#' @description Abstract class used to define new \code{\link{SingleVoting}} and  \code{\link{CombinedVoting}} schemes.
+#' @description Abstract class used to define new \code{\link{SingleVoting}} and
+#' \code{\link{CombinedVoting}} schemes.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{SingleVoting}}, \code{\link{CombinedVoting}}
+#' @seealso \code{\link{DDMCS}}, \code{\link{SingleVoting}},
+#' \code{\link{CombinedVoting}}
 #'
 #' @keywords models methods math
 #'
@@ -15,25 +17,31 @@ VotingStrategy <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Abstract method used to initialize the object arguments during runtime.
+    #' @description Abstract method used to initialize the object arguments
+    #' during runtime.
     #'
     initialize = function() { },
     #'
-    #' @description The function returns the voting schemes that will participate in the voting strategy.
+    #' @description The function returns the voting schemes that will
+    #' participate in the voting strategy.
     #'
-    #' @return A vector of object inheriting from \code{\link{VotingStrategy}} class.
+    #' @return A vector of object inheriting from \code{\link{VotingStrategy}}
+    #' class.
     #'
     getVotingSchemes = function() { private$voting.schemes },
     #'
-    #' @description The function is used to get the metric that will be used during the voting strategy.
+    #' @description The function is used to get the metric that will be used
+    #' during the voting strategy.
     #'
-    #' @return A \code{\link{character}} vector.
+    #' @return A \link{character} vector.
     #'
     getMetrics = function() { private$metrics },
     #'
-    #' @description Abstract function used to implement the operation of the voting schemes.
+    #' @description Abstract function used to implement the operation of the
+    #' voting schemes.
     #'
-    #' @param predictions A \code{\link{ClusterPredictions}} object containing de prediction achieved for each cluster.
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing
+    #' the prediction achieved for each cluster.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     execute = function(predictions, ...) {
@@ -43,7 +51,7 @@ VotingStrategy <- R6::R6Class(
     #'
     #' @description The function returns the name of the voting scheme.
     #'
-    #' @return A \code{\link{character}} vector of size 1.
+    #' @return A \link{character} vector of size 1.
     #'
     getName = function() { class(self)[1] }
   ),

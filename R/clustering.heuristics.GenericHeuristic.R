@@ -1,8 +1,10 @@
 #' @title Abstract Feature Clustering heuristic object.
 #'
-#' @description Abstract class used as a template to define new customized clustering heuristics.
+#' @description Abstract class used as a template to define new customized
+#' clustering heuristics.
 #'
-#' @details The \link{GenericHeuristic} is an archetype class so it cannot be instantiated.
+#' @details The \link{GenericHeuristic} is an archetype class so it cannot be
+#' instantiated.
 #'
 #' @seealso \code{\link{Dataset}}
 #'
@@ -16,16 +18,20 @@ GenericHeuristic <- R6::R6Class(
   classname = "GenericHeuristic",
   portable = TRUE,
   public = list(
-    #' @description Empty function used to initalize the object arguments in runtime.
-    #' @return a \link{GenericHeuristic} object.
+    #'
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
+    #'
     initialize = function() { },
     #'
     #' @description Function used to implement the clustering heuristic.
     #'
     #' @param col1 A \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 A \link{numeric} vector or matrix to perform the clustering operation.
-    #' @param column.names An optional \link{character} vector with the names of both columns
+    #' @param col2 A \link{numeric} vector or matrix to perform the clustering
+    #' operation.
+    #' @param column.names An optional \link{character} vector with the names of
+    #' both columns
     #' @param ... Further arguments passed down to \code{heuristic} function.
     #'
     #' @return A \link{numeric} vector of length 1.

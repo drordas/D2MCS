@@ -6,7 +6,8 @@
 \title{Feature-clustering based on Mutual Information Computation theory.}
 \description{
 Performs the feature-clustering using MCC score.
-Valid for both bi-class and multi-class problems. Only valid for bi-class problems.
+Valid for both bi-class and multi-class problems. Only valid for bi-class
+problems.
 }
 \seealso{
 \code{\link{Dataset}}, \code{\link[infotheo]{mutinformation}}
@@ -34,21 +35,20 @@ Valid for both bi-class and multi-class problems. Only valid for bi-class proble
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates a \link{MultinformationHeuristic} object.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MultinformationHeuristic$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{MultinformationHeuristic} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
-mutinformation takes two random variables as input and computes the
-mutual information in nats according to the entropy estimator method.
+Mutinformation takes two random variables as input and
+computes the mutual information in nats according to the entropy
+estimator method.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MultinformationHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -56,19 +56,20 @@ mutual information in nats according to the entropy estimator method.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{vector/factor denoting a random variable or a data.frame denoting a
-random vector where columns contain variables/features and rows contain
-outcomes/samples.}
+\item{\code{col1}}{A vector/factor denoting a random variable or a data.frame
+denoting a random vector where columns contain variables/features and
+rows contain outcomes/samples.}
 
-\item{\code{col2}}{another random variable or random vector (vector/factor or data.frame).}
+\item{\code{col2}}{An another random variable or random vector (vector/factor or
+data.frame).}
 
-\item{\code{column.names}}{an optional \link{character} vector with the names of
+\item{\code{column.names}}{An optional \link{character} vector with the names of
 both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-returns the mutual information I(X;Y) in nats.
+Returns the mutual information I(X;Y) in nats.
 }
 }
 \if{html}{\out{<hr>}}

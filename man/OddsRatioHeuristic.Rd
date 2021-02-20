@@ -33,14 +33,12 @@ Valid only for bi-class problems.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates a \link{OddsRatioHeuristic} object.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{OddsRatioHeuristic$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{OddsRatioHeuristic} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
@@ -54,17 +52,18 @@ Calculates the Odds Ratio method.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{object from whom odds ratio will be computed}
+\item{\code{col1}}{The object from whom odds ratio will be computed.}
 
-\item{\code{col2}}{a second \link{factor} or \link{numeric} object.}
+\item{\code{col2}}{A second \link{factor} or \link{numeric} object.}
 
-\item{\code{column.names}}{column.names an optional \link{character} vector with the names of
+\item{\code{column.names}}{An optional \link{character} vector with the names of
 both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+A \link{numeric} vector of length 1 or \link{NA} if an error
+occurs.
 }
 }
 \if{html}{\out{<hr>}}

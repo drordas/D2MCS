@@ -1,6 +1,7 @@
 #' @title Abstract class for defining model fitting method.
 #'
-#' @description Template to create a \code{\link[recipes]{recipe}} or \code{\link{formula}} objects used in model training stage.
+#' @description Template to create a \code{\link[recipes]{recipe}} or
+#' \code{\link{formula}} objects used in model training stage.
 #'
 #' @seealso \code{\link{DefaultModelFit}}, \code{\link[caret]{train}}
 #'
@@ -16,19 +17,18 @@ GenericModelFit <- R6::R6Class(
   public = list(
     #'
     #' @description Method for initializing the object arguments during runtime.
-    #' @return A \code{\link{GenericModelFit}} object.
     #'
     initialize = function() { },
     #'
     #' @description The function is responsible of creating a
     #' \code{\link{formula}} for M.L. model.
     #'
-    #' @param instances A \code{\link{data.frame}} containing the instances
-    #' used to create the recipe.
-    #' @param class.name A \code{\link{character}} vector representing
-    #' the name of the target class.
-    #' @param simplify A \code{\link{logical}} argument defining whether
-    #' the formula should be generated as simple as posible.
+    #' @param instances A \link{data.frame} containing the instances used to
+    #' create the recipe.
+    #' @param class.name A \link{character} vector representing the name of the
+    #' target class.
+    #' @param simplify A \link{logical} argument defining whether the formula
+    #' should be generated as simple as possible.
     #'
     #' @return A \code{\link{formula}} object.
     #'
@@ -40,10 +40,10 @@ GenericModelFit <- R6::R6Class(
     #' @description The function is responsible of creating a
     #' \code{\link[recipes]{recipe}} for M.L. model.
     #'
-    #' @param instances A \code{\link{data.frame}} containing the instances
-    #' used to create the recipe.
-    #' @param class.name A \code{\link{character}} vector representing
-    #' the name of the target class.
+    #' @param instances A \link{data.frame} containing the instances used to
+    #' create the recipe.
+    #' @param class.name A \link{character} vector representing the name of the
+    #' target class.
     #'
     #' @return A object of class \code{\link[recipes]{recipe}}.
     #'

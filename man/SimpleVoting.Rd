@@ -4,11 +4,13 @@
 \alias{SimpleVoting}
 \title{Abtract class to define simple voting schemes.}
 \description{
-Abstract class used as a template to define new customized simple voting schemes.
+Abstract class used as a template to define new customized
+simple voting schemes.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+\code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
 \code{\link{CombinedVoting}}
 }
 \keyword{math}
@@ -36,8 +38,9 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cutoff}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, 0.5 will be used as default value.}
+\item{\code{cutoff}}{A \link{character} vector defining the minimum probability
+used to perform a positive classification. If is not defined, 0.5 will be
+used as default value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -46,20 +49,22 @@ a positive classification. If is not defined, 0.5 will be used as default value.
 \if{html}{\out{<a id="method-getCutoff"></a>}}
 \if{latex}{\out{\hypertarget{method-getCutoff}{}}}
 \subsection{Method \code{getCutoff()}}{
-The function obtains the minimum probabilistic value used to perform a positive classification.
+The function obtains the minimum probabilistic value used to
+perform a positive classification.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$getCutoff()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} value.
+A \link{numeric} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPred"></a>}}
 \if{latex}{\out{\hypertarget{method-getFinalPred}{}}}
 \subsection{Method \code{getFinalPred()}}{
-The function is used to return the prediction values computed by a voting stratety.
+The function is used to return the prediction values
+computed by a voting strategy.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$getFinalPred(type = NULL, target = NULL, filter = NULL)}\if{html}{\out{</div>}}
 }
@@ -67,28 +72,32 @@ The function is used to return the prediction values computed by a voting strate
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
-all type of probabilities will be returned. Conversely if 'prob' or 'raw' is defined then computed 'probabilistic' or
-'class' values are returned.}
+\item{\code{type}}{A \link{character} to define which type of predictions
+should be returned. If not defined all type of probabilities will be
+returned. Conversely if 'prob' or 'raw' is defined then computed
+'probabilistic' or 'class' values are returned.}
 
-\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
+\item{\code{target}}{A \link{character} defining the value of the positive
+class.}
 
-\item{\code{filter}}{A \code{\link{logical}} value used to specify if only predictions
-matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
-predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
-the function returns all the predictions.}
+\item{\code{filter}}{A \link{logical} value used to specify if only predictions
+matching the target value should be returned or not. If \link{TRUE} the
+function returns only the predictions matching the target value.
+Conversely if \link{FALSE} (by default) the function returns all the
+predictions.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{FinalPred}} object.
+A \link{FinalPred} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-Abstract function used to implement the operation of the voting scheme.
+Abstract function used to implement the operation of the
+voting scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SimpleVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -96,9 +105,11 @@ Abstract function used to implement the operation of the voting scheme.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
+all the predictions achieved for each cluster.}
 
-\item{\code{verbose}}{A \code{\link{logical}} value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 }
 \if{html}{\out{</div>}}
 }

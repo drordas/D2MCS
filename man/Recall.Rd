@@ -4,8 +4,8 @@
 \alias{Recall}
 \title{Computes the Recall Value.}
 \description{
-Recall (also known as sensitivity) is the fraction of the total amount of
-relevant instances that were actually retrieved.
+Recall (also known as sensitivity) is the fraction of the total
+amount of relevant instances that were actually retrieved.
 }
 \details{
 \deqn{recall = \frac{TP}{TP+FN}}
@@ -52,15 +52,13 @@ to define the type of object used as basis to compute the measure.}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-An \code{\link{Recall}} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
-The function computes the \code{Recall} achieved by the M.L. model.
+The function computes the \strong{Recall} achieved by the M.L.
+model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Recall$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -68,17 +66,20 @@ The function computes the \code{Recall} achieved by the M.L. model.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to
-define the type of object used as basis to compute the \code{Recall} measure.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used as basis to compute the \strong{Recall}
+measure.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is automatically invoque by the \link{ClassificationOutput} object.
+This function is automatically invoke by the
+\code{\link{ClassificationOutput}} object.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+A \link{numeric} vector of size 1 or \link{NULL} if
+an error occurred.
 }
 }
 \if{html}{\out{<hr>}}

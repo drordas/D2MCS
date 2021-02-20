@@ -1,12 +1,10 @@
 #' @title High Dimensional Dataset handler.
 #'
-#' @description Creates a high dimensional dataset object.
-#' Only the required instances are loaded in memory to avoid
-#' unnecesary of resources and memmory
+#' @description Creates a high dimensional dataset object. Only the required
+#' instances are loaded in memory to avoid unnecessary of resources and memory.
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{Dataset}}, \code{\link{HDSubset}}, \code{\link{DatasetLoader}}
+#' @seealso \code{\link{Dataset}}, \code{\link{HDSubset}},
+#' \code{\link{DatasetLoader}}
 #'
 #' @keywords datasets manip attribute datagen
 #'
@@ -20,22 +18,24 @@ HDDataset <- R6::R6Class(
   cloneable = FALSE,
   public = list(
     #'
-    #' @description Creates the \code{\link{HDDataset}} object.
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param filepath filepath the name of the file which the data are to be read from.
-    #' Each row of the table appears as one line of the file.
-    #' If it does not contain an _absolute_ path, the file name is _relative_ to the current
-    #' working directory, 'getwd()'.
-    #' @param header a logical value indicating whether the file contains the names of the variables as its first line.
-    #' If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
-    #' first row contains one fewer field than the number of columns.
-    #' @param sep the field separator character. Values on each line of the file are separated by this character.
-    #' @param skip defines the number of header lines should be skipped.
-    #' @param normalize.names a logical value indicating whether the columns names should be automatically renamed
-    #' to ensure R compatibility.
-    #' @param ignore.columns specify the columns from the input file that should be ignored.
-    #'
-    #' @return a \link{HDDataset} object.
+    #' @param filepath The name of the file which the data are to be read from.
+    #' Each row of the table appears as one line of the file. If it does not
+    #' contain an _absolute_ path, the file name is _relative_ to the current
+    #' working directory, '\code{getwd()}'.
+    #' @param header A \link{logical} value indicating whether the file contains
+    #' the names of the variables as its first line. If missing, the value is
+    #' determined from the file format: '\code{header}' is set to '\code{TRUE}'
+    #' if and only if the first row contains one fewer field than the number of
+    #' columns.
+    #' @param sep The field separator character. Values on each line of the file
+    #' are separated by this character.
+    #' @param skip Defines the number of header lines should be skipped.
+    #' @param normalize.names A \link{logical} value indicating whether the
+    #' columns names should be automatically renamed to ensure R compatibility.
+    #' @param ignore.columns Specify the columns from the input file that should
+    #' be ignored.
     #'
     initialize = function(filepath, header = TRUE, sep = ",", skip = 0,
                           normalize.names = FALSE, ignore.columns = NULL)
@@ -83,27 +83,27 @@ HDDataset <- R6::R6Class(
       message("[", class(self)[1], "][INFO] Finish!")
     },
     #'
-    #' @description get the name of the columns comprising the dataset
+    #' @description Gets the name of the columns comprising the dataset
     #'
-    #' @return a character vector with the name of each column.
+    #' @return A \link{character} vector with the name of each column.
     #'
     getColumnNames = function() { names(private$corpus) },
     #'
-    #' @description obtains the number of columns present in the Dataset.
+    #' @description Obtains the number of columns present in the dataset.
     #'
-    #' @return an \link{integer} of length 1 or \link{NULL}
+    #' @return An \link{integer} of length 1 or \link{NULL}
     #'
     getNcol = function() { ncol(private$corpus) },
     #'
-    #' @description create a blinded \link{HDSubset} for classification purposes.
+    #' @description Creates a blinded \link{HDSubset} for classification purposes.
     #'
-    #' @param column.id an integer or character indicating the column (number or name
-    #' respectively) identifier. Default \link{NULL} value
-    #' is valid ignores defining a identification column.
-    #' @param chunk.size an integer value indicating the size of chunks taken
-    #' over each iteration.
+    #' @param column.id An \link{integer} or \link{character} indicating the
+    #' column (number or name respectively) identifier. Default \link{NULL}
+    #' value is valid ignores defining a identification column.
+    #' @param chunk.size an \link{integer} value indicating the size of chunks
+    #' taken over each iteration.
     #'
-    #' @return a \link{HDSubset} object.
+    #' @return A \code{\link{HDSubset}} object.
     #'
     #' @importFrom dplyr between
     #'

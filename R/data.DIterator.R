@@ -1,6 +1,7 @@
-#' @title Iterator over a \link{Subset} object
+#' @title Iterator over a Subset object
 #'
-#' @description Creates an \link{DIterator} object to iterate over the \link{Subset}.
+#' @description Creates a \code{\link{DIterator}} object to iterate over the
+#' \code{\link{Subset}}.
 #'
 #' @seealso \code{\link{Dataset}}
 #'
@@ -15,14 +16,14 @@ DIterator <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Creates the \link{DIterator} object.
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param data a \link{data.frame} structure to be iterated.
-    #' @param chunk.size an integer value indicating the size of chunks taken
-    #' over each iteration. By default chunk.size is defied as 10000.
-    #' @param verbose a logical value to specify if more verbosity is needed.
-    #'
-    #' @return an \link{DIterator} object
+    #' @param data A \link{data.frame} structure to be iterated.
+    #' @param chunk.size An \link{integer} value indicating the size of chunks
+    #' taken over each iteration. By default \code{chunk.size} is defined as
+    #' 10000.
+    #' @param verbose A \link{logical} value to specify if more verbosity is
+    #' needed.
     #'
     initialize = function(data, chunk.size, verbose) {
       private$chunk.size  <- chunk.size
@@ -33,12 +34,14 @@ DIterator <- R6::R6Class(
       private$data <- data
     },
     #'
-    #' @description Gets the next chunk of data. Each iteration returns the same instances
-    #' (data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
-    #' all the remaining data is returned. Conversely, \link{NULL} when there is no more
-    #' pending data. By default chunk.size is defied as 10000.
+    #' @description Gets the next chunk of data. Each iteration returns the same
+    #' instances (data.frame rows) as chunk.size. However, if remaining data if
+    #' less than chunk size, all the remaining data is returned. Conversely,
+    #' \link{NULL} when there is no more pending data. By default
+    #' \code{chunk.size} is defined as 10000.
     #'
-    #' @return a \link{data.frame} of \link{NULL} if all the data have been previously returned.
+    #' @return A \link{data.frame} of \link{NULL} if all the data have been
+    #' previously returned.
     #'
     getNext = function() {
       if (self$isLast()) return(NULL)
@@ -61,13 +64,15 @@ DIterator <- R6::R6Class(
       data.chunk
     },
     #'
-    #' @description Checks if the \link{DIterator} object reached the end of the \link{data.frame}
+    #' @description Checks if the \code{\link{DIterator}} object reached the end
+    #' of the \link{data.frame}
     #'
-    #' @return a logical value indicating if the end of \link{data.frame} has been reached.
+    #' @return A \link{logical} value indicating if the end of \link{data.frame}
+    #' has been reached.
     #'
     isLast = function() { private$end >= nrow(private$data) },
     #'
-    #' @description Destroys the \link{DIterator} object.
+    #' @description Destroys the \code{\link{DIterator}} object.
     #'
     finalize = function() {}
   ),

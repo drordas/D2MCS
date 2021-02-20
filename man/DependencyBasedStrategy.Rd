@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.strategies.DependencyBasedStrategy.R
 \name{DependencyBasedStrategy}
 \alias{DependencyBasedStrategy}
-\title{Clustering strategy based on dependency between features}
+\title{Clustering strategy based on dependency between features.}
 \description{
 Features are distributed according to their independence values.
 This strategy is divided into two steps. The first phase focuses on forming
@@ -12,28 +12,38 @@ The second step is to try out different numbers of clusters until you find
 the one you think is best. These clusters are formed by inserting in all the
 independent characteristics identified previously and trying to distribute
 the features of the groups formed in the previous step in separate clusters.
-In this way, it seeks to ensure that the features are as independent as possible
-from those found in the same cluster.
+In this way, it seeks to ensure that the features are as independent as
+possible from those found in the same cluster.
 }
 \details{
 The strategy is suitable only for binary and real features. Other
-features are automatically grouped into a specific cluster named as 'unclustered'.
-This class requires the \code{\link{StrategyConfiguration}} type object implements the following methods:
+features are automatically grouped into a specific cluster named as
+'unclustered'. This class requires the \code{\link{StrategyConfiguration}}
+type object implements the following methods:
 
-- \code{getBinaryCutoff()}: The function is used to define the interval to consider the dependency between binary features.
+- \code{getBinaryCutoff()}: The function is used to define the interval to
+consider the dependency between binary features.
 
-- \code{getRealCutoff()}: The function allows defining the cutoff to consider the dependency between real features.
+- \code{getRealCutoff()}: The function allows defining the cutoff to consider
+the dependency between real features.
 
-- \code{tiebreak(feature, clus.candidates, fea.dep.dist.clus, corpus, heuristic, class, class.name)}: The function solves the ties between two (or more) features.
+- \code{tiebreak(feature, clus.candidates, fea.dep.dist.clus, corpus,
+heuristic, class, class.name)}: The function solves the ties between two
+(or more) features.
 
-- \code{qualityOfCluster(clusters, metrics)}: The function determines the quality of a cluster
+- \code{qualityOfCluster(clusters, metrics)}: The function determines the
+quality of a cluster
 
-- \code{isImprovingClustering(clusters.deltha)}: The function indicates if clustering is getting better as the number of them increases.
+- \code{isImprovingClustering(clusters.deltha)}: The function indicates if
+clustering is getting better as the number of them increases.
 
-An example of implementation with the description of each parameter is the \code{\link{DependencyBasedStrategyConfiguration}} class.
+An example of implementation with the description of each parameter is the
+\code{\link{DependencyBasedStrategyConfiguration}} class.
 }
 \seealso{
-\code{\link{GenericClusteringStrategy}}, \code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategyConfiguration}}
+\code{\link{GenericClusteringStrategy}},
+\code{\link{StrategyConfiguration}},
+\code{\link{DependencyBasedStrategyConfiguration}}
 }
 \keyword{cluster}
 \keyword{manip}
@@ -79,13 +89,15 @@ Method for initializing the object parameters during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{subset}}{The \link{Subset} used to apply the feature-clustering strategy.}
+\item{\code{subset}}{The \code{\link{Subset}} used to apply the feature-clustering
+strategy.}
 
-\item{\code{heuristic}}{The heuristic used to compute the relevance of each feature.
-Must inherit from \link{GenericHeuristic} abstract class.}
+\item{\code{heuristic}}{The heuristic used to compute the relevance of each
+feature. Must inherit from \code{\link{GenericHeuristic}} abstract class.}
 
-\item{\code{configuration}}{optional paramter tocustomize configuration parameters for the strategy.
-Must inherited from \link{StrategyConfiguration} abstract class.}
+\item{\code{configuration}}{optional parameter to customize configuration
+parameters for the strategy. Must inherited from
+\code{\link{StrategyConfiguration}} abstract class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -94,8 +106,8 @@ Must inherited from \link{StrategyConfiguration} abstract class.}
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-Function responsible of performing the dependency-based feature clustering
-strategy over the defined \link{Subset}.
+Function responsible of performing the dependency-based
+feature clustering strategy over the defined \code{\link{Subset}}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$execute(verbose = TRUE, ...)}\if{html}{\out{</div>}}
 }
@@ -103,7 +115,8 @@ strategy over the defined \link{Subset}.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 
 \item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
@@ -126,24 +139,28 @@ Function used to obtain a specific cluster distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.clusters}}{A numeric value to select the number of clusters (define the distribution).}
+\item{\code{num.clusters}}{A \link{numeric} value to select the number of
+clusters (define the distribution).}
 
-\item{\code{num.groups}}{A single or \link{numeric} vector value to identify a specific group that
-forms the clustering distribution.}
+\item{\code{num.groups}}{A single or \link{numeric} vector value to identify a
+specific group that forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{A logical value to determine if unclustered features should be included.}
+\item{\code{include.unclustered}}{A \link{logical} value to determine if
+unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \link{list} with the features comprising an specific clustering distribution.
+A \link{list} with the features comprising an specific
+clustering distribution.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createTrain"></a>}}
 \if{latex}{\out{\hypertarget{method-createTrain}{}}}
 \subsection{Method \code{createTrain()}}{
-The function is used to create a \link{Trainset} object from a specific clustering distribution.
+The function is used to create a \code{\link{Trainset}}
+object from a specific clustering distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$createTrain(
   subset,
@@ -156,19 +173,23 @@ The function is used to create a \link{Trainset} object from a specific clusteri
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{subset}}{The \link{Subset} object used as a basis to create the train set (see \link{Trainset} class).}
+\item{\code{subset}}{The \code{\link{Subset}} object used as a basis to create
+the train set (see \code{\link{Trainset}} class).}
 
-\item{\code{num.clusters}}{A \link{numeric} value to select the number of clusters (define the distribution).}
+\item{\code{num.clusters}}{A \link{numeric} value to select the number of
+clusters (define the distribution).}
 
-\item{\code{num.groups}}{A single or \link{numeric} vector value to identify a specific group that
-forms the clustering distribution.}
+\item{\code{num.groups}}{A single or \link{numeric} vector value to identify a
+specific group that forms the clustering distribution.}
 
-\item{\code{include.unclustered}}{A logical value to determine if unclustered features should be included.}
+\item{\code{include.unclustered}}{A \link{logical} value to determine if
+unclustered features should be included.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-If num.clusters and num.groups are not defined, best clustering distribution is used to create the train set.
+If \code{num.clusters} and \code{num.groups} are not defined,
+best clustering distribution is used to create the train set.
 }
 
 }
@@ -176,7 +197,8 @@ If num.clusters and num.groups are not defined, best clustering distribution is 
 \if{html}{\out{<a id="method-plot"></a>}}
 \if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
-The function is responsible for creating a plot to visualize the clustering distribution.
+The function is responsible for creating a plot to visualize
+the clustering distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$plot(dir.path = NULL, file.name = NULL, ...)}\if{html}{\out{</div>}}
 }
@@ -184,10 +206,13 @@ The function is responsible for creating a plot to visualize the clustering dist
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{An optional argument to define the name of the directory where the exported plot will be saved.
-If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.}
+\item{\code{dir.path}}{An optional argument to define the name of the directory
+where the exported plot will be saved. If not defined, the file path will
+be automatically assigned to the current working directory,
+'\code{getwd()}'.}
 
-\item{\code{file.name}}{A character to define the name of the PDF file where the plot is exported.}
+\item{\code{file.name}}{A character to define the name of the PDF file where the
+plot is exported.}
 
 \item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
@@ -198,7 +223,8 @@ If not defined, the file path will be automatically assigned to the current work
 \if{html}{\out{<a id="method-saveCSV"></a>}}
 \if{latex}{\out{\hypertarget{method-saveCSV}{}}}
 \subsection{Method \code{saveCSV()}}{
-The function is used to save the clustering distribution to a CSV file.
+The function is used to save the clustering distribution to
+a CSV file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$saveCSV(
   dir.path = NULL,
@@ -214,8 +240,9 @@ The function is used to save the clustering distribution to a CSV file.
 
 \item{\code{name}}{Defines the name of the CSV file.}
 
-\item{\code{num.clusters}}{An optional parameter to select the number of clusters to be saved.
-If not defined, all cluster distributions will be saved.}
+\item{\code{num.clusters}}{An optional parameter to select the number of
+clusters to be saved. If not defined, all cluster distributions will be
+saved.}
 }
 \if{html}{\out{</div>}}
 }

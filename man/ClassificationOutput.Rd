@@ -4,8 +4,9 @@
 \alias{ClassificationOutput}
 \title{DDMCS Classification Output.}
 \description{
-Allows computing the classification performance values achieved by DDMCS.
-The class is automatically created when \code{\link{DDMCS}} classification method is invoked.
+Allows computing the classification performance values achieved
+by DDMCS. The class is automatically created when \code{\link{DDMCS}}
+classification method is invoked.
 }
 \seealso{
 \code{\link{DDMCS}}
@@ -41,9 +42,11 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{voting.schemes}}{A \code{\link{list}} containing the votings schemes used (inherited from \code{\link{VotingStrategy}}.}
+\item{\code{voting.schemes}}{A \link{list} containing the voting schemes used
+(inherited from \code{\link{VotingStrategy}}.}
 
-\item{\code{models}}{A \code{\link{list}} containing the used \code{\link{Model}} during classification stage.}
+\item{\code{models}}{A \link{list} containing the used \code{\link{Model}}
+during classification stage.}
 }
 \if{html}{\out{</div>}}
 }
@@ -58,8 +61,8 @@ The function returns the measures used during training stage.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector or \code{\link{NULL}} if
-training was not performed.
+A \link{character} vector or \link{NULL} if training was not
+performed.
 }
 }
 \if{html}{\out{<hr>}}
@@ -73,14 +76,14 @@ training/classification.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of size 1.
+A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModelInfo"></a>}}
 \if{latex}{\out{\hypertarget{method-getModelInfo}{}}}
 \subsection{Method \code{getModelInfo()}}{
-The function compilled all the information concerning to
+The function compiled all the information concerning to
 the M.L. models used during training/classification.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClassificationOutput$getModelInfo(metrics = NULL)}\if{html}{\out{</div>}}
@@ -89,13 +92,13 @@ the M.L. models used during training/classification.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{metrics}}{A \code{\link{character}} vector defining the metrics
-used during training/classification.}
+\item{\code{metrics}}{A \link{character} vector defining the metrics used during
+training/classification.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{list}} with the information of each M.L. model.
+A \link{list} with the information of each M.L. model.
 }
 }
 \if{html}{\out{<hr>}}
@@ -116,35 +119,40 @@ The function is used to compute the performance of DDMCS.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{test.set}}{A \code{\link{Subset}} object used to compute the performance.}
+\item{\code{test.set}}{A \code{\link{Subset}} object used to compute the
+performance.}
 
-\item{\code{measures}}{A \code{\link{character}} vector with the measures to be used to compute
-performance value (inherited from \code{\link{MeasureFunction}}).}
+\item{\code{measures}}{A \link{character} vector with the measures to be used to
+compute performance value (inherited from \code{\link{MeasureFunction}}).}
 
-\item{\code{voting.names}}{A \code{\link{character}} vector with the name of the voting
-schemes to analyse the performance. If not defined, all the voting schemes used
-during classification stage will be taken into account.}
+\item{\code{voting.names}}{A \link{character} vector with the name of the
+voting schemes to analyze the performance. If not defined, all the voting
+schemes used during classification stage will be taken into account.}
 
-\item{\code{metric.names}}{A \code{\link{character}} containing the measures used during training stage.
-If not defined, all training metrics used during classification will be taken into account.}
+\item{\code{metric.names}}{A \link{character} containing the measures used
+during training stage. If not defined, all training metrics used during
+classification will be taken into account.}
 
-\item{\code{cutoff.values}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-into account.}
+\item{\code{cutoff.values}}{A \link{character} vector defining the minimum
+probability used to perform a a positive classification. If is not
+defined, all cutoffs used during classification stage will be taken into
+account.}
 
-\item{\code{dir.path}}{A \code{\link{character}} vector with location where the plot will be saved.}
+\item{\code{dir.path}}{A \link{character} vector with location where the plot
+will be saved.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{list}} of performance values.
+A \link{list} of performance values.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-savePerformances"></a>}}
 \if{latex}{\out{\hypertarget{method-savePerformances}{}}}
 \subsection{Method \code{savePerformances()}}{
-The function is used to save the computed predictions into a CSV file.
+The function is used to save the computed predictions into a
+CSV file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClassificationOutput$savePerformances(
   dir.path,
@@ -159,23 +167,27 @@ The function is used to save the computed predictions into a CSV file.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{A \code{\link{character}} vector with location where the plot will be saved.}
+\item{\code{dir.path}}{A \link{character} vector with location where the plot
+will be saved.}
 
-\item{\code{test.set}}{A \code{\link{Subset}} object used to compute the performance.}
+\item{\code{test.set}}{A \code{\link{Subset}} object used to compute the
+performance.}
 
-\item{\code{measures}}{A \code{\link{character}} vector with the measures to be used to compute
-performance value (inherited from \code{\link{MeasureFunction}}).}
+\item{\code{measures}}{A \link{character} vector with the measures to be used to
+compute performance value (inherited from \code{\link{MeasureFunction}}).}
 
-\item{\code{voting.names}}{A \code{\link{character}} vector with the name of the voting
-schemes to analyse the performance. If not defined, all the voting schemes used
-during classification stage will be taken into account.}
+\item{\code{voting.names}}{A \link{character} vector with the name of the voting
+schemes to analyze the performance. If not defined, all the voting
+schemes used during classification stage will be taken into account.}
 
-\item{\code{metric.names}}{A \code{\link{character}} containing the measures used during training stage.
-If not defined, all training metrics used during classification will be taken into account.}
+\item{\code{metric.names}}{A \link{character} containing the measures used
+during training stage. If not defined, all training metrics used during
+classification will be taken into account.}
 
-\item{\code{cutoff.values}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-into account.}
+\item{\code{cutoff.values}}{A \link{character} vector defining the minimum
+probability used to perform a a positive classification. If is not
+defined, all cutoffs used during classification stage will be taken into
+account.}
 }
 \if{html}{\out{</div>}}
 }
@@ -184,7 +196,8 @@ into account.}
 \if{html}{\out{<a id="method-plotPerformances"></a>}}
 \if{latex}{\out{\hypertarget{method-plotPerformances}{}}}
 \subsection{Method \code{plotPerformances()}}{
-The function allows to graphically visualizate the computed performance.
+The function allows to graphically visualize the computed
+performance.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClassificationOutput$plotPerformances(
   dir.path,
@@ -199,23 +212,26 @@ The function allows to graphically visualizate the computed performance.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{A \code{\link{character}} vector with location where the plot will be saved.}
+\item{\code{dir.path}}{A \link{character} vector with location where the plot
+will be saved.}
 
-\item{\code{test.set}}{A \code{\link{Subset}} object used to compute the performance.}
+\item{\code{test.set}}{A \code{\link{Subset}} object used to compute the
+performance.}
 
-\item{\code{measures}}{A \code{\link{character}} vector with the measures to be used to compute
-performance value (inherited from \code{\link{MeasureFunction}}).}
+\item{\code{measures}}{A \link{character} vector with the measures to be used to
+compute performance value (inherited from \code{\link{MeasureFunction}}).}
 
-\item{\code{voting.names}}{A \code{\link{character}} vector with the name of the voting
-schemes to analyse the performance. If not defined, all the voting schemes used
-during classification stage will be taken into account.}
+\item{\code{voting.names}}{A \link{character} vector with the name of the voting
+schemes to analyze the performance. If not defined, all the voting
+schemes used during classification stage will be taken into account.}
 
-\item{\code{metric.names}}{A \code{\link{character}} containing the measures used during training stage.
-If not defined, all training metrics used during classification will be taken into account.}
+\item{\code{metric.names}}{A \link{character} containing the measures used
+during training stage. If not defined, all training metrics used during
+classification will be taken into account.}
 
-\item{\code{cutoff.values}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-into account.}
+\item{\code{cutoff.values}}{A \link{character} vector defining the minimum
+probability used to perform a positive classification. If is not defined,
+all cutoffs used during classification stage will be taken into account.}
 }
 \if{html}{\out{</div>}}
 }
@@ -239,27 +255,32 @@ The function is used to obtain the computed predictions.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{voting.names}}{A \code{\link{character}} vector with the name of the voting
-schemes to analyse the performance. If not defined, all the voting schemes used
-during classification stage will be taken into account.}
+\item{\code{voting.names}}{A \link{character} vector with the name of the voting
+schemes to analyze the performance. If not defined, all the voting
+schemes used during classification stage will be taken into account.}
 
-\item{\code{metric.names}}{A \code{\link{character}} containing the measures used during training stage.
-If not defined, all training metrics used during classification will be taken into account.}
+\item{\code{metric.names}}{A \link{character} containing the measures used
+during training stage. If not defined, all training metrics used during
+classification will be taken into account.}
 
-\item{\code{cutoff.values}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-into account.}
+\item{\code{cutoff.values}}{A \link{character} vector defining the minimum
+probability used to perform a a positive classification. If is not
+defined, all cutoffs used during classification stage will be taken into
+account.}
 
-\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
-all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+\item{\code{type}}{A \link{character} to define which type of predictions should
+be returned. If not defined all type of probabilities will be returned.
+Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
 'class' values are returned.}
 
-\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
+\item{\code{target}}{A \link{character} defining the value of the positive
+class.}
 
-\item{\code{filter}}{A \code{\link{logical}} value used to specify if only predictions
-matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
-predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
-the function returns all the predictions.}
+\item{\code{filter}}{A \link{logical} value used to specify if only predictions
+matching the target value should be returned or not. If \link{TRUE} the
+function returns only the predictions matching the target value.
+Conversely if \link{FALSE} (by default) the function returns all the
+predictions.}
 }
 \if{html}{\out{</div>}}
 }
@@ -287,29 +308,33 @@ The function saves the predictions into a CSV file.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{A \code{\link{character}} vector with location defining the location of the CSV file.}
+\item{\code{dir.path}}{A \link{character} vector with location defining the
+location of the CSV file.}
 
-\item{\code{voting.names}}{A \code{\link{character}} vector with the name of the voting
-schemes to analyse the performance. If not defined, all the voting schemes used
-during classification stage will be taken into account.}
+\item{\code{voting.names}}{A \link{character} vector with the name of the
+voting schemes to analyze the performance. If not defined, all the voting
+schemes used during classification stage will be taken into account.}
 
-\item{\code{metric.names}}{A \code{\link{character}} containing the measures used during training stage.
-If not defined, all training metrics used during classification will be taken into account.}
+\item{\code{metric.names}}{A \link{character} containing the measures used
+during training stage. If not defined, all training metrics used during
+classification will be taken into account.}
 
-\item{\code{cutoff.values}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-into account.}
+\item{\code{cutoff.values}}{A \link{character} vector defining the minimum
+probability used to perform a positive classification. If is not defined,
+all cutoffs used during classification stage will be taken into account.}
 
-\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
-all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+\item{\code{type}}{A \link{character} to define which type of predictions should
+be returned. If not defined all type of probabilities will be returned.
+Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
 'class' values are returned.}
 
-\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
+\item{\code{target}}{A \link{character} defining the value of the positive class.}
 
-\item{\code{filter}}{A \code{\link{logical}} value used to specify if only predictions
-matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
-predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
-the function returns all the predictions.}
+\item{\code{filter}}{A \link{logical} value used to specify if only predictions
+matching the target value should be returned or not. If \link{TRUE} the
+function returns only the predictions matching the target value.
+Conversely if \link{FALSE} (by default) the function returns all the
+predictions.}
 }
 \if{html}{\out{</div>}}
 }

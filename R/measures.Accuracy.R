@@ -1,10 +1,13 @@
 #' @title Computes the Accuracy measure.
 #'
-#' @description Computes the ratio of number of correct predictions to the total number of input samples.
+#' @description Computes the ratio of number of correct predictions to the total
+#' number of input samples.
 #'
-#' @details \deqn{Accuracy=\frac{Number Correct Predictions}{Total Number of Predictions}}
+#' @details \deqn{Accuracy=\frac{Number Correct Predictions}{Total Number of
+#' Predictions}}
 #'
-#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}.
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+#' \code{\link{ConfMatrix}}.
 #'
 #' @keywords classif math
 #'
@@ -20,22 +23,27 @@ Accuracy <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output An optional \code{\link{ConfMatrix}} used as basis
-    #' to compute the performance.
-    #'
-    #' @return An \code{\link{Accuracy}} object.
+    #' @param performance.output An optional \code{\link{ConfMatrix}} used as
+    #' basis to compute the performance.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description The function computes the \code{Accuracy} achieved by the M.L. model.
+    #' @description The function computes the \strong{Accuracy} achieved by the
+    #' M.L. model.
     #'
-    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to define the type
-    #' of object used as basis to compute the \code{Accuracy} measure.
-    #' @details This function is automatically invoque by the \link{ClassificationOutput} object.
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the
+    #' \strong{Accuracy} measure.
+    #'
+    #' @details This function is automatically invoke by the
+    #' \code{\link{ClassificationOutput}} object.
+    #'
     #' @seealso \code{\link{ConfMatrix}}
-    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+    #'
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
+    #' occurred.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

@@ -4,7 +4,8 @@
 \alias{SummaryFunction}
 \title{Abstract class to computing performance across resamples.}
 \description{
-Abstract used as template to define customized metrics to compute model performance during train.
+Abstract used as template to define customized metrics to
+compute model performance during train.
 }
 \details{
 This class is an archetype, so it cannot be instantiated.
@@ -26,7 +27,8 @@ This class is an archetype, so it cannot be instantiated.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-The function carries out the initialization of parameters during runtime.
+The function carries out the initialization of parameters
+during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SummaryFunction$new(measures)}\if{html}{\out{</div>}}
 }
@@ -34,7 +36,7 @@ The function carries out the initialization of parameters during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{measures}}{A \code{\link{character}} vector with the measures used.}
+\item{\code{measures}}{A \link{character} vector with the measures used.}
 }
 \if{html}{\out{</div>}}
 }
@@ -43,8 +45,9 @@ The function carries out the initialization of parameters during runtime.
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-Abstract funtion used to implement the performance calculator method.
-To guarantee a proper operation, this method is automatically invoked by \code{\link{DDMCS}} framework.
+Abstract function used to implement the performance
+calculator method. To guarantee a proper operation, this method is
+automatically invoked by \code{\link{DDMCS}} framework.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SummaryFunction$execute()}\if{html}{\out{</div>}}
 }
@@ -54,13 +57,15 @@ To guarantee a proper operation, this method is automatically invoked by \code{\
 \if{html}{\out{<a id="method-getMeasures"></a>}}
 \if{latex}{\out{\hypertarget{method-getMeasures}{}}}
 \subsection{Method \code{getMeasures()}}{
-The function obtains the measures used to compute the performance across resamples.
+The function obtains the measures used to compute the
+performance across resamples.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SummaryFunction$getMeasures()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of \code{\link{NULL}} if measures are not defined.
+A \link{character} vector of \link{NULL} if measures are not
+defined.
 }
 }
 \if{html}{\out{<hr>}}

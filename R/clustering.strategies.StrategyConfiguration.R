@@ -1,9 +1,11 @@
 #' @title Default Strategy Configuration handler.
 #'
-#' @description Define default configuration parameters for the clustering strategies.
+#' @description Define default configuration parameters for the clustering
+#' strategies.
 #'
-#' @details The \link{StrategyConfiguration} can be used to define the default configuration parameters for
-#' a feature clustering strategy or as an archetype to define new customized parameters.
+#' @details The \code{\link{StrategyConfiguration}} can be used to define the
+#' default configuration parameters for a feature clustering strategy or as an
+#' archetype to define new customized parameters.
 #'
 #' @seealso \code{\link{DependencyBasedStrategyConfiguration}}
 #'
@@ -18,14 +20,16 @@ StrategyConfiguration <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Empty function used to initalize the object arguments during runtime.
-    #' @return A \link{StrategyConfiguration} object.
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { },
     #'
-    #' @description Function used to return the minimum number of clusters distributions used. By default the minimum is set in 2.
+    #' @description Function used to return the minimum number of clusters
+    #' distributions used. By default the minimum is set in 2.
     #'
-    #' @param ... Further arguments passed down to \code{minNumClusters} function.
+    #' @param ... Further arguments passed down to \code{minNumClusters}
+    #' function.
     #'
     #' @return A \link{numeric} vector of length 1.
     #'
@@ -34,10 +38,11 @@ StrategyConfiguration <- R6::R6Class(
       2
     },
     #'
-    #' @description The function is responsible of returning the maximum number of cluster distributions used.
-    #' By default the maximum number is set in 50.
+    #' @description The function is responsible of returning the maximum number
+    #' of cluster distributions used. By default the maximum number is set in 50.
     #'
-    #' @param ... Further arguments passed down to \code{maxNumClusters} function.
+    #' @param ... Further arguments passed down to \code{maxNumClusters}
+    #' function.
     #'
     #' @return A \link{numeric} vector of length 1.
     #'

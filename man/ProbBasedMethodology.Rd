@@ -2,9 +2,11 @@
 % Please edit documentation in R/prediction.ProbBasedMethodology.R
 \name{ProbBasedMethodology}
 \alias{ProbBasedMethodology}
-\title{Methodology to obtain the combination of the probability of different metrics}
+\title{Methodology to obtain the combination of the probability of different
+metrics.}
 \description{
-Calculates the mean of the probabilities of the different metrics.
+Calculates the mean of the probabilities of the different
+metrics.
 }
 \seealso{
 \code{\link{Methodology}}
@@ -42,7 +44,8 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{required.metrics}}{A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.}
+\item{\code{required.metrics}}{A \link{character} vector of length
+greater than 2 with the name of the required metrics.}
 }
 \if{html}{\out{</div>}}
 }
@@ -51,7 +54,8 @@ Method for initializing the object arguments during runtime.
 \if{html}{\out{<a id="method-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
-Function to compute the probability of the final prediction based on different metrics.
+Function to compute the probability of the final prediction
+based on different metrics.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbBasedMethodology$compute(
   raw.pred,
@@ -64,18 +68,23 @@ Function to compute the probability of the final prediction based on different m
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{raw.pred}}{A \code{\link{character}} list of length greater than 2 with the class value of the predictions made by the metrics.}
+\item{\code{raw.pred}}{A \link{character} list of length greater than 2 with the
+class value of the predictions made by the metrics.}
 
-\item{\code{prob.pred}}{A \code{\link{numeric}} list of length greater than 2 with the probability of the predictions made by the metrics.}
+\item{\code{prob.pred}}{A \link{numeric} list of length greater than 2 with the
+probability of the predictions made by the metrics.}
 
-\item{\code{positive.class}}{A \code{\link{character}} with the value of the positive class.}
+\item{\code{positive.class}}{A \link{character} with the value of the positive
+class.}
 
-\item{\code{negative.class}}{A \code{\link{character}} with the value of the negative class.}
+\item{\code{negative.class}}{A \link{character} with the value of the
+negative class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \link{numeric} value indicating the probability of the instance is predicted as positive class.
+A \link{numeric} value indicating the probability of the instance
+is predicted as positive class.
 }
 }
 \if{html}{\out{<hr>}}

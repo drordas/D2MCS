@@ -4,14 +4,17 @@
 \alias{Trainset}
 \title{Trainning set.}
 \description{
-The \code{Trainset} is used to perform training operations over M.L. models.
-A target class should be defined to guarantee a full compatibility with supervised models.
+The \code{\link{Trainset}} is used to perform training
+operations over M.L. models. A target class should be defined to guarantee a
+full compatibility with supervised models.
 }
 \details{
-Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset}} object.
+Use \code{\link{Dataset}} object to ensure the creation of a valid
+\code{\link{Trainset}} object.
 }
 \seealso{
-\link{Dataset}, \link{DatasetLoader}, \link{Subset}, \link{GenericClusteringStrategy}
+\code{\link{Dataset}}, \code{\link{DatasetLoader}},
+\code{\link{Subset}}, \code{\link{GenericClusteringStrategy}}
 }
 \keyword{attribute}
 \keyword{datasets}
@@ -35,7 +38,7 @@ Use \link{Dataset} object to ensure the creation of a valid \code{\link{Trainset
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates a \link{Trainset} object.
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$new(cluster.dist, class.name, class.values, positive.class)}\if{html}{\out{</div>}}
 }
@@ -43,65 +46,67 @@ Creates a \link{Trainset} object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cluster.dist}}{the type of cluster distribution used as basis
-to build the \link{Trainset}. See \link{GenericClusteringStrategy} for more information.}
+\item{\code{cluster.dist}}{The type of cluster distribution used as basis
+to build the \code{\link{Trainset}}. See
+\code{\link{GenericClusteringStrategy}} for more information.}
 
-\item{\code{class.name}}{used to specify the name of the column containing the target class.}
+\item{\code{class.name}}{Used to specify the name of the column containing the
+target class.}
 
-\item{\code{class.values}}{specifies all the posible values of the target class.}
+\item{\code{class.values}}{Specifies all the possible values of the target class.}
 
-\item{\code{positive.class}}{a \code{\link{character}} with the value of the positive class.}
+\item{\code{positive.class}}{A \link{character} with the value of the
+positive class.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-a fully operative \link{Trainset} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
 \if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
-the function is used to obtain the value of the positive class.
+The function is used to obtain the value of the positive
+class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getPositiveClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-a \link{numeric} value with the positive class value.
+A \link{numeric} value with the positive class value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassName"></a>}}
 \if{latex}{\out{\hypertarget{method-getClassName}{}}}
 \subsection{Method \code{getClassName()}}{
-the function is used to return the name of the target class.
+The function is used to return the name of the target class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getClassName()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-a \link{character} vector with length 1.
+A \link{character} vector with length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
 \if{latex}{\out{\hypertarget{method-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
-the function is used to compute all the posible target class values.
+The function is used to compute all the possible target class
+values.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getClassValues()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-a \link{factor} value.
+A \link{factor} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
 \if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
-the function returns the name of the columns comprising
+The function returns the name of the columns comprising
 an specific cluster distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getColumnNames(num.cluster)}\if{html}{\out{</div>}}
@@ -110,20 +115,21 @@ an specific cluster distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{a \link{numeric} value used to specify the cluster number
-of the cluster distribution used when creating the \link{Trainset}.}
+\item{\code{num.cluster}}{A \link{numeric} value used to specify the cluster
+number of the cluster distribution used when creating the
+\code{\link{Trainset}}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{character} vector with all column names.
+A \link{character} vector with all column names.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFeatureValues"></a>}}
 \if{latex}{\out{\hypertarget{method-getFeatureValues}{}}}
 \subsection{Method \code{getFeatureValues()}}{
-the function returns the values of the columns comprising
+The function returns the values of the columns comprising
 an specific cluster distribution. Target class is omitted.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getFeatureValues(num.cluster)}\if{html}{\out{</div>}}
@@ -132,13 +138,14 @@ an specific cluster distribution. Target class is omitted.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{a \link{numeric} value used to specify the cluster number
-of the cluster distribution used when creating the \link{Trainset}.}
+\item{\code{num.cluster}}{A \link{numeric} value used to specify the cluster
+number of the cluster distribution used when creating the
+\code{\link{Trainset}}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{data.frame} with the values of the features comprising
+A \link{data.frame} with the values of the features comprising
 the selected cluster distribution.
 }
 }
@@ -146,8 +153,9 @@ the selected cluster distribution.
 \if{html}{\out{<a id="method-getInstances"></a>}}
 \if{latex}{\out{\hypertarget{method-getInstances}{}}}
 \subsection{Method \code{getInstances()}}{
-the function returns the values of the columns comprising
-an specific cluster distribution. Target class is included as the last column.
+The function returns the values of the columns comprising
+an specific cluster distribution. Target class is included as the last
+column.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getInstances(num.cluster)}\if{html}{\out{</div>}}
 }
@@ -155,28 +163,29 @@ an specific cluster distribution. Target class is included as the last column.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{num.cluster}}{a \link{numeric} value used to specify the cluster number
-of the cluster distribution used when creating the \link{Trainset}.}
+\item{\code{num.cluster}}{A \link{numeric} value used to specify the cluster
+number of the cluster distribution used when creating the
+\code{\link{Trainset}}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{data.frame} with the values of the features comprising the
-selected cluster distribution.
+A \link{data.frame} with the values of the features comprising
+the selected cluster distribution.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNumClusters"></a>}}
 \if{latex}{\out{\hypertarget{method-getNumClusters}{}}}
 \subsection{Method \code{getNumClusters()}}{
-the function obtains the number of groups (clusters) that forms
-the cluster distribution.
+The function obtains the number of groups (clusters) that
+forms the cluster distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trainset$getNumClusters()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-a \link{numeric} vector of size 1.
+A \link{numeric} vector of size 1.
 }
 }
 }

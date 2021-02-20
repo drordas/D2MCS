@@ -4,7 +4,8 @@
 \alias{DatasetLoader}
 \title{Dataset creation.}
 \description{
-Wrapper class able to automatically create a \code{\link{Dataset}}, \code{\link{HDDataset}} according to the input data.
+Wrapper class able to automatically create a
+\code{\link{Dataset}}, \code{\link{HDDataset}} according to the input data.
 }
 \examples{
 \dontrun{
@@ -40,20 +41,19 @@ Wrapper class able to automatically create a \code{\link{Dataset}}, \code{\link{
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates the \code{\link{DatasetLoader}} object.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DatasetLoader$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-DatasetLoader object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-load"></a>}}
 \if{latex}{\out{\hypertarget{method-load}{}}}
 \subsection{Method \code{load()}}{
-Stores the input source into a \code{\link{Dataset}} or \code{\link{HDDataset}} type object.
+Stores the input source into a \code{\link{Dataset}} or
+\code{\link{HDDataset}} type object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DatasetLoader$load(
   filepath,
@@ -69,29 +69,35 @@ Stores the input source into a \code{\link{Dataset}} or \code{\link{HDDataset}} 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{filepath}}{the name of the file which the data are to be read from.
-Each row of the table appears as one line of the file.
-If it does not contain an _absolute_ path, the file name is _relative_ to the current working directory, 'getwd()'.}
+\item{\code{filepath}}{The name of the file which the data are to be read from.
+Each row of the table appears as one line of the file. If it does not
+contain an _absolute_ path, the file name is _relative_ to the current
+working directory, '\code{getwd()}'.}
 
-\item{\code{header}}{a \link{logical} value indicating whether the file contains the names of the variables as its first line.
-If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
-first row contains one fewer field than the number of columns.}
+\item{\code{header}}{A \link{logical} value indicating whether the file contains
+the names of the variables as its first line. If missing, the value is
+determined from the file format: '\code{header}' is set to '\link{TRUE}'
+if and only if the first row contains one fewer field than the number of
+columns.}
 
-\item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
+\item{\code{sep}}{The field separator character. Values on each line of the file
+are separated by this character.}
 
-\item{\code{skip.lines}}{defines the number of header lines should be skipped.}
+\item{\code{skip.lines}}{Defines the number of header lines should be skipped.}
 
-\item{\code{normalize.names}}{a \link{logical} value indicating whether the columns names should be automatically renamed
-to ensure R compatibility.}
+\item{\code{normalize.names}}{A \link{logical} value indicating whether the
+columns names should be automatically renamed to ensure R compatibility.}
 
-\item{\code{string.as.factor}}{a \link{logical} value indicating if character columns should be converted to factors (default = FALSE).}
+\item{\code{string.as.factor}}{A \link{logical} value indicating if character
+columns should be converted to factors (default = FALSE).}
 
-\item{\code{ignore.columns}}{specify the columns from the input file that should be ignored.}
+\item{\code{ignore.columns}}{Specify the columns from the input file that should
+be ignored.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-\code{\link{Dataset}}, \code{\link{HDDataset}} object.
+A \code{\link{Dataset}} or \code{\link{HDDataset}} object.
 }
 }
 }

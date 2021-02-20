@@ -4,11 +4,12 @@
 \alias{FP}
 \title{Computes the False Positive value.}
 \description{
-This is the number of individuals with a negative condition for which the test result is
-positive. The value entered here must be non-negative.
+This is the number of individuals with a negative condition for
+which the test result is positive. The value entered here must be non-negative.
 }
 \seealso{
-\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+\code{\link{ConfMatrix}}
 
 \code{\link{ConfMatrix}}
 }
@@ -43,20 +44,18 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter used
-as basis to define the type of compute the \code{Type I} error.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+used as basis to define the type of compute the \code{FP} measure.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An \code{\link{FP}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
-The function computes the \code{FP} achieved by the M.L. model.
+The function computes the \strong{FP} achieved by the M.L.
+model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FP$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -64,17 +63,20 @@ The function computes the \code{FP} achieved by the M.L. model.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to
-define the type of object used as basis to compute the \code{Tipe I} measure.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used as basis to compute the \code{FP}
+measure.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is automatically invoked by the \link{ClassificationOutput} object.
+This function is automatically invoked by the
+\code{\link{ClassificationOutput}} object.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+A \link{numeric} vector of size 1 or \link{NULL} if
+an error occurred.
 }
 }
 \if{html}{\out{<hr>}}

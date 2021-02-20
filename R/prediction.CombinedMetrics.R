@@ -19,7 +19,8 @@ CombinedMetrics <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param required.metrics A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.
+    #' @param required.metrics A \link{character} vector of length greater than
+    #' 2 with the name of the required metrics.
     #'
     initialize = function(required.metrics) {
       if (is.null(required.metrics) || !is.character(required.metrics) || length(required.metrics) < 2) {
@@ -29,20 +30,28 @@ CombinedMetrics <- R6::R6Class(
       private$required.metrics <- required.metrics
     },
     #'
-    #' @description The function returns the required metrics that will participate in the combined metric process.
+    #' @description The function returns the required metrics that will
+    #' participate in the combined metric process.
     #'
-    #' @return A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.
+    #' @return A \link{character} vector of length greater than 2 with the name
+    #' of the required metrics.
     #'
     getRequiredMetrics = function() { private$required.metrics },
     #'
-    #' @description Function used to implement the strategy to obtain the final prediction based on different metrics.
+    #' @description Function used to implement the strategy to obtain the final
+    #' prediction based on different metrics.
     #'
-    #' @param raw.pred A \code{\link{character}} list of length greater than 2 with the class value of the predictions made by the metrics.
-    #' @param prob.pred A \code{\link{numeric}} list of length greater than 2 with the probability of the predictions made by the metrics.
-    #' @param positive.class A \code{\link{character}} with the value of the positive class.
-    #' @param negative.class A \code{\link{character}} with the value of the negative class.
+    #' @param raw.pred A \link{character} list of length greater than 2 with the
+    #' class value of the predictions made by the metrics.
+    #' @param prob.pred A \link{numeric} list of length greater than 2 with the
+    #' probability of the predictions made by the metrics.
+    #' @param positive.class A \link{character} with the value of the positive
+    #' class.
+    #' @param negative.class A \link{character} with the value of the negative
+    #' class.
     #'
-    #' @return A \link{logical} value indicating if the instance is predicted as positive class or not.
+    #' @return A \link{logical} value indicating if the instance is predicted as
+    #' positive class or not.
     #'
     getFinalPrediction = function(raw.pred, prob.pred, positive.class, negative.class) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",

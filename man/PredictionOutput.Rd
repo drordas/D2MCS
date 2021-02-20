@@ -4,8 +4,8 @@
 \alias{PredictionOutput}
 \title{Encapsulates the achieved predictions.}
 \description{
-The class used to encapsulates all the computed predictions to facilitate
-their access and maintenance.
+The class used to encapsulates all the computed predictions to
+facilitate their access and maintenance.
 }
 \seealso{
 \code{\link{DDMCS}}
@@ -34,18 +34,18 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{list}} of \code{\link{FinalPred}} elements.}
+\item{\code{predictions}}{A \link{list} of \code{\link{FinalPred}}
+elements.}
 
-\item{\code{type}}{A \code{\link{character}} to define which type of predictions should be returned. If not defined
-all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
-'class' values are returned.}
+\item{\code{type}}{A \link{character} to define which type of predictions
+should be returned. If not defined all type of probabilities will be
+returned. Conversely if "prob" or "raw" is defined then computed
+'probabilistic' or 'class' values are returned.}
 
-\item{\code{target}}{A \code{\link{character}} defining the value of the positive class.}
+\item{\code{target}}{A \link{character} defining the value of the
+positive class.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An \code{\link{PredictionOutput}} object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -58,23 +58,23 @@ The function returns the final predictions.
 }
 
 \subsection{Returns}{
-A \code{\link{list}} containing the final predictions or
-\code{\link{NULL}} if classification stage was not succesfully performed.
+A \link{list} containing the final predictions or \link{NULL} if
+classification stage was not successfully performed.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getType"></a>}}
 \if{latex}{\out{\hypertarget{method-getType}{}}}
 \subsection{Method \code{getType()}}{
-The function returns the type of prediction should be returned.
-If "prob" or "raw" is defined then computed 'probabilistic' or
+The function returns the type of prediction should be
+returned. If "prob" or "raw" is defined then computed 'probabilistic' or
 'class' values are returned.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{PredictionOutput$getType()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{character}} value.
+A \link{character} value.
 }
 }
 \if{html}{\out{<hr>}}
@@ -87,7 +87,7 @@ The function returns the value of the target class.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} value.
+A \link{character} value.
 }
 }
 \if{html}{\out{<hr>}}

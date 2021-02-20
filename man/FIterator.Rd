@@ -2,12 +2,13 @@
 % Please edit documentation in R/data.FIterator.R
 \name{FIterator}
 \alias{FIterator}
-\title{Iterator over a \link{file}.}
+\title{Iterator over a file.}
 \description{
-Creates an \link{FIterator} object to iterate over high dimensional files.
+Creates a \code{\link{FIterator}} object to iterate over high
+dimensional files.
 }
 \details{
-Use \link{HDDataset} class to ensure the creation of a valid
+Use \code{\link{HDDataset}} class to ensure the creation of a valid
 \code{\link{FIterator}} object.
 }
 \seealso{
@@ -32,7 +33,7 @@ Use \link{HDDataset} class to ensure the creation of a valid
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates the \link{FIterator} object.
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FIterator$new(config.params, chunk.size, verbose)}\if{html}{\out{</div>}}
 }
@@ -40,53 +41,56 @@ Creates the \link{FIterator} object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{config.params}}{A \code{link{list}} of configuration options.}
+\item{\code{config.params}}{A \link{list} of configuration options.}
 
-\item{\code{chunk.size}}{An integer value indicating the size of chunks taken
-over each iteration. By default chunk.size is defied as 10000.}
+\item{\code{chunk.size}}{An \link{integer} value indicating the size of chunks
+taken over each iteration. By default \code{chunk.size} is defined as
+10000.}
 
-\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An \link{FIterator} object
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNext"></a>}}
 \if{latex}{\out{\hypertarget{method-getNext}{}}}
 \subsection{Method \code{getNext()}}{
-Gets the next chunk of data. Each iteration returns the same instances
-(data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
-all the remaining data is returned. Conversely, \link{NULL} when there is no more
-pending data. By default chunk.size is defied as 10000.
+Gets the next chunk of data. Each iteration returns the same
+instances (data.frame rows) as chunk.size. However, if remaining data if
+less than chunk size, all the remaining data is returned. Conversely,
+\link{NULL} when there is no more pending data. By default
+\code{chunk.size} is defined as 10000.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FIterator$getNext()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \link{data.frame} of \link{NULL} if all the data have been previously returned.
+A \link{data.frame} of \link{NULL} if all the data have been
+previously returned.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isLast"></a>}}
 \if{latex}{\out{\hypertarget{method-isLast}{}}}
 \subsection{Method \code{isLast()}}{
-Checks if the \link{FIterator} object reached the end of the \link{data.frame}
+Checks if the \code{\link{FIterator}} object reached the end
+of the \link{data.frame}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FIterator$isLast()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A logical value indicating if the end of \link{data.frame} has been reached.
+A \link{logical} value indicating if the end of \link{data.frame}
+has been reached.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize"></a>}}
 \if{latex}{\out{\hypertarget{method-finalize}{}}}
 \subsection{Method \code{finalize()}}{
-Destroys the \link{FIterator} object.
+Destroys the \code{\link{FIterator}} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FIterator$finalize()}\if{html}{\out{</div>}}
 }

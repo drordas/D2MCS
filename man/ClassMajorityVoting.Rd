@@ -2,14 +2,16 @@
 % Please edit documentation in R/prediction.ClassMajorityVoting.R
 \name{ClassMajorityVoting}
 \alias{ClassMajorityVoting}
-\title{Implementation of Mayority Voting voting.}
+\title{Implementation of Majority Voting voting.}
 \description{
-Implementation of the parliamentary 'majority voting' procedure. The majority class value is defined as final class.
-All class values have the same importance.
+Implementation of the parliamentary 'majority voting' procedure.
+The majority class value is defined as final class. All class values have the
+same importance.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+\code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 }
 \keyword{math}
 \keyword{methods}
@@ -47,14 +49,16 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cutoff}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, 0.5 will be used as default value.}
+\item{\code{cutoff}}{A \link{character} vector defining the minimum probability
+used to perform a positive classification. If is not defined, 0.5 will be
+used as default value.}
 
-\item{\code{class.tie}}{A \code{\link{character}} used to define the target class value used when a tie is found.
-If \code{\link{NULL}} positive class value will be assigned.}
+\item{\code{class.tie}}{A \link{character} used to define the target class value
+used when a tie is found. If \link{NULL} positive class value will be
+assigned.}
 
-\item{\code{majority.class}}{A \code{\link{character}} defining the value of the majority class.
-If \code{\link{NULL}} will be used same value as trainning stage.}
+\item{\code{majority.class}}{A \link{character} defining the value of the
+majority class. If \link{NULL} will be used same value as training stage.}
 }
 \if{html}{\out{</div>}}
 }
@@ -69,7 +73,8 @@ The function returns the value of the majority class.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of length 1 with the name of the majority class.
+A \link{character} vector of length 1 with the name of the
+majority class.
 }
 }
 \if{html}{\out{<hr>}}
@@ -82,7 +87,7 @@ The function gets the class value assigned to solve ties.
 }
 
 \subsection{Returns}{
-\code{\link{character}} vector of length 1.
+A \link{character} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
@@ -97,9 +102,11 @@ The function implements the majority voting procedure.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
+all the predictions achieved for each cluster.}
 
-\item{\code{verbose}}{A \code{\link{logical}} value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 }
 \if{html}{\out{</div>}}
 }

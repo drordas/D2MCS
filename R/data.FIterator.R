@@ -1,8 +1,9 @@
-#' @title Iterator over a \link{file}.
+#' @title Iterator over a file.
 #'
-#' @description Creates an \link{FIterator} object to iterate over high dimensional files.
+#' @description Creates a \code{\link{FIterator}} object to iterate over high
+#' dimensional files.
 #'
-#' @details Use \link{HDDataset} class to ensure the creation of a valid
+#' @details Use \code{\link{HDDataset}} class to ensure the creation of a valid
 #' \code{\link{FIterator}} object.
 #'
 #' @seealso \code{\link{Dataset}}
@@ -18,14 +19,14 @@ FIterator <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Creates the \link{FIterator} object.
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param config.params A \code{link{list}} of configuration options.
-    #' @param chunk.size An integer value indicating the size of chunks taken
-    #' over each iteration. By default chunk.size is defied as 10000.
-    #' @param verbose A logical value to specify if more verbosity is needed.
-    #'
-    #' @return An \link{FIterator} object
+    #' @param config.params A \link{list} of configuration options.
+    #' @param chunk.size An \link{integer} value indicating the size of chunks
+    #' taken over each iteration. By default \code{chunk.size} is defined as
+    #' 10000.
+    #' @param verbose A \link{logical} value to specify if more verbosity is
+    #' needed.
     #'
     initialize = function(config.params, chunk.size, verbose) {
       private$params <- config.params
@@ -37,12 +38,14 @@ FIterator <- R6::R6Class(
       private$index <- 0
     },
     #'
-    #' @description Gets the next chunk of data. Each iteration returns the same instances
-    #' (data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
-    #' all the remaining data is returned. Conversely, \link{NULL} when there is no more
-    #' pending data. By default chunk.size is defied as 10000.
+    #' @description Gets the next chunk of data. Each iteration returns the same
+    #' instances (data.frame rows) as chunk.size. However, if remaining data if
+    #' less than chunk size, all the remaining data is returned. Conversely,
+    #' \link{NULL} when there is no more pending data. By default
+    #' \code{chunk.size} is defined as 10000.
     #'
-    #' @return A \link{data.frame} of \link{NULL} if all the data have been previously returned.
+    #' @return A \link{data.frame} of \link{NULL} if all the data have been
+    #' previously returned.
     #'
     getNext = function() {
       if (is.null(private$con) || !isOpen(private$con) || self$isLast()) {
@@ -67,13 +70,15 @@ FIterator <- R6::R6Class(
       data.chunk
     },
     #'
-    #' @description Checks if the \link{FIterator} object reached the end of the \link{data.frame}
+    #' @description Checks if the \code{\link{FIterator}} object reached the end
+    #' of the \link{data.frame}
     #'
-    #' @return A logical value indicating if the end of \link{data.frame} has been reached.
+    #' @return A \link{logical} value indicating if the end of \link{data.frame}
+    #' has been reached.
     #'
     isLast = function() { private$read.chunk != private$chunk.size },
     #'
-    #' @description Destroys the \link{FIterator} object.
+    #' @description Destroys the \code{\link{FIterator}} object.
     #'
     finalize = function() {
       if (!is.null(private$con) && isOpen(private$con)) {

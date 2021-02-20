@@ -7,7 +7,8 @@
 Stores the predictions achieved by the best M.L. of each cluster.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassificationOutput}}, \code{\link{Prediction}}
+\code{\link{DDMCS}}, \code{\link{ClassificationOutput}},
+\code{\link{Prediction}}
 }
 \keyword{math}
 \keyword{methods}
@@ -36,9 +37,11 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{class.values}}{A \code{\link{character}} vector contaning the values of the target class.}
+\item{\code{class.values}}{A \link{character} vector containing the values of
+the target class.}
 
-\item{\code{positive.class}}{A \code{\link{character}} with the value of the positive class.}
+\item{\code{positive.class}}{A \link{character} with the value of the positive
+class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -47,7 +50,8 @@ Method for initializing the object arguments during runtime.
 \if{html}{\out{<a id="method-add"></a>}}
 \if{latex}{\out{\hypertarget{method-add}{}}}
 \subsection{Method \code{add()}}{
-The function is used to add the prediction achieved by a specific M.L. model.
+The function is used to add the prediction achieved by a
+specific M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$add(prediction)}\if{html}{\out{</div>}}
 }
@@ -55,7 +59,8 @@ The function is used to add the prediction achieved by a specific M.L. model.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{prediction}}{A \code{\link{Prediction}} object containing the computed predictions.}
+\item{\code{prediction}}{A \code{\link{Prediction}} object containing the
+computed predictions.}
 }
 \if{html}{\out{</div>}}
 }
@@ -64,7 +69,8 @@ The function is used to add the prediction achieved by a specific M.L. model.
 \if{html}{\out{<a id="method-get"></a>}}
 \if{latex}{\out{\hypertarget{method-get}{}}}
 \subsection{Method \code{get()}}{
-The function returns the predictions placed at specific position.
+The function returns the predictions placed at specific
+position.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClusterPredictions$get(position)}\if{html}{\out{</div>}}
 }
@@ -72,7 +78,8 @@ The function returns the predictions placed at specific position.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{position}}{A \code{\link{numeric}} value indicating the position of the predicions to be obtained.}
+\item{\code{position}}{A \link{numeric} value indicating the position of the
+predictions to be obtained.}
 }
 \if{html}{\out{</div>}}
 }
@@ -90,7 +97,7 @@ The function returns all the predictions.
 }
 
 \subsection{Returns}{
-A \code{\link{list}} containing all computed predictions.
+A \link{list} containing all computed predictions.
 }
 }
 \if{html}{\out{<hr>}}
@@ -103,7 +110,7 @@ The function returns the number of computed predictions.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} value.
+A \link{numeric} value.
 }
 }
 \if{html}{\out{<hr>}}
@@ -116,7 +123,7 @@ The function gets the value of the positive class.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of size 1.
+A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
@@ -129,7 +136,7 @@ The function returns all the values of the target class.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector containing all target values.
+A \link{character} vector containing all target values.
 }
 }
 \if{html}{\out{<hr>}}

@@ -3,12 +3,15 @@
 %   R/clustering.strategies.DependencyBasedStrategyConfiguration.R
 \name{DependencyBasedStrategyConfiguration}
 \alias{DependencyBasedStrategyConfiguration}
-\title{Custom Strategy Configuration handler for the DependencyBasedStrategy strategy.}
+\title{Custom Strategy Configuration handler for the DependencyBasedStrategy
+strategy.}
 \description{
-Define the default configuration parameters for the \link{DependencyBasedStrategy} strategy.
+Define the default configuration parameters for the
+\link{DependencyBasedStrategy} strategy.
 }
 \seealso{
-\code{\link{StrategyConfiguration}}, \code{\link{DependencyBasedStrategy}}
+\code{\link{StrategyConfiguration}},
+\code{\link{DependencyBasedStrategy}}
 }
 \keyword{cluster}
 \keyword{manip}
@@ -39,20 +42,19 @@ Define the default configuration parameters for the \link{DependencyBasedStrateg
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Empty function used to initalize the object arguments during runtime.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-A \link{StrategyConfiguration} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-minNumClusters"></a>}}
 \if{latex}{\out{\hypertarget{method-minNumClusters}{}}}
 \subsection{Method \code{minNumClusters()}}{
-Function used to return the minimum number of clusters distributions used. By default the minimum is set in 2.
+Function used to return the minimum number of clusters
+distributions used. By default the minimum is set in 2.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$minNumClusters(...)}\if{html}{\out{</div>}}
 }
@@ -60,7 +62,8 @@ Function used to return the minimum number of clusters distributions used. By de
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Further arguments passed down to \code{minNumClusters} function.}
+\item{\code{...}}{Further arguments passed down to \code{minNumClusters}
+function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -72,8 +75,8 @@ A \link{numeric} vector of length 1.
 \if{html}{\out{<a id="method-maxNumClusters"></a>}}
 \if{latex}{\out{\hypertarget{method-maxNumClusters}{}}}
 \subsection{Method \code{maxNumClusters()}}{
-The function is responsible of returning the maximum number of cluster distributions used.
-By default the maximum number is set in 50.
+The function is responsible of returning the maximum number
+of cluster distributions used. By default the maximum number is set in 50.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$maxNumClusters(...)}\if{html}{\out{</div>}}
 }
@@ -81,7 +84,8 @@ By default the maximum number is set in 50.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Further arguments passed down to \code{maxNumClusters} function.}
+\item{\code{...}}{Further arguments passed down to \code{maxNumClusters}
+function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -93,7 +97,8 @@ A \link{numeric} vector of length 1.
 \if{html}{\out{<a id="method-getBinaryCutoff"></a>}}
 \if{latex}{\out{\hypertarget{method-getBinaryCutoff}{}}}
 \subsection{Method \code{getBinaryCutoff()}}{
-The function is used to define the interval to consider the dependency between binary features.
+The function is used to define the interval to consider the
+dependency between binary features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$getBinaryCutoff()}\if{html}{\out{</div>}}
 }
@@ -101,7 +106,8 @@ The function is used to define the interval to consider the dependency between b
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Further arguments passed down to \code{maxNumClusters} function.}
+\item{\code{...}}{Further arguments passed down to \code{getBinaryCutoff}
+function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -113,7 +119,8 @@ A \link{numeric} vector of length 1.
 \if{html}{\out{<a id="method-getRealCutoff"></a>}}
 \if{latex}{\out{\hypertarget{method-getRealCutoff}{}}}
 \subsection{Method \code{getRealCutoff()}}{
-The function allows defining the cutoff to consider the dependency between real features.
+The function allows defining the cutoff to consider the
+dependency between real features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$getRealCutoff()}\if{html}{\out{</div>}}
 }
@@ -121,7 +128,8 @@ The function allows defining the cutoff to consider the dependency between real 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Further arguments passed down to \code{maxNumClusters} function.}
+\item{\code{...}}{Further arguments passed down to \code{getRealCutoff}
+function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -151,19 +159,23 @@ The function solves the ties between two (or more) features.
 \describe{
 \item{\code{feature}}{A \link{character} containing the name of the feature}
 
-\item{\code{clus.candidates}}{A single or \link{numeric} vector value to identify
-the candidate groups to insert the feature.}
+\item{\code{clus.candidates}}{A single or \link{numeric} vector value to
+identify the candidate groups to insert the feature.}
 
-\item{\code{fea.dep.dist.clus}}{A \link{list} containing the groups chosen for the features.}
+\item{\code{fea.dep.dist.clus}}{A \link{list} containing the groups chosen for
+the features.}
 
-\item{\code{corpus}}{A \link{data.frame} containing the features of the initial data.}
+\item{\code{corpus}}{A \link{data.frame} containing the features of the initial
+data.}
 
-\item{\code{heuristic}}{The heuristic used to compute the relevance of each feature.
-Must inherit from \link{GenericHeuristic} abstract class.}
+\item{\code{heuristic}}{The heuristic used to compute the relevance of each
+feature. Must inherit from \link{GenericHeuristic} abstract class.}
 
-\item{\code{class}}{a \link{character} vector containing all the values of the target class.}
+\item{\code{class}}{A \link{character} vector containing all the values of the
+target class.}
 
-\item{\code{class.name}}{A \link{character} value representing the name of the target class.}
+\item{\code{class.name}}{A \link{character} value representing the name of the
+target class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -180,9 +192,12 @@ The function determines the quality of a cluster.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{clusters}}{A \link{list} with the feature distribution of each cluster.}
+\item{\code{clusters}}{A \link{list} with the feature distribution of each
+cluster.}
 
-\item{\code{metrics}}{A numeric \link{list} with the metrics associated to the cluster (dependency between all features and dependency between the features and the class).}
+\item{\code{metrics}}{A numeric \link{list} with the metrics associated to the
+cluster (dependency between all features and dependency between the
+features and the class).}
 }
 \if{html}{\out{</div>}}
 }
@@ -194,7 +209,8 @@ A \link{numeric} vector of length 1.
 \if{html}{\out{<a id="method-isImprovingClustering"></a>}}
 \if{latex}{\out{\hypertarget{method-isImprovingClustering}{}}}
 \subsection{Method \code{isImprovingClustering()}}{
-The function indicates if clustering is getting better as the number of them increases.
+The function indicates if clustering is getting better as
+the number of them increases.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$isImprovingClustering(clusters.deltha)}\if{html}{\out{</div>}}
 }
@@ -202,7 +218,8 @@ The function indicates if clustering is getting better as the number of them inc
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{clusters.deltha}}{A \link{numeric} vector value with the quality values of the built clusters.}
+\item{\code{clusters.deltha}}{A \link{numeric} vector value with the quality
+values of the built clusters.}
 }
 \if{html}{\out{</div>}}
 }

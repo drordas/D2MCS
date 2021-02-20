@@ -2,9 +2,10 @@
 % Please edit documentation in R/data.DIterator.R
 \name{DIterator}
 \alias{DIterator}
-\title{Iterator over a \link{Subset} object}
+\title{Iterator over a Subset object}
 \description{
-Creates an \link{DIterator} object to iterate over the \link{Subset}.
+Creates a \code{\link{DIterator}} object to iterate over the
+\code{\link{Subset}}.
 }
 \seealso{
 \code{\link{Dataset}}
@@ -26,7 +27,7 @@ Creates an \link{DIterator} object to iterate over the \link{Subset}.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates the \link{DIterator} object.
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$new(data, chunk.size, verbose)}\if{html}{\out{</div>}}
 }
@@ -34,53 +35,56 @@ Creates the \link{DIterator} object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{data}}{a \link{data.frame} structure to be iterated.}
+\item{\code{data}}{A \link{data.frame} structure to be iterated.}
 
-\item{\code{chunk.size}}{an integer value indicating the size of chunks taken
-over each iteration. By default chunk.size is defied as 10000.}
+\item{\code{chunk.size}}{An \link{integer} value indicating the size of chunks
+taken over each iteration. By default \code{chunk.size} is defined as
+10000.}
 
-\item{\code{verbose}}{a logical value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-an \link{DIterator} object
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNext"></a>}}
 \if{latex}{\out{\hypertarget{method-getNext}{}}}
 \subsection{Method \code{getNext()}}{
-Gets the next chunk of data. Each iteration returns the same instances
-(data.frame rows) as chunk.size. However, if remaining data if less than chunk size,
-all the remaining data is returned. Conversely, \link{NULL} when there is no more
-pending data. By default chunk.size is defied as 10000.
+Gets the next chunk of data. Each iteration returns the same
+instances (data.frame rows) as chunk.size. However, if remaining data if
+less than chunk size, all the remaining data is returned. Conversely,
+\link{NULL} when there is no more pending data. By default
+\code{chunk.size} is defined as 10000.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$getNext()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-a \link{data.frame} of \link{NULL} if all the data have been previously returned.
+A \link{data.frame} of \link{NULL} if all the data have been
+previously returned.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isLast"></a>}}
 \if{latex}{\out{\hypertarget{method-isLast}{}}}
 \subsection{Method \code{isLast()}}{
-Checks if the \link{DIterator} object reached the end of the \link{data.frame}
+Checks if the \code{\link{DIterator}} object reached the end
+of the \link{data.frame}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$isLast()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-a logical value indicating if the end of \link{data.frame} has been reached.
+A \link{logical} value indicating if the end of \link{data.frame}
+has been reached.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize"></a>}}
 \if{latex}{\out{\hypertarget{method-finalize}{}}}
 \subsection{Method \code{finalize()}}{
-Destroys the \link{DIterator} object.
+Destroys the \code{\link{DIterator}} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DIterator$finalize()}\if{html}{\out{</div>}}
 }

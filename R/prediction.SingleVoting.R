@@ -1,9 +1,11 @@
 #' @title Manages the execution of Simple Votings.
 #'
-#' @description The class is responsible of initializating and executing voting schemes.
-#' Additionally, to ensure a proper operation, the class automatically checks the compatiblity of defined voting schemes.
+#' @description The class is responsible of initializing and executing voting
+#' schemes. Additionally, to ensure a proper operation, the class automatically
+#' checks the compatibility of defined voting schemes.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{SimpleVoting}}, \code{\link{CombinedVoting}}
+#' @seealso \code{\link{DDMCS}}, \code{\link{SimpleVoting}},
+#' \code{\link{CombinedVoting}}
 #'
 #' @keywords models methods math
 #'
@@ -19,8 +21,10 @@ SingleVoting <- R6::R6Class(
     #'
     #' @description The function initializes the object arguments during runtime.
     #'
-    #' @param voting.schemes A \code{vector} of voting schemes inheriting from \code{\link{SimpleVoting}} class.
-    #' @param metrics A \code{\link{list}} containing the metrics used as basis to perform the voting strategy.
+    #' @param voting.schemes A \link{vector} of voting schemes inheriting from
+    #' \code{\link{SimpleVoting}} class.
+    #' @param metrics A \link{list} containing the metrics used as basis to
+    #' perform the voting strategy.
     #'
     initialize = function(voting.schemes, metrics) {
       if (is.null(voting.schemes) || !is.vector(voting.schemes) ||
@@ -41,11 +45,12 @@ SingleVoting <- R6::R6Class(
       private$metrics <- metrics
     },
     #'
-    #' @description The function is used to execute all the previously defined (and compatible) voting schemes.
+    #' @description The function is used to execute all the previously defined
+    #' (and compatible) voting schemes.
     #'
-    #' @param predictions A \code{\link{ClusterPredictions}} object containing all the
-    #' predictions computed in the classification stage.
-    #' @param verbose A logical value to specify if more verbosity is needed.
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing
+    #' all the predictions computed in the classification stage.
+    #' @param verbose A \link{logical} value to specify if more verbosity is needed.
     #'
     execute = function(predictions, verbose = FALSE) {
 

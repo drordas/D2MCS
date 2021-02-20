@@ -43,8 +43,8 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{required.metrics}}{A \code{\link{character}} vector of length greater
-than 2 with the name of the required metrics.}
+\item{\code{required.metrics}}{A \link{character} vector of length greater than
+2 with the name of the required metrics.}
 }
 \if{html}{\out{</div>}}
 }
@@ -53,7 +53,8 @@ than 2 with the name of the required metrics.}
 \if{html}{\out{<a id="method-getFinalPrediction"></a>}}
 \if{latex}{\out{\hypertarget{method-getFinalPrediction}{}}}
 \subsection{Method \code{getFinalPrediction()}}{
-Function to obtain the final prediction based on different metrics.
+Function to obtain the final prediction based on different
+metrics.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MinimizeFP$getFinalPrediction(
   raw.pred,
@@ -66,23 +67,23 @@ Function to obtain the final prediction based on different metrics.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{raw.pred}}{A \code{\link{character}} list of length greater than 2
-with the class value of the predictions made by the metrics.}
+\item{\code{raw.pred}}{A \link{character} list of length greater than 2 with the
+class value of the predictions made by the metrics.}
 
-\item{\code{prob.pred}}{A \code{\link{numeric}} list of length greater than 2
-with the probability of the predictions made by the metrics.}
+\item{\code{prob.pred}}{A \link{numeric} list of length greater than 2 with the
+probability of the predictions made by the metrics.}
 
-\item{\code{positive.class}}{A \code{\link{character}} with the value of the
-positive class.}
+\item{\code{positive.class}}{A \link{character} with the value of the positive
+class.}
 
-\item{\code{negative.class}}{A \code{\link{character}} with the value of the
-negative class.}
+\item{\code{negative.class}}{A \link{character} with the value of the negative
+class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \link{logical} value indicating if the instance is predicted
-as positive class or not.
+A \link{logical} value indicating if the instance is predicted as
+positive class or not.
 }
 }
 \if{html}{\out{<hr>}}

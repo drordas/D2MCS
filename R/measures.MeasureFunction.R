@@ -1,9 +1,11 @@
 #' @title Archetype to define customized measures.
 #'
-#' @description Abstract class used as a template to define new M.L. performance measures.
+#' @description Abstract class used as a template to define new M.L. performance
+#' measures.
 #'
-#' @details The \link{GenericHeuristic} is an full-abstract class so it cannot be instantiated.
-#' To ensure the proper operation, \code{compute} method is automatically invoke by \link{DDMCS} framework when needed.
+#' @details The \code{\link{GenericHeuristic}} is an full-abstract class so it cannot
+#' be instantiated. To ensure the proper operation, \code{compute} method is
+#' automatically invoke by \code{\link{DDMCS}} framework when needed.
 #'
 #' @seealso \code{\link{MeasureFunction}}
 #'
@@ -20,7 +22,7 @@ MeasureFunction <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance An optional \link{ConfMatrix} parameter to
+    #' @param performance An optional \code{\link{ConfMatrix}} parameter to
     #' define the type of object used to compute the measure.
     #'
     initialize = function(performance = NULL) {
@@ -31,13 +33,17 @@ MeasureFunction <- R6::R6Class(
       private$performance <- performance
     },
     #'
-    #' @description The function implements the metric used to measure the performance achieved by the M.L. model.
+    #' @description The function implements the metric used to measure the
+    #' performance achieved by the M.L. model.
     #'
-    #' @param performance.output An optional \link{ConfMatrix} parameter to
-    #' define the type of object used to compute the measure.
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used to compute the measure.
     #'
-    #' @details This function is automatically invoque by the \link{DDMCS} framework.
-    #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error occured.
+    #' @details This function is automatically invoke by the \code{\link{DDMCS}}
+    #' framework.
+    #'
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
+    #' occurred.
     #'
     compute = function(performance.output = NULL) {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",

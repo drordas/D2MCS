@@ -8,11 +8,11 @@ Performs the feature-clustering using Spearman's rho statistic.
 }
 \details{
 Spearman's rho statistic is to estimate a rank-based measure of
-association. These tests may be used if the data do not necessarily come from a
-bivariate normal distribution.
+association. These tests may be used if the data do not necessarily come from
+a bivariate normal distribution.
 }
 \seealso{
-\code{\link{Dataset}} \link{cor.test}
+\code{\link{Dataset}}, \code{\link[stats]{cor.test}}
 }
 \keyword{cluster}
 \keyword{manip}
@@ -42,15 +42,13 @@ Creates a \link{SpearmanHeuristic} object.
 \if{html}{\out{<div class="r">}}\preformatted{SpearmanHeuristic$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{SpearmanHeuristic} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
-Test for correlation between paired samples using Spearman rho statistic.
+Test for correlation between paired samples using Spearman
+rho statistic.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SpearmanHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -58,17 +56,20 @@ Test for correlation between paired samples using Spearman rho statistic.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{\link{numeric} vectors of data values.}
+\item{\code{col1}}{A \link{numeric} vector or matrix required to perform the
+clustering operation.}
 
-\item{\code{col2}}{\link{numeric} vectors of data values with same length as col1.}
+\item{\code{col2}}{A \link{numeric} vector or matrix to perform the clustering
+operation.}
 
-\item{\code{column.names}}{an optional \link{character} vector with the names of
+\item{\code{column.names}}{An optional \link{character} vector with the names of
 both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+A \link{numeric} vector of length 1 or \link{NA} if an error
+occurs.
 }
 }
 \if{html}{\out{<hr>}}

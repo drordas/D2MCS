@@ -1,10 +1,12 @@
 #' @title Implementation of Combined Voting.
 #'
 #' @description Calculates the final prediction by performing the result of the
-#' preditions of different metrics obtained through a \code{\link{SimpleVoting}} class.
+#' predictions of different metrics obtained through a \code{\link{SimpleVoting}}
+#' class.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+#' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
 #' \code{\link{SimpleVoting}}
 #'
 #' @keywords models methods math
@@ -21,13 +23,17 @@ CombinedVoting <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param voting.schemes A \code{\link{list}} of elements inherited from \code{\link{SimpleVoting}}.
-    #' @param combined.metrics An object defining the metrics used to combine the voting schemes.
-    #' The object must inherit from \code{\link{CombinedMetrics}} class.
-    #' @param methodology An object specifiying the methodology used to execute the combined votings.
-    #' Object inherited from \code{\link{Methodology}} object
-    #' @param metrics A \code{\link{character}} vector with the name of the metrics used to perform
-    #' the combined voting operations. Metrics should be previously defined during training stage.
+    #' @param voting.schemes A \link{list} of elements inherited from
+    #' \code{\link{SimpleVoting}}.
+    #' @param combined.metrics An object defining the metrics used to combine
+    #' the voting schemes. The object must inherit from
+    #' \code{\link{CombinedMetrics}} class.
+    #' @param methodology An object specifying the methodology used to execute
+    #' the combined voting. Object inherited from \code{\link{Methodology}}
+    #' object
+    #' @param metrics A \link{character} vector with the name of the
+    #' metrics used to perform the combined voting operations. Metrics should be
+    #' previously defined during training stage.
     #'
     initialize = function(voting.schemes, combined.metrics, methodology, metrics) {
       if (!inherits(voting.schemes, "SimpleVoting")) {
@@ -55,30 +61,36 @@ CombinedVoting <- R6::R6Class(
       private$final.pred <- FinalPred$new()
     },
     #'
-    #' @description The function returns the metrics used to combine the metrics results.
+    #' @description The function returns the metrics used to combine the metrics
+    #' results.
     #'
     #' @return An object inherited from \code{\link{CombinedMetrics}} class.
     #'
     getCombinedMetrics = function() { private$combined.metrics },
     #'
-    #' @description The function gets the methodology used to execute the combined votings.
+    #' @description The function gets the methodology used to execute the
+    #' combined votings.
     #'
     #' @return An object inherited from \code{\link{Methodology}} class.
     #'
     getMethodology = function() { private$methodology },
     #'
-    #' @description The function returns the predictions obtained after executing the combined-voting methodology.
+    #' @description The function returns the predictions obtained after
+    #' executing the combined-voting methodology.
     #'
-    #' @param type A \code{\link{character}} to define which type of predictions should be returned. If not defined
-    #' all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
-    #' 'class' values are returned.
-    #' @param target A \code{\link{character}} defining the value of the positive class.
-    #' @param filter A \code{\link{logical}} value used to specify if only predictions
-    #' matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
-    #' predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
-    #' the function returns all the predictions.
+    #' @param type A \link{character} to define which type of predictions
+    #' should be returned. If not defined all type of probabilities will be
+    #' returned. Conversely if "prob" or "raw" is defined then computed
+    #' 'probabilistic' or 'class' values are returned.
+    #' @param target A \link{character} defining the value of the
+    #' positive class.
+    #' @param filter A \link{logical} value used to specify if only predictions
+    #' matching the target value should be returned or not. If \link{TRUE} the
+    #' function returns only the predictions matching the target value.
+    #' Conversely if \link{FALSE} (by default) the function returns all the
+    #' predictions.
     #'
-    #' @return A \code{\link{data.frame}} with the computed predictions.
+    #' @return A \link{data.frame} with the computed predictions.
     #'
     getFinalPred = function(type = NULL, target = NULL, filter = NULL) {
       if (any(is.null(type), !(type %in% c("raw", "prob")))) {
@@ -119,8 +131,10 @@ CombinedVoting <- R6::R6Class(
     #'
     #' @description The function implements the combined voting scheme.
     #'
-    #' @param predictions A \code{\link{ClusterPredictions}} object containing the predictions computed for each cluster.
-    #' @param verbose A \link{logical} value to specify if more verbosity is needed.
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing
+    #' the predictions computed for each cluster.
+    #' @param verbose A \link{logical} value to specify if more verbosity is
+    #' needed.
     #'
     execute = function(predictions, verbose = FALSE) {
 

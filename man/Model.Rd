@@ -4,7 +4,8 @@
 \alias{Model}
 \title{Stores a previously trained M.L. model.}
 \description{
-Encapsulates and handles all the information and operations associated with a M.L. model.
+Encapsulates and handles all the information and operations
+associated with a M.L. model.
 }
 \seealso{
 \code{\link{DDMCS}}, \code{\link{TrainFunction}}
@@ -44,7 +45,7 @@ Method for initializing the object arguments during runtime.
 \describe{
 \item{\code{dir.path}}{The location were the executed models will be saved.}
 
-\item{\code{model}}{An \code{\link{Model}} object.}
+\item{\code{model}}{A \code{\link{Model}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -53,26 +54,30 @@ Method for initializing the object arguments during runtime.
 \if{html}{\out{<a id="method-isTrained"></a>}}
 \if{latex}{\out{\hypertarget{method-isTrained}{}}}
 \subsection{Method \code{isTrained()}}{
-The function is used to determine is the model has been already trained.
+The function is used to determine is the model has been
+already trained.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$isTrained()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{logical}} value. \code{\link{TRUE}} if the model has been trained and \code{\link{FALSE}} otherwise.
+A \link{logical} value. \link{TRUE} if the model
+has been trained and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDir"></a>}}
 \if{latex}{\out{\hypertarget{method-getDir}{}}}
 \subsection{Method \code{getDir()}}{
-The function returns the location path of the specific model.
+The function returns the location path of the specific
+model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$getDir()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{\link{character}} vector specifying the location of the model.
+A \link{character} vector specifying the location of the
+model.
 }
 }
 \if{html}{\out{<hr>}}
@@ -85,7 +90,7 @@ The function is used to obtain the name of the model.
 }
 
 \subsection{Returns}{
-\code{\link{character}} vector with the name of the model.
+A \link{character} vector with the name of the model.
 }
 }
 \if{html}{\out{<hr>}}
@@ -98,27 +103,30 @@ The function gets the family of the model.
 }
 
 \subsection{Returns}{
-\code{\link{character}} vector representing the family of the ML model.
+A \link{character} vector representing the family of the ML
+model.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getDescription"></a>}}
 \if{latex}{\out{\hypertarget{method-getDescription}{}}}
 \subsection{Method \code{getDescription()}}{
-The function allows obtaining the description associated with an specific ML model.
+The function allows obtaining the description associated
+with an specific ML model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$getDescription()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{\link{character}} vector with the model description.
+A \link{character} vector with the model description.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train"></a>}}
 \if{latex}{\out{\hypertarget{method-train}{}}}
 \subsection{Method \code{train()}}{
-The function is responsible of performing model training operation.
+The function is responsible of performing model training
+operation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$train(train.set, fitting, trFunction, metric, logs)}\if{html}{\out{</div>}}
 }
@@ -126,8 +134,8 @@ The function is responsible of performing model training operation.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{train.set}}{A \code{\link{data.frame}} with the data used for
-training the model.}
+\item{\code{train.set}}{A \link{data.frame} with the data used for training the
+model.}
 
 \item{\code{fitting}}{The model fitting formula. Must inherit from
 \code{\link{GenericModelFit}} class.}
@@ -135,11 +143,11 @@ training the model.}
 \item{\code{trFunction}}{An object inherited from \code{\link{TrainFunction}}
 used to define how the training acts.}
 
-\item{\code{metric}}{A \code{\link{character}} vector containing the metrics
-used to optimized model parameters.}
+\item{\code{metric}}{A \link{character} vector containing the metrics used to
+optimized model parameters.}
 
-\item{\code{logs}}{A \code{\link{character}} vector containing the path to
-store the error logs.}
+\item{\code{logs}}{A \link{character} vector containing the path to store the
+error logs.}
 }
 \if{html}{\out{</div>}}
 }
@@ -168,14 +176,15 @@ perform training operation.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector with length 1.
+A \link{numeric} vector with length 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPerformance"></a>}}
 \if{latex}{\out{\hypertarget{method-getPerformance}{}}}
 \subsection{Method \code{getPerformance()}}{
-The function obtains the performance achieved by the model during training stage.
+The function obtains the performance achieved by the model
+during training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$getPerformance(metric = private$metric)}\if{html}{\out{</div>}}
 }
@@ -183,32 +192,35 @@ The function obtains the performance achieved by the model during training stage
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{metric}}{A \code{\link{character}} used to specify the measure used to compute the performance.}
+\item{\code{metric}}{A \link{character} used to specify the measure used to
+compute the performance.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{numeric}} value with the performance achieved.
+A \link{numeric} value with the performance achieved.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getConfiguration"></a>}}
 \if{latex}{\out{\hypertarget{method-getConfiguration}{}}}
 \subsection{Method \code{getConfiguration()}}{
-The function is used to get the configuration parameters achieved by the ML model after the training stage.
+The function is used to get the configuration parameters
+achieved by the ML model after the training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$getConfiguration()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{list}} object with the configuration parameters.
+A \link{list} object with the configuration parameters.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save"></a>}}
 \if{latex}{\out{\hypertarget{method-save}{}}}
 \subsection{Method \code{save()}}{
-The function is responsible of saving the model to disc into a RDS file.
+The function is responsible of saving the model to disc into
+a RDS file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Model$save(replace = TRUE)}\if{html}{\out{</div>}}
 }
@@ -216,8 +228,9 @@ The function is responsible of saving the model to disc into a RDS file.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{replace}}{A \code{\link{logical}} value used to determine if model should be resaved.
-\code{\link{TRUE}} forces to replace previous saved model while \code{\link{FALSE}} keeps unchanged the preious model.}
+\item{\code{replace}}{A \link{logical} value used to determine if model should
+be resaved. \link{TRUE} forces to replace previous saved model while
+\link{FALSE} keeps unchanged the previous model.}
 }
 \if{html}{\out{</div>}}
 }

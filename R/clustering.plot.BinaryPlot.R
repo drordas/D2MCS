@@ -1,6 +1,7 @@
 #' @title Plotting feature clusters following bi-class problem.
 #'
-#' @description The \link{BinaryPlot} implements a basic plot for bi-class problem.
+#' @description The \code{\link{BinaryPlot}} implements a basic plot for
+#' bi-class problem.
 #'
 #' @seealso \code{\link{GenericPlot}}
 #'
@@ -16,16 +17,18 @@ BinaryPlot <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description empty function used to initalize the object arguments in runtime.
-    #' @return a \link{BinaryPlot} object.
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { },
     #'
-    #' @description plots feature-clustering data from a bi-class problem.
+    #' @description Plots feature-clustering data from a bi-class problem.
     #'
-    #' @param summary a \link{data.frame} comprising the elements to be plotted.
-    #' @param ... further arguments passed down to \code{plot} function.
-    #' @seealso for more information see \code{plot} function from \code{GenericPlot} class.
+    #' @param summary A \link{data.frame} comprising the elements to be plotted.
+    #' @param ... Further arguments passed down to \code{plot} function.
+    #'
+    #' @seealso \code{\link{GenericPlot}}
+    #'
     #' @import ggplot2
     #'
     plot = function(summary, ...) {

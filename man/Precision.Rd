@@ -4,7 +4,8 @@
 \alias{Precision}
 \title{Computes the Precision Value.}
 \description{
-Precision is the fraction of relevant instances among the retrieved instances
+Precision is the fraction of relevant instances among the
+retrieved instances
 }
 \details{
 \deqn{precision = \frac{TP}{TP+FP}}
@@ -51,15 +52,13 @@ to define the type of object used as basis to compute the measure.}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-An \code{\link{Precision}} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
-The function computes the \code{Precision} achieved by the M.L. model.
+The function computes the \strong{Precision} achieved by the
+M.L. model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Precision$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -67,17 +66,20 @@ The function computes the \code{Precision} achieved by the M.L. model.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define
-the type of object used as basis to compute the \code{Precision} measure.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used as basis to compute the
+\strong{Precision} measure.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is automatically invoque by the \link{ClassificationOutput} object.
+This function is automatically invoke by the
+\link{ClassificationOutput} object.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+A \link{numeric} vector of size 1 or \link{NULL} if an error
+occurred.
 }
 }
 \if{html}{\out{<hr>}}

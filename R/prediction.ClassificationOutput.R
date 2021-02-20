@@ -1,7 +1,8 @@
 #' @title DDMCS Classification Output.
 #'
-#' @description Allows computing the classification performance values achieved by DDMCS.
-#' The class is automatically created when \code{\link{DDMCS}} classification method is invoked.
+#' @description Allows computing the classification performance values achieved
+#' by DDMCS. The class is automatically created when \code{\link{DDMCS}}
+#' classification method is invoked.
 #'
 #' @seealso \code{\link{DDMCS}}
 #'
@@ -18,8 +19,10 @@ ClassificationOutput <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param voting.schemes A \code{\link{list}} containing the votings schemes used (inherited from \code{\link{VotingStrategy}}.
-    #' @param models A \code{\link{list}} containing the used \code{\link{Model}} during classification stage.
+    #' @param voting.schemes A \link{list} containing the voting schemes used
+    #' (inherited from \code{\link{VotingStrategy}}.
+    #' @param models A \link{list} containing the used \code{\link{Model}}
+    #' during classification stage.
     #'
     initialize = function(voting.schemes, models) {
       if (length(voting.schemes) == 0) {
@@ -83,25 +86,25 @@ ClassificationOutput <- R6::R6Class(
     #'
     #' @description The function returns the measures used during training stage.
     #'
-    #' @return A \code{\link{character}} vector or \code{\link{NULL}} if
-    #' training was not performed.
+    #' @return A \link{character} vector or \link{NULL} if training was not
+    #' performed.
     #'
     getMetrics = function() { unique(names(private$trained.models)) },
     #'
     #' @description The function gets the name of the positive class used for
     #' training/classification.
     #'
-    #' @return A \code{\link{character}} vector of size 1.
+    #' @return A \link{character} vector of size 1.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description The function compilled all the information concerning to
+    #' @description The function compiled all the information concerning to
     #' the M.L. models used during training/classification.
     #'
-    #' @param metrics A \code{\link{character}} vector defining the metrics
-    #' used during training/classification.
+    #' @param metrics A \link{character} vector defining the metrics used during
+    #' training/classification.
     #'
-    #' @return A \code{\link{list}} with the information of each M.L. model.
+    #' @return A \link{list} with the information of each M.L. model.
     #'
     getModelInfo = function(metrics = NULL) {
       if (missing(metrics) ||
@@ -126,20 +129,24 @@ ClassificationOutput <- R6::R6Class(
     #'
     #' @description The function is used to compute the performance of DDMCS.
     #'
-    #' @param dir.path A \code{\link{character}} vector with location where the plot will be saved.
-    #' @param test.set A \code{\link{Subset}} object used to compute the performance.
-    #' @param measures A \code{\link{character}} vector with the measures to be used to compute
-    #' performance value (inherited from \code{\link{MeasureFunction}}).
-    #' @param voting.names A \code{\link{character}} vector with the name of the voting
-    #' schemes to analyse the performance. If not defined, all the voting schemes used
-    #' during classification stage will be taken into account.
-    #' @param metric.names A \code{\link{character}} containing the measures used during training stage.
-    #' If not defined, all training metrics used during classification will be taken into account.
-    #' @param cutoff.values A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-    #' into account.
+    #' @param dir.path A \link{character} vector with location where the plot
+    #' will be saved.
+    #' @param test.set A \code{\link{Subset}} object used to compute the
+    #' performance.
+    #' @param measures A \link{character} vector with the measures to be used to
+    #' compute performance value (inherited from \code{\link{MeasureFunction}}).
+    #' @param voting.names A \link{character} vector with the name of the
+    #' voting schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a a positive classification. If is not
+    #' defined, all cutoffs used during classification stage will be taken into
+    #' account.
     #'
-    #' @return A \code{\link{list}} of performance values.
+    #' @return A \link{list} of performance values.
     #'
     getPerformances = function(test.set, measures, voting.names = NULL,
                                metric.names = NULL, cutoff.values = NULL) {
@@ -270,20 +277,25 @@ ClassificationOutput <- R6::R6Class(
       performances
     },
     #'
-    #' @description The function is used to save the computed predictions into a CSV file.
+    #' @description The function is used to save the computed predictions into a
+    #' CSV file.
     #'
-    #' @param dir.path A \code{\link{character}} vector with location where the plot will be saved.
-    #' @param test.set A \code{\link{Subset}} object used to compute the performance.
-    #' @param measures A \code{\link{character}} vector with the measures to be used to compute
-    #' performance value (inherited from \code{\link{MeasureFunction}}).
-    #' @param voting.names A \code{\link{character}} vector with the name of the voting
-    #' schemes to analyse the performance. If not defined, all the voting schemes used
-    #' during classification stage will be taken into account.
-    #' @param metric.names A \code{\link{character}} containing the measures used during training stage.
-    #' If not defined, all training metrics used during classification will be taken into account.
-    #' @param cutoff.values A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-    #' into account.
+    #' @param dir.path A \link{character} vector with location where the plot
+    #' will be saved.
+    #' @param test.set A \code{\link{Subset}} object used to compute the
+    #' performance.
+    #' @param measures A \link{character} vector with the measures to be used to
+    #'  compute performance value (inherited from \code{\link{MeasureFunction}}).
+    #' @param voting.names A \link{character} vector with the name of the voting
+    #' schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a a positive classification. If is not
+    #' defined, all cutoffs used during classification stage will be taken into
+    #' account.
     #'
     savePerformances = function(dir.path, test.set, measures, voting.names = NULL,
                                 metric.names = NULL, cutoff.values = NULL) {
@@ -318,20 +330,24 @@ ClassificationOutput <- R6::R6Class(
 
     },
     #'
-    #' @description The function allows to graphically visualizate the computed performance.
+    #' @description The function allows to graphically visualize the computed
+    #' performance.
     #'
-    #' @param dir.path A \code{\link{character}} vector with location where the plot will be saved.
-    #' @param test.set A \code{\link{Subset}} object used to compute the performance.
-    #' @param measures A \code{\link{character}} vector with the measures to be used to compute
-    #' performance value (inherited from \code{\link{MeasureFunction}}).
-    #' @param voting.names A \code{\link{character}} vector with the name of the voting
-    #' schemes to analyse the performance. If not defined, all the voting schemes used
-    #' during classification stage will be taken into account.
-    #' @param metric.names A \code{\link{character}} containing the measures used during training stage.
-    #' If not defined, all training metrics used during classification will be taken into account.
-    #' @param cutoff.values A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-    #' into account.
+    #' @param dir.path A \link{character} vector with location where the plot
+    #' will be saved.
+    #' @param test.set A \code{\link{Subset}} object used to compute the
+    #' performance.
+    #' @param measures A \link{character} vector with the measures to be used to
+    #' compute performance value (inherited from \code{\link{MeasureFunction}}).
+    #' @param voting.names A \link{character} vector with the name of the voting
+    #' schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a positive classification. If is not defined,
+    #' all cutoffs used during classification stage will be taken into account.
     #'
     #' @import ggplot2
     #' @importFrom plotly ggplotly
@@ -374,22 +390,27 @@ ClassificationOutput <- R6::R6Class(
     #'
     #' @description The function is used to obtain the computed predictions.
     #'
-    #' @param voting.names A \code{\link{character}} vector with the name of the voting
-    #' schemes to analyse the performance. If not defined, all the voting schemes used
-    #' during classification stage will be taken into account.
-    #' @param metric.names A \code{\link{character}} containing the measures used during training stage.
-    #' If not defined, all training metrics used during classification will be taken into account.
-    #' @param cutoff.values A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-    #' into account.
-    #' @param type A \code{\link{character}} to define which type of predictions should be returned. If not defined
-    #' all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+    #' @param voting.names A \link{character} vector with the name of the voting
+    #' schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a a positive classification. If is not
+    #' defined, all cutoffs used during classification stage will be taken into
+    #' account.
+    #' @param type A \link{character} to define which type of predictions should
+    #' be returned. If not defined all type of probabilities will be returned.
+    #' Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
     #' 'class' values are returned.
-    #' @param target A \code{\link{character}} defining the value of the positive class.
-    #' @param filter A \code{\link{logical}} value used to specify if only predictions
-    #' matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
-    #' predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
-    #' the function returns all the predictions.
+    #' @param target A \link{character} defining the value of the positive
+    #' class.
+    #' @param filter A \link{logical} value used to specify if only predictions
+    #' matching the target value should be returned or not. If \link{TRUE} the
+    #' function returns only the predictions matching the target value.
+    #' Conversely if \link{FALSE} (by default) the function returns all the
+    #' predictions.
     #'
     #' @return A \code{\link{PredictionOutput}} object.
     #'
@@ -486,23 +507,27 @@ ClassificationOutput <- R6::R6Class(
     #'
     #' @description The function saves the predictions into a CSV file.
     #'
-    #' @param dir.path A \code{\link{character}} vector with location defining the location of the CSV file.
-    #' @param voting.names A \code{\link{character}} vector with the name of the voting
-    #' schemes to analyse the performance. If not defined, all the voting schemes used
-    #' during classification stage will be taken into account.
-    #' @param type A \code{\link{character}} to define which type of predictions should be returned. If not defined
-    #' all type of probabilities will be returned. Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+    #' @param dir.path A \link{character} vector with location defining the
+    #' location of the CSV file.
+    #' @param voting.names A \link{character} vector with the name of the
+    #' voting schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param type A \link{character} to define which type of predictions should
+    #' be returned. If not defined all type of probabilities will be returned.
+    #' Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
     #' 'class' values are returned.
-    #' @param metric.names A \code{\link{character}} containing the measures used during training stage.
-    #' If not defined, all training metrics used during classification will be taken into account.
-    #' @param cutoff.values A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, all cutoffs used during classification stage will be taken
-    #' into account.
-    #' @param target A \code{\link{character}} defining the value of the positive class.
-    #' @param filter A \code{\link{logical}} value used to specify if only predictions
-    #' matching the target value should be returned or not. If \code{\link{TRUE}} the function returns only the
-    #' predictions matching the target value. Conversely if \code{\link{FALSE}} (by default)
-    #' the function returns all the predictions.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a positive classification. If is not defined,
+    #' all cutoffs used during classification stage will be taken into account.
+    #' @param target A \link{character} defining the value of the positive class.
+    #' @param filter A \link{logical} value used to specify if only predictions
+    #' matching the target value should be returned or not. If \link{TRUE} the
+    #' function returns only the predictions matching the target value.
+    #' Conversely if \link{FALSE} (by default) the function returns all the
+    #' predictions.
     #'
     savePredictions = function(dir.path, voting.names = NULL, metric.names = NULL,
                                cutoff.values = NULL, type = NULL,

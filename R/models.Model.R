@@ -1,6 +1,7 @@
 #' @title Stores a previously trained M.L. model.
 #'
-#' @description Encapsulates and handles all the information and operations associated with a M.L. model.
+#' @description Encapsulates and handles all the information and operations
+#' associated with a M.L. model.
 #'
 #' @keywords internal misc
 #'
@@ -16,7 +17,7 @@ Model <- R6::R6Class(
     #' @description Method for initializing the object arguments during runtime.
     #'
     #' @param dir.path The location were the executed models will be saved.
-    #' @param model An \code{\link{Model}} object.
+    #' @param model A \code{\link{Model}} object.
     #'
     initialize = function(dir.path, model) {
       private$dir.path <- gsub("\\/$", "", dir.path)
@@ -57,50 +58,57 @@ Model <- R6::R6Class(
       }
     },
     #'
-    #' @description The function is used to determine is the model has been already trained.
+    #' @description The function is used to determine is the model has been
+    #' already trained.
     #'
-    #' @return A \code{\link{logical}} value. \code{\link{TRUE}} if the model has been trained and \code{\link{FALSE}} otherwise.
+    #' @return A \link{logical} value. \link{TRUE} if the model
+    #' has been trained and \link{FALSE} otherwise.
     #'
     isTrained = function() {
       ifelse(is.null(private$model.train$model.data), FALSE, TRUE)
     },
     #'
-    #' @description The function returns the location path of the specific model.
+    #' @description The function returns the location path of the specific
+    #' model.
     #'
-    #' @return \code{\link{character}} vector specifying the location of the model.
+    #' @return A \link{character} vector specifying the location of the
+    #' model.
     #'
     getDir = function() { private$dir.path },
     #'
     #' @description The function is used to obtain the name of the model.
     #'
-    #' @return \code{\link{character}} vector with the name of the model.
+    #' @return A \link{character} vector with the name of the model.
     #'
     getName = function() { private$model.info$name },
     #'
     #' @description The function gets the family of the model.
     #'
-    #' @return \code{\link{character}} vector representing the family of the ML model.
+    #' @return A \link{character} vector representing the family of the ML
+    #' model.
     #'
     getFamily = function() { private$model.info$family },
     #'
-    #' @description The function allows obtaining the description associated with an specific ML model.
+    #' @description The function allows obtaining the description associated
+    #' with an specific ML model.
     #'
-    #' @return \code{\link{character}} vector with the model description.
+    #' @return A \link{character} vector with the model description.
     #'
     getDescription = function() { private$model.info$description },
     #'
-    #' @description The function is responsible of performing model training operation.
+    #' @description The function is responsible of performing model training
+    #' operation.
     #'
-    #' @param train.set A \code{\link{data.frame}} with the data used for
-    #' training the model.
+    #' @param train.set A \link{data.frame} with the data used for training the
+    #' model.
     #' @param fitting The model fitting formula. Must inherit from
     #' \code{\link{GenericModelFit}} class.
     #' @param trFunction An object inherited from \code{\link{TrainFunction}}
     #' used to define how the training acts.
-    #' @param metric A \code{\link{character}} vector containing the metrics
-    #' used to optimized model parameters.
-    #' @param logs A \code{\link{character}} vector containing the path to
-    #' store the error logs.
+    #' @param metric A \link{character} vector containing the metrics used to
+    #' optimized model parameters.
+    #' @param logs A \link{character} vector containing the path to store the
+    #' error logs.
     #'
     #' @import caret tictoc
     #'
@@ -188,7 +196,7 @@ Model <- R6::R6Class(
     #' @description The function is used to compute the time taken to
     #' perform training operation.
     #'
-    #' @return A \code{\link{numeric}} vector with length 1.
+    #' @return A \link{numeric} vector with length 1.
     #'
     getExecutionTime = function() {
       if (is.null(private$model.train) || is.null(private$model.train))
@@ -197,11 +205,13 @@ Model <- R6::R6Class(
       private$model.train$exec.time
     },
     #'
-    #' @description The function obtains the performance achieved by the model during training stage.
+    #' @description The function obtains the performance achieved by the model
+    #' during training stage.
     #'
-    #' @param metric A \code{\link{character}} used to specify the measure used to compute the performance.
+    #' @param metric A \link{character} used to specify the measure used to
+    #' compute the performance.
     #'
-    #' @return A \code{\link{numeric}} value with the performance achieved.
+    #' @return A \link{numeric} value with the performance achieved.
     #'
     getPerformance = function(metric = private$metric) {
       if (!is.null(private$model.train$model.data) &&
@@ -226,9 +236,10 @@ Model <- R6::R6Class(
       }
     },
     #'
-    #' @description The function is used to get the configuration parameters achieved by the ML model after the training stage.
+    #' @description The function is used to get the configuration parameters
+    #' achieved by the ML model after the training stage.
     #'
-    #' @return A \code{\link{list}} object with the configuration parameters.
+    #' @return A \link{list} object with the configuration parameters.
     #'
     getConfiguration = function() {
       if (!is.null(private$model.train$model.data)) {
@@ -240,10 +251,12 @@ Model <- R6::R6Class(
       }
     },
     #'
-    #' @description The function is responsible of saving the model to disc into a RDS file.
+    #' @description The function is responsible of saving the model to disc into
+    #' a RDS file.
     #'
-    #' @param replace A \code{\link{logical}} value used to determine if model should be resaved.
-    #' \code{\link{TRUE}} forces to replace previous saved model while \code{\link{FALSE}} keeps unchanged the preious model.
+    #' @param replace A \link{logical} value used to determine if model should
+    #' be resaved. \link{TRUE} forces to replace previous saved model while
+    #' \link{FALSE} keeps unchanged the previous model.
     #'
     save = function(replace = TRUE) {
       if (is.null(private$model.train$model.data))

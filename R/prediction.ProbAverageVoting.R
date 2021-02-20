@@ -1,9 +1,11 @@
 #' @title Implementation of Probabilistic Average voting.
 #'
-#' @description Computes the final prediction by perfoming the mean value of the probability achieved by each prediction.
+#' @description Computes the final prediction by performing the mean value of
+#' the probability achieved by each prediction.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+#' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'
 #' @keywords models methods math
 #'
@@ -19,12 +21,14 @@ ProbAverageVoting <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param cutoff A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, 0.5 will be used as default value.
-    #' @param class.tie A \code{\link{character}} used to define the target class value used when a tie is found.
-    #' If \code{\link{NULL}} positive class value will be assigned.
-    #' @param majority.class A \code{\link{character}} defining the value of the majority class.
-    #' If \code{\link{NULL}} will be used same value as trainning stage.
+    #' @param cutoff A \link{character} vector defining the minimum probability
+    #' used to perform a positive classification. If is not defined, 0.5 will be
+    #' used as default value.
+    #' @param class.tie A \link{character} used to define the target class value
+    #' used when a tie is found. If \link{NULL} positive class value will be
+    #' assigned.
+    #' @param majority.class A \link{character} defining the value of the
+    #' majority class. If \link{NULL} will be used same value as training stage.
     #'
     initialize = function(cutoff = 0.5, class.tie = NULL, majority.class = NULL) {
       if (!is.null(class.tie) && (!is.character(class.tie) && !is.numeric(class.tie))) {
@@ -38,20 +42,23 @@ ProbAverageVoting <- R6::R6Class(
     #'
     #' @description The function returns the value of the majority class.
     #'
-    #' @return A \code{\link{character}} vector of length 1 with the name of the majority class.
+    #' @return A \link{character} vector of length 1 with the name of the
+    #' majority class.
     #'
     getMajorityClass = function() { private$majority.class },
     #'
     #' @description The function gets the class value assigned to solve ties.
     #'
-    #' @return \code{\link{character}} vector of length 1.
+    #' @return A \link{character} vector of length 1.
     #'
     getClassTie = function() { private$class.tie },
     #'
     #' @description The function implements the majority voting procedure.
     #'
-    #' @param predictions A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.
-    #' @param verbose A \code{\link{logical}} value to specify if more verbosity is needed.
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing
+    #' all the predictions achieved for each cluster.
+    #' @param verbose A \link{logical} value to specify if more verbosity is
+    #' needed.
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {

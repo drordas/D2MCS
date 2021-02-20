@@ -19,8 +19,8 @@ Methodology <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param required.metrics A \code{\link{character}} vector of length greater
-    #' than 2 with the name of the required metrics.
+    #' @param required.metrics A \link{character} vector of length greater than
+    #' 2 with the name of the required metrics.
     #'
     initialize = function(required.metrics) {
       if (is.null(required.metrics) || !is.character(required.metrics) || length(required.metrics) < 2) {
@@ -33,22 +33,22 @@ Methodology <- R6::R6Class(
     #' @description The function returns the required metrics that will
     #' participate in the methodology to compute a metric based on all of them.
     #'
-    #' @return A \code{\link{character}} vector of length greater than 2 with
-    #' the name of the required metrics.
+    #' @return A \link{character} vector of length greater than 2 with the name
+    #' of the required metrics.
     #'
     getRequiredMetrics = function() { private$required.metrics },
     #'
     #' @description Function to compute the probability of the final prediction
     #' based on different metrics.
     #'
-    #' @param raw.pred A \code{\link{character}} list of length greater than 2
-    #' with the class value of the predictions made by the metrics.
-    #' @param prob.pred A \code{\link{numeric}} list of length greater than 2
-    #' with the probability of the predictions made by the metrics.
-    #' @param positive.class A \code{\link{character}} with the value of the
-    #' positive class.
-    #' @param negative.class A \code{\link{character}} with the value of the
-    #' negative class.
+    #' @param raw.pred A \link{character} list of length greater than 2 with the
+    #' class value of the predictions made by the metrics.
+    #' @param prob.pred A \link{numeric} list of length greater than 2 with the
+    #' probability of the predictions made by the metrics.
+    #' @param positive.class A \link{character} with the value of the positive
+    #' class.
+    #' @param negative.class A \link{character} with the value of the negative
+    #' class.
     #'
     #' @return A \link{numeric} value indicating the probability of the instance
     #' is predicted as positive class.

@@ -15,21 +15,25 @@ InformationGainHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description Creates a \link{InformationGainHeuristic} object.
-    #' @return a \link{InformationGainHeuristic} object.
+    #'
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
+    #'
     initialize = function() { },
     #'
     #' @description The algorithm find weights of discrete attributes basing on
-    #' their correlation with continous class attribute. Particularly
+    #' their correlation with continuous class attribute. Particularly
     #' Information Gain uses \code{H(Class) + H(Attribute) - H(Class, Attribute)}
     #'
-    #' @param col1 a \link{numeric} vector or matrix required to perform the
+    #' @param col1 A \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
+    #' @param col2 A \link{numeric} vector or matrix to perform the clustering
+    #' operation.
     #' @param column.names an optional \link{character} vector with the names of
     #' both columns.
     #'
-    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+    #' @return A \link{numeric} vector of length 1 or \link{NA} if an error
+    #' occurs.
     #'
     #' @importFrom FSelector information.gain
     #'

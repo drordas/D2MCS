@@ -1,6 +1,7 @@
 #' @title Compute performance across resamples.
 #'
-#' @description Computes the performance across resamples when class probabilities cannot be computed.
+#' @description Computes the performance across resamples when class
+#' probabilities cannot be computed.
 #'
 #' @seealso \code{\link{SummaryFunction}}
 #'
@@ -16,17 +17,20 @@ NoProbability <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description The function defined during runtime the usage of five measures: 'Kappa', 'Accuracy', 'TCR_9', 'MCC' and 'PPV'.
-    #' @return A \code{\link{NoProbability}} object.
+    #' @description The function defined during runtime the usage of five
+    #' measures: 'Kappa', 'Accuracy', 'TCR_9', 'MCC' and 'PPV'.
     #'
     initialize = function() {
       super$initialize(c("Kappa", "Accuracy", "TCR_9", "MCC", "PPV"))
     },
     #'
-    #' @description The function computes the performance across resamples using the previously defined measures.
+    #' @description The function computes the performance across resamples using
+    #' the previously defined measures.
     #'
-    #' @param data A \code{\link{data.frame}} containing the data used to compute the performance.
-    #' @param lev An optional value used to define the levels of the target class.
+    #' @param data A \link{data.frame} containing the data used to
+    #' compute the performance.
+    #' @param lev An optional value used to define the levels of the target
+    #' class.
     #' @param model An optional value used to define the M.L. model used.
     #'
     #' @return A vector of performance estimates.

@@ -1,13 +1,15 @@
 #' @title Feature clustering strategy.
 #'
-#' @description Features are sorted by descendant according to the relevance value obtained after applying
-#' an specific heuristic. Next, features are distributed into N clusters following a card-dealing methodology. Finally best
-#' distribution is assigned to the distribution having highest homogeneity.
+#' @description Features are sorted by descendant according to the relevance
+#' value obtained after applying an specific heuristic. Next, features are
+#' distributed into N clusters following a card-dealing methodology. Finally
+#' best distribution is assigned to the distribution having highest homogeneity.
 #'
-#' @details The strategy is suitable only for binary and real features. Other features are automatically grouped into a
-#' specific cluster named as 'unclustered'.
+#' @details The strategy is suitable only for binary and real features. Other
+#' features are automatically grouped into a specific cluster named as 'unclustered'.
 #'
-#' @seealso \code{\link{GenericClusteringStrategy}}, \code{\link{StrategyConfiguration}}
+#' @seealso \code{\link{GenericClusteringStrategy}},
+#' \code{\link{StrategyConfiguration}}
 #'
 #' @keywords cluster manip
 #'
@@ -23,11 +25,13 @@ TypeBasedStrategy <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param subset The \link{Subset} used to apply the feature-clustering strategy.
-    #' @param heuristic The heuristic used to compute the relevance of each feature.
-    #' Must inherit from \link{GenericHeuristic} abstract class.
-    #' @param configuration Optional paramter tocustomize configuration parameters for the strategy.
-    #' Must inherited from \link{StrategyConfiguration} abstract class.
+    #' @param subset The \code{\link{Subset}} used to apply the
+    #' feature-clustering strategy.
+    #' @param heuristic The heuristic used to compute the relevance of each
+    #' feature. Must inherit from \code{\link{GenericHeuristic}} abstract class.
+    #' @param configuration Optional parameter to customize configuration
+    #' parameters for the strategy. Must inherited from
+    #' \code{\link{StrategyConfiguration}} abstract class.
     #'
     initialize = function(subset, heuristic, configuration = StrategyConfiguration$new()) {
       if (!inherits(subset, "Subset")) {
@@ -63,10 +67,11 @@ TypeBasedStrategy <- R6::R6Class(
                        description = description, configuration = configuration)
     },
     #'
-    #' @description Function responsible of performing the clustering
-    #' strategy over the defined \link{Subset}.
+    #' @description Function responsible of performing the clustering strategy
+    #' over the defined \code{\link{Subset}}.
     #'
-    #' @param verbose A \link{logical} value to specify if more verbosity is needed.
+    #' @param verbose A \link{logical} value to specify if more verbosity is
+    #' needed.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @importFrom varhandle to.dummy
@@ -273,12 +278,15 @@ TypeBasedStrategy <- R6::R6Class(
     #'
     #' @description Function used to obtain a specific cluster distribution.
     #'
-    #' @param num.clusters A \link{numeric} value to select the number of clusters (define the distribution).
-    #' @param num.groups A single or \link{numeric} vector value to identify a specific group that
-    #' forms the clustering distribution.
-    #' @param include.unclustered A \link{logical} value to determine if unclustered features should be included.
+    #' @param num.clusters A \link{numeric} value to select the number of
+    #' clusters (define the distribution).
+    #' @param num.groups A single or \link{numeric} vector value to identify a
+    #' specific group that forms the clustering distribution.
+    #' @param include.unclustered A \link{logical} value to determine if
+    #' unclustered features should be included.
     #'
-    #' @return A \link{list} with the features comprising an specific clustering distribution.
+    #' @return A \link{list} with the features comprising an specific clustering
+    #' distribution.
     #'
     getDistribution = function(num.clusters = NULL, num.groups = NULL,
                                 include.unclustered = FALSE) {
@@ -358,17 +366,22 @@ TypeBasedStrategy <- R6::R6Class(
       return(distribution)
     },
     #'
-    #' @param subset The \link{Subset} object used as a basis to create the train set (see \link{Trainset} class).
-    #' @param num.clusters A \link{numeric} value to select the number of clusters (define the distribution).
-    #' @param num.groups A single or \link{numeric} vector value to identify a specific group that
-    #' forms the clustering distribution.
-    #' @param include.unclustered A \link{logical} value to determine if unclustered features should be included.
+    #' @description The function is used to create a \link{Trainset} object from
+    #' a specific clustering distribution.
     #'
-    #' @details If num.clusters and num.groups are not defined, best clustering distribution is used to create the train set.
+    #' @param subset The \code{\link{Subset}} object used as a basis to create
+    #' the train set (see \code{\link{Trainset}} class).
+    #' @param num.clusters A \link{numeric} value to select the number of
+    #' clusters (define the distribution).
+    #' @param num.groups A single or \link{numeric} vector value to identify a
+    #' specific group that forms the clustering distribution.
+    #' @param include.unclustered A \link{logical} value to determine if
+    #' unclustered features should be included.
     #'
-    #' @description The function is used to create a \link{Trainset} object from a specific clustering distribution.
+    #' @details If \code{num.clusters} and \code{num.groups} are not defined,
+    #' best clustering distribution is used to create the train set.
     #'
-    #' @return A \link{Trainset} object.
+    #' @return A \code{\link{Trainset}} object.
     #'
     createTrain = function(subset, num.clusters = NULL, num.groups = NULL,
                            include.unclustered = FALSE) {
@@ -396,11 +409,15 @@ TypeBasedStrategy <- R6::R6Class(
                    positive.class = subset$getPositiveClass())
     },
     #'
-    #' @description The function is responsible for creating a plot to visualize the clustering distribution.
+    #' @description The function is responsible for creating a plot to visualize
+    #' the clustering distribution.
     #'
-    #' @param dir.path An optional \link{character} argument to define the name of the directory where the exported plot will be saved.
-    #' If not defined, the file path will be automatically assigned to the current working directory, 'getwd()'.
-    #' @param file.name A \link{character} to define the name of the PDF file where the plot is exported.
+    #' @param dir.path An optional \link{character} argument to define the name
+    #' of the directory where the exported plot will be saved. If not defined,
+    #' the file path will be automatically assigned to the current working
+    #' directory, '\code{getwd()}'.
+    #' @param file.name A \link{character} to define the name of the PDF file
+    #' where the plot is exported.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @import ggplot2
@@ -454,12 +471,14 @@ TypeBasedStrategy <- R6::R6Class(
       plot
     },
     #'
-    #' @description The function is used to save the clustering distribution to a CSV file.
+    #' @description The function is used to save the clustering distribution to
+    #' a CSV file.
     #'
     #' @param dir.path The name of the directory to save the CSV file.
     #' @param name Defines the name of the CSV file.
-    #' @param num.clusters An optional parameter to select the number of clusters to be saved.
-    #' If not defined, all cluster distributions will be saved.
+    #' @param num.clusters An optional parameter to select the number of
+    #' clusters to be saved. If not defined, all cluster distributions will be
+    #' saved.
     #'
     saveCSV = function(dir.path = NULL, name = NULL, num.clusters = NULL) {
       if (is.null(dir.path))

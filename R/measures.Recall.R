@@ -1,7 +1,7 @@
 #' @title Computes the Recall Value.
 #'
-#' @description Recall (also known as sensitivity) is the fraction of the total amount of
-#' relevant instances that were actually retrieved.
+#' @description Recall (also known as sensitivity) is the fraction of the total
+#' amount of relevant instances that were actually retrieved.
 #'
 #' @details \deqn{recall = \frac{TP}{TP+FN}}
 #'
@@ -25,19 +25,24 @@ Recall <- R6::R6Class(
     #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
     #' to define the type of object used as basis to compute the measure.
     #'
-    #' @return An \code{\link{Recall}} object.
-    #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description The function computes the \code{Recall} achieved by the M.L. model.
+    #' @description The function computes the \strong{Recall} achieved by the M.L.
+    #' model.
     #'
-    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to
-    #' define the type of object used as basis to compute the \code{Recall} measure.
-    #' @details This function is automatically invoque by the \link{ClassificationOutput} object.
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the \strong{Recall}
+    #' measure.
+    #'
+    #' @details This function is automatically invoke by the
+    #' \code{\link{ClassificationOutput}} object.
+    #'
     #' @seealso \code{\link{ConfMatrix}}
-    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+    #'
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if
+    #' an error occurred.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

@@ -1,6 +1,7 @@
 #' @title Default model fitting implementation.
 #'
-#' @description Creates a default \code{\link[recipes]{recipe}} and \code{\link{formula}} objects used in model training stage.
+#' @description Creates a default \code{\link[recipes]{recipe}} and
+#' \code{\link{formula}} objects used in model training stage.
 #'
 #' @seealso \code{\link{GenericModelFit}}, \code{\link[caret]{train}}
 #'
@@ -17,18 +18,18 @@ DefaultModelFit <- R6::R6Class(
   public = list(
     #'
     #' @description Method for initializing the object arguments during runtime.
-    #' @return A \code{\link{DefaultModelFit}} object.
     #'
     initialize = function() { super$initialize() },
     #'
-    #' @description The function is responsible of creating a \code{\link{formula}} for M.L. model.
+    #' @description The function is responsible of creating a
+    #' \code{\link{formula}} for M.L. model.
     #'
-    #' @param instances A \code{\link{data.frame}} containing the instances
-    #' used to create the recipe.
-    #' @param class.name A \code{\link{character}} vector representing
-    #' the name of the target class.
-    #' @param simplify A \code{\link{logical}} argument defining whether the
-    #' formula should be generated as simple as posible.
+    #' @param instances A \link{data.frame} containing the instances used to
+    #' create the recipe.
+    #' @param class.name A \link{character} vector representing the name of the
+    #' target class.
+    #' @param simplify A \link{logical} argument defining whether the formula
+    #' should be generated as simple as possible.
     #'
     #' @return A \code{\link{formula}} object.
     #'
@@ -43,17 +44,17 @@ DefaultModelFit <- R6::R6Class(
     #' @description The function is responsible of creating a
     #' \code{\link[recipes]{recipe}} with five operations over the data:
     #' \code{\link[recipes]{step_zv}}, \code{\link[recipes]{step_nzv}},
-    #' \code{\link[recipes]{step_corr}},
-    #' \code{\link[recipes]{step_center}}, \code{\link[recipes]{step_scale}}
+    #' \code{\link[recipes]{step_corr}}, \code{\link[recipes]{step_center}},
+    #' \code{\link[recipes]{step_scale}}
     #'
-    #' @details This function is automatically invoked by \code{DDMCS} during
-    #' model training stage. If
+    #' @details This function is automatically invoked by \code{\link{DDMCS}}
+    #' during model training stage.
     #'
-    #' @param instances A \code{\link{data.frame}} containing the instances
-    #' used to create the recipe.
-    #' @param class.name A \code{\link{character}} vector representing
-    #' the name of the target class.
-    #' @return A object of class \code{\link[recipes]{recipe}}.
+    #' @param instances A \code{\link{data.frame}} containing the instances used
+    #' to create the recipe.
+    #' @param class.name A \code{\link{character}} vector representing the name
+    #' of the target class.
+    #' @return An object of class \code{\link[recipes]{recipe}}.
     #'
     #' @import recipes
     #'

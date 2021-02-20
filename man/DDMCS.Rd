@@ -4,8 +4,9 @@
 \alias{DDMCS}
 \title{Data Driven Multiple Classifier System.}
 \description{
-The class is responsible of managing the whole process. Concretely builds the M.L. models (optimizes models hyperparameters),
-selects the best M.L. model for each cluster and executes the classification stage.
+The class is responsible of managing the whole process.
+Concretely builds the M.L. models (optimizes models hyperparameters), selects
+the best M.L. model for each cluster and executes the classification stage.
 }
 \examples{
 \dontrun{
@@ -129,25 +130,24 @@ to build a Multiple Classifier System.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dir.path}}{A \code{\link{character}} defining location were the
+\item{\code{dir.path}}{A \link{character} defining location were the
 trained models should be saved.}
 
-\item{\code{num.cores}}{An optional \code{\link{numeric}} value specifiying
+\item{\code{num.cores}}{An optional \link{numeric} value specifying
 the number of CPU cores used for training the models (only if
-parallelization is allowed). If not defined (num.cores - 2) cores will be used.}
+parallelization is allowed). If not defined (num.cores - 2) cores will be
+used.}
 
-\item{\code{socket.type}}{A \code{\link{character}} value defining the type
-of socket used to communicate the workers.
-The default type, \code{"PSOCK"}, calls makePSOCKcluster.
-Type \code{"FORK"} calls makeForkCluster.
-For more information see \code{\link[parallel]{makeCluster}}}
+\item{\code{socket.type}}{A \link{character} value defining the type of socket
+used to communicate the workers. The default type, \code{"PSOCK"}, calls
+makePSOCKcluster. Type \code{"FORK"} calls makeForkCluster. For more
+information see \code{\link[parallel]{makeCluster}}}
 
 \item{\code{outfile}}{Where to direct the stdout and stderr connection output
-from the workers. "" indicates no
-redirection (which may only be useful for workers on the local machine).
-Defaults to '/dev/null'}
+from the workers. "" indicates no redirection (which may only be useful
+for workers on the local machine). Defaults to '/dev/null'}
 
-\item{\code{serialize}}{A \code{\link{logical}} value. If true (default)
+\item{\code{serialize}}{A \code{\link{logical}} value. If \link{TRUE} (default)
 serialization will use XDR: where large amounts of data are to be
 transferred and all the nodes are little-endian, communication may be
 substantially faster if this is set to false.}
@@ -159,7 +159,8 @@ substantially faster if this is set to false.}
 \if{html}{\out{<a id="method-train"></a>}}
 \if{latex}{\out{\hypertarget{method-train}{}}}
 \subsection{Method \code{train()}}{
-The function is responsible of performing the M.L. model training stage.
+The function is responsible of performing the M.L. model
+training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DDMCS$train(
   train.set,
@@ -176,44 +177,54 @@ The function is responsible of performing the M.L. model training stage.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{train.set}}{A \code{\link{Trainset}} object used as training input for the M.L. models}
+\item{\code{train.set}}{A \code{\link{Trainset}} object used as training input
+for the M.L. models}
 
-\item{\code{train.function}}{A \code{\link{TrainFunction}} defining the training configuration options.}
+\item{\code{train.function}}{A \code{\link{TrainFunction}} defining the training
+configuration options.}
 
-\item{\code{num.clusters}}{An \code{\link{numeric}} value used to define the number of
-clusters from the \code{\link{Trainset}} that should be utilized during the training stage.
-If not defined all clusters will we taken into account for training.}
+\item{\code{num.clusters}}{An \link{numeric} value used to define the number of
+clusters from the \code{\link{Trainset}} that should be utilized during
+the training stage. If not defined all clusters will we taken into
+account for training.}
 
-\item{\code{model.recipe}}{An unprepared recipe object inherited from \code{\link{GenericModelFit}} class.}
+\item{\code{model.recipe}}{An unprepared recipe object inherited from
+\code{\link{GenericModelFit}} class.}
 
-\item{\code{ex.classifiers}}{A \code{\link{character}} vector containing the name of the M.L.
-models used in training stage. See \code{\link[caret]{getModelInfo}} and
-\url{https://topepo.github.io/caret/available-models.html} for more information about all
-the available models.}
+\item{\code{ex.classifiers}}{A \link{character} vector containing the name of
+the M.L. models used in training stage. See
+\code{\link[caret]{getModelInfo}} and
+\url{https://topepo.github.io/caret/available-models.html} for more
+information about all the available models.}
 
-\item{\code{ig.classifiers}}{A \code{\link{character}} vector containing the name of the M.L.
-that should be ignored when performing the training stage. See \code{\link[caret]{getModelInfo}}
-and \url{https://topepo.github.io/caret/available-models.html} for more information about all
-the available models.}
+\item{\code{ig.classifiers}}{A \link{character} vector containing the name of
+the M.L. that should be ignored when performing the training stage. See
+\code{\link[caret]{getModelInfo}} and
+\url{https://topepo.github.io/caret/available-models.html} for more
+information about all the available models.}
 
-\item{\code{metrics}}{A \code{\link{character}} vector containing the metrics used to perform the M.L. model
-hyperparameter optimization during the training stage. See \code{\link{SummaryFunction}},
-\code{\link{UseProbability}} and \code{\link{NoProbability}} for more information.}
+\item{\code{metrics}}{A \link{character} vector containing the metrics used to
+perform the M.L. model hyperparameter optimization during the training
+stage. See \code{\link{SummaryFunction}}, \code{\link{UseProbability}}
+and \code{\link{NoProbability}} for more information.}
 
-\item{\code{saveAllModels}}{A \code{\link{logical}} parameter. A \code{\link{TRUE}} saves all trained models
-while A \code{\link{FALSE}} saves only the M.L. model achieving the best performance on each cluster.}
+\item{\code{saveAllModels}}{A \link{logical} parameter. A \link{TRUE} saves all
+trained models while A \link{FALSE} saves only the M.L. model achieving
+the best performance on each cluster.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{TrainOutput}} object containing all the information computed during the training stage.
+A \code{\link{TrainOutput}} object containing all the information
+computed during the training stage.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-classify"></a>}}
 \if{latex}{\out{\hypertarget{method-classify}{}}}
 \subsection{Method \code{classify()}}{
-The function is responsible for executing the classification stage.
+The function is responsible for executing the classification
+stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DDMCS$classify(train.output, subset, voting.types, positive.class = NULL)}\if{html}{\out{</div>}}
 }
@@ -221,20 +232,22 @@ The function is responsible for executing the classification stage.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{train.output}}{The \code{\link{TrainOutput}} object computed in the train stage.}
+\item{\code{train.output}}{The \code{\link{TrainOutput}} object computed in the
+train stage.}
 
 \item{\code{subset}}{A \code{\link{Subset}} containing the data to be classified.}
 
-\item{\code{voting.types}}{A \code{\link{list}} containing
-\code{\link{SingleVoting}} or \code{\link{CombinedVoting}} objects.}
+\item{\code{voting.types}}{A \link{list} containing \code{\link{SingleVoting}}
+or \code{\link{CombinedVoting}} objects.}
 
-\item{\code{positive.class}}{An optional \code{\link{character}} parameter used to define
-the positive class value.}
+\item{\code{positive.class}}{An optional \link{character} parameter used
+to define the positive class value.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \code{\link{ClassificationOutput}} with all the values computed during classification stage.
+A \code{\link{ClassificationOutput}} with all the values computed
+during classification stage.
 }
 }
 \if{html}{\out{<hr>}}
@@ -247,7 +260,8 @@ The function obtains all the available M.L. models.
 }
 
 \subsection{Returns}{
-A \code{\link{data.frame}} containing the information of the available M.L. models.
+A \link{data.frame} containing the information of the available
+M.L. models.
 }
 }
 \if{html}{\out{<hr>}}

@@ -4,15 +4,12 @@
 \alias{HDDataset}
 \title{High Dimensional Dataset handler.}
 \description{
-Creates a high dimensional dataset object.
-Only the required instances are loaded in memory to avoid
-unnecesary of resources and memmory
-}
-\details{
-<<details>
+Creates a high dimensional dataset object. Only the required
+instances are loaded in memory to avoid unnecessary of resources and memory.
 }
 \seealso{
-\code{\link{Dataset}}, \code{\link{HDSubset}}, \code{\link{DatasetLoader}}
+\code{\link{Dataset}}, \code{\link{HDSubset}},
+\code{\link{DatasetLoader}}
 }
 \keyword{attribute}
 \keyword{datagen}
@@ -31,7 +28,7 @@ unnecesary of resources and memmory
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates the \code{\link{HDDataset}} object.
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDDataset$new(
   filepath,
@@ -46,61 +43,62 @@ Creates the \code{\link{HDDataset}} object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{filepath}}{filepath the name of the file which the data are to be read from.
-Each row of the table appears as one line of the file.
-If it does not contain an _absolute_ path, the file name is _relative_ to the current
-working directory, 'getwd()'.}
+\item{\code{filepath}}{The name of the file which the data are to be read from.
+Each row of the table appears as one line of the file. If it does not
+contain an _absolute_ path, the file name is _relative_ to the current
+working directory, '\code{getwd()}'.}
 
-\item{\code{header}}{a logical value indicating whether the file contains the names of the variables as its first line.
-If missing, the value is determined from the file format: 'header' is set to 'TRUE' if and only if the
-first row contains one fewer field than the number of columns.}
+\item{\code{header}}{A \link{logical} value indicating whether the file contains
+the names of the variables as its first line. If missing, the value is
+determined from the file format: '\code{header}' is set to '\code{TRUE}'
+if and only if the first row contains one fewer field than the number of
+columns.}
 
-\item{\code{sep}}{the field separator character. Values on each line of the file are separated by this character.}
+\item{\code{sep}}{The field separator character. Values on each line of the file
+are separated by this character.}
 
-\item{\code{skip}}{defines the number of header lines should be skipped.}
+\item{\code{skip}}{Defines the number of header lines should be skipped.}
 
-\item{\code{normalize.names}}{a logical value indicating whether the columns names should be automatically renamed
-to ensure R compatibility.}
+\item{\code{normalize.names}}{A \link{logical} value indicating whether the
+columns names should be automatically renamed to ensure R compatibility.}
 
-\item{\code{ignore.columns}}{specify the columns from the input file that should be ignored.}
+\item{\code{ignore.columns}}{Specify the columns from the input file that should
+be ignored.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-a \link{HDDataset} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getColumnNames"></a>}}
 \if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
-get the name of the columns comprising the dataset
+Gets the name of the columns comprising the dataset
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDDataset$getColumnNames()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-a character vector with the name of each column.
+A \link{character} vector with the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNcol"></a>}}
 \if{latex}{\out{\hypertarget{method-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
-obtains the number of columns present in the Dataset.
+Obtains the number of columns present in the dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDDataset$getNcol()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-an \link{integer} of length 1 or \link{NULL}
+An \link{integer} of length 1 or \link{NULL}
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createSubset"></a>}}
 \if{latex}{\out{\hypertarget{method-createSubset}{}}}
 \subsection{Method \code{createSubset()}}{
-create a blinded \link{HDSubset} for classification purposes.
+Creates a blinded \link{HDSubset} for classification purposes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{HDDataset$createSubset(column.id = FALSE, chunk.size = 1e+05)}\if{html}{\out{</div>}}
 }
@@ -108,17 +106,17 @@ create a blinded \link{HDSubset} for classification purposes.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{column.id}}{an integer or character indicating the column (number or name
-respectively) identifier. Default \link{NULL} value
-is valid ignores defining a identification column.}
+\item{\code{column.id}}{An \link{integer} or \link{character} indicating the
+column (number or name respectively) identifier. Default \link{NULL}
+value is valid ignores defining a identification column.}
 
-\item{\code{chunk.size}}{an integer value indicating the size of chunks taken
-over each iteration.}
+\item{\code{chunk.size}}{an \link{integer} value indicating the size of chunks
+taken over each iteration.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{HDSubset} object.
+A \code{\link{HDSubset}} object.
 }
 }
 }

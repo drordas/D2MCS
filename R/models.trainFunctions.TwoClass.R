@@ -1,6 +1,7 @@
 #' @title Control parameters for train stage (Bi-class problem).
 #'
-#' @description Implementation to control the computational nuances of train function for bi-class problems.
+#' @description Implementation to control the computational nuances of train
+#' function for bi-class problems.
 #'
 #' @seealso \code{\link{TrainFunction}}
 #'
@@ -16,23 +17,27 @@ TwoClass <- R6::R6Class(
   inherit = TrainFunction,
   public = list(
     #'
-    #' @param method The resampling method: "boot", "boot632", "optimism_boot", "boot_all", "cv",
-    #' "repeatedcv", "LOOCV", "LGOCV" (for repeated training/test splits), "none" (only fits one
-    #' model to the entire training set), "oob" (only for random forest, bagged trees, bagged earth,
-    #' bagged flexible discriminant analysis, or conditional tree forest models), timeslice, "adaptive_cv",
-    #' "adaptive_boot" or "adaptive_LGOCV"
-    #' @param number Either the number of folds or number of resampling iterations
-    #' @param savePredictions An indicator of how much of the hold-out predictions for each resample
-    #' should be saved. Values can be either "all", "final", or "none". A logical value can also be
-    #' used that convert to "all" (for true) or "none" (for false). "final" saves the predictions
+    #' @param method The resampling method: "boot", "boot632", "optimism_boot",
+    #' "boot_all", "cv", "repeatedcv", "LOOCV", "LGOCV" (for repeated
+    #' training/test splits), "none" (only fits one model to the entire training
+    #' set), "oob" (only for random forest, bagged trees, bagged earth, bagged
+    #' flexible discriminant analysis, or conditional tree forest models),
+    #' timeslice, "adaptive_cv", "adaptive_boot" or "adaptive_LGOCV"
+    #' @param number Either the number of folds or number of resampling
+    #' iterations
+    #' @param savePredictions An indicator of how much of the hold-out
+    #' predictions for each resample should be saved. Values can be either
+    #' "all", "final", or "none". A logical value can also be used that convert
+    #' to "all" (for true) or "none" (for false). "final" saves the predictions
     #' for the optimal tuning parameters.
-    #' @param classProbs A \code{\link{logical}} value. Should class probabilities be computed for
-    #' classification models (along with predicted values) in each resample?
-    #' @param allowParallel A \code{\link{logical}} value. If a parallel backend is loaded and available, should the function use it?
-    #' @param verboseIter A \code{\link{logical}} for printing a training log.
-    #' @param seed An optional \code{\link{integer}} that will be used to set the seed during model training stage.
-    #'
-    #' @return A \code{\link{TwoClass}} object.
+    #' @param classProbs A \link{logical} value. Should class probabilities be
+    #' computed for classification models (along with predicted values) in each
+    #' resample?
+    #' @param allowParallel A \link{logical} value. If a parallel backend is
+    #' loaded and available, should the function use it?
+    #' @param verboseIter A \link{logical} for printing a training log.
+    #' @param seed An optional \link{integer} that will be used to set the seed
+    #' during model training stage.
     #'
     initialize = function(method, number, savePredictions, classProbs,
                           allowParallel, verboseIter, seed = NULL) {
@@ -41,12 +46,16 @@ TwoClass <- R6::R6Class(
                        allowParallel, verboseIter, seed)
     },
     #'
-    #' @description Creates a \code{\link[caret]{trainControl}} requires for the training stage.
+    #' @description Creates a \code{\link[caret]{trainControl}} requires for the
+    #' training stage.
     #'
-    #' @param summaryFunction An object inherited from \code{\link{SummaryFunction}} class.
-    #' @param search.method Either "grid" or "random", describing how the tuning parameter grid is determined.
-    #' @param class.probs A \code{\link{logical}}. Should class probabilities be computed for classification
-    #' models (along with predicted values) in each resample?
+    #' @param summaryFunction An object inherited from
+    #' \code{\link{SummaryFunction}} class.
+    #' @param search.method Either "grid" or "random", describing how the tuning
+    #' parameter grid is determined.
+    #' @param class.probs A \link{logical} indicating if class probabilities
+    #' should be computed for classification models (along with predicted values)
+    #' in each resample
     #'
     #' @import caret
     #'
@@ -81,7 +90,8 @@ TwoClass <- R6::R6Class(
       }
     },
     #'
-    #' @description Function used to return the \code{\link[caret]{trainControl}} object.
+    #' @description Function used to return the
+    #' \code{\link[caret]{trainControl}} object.
     #'
     #' @return A \code{\link[caret]{trainControl}} object.
     #'
@@ -92,10 +102,12 @@ TwoClass <- R6::R6Class(
       private$trFunction
     },
     #'
-    #' @description The function allows changing the class computation capabilities.
+    #' @description The function allows changing the class computation
+    #' capabilities.
     #'
-    #' @param class.probs A \code{\link{logical}} value. \code{\link{TRUE}} implies classification probabilities should be computed for
-    #' classification models and \code{\link{FALSE}} otherwise.
+    #' @param class.probs A \link{logical} value. \link{TRUE} implies
+    #' classification probabilities should be computed for classification models
+    #' and \link{FALSE} otherwise.
     #'
     setClassProbs = function(class.probs) {
       if (is.null(class.probs) || !is.logical(class.probs))
@@ -114,19 +126,22 @@ TwoClass <- R6::R6Class(
     #'
     #' @description Returns the measures used to optimize model hyperparameters.
     #'
-    #' @return A \code{\link{character}} vector.
+    #' @return A \link{character} vector.
     #'
     getMeasures = function() { private$measures },
     #'
-    #' @description Obtains the type of classification problem ("Bi-class" or "Multi-class").
+    #' @description Obtains the type of classification problem ("Bi-class" or
+    #' "Multi-class").
     #'
-    #' @return A \code{\link{character}} vector with "Bi-class" value.
+    #' @return A \link{character} vector with "Bi-class" value.
     #'
     getType = function() { private$type },
     #'
-    #' @description Function used to change the \code{\link{SummaryFunction}} used in the training stage.
+    #' @description Function used to change the \code{\link{SummaryFunction}}
+    #' used in the training stage.
     #'
-    #' @param summaryFunction An object inherited from \code{\link{SummaryFunction}} class.
+    #' @param summaryFunction An object inherited from
+    #' \code{\link{SummaryFunction}} class.
     #'
     setSummaryFunction = function(summaryFunction) {
       if (is.null(summaryFunction) || !inherit(summaryFunction, "SummaryFunction")) {

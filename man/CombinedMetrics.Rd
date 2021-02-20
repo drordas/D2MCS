@@ -35,7 +35,8 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{required.metrics}}{A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.}
+\item{\code{required.metrics}}{A \link{character} vector of length greater than
+2 with the name of the required metrics.}
 }
 \if{html}{\out{</div>}}
 }
@@ -44,20 +45,23 @@ Method for initializing the object arguments during runtime.
 \if{html}{\out{<a id="method-getRequiredMetrics"></a>}}
 \if{latex}{\out{\hypertarget{method-getRequiredMetrics}{}}}
 \subsection{Method \code{getRequiredMetrics()}}{
-The function returns the required metrics that will participate in the combined metric process.
+The function returns the required metrics that will
+participate in the combined metric process.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedMetrics$getRequiredMetrics()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of length greater than 2 with the name of the required metrics.
+A \link{character} vector of length greater than 2 with the name
+of the required metrics.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFinalPrediction"></a>}}
 \if{latex}{\out{\hypertarget{method-getFinalPrediction}{}}}
 \subsection{Method \code{getFinalPrediction()}}{
-Function used to implement the strategy to obtain the final prediction based on different metrics.
+Function used to implement the strategy to obtain the final
+prediction based on different metrics.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CombinedMetrics$getFinalPrediction(
   raw.pred,
@@ -70,18 +74,23 @@ Function used to implement the strategy to obtain the final prediction based on 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{raw.pred}}{A \code{\link{character}} list of length greater than 2 with the class value of the predictions made by the metrics.}
+\item{\code{raw.pred}}{A \link{character} list of length greater than 2 with the
+class value of the predictions made by the metrics.}
 
-\item{\code{prob.pred}}{A \code{\link{numeric}} list of length greater than 2 with the probability of the predictions made by the metrics.}
+\item{\code{prob.pred}}{A \link{numeric} list of length greater than 2 with the
+probability of the predictions made by the metrics.}
 
-\item{\code{positive.class}}{A \code{\link{character}} with the value of the positive class.}
+\item{\code{positive.class}}{A \link{character} with the value of the positive
+class.}
 
-\item{\code{negative.class}}{A \code{\link{character}} with the value of the negative class.}
+\item{\code{negative.class}}{A \link{character} with the value of the negative
+class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A \link{logical} value indicating if the instance is predicted as positive class or not.
+A \link{logical} value indicating if the instance is predicted as
+positive class or not.
 }
 }
 \if{html}{\out{<hr>}}

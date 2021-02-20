@@ -15,22 +15,27 @@ GainRatioHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description Creates the \link{GainRatioHeuristic} object.
-    #' @return a \link{GainRatioHeuristic} object.
+    #'
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
     #'
     initialize = function() { },
-    # Heuristic valid for continuous variables (col2) where col1 is binary or categorical
+    # Heuristic valid for continuous variables (col2) where col1 is binary or
+    # categorical
     #'
-    #' @description The algorithms find weights of discrete attributes basing on their
-    #' correlation with continous class attribute.
+    #' @description The algorithms find weights of discrete attributes basing on
+    #' their correlation with continuous class attribute.
     #'
-    #' @param col1 a \link{numeric} vector or matrix required to perform the
+    #' @param col1 A \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
-    #' @param column.names an optional \link{character} vector with the names of
+    #' @param col2 A \link{numeric} vector or matrix to perform the clustering
+    #' operation.
+    #' @param column.names An optional \link{character} vector with the names of
     #' both columns.
     #'
-    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+    #' @return A \link{numeric} vector of length 1 or \link{NA} if an error
+    #' occurs.
+    #'
     #' @importFrom FSelector gain.ratio
     #'
     heuristic = function(col1, col2, column.names = NULL) {

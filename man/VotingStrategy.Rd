@@ -4,10 +4,12 @@
 \alias{VotingStrategy}
 \title{Voting Strategy template.}
 \description{
-Abstract class used to define new \code{\link{SingleVoting}} and  \code{\link{CombinedVoting}} schemes.
+Abstract class used to define new \code{\link{SingleVoting}} and
+\code{\link{CombinedVoting}} schemes.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{SingleVoting}}, \code{\link{CombinedVoting}}
+\code{\link{DDMCS}}, \code{\link{SingleVoting}},
+\code{\link{CombinedVoting}}
 }
 \keyword{math}
 \keyword{methods}
@@ -27,7 +29,8 @@ Abstract class used to define new \code{\link{SingleVoting}} and  \code{\link{Co
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Abstract method used to initialize the object arguments during runtime.
+Abstract method used to initialize the object arguments
+during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$new()}\if{html}{\out{</div>}}
 }
@@ -37,33 +40,37 @@ Abstract method used to initialize the object arguments during runtime.
 \if{html}{\out{<a id="method-getVotingSchemes"></a>}}
 \if{latex}{\out{\hypertarget{method-getVotingSchemes}{}}}
 \subsection{Method \code{getVotingSchemes()}}{
-The function returns the voting schemes that will participate in the voting strategy.
+The function returns the voting schemes that will
+participate in the voting strategy.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$getVotingSchemes()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A vector of object inheriting from \code{\link{VotingStrategy}} class.
+A vector of object inheriting from \code{\link{VotingStrategy}}
+class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMetrics"></a>}}
 \if{latex}{\out{\hypertarget{method-getMetrics}{}}}
 \subsection{Method \code{getMetrics()}}{
-The function is used to get the metric that will be used during the voting strategy.
+The function is used to get the metric that will be used
+during the voting strategy.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$getMetrics()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector.
+A \link{character} vector.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-Abstract function used to implement the operation of the voting schemes.
+Abstract function used to implement the operation of the
+voting schemes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{VotingStrategy$execute(predictions, ...)}\if{html}{\out{</div>}}
 }
@@ -71,7 +78,8 @@ Abstract function used to implement the operation of the voting schemes.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing de prediction achieved for each cluster.}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
+the prediction achieved for each cluster.}
 
 \item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
@@ -88,7 +96,7 @@ The function returns the name of the voting scheme.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of size 1.
+A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}

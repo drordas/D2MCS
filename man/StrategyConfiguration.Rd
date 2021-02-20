@@ -4,11 +4,13 @@
 \alias{StrategyConfiguration}
 \title{Default Strategy Configuration handler.}
 \description{
-Define default configuration parameters for the clustering strategies.
+Define default configuration parameters for the clustering
+strategies.
 }
 \details{
-The \link{StrategyConfiguration} can be used to define the default configuration parameters for
-a feature clustering strategy or as an archetype to define new customized parameters.
+The \code{\link{StrategyConfiguration}} can be used to define the
+default configuration parameters for a feature clustering strategy or as an
+archetype to define new customized parameters.
 }
 \seealso{
 \code{\link{DependencyBasedStrategyConfiguration}}
@@ -28,20 +30,19 @@ a feature clustering strategy or as an archetype to define new customized parame
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Empty function used to initalize the object arguments during runtime.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StrategyConfiguration$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-A \link{StrategyConfiguration} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-minNumClusters"></a>}}
 \if{latex}{\out{\hypertarget{method-minNumClusters}{}}}
 \subsection{Method \code{minNumClusters()}}{
-Function used to return the minimum number of clusters distributions used. By default the minimum is set in 2.
+Function used to return the minimum number of clusters
+distributions used. By default the minimum is set in 2.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StrategyConfiguration$minNumClusters(...)}\if{html}{\out{</div>}}
 }
@@ -49,7 +50,8 @@ Function used to return the minimum number of clusters distributions used. By de
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Further arguments passed down to \code{minNumClusters} function.}
+\item{\code{...}}{Further arguments passed down to \code{minNumClusters}
+function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -61,8 +63,8 @@ A \link{numeric} vector of length 1.
 \if{html}{\out{<a id="method-maxNumClusters"></a>}}
 \if{latex}{\out{\hypertarget{method-maxNumClusters}{}}}
 \subsection{Method \code{maxNumClusters()}}{
-The function is responsible of returning the maximum number of cluster distributions used.
-By default the maximum number is set in 50.
+The function is responsible of returning the maximum number
+of cluster distributions used. By default the maximum number is set in 50.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StrategyConfiguration$maxNumClusters(...)}\if{html}{\out{</div>}}
 }
@@ -70,7 +72,8 @@ By default the maximum number is set in 50.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Further arguments passed down to \code{maxNumClusters} function.}
+\item{\code{...}}{Further arguments passed down to \code{maxNumClusters}
+function.}
 }
 \if{html}{\out{</div>}}
 }

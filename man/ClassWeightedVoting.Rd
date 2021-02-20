@@ -4,11 +4,13 @@
 \alias{ClassWeightedVoting}
 \title{Implementation Weighted Voting scheme.}
 \description{
-An new implementation of \code{\link{ClassMajorityVoting}} where each class value has different values (weights).
+A new implementation of \code{\link{ClassMajorityVoting}} where
+each class value has different values (weights).
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+\code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 }
 \keyword{math}
 \keyword{methods}
@@ -46,11 +48,13 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cutoff}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, 0.5 will be used as default value.}
+\item{\code{cutoff}}{A \link{character} vector defining the minimum probability
+used to perform a positive classification. If is not defined, 0.5 will be
+used as default value.}
 
-\item{\code{weights}}{A \code{\link{numeric}} vector with the weigths of each cluster. If \code{\link{NULL}} performance
-achieved during training will be used as default.}
+\item{\code{weights}}{A \link{numeric} vector with the weights of each cluster.
+If \link{NULL} performance achieved during training will be used as
+default.}
 }
 \if{html}{\out{</div>}}
 }
@@ -59,20 +63,21 @@ achieved during training will be used as default.}
 \if{html}{\out{<a id="method-getWeights"></a>}}
 \if{latex}{\out{\hypertarget{method-getWeights}{}}}
 \subsection{Method \code{getWeights()}}{
-The funtion returns the weights used to perform the voting scheme.
+The function returns the weights used to perform the voting
+scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClassWeightedVoting$getWeights()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector.
+A \link{numeric} vector.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setWeights"></a>}}
 \if{latex}{\out{\hypertarget{method-setWeights}{}}}
 \subsection{Method \code{setWeights()}}{
-The funtion allows changing the value of the weights.
+The function allows changing the value of the weights.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClassWeightedVoting$setWeights(weights)}\if{html}{\out{</div>}}
 }
@@ -80,7 +85,7 @@ The funtion allows changing the value of the weights.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{weights}}{A \code{\link{numeric}} vector containing the new weights.}
+\item{\code{weights}}{A \link{numeric} vector containing the new weights.}
 }
 \if{html}{\out{</div>}}
 }
@@ -89,7 +94,8 @@ The funtion allows changing the value of the weights.
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-The function implements the cluster-weighted majority voting procedure.
+The function implements the cluster-weighted majority voting
+procedure.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClassWeightedVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -97,9 +103,11 @@ The function implements the cluster-weighted majority voting procedure.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
+all the predictions achieved for each cluster.}
 
-\item{\code{verbose}}{A \code{\link{logical}} value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 }
 \if{html}{\out{</div>}}
 }

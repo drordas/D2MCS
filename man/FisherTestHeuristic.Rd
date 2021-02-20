@@ -4,11 +4,12 @@
 \alias{FisherTestHeuristic}
 \title{Feature-clustering based on Fisher's Exact Test.}
 \description{
-Performs feature-clustering based on Fisher's exact test for testing
-the null of independence of rows and columns in a contingency table with fixed marginals.
+Performs feature-clustering based on Fisher's exact test for
+testing the null of independence of rows and columns in a contingency table
+with fixed marginals.
 }
 \seealso{
-\code{\link{Dataset}}, \link{fisher.test}
+\code{\link{Dataset}}, \code{\link[stats]{fisher.test}}
 }
 \keyword{cluster}
 \keyword{manip}
@@ -33,21 +34,19 @@ the null of independence of rows and columns in a contingency table with fixed m
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates the \link{FisherTestHeuristic} object.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FisherTestHeuristic$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{FisherTestHeuristic} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
-Performs the Fisher's exact test for testing the null of independence
-between two columns (col1 and col2).
+Performs the Fisher's exact test for testing the null of
+independence between two columns (col1 and col2).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FisherTestHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -55,18 +54,20 @@ between two columns (col1 and col2).
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{a \link{numeric} vector or matrix required to perform the
+\item{\code{col1}}{A \link{numeric} vector or matrix required to perform the
 clustering operation.}
 
-\item{\code{col2}}{a \link{numeric} vector or matrix to perform the clustering operation.}
+\item{\code{col2}}{A \link{numeric} vector or matrix to perform the clustering
+operation.}
 
-\item{\code{column.names}}{an optional \link{character} vector with the names of
+\item{\code{column.names}}{An optional \link{character} vector with the names of
 both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+A \link{numeric} vector of length 1 or \link{NA} if an error
+occurs.
 }
 }
 \if{html}{\out{<hr>}}

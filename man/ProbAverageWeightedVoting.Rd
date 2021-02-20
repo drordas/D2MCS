@@ -5,13 +5,14 @@
 \title{Implementation of Probabilistic Average Weighted voting.}
 \description{
 Computes the final prediction by perfoming the weighted mean of
-the probability achieved by each cluster prediction. By default,
-weight values are consistent with the performance value
-achieved by the best M.L. model on each cluster.
+the probability achieved by each cluster prediction. By default, weight
+values are consistent with the performance value achieved by the best M.L.
+model on each cluster.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-\code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
+\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+\code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 }
 \keyword{math}
 \keyword{methods}
@@ -49,11 +50,13 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{cutoff}}{A \code{\link{character}} vector defining the minimum probability used to perform a
-a positive classification. If is not defined, 0.5 will be used as default value.}
+\item{\code{cutoff}}{A \link{character} vector defining the minimum probability
+used to perform a positive classification. If is not defined, 0.5 will be
+used as default value.}
 
-\item{\code{weights}}{A \code{\link{numeric}} vector with the weigths of each cluster. If \code{\link{NULL}} performance
-achieved during training will be used as default.}
+\item{\code{weights}}{A \link{numeric} vector with the weights of each cluster.
+If \link{NULL} performance achieved during training will be used as
+default.}
 }
 \if{html}{\out{</div>}}
 }
@@ -68,14 +71,15 @@ The function returns the value of the majority class.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector of length 1 with the name of the majority class.
+A \link{character} vector of length 1 with the name of the
+majority class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setWeights"></a>}}
 \if{latex}{\out{\hypertarget{method-setWeights}{}}}
 \subsection{Method \code{setWeights()}}{
-The funtion allows changing the value of the weights.
+The function allows changing the value of the weights.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbAverageWeightedVoting$setWeights(weights)}\if{html}{\out{</div>}}
 }
@@ -83,7 +87,7 @@ The funtion allows changing the value of the weights.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{weights}}{A \code{\link{numeric}} vector containing the new weights.}
+\item{\code{weights}}{A \link{numeric} vector containing the new weights.}
 }
 \if{html}{\out{</div>}}
 }
@@ -92,7 +96,8 @@ The funtion allows changing the value of the weights.
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-The function implements the cluster-weighted probabilistic voting procedure.
+The function implements the cluster-weighted probabilistic
+voting procedure.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProbAverageWeightedVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -100,10 +105,11 @@ The function implements the cluster-weighted probabilistic voting procedure.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all
-the predictions achieved for each cluster.}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
+all the predictions achieved for each cluster.}
 
-\item{\code{verbose}}{A \code{\link{logical}} value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
+needed.}
 }
 \if{html}{\out{</div>}}
 }

@@ -32,21 +32,19 @@ Performs the feature-clustering using entropy-based filters.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates the \link{GainRatioHeuristic} object.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GainRatioHeuristic$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{GainRatioHeuristic} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
-The algorithms find weights of discrete attributes basing on their
-correlation with continous class attribute.
+The algorithms find weights of discrete attributes basing on
+their correlation with continuous class attribute.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GainRatioHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -54,18 +52,20 @@ correlation with continous class attribute.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{a \link{numeric} vector or matrix required to perform the
+\item{\code{col1}}{A \link{numeric} vector or matrix required to perform the
 clustering operation.}
 
-\item{\code{col2}}{a \link{numeric} vector or matrix to perform the clustering operation.}
+\item{\code{col2}}{A \link{numeric} vector or matrix to perform the clustering
+operation.}
 
-\item{\code{column.names}}{an optional \link{character} vector with the names of
+\item{\code{column.names}}{An optional \link{character} vector with the names of
 both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+A \link{numeric} vector of length 1 or \link{NA} if an error
+occurs.
 }
 }
 \if{html}{\out{<hr>}}

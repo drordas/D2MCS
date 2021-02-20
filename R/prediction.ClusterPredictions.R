@@ -2,7 +2,8 @@
 #'
 #' @description Stores the predictions achieved by the best M.L. of each cluster.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassificationOutput}}, \code{\link{Prediction}}
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassificationOutput}},
+#' \code{\link{Prediction}}
 #'
 #' @keywords methods math
 #'
@@ -17,8 +18,10 @@ ClusterPredictions <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param class.values A \code{\link{character}} vector contaning the values of the target class.
-    #' @param positive.class A \code{\link{character}} with the value of the positive class.
+    #' @param class.values A \link{character} vector containing the values of
+    #' the target class.
+    #' @param positive.class A \link{character} with the value of the positive
+    #' class.
     #'
     initialize = function(class.values, positive.class) {
 
@@ -31,9 +34,11 @@ ClusterPredictions <- R6::R6Class(
       private$pred <- list()
     },
     #'
-    #' @description The function is used to add the prediction achieved by a specific M.L. model.
+    #' @description The function is used to add the prediction achieved by a
+    #' specific M.L. model.
     #'
-    #' @param prediction A \code{\link{Prediction}} object containing the computed predictions.
+    #' @param prediction A \code{\link{Prediction}} object containing the
+    #' computed predictions.
     #'
     add = function(prediction) {
       if ("Prediction" %in% class(prediction)) {
@@ -42,9 +47,11 @@ ClusterPredictions <- R6::R6Class(
                  "defined as 'Prediction' object. Aborting... ")
     },
     #'
-    #' @description The function returns the predictions placed at specific position.
+    #' @description The function returns the predictions placed at specific
+    #' position.
     #'
-    #' @param position A \code{\link{numeric}} value indicating the position of the predicions to be obtained.
+    #' @param position A \link{numeric} value indicating the position of the
+    #' predictions to be obtained.
     #'
     #' @return A \code{\link{Prediction}} object.
     #'
@@ -56,25 +63,25 @@ ClusterPredictions <- R6::R6Class(
     #'
     #' @description The function returns all the predictions.
     #'
-    #' @return A \code{\link{list}} containing all computed predictions.
+    #' @return A \link{list} containing all computed predictions.
     #'
     getAll = function() { private$pred },
     #'
     #' @description The function returns the number of computed predictions.
     #'
-    #' @return A \code{\link{numeric}} value.
+    #' @return A \link{numeric} value.
     #'
     size = function() { length(private$pred) },
     #'
     #' @description The function gets the value of the positive class.
     #'
-    #' @return A \code{\link{character}} vector of size 1.
+    #' @return A \link{character} vector of size 1.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
     #' @description The function returns all the values of the target class.
     #'
-    #' @return A \code{\link{character}} vector containing all target values.
+    #' @return A \link{character} vector containing all target values.
     #'
     getClassValues = function() { private$class.values }
   ),

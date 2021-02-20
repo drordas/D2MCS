@@ -4,14 +4,15 @@
 \alias{Kappa}
 \title{Computes the Kappa Cohen value.}
 \description{
-Cohen's Kappa measures the agreement between two raters who each classify
-N items into C mutually exclusive categories.
+Cohen's Kappa measures the agreement between two raters who each
+classify N items into C mutually exclusive categories.
 }
 \details{
 \deqn{\kappa \equiv \frac{p_o-p_e}{1-p_e} = 1 - \frac{1-p_0}{1-p_e}}
 }
 \seealso{
-\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+\code{\link{ConfMatrix}}
 
 \code{\link{ConfMatrix}}
 }
@@ -46,20 +47,18 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} used as basis
-to compute the performance.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} used as
+basis to compute the performance.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An \code{\link{Kappa}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
-The function computes the \code{Kappa} achieved by the M.L. model.
+The function computes the \strong{Kappa} achieved by the M.L.
+model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kappa$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -67,17 +66,20 @@ The function computes the \code{Kappa} achieved by the M.L. model.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define the type
-of object used as basis to compute the \code{Kappa} measure.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used as basis to compute the \code{Kappa}
+measure.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is automatically invoked by the \link{ClassificationOutput} object.
+This function is automatically invoked by the
+\link{ClassificationOutput} object.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+A \link{numeric} vector of size 1 or \link{NULL} if an error
+occurred.
 }
 }
 \if{html}{\out{<hr>}}

@@ -1,7 +1,8 @@
 #' @title Feature-clustering based on Mutual Information Computation theory.
 #'
 #' @description Performs the feature-clustering using MCC score.
-#' Valid for both bi-class and multi-class problems. Only valid for bi-class problems.
+#' Valid for both bi-class and multi-class problems. Only valid for bi-class
+#' problems.
 #'
 #' @seealso \code{\link{Dataset}}, \code{\link[infotheo]{mutinformation}}
 #'
@@ -16,22 +17,27 @@ MultinformationHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description Creates a \link{MultinformationHeuristic} object.
-    #' @return a \link{MultinformationHeuristic} object.
+    #'
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
+    #'
     initialize = function() { },
     # Heuristic valid for discrete variables
     #'
-    #' @param col1 vector/factor denoting a random variable or a data.frame denoting a
-    #' random vector where columns contain variables/features and rows contain
-    #' outcomes/samples.
-    #' @param col2 another random variable or random vector (vector/factor or data.frame).
-    #' @param column.names an optional \link{character} vector with the names of
+    #' @description Mutinformation takes two random variables as input and
+    #' computes the mutual information in nats according to the entropy
+    #' estimator method.
+    #'
+    #' @param col1 A vector/factor denoting a random variable or a data.frame
+    #' denoting a random vector where columns contain variables/features and
+    #' rows contain outcomes/samples.
+    #' @param col2 An another random variable or random vector (vector/factor or
+    #' data.frame).
+    #' @param column.names An optional \link{character} vector with the names of
     #' both columns.
     #'
-    #' @description mutinformation takes two random variables as input and computes the
-    #' mutual information in nats according to the entropy estimator method.
+    #' @return Returns the mutual information I(X;Y) in nats.
     #'
-    #' @return returns the mutual information I(X;Y) in nats.
     #' @importFrom infotheo mutinformation
     #'
     heuristic = function(col1, col2, column.names = NULL) {

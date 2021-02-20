@@ -4,7 +4,8 @@
 \alias{TrainFunction}
 \title{Control parameters for train stage.}
 \description{
-Abstract class used as template to define customized functions to control the computational nuances of train function.
+Abstract class used as template to define customized functions
+to control the computational nuances of train function.
 }
 \seealso{
 \code{\link{TwoClass}}
@@ -34,7 +35,8 @@ Abstract class used as template to define customized functions to control the co
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Function used to initialize the object parameters during execution time.
+Function used to initialize the object parameters during
+execution time.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$new(
   method,
@@ -50,39 +52,43 @@ Function used to initialize the object parameters during execution time.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{method}}{The resampling method: "boot", "boot632", "optimism_boot", "boot_all", "cv",
-"repeatedcv", "LOOCV", "LGOCV" (for repeated training/test splits), "none" (only fits one
-model to the entire training set), "oob" (only for random forest, bagged trees, bagged earth,
-bagged flexible discriminant analysis, or conditional tree forest models), timeslice, "adaptive_cv",
-"adaptive_boot" or "adaptive_LGOCV"}
+\item{\code{method}}{The resampling method: "boot", "boot632", "optimism_boot",
+"boot_all", "cv", "repeatedcv", "LOOCV", "LGOCV" (for repeated
+training/test splits), "none" (only fits one model to the entire training
+set), "oob" (only for random forest, bagged trees, bagged earth, bagged
+flexible discriminant analysis, or conditional tree forest models),
+timeslice, "adaptive_cv", "adaptive_boot" or "adaptive_LGOCV"}
 
-\item{\code{number}}{Either the number of folds or number of resampling iterations}
+\item{\code{number}}{Either the number of folds or number of resampling
+iterations}
 
-\item{\code{savePredictions}}{An indicator of how much of the hold-out predictions for each resample
-should be saved. Values can be either "all", "final", or "none". A logical value can also be
-used that convert to "all" (for true) or "none" (for false). "final" saves the predictions
+\item{\code{savePredictions}}{An indicator of how much of the hold-out
+predictions for each resample should be saved. Values can be either
+"all", "final", or "none". A logical value can also be used that convert
+to "all" (for true) or "none" (for false). "final" saves the predictions
 for the optimal tuning parameters.}
 
-\item{\code{classProbs}}{A \code{\link{logical}} value. Should class probabilities be computed for
-classification models (along with predicted values) in each resample?}
+\item{\code{classProbs}}{A \link{logical} value. Should class probabilities be
+computed for classification models (along with predicted values) in each
+resample?}
 
-\item{\code{allowParallel}}{A \code{\link{logical}} value. If a parallel backend is loaded and available, should the function use it?}
+\item{\code{allowParallel}}{A \link{logical} value. If a parallel backend is
+loaded and available, should the function use it?}
 
-\item{\code{verboseIter}}{A \code{\link{logical}} for printing a training log.}
+\item{\code{verboseIter}}{A \link{logical} for printing a training log.}
 
-\item{\code{seed}}{An optional \code{\link{integer}} that will be used to set the seed during model training stage.}
+\item{\code{seed}}{An optional \link{integer} that will be used to set the seed
+during model training stage.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A \code{\link{TrainFunction}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-create"></a>}}
 \if{latex}{\out{\hypertarget{method-create}{}}}
 \subsection{Method \code{create()}}{
-Creates a \code{\link[caret]{trainControl}} requires for the training stage.
+Creates a \code{\link[caret]{trainControl}} requires for the
+training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$create(summaryFunction, search.method = "grid", class.probs)}\if{html}{\out{</div>}}
 }
@@ -90,12 +96,15 @@ Creates a \code{\link[caret]{trainControl}} requires for the training stage.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{summaryFunction}}{An object inherited from \code{\link{SummaryFunction}} class.}
+\item{\code{summaryFunction}}{An object inherited from
+\code{\link{SummaryFunction}} class.}
 
-\item{\code{search.method}}{Either "grid" or "random", describing how the tuning parameter grid is determined.}
+\item{\code{search.method}}{Either "grid" or "random", describing how the tuning
+parameter grid is determined.}
 
-\item{\code{class.probs}}{A \code{\link{logical}}. Should class probabilities be computed for classification
-models (along with predicted values) in each resample?}
+\item{\code{class.probs}}{A \link{logical} indicating if class probabilities
+should be computed for classification models (along with predicted values)
+in each resample.}
 }
 \if{html}{\out{</div>}}
 }
@@ -104,39 +113,43 @@ models (along with predicted values) in each resample?}
 \if{html}{\out{<a id="method-getResamplingMethod"></a>}}
 \if{latex}{\out{\hypertarget{method-getResamplingMethod}{}}}
 \subsection{Method \code{getResamplingMethod()}}{
-Return the resampling method used during training staged.
+Returns the resampling method used during training staged.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$getResamplingMethod()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector or length 1 or \code{\link{NULL}} if not defined.
+A \link{character} vector or length 1 or \link{NULL}
+if not defined.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNumberFolds"></a>}}
 \if{latex}{\out{\hypertarget{method-getNumberFolds}{}}}
 \subsection{Method \code{getNumberFolds()}}{
-Returns the number or folds or number of iterations used during training.
+Returns the number or folds or number of iterations used
+during training.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$getNumberFolds()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{integer}} vector or length 1 or \code{\link{NULL}} if not defined.
+An \link{integer} vector or length 1 or \link{NULL} if not
+defined.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getSavePredictions"></a>}}
 \if{latex}{\out{\hypertarget{method-getSavePredictions}{}}}
 \subsection{Method \code{getSavePredictions()}}{
-Indicates if the predictions for each resample should be saved.
+Indicates if the predictions for each resample should be
+saved.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$getSavePredictions()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{logical}} value or \code{\link{NULL}} if not defined.
+A \link{logical} value or \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
@@ -150,7 +163,7 @@ classification models in each resample.
 }
 
 \subsection{Returns}{
-A \code{\link{logical}} value.
+A \link{logical} value.
 }
 }
 \if{html}{\out{<hr>}}
@@ -163,7 +176,8 @@ Determines if model training is performed in parallel.
 }
 
 \subsection{Returns}{
-A \code{\link{logical}} value. \code{\link{TRUE}} indicates parallelization is enabled and \code{\link{FALSE}} otherwise.
+A \link{logical} value. \link{TRUE} indicates parallelization is
+enabled and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
@@ -176,14 +190,16 @@ Determines if training log should be printed.
 }
 
 \subsection{Returns}{
-A \code{\link{logical}} value. \code{\link{TRUE}} indicates training log is enabled and \code{\link{FALSE}} otherwise.
+A \link{logical} value. \link{TRUE} indicates training log is
+enabled and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTrFunction"></a>}}
 \if{latex}{\out{\hypertarget{method-getTrFunction}{}}}
 \subsection{Method \code{getTrFunction()}}{
-Function used to return the \code{\link[caret]{trainControl}} object.
+Function used to return the
+\code{\link[caret]{trainControl}} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$getTrFunction()}\if{html}{\out{</div>}}
 }
@@ -202,20 +218,22 @@ Returns the measures used to optimize model hyperparameters.
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector.
+A \link{character} vector.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getType"></a>}}
 \if{latex}{\out{\hypertarget{method-getType}{}}}
 \subsection{Method \code{getType()}}{
-Obtains the type of classification problem ("Bi-class" or "Multi-class").
+Obtains the type of classification problem ("Bi-class" or
+"Multi-class").
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$getType()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{character}} vector with length 1. Either "Bi-class" or "Multi-class".
+A \link{character} vector with length 1. Either "Bi-class"
+or "Multi-class".
 }
 }
 \if{html}{\out{<hr>}}
@@ -228,14 +246,15 @@ Indicates seed used during model training stage.
 }
 
 \subsection{Returns}{
-An \code{\link{integer}} value or \code{\link{NULL}} if not defined.
+An \link{integer} value or \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setSummaryFunction"></a>}}
 \if{latex}{\out{\hypertarget{method-setSummaryFunction}{}}}
 \subsection{Method \code{setSummaryFunction()}}{
-Function used to change the \code{\link{SummaryFunction}} used in the training stage.
+Function used to change the \code{\link{SummaryFunction}}
+used in the training stage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$setSummaryFunction(summaryFunction)}\if{html}{\out{</div>}}
 }
@@ -243,7 +262,8 @@ Function used to change the \code{\link{SummaryFunction}} used in the training s
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{summaryFunction}}{An object inherited from \code{\link{SummaryFunction}} class.}
+\item{\code{summaryFunction}}{An object inherited from
+\code{\link{SummaryFunction}} class.}
 }
 \if{html}{\out{</div>}}
 }
@@ -252,7 +272,8 @@ Function used to change the \code{\link{SummaryFunction}} used in the training s
 \if{html}{\out{<a id="method-setClassProbs"></a>}}
 \if{latex}{\out{\hypertarget{method-setClassProbs}{}}}
 \subsection{Method \code{setClassProbs()}}{
-The function allows changing the class computation capabilities.
+The function allows changing the class computation
+capabilities.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TrainFunction$setClassProbs(class.probs)}\if{html}{\out{</div>}}
 }
@@ -260,8 +281,9 @@ The function allows changing the class computation capabilities.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{class.probs}}{A \code{\link{logical}} value. \code{\link{TRUE}} implies classification probabilities should be computed for
-classification models and \code{\link{FALSE}} otherwise.}
+\item{\code{class.probs}}{A \link{logical} indicating if class probabilities
+should be computed for classification models (along with predicted values)
+in each resample}
 }
 \if{html}{\out{</div>}}
 }

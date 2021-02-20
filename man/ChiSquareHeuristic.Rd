@@ -7,7 +7,7 @@
 Performs feature-clustering based on ChiSquare method.
 }
 \seealso{
-\code{\link{GenericHeuristic}} \link{chisq.test}
+\code{\link{Dataset}}, \code{\link[stats]{chisq.test}}
 }
 \keyword{cluster}
 \keyword{manip}
@@ -32,7 +32,8 @@ Performs feature-clustering based on ChiSquare method.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Creates a \link{ChiSquareHeuristic} class.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ChiSquareHeuristic$new()}\if{html}{\out{</div>}}
 }
@@ -42,8 +43,8 @@ Creates a \link{ChiSquareHeuristic} class.
 \if{html}{\out{<a id="method-heuristic"></a>}}
 \if{latex}{\out{\hypertarget{method-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
-functions responsible of performing the ChiSquare feature-clustering
-operation.
+Functions responsible of performing the ChiSquare
+feature-clustering operation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ChiSquareHeuristic$heuristic(col1, col2, column.names = NULL)}\if{html}{\out{</div>}}
 }
@@ -51,18 +52,20 @@ operation.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{col1}}{a \link{numeric} vector or matrix required to perform the
+\item{\code{col1}}{A \link{numeric} vector or matrix required to perform the
 clustering operation.}
 
-\item{\code{col2}}{a \link{numeric} vector or matrix to perform the clustering operation.}
+\item{\code{col2}}{A \link{numeric} vector or matrix to perform the clustering
+operation.}
 
-\item{\code{column.names}}{an optional \link{character} vector with the names of
+\item{\code{column.names}}{An optional \link{character} vector with the names of
 both columns.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+A \link{numeric} vector of length 1 or \link{NA} if an error
+occurs.
 }
 }
 \if{html}{\out{<hr>}}

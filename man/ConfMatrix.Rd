@@ -4,10 +4,12 @@
 \alias{ConfMatrix}
 \title{Confusion matrix wrapper.}
 \description{
-Creates a \link{R6} confusion matrix from the \code{\link[caret]{confusionMatrix}} caret package.
+Creates a \code{\link{R6}} confusion matrix from the
+\code{\link[caret]{confusionMatrix}} caret package.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}
+\code{\link{DDMCS}}, \code{\link{MeasureFunction}},
+\code{\link{ClassificationOutput}}
 }
 \keyword{classif}
 \keyword{math}
@@ -27,7 +29,8 @@ Creates a \link{R6} confusion matrix from the \code{\link[caret]{confusionMatrix
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Method to create a confusion matrix object from a \code{caret} \code{\link[caret]{confusionMatrix}}
+Method to create a confusion matrix object from a
+\code{caret} \code{\link[caret]{confusionMatrix}}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$new(confMatrix)}\if{html}{\out{</div>}}
 }
@@ -44,8 +47,8 @@ Method to create a confusion matrix object from a \code{caret} \code{\link[caret
 \if{html}{\out{<a id="method-getConfusionMatrix"></a>}}
 \if{latex}{\out{\hypertarget{method-getConfusionMatrix}{}}}
 \subsection{Method \code{getConfusionMatrix()}}{
-The function obtains the \code{\link[caret]{confusionMatrix}} following the same structured
-as defined in the \code{caret} package
+The function obtains the \code{\link[caret]{confusionMatrix}}
+following the same structured as defined in the \code{caret} package
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getConfusionMatrix()}\if{html}{\out{</div>}}
 }
@@ -58,13 +61,14 @@ A \code{\link[caret]{confusionMatrix}} object.
 \if{html}{\out{<a id="method-getTP"></a>}}
 \if{latex}{\out{\hypertarget{method-getTP}{}}}
 \subsection{Method \code{getTP()}}{
-The function is used to compute the number of True Positive values achieved.
+The function is used to compute the number of True Positive
+values achieved.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getTP()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1.
+A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
@@ -77,33 +81,35 @@ The function computes the True Negative values.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1.
+A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFN"></a>}}
 \if{latex}{\out{\hypertarget{method-getFN}{}}}
 \subsection{Method \code{getFN()}}{
-The function returns the number of Type II errors (False Negative).
+The function returns the number of Type II errors
+(False Negative).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getFN()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1.
+A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFP"></a>}}
 \if{latex}{\out{\hypertarget{method-getFP}{}}}
 \subsection{Method \code{getFP()}}{
-The function returns the number of Type I errors (False Negative).
+The function returns the number of Type I errors
+(False Negative).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ConfMatrix$getFP()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1.
+A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}

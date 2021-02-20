@@ -1,6 +1,7 @@
 #' @title Computes the Precision Value.
 #'
-#' @description Precision is the fraction of relevant instances among the retrieved instances
+#' @description Precision is the fraction of relevant instances among the
+#' retrieved instances
 #'
 #' @details \deqn{precision = \frac{TP}{TP+FP}}
 #'
@@ -24,19 +25,24 @@ Precision <- R6::R6Class(
     #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
     #' to define the type of object used as basis to compute the measure.
     #'
-    #' @return An \code{\link{Precision}} object.
-    #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description The function computes the \code{Precision} achieved by the M.L. model.
+    #' @description The function computes the \strong{Precision} achieved by the
+    #' M.L. model.
     #'
-    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter to define
-    #' the type of object used as basis to compute the \code{Precision} measure.
-    #' @details This function is automatically invoque by the \link{ClassificationOutput} object.
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the
+    #' \strong{Precision} measure.
+    #'
+    #' @details This function is automatically invoke by the
+    #' \link{ClassificationOutput} object.
+    #'
     #' @seealso \code{\link{ConfMatrix}}
-    #' @return A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+    #'
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
+    #' occurred.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

@@ -4,7 +4,7 @@
 \alias{GenericPlot}
 \title{Pseudo-abstract class for creating feature clustering plots.}
 \description{
-The \link{GenericPlot} implements a basic plot.
+The \code{\link{GenericPlot}} implements a basic plot.
 }
 \seealso{
 \code{\link{BinaryPlot}}
@@ -24,20 +24,19 @@ The \link{GenericPlot} implements a basic plot.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-empty function used to initalize the object arguments in runtime.
+Empty function used to initialize the object arguments in
+runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericPlot$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-a \link{GenericPlot} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-plot"></a>}}
 \if{latex}{\out{\hypertarget{method-plot}{}}}
 \subsection{Method \code{plot()}}{
-implements a generic plot to visualize basic feature-clustering data.
+Implements a generic plot to visualize basic
+feature-clustering data.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GenericPlot$plot(summary, ...)}\if{html}{\out{</div>}}
 }
@@ -45,9 +44,9 @@ implements a generic plot to visualize basic feature-clustering data.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{summary}}{a \link{data.frame} comprising the elements to be plotted.}
+\item{\code{summary}}{A \link{data.frame} comprising the elements to be plotted.}
 
-\item{\code{...}}{further arguments passed down to \code{plot} function.}
+\item{\code{...}}{Further arguments passed down to \code{plot} function.}
 }
 \if{html}{\out{</div>}}
 }

@@ -4,11 +4,12 @@
 \alias{TP}
 \title{Computes the True Positive Value.}
 \description{
-TP is the number of individuals with a positive condition for which the test result is
-positive. The value entered here must be non-negative.
+TP is the number of individuals with a positive condition for
+which the test result is positive. The value entered here must be non-negative.
 }
 \seealso{
-\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}}, \code{\link{ConfMatrix}}
+\code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+\code{\link{ConfMatrix}}
 
 \code{\link{ConfMatrix}}
 }
@@ -43,20 +44,18 @@ Method for initializing the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define the type of
-object used to compute the measure.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used to compute the measure.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An \code{\link{TP}} object.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-compute}{}}}
 \subsection{Method \code{compute()}}{
-The function computes the \code{TP} achieved by the M.L. model.
+The function computes the \strong{TP} achieved by the M.L.
+model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TP$compute(performance.output = NULL)}\if{html}{\out{</div>}}
 }
@@ -64,17 +63,20 @@ The function computes the \code{TP} achieved by the M.L. model.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter to define
-the type of object used as basis to compute the \code{TP} measure.}
+\item{\code{performance.output}}{An optional \code{\link{ConfMatrix}} parameter
+to define the type of object used as basis to compute the \strong{TP}
+measure.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is automatically invoque by the \link{ClassificationOutput} object.
+This function is automatically invoke by the
+\code{\link{ClassificationOutput}} object.
 }
 
 \subsection{Returns}{
-A \code{\link{numeric}} vector of size 1 or \code{\link{NULL}} if an error occured.
+A \link{numeric} vector of size 1 or \link{NULL} if
+an error occurred.
 }
 }
 \if{html}{\out{<hr>}}

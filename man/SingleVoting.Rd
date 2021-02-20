@@ -4,11 +4,13 @@
 \alias{SingleVoting}
 \title{Manages the execution of Simple Votings.}
 \description{
-The class is responsible of initializating and executing voting schemes.
-Additionally, to ensure a proper operation, the class automatically checks the compatiblity of defined voting schemes.
+The class is responsible of initializing and executing voting
+schemes. Additionally, to ensure a proper operation, the class automatically
+checks the compatibility of defined voting schemes.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{SimpleVoting}}, \code{\link{CombinedVoting}}
+\code{\link{DDMCS}}, \code{\link{SimpleVoting}},
+\code{\link{CombinedVoting}}
 }
 \keyword{math}
 \keyword{methods}
@@ -45,9 +47,11 @@ The function initializes the object arguments during runtime.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{voting.schemes}}{A \code{vector} of voting schemes inheriting from \code{\link{SimpleVoting}} class.}
+\item{\code{voting.schemes}}{A \link{vector} of voting schemes inheriting from
+\code{\link{SimpleVoting}} class.}
 
-\item{\code{metrics}}{A \code{\link{list}} containing the metrics used as basis to perform the voting strategy.}
+\item{\code{metrics}}{A \link{list} containing the metrics used as basis to
+perform the voting strategy.}
 }
 \if{html}{\out{</div>}}
 }
@@ -56,7 +60,8 @@ The function initializes the object arguments during runtime.
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-The function is used to execute all the previously defined (and compatible) voting schemes.
+The function is used to execute all the previously defined
+(and compatible) voting schemes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SingleVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
 }
@@ -64,10 +69,10 @@ The function is used to execute all the previously defined (and compatible) voti
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing all the
-predictions computed in the classification stage.}
+\item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
+all the predictions computed in the classification stage.}
 
-\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
+\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
 }

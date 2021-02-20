@@ -1,9 +1,11 @@
 #' @title Implementation Weighted Voting scheme.
 #'
-#' @description An new implementation of \code{\link{ClassMajorityVoting}} where each class value has different values (weights).
+#' @description A new implementation of \code{\link{ClassMajorityVoting}} where
+#' each class value has different values (weights).
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}}, \code{\link{ClassWeightedVoting}},
-#' \code{\link{ProbAverageVoting}}, \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
+#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
+#' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'
 #' @keywords models methods math
 #'
@@ -19,25 +21,28 @@ ClassWeightedVoting <- R6::R6Class(
     #'
     #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param cutoff A \code{\link{character}} vector defining the minimum probability used to perform a
-    #' a positive classification. If is not defined, 0.5 will be used as default value.
-    #' @param weights A \code{\link{numeric}} vector with the weigths of each cluster. If \code{\link{NULL}} performance
-    #' achieved during training will be used as default.
+    #' @param cutoff A \link{character} vector defining the minimum probability
+    #' used to perform a positive classification. If is not defined, 0.5 will be
+    #' used as default value.
+    #' @param weights A \link{numeric} vector with the weights of each cluster.
+    #' If \link{NULL} performance achieved during training will be used as
+    #' default.
     #'
     initialize = function(cutoff = 0.5, weights = NULL) {
       super$initialize(cutoff = cutoff)
       private$weights <- weights
     },
     #'
-    #' @description The funtion returns the weights used to perform the voting scheme.
+    #' @description The function returns the weights used to perform the voting
+    #' scheme.
     #'
-    #' @return A \code{\link{numeric}} vector.
+    #' @return A \link{numeric} vector.
     #'
     getWeights = function() { private$weights },
     #'
-    #' @description The funtion allows changing the value of the weights.
+    #' @description The function allows changing the value of the weights.
     #'
-    #' @param weights A \code{\link{numeric}} vector containing the new weights.
+    #' @param weights A \link{numeric} vector containing the new weights.
     #'
     setWeights = function(weights) {
       if (missing(weights) || is.null(weights)) {
@@ -57,10 +62,13 @@ ClassWeightedVoting <- R6::R6Class(
       }
     },
     #'
-    #' @description The function implements the cluster-weighted majority voting procedure.
+    #' @description The function implements the cluster-weighted majority voting
+    #' procedure.
     #'
-    #' @param predictions A \code{\link{ClusterPredictions}} object containing all the predictions achieved for each cluster.
-    #' @param verbose A \code{\link{logical}} value to specify if more verbosity is needed.
+    #' @param predictions A \code{\link{ClusterPredictions}} object containing
+    #' all the predictions achieved for each cluster.
+    #' @param verbose A \link{logical} value to specify if more verbosity is
+    #' needed.
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {

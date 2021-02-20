@@ -4,7 +4,8 @@
 \alias{GenericModelFit}
 \title{Abstract class for defining model fitting method.}
 \description{
-Template to create a \code{\link[recipes]{recipe}} or \code{\link{formula}} objects used in model training stage.
+Template to create a \code{\link[recipes]{recipe}} or
+\code{\link{formula}} objects used in model training stage.
 }
 \seealso{
 \code{\link{DefaultModelFit}}, \code{\link[caret]{train}}
@@ -28,9 +29,6 @@ Method for initializing the object arguments during runtime.
 \if{html}{\out{<div class="r">}}\preformatted{GenericModelFit$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-A \code{\link{GenericModelFit}} object.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-createFormula"></a>}}
@@ -45,14 +43,14 @@ The function is responsible of creating a
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{instances}}{A \code{\link{data.frame}} containing the instances
-used to create the recipe.}
+\item{\code{instances}}{A \link{data.frame} containing the instances used to
+create the recipe.}
 
-\item{\code{class.name}}{A \code{\link{character}} vector representing
-the name of the target class.}
+\item{\code{class.name}}{A \link{character} vector representing the name of the
+target class.}
 
-\item{\code{simplify}}{A \code{\link{logical}} argument defining whether
-the formula should be generated as simple as posible.}
+\item{\code{simplify}}{A \link{logical} argument defining whether the formula
+should be generated as simple as possible.}
 }
 \if{html}{\out{</div>}}
 }
@@ -73,11 +71,11 @@ The function is responsible of creating a
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{instances}}{A \code{\link{data.frame}} containing the instances
-used to create the recipe.}
+\item{\code{instances}}{A \link{data.frame} containing the instances used to
+create the recipe.}
 
-\item{\code{class.name}}{A \code{\link{character}} vector representing
-the name of the target class.}
+\item{\code{class.name}}{A \link{character} vector representing the name of the
+target class.}
 }
 \if{html}{\out{</div>}}
 }

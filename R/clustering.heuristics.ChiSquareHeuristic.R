@@ -2,7 +2,7 @@
 #'
 #' @description Performs feature-clustering based on ChiSquare method.
 #'
-#' @seealso \code{\link{GenericHeuristic}} \link{chisq.test}
+#' @seealso \code{\link{Dataset}}, \code{\link[stats]{chisq.test}}
 #'
 #' @keywords cluster manip
 #'
@@ -15,20 +15,26 @@ ChiSquareHeuristic <- R6::R6Class(
   inherit = GenericHeuristic,
   portable = TRUE,
   public = list(
-    #' @description Creates a \link{ChiSquareHeuristic} class.
+    #'
+    #' @description Empty function used to initialize the object arguments in
+    #' runtime.
+    #'
     initialize = function() { },
     # Heuristic valid for both discrete and continuous variables
     #'
-    #' @description functions responsible of performing the ChiSquare feature-clustering
-    #' operation.
+    #' @description Functions responsible of performing the ChiSquare
+    #' feature-clustering operation.
     #'
-    #' @param col1 a \link{numeric} vector or matrix required to perform the
+    #' @param col1 A \link{numeric} vector or matrix required to perform the
     #' clustering operation.
-    #' @param col2 a \link{numeric} vector or matrix to perform the clustering operation.
-    #' @param column.names an optional \link{character} vector with the names of
+    #' @param col2 A \link{numeric} vector or matrix to perform the clustering
+    #' operation.
+    #' @param column.names An optional \link{character} vector with the names of
     #' both columns.
     #'
-    #' @return a \link{numeric} vector of length 1 or \link{NA} if an error occurs.
+    #' @return A \link{numeric} vector of length 1 or \link{NA} if an error
+    #' occurs.
+    #'
     #' @importFrom stats chisq.test
     #'
     heuristic = function(col1, col2, column.names = NULL) {
