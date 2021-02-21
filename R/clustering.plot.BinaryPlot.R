@@ -25,13 +25,12 @@ BinaryPlot <- R6::R6Class(
     #' @description Plots feature-clustering data from a bi-class problem.
     #'
     #' @param summary A \link{data.frame} comprising the elements to be plotted.
-    #' @param ... Further arguments passed down to \code{plot} function.
     #'
     #' @seealso \code{\link{GenericPlot}}
     #'
     #' @import ggplot2
     #'
-    plot = function(summary, ...) {
+    plot = function(summary) {
       if (!is.data.frame(summary)) {
         stop("[", class(self)[1], "][FATAL] Summary parameter must be defined ",
              "as 'data.frame' type. Aborting...")

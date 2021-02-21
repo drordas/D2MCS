@@ -49,15 +49,13 @@ runtime.
 \subsection{Method \code{plot()}}{
 Plots feature-clustering data from a bi-class problem.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{BinaryPlot$plot(summary, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{BinaryPlot$plot(summary)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{summary}}{A \link{data.frame} comprising the elements to be plotted.}
-
-\item{\code{...}}{Further arguments passed down to \code{plot} function.}
 }
 \if{html}{\out{</div>}}
 }

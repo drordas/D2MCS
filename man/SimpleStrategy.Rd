@@ -82,15 +82,13 @@ parameters for the strategy. Must inherited from
 Function responsible of performing the clustering
 strategy over the defined \code{\link{Subset}}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SimpleStrategy$execute(verbose = FALSE, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SimpleStrategy$execute(verbose = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
-
-\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -203,7 +201,7 @@ A \code{\link{Trainset}} object.
 The function is responsible for creating a plot to visualize
 the clustering distribution.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SimpleStrategy$plot(dir.path = NULL, file.name = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SimpleStrategy$plot(dir.path = NULL, file.name = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -216,8 +214,6 @@ be automatically assigned to the current working directory,
 
 \item{\code{file.name}}{A character to define the name of the PDF file where the
 plot is exported.}
-
-\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }

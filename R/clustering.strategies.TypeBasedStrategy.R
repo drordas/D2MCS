@@ -72,11 +72,10 @@ TypeBasedStrategy <- R6::R6Class(
     #'
     #' @param verbose A \link{logical} value to specify if more verbosity is
     #' needed.
-    #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @importFrom varhandle to.dummy
     #'
-    execute = function(verbose = FALSE, ...) {
+    execute = function(verbose = FALSE) {
       col.index <- which(levels(as.factor(private$subset$getClassValues())) == private$subset$getPositiveClass())
       class <- varhandle::to.dummy(as.character(private$subset$getClassValues()),
                                    as.character(private$subset$getPositiveClass()))[, col.index]
@@ -418,12 +417,11 @@ TypeBasedStrategy <- R6::R6Class(
     #' directory, '\code{getwd()}'.
     #' @param file.name A \link{character} to define the name of the PDF file
     #' where the plot is exported.
-    #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @import ggplot2
     #' @importFrom gridExtra grid.arrange
     #'
-    plot = function(dir.path = NULL, file.name = NULL, ...) {
+    plot = function(dir.path = NULL, file.name = NULL) {
 
       binary.summary <- data.frame(k = private$all.distribution[[1]]$k,
                                    dispersion = private$all.distribution[[1]]$deltha,

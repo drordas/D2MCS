@@ -81,7 +81,7 @@ parameters for the strategy. Must inherited from
 Function responsible of performing the clustering strategy
 over the defined \code{\link{Subset}}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TypeBasedStrategy$execute(verbose = FALSE, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TypeBasedStrategy$execute(verbose = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -89,8 +89,6 @@ over the defined \code{\link{Subset}}.
 \describe{
 \item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
 needed.}
-
-\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -175,7 +173,7 @@ A \code{\link{Trainset}} object.
 The function is responsible for creating a plot to visualize
 the clustering distribution.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TypeBasedStrategy$plot(dir.path = NULL, file.name = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TypeBasedStrategy$plot(dir.path = NULL, file.name = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -188,8 +186,6 @@ directory, '\code{getwd()}'.}
 
 \item{\code{file.name}}{A \link{character} to define the name of the PDF file
 where the plot is exported.}
-
-\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }

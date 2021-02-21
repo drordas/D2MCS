@@ -123,9 +123,8 @@ DependencyBasedStrategy <- R6::R6Class(
     #'
     #' @param verbose A \link{logical} value to specify if more verbosity is
     #' needed.
-    #' @param ... Further arguments passed down to \code{execute} function.
     #'
-    execute = function(verbose = TRUE, ...) {
+    execute = function(verbose = TRUE) {
 
       private$not.distribution[[1]] <- list()
       private$not.clus.fea[[1]] <- list()
@@ -383,12 +382,11 @@ DependencyBasedStrategy <- R6::R6Class(
     #' '\code{getwd()}'.
     #' @param file.name A character to define the name of the PDF file where the
     #' plot is exported.
-    #' @param ... Further arguments passed down to \code{execute} function.
     #'
     #' @import ggplot2
     #' @importFrom gridExtra grid.arrange
     #'
-    plot = function(dir.path = NULL, file.name = NULL, ...) {
+    plot = function(dir.path = NULL, file.name = NULL) {
 
       binary.summary <- data.frame(k = private$all.distribution[[1]]$k,
                                    dispersion = private$all.distribution[[1]]$deltha,

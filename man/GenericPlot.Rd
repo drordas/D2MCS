@@ -38,15 +38,13 @@ runtime.
 Implements a generic plot to visualize basic
 feature-clustering data.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GenericPlot$plot(summary, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{GenericPlot$plot(summary)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{summary}}{A \link{data.frame} comprising the elements to be plotted.}
-
-\item{\code{...}}{Further arguments passed down to \code{plot} function.}
 }
 \if{html}{\out{</div>}}
 }

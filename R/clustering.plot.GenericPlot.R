@@ -24,11 +24,10 @@ GenericPlot <- R6::R6Class(
     #' feature-clustering data.
     #'
     #' @param summary A \link{data.frame} comprising the elements to be plotted.
-    #' @param ... Further arguments passed down to \code{plot} function.
     #'
     #' @import ggplot2 ggrepel
     #'
-    plot = function(summary, ...) {
+    plot = function(summary) {
       if (!is.data.frame(summary)) {
         stop("[", class(self)[1], "][FATAL] Summary parameter must be defined ",
              "as 'data.frame' type. Aborting...")

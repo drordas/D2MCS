@@ -109,7 +109,7 @@ parameters for the strategy. Must inherited from
 Function responsible of performing the dependency-based
 feature clustering strategy over the defined \code{\link{Subset}}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$execute(verbose = TRUE, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$execute(verbose = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -117,8 +117,6 @@ feature clustering strategy over the defined \code{\link{Subset}}.
 \describe{
 \item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
 needed.}
-
-\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }
@@ -200,7 +198,7 @@ best clustering distribution is used to create the train set.
 The function is responsible for creating a plot to visualize
 the clustering distribution.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$plot(dir.path = NULL, file.name = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$plot(dir.path = NULL, file.name = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -213,8 +211,6 @@ be automatically assigned to the current working directory,
 
 \item{\code{file.name}}{A character to define the name of the PDF file where the
 plot is exported.}
-
-\item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}
 }
