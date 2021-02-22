@@ -443,7 +443,7 @@ Dataset <- R6::R6Class(
         class.values <- NULL
       } else {
         if (all(is.character(class.index), class.index %in% names(subset))) {
-          class.index <- which(class.index %in% names(subset))
+          class.index <- which(class.index == names(subset))
         } else {
           if (!all(is.numeric(class.index), class.index %in% 1:ncol(subset))) {
             stop("[", class(self)[1], "][FATAL] Class not found into dataset ",
@@ -541,7 +541,7 @@ Dataset <- R6::R6Class(
       }
 
       if (all(is.character(class.index), class.index %in% names(private$corpus))) {
-        class.index <- which(class.index %in% names(private$corpus))
+        class.index <- which(class.index == names(private$corpus))
       } else {
         if (!all(is.numeric(class.index), class.index %in% 1:ncol(private$corpus))) {
           stop("[", class(self)[1], "][FATAL] Class not found into dataset ",
