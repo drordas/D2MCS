@@ -396,9 +396,6 @@ Dataset <- R6::R6Class(
     #'
     #' @param num.folds A \link{numeric} defining the number of folds that
     #' should we used to build the \link{Subset}.
-    #' @param column.id A \link{numeric} or \link{character} indicating the
-    #' column (number or name respectively) identifier. Default \link{NULL}
-    #' value is valid ignores defining a identification column.
     #' @param opts A list with optional parameters. Valid arguments are
     #' \code{remove.na} (removes columns with \link{NA} values) and
     #' \code{remove.const} (ignore columns with constant values).
@@ -410,7 +407,7 @@ Dataset <- R6::R6Class(
     #'
     #' @importFrom dplyr between
     #'
-    createSubset = function(num.folds = NULL, column.id = NULL,
+    createSubset = function(num.folds = NULL,
                             opts = list(remove.na = TRUE, remove.const = FALSE),
                             class.index = NULL,
                             positive.class = NULL) {
@@ -428,12 +425,6 @@ Dataset <- R6::R6Class(
                 "Must be between 1 and ", length(private$partitions),
                 ". Assuming whole dataset")
         num.folds <- length(private$partitions)
-      }
-
-      if (!is.null(column.id) && !(column.id %in% 1:ncol(private$corpus))) {
-        message("[", class(self)[1], "][WARNING] Feature identifier is not correct. ",
-                "Ignoring value")
-        column.id <- NULL
       }
 
       subset <- private$corpus[ sort(Reduce(union, private$partitions[num.folds])), ]

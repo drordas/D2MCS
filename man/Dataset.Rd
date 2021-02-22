@@ -235,7 +235,6 @@ purposes. A target class should be provided for testing purposes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createSubset(
   num.folds = NULL,
-  column.id = NULL,
   opts = list(remove.na = TRUE, remove.const = FALSE),
   class.index = NULL,
   positive.class = NULL
@@ -247,10 +246,6 @@ purposes. A target class should be provided for testing purposes.
 \describe{
 \item{\code{num.folds}}{A \link{numeric} defining the number of folds that
 should we used to build the \link{Subset}.}
-
-\item{\code{column.id}}{A \link{numeric} or \link{character} indicating the
-column (number or name respectively) identifier. Default \link{NULL}
-value is valid ignores defining a identification column.}
 
 \item{\code{opts}}{A list with optional parameters. Valid arguments are
 \code{remove.na} (removes columns with \link{NA} values) and

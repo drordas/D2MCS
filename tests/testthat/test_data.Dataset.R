@@ -446,75 +446,58 @@ testthat::test_that("Dataset: createSubset function works", {
   data$createPartitions(num.folds = 4, class.balance = 50)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
-                                        column.id = NULL,
                                         opts = list(remove.na = TRUE, remove.const = TRUE)),
                      "Subset")
 
   testthat::expect_is(data$createSubset(num.folds = 4,
-                                        column.id = NULL,
                                         opts = list(remove.na = TRUE, remove.const = TRUE),
                                         class.index = 50,
                                         positive.class = 1),
                       "Subset")
 
   testthat::expect_is(data$createSubset(num.folds = 4,
-                                        column.id = NULL,
                                         opts = list(remove.na = TRUE, remove.const = TRUE),
                                         class.index = "Class",
                                         positive.class = 1),
                       "Subset")
 
   testthat::expect_message(data$createSubset(num.folds = 4,
-                                             column.id = NULL,
                                              opts = list(remove.na = TRUE, remove.const = FALSE)),
                            "[Dataset][INFO] Removed columns containing NA values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
-                                        column.id = NULL,
                                         opts = list(remove.na = TRUE, remove.const = FALSE)),
                      "Subset")
 
 
   testthat::expect_message(data$createSubset(num.folds = 4,
-                                             column.id = NULL,
                                              opts = list(remove.na = TRUE, remove.const = TRUE)),
                            "[Dataset][INFO] Removed columns containing NA values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
-                                        column.id = NULL,
                                         opts = list(remove.na = TRUE, remove.const = TRUE)),
                       "Subset")
 
   testthat::expect_message(data$createSubset(num.folds = 4,
-                                             column.id = NULL,
                                              opts = list(remove.na = TRUE, remove.const = TRUE)),
                            "[Dataset][INFO] Removed columns containing constant values (total of 1)",
                            fixed = TRUE,
                            all = FALSE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
-                                        column.id = NULL,
                                         opts = list(remove.na = TRUE, remove.const = TRUE)),
                       "Subset")
 
   testthat::expect_message(data$createSubset(num.folds = 4,
-                                             column.id = NULL,
                                              opts = list(remove.na = FALSE, remove.const = TRUE)),
                            "[Dataset][INFO] Removed columns containing constant values (total of 1)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
-                                        column.id = NULL,
                                         opts = list(remove.na = FALSE, remove.const = TRUE)),
                       "Subset")
-
-  testthat::expect_message(data$createSubset(num.folds = 4,
-                                             column.id = "a",
-                                             opts = list(remove.na = FALSE, remove.const = FALSE)),
-                           "[Dataset][WARNING] Feature identifier is not correct. Ignoring value",
-                           fixed = TRUE)
 })
 
 testthat::test_that("Dataset: createSubset function checks parameter type", {
@@ -554,7 +537,6 @@ testthat::test_that("Dataset: createSubset function checks parameter type", {
                            fixed = TRUE)
 
   testthat::expect_error(data$createSubset(num.folds = 4,
-                                           column.id = NULL,
                                            opts = list(remove.na = TRUE, remove.const = TRUE),
                                            class.index = 51,
                                            positive.class = 1),
@@ -562,7 +544,6 @@ testthat::test_that("Dataset: createSubset function checks parameter type", {
                       fixed = TRUE)
 
   testthat::expect_error(data$createSubset(num.folds = 4,
-                                           column.id = NULL,
                                            opts = list(remove.na = TRUE, remove.const = TRUE),
                                            class.index = "wrong",
                                            positive.class = 1),
@@ -570,7 +551,6 @@ testthat::test_that("Dataset: createSubset function checks parameter type", {
                          fixed = TRUE)
 
   testthat::expect_error(data$createSubset(num.folds = 4,
-                                           column.id = NULL,
                                            opts = list(remove.na = TRUE, remove.const = TRUE),
                                            class.index = 50,
                                            positive.class = "wrong"),
