@@ -94,7 +94,8 @@ Subset <- R6::R6Class(
     #'
     getColumnNames = function() { private$feature.names },
     #'
-    #' @description Gets the values of a specific feature.
+    #' @description Gets the values of all features or those indicated by
+    #' arguments.
     #'
     #' @param feature.names A \link{character} vector comprising the name of the
     #' features to be obtained.
@@ -106,7 +107,8 @@ Subset <- R6::R6Class(
         if (is.null(private$class.index)) {
           private$data[, feature.names]
         } else {
-          private$data[, intersect(names(private$data[, -private$class.index]), feature.names)]
+          private$data[intersect(names(private$data[, -private$class.index]),
+                                 feature.names)]
         }
       } else {
         if (is.null(private$class.index)) {

@@ -104,7 +104,7 @@ testthat::test_that("Subset: getFeatures function works", {
 
   testthat::expect_true(all(subset$getFeatures(feature.names = NULL) == corpus[, -50]))
 
-  testthat::expect_equal(subset$getFeatures(feature.names = "Gender"), corpus[["Gender"]])
+  testthat::expect_equal(subset$getFeatures(feature.names = "Gender"), corpus["Gender"])
 
   subset <- Subset$new(dataset = corpus,
                        class.index = NULL,

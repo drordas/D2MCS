@@ -91,7 +91,8 @@ A \link{character} vector containing the name of each column.
 \if{html}{\out{<a id="method-getFeatures"></a>}}
 \if{latex}{\out{\hypertarget{method-getFeatures}{}}}
 \subsection{Method \code{getFeatures()}}{
-Gets the values of a specific feature.
+Gets the values of all features or those indicated by
+arguments.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Subset$getFeatures(feature.names = NULL)}\if{html}{\out{</div>}}
 }

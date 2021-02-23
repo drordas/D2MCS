@@ -365,7 +365,6 @@ DependencyBasedStrategy <- R6::R6Class(
 
       train.dist <- lapply(distribution, function(group) {
         subset$getFeatures(feature.names = group)
-        instances <- subset$getFeatures(feature.names = group)
       })
 
       Trainset$new(cluster.dist = train.dist, class.name = subset$getClassName(),
