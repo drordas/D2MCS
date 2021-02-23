@@ -647,84 +647,86 @@ DependencyBasedStrategy <- R6::R6Class(
         names(metrics.dep$dep.tar) <- paste("Cluster", 1:actual.num.cluster)
         # Adding feature ----
         ## All features that have dependency are checked
-        if (isTRUE(verbose)) {
-          message("[", class(self)[1], "][INFO] Beginning add features")
-          pb <- txtProgressBar(min = 0, max = (length(all.fea.dep)), style = 3)
-        }
-        for (fea in all.fea.dep) {
-          if (isTRUE(verbose)) { setTxtProgressBar(pb, (which(fea == all.fea.dep))) }
-          ## Obtains the subgroups where feature are in the list of dependent feature groups
-          pos.groups.list <- lapply(names(dep.fea.groups), function(pos, fea, dep.fea.groups) {
-            if (fea %in% dep.fea.groups[[pos]]) { pos }
-          }, fea, dep.fea.groups)
-          pos.groups.list <- as.integer(pos.groups.list[lengths(pos.groups.list) != 0])
-          clus.candidates <- 1:actual.num.cluster
-          ## Groups containing the current characteristic are traversed to
-          ## get the candidate clusters
-          for (group in dep.fea.groups[pos.groups.list]) {
-            for (fea.group in group) {
-              if (fea.group == fea) {
-                next
-              }
-              clus.candidates <- setdiff(clus.candidates,
-                                         fea.dep.dist.clus[[fea.group]])
-              if (length(clus.candidates) == 0) {
-                break
-              }
-            }
-          }
-          ## If there is a single candidate cluster, the element is introduced into it
-          if (length(clus.candidates) == 1) {
-            fea.dep.dist.clus[[fea]] <- c(fea.dep.dist.clus[[fea]],
-                                          clus.candidates[[1]])
-          } else {
-            ## In the case that no candidate clusters have been found, it is looking
-            ## for the best option among all.
-            if (length(clus.candidates) == 0) {
-              clus.candidates <- 1:actual.num.cluster
-            }
-            # message("[",class(self)[1],"][INFO] Element ", fea, " tiebreak: clusters candidates ",
-            #         paste(clus.candidates, collapse = ","))
-            fea.dep.dist.clus[[fea]] <- private$configuration$tiebreak(fea,
-                                                                       clus.candidates,
-                                                                       fea.dep.dist.clus,
-                                                                       corpus,
-                                                                       heu,
-                                                                       class,
-                                                                       class.name)
-          }
-          # message("[",class(self)[1],"][INFO] Element ", fea, " added to cluster ",
-          #         paste(fea.dep.dist.clus[[fea]], collapse = ","))
-          # Computing metrics of dependent features on clusters ----
-          clus.recal.metrics <- fea.dep.dist.clus[[fea]]
-          result.heuristic.tar <- abs(heu$heuristic(corpus[, fea],
-                                                    class,
-                                                    column.names = c(fea,
-                                                                     class.name)))
-          for (clus in clus.recal.metrics) {
-            ## Update metric of dependecy between features and target
-            numerator <- metrics.dep[["dep.tar"]][[clus]] * (length(which(unlist(fea.dep.dist.clus) == clus)) - 1) + result.heuristic.tar
-            denominator <- length(which(unlist(fea.dep.dist.clus) == clus))
-            metrics.dep[["dep.tar"]][[clus]] <- numerator / denominator
-            mean.fea <- c()
-            for (fea.clus in names(fea.dep.dist.clus)) {
-              if (clus %in% fea.dep.dist.clus[[fea.clus]]) {
-                result.heuristic.fea <- abs(heu$heuristic(corpus[, fea],
-                                                          corpus[, fea.clus],
-                                                          column.names = c(fea,
-                                                                           fea.clus)))
-                mean.fea <- c(mean.fea, result.heuristic.fea)
-              }
-            }
-            # Update metric of dependecy between features of the cluster
-            numerator <- metrics.dep[["dep.fea"]][[clus]] * (length(which(unlist(fea.dep.dist.clus) == clus)) - 1) + mean(mean.fea)
-            denominator <- length(which(unlist(fea.dep.dist.clus) == clus))
-            metrics.dep[["dep.fea"]][[clus]] <- numerator / denominator
-          }
-        }
-        if (isTRUE(verbose)) { setTxtProgressBar(pb, (length(all.fea.dep))) }
-        if (isTRUE(verbose)) { close(pb) }
 
+        if (length(all.fea.dep) > 0) {
+          if (isTRUE(verbose)) {
+            message("[", class(self)[1], "][INFO] Beginning add features")
+            pb <- txtProgressBar(min = 0, max = (length(all.fea.dep)), style = 3)
+          }
+          for (fea in all.fea.dep) {
+            if (isTRUE(verbose)) { setTxtProgressBar(pb, (which(fea == all.fea.dep))) }
+            ## Obtains the subgroups where feature are in the list of dependent feature groups
+            pos.groups.list <- lapply(names(dep.fea.groups), function(pos, fea, dep.fea.groups) {
+              if (fea %in% dep.fea.groups[[pos]]) { pos }
+            }, fea, dep.fea.groups)
+            pos.groups.list <- as.integer(pos.groups.list[lengths(pos.groups.list) != 0])
+            clus.candidates <- 1:actual.num.cluster
+            ## Groups containing the current characteristic are traversed to
+            ## get the candidate clusters
+            for (group in dep.fea.groups[pos.groups.list]) {
+              for (fea.group in group) {
+                if (fea.group == fea) {
+                  next
+                }
+                clus.candidates <- setdiff(clus.candidates,
+                                           fea.dep.dist.clus[[fea.group]])
+                if (length(clus.candidates) == 0) {
+                  break
+                }
+              }
+            }
+            ## If there is a single candidate cluster, the element is introduced into it
+            if (length(clus.candidates) == 1) {
+              fea.dep.dist.clus[[fea]] <- c(fea.dep.dist.clus[[fea]],
+                                            clus.candidates[[1]])
+            } else {
+              ## In the case that no candidate clusters have been found, it is looking
+              ## for the best option among all.
+              if (length(clus.candidates) == 0) {
+                clus.candidates <- 1:actual.num.cluster
+              }
+              # message("[",class(self)[1],"][INFO] Element ", fea, " tiebreak: clusters candidates ",
+              #         paste(clus.candidates, collapse = ","))
+              fea.dep.dist.clus[[fea]] <- private$configuration$tiebreak(fea,
+                                                                         clus.candidates,
+                                                                         fea.dep.dist.clus,
+                                                                         corpus,
+                                                                         heu,
+                                                                         class,
+                                                                         class.name)
+            }
+            # message("[",class(self)[1],"][INFO] Element ", fea, " added to cluster ",
+            #         paste(fea.dep.dist.clus[[fea]], collapse = ","))
+            # Computing metrics of dependent features on clusters ----
+            clus.recal.metrics <- fea.dep.dist.clus[[fea]]
+            result.heuristic.tar <- abs(heu$heuristic(corpus[, fea],
+                                                      class,
+                                                      column.names = c(fea,
+                                                                       class.name)))
+            for (clus in clus.recal.metrics) {
+              ## Update metric of dependecy between features and target
+              numerator <- metrics.dep[["dep.tar"]][[clus]] * (length(which(unlist(fea.dep.dist.clus) == clus)) - 1) + result.heuristic.tar
+              denominator <- length(which(unlist(fea.dep.dist.clus) == clus))
+              metrics.dep[["dep.tar"]][[clus]] <- numerator / denominator
+              mean.fea <- c()
+              for (fea.clus in names(fea.dep.dist.clus)) {
+                if (clus %in% fea.dep.dist.clus[[fea.clus]]) {
+                  result.heuristic.fea <- abs(heu$heuristic(corpus[, fea],
+                                                            corpus[, fea.clus],
+                                                            column.names = c(fea,
+                                                                             fea.clus)))
+                  mean.fea <- c(mean.fea, result.heuristic.fea)
+                }
+              }
+              # Update metric of dependecy between features of the cluster
+              numerator <- metrics.dep[["dep.fea"]][[clus]] * (length(which(unlist(fea.dep.dist.clus) == clus)) - 1) + mean(mean.fea)
+              denominator <- length(which(unlist(fea.dep.dist.clus) == clus))
+              metrics.dep[["dep.fea"]][[clus]] <- numerator / denominator
+            }
+          }
+          if (isTRUE(verbose)) { setTxtProgressBar(pb, (length(all.fea.dep))) }
+          if (isTRUE(verbose)) { close(pb) }
+        }
         # Computing final distribution ----
         message("[", class(self)[1], "][INFO] Added dependent features to all clusters (",
                 length(all.fea.dep), ")")
