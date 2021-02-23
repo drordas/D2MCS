@@ -14,78 +14,79 @@
 #' @export DDMCS
 #'
 #' @examples
-#' \dontrun{
+#'
 #' ## Create Dataset Handler object.
-#'   loader <- DatasetLoader$new()
+#' loader <- DatasetLoader$new()
 #'
-#'   ## Load 'hcc-data-complete-balanced.csv' dataset file.
-#'   data <- loader$load(filepath = system.file(file.path("examples",
-#'                                  "hcc-data-complete-balanced.csv"),
-#'                                              package = "DDMCS"),
-#'                       header = TRUE, normalize.names = TRUE)
-#'   ## Get column names
-#'   data$getColumnNames()
+#' ## Load 'hcc-data-complete-balanced.csv' dataset file.
+#' data <- loader$load(filepath = system.file(file.path("examples",
+#'                                                      "hcc-data-complete-balanced.csv"),
+#'                                            package = "DDMCS"),
+#'                     header = TRUE, normalize.names = TRUE)
+#' ## Get column names
+#' data$getColumnNames()
 #'
-#'   ## Split data into 4 partitions keeping balance ratio of 'Class' column.
-#'   data$createPartitions(num.folds = 4, class.balance = "Class")
+#' ## Split data into 4 partitions keeping balance ratio of 'Class' column.
+#' data$createPartitions(num.folds = 4, class.balance = "Class")
 #'
-#'   ## Create a subset comprising the first 2 partitions for clustering purposes.
-#'   cluster.subset <- data$createSubset(num.folds = c(1, 2), class.index = "Class",
-#'                                    positive.class = "1")
-#'
-#'   ## Create a subset comprising second and third partitions for trainning purposes.
-#'   train.subset <- data$createSubset(num.folds = c(2, 3), class.index = "Class",
-#'                                      positive.class = "1")
-#'
-#'   ## Create a subset comprising last partitions for testing purposes.
-#'   test.subset <- data$createSubset(num.folds = 4, class.index = "Class",
+#' ## Create a subset comprising the first 2 partitions for clustering purposes.
+#' cluster.subset <- data$createSubset(num.folds = c(1, 2), class.index = "Class",
 #'                                     positive.class = "1")
 #'
-#'   ## Distribute the features into clusters using MCC heuristic.
-#'   distribution <- SimpleStrategy$new(subset = cluster.subset,
-#'                                      heuristic = MCCHeuristic$new())
-#'   distribution$execute()
+#' ## Create a subset comprising second and third partitions for trainning purposes.
+#' train.subset <- data$createSubset(num.folds = c(2, 3), class.index = "Class",
+#'                                   positive.class = "1")
 #'
-#'   ## Get the best achieved distribution
-#'   distribution$getBestClusterDistribution()
+#' ## Create a subset comprising last partitions for testing purposes.
+#' test.subset <- data$createSubset(num.folds = 4, class.index = "Class",
+#'                                  positive.class = "1")
 #'
-#'   ## Create a train set from the computed clustering distribution
-#'   train.set <- distribution$createTrain(subset = train.subset)
+#' ## Distribute the features into clusters using MCC heuristic.
+#' distribution <- SimpleStrategy$new(subset = cluster.subset,
+#'                                    heuristic = MCCHeuristic$new())
+#' distribution$execute()
 #'
-#'   ## Initialization of DDMCS configuration parameters.
-#'   ##  - Defining training operation.
-#'   ##    + 10-fold cross-validation
-#'   ##    + Use only 1 CPU core.
-#'   ##    + Seed was set to ensure straightforward reproductivity of experiments.
-#'   trFunction <- TwoClass$new(method = "cv", number = 1, savePredictions = "final",
-#'                               classProbs = TRUE, allowParallel = TRUE,
-#'                               verboseIter = FALSE, seed = 1234)
-#'   ## - Specify the models to be trained
-#'   ex.classifiers <- c("ranger", "lda", "lda2")
+#' ## Get the best achieved distribution
+#' distribution$getBestClusterDistribution()
 #'
-#'   ## Initialize DDMCS
-#'   ddmcs <- DDMCS$new(dir.path = file.path(system.file("examples",
-#'                                         package = "DDMCS"), "MCC_CLUSTERING"))
-#' }
-#'   ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
+#' ## Create a train set from the computed clustering distribution
+#' train.set <- distribution$createTrain(subset = train.subset)
+#'
+#' ## Initialization of DDMCS configuration parameters.
+#' ##  - Defining training operation.
+#' ##    + 10-fold cross-validation
+#' ##    + Use only 1 CPU core.
+#' ##    + Seed was set to ensure straightforward reproductivity of experiments.
+#' trFunction <- TwoClass$new(method = "cv", number = 1, savePredictions = "final",
+#'                            classProbs = TRUE, allowParallel = TRUE,
+#'                            verboseIter = FALSE, seed = 1234)
+#' ## - Specify the models to be trained
+#' ex.classifiers <- c("ranger", "lda", "lda2")
+#'
+#' ## Initialize DDMCS
+#' ddmcs <- DDMCS$new(dir.path = file.path(system.file("examples",
+#'                                                     package = "DDMCS"),
+#'                                         "MCC_CLUSTERING"))
+#' ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
 #' \dontrun{
 #' trained.models <- ddmcs$train(train.set = train.set,
 #'                                  train.function = trFunction,
 #'                                  ex.classifiers = ex.classifiers,
 #'                                  metrics = c("MCC", "PPV"))
-#'   ## Execute classification stage using two different voting schemes
-#'   predictions <- ddmcs$classify(train.output = trained.models,
-#'                                 subset = test.subset,
-#'                                 voting.types = c(SingleVoting$new(
-#'                                      c(ClassMajorityVoting$new(), ClassWeightedVoting$new()),
-#'                                      metrics = c("MCC", "PPV"))))
-#'   ## Compute the performance of each voting scheme using PPV and MMC measures.
-#'   predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
+#' ## Execute classification stage using two different voting schemes
+#' predictions <- ddmcs$classify(train.output = trained.models,
+#'                               subset = test.subset,
+#'                               voting.types = c(
+#'                                     SingleVoting$new(voting.schemes = c(ClassMajorityVoting$new(),
+#'                                                                         ClassWeightedVoting$new()),
+#'                                                      metrics = c("MCC", "PPV"))))
+#' ## Compute the performance of each voting scheme using PPV and MMC measures.
+#' predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 #'
-#'   ## Execute classification stage using multiple voting schemes (simple and combined)
-#'   predictions <- ddmcs$classify(train.output = trained.models,
-#'                                 subset = test.subset,
-#'                                 voting.types = c(
+#' ## Execute classification stage using multiple voting schemes (simple and combined)
+#' predictions <- ddmcs$classify(train.output = trained.models,
+#'                               subset = test.subset,
+#'                               voting.types = c(
 #'                                     SingleVoting$new(voting.schemes = c(ClassMajorityVoting$new(),
 #'                                                                          ClassWeightedVoting$new()),
 #'                                                       metrics = c("MCC", "PPV")),
@@ -93,8 +94,8 @@
 #'                                                         combined.metrics = MinimizeFP$new(),
 #'                                                         methodology = ProbBasedMethodology$new(),
 #'                                                         metrics = c("MCC", "PPV"))))
-#'   ## Compute the performance of each voting scheme using PPV and MMC measures.
-#'   predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
+#' ## Compute the performance of each voting scheme using PPV and MMC measures.
+#' predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 #' }
 #'
 DDMCS <- R6::R6Class(
