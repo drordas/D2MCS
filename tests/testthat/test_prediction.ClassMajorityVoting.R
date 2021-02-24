@@ -1,11 +1,25 @@
 testthat::test_that("ClassMajorityVoting: initialize", {
 
   cutoff <- 0.5
-  class.tie <- "Positive"
+  class.tie.character <- "Positive"
   majority.class <- "Positive"
 
   testthat::expect_is(ClassMajorityVoting$new(cutoff = cutoff,
-                                              class.tie = class.tie,
+                                              class.tie = class.tie.character,
+                                              majority.class = majority.class),
+                      "ClassMajorityVoting")
+
+  class.tie.numeric <- 1
+
+  testthat::expect_is(ClassMajorityVoting$new(cutoff = cutoff,
+                                              class.tie = class.tie.numeric,
+                                              majority.class = majority.class),
+                      "ClassMajorityVoting")
+
+  class.tie.null <- NULL
+
+  testthat::expect_is(ClassMajorityVoting$new(cutoff = cutoff,
+                                              class.tie = class.tie.null,
                                               majority.class = majority.class),
                       "ClassMajorityVoting")
 })
@@ -13,7 +27,7 @@ testthat::test_that("ClassMajorityVoting: initialize", {
 testthat::test_that("ClassMajorityVoting: initialize checks parameter type", {
 
   cutoff <- 0.5
-  class.tie <- 1
+  class.tie <- list()
   majority.class <- "Positive"
 
   testthat::expect_error(ClassMajorityVoting$new(cutoff = cutoff,

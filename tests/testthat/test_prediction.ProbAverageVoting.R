@@ -1,11 +1,25 @@
 testthat::test_that("ProbAverageVoting: initialize", {
 
   cutoff <- 0.5
-  class.tie <- "Positive"
+  class.tie.character <- "Positive"
   majority.class <- "Positive"
 
   testthat::expect_is(ProbAverageVoting$new(cutoff = cutoff,
-                                            class.tie = class.tie,
+                                            class.tie = class.tie.character,
+                                            majority.class = majority.class),
+                      "ProbAverageVoting")
+
+  class.tie.numeric <- 1
+
+  testthat::expect_is(ProbAverageVoting$new(cutoff = cutoff,
+                                            class.tie = class.tie.numeric,
+                                            majority.class = majority.class),
+                      "ProbAverageVoting")
+
+  class.tie.null <- NULL
+
+  testthat::expect_is(ProbAverageVoting$new(cutoff = cutoff,
+                                            class.tie = class.tie.null,
                                             majority.class = majority.class),
                       "ProbAverageVoting")
 })

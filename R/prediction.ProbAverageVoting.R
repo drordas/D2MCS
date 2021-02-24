@@ -31,7 +31,7 @@ ProbAverageVoting <- R6::R6Class(
     #' majority class. If \link{NULL} will be used same value as training stage.
     #'
     initialize = function(cutoff = 0.5, class.tie = NULL, majority.class = NULL) {
-      if (!is.null(class.tie) && (!is.character(class.tie) && !is.numeric(class.tie))) {
+      if (all(!is.null(class.tie), !is.character(class.tie), !is.numeric(class.tie))) {
         stop("[", class(self)[1], "][FATAL] Invalid class tie value. Aborting...")
       }
 
