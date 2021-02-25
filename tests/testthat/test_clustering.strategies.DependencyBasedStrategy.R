@@ -181,13 +181,13 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
                          fixed = TRUE)
 })
 
-testthat::setup(dir.create(file.path("resourceFiles", "outputs")))
+testthat::setup(dir.create(file.path("resourceFiles", "outputslfdc")))
 
-testthat::test_that("DependencyBasedStrategy works", {
+testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
-  configuration <- DependencyBasedStrategyConfiguration$new()
+  configuration <- DependencyBasedStrategyConfiguration$new(tiebreakMethod = 'lfdc')
 
   strategy <- DependencyBasedStrategy$new(subset.cluster, heuristics, configuration)
 
@@ -199,7 +199,7 @@ testthat::test_that("DependencyBasedStrategy works", {
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
                          "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
-  testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputslfdc", "saveCSV")),
                          "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
@@ -224,7 +224,7 @@ testthat::test_that("DependencyBasedStrategy works", {
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "TypeBasedStrategyPlot"),
+  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputslfdc", "plots"), file.name = "TypeBasedStrategyPlot"),
                            "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
@@ -232,22 +232,22 @@ testthat::test_that("DependencyBasedStrategy works", {
                          "[DependencyBasedStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputslfdc", "saveCSV")),
                            "[DependencyBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
                            fixed = TRUE,
                            all = FALSE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputslfdc", "saveCSV")),
                            "[DependencyBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputslfdc", "saveCSV"),
                                             num.clusters = 2),
                            "[DependencyBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE,
                            all = FALSE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputslfdc", "saveCSV"),
                                             num.clusters = list(2:60, 2:60)),
                            paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
                            fixed = TRUE,
@@ -255,7 +255,86 @@ testthat::test_that("DependencyBasedStrategy works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "outputs"))) {
-    unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "outputslfdc"))) {
+    unlink(file.path("resourceFiles", "outputslfdc"), recursive = TRUE, force = TRUE)
+  }
+})
+
+testthat::setup(dir.create(file.path("resourceFiles", "outputsltdc")))
+
+testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method", {
+
+  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
+  configuration <- DependencyBasedStrategyConfiguration$new(tiebreakMethod = "ltdc")
+
+  strategy <- DependencyBasedStrategy$new(subset.cluster, heuristics, configuration)
+
+
+  testthat::expect_error(strategy$getDistribution(),
+                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         fixed = TRUE)
+
+  testthat::expect_error(strategy$createTrain(subset = subset.cluster),
+                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         fixed = TRUE)
+  testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputsltdc", "saveCSV")),
+                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         fixed = TRUE)
+
+  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
+
+  testthat::expect_is(strategy$getBestClusterDistribution(), "list")
+
+  testthat::expect_is(strategy$getBestClusterDistribution(), "list")
+  testthat::expect_is(strategy$getUnclustered(), "list")
+
+  testthat::expect_equal(length(strategy$getDistribution()), 4)
+  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1)), 0)
+  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
+  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 3)
+  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 4)
+
+  testthat::expect_is(strategy$createTrain(subset = subset.cluster),
+                      "Trainset")
+  testthat::expect_error(strategy$createTrain(subset = NULL),
+                         "[DependencyBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                         fixed = TRUE)
+
+  testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
+
+  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputsltdc", "plots"), file.name = "TypeBasedStrategyPlot"),
+                           "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
+                           fixed = TRUE)
+
+  testthat::expect_error(strategy$saveCSV(dir.path = NULL),
+                         "[DependencyBasedStrategy][FATAL] Path not defined. Aborting...",
+                         fixed = TRUE)
+
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputsltdc", "saveCSV")),
+                           "[DependencyBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
+                           fixed = TRUE,
+                           all = FALSE)
+
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputsltdc", "saveCSV")),
+                           "[DependencyBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
+                           fixed = TRUE)
+
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputsltdc", "saveCSV"),
+                                            num.clusters = 2),
+                           "[DependencyBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
+                           fixed = TRUE,
+                           all = FALSE)
+
+  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputsltdc", "saveCSV"),
+                                            num.clusters = list(2:60, 2:60)),
+                           paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
+                           fixed = TRUE,
+                           all = FALSE)
+})
+
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "outputsltdc"))) {
+    unlink(file.path("resourceFiles", "outputsltdc"), recursive = TRUE, force = TRUE)
   }
 })

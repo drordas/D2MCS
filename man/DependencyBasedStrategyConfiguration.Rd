@@ -26,6 +26,8 @@ Define the default configuration parameters for the
 \item \href{#method-maxNumClusters}{\code{DependencyBasedStrategyConfiguration$maxNumClusters()}}
 \item \href{#method-getBinaryCutoff}{\code{DependencyBasedStrategyConfiguration$getBinaryCutoff()}}
 \item \href{#method-getRealCutoff}{\code{DependencyBasedStrategyConfiguration$getRealCutoff()}}
+\item \href{#method-setBinaryCutoff}{\code{DependencyBasedStrategyConfiguration$setBinaryCutoff()}}
+\item \href{#method-setRealCutoff}{\code{DependencyBasedStrategyConfiguration$setRealCutoff()}}
 \item \href{#method-tiebreak}{\code{DependencyBasedStrategyConfiguration$tiebreak()}}
 \item \href{#method-qualityOfCluster}{\code{DependencyBasedStrategyConfiguration$qualityOfCluster()}}
 \item \href{#method-isImprovingClustering}{\code{DependencyBasedStrategyConfiguration$isImprovingClustering()}}
@@ -42,12 +44,35 @@ Define the default configuration parameters for the
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Empty function used to initialize the object arguments in
-runtime.
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$new()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$new(
+  binaryCutoff = 0.6,
+  realCutoff = 0.6,
+  tiebreakMethod = "lfdc",
+  metric = "dep.tar"
+)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{binaryCutoff}}{The \link{numeric} value of binary cutoff.}
+
+\item{\code{realCutoff}}{The \link{numeric} value of real cutoff.}
+
+\item{\code{tiebreakMethod}}{The \link{character} value of tie-break method. The
+two tiebreak methods available are "lfdc" (less dependence cluster with
+the features) and "ltdc" (less dependence cluster with the target). These
+methods are used to add the features in the candidate feature clusters.}
+
+\item{\code{metric}}{The \link{character} value of the metric to apply the mean
+to obtain the quality of a cluster. The two metrics available are
+"dep.tar" (Dependence of cluster features on the target) and "dep.fea"
+(Dependence between cluster features).}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-minNumClusters"></a>}}
@@ -97,44 +122,64 @@ A \link{numeric} vector of length 1.
 \if{html}{\out{<a id="method-getBinaryCutoff"></a>}}
 \if{latex}{\out{\hypertarget{method-getBinaryCutoff}{}}}
 \subsection{Method \code{getBinaryCutoff()}}{
-The function is used to define the interval to consider the
-dependency between binary features.
+Gets the cutoff to consider the dependency between binary
+features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$getBinaryCutoff()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{Further arguments passed down to \code{getBinaryCutoff}
-function.}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
-A \link{numeric} vector of length 1.
+The \link{numeric} value of binary cutoff.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRealCutoff"></a>}}
 \if{latex}{\out{\hypertarget{method-getRealCutoff}{}}}
 \subsection{Method \code{getRealCutoff()}}{
-The function allows defining the cutoff to consider the
-dependency between real features.
+Gets the cutoff to consider the dependency between real
+features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$getRealCutoff()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+The \link{numeric} value of real cutoff.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-setBinaryCutoff"></a>}}
+\if{latex}{\out{\hypertarget{method-setBinaryCutoff}{}}}
+\subsection{Method \code{setBinaryCutoff()}}{
+Sets the cutoff to consider the dependency between binary
+features.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$setBinaryCutoff(cutoff)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Further arguments passed down to \code{getRealCutoff}
-function.}
+\item{\code{cutoff}}{The new \link{numeric} value of binary cutoff.}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-A \link{numeric} vector of length 1.
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-setRealCutoff"></a>}}
+\if{latex}{\out{\hypertarget{method-setRealCutoff}{}}}
+\subsection{Method \code{setRealCutoff()}}{
+Sets the cutoff to consider the dependency between real
+features.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategyConfiguration$setRealCutoff(cutoff)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{cutoff}}{The new \link{numeric} value of real cutoff.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}

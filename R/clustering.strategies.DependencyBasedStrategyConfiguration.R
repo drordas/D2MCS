@@ -19,10 +19,49 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description Empty function used to initialize the object arguments in
-    #' runtime.
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    initialize = function() { },
+    #' @param binaryCutoff The \link{numeric} value of binary cutoff.
+    #' @param realCutoff The \link{numeric} value of real cutoff.
+    #' @param tiebreakMethod The \link{character} value of tie-break method. The
+    #' two tiebreak methods available are "lfdc" (less dependence cluster with
+    #' the features) and "ltdc" (less dependence cluster with the target). These
+    #' methods are used to add the features in the candidate feature clusters.
+    #' @param metric The \link{character} value of the metric to apply the mean
+    #' to obtain the quality of a cluster. The two metrics available are
+    #' "dep.tar" (Dependence of cluster features on the target) and "dep.fea"
+    #' (Dependence between cluster features).
+    #'
+    initialize = function(binaryCutoff = 0.6,
+                          realCutoff = 0.6,
+                          tiebreakMethod = "lfdc",
+                          metric = "dep.tar") {
+
+      if (!(is.numeric(binaryCutoff) && binaryCutoff >= 0 && binaryCutoff <= 1)) {
+        stop("[", class(self)[1], "][FATAL] Invalid binary cut-off value. ",
+             "Aborting...")
+      }
+
+      if (!(is.numeric(realCutoff) && realCutoff >= 0 && realCutoff <= 1)) {
+        stop("[", class(self)[1], "][FATAL] Invalid real cut-off value. ",
+             "Aborting...")
+      }
+
+      if (!(is.character(tiebreakMethod) && tiebreakMethod %in% c("lfdc", "ltdc"))) {
+        stop("[", class(self)[1], "][FATAL] Invalid real tiebreak method ('lfdc' ",
+             "or 'ltdc'). Aborting...")
+      }
+
+      if (!(is.character(metric) && metric %in% c("dep.tar", "dep.fea"))) {
+        stop("[", class(self)[1], "][FATAL] Invalid metric value ('dep.fea' or ",
+             "'dep.tar'). Aborting...")
+      }
+
+      private$binaryCutoff <- binaryCutoff
+      private$realCutoff <- realCutoff
+      private$tiebreakMethod <- tiebreakMethod
+      private$metric <- metric
+    },
     #'
     #' @description Function used to return the minimum number of clusters
     #' distributions used. By default the minimum is set in 2.
@@ -51,25 +90,45 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
       if (is.infinite(max)) { 3 } else { max }
     },
     #'
-    #' @description The function is used to define the interval to consider the
-    #' dependency between binary features.
+    #' @description Gets the cutoff to consider the dependency between binary
+    #' features.
     #'
-    #' @param ... Further arguments passed down to \code{getBinaryCutoff}
-    #' function.
+    #' @return The \link{numeric} value of binary cutoff.
     #'
-    #' @return A \link{numeric} vector of length 1.
+    getBinaryCutoff = function() { private$binaryCutoff },
     #'
-    getBinaryCutoff = function() { 0.6 },
+    #' @description Gets the cutoff to consider the dependency between real
+    #' features.
     #'
-    #' @description The function allows defining the cutoff to consider the
-    #' dependency between real features.
+    #' @return The \link{numeric} value of real cutoff.
     #'
-    #' @param ... Further arguments passed down to \code{getRealCutoff}
-    #' function.
+    getRealCutoff = function() { private$realCutoff },
     #'
-    #' @return A \link{numeric} vector of length 1.
+    #' @description Sets the cutoff to consider the dependency between binary
+    #' features.
     #'
-    getRealCutoff = function() { 0.7 },
+    #' @param cutoff The new \link{numeric} value of binary cutoff.
+    #'
+    setBinaryCutoff = function(cutoff) {
+      if (!(is.numeric(cutoff) && cutoff >= 0 && cutoff <= 1)) {
+        stop("[", class(self)[1], "][FATAL] Invalid binary cut-off value. ",
+             "Aborting...")
+      }
+      private$binaryCutoff <- cutoff
+    },
+    #'
+    #' @description Sets the cutoff to consider the dependency between real
+    #' features.
+    #'
+    #' @param cutoff The new \link{numeric} value of real cutoff.
+    #'
+    setRealCutoff = function(cutoff) {
+      if (!(is.numeric(cutoff) && cutoff >= 0 && cutoff <= 1)) {
+        stop("[", class(self)[1], "][FATAL] Invalid real cut-off value. ",
+             "Aborting...")
+      }
+      private$realCutoff <- cutoff
+    },
     #'
     #' @description The function solves the ties between two (or more) features.
     #'
@@ -89,8 +148,13 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     #'
     tiebreak = function(feature, clus.candidates, fea.dep.dist.clus, corpus,
                         heuristic, class, class.name) {
-      private$lfdcTiebreak(feature, clus.candidates, fea.dep.dist.clus,
-                           corpus, heuristic)
+      if (private$tiebreakMethod == "lfdc") {
+        private$lfdcTiebreak(feature, clus.candidates, fea.dep.dist.clus,
+                             corpus, heuristic)
+      } else {
+        private$ltdcTiebreak(feature, clus.candidates, fea.dep.dist.clus,
+                             corpus, heuristic, class, class.name)
+      }
     },
     #'
     #' @description The function determines the quality of a cluster.
@@ -104,7 +168,7 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     #' @return A \link{numeric} vector of length 1.
     #'
     qualityOfCluster = function(clusters, metrics) {
-      mean(metrics[["dep.tar"]])
+      mean(metrics[[private$metric]])
     },
     #'
     #' @description The function indicates if clustering is getting better as
@@ -125,6 +189,10 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     }
   ),
   private = list(
+    binaryCutoff = 0.6,
+    realCutoff = 0.6,
+    tiebreakMethod = "lfdc",
+    metric = "dep.fea",
     getFeaturesInCluster = function(features, cluster) {
       features.return <- c()
       for (fea in names(features)) {
