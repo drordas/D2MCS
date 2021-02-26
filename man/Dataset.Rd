@@ -230,7 +230,7 @@ should be kept.}
 \if{html}{\out{<a id="method-createSubset"></a>}}
 \if{latex}{\out{\hypertarget{method-createSubset}{}}}
 \subsection{Method \code{createSubset()}}{
-Create a \code{\link{Subset}} for testing or classification
+Creates a \code{\link{Subset}} for testing or classification
 purposes. A target class should be provided for testing purposes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$createSubset(

@@ -2,12 +2,9 @@
 % Please edit documentation in R/prediction.Prediction.R
 \name{Prediction}
 \alias{Prediction}
-\title{<<tittle>>}
+\title{Manages the prediction computed for a specific model.}
 \description{
-Prediction
-}
-\details{
-<<details>
+Allows to obtain predictions from the data provided using a pre-trained model.
 }
 \seealso{
 \code{\link{ClusterPredictions}}
@@ -30,7 +27,7 @@ Prediction
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object arguments during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Prediction$new(model, feature.id = NULL)}\if{html}{\out{</div>}}
 }
@@ -38,9 +35,12 @@ Prediction
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{model}}{<<description>>}
+\item{\code{model}}{A \link{list} containing the information of the
+trained model composed of five elements: "model.name", "exec.time",
+"model.performance", "model.data" and "model.libs".}
 
-\item{\code{feature.id}}{<<description>>}
+\item{\code{feature.id}}{A \link{character} value containing the column name
+used as identifier.}
 }
 \if{html}{\out{</div>}}
 }
@@ -49,7 +49,8 @@ Prediction
 \if{html}{\out{<a id="method-execute"></a>}}
 \if{latex}{\out{\hypertarget{method-execute}{}}}
 \subsection{Method \code{execute()}}{
-<<description>>
+Calculates predictions of the values passed by parameters
+using the corresponding model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Prediction$execute(pred.values, class.values, positive.class)}\if{html}{\out{</div>}}
 }
@@ -57,23 +58,22 @@ Prediction
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{pred.values}}{<<description>>}
+\item{\code{pred.values}}{A \link{data.frame} containing the values to predict.}
 
-\item{\code{class.values}}{<<description>>}
+\item{\code{class.values}}{A \link{vector} containing the class values.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{A \link{character} value containing the positive
+class.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPrediction"></a>}}
 \if{latex}{\out{\hypertarget{method-getPrediction}{}}}
 \subsection{Method \code{getPrediction()}}{
-<<description>>
+The function is used to return the prediction values
+computed.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Prediction$getPrediction(type = NULL, target = NULL)}\if{html}{\out{</div>}}
 }
@@ -81,40 +81,44 @@ Prediction
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{type}}{<<description>>}
+\item{\code{type}}{A \link{character} to define which type of predictions
+should be returned. If not defined all type of probabilities will be
+returned. Conversely if "prob" or "raw" is defined then computed
+'probabilistic' or 'class' values are returned.}
 
-\item{\code{target}}{<<description>>}
+\item{\code{target}}{A \link{character} defining the value of the positive
+class.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-<<description>>
+A \link{data.frame} with the computed prediction.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModelName"></a>}}
 \if{latex}{\out{\hypertarget{method-getModelName}{}}}
 \subsection{Method \code{getModelName()}}{
-<<description>>
+Gets the model name.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Prediction$getModelName()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+The \link{character} value of model value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getModelPerformance"></a>}}
 \if{latex}{\out{\hypertarget{method-getModelPerformance}{}}}
 \subsection{Method \code{getModelPerformance()}}{
-<<description>>
+Gets the performance of the model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Prediction$getModelPerformance()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+The \link{numeric} value of the model's performance.
 }
 }
 \if{html}{\out{<hr>}}

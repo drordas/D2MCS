@@ -391,7 +391,7 @@ Dataset <- R6::R6Class(
       }
     },
     #'
-    #' @description Create a \code{\link{Subset}} for testing or classification
+    #' @description Creates a \code{\link{Subset}} for testing or classification
     #' purposes. A target class should be provided for testing purposes.
     #'
     #' @param num.folds A \link{numeric} defining the number of folds that

@@ -1,8 +1,6 @@
-#' @title <<tittle>>
+#' @title Manages the prediction computed for a specific model.
 #'
-#' @description Prediction
-#'
-#' @details <<details>
+#' @description Allows to obtain predictions from the data provided using a pre-trained model.
 #'
 #' @seealso \code{\link{ClusterPredictions}}
 #'
@@ -18,10 +16,13 @@ Prediction <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param model <<description>>
-    #' @param feature.id <<description>>
+    #' @param model A \link{list} containing the information of the
+    #' trained model composed of five elements: "model.name", "exec.time",
+    #' "model.performance", "model.data" and "model.libs".
+    #' @param feature.id A \link{character} value containing the column name
+    #' used as identifier.
     #'
     initialize = function(model, feature.id = NULL) {
       if (!inherits(model, "list") || length(model) != 5)
@@ -33,13 +34,13 @@ Prediction <- R6::R6Class(
       private$loadPackages(private$model$model.libs)
     },
     #'
-    #' @description <<description>>
+    #' @description Calculates predictions of the values passed by parameters
+    #' using the corresponding model.
     #'
-    #' @param pred.values <<description>>
-    #' @param class.values <<description>>
-    #' @param positive.class <<description>>
-    #'
-    #' @return <<description>>
+    #' @param pred.values A \link{data.frame} containing the values to predict.
+    #' @param class.values A \link{vector} containing the class values.
+    #' @param positive.class A \link{character} value containing the positive
+    #' class.
     #'
     execute = function(pred.values, class.values, positive.class) {
       if (!inherits(pred.values, "data.frame")) {
@@ -94,12 +95,17 @@ Prediction <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to return the prediction values
+    #' computed.
     #'
-    #' @param type <<description>>
-    #' @param target <<description>>
+    #' @param type A \link{character} to define which type of predictions
+    #' should be returned. If not defined all type of probabilities will be
+    #' returned. Conversely if "prob" or "raw" is defined then computed
+    #' 'probabilistic' or 'class' values are returned.
+    #' @param target A \link{character} defining the value of the positive
+    #' class.
     #'
-    #' @return <<description>>
+    #' @return A \link{data.frame} with the computed prediction.
     #'
     getPrediction = function(type = NULL, target = NULL) {
       if (is.null(type) || !type %in% c("raw", "prob")) {
@@ -131,15 +137,15 @@ Prediction <- R6::R6Class(
       ret
     },
     #'
-    #' @description <<description>>
+    #' @description Gets the model name.
     #'
-    #' @return <<description>>
+    #' @return The \link{character} value of model value.
     #'
     getModelName = function() { private$model$model.name },
     #'
-    #' @description <<description>>
+    #' @description Gets the performance of the model.
     #'
-    #' @return <<description>>
+    #' @return The \link{numeric} value of the model's performance.
     #'
     getModelPerformance = function() { private$model$model.performance }
   ),

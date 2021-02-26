@@ -16,7 +16,7 @@ FinalPred <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object variables during runtime.
     #'
     initialize = function() {
       private$prob <- NULL
@@ -25,14 +25,16 @@ FinalPred <- R6::R6Class(
       private$negative.class <- NULL
     },
     #'
-    #' @description <<description>>
+    #' @description Sets the computed probabilities after executing an specific
+    #' voting scheme.
     #'
-    #' @param prob <<description>>
-    #' @param raw <<description>>
-    #' @param class.values <<description>>
-    #' @param positive.class <<description>>
-    #'
-    #' @return <<description>>
+    #' @param prob A \link{vector} containing the probabilities of the
+    #' prediction for a specific voting scheme.
+    #' @param raw A \link{vector} containing the raw results of the prediction
+    #' for a specific voting scheme.
+    #' @param class.values A \link{vector} containing the class values.
+    #' @param positive.class A \link{character} value containing the positive
+    #' class.
     #'
     set = function(prob, raw, class.values, positive.class) {
       if (length(positive.class) != 1 || !(positive.class %in% class.values)) {
@@ -70,35 +72,39 @@ FinalPred <- R6::R6Class(
 
     },
     #'
-    #' @description <<description>>
+    #' @description Gets the probabilities of the prediction for a specific
+    #' voting scheme.
     #'
-    #' @return <<description>>
+    #' @return The \link{vector} value of probabilities of the prediction for a
+    #' specific voting scheme.
     #'
     getProb = function() { private$prob },
     #'
-    #' @description <<description>>
+    #' @description Gets the raw results of the prediction for a specific voting
+    #' scheme.
     #'
-    #' @return <<description>>
+    #' @return The \link{vector} value of raw results of the prediction for a
+    #' specific voting scheme.
     #'
     getRaw = function() { private$raw },
     #'
-    #' @description <<description>>
+    #' @description Gets the class values (positive class + negative class).
     #'
-    #' @return <<description>>
+    #' @return The \link{vector} value of class values.
     #'
     getClassValues = function() {
       union(private$positive.class, private$negative.class)
     },
     #'
-    #' @description <<description>>
+    #' @description Gets the positive class.
     #'
-    #' @return <<description>>
+    #' @return The \link{character} value of positive class.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description <<description>>
+    #' @description Gets the negative class.
     #'
-    #' @return <<description>>
+    #' @return The \link{character} value of negative class.
     #'
     getNegativeClass = function() { private$negative.class }
   ),

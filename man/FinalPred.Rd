@@ -30,7 +30,7 @@ executing an specific voting scheme.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-<<description>>
+Method for initializing the object variables during runtime.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FinalPred$new()}\if{html}{\out{</div>}}
 }
@@ -40,7 +40,8 @@ executing an specific voting scheme.
 \if{html}{\out{<a id="method-set"></a>}}
 \if{latex}{\out{\hypertarget{method-set}{}}}
 \subsection{Method \code{set()}}{
-<<description>>
+Sets the computed probabilities after executing an specific
+voting scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FinalPred$set(prob, raw, class.values, positive.class)}\if{html}{\out{</div>}}
 }
@@ -48,83 +49,87 @@ executing an specific voting scheme.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{prob}}{<<description>>}
+\item{\code{prob}}{A \link{vector} containing the probabilities of the
+prediction for a specific voting scheme.}
 
-\item{\code{raw}}{<<description>>}
+\item{\code{raw}}{A \link{vector} containing the raw results of the prediction
+for a specific voting scheme.}
 
-\item{\code{class.values}}{<<description>>}
+\item{\code{class.values}}{A \link{vector} containing the class values.}
 
-\item{\code{positive.class}}{<<description>>}
+\item{\code{positive.class}}{A \link{character} value containing the positive
+class.}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-<<description>>
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getProb"></a>}}
 \if{latex}{\out{\hypertarget{method-getProb}{}}}
 \subsection{Method \code{getProb()}}{
-<<description>>
+Gets the probabilities of the prediction for a specific
+voting scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FinalPred$getProb()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+The \link{vector} value of probabilities of the prediction for a
+specific voting scheme.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getRaw"></a>}}
 \if{latex}{\out{\hypertarget{method-getRaw}{}}}
 \subsection{Method \code{getRaw()}}{
-<<description>>
+Gets the raw results of the prediction for a specific voting
+scheme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FinalPred$getRaw()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+The \link{vector} value of raw results of the prediction for a
+specific voting scheme.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getClassValues"></a>}}
 \if{latex}{\out{\hypertarget{method-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
-<<description>>
+Gets the class values (positive class + negative class).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FinalPred$getClassValues()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+The \link{vector} value of class values.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getPositiveClass"></a>}}
 \if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
-<<description>>
+Gets the positive class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FinalPred$getPositiveClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+The \link{character} value of positive class.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getNegativeClass"></a>}}
 \if{latex}{\out{\hypertarget{method-getNegativeClass}{}}}
 \subsection{Method \code{getNegativeClass()}}{
-<<description>>
+Gets the negative class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FinalPred$getNegativeClass()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-<<description>>
+The \link{character} value of negative class.
 }
 }
 \if{html}{\out{<hr>}}
