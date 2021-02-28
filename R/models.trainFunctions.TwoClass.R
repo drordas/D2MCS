@@ -60,18 +60,17 @@ TwoClass <- R6::R6Class(
     #' @import caret
     #'
     create = function(summaryFunction, search.method = "grid", class.probs = NULL) {
-      if (is.null(summaryFunction) ||  !"SummaryFunction" %in% class(summaryFunction))
+      if (is.null(summaryFunction) ||  !"SummaryFunction" %in% class(summaryFunction)) {
         stop("[", class(self)[1], "][FATAL] SummaryFunction parameter must be ",
              "defined as 'SummaryFunction' type. Aborting...")
-      else {
-        private$summaryFunction <- summaryFunction$execute
-        if (search.method %in% c("grid", "random")) {
+      } else {
+        if (all(!is.null(search.method), search.method %in% c("grid", "random"))) {
           private$search <- search.method
         } else {
           message("[", class(self)[1], "][WARNING] Invalid search method. ",
                   "Only 'random' or 'grid' search method are available. ",
                   "Assuming grid method")
-
+          private$search <- "grid"
         }
         class.probability <- ifelse((!is.null(class.probs) &&
                                          is.logical(class.probs)),
@@ -81,7 +80,7 @@ TwoClass <- R6::R6Class(
                                                   number = super$getNumberFolds(),
                                                   savePredictions = super$getSavePredictions(),
                                                   classProbs = class.probability,
-                                                  summaryFunction = private$summaryFunction,
+                                                  summaryFunction = summaryFunction$execute,
                                                   search = private$search,
                                                   allowParallel = super$getAllowParallel(),
                                                   verboseIter = super$getVerboseIter())
@@ -110,17 +109,16 @@ TwoClass <- R6::R6Class(
     #' and \link{FALSE} otherwise.
     #'
     setClassProbs = function(class.probs) {
-      if (is.null(class.probs) || !is.logical(class.probs))
+      if (is.null(class.probs) || !is.logical(class.probs)) {
         message("[", class(self)[1], "][WARNING] Class probabilities parameter ",
                 "is null or erroneous. Task not performed")
-      else {
+      } else {
         if (is.null(private$trFunction)) {
-          private$classProbs <- class.probs
-          if (!is.null(private$summaryFunction))
-            self$create(summaryFunction, private$search)
-          else message("[", class(self)[1], "][WARNING] SummaryFunction parameter ",
-                       "is not defined. Unable to create TrainFunction. Task not performed")
-        } else private$trFunction$classProbs <- class.probs
+          message("[", class(self)[1], "][WARNING] TrainFunction is not created. ",
+                  "Execute create method first. Task not performed")
+        } else {
+          private$trFunction$classProbs <- class.probs
+        }
       }
     },
     #'
@@ -144,13 +142,16 @@ TwoClass <- R6::R6Class(
     #' \code{\link{SummaryFunction}} class.
     #'
     setSummaryFunction = function(summaryFunction) {
-      if (is.null(summaryFunction) || !inherit(summaryFunction, "SummaryFunction")) {
-        message("[", class(self)[1], "]][WARNING] SummaryFunction parameter ",
+      if (is.null(summaryFunction) || !"SummaryFunction" %in% class(summaryFunction)) {
+        message("[", class(self)[1], "][WARNING] SummaryFunction parameter ",
                 "is null or incorrect type. Task not performed")
       } else {
         if (is.null(private$trFunction)) {
-          self$create(private$summaryFunction, private$search)
-        } else private$trFunction$summaryFunction <- summaryFunction$execute
+          message("[", class(self)[1], "][WARNING] TrainFunction is not created. ",
+                  "Execute create method first. Task not performed")
+        } else {
+          private$trFunction$summaryFunction <- summaryFunction$execute
+        }
       }
     }
   ),
@@ -158,7 +159,6 @@ TwoClass <- R6::R6Class(
     measures = NULL,
     search = "grid",
     trFunction = NULL,
-    summaryFunction = NULL,
     type = "Bi-Class"
   )
 )
