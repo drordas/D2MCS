@@ -56,7 +56,7 @@ DIterator <- R6::R6Class(
       data.chunk <- private$data[private$read.chunk, ]
 
       if (isTRUE(private$verbose)) {
-        message("[", class(self)[1], "][INFO] Readed lines ",
+        message("[", class(self)[1], "][INFO] Read lines ",
                 private$start, " to ", private$end,
                 " [", format(private$end - private$start, scientific = FALSE), "]")
       }
