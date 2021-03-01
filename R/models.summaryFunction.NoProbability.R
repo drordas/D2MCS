@@ -42,7 +42,7 @@ NoProbability <- R6::R6Class(
       lvls <- levels(data$obs)
       if (length(lvls) > 2)
         stop("[", class(self)[1], "][FATAL] Your outcome has ", length(lvls),
-             " levels. The 'defaultSummary' function is not appropriate. Aborting...")
+             " levels. The 'NoProbability' function is not appropriate. Aborting...")
 
       if (!all(levels(data[, "pred"]) == lvls))
         stop("[", class(self)[1], "][FATAL] Levels of observed and ",
