@@ -105,8 +105,7 @@ HDSubset <- R6::R6Class(
 
       it.params <- list(file.path = private$file.path,
                         feature.names = private$feature.names,
-                        start = private$start.at, sep = private$sep,
-                        col.names = self$getColumnNames())
+                        start = private$start.at, sep = private$sep)
       FIterator$new(it.params, chunk.size, verbose = verbose)
     },
     #'

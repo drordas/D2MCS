@@ -60,7 +60,7 @@ FIterator <- R6::R6Class(
 
       if (isTRUE(private$verbose)) {
         initial <- (private$index * private$chunk.size) + private$start
-        message("[", class(self)[1], "][INFO] Readed lines ",
+        message("[", class(self)[1], "][INFO] Read lines ",
                 initial, " to ", initial + private$chunk.size,
                 " [", format(private$chunk.size, scientific = FALSE), "]")
       }
