@@ -25,9 +25,11 @@ Prediction <- R6::R6Class(
     #' used as identifier.
     #'
     initialize = function(model, feature.id = NULL) {
-      if (!inherits(model, "list") || length(model) != 5)
+      if (!inherits(model, "list") || length(model) != 5) {
         stop("[", class(self)[1], "][FATAL] Model parameter must be defined as a ",
-             "list of four elements. Aborting...")
+             "list of five elements. Aborting...")
+      }
+
       private$model <- model
       private$feature.id <- feature.id
       private$results <- list(id = c(), raw = data.frame(), prob = data.frame())
@@ -110,8 +112,8 @@ Prediction <- R6::R6Class(
     getPrediction = function(type = NULL, target = NULL) {
       if (is.null(type) || !type %in% c("raw", "prob")) {
         message("[", class(self)[1], "][WARNING] Probability type ",
-                "missing or incorrect. Should be 'raw' or 'prob' ",
-                ". Assuming 'raw' by default")
+                "missing or incorrect. Should be 'raw' or 'prob'. ",
+                "Assuming 'raw' by default")
         type <- "raw"
       }
       switch (type,
