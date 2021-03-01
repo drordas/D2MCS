@@ -1,4 +1,4 @@
-testthat::test_that("ClusterPredictions: initialize", {
+testthat::test_that("ClusterPredictions: initialize function works", {
 
   testthat::expect_is(ClusterPredictions$new(class.values = c(0, 1),
                                              positive.class = 1),
@@ -13,16 +13,22 @@ testthat::test_that("ClusterPredictions: initialize checks parameter type", {
                          fixed = TRUE)
 })
 
-# test_that("ClusterPredictions: add function works",{
-#
-#
-#   clusterPrediction <- ClusterPredictions$new(class.values = c(1,0,1,1),
-#                                               positive.class = 1)
-#
-#   prediction <- prediction_object
-#
-#   testthat::expect_invisible(clusterPrediction$add(prediction = prediction))
-# })
+test_that("ClusterPredictions: add function works",{
+
+
+  clusterPrediction <- ClusterPredictions$new(class.values = c(1,0,1,1),
+                                              positive.class = 1)
+
+  model <- readRDS(file.path("resourceFiles",
+                             "testPrediction",
+                             "model.classProbsTrue.rds"))
+  feature.id <- NULL
+
+  prediction <- Prediction$new(model = model,
+                               feature.id = feature.id)
+
+  testthat::expect_invisible(clusterPrediction$add(prediction = prediction))
+})
 
 testthat::test_that("ClusterPredictions: add function checks parameter type", {
 
@@ -36,16 +42,24 @@ testthat::test_that("ClusterPredictions: add function checks parameter type", {
                          fixed = TRUE)
 })
 
-# test_that("ClusterPredictions: get function works",{
-#
-#
-#   clusterPrediction <- ClusterPredictions$new(class.values = c(1,0,1,1),
-#                                               positive.class = 1)
-#
-#   position <- 1
-#
-#   testthat::expect_invisible(clusterPrediction$add(prediction = prediction))
-# })
+test_that("ClusterPredictions: get function works",{
+  clusterPrediction <- ClusterPredictions$new(class.values = c(1,0,1,1),
+                                              positive.class = 1)
+
+  model <- readRDS(file.path("resourceFiles",
+                             "testPrediction",
+                             "model.classProbsTrue.rds"))
+  feature.id <- NULL
+
+  prediction <- Prediction$new(model = model,
+                               feature.id = feature.id)
+
+  testthat::expect_invisible(clusterPrediction$add(prediction = prediction))
+
+  position <- 1
+
+  testthat::expect_is(clusterPrediction$get(1), "Prediction")
+})
 
 testthat::test_that("ClusterPredictions: get function checks parameter type", {
 

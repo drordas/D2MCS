@@ -25,9 +25,10 @@ ClusterPredictions <- R6::R6Class(
     #'
     initialize = function(class.values, positive.class) {
 
-      if (is.null(positive.class) || !(positive.class %in% class.values))
+      if (is.null(positive.class) || !(positive.class %in% class.values)) {
         stop("[", class(self)[1], "][FATAL] Positive class not found. Should be ",
              paste0(class.values, collapse = " or "), ". Aborting...")
+      }
 
       private$positive.class <- positive.class
       private$class.values <- class.values
@@ -41,10 +42,11 @@ ClusterPredictions <- R6::R6Class(
     #' computed predictions.
     #'
     add = function(prediction) {
-      if ("Prediction" %in% class(prediction)) {
-        private$pred <- append(private$pred, prediction)
-      } else stop("[", class(self)[1], "][FATAL] Prediction parameter must be ",
-                 "defined as 'Prediction' object. Aborting... ")
+      if (!"Prediction" %in% class(prediction)) {
+        stop("[", class(self)[1], "][FATAL] Prediction parameter must be ",
+             "defined as 'Prediction' object. Aborting... ")
+      }
+      private$pred <- append(private$pred, prediction)
     },
     #'
     #' @description The function returns the predictions placed at specific
@@ -56,9 +58,10 @@ ClusterPredictions <- R6::R6Class(
     #' @return A \code{\link{Prediction}} object.
     #'
     get = function(position) {
-      if (position > 0 && position <= length(private$pred)) {
-        private$pred[[position]]
-      } else stop("[", class(self)[1], "][FATAL] Position exceeds list size. Aborting...")
+      if (!all(position > 0, position <= length(private$pred))) {
+        stop("[", class(self)[1], "][FATAL] Position exceeds list size. Aborting...")
+      }
+      private$pred[[position]]
     },
     #'
     #' @description The function returns all the predictions.
