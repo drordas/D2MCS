@@ -1,3 +1,15 @@
+testthat::test_that("CombinedVoting: initialize function works", {
+  voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
+  combined.metrics <- MinimizeFP$new()
+  methodology <- ProbBasedMethodology$new()
+  metrics <- c("MCC", "PPV")
+  testthat::expect_is(CombinedVoting$new(voting.schemes = voting.schemes,
+                                         combined.metrics = combined.metrics,
+                                         methodology = methodology,
+                                         metrics = c("MCC", "PPV")),
+                      "CombinedVoting")
+})
+
 testthat::test_that("CombinedVoting: initialize checks parameter type", {
 
   voting.schemes <- NULL
@@ -43,6 +55,34 @@ testthat::test_that("CombinedVoting: initialize checks parameter type", {
                                             metrics = metrics),
                          "[CombinedVoting][FATAL] Invalid values of metrics. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::test_that("CombinedVoting: getCombinedMetrics function works", {
+  voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
+  combined.metrics <- MinimizeFP$new()
+  methodology <- ProbBasedMethodology$new()
+  metrics <- c("MCC", "PPV")
+
+  voting <- CombinedVoting$new(voting.schemes = voting.schemes,
+                               combined.metrics = combined.metrics,
+                               methodology = methodology,
+                               metrics = c("MCC", "PPV"))
+
+  testthat::expect_equal(voting$getCombinedMetrics(), combined.metrics)
+})
+
+testthat::test_that("CombinedVoting: getCombinedMetrics function works", {
+  voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
+  combined.metrics <- MinimizeFP$new()
+  methodology <- ProbBasedMethodology$new()
+  metrics <- c("MCC", "PPV")
+
+  voting <- CombinedVoting$new(voting.schemes = voting.schemes,
+                               combined.metrics = combined.metrics,
+                               methodology = methodology,
+                               metrics = c("MCC", "PPV"))
+
+  testthat::expect_equal(voting$getMethodology(), methodology)
 })
 
 testthat::test_that("CombinedVoting: getFinalPred function works", {
@@ -128,4 +168,31 @@ testthat::test_that("CombinedVoting: execute function checks parameter type", {
                                         verbose = FALSE),
                          "[CombinedVoting][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
+
+  voting <- CombinedVoting$new(voting.schemes = voting.schemes,
+                               combined.metrics = combined.metrics,
+                               methodology = methodology,
+                               metrics = c("WRONG1", "WRONG2"))
+
+  clusterPrediction <- ClusterPredictions$new(class.values = c(1,0,1,1),
+                                              positive.class = 1)
+
+  model <- readRDS(file.path("resourceFiles",
+                             "testPrediction",
+                             "model.classProbsTrue.rds"))
+  feature.id <- NULL
+
+  prediction <- Prediction$new(model = model,
+                               feature.id = feature.id)
+
+  clusterPrediction$add(prediction = prediction)
+
+  predictions <- list(clusterPrediction, clusterPrediction)
+  names(predictions) <- c("MCC", "PPV")
+
+  testthat::expect_error(voting$execute(predictions = predictions,
+                                        verbose = FALSE),
+                         "[CombinedVoting][FATAL] Metrics are incorrect. Must be: [MCC, PPV]. Aborting...",
+                         fixed = TRUE)
+
 })

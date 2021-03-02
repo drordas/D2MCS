@@ -151,7 +151,7 @@ CombinedVoting <- R6::R6Class(
       }
 
       if (!any(self$getMetrics() %in% names(predictions))) {
-        stop("[", class(self)[1], "][FATAL] metrics are incorrect. ",
+        stop("[", class(self)[1], "][FATAL] Metrics are incorrect. ",
              "Must be: [", paste(names(predictions), collapse = ", "),
              "]. Aborting...")
       }
