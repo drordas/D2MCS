@@ -7,6 +7,8 @@
 #' @keywords internal methods error utilities misc
 #'
 #' @import R6
+#'
+#' @export ExecutedModels
 
 ExecutedModels <- R6::R6Class(
   classname = "ExecutedModels",
@@ -95,7 +97,8 @@ ExecutedModels <- R6::R6Class(
         private$models <- rbind(private$models,
                                 data.frame(model = model$getName(),
                                            performance = model$getPerformance(),
-                                           exec.time = model$getExecutionTime()))
+                                           exec.time = model$getExecutionTime(),
+                                           row.names = NULL))
 
         if (isTRUE(keep.best)) { # SAVE ONLY BEST MODELS. REMOVE WORST
 
@@ -115,7 +118,9 @@ ExecutedModels <- R6::R6Class(
                                        train = model$getTrainedModel())
             model$save()
           }
-        } else { model$save() }
+        } else {
+          model$save()
+        }
       }
     },
     #'
@@ -147,7 +152,7 @@ ExecutedModels <- R6::R6Class(
     #' executed models into a hidden file.
     #'
     save = function() {
-      if (nrow(private$models) > 0) {
+      if (!is.null(private$models) && nrow(private$models) > 0) {
         write.table(private$models, file = file.path(private$dir.path, ".executed"),
                     append = FALSE, sep = ",", row.names = FALSE)
       } else {
