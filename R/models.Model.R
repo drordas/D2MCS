@@ -9,6 +9,8 @@
 #'
 #' @import R6
 #'
+#' @export Model
+#'
 Model <- R6::R6Class(
   classname = "Model",
   portable = TRUE,
@@ -47,7 +49,9 @@ Model <- R6::R6Class(
         private$model.train <- readRDS(private$RDS.path)
 
         if (is.null(private$model.train) ||
-            any(sapply(private$model.train, is.null))) {
+            any(sapply(private$model.train, is.null)) ||
+            !inherits(private$model.train, "list") ||
+            length(private$model.train) != 5) {
           message("[", class(self)[1], "][ERROR] Unable to load trained model. ",
                   "Task not performed")
         } else {
@@ -138,7 +142,7 @@ Model <- R6::R6Class(
         valid.metrics <- trFunction$getMeasures()
         if (any(is.null(metric), !(metric %in% valid.metrics))) {
           stop("[", class(self)[1], "][FATAL][", self$getName(), "] ",
-               "Metric is not defined or unavailable ",
+               "Metric is not defined or unavailable. ",
                "Must be a [", paste(valid.metrics, collapse = ", "), "] type. ",
                "Aborting...")
         }
@@ -200,10 +204,11 @@ Model <- R6::R6Class(
     #' @return A \link{numeric} vector with length 1.
     #'
     getExecutionTime = function() {
-      if (is.null(private$model.train) || is.null(private$model.train))
+      if (!self$isTrained()) {
         message("[", class(self)[1], "][WARNING] Model '", private$model.info$name,
                 "' is not trained. Task not performed")
-      private$model.train$exec.time
+        0.0
+      } else { private$model.train$exec.time }
     },
     #'
     #' @description The function obtains the performance achieved by the model
@@ -224,7 +229,7 @@ Model <- R6::R6Class(
           model.result[best(model.result, metric = metric, maximize = TRUE), ][[metric]]
         } else {
           stop("[", class(self)[1], "][FATAL] Metric is not defined or unavailable. ",
-               "Must be a [", paste(self$getValidMetrics(), collapse = ", "), "] type. ",
+               "Must be a [", paste(model.result$perfNames, collapse = ", "), "] type. ",
                "Aborting...")
         }
       } else {
@@ -243,7 +248,7 @@ Model <- R6::R6Class(
     #' @return A \link{list} object with the configuration parameters.
     #'
     getConfiguration = function() {
-      if (!is.null(private$model.train$model.data)) {
+      if (self$isTrained()) {
         private$model.train$model.data$bestTune
       } else {
         message("[", class(self)[1], "][WARNING] Model '", private$model.info$name,
@@ -266,11 +271,11 @@ Model <- R6::R6Class(
       else {
         if (file.exists(private$RDS.path)) {
           if (replace) {
-            message("[", class(self)[1], "][WARNING][", private$method,
+            message("[", class(self)[1], "][WARNING][", private$model.info$name,
                     "] Model already exists. Replacing previous model")
             saveRDS (object = private$model.train, file = private$RDS.path)
             message("[", class(self)[1], "][INFO][", private$model.info$name,
-                    "] Model succesfully saved at:", private$RDS.path)
+                    "] Model succesfully saved at: ", private$RDS.path)
           } else {
             message("[", class(self)[1], "][INFO][", private$model.info$name,
                     "] Model already exists. Model not saved")
