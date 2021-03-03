@@ -130,7 +130,7 @@ ClassWeightedVoting <- R6::R6Class(
                                        self$getWeights()[which(raw.pred[row, ] == winner.class)])
           final.prob <- rbind(final.prob, data.frame(winner.prob, 1 - winner.prob))
 
-          if (identical(winner.class, predictions$getPositiveClass()) &&
+          if (winner.class == predictions$getPositiveClass() &&
                winner.prob < self$getCutoff()) {
             winner.class <- setdiff(predictions$getClassValues(),
                                     predictions$getPositiveClass())

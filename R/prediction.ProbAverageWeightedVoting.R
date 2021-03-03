@@ -1,6 +1,6 @@
 #' @title Implementation of Probabilistic Average Weighted voting.
 #'
-#' @description Computes the final prediction by perfoming the weighted mean of
+#' @description Computes the final prediction by performing the weighted mean of
 #' the probability achieved by each cluster prediction. By default, weight
 #' values are consistent with the performance value achieved by the best M.L.
 #' model on each cluster.
@@ -26,14 +26,28 @@ ProbAverageWeightedVoting <- R6::R6Class(
     #' @param cutoff A \link{character} vector defining the minimum probability
     #' used to perform a positive classification. If is not defined, 0.5 will be
     #' used as default value.
+    #' @param class.tie A \link{character} used to define the target class value
+    #' used when a tie is found. If \link{NULL} positive class value will be
+    #' assigned.
     #' @param weights A \link{numeric} vector with the weights of each cluster.
     #' If \link{NULL} performance achieved during training will be used as
     #' default.
     #'
-    initialize = function(cutoff = 0.5, weights = NULL) {
+    initialize = function(cutoff = 0.5, class.tie = NULL, weights = NULL) {
+      if (all(!is.null(class.tie), !is.character(class.tie), !is.numeric(class.tie))) {
+        stop("[", class(self)[1], "][FATAL] Invalid class tie value. Aborting...")
+      }
+
       super$initialize(cutoff = cutoff)
+      private$class.tie <- class.tie
       private$weights <- weights
     },
+    #'
+    #' @description The function gets the class value assigned to solve ties.
+    #'
+    #' @return A \link{character} vector of length 1.
+    #'
+    getClassTie = function() { private$class.tie },
     #'
     #' @description The function returns the value of the majority class.
     #'
@@ -129,7 +143,7 @@ ProbAverageWeightedVoting <- R6::R6Class(
         max.col <- which(row == max(row))
         if (length(max.col) == 1) {
           max.value <- names(row)[max.col]
-          if (identical(max.value, predictions$getPositiveClass()) &&
+          if (max.value == predictions$getPositiveClass() &&
               row[max.col] < self$getCutoff()) {
             entry <- setdiff(predictions$getClassValues(),
                              predictions$getPositiveClass())
@@ -156,6 +170,7 @@ ProbAverageWeightedVoting <- R6::R6Class(
     }
   ),
   private = list(
-    weights = NULL
+    weights = NULL,
+    class.tie = NULL
   )
 )

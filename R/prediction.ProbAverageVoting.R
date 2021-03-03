@@ -107,7 +107,7 @@ ProbAverageVoting <- R6::R6Class(
         max.col <- which(row == max(row))
         if (length(max.col) == 1) {
           max.value <- names(row)[max.col]
-          if (identical(max.value, predictions$getPositiveClass()) &&
+          if (max.value == predictions$getPositiveClass() &&
               row[max.col] < self$getCutoff()) {
             entry <- setdiff(predictions$getClassValues(),
                              predictions$getPositiveClass())

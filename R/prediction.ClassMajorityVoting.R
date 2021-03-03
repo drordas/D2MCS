@@ -122,9 +122,9 @@ ClassMajorityVoting <- R6::R6Class(
         } else { entry <- max.values }
 
         mean.row <- mean(as.numeric(prob.pred[row, which(raw.pred[row, ] == entry)]))
-        if (identical(entry, predictions$getPositiveClass()) &&
-            mean.row < self$getCutoff())
-        {
+
+        if (entry == predictions$getPositiveClass() &&
+            mean.row < self$getCutoff()) {
           entry <- setdiff(predictions$getClassValues(), predictions$getPositiveClass())
         }
 

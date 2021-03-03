@@ -1,4 +1,4 @@
-testthat::test_that("ProbAverageVoting: initialize", {
+testthat::test_that("ProbAverageVoting: initialize function works", {
 
   cutoff <- 0.5
   class.tie.character <- "Positive"
@@ -24,7 +24,7 @@ testthat::test_that("ProbAverageVoting: initialize", {
                       "ProbAverageVoting")
 })
 
-testthat::test_that("ProbAverageVoting: initialize checks parameter type", {
+testthat::test_that("ProbAverageVoting: initialize function checks parameter type", {
 
   cutoff <- 0.5
   class.tie <- list()
@@ -59,6 +59,74 @@ testthat::test_that("ProbAverageVoting: getClassTie function works", {
                                                class.tie = class.tie,
                                                majority.class = majority.class)$getClassTie(),
                          "Positive")
+})
+
+testthat::test_that("ProbAverageVoting: execute function works", {
+
+  cutoff <- 0.5
+  class.tie <- "1"
+  majority.class <- "1"
+
+  voting <- ProbAverageVoting$new(cutoff = cutoff,
+                                  class.tie = class.tie,
+                                  majority.class = majority.class)
+
+  predictions <- readRDS(file.path("resourceFiles",
+                                   "testVotings",
+                                   "predictions.rds"))
+
+  verbose <- TRUE
+  testthat::expect_message(voting$execute(predictions = predictions,
+                                          verbose = verbose),
+                           "[ProbAverageVoting][INFO] Performing voting using '1' as tie solving",
+                           fixed = TRUE)
+})
+
+testthat::test_that("ProbAverageVoting: execute function works (tie)", {
+
+  cutoff <- 0.5
+  class.tie <- "1"
+  majority.class <- "1"
+
+  voting <- ProbAverageVoting$new(cutoff = cutoff,
+                                  class.tie = class.tie,
+                                  majority.class = majority.class)
+
+  predictions <- readRDS(file.path("resourceFiles",
+                                   "testVotings",
+                                   "predictions.rds"))
+
+  pred <- predictions$.__enclos_env__$private$pred[1]
+  pred[[1]]$.__enclos_env__$private$results$prob[1, ] <- c(0.5, 0.5)
+  predictions$.__enclos_env__$private$pred <- pred
+
+  verbose <- TRUE
+  testthat::expect_message(voting$execute(predictions = predictions,
+                                          verbose = verbose),
+                           "[ProbAverageVoting][INFO] Tie solver found. Resolving tie using '1'.",
+                           fixed = TRUE)
+
+  cutoff <- 0.5
+  class.tie <- NULL
+  majority.class <- "1"
+
+  voting <- ProbAverageVoting$new(cutoff = cutoff,
+                                  class.tie = class.tie,
+                                  majority.class = majority.class)
+
+  predictions <- readRDS(file.path("resourceFiles",
+                                   "testVotings",
+                                   "predictions.rds"))
+
+  pred <- predictions$.__enclos_env__$private$pred[1]
+  pred[[1]]$.__enclos_env__$private$results$prob[1, ] <- c(0.5, 0.5)
+  predictions$.__enclos_env__$private$pred <- pred
+
+  verbose <- TRUE
+  testthat::expect_message(voting$execute(predictions = predictions,
+                                          verbose = verbose),
+                           "[ProbAverageVoting][INFO] Tie solver not found. Resolving tie using first occurrence.",
+                           fixed = TRUE)
 })
 
 testthat::test_that("ProbAverageVoting: execute function checks parameter type", {

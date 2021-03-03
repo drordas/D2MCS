@@ -4,7 +4,7 @@
 \alias{ProbAverageWeightedVoting}
 \title{Implementation of Probabilistic Average Weighted voting.}
 \description{
-Computes the final prediction by perfoming the weighted mean of
+Computes the final prediction by performing the weighted mean of
 the probability achieved by each cluster prediction. By default, weight
 values are consistent with the performance value achieved by the best M.L.
 model on each cluster.
@@ -24,6 +24,7 @@ model on each cluster.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{ProbAverageWeightedVoting$new()}}
+\item \href{#method-getClassTie}{\code{ProbAverageWeightedVoting$getClassTie()}}
 \item \href{#method-getWeights}{\code{ProbAverageWeightedVoting$getWeights()}}
 \item \href{#method-setWeights}{\code{ProbAverageWeightedVoting$setWeights()}}
 \item \href{#method-execute}{\code{ProbAverageWeightedVoting$execute()}}
@@ -44,7 +45,7 @@ model on each cluster.
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProbAverageWeightedVoting$new(cutoff = 0.5, weights = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ProbAverageWeightedVoting$new(cutoff = 0.5, class.tie = NULL, weights = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -54,11 +55,28 @@ Method for initializing the object arguments during runtime.
 used to perform a positive classification. If is not defined, 0.5 will be
 used as default value.}
 
+\item{\code{class.tie}}{A \link{character} used to define the target class value
+used when a tie is found. If \link{NULL} positive class value will be
+assigned.}
+
 \item{\code{weights}}{A \link{numeric} vector with the weights of each cluster.
 If \link{NULL} performance achieved during training will be used as
 default.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getClassTie"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassTie}{}}}
+\subsection{Method \code{getClassTie()}}{
+The function gets the class value assigned to solve ties.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ProbAverageWeightedVoting$getClassTie()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+A \link{character} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
