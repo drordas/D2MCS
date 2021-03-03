@@ -154,9 +154,6 @@ ClassificationOutput <- R6::R6Class(
         stop("[", class(self)[1], "][FATAL] Testset parameter must be defined ",
              "as 'Subset' type. Aborting...")
 
-      if (test.set$getNrow() == 0)
-        stop("[", class(self)[1], "][FATAL] Test set is empty. Aborting...")
-
       if (!is.list(measures) || !all(sapply(measures, inherits, "MeasureFunction"))) {
         stop("[", class(self)[1], "][FATAL] Measures should be a list comprised of ",
              "'MeasureFunction' objects. Aborting...")
@@ -174,7 +171,7 @@ ClassificationOutput <- R6::R6Class(
       if (!all(levels(real.values) %in% union(private$positive.class,
                                               private$negative.class))) {
         stop("[", class(self)[1], "][FATAL] Predicted values and Real values ",
-             "missmatch, Aborting...")
+             "missmatch. Aborting...")
       }
 
       if (!is.character(cutoff.values)) cutoff.values <- as.character(cutoff.values)

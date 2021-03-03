@@ -83,6 +83,28 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                          "[ClassificationOutput][FATAL] Testset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
+
+  subset <- Subset$new(dataset = data.frame(c(2, 1), c(2, 1)),
+                       class.index = 1,
+                       class.values = as.factor(c(2, 1)),
+                       positive.class = 1)
+
+  testthat::expect_error(classificationOutput$getPerformances(test.set = subset,
+                                                              measures = measures,
+                                                              voting.names = "ClassWeightedVoting",
+                                                              metric.names = "MCC",
+                                                              cutoff.values = 0.7),
+                         "[ClassificationOutput][FATAL] Predicted values and Real values missmatch. Aborting...",
+                         fixed = TRUE)
+
+  testthat::expect_error(classificationOutput$getPerformances(test.set = NULL,
+                                                              measures = measures,
+                                                              voting.names = "ClassWeightedVoting",
+                                                              metric.names = "MCC",
+                                                              cutoff.values = 0.7),
+                         "[ClassificationOutput][FATAL] Testset parameter must be defined as 'Subset' type. Aborting...",
+                         fixed = TRUE)
+
   testthat::expect_error(classificationOutput$getPerformances(test.set = test.set,
                                                               measures = NULL,
                                                               voting.names = "ClassWeightedVoting",
@@ -129,6 +151,12 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                          fixed = TRUE)
 })
 
+testthat::setup({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
+})
+
 testthat::test_that("ClassificationOutput: savePerformances function works", {
   classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
@@ -171,6 +199,18 @@ testthat::test_that("ClassificationOutput: savePerformances function checks para
                                                                measures = measures),
                          "[ClassificationOutput][FATAL] Save folder not set. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
+})
+
+testthat::setup({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("ClassificationOutput: plotPerformances function works", {
@@ -218,6 +258,12 @@ testthat::test_that("ClassificationOutput: plotPerformances function checks para
                          fixed = TRUE)
 })
 
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
+})
+
 testthat::test_that("ClassificationOutput: getPredictions function works", {
   classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
@@ -254,8 +300,7 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                                                                target = NULL,
                                                                filter = filter),
                            "[ClassificationOutput][WARNING] Target value does not match with actual target values: '1, 0'. Assuming '1' as default value",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(classificationOutput$getPredictions(voting.names = voting.names,
                                                                metric.names = metric.names,
@@ -264,8 +309,7 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                                                                target = target,
                                                                filter = NULL),
                            "[ClassificationOutput][WARNING] Filter parameter must be defined as 'logical' type. Assuming 'FALSE' as default value",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(classificationOutput$getPredictions(voting.names = voting.names,
                                                                metric.names = metric.names,
@@ -274,8 +318,7 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                                                                target = target,
                                                                filter = filter),
                            "[ClassificationOutput][WARNING] Defined Cutoffs are not available. Using all available cutoffs",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(classificationOutput$getPredictions(voting.names = voting.names,
                                                                metric.names = "wrong",
@@ -284,8 +327,7 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                                                                target = target,
                                                                filter = filter),
                            "[ClassificationOutput][WARNING] Defined Metrics are not available. Using all available metrics",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(classificationOutput$getPredictions(voting.names = "wrong",
                                                                metric.names = metric.names,
@@ -294,8 +336,13 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                                                                target = target,
                                                                filter = filter),
                            "[ClassificationOutput][WARNING] Defined Votings are not available. Using all available votings",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
+})
+
+testthat::setup({
+  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
+    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("ClassificationOutput: savePredictions function works", {
@@ -330,8 +377,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                                                 target = target,
                                                                 filter = filter),
                            "[ClassificationOutput][INFO] Folder already exists",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
@@ -381,8 +427,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                                                 target = target,
                                                                 filter = filter),
                            "[ClassificationOutput][WARNING] Defined cutoffs are not available. Using all cutoffs",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(classificationOutput$savePredictions(dir.path = dir.path,
                                                                 voting.names = voting.names,
@@ -392,8 +437,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                                                 target = target,
                                                                 filter = filter),
                            "[ClassificationOutput][WARNING] Defined metrics are not available. Using all metrics",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(classificationOutput$savePredictions(dir.path = dir.path,
                                                                 voting.names = "wrong",
@@ -403,8 +447,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                                                 target = target,
                                                                 filter = filter),
                            "[ClassificationOutput][WARNING] Defined votings are not available. Using all votings",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 })
 
 testthat::teardown({
@@ -419,7 +462,6 @@ testthat::test_that("ClassificationOutput: savePredictions function checks param
   classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
                                                    models = classificationOutputObject$.__enclos_env__$private$trained.models)
 
-  dir.path <- file.path("resourceFiles", "ClassificationOutput")
   voting.names <- NULL
   metric.names <- NULL
   cutoff.values <- NULL
