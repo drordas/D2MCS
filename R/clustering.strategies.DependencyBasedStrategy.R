@@ -220,7 +220,7 @@ DependencyBasedStrategy <- R6::R6Class(
           if (length(private$not.clus.fea[[2]]) > 0) {
             message("[", class(self)[1], "][WARNING] ",
                     length(private$not.clus.fea[[2]]), " features were incompatible with '",
-                    class(real.heuristic)[1], "' heuristic.")
+                    class(real.heuristic)[1], "' heuristic")
             private$not.distribution[[2]] <- data.frame(cluster = 1,
                                                         dist = I(list(private$not.clus.fea[[2]])))
           }
@@ -321,15 +321,17 @@ DependencyBasedStrategy <- R6::R6Class(
       distribution <- append(distribution, c(dist.binary, dist.real))
 
       if (isTRUE(include.unclustered)) {
-        if (!is.null(private$not.distribution[[1]]) && nrow(private$not.distribution[[1]]) > 0)
+        if (!is.null(private$not.distribution[[1]]) && nrow(private$not.distribution[[1]]) > 0) {
           distribution <- append(distribution, lapply(private$not.distribution[[1]]$dist,
                                                       function(x) {x}))
-        if (!is.null(private$not.distribution[[2]]) && nrow(private$not.distribution[[2]]) > 0)
+        }
+        if (!is.null(private$not.distribution[[2]]) && nrow(private$not.distribution[[2]]) > 0) {
           distribution <- append(distribution, lapply(private$not.distribution[[2]]$dist,
                                                       function(x) {x}))
+        }
       }
 
-      return(distribution)
+      distribution
     },
     #'
     #' @description The function is used to create a \code{\link{Trainset}}
@@ -463,20 +465,20 @@ DependencyBasedStrategy <- R6::R6Class(
       if (is.null(num.clusters)) {
         message("[", class(self)[1], "][WARNING] Number of clusters not defined. ",
                  "Saving all cluster configurations")
-        num.clusters <- list(list(1:max(private$all.distribution[[1]]$k)),
-                             list(1:max(private$all.distribution[[2]]$k)))
+        num.clusters <- list(list(2:max(private$all.distribution[[1]]$k)),
+                             list(2:max(private$all.distribution[[2]]$k)))
       } else {
         if (!(is.list(num.clusters) && length(num.clusters) >= 0)) {
           message("[", class(self)[1], "][WARNING] Type of num.clusters not valid ",
                    "(must be NULL or list type). Saving all cluster configurations")
-          num.clusters <- list(list(1:max(private$all.distribution[[1]]$k)),
-                               list(1:max(private$all.distribution[[2]]$k)))
+          num.clusters <- list(list(2:max(private$all.distribution[[1]]$k)),
+                               list(2:max(private$all.distribution[[2]]$k)))
         } else {
           if (is.null(num.clusters[[1]]) || !is.list(num.clusters[[1]])) {
-            num.clusters[[1]] <- list(1:max(private$all.distribution[[1]]$k))
+            num.clusters[[1]] <- list(2:max(private$all.distribution[[1]]$k))
           }
           if ((length(num.clusters) >= 1 && (!is.list(num.clusters[[2]]) || is.null(num.clusters[[2]])))) {
-            num.clusters[[2]] <- list(1:max(private$all.distribution[[2]]$k))
+            num.clusters[[2]] <- list(2:max(private$all.distribution[[2]]$k))
           }
         }
       }
