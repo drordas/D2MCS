@@ -86,8 +86,13 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     #'
     maxNumClusters = function(...) {
       features <- eval.parent(substitute(alist(...))[["features"]])
-      max <- max(lengths(features))
-      if (is.infinite(max)) { 3 } else { max }
+      lengths <- lengths(features)
+      if (length(lengths) == 0) {
+        max <- NULL
+      } else {
+        max <- max(lengths)
+      }
+      if (is.null(max)) { 3 } else { max }
     },
     #'
     #' @description Gets the cutoff to consider the dependency between binary
