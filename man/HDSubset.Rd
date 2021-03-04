@@ -27,7 +27,6 @@ Use \code{\link{HDDataset}} to ensure the creation of a valid
 \item \href{#method-getNcol}{\code{HDSubset$getNcol()}}
 \item \href{#method-getID}{\code{HDSubset$getID()}}
 \item \href{#method-getIterator}{\code{HDSubset$getIterator()}}
-\item \href{#method-finalize}{\code{HDSubset$finalize()}}
 \item \href{#method-isBlinded}{\code{HDSubset$isBlinded()}}
 \item \href{#method-clone}{\code{HDSubset$clone()}}
 }
@@ -139,17 +138,6 @@ needed.}
 A \code{\link{FIterator}} object to transverse through
 \code{\link{HDSubset}} instances
 }
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-finalize"></a>}}
-\if{latex}{\out{\hypertarget{method-finalize}{}}}
-\subsection{Method \code{finalize()}}{
-Releases the resources used to manage high dimensional
-datasets (such as file handlers).
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{HDSubset$finalize()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-isBlinded"></a>}}

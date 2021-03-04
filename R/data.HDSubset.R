@@ -45,7 +45,6 @@ HDSubset <- R6::R6Class(
              "Aborting...")
       }
       private$chunk.size <- chunk.size
-      private$conection <- NULL
       private$file.path <- file.path
       private$feature.names <- names(feature.names)
       private$index <- 0
@@ -98,7 +97,7 @@ HDSubset <- R6::R6Class(
       }
 
       if (!is.logical(verbose)) {
-        message("[", class(self)[1], "][WARNING] Verbose type is not valid ",
+        message("[", class(self)[1], "][WARNING] Verbose type is not valid. ",
                 "Assuming 'FALSE' as default value")
         verbose <- FALSE
       }
@@ -107,15 +106,6 @@ HDSubset <- R6::R6Class(
                         feature.names = private$feature.names,
                         start = private$start.at, sep = private$sep)
       FIterator$new(it.params, chunk.size, verbose = verbose)
-    },
-    #'
-    #' @description Releases the resources used to manage high dimensional
-    #' datasets (such as file handlers).
-    #'
-    finalize = function() {
-      if (!is.null(private$conetion))
-        close(private$conection)
-      private$conection <- NULL
     },
     #'
     #' @description Checks if the subset contains a target class.
@@ -128,7 +118,6 @@ HDSubset <- R6::R6Class(
   private = list(
     feature.names = NULL,
     file.path = NULL,
-    conection = NULL,
     index = 0,
     start.at = 0,
     sep = 0,
