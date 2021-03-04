@@ -91,6 +91,12 @@ testthat::test_that("TrainOutput: savePerformance function checks parameter type
                          fixed = TRUE)
 })
 
+testthat::setup({
+  if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
+    unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
+  }
+})
+
 testthat::test_that("TrainOutput: plot function works", {
   trainOutputObject <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
 
