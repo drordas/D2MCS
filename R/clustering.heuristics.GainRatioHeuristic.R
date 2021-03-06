@@ -2,7 +2,7 @@
 #'
 #' @description Performs the feature-clustering using entropy-based filters.
 #'
-#' @seealso \code{\link{Dataset}}, \code{\link[FSelector]{gain.ratio}}
+#' @seealso \code{\link{Dataset}}, \code{\link{gain.ratio}}
 #'
 #' @keywords cluster manip
 #'

@@ -8,10 +8,14 @@ testthat::test_that("SimpleStrategy: initialize", {
                       "SimpleStrategy")
 })
 
-testthat::setup(dir.create(file.path("resourceFiles", "outputs")))
+testthat::setup({
+  if (!dir.exists(file.path("resourceFiles", "outputs"))) {
+    dir.create(file.path("resourceFiles", "outputs"))
+  }
+})
 
 testthat::test_that("SimpleStrategy works", {
-
+  testthat::skip_if_not_installed("grDevices")
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   heuristic <- ChiSquareHeuristic$new()
   configuration <- StrategyConfiguration$new()
@@ -55,9 +59,14 @@ testthat::test_that("SimpleStrategy works", {
                          "[SimpleStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_equal(c("gg", "ggplot"), class(strategy$plot()))
+  grDevices::pdf(NULL)
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "SimpleGenericClusteringStrategyPlot"),
+  testthat::expect_equal(c("gg", "ggplot"),
+                         class(strategy$plot(dir.path = NULL,
+                                             file.name = NULL)))
+
+  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"),
+                                         file.name = "SimpleGenericClusteringStrategyPlot"),
                            "[SimpleStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
@@ -94,9 +103,5 @@ testthat::test_that("SimpleStrategy works", {
 testthat::teardown({
   if (dir.exists(file.path("resourceFiles", "outputs"))) {
     unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
-  }
-
-  if (file.exists("Rplots.pdf")) {
-    file.remove("Rplots.pdf")
   }
 })

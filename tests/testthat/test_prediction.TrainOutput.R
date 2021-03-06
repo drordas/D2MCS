@@ -98,6 +98,7 @@ testthat::setup({
 })
 
 testthat::test_that("TrainOutput: plot function works", {
+  testthat::skip_if_not_installed("grDevices")
   trainOutputObject <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
 
   trainOutput <- TrainOutput$new(models = trainOutputObject$.__enclos_env__$private$models,
@@ -105,6 +106,7 @@ testthat::test_that("TrainOutput: plot function works", {
                                  positive.class = trainOutputObject$.__enclos_env__$private$positive.class)
 
   dir.path <- file.path("resourceFiles", "TrainOutput")
+  grDevices::pdf(NULL)
   trainOutput$plot(dir.path = dir.path)
   testthat::expect_true(file.exists(file.path(dir.path, "Performance_Train_Plot_PPV.pdf")))
 

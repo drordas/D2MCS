@@ -115,7 +115,7 @@ DDMCS <- R6::R6Class(
     #' @param socket.type A \link{character} value defining the type of socket
     #' used to communicate the workers. The default type, \code{"PSOCK"}, calls
     #' makePSOCKcluster. Type \code{"FORK"} calls makeForkCluster. For more
-    #' information see \code{\link[parallel]{makeCluster}}
+    #' information see \code{\link{makeCluster}}
     #' @param outfile Where to direct the stdout and stderr connection output
     #' from the workers. "" indicates no redirection (which may only be useful
     #' for workers on the local machine). Defaults to '/dev/null'
@@ -216,12 +216,12 @@ DDMCS <- R6::R6Class(
     #' account for training.
     #' @param ex.classifiers A \link{character} vector containing the name of
     #' the M.L. models used in training stage. See
-    #' \code{\link[caret]{getModelInfo}} and
+    #' \code{\link{getModelInfo}} and
     #' \url{https://topepo.github.io/caret/available-models.html} for more
     #' information about all the available models.
     #' @param ig.classifiers A \link{character} vector containing the name of
     #' the M.L. that should be ignored when performing the training stage. See
-    #' \code{\link[caret]{getModelInfo}} and
+    #' \code{\link{getModelInfo}} and
     #' \url{https://topepo.github.io/caret/available-models.html} for more
     #' information about all the available models.
     #' @param metrics A \link{character} vector containing the metrics used to

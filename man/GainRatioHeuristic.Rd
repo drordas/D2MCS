@@ -7,7 +7,7 @@
 Performs the feature-clustering using entropy-based filters.
 }
 \seealso{
-\code{\link{Dataset}}, \code{\link[FSelector]{gain.ratio}}
+\code{\link{Dataset}}, \code{\link{gain.ratio}}
 }
 \keyword{cluster}
 \keyword{manip}

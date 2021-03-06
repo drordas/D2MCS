@@ -210,7 +210,7 @@ testthat::setup({
 })
 
 testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method", {
-
+  testthat::skip_if_not_installed("grDevices")
   subset.cluster <- readRDS(file.path("resourceFiles",
                                       "data",
                                       "subset.rds"))
@@ -265,6 +265,8 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
   testthat::expect_error(strategy$createTrain(subset = NULL),
                          "[DependencyBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
+
+  grDevices::pdf(NULL)
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
 
@@ -363,7 +365,7 @@ testthat::setup({
 })
 
 testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method", {
-
+  testthat::skip_if_not_installed("grDevices")
   subset.cluster <- readRDS(file.path("resourceFiles",
                                       "data",
                                       "subset.rds"))
@@ -404,6 +406,8 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
   testthat::expect_error(strategy$createTrain(subset = NULL),
                          "[DependencyBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
+
+  grDevices::pdf(NULL)
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
 
@@ -493,10 +497,6 @@ testthat::teardown({
                      "outputsltdc"),
            recursive = TRUE,
            force = TRUE)
-  }
-
-  if (file.exists(file.path("Rplots.pdf"))) {
-    file.remove(file.path("Rplots.pdf"))
   }
 })
 

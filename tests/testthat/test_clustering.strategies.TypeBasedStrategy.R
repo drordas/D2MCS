@@ -70,7 +70,7 @@ testthat::setup({
 })
 
 testthat::test_that("TypeBasedStrategy works", {
-
+  testthat::skip_if_not_installed("grDevices")
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
@@ -96,6 +96,8 @@ testthat::test_that("TypeBasedStrategy works", {
   testthat::expect_message(suppressWarnings(strategyNoBinary$execute()),
                            "[TypeBasedStrategy][INFO] TypeBasedStrategy has not heuristic to binary features. Assuming one cluster by default",
                            fixed = TRUE)
+
+  grDevices::pdf(NULL)
 
   testthat::expect_equal(c("gg", "ggplot"), class(strategyNoBinary$plot()))
 
@@ -206,10 +208,6 @@ testthat::test_that("TypeBasedStrategy works", {
 testthat::teardown({
   if (dir.exists(file.path("resourceFiles", "outputs"))) {
     unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
-  }
-
-  if (file.exists("Rplots.pdf")) {
-    file.remove("Rplots.pdf")
   }
 })
 
