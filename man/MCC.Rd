@@ -13,12 +13,10 @@ observed and predicted binary classifications; it returns a value between -1
 and +1.
 }
 \details{
-\deqn{MCC = \frac{TP\timesTN-FP\timesFN}{\sqrt{(TP+FP)\times(TP+FN)\times(TN+FP)\times(TN+FN)}}}
+\deqn{MCC = (TP × (TN - FP) × FN)/(\sqrt{(TP + FP) × (TP + FN) × (TN + FP) × (TN + FN)})}
 }
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
-\code{\link{ConfMatrix}}
-
 \code{\link{ConfMatrix}}
 }
 \keyword{classif}

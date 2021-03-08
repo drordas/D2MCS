@@ -9,8 +9,6 @@ bi-class problem.
 }
 \seealso{
 \code{\link{GenericPlot}}
-
-\code{\link{GenericPlot}}
 }
 \keyword{color}
 \keyword{device}

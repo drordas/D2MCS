@@ -10,8 +10,6 @@ final M.L. model.
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 \code{\link{ConfMatrix}}
-
-\code{\link{ConfMatrix}}
 }
 \keyword{classif}
 \keyword{math}

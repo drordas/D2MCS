@@ -8,12 +8,10 @@ Positive Predictive Values are the proportions of positive
 results in statistics and diagnostic tests that are true positive results.
 }
 \details{
-\deqn{PPV = \frac{TP}{TP+FP}}
+\deqn{PPV = TP / (TP + FP)}
 }
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
-\code{\link{ConfMatrix}}
-
 \code{\link{ConfMatrix}}
 }
 \keyword{classif}

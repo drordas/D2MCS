@@ -3,8 +3,8 @@
 #' @description Computes the ratio of number of correct predictions to the total
 #' number of input samples.
 #'
-#' @details \deqn{Accuracy=\frac{Number Correct Predictions}{Total Number of
-#' Predictions}}
+#' @details \deqn{Accuracy = (Number Correct Predictions) / (Total Number of
+#' Predictions)}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}.
@@ -39,8 +39,6 @@ Accuracy <- R6::R6Class(
     #'
     #' @details This function is automatically invoke by the
     #' \code{\link{ClassificationOutput}} object.
-    #'
-    #' @seealso \code{\link{ConfMatrix}}
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
     #' occurred.

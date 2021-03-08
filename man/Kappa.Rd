@@ -8,12 +8,12 @@ Cohen's Kappa measures the agreement between two raters who each
 classify N items into C mutually exclusive categories.
 }
 \details{
-\deqn{\kappa \equiv \frac{p_o-p_e}{1-p_e} = 1 - \frac{1-p_0}{1-p_e}}
+\deqn{\kappa \hspace{0.1cm} is \hspace{0.1cm} equivalent
+\hspace{0.1cm} to \hspace{0.1cm} (p_o - p_e) / (1 - p_e) = 1 - (1 - p_0) /
+(1 - p_e)}
 }
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
-\code{\link{ConfMatrix}}
-
 \code{\link{ConfMatrix}}
 }
 \keyword{classif}

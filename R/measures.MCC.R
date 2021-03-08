@@ -8,7 +8,7 @@
 #' observed and predicted binary classifications; it returns a value between -1
 #' and +1.
 #'
-#' @details \deqn{MCC = \frac{TP\timesTN-FP\timesFN}{\sqrt{(TP+FP)\times(TP+FN)\times(TN+FP)\times(TN+FN)}}}
+#' @details \deqn{MCC = (TP × (TN - FP) × FN)/(\sqrt{(TP + FP) × (TP + FN) × (TN + FP) × (TN + FN)})}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}
@@ -43,8 +43,6 @@ MCC <- R6::R6Class(
     #'
     #' @details This function is automatically invoke by the
     #' \link{ClassificationOutput} object.
-    #'
-    #' @seealso \code{\link{ConfMatrix}}
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
     #' occurred.

@@ -8,12 +8,10 @@ Precision is the fraction of relevant instances among the
 retrieved instances
 }
 \details{
-\deqn{precision = \frac{TP}{TP+FP}}
+\deqn{precision = TP / (TP + FP)}
 }
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
-\code{\link{ConfMatrix}}
-
 \code{\link{ConfMatrix}}
 }
 \keyword{classif}

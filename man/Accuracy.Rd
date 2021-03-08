@@ -8,14 +8,12 @@ Computes the ratio of number of correct predictions to the total
 number of input samples.
 }
 \details{
-\deqn{Accuracy=\frac{Number Correct Predictions}{Total Number of
-Predictions}}
+\deqn{Accuracy = (Number Correct Predictions) / (Total Number of
+Predictions)}
 }
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 \code{\link{ConfMatrix}}.
-
-\code{\link{ConfMatrix}}
 }
 \keyword{classif}
 \keyword{math}

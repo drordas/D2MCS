@@ -3,7 +3,7 @@
 #' @description Positive Predictive Values are the proportions of positive
 #' results in statistics and diagnostic tests that are true positive results.
 #'
-#' @details \deqn{PPV = \frac{TP}{TP+FP}}
+#' @details \deqn{PPV = TP / (TP + FP)}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}
@@ -39,8 +39,6 @@ PPV <- R6::R6Class(
     #'
     #' @details This function is automatically invoke by the
     #' \link{ClassificationOutput} object.
-    #'
-    #' @seealso \code{\link{ConfMatrix}}
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
     #' occurred.

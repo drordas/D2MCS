@@ -26,8 +26,6 @@ BinaryPlot <- R6::R6Class(
     #'
     #' @param summary A \link{data.frame} comprising the elements to be plotted.
     #'
-    #' @seealso \code{\link{GenericPlot}}
-    #'
     #' @import ggplot2
     #'
     plot = function(summary) {

@@ -10,12 +10,10 @@ there will be another proportion of actual negative, which got predicted as
 positive and could be termed as false positives.
 }
 \details{
-\deqn{Specificity = \frac{(True Negative)}{(True Negative + False Positive)}}
+\deqn{Specificity = True Negative / (True Negative + False Positive)}
 }
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
-\code{\link{ConfMatrix}}
-
 \code{\link{ConfMatrix}}
 }
 \keyword{classif}

@@ -10,8 +10,6 @@ which the test result is negative. The value entered here must be non-negative.
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 \code{\link{ConfMatrix}}
-
-\code{\link{ConfMatrix}}
 }
 \keyword{classif}
 \keyword{math}

@@ -3,7 +3,7 @@
 #' @description Sensitivity is a measure of the proportion of actual positive
 #' cases that got predicted as positive (or true positive).
 #'
-#' @details \deqn{Sensitivity = \frac{(TP)}{(TP + FN)}}
+#' @details \deqn{Sensitivity = TP / (TP + FN)}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}
@@ -39,8 +39,6 @@ Sensitivity <- R6::R6Class(
     #'
     #' @details This function is automatically invoke by the
     #' \link{ClassificationOutput} object.
-    #'
-    #' @seealso \code{\link{ConfMatrix}}
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if
     #' an error occurred.

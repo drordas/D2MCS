@@ -3,7 +3,7 @@
 #' @description Precision is the fraction of relevant instances among the
 #' retrieved instances
 #'
-#' @details \deqn{precision = \frac{TP}{TP+FP}}
+#' @details \deqn{precision = TP / (TP + FP)}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}
@@ -38,8 +38,6 @@ Precision <- R6::R6Class(
     #'
     #' @details This function is automatically invoke by the
     #' \link{ClassificationOutput} object.
-    #'
-    #' @seealso \code{\link{ConfMatrix}}
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
     #' occurred.

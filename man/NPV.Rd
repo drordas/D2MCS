@@ -8,12 +8,10 @@ Negative Predictive Values are the proportions of negative
 results in statistics and diagnostic tests that are true negative results.
 }
 \details{
-\deqn{NPV=\frac{TN}{TN+FN}}
+\deqn{NPV = TN / (TN + FN)}
 }
 \seealso{
 \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
-\code{\link{ConfMatrix}}
-
 \code{\link{ConfMatrix}}
 }
 \keyword{classif}

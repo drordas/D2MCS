@@ -37,8 +37,6 @@ FN <- R6::R6Class(
     #' @details This function is automatically invoked by the
     #' \code{\link{ClassificationOutput}} framework.
     #'
-    #' @seealso \code{\link{ConfMatrix}}
-    #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
     #' occurred.
     #'

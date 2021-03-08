@@ -5,7 +5,7 @@
 #' there will be another proportion of actual negative, which got predicted as
 #' positive and could be termed as false positives.
 #'
-#' @details \deqn{Specificity = \frac{(True Negative)}{(True Negative + False Positive)}}
+#' @details \deqn{Specificity = True Negative / (True Negative + False Positive)}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}
@@ -40,8 +40,6 @@ Specificity <- R6::R6Class(
     #'
     #' @details This function is automatically invoke by the
     #' \code{\link{ClassificationOutput}} object.
-    #'
-    #' @seealso \code{\link{ConfMatrix}}
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
     #' occurred.

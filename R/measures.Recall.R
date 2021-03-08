@@ -3,7 +3,7 @@
 #' @description Recall (also known as sensitivity) is the fraction of the total
 #' amount of relevant instances that were actually retrieved.
 #'
-#' @details \deqn{recall = \frac{TP}{TP+FN}}
+#' @details \deqn{recall = TP / (TP + FN)}
 #'
 #' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
 #' \code{\link{ConfMatrix}}
@@ -38,8 +38,6 @@ Recall <- R6::R6Class(
     #'
     #' @details This function is automatically invoke by the
     #' \code{\link{ClassificationOutput}} object.
-    #'
-    #' @seealso \code{\link{ConfMatrix}}
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if
     #' an error occurred.
