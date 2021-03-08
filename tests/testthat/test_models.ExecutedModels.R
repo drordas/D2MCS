@@ -9,7 +9,7 @@ testthat::test_that("ExecutedModels: initialize function works", {
   testthat::expect_true(file.exists(file.path("resourceFiles",
                                               "testExecutedModels",
                                               "dirpathEmpty",
-                                              ".executed")))
+                                              "executed")))
 
   dir.path <- file.path("resourceFiles",
                         "testExecutedModels",

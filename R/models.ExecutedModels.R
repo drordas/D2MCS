@@ -27,13 +27,13 @@ ExecutedModels <- R6::R6Class(
         private$best.model <- NULL
       }
 
-      if (!file.exists(file.path(private$dir.path, ".executed")) ||
-          file.info(file.path(private$dir.path, ".executed"))$size <= 0) {
-        file.create(file.path(private$dir.path, ".executed"))
+      if (!file.exists(file.path(private$dir.path, "executed")) ||
+          file.info(file.path(private$dir.path, "executed"))$size <= 0) {
+        file.create(file.path(private$dir.path, "executed"))
         private$models <- NULL
         private$best.model <- NULL
       } else {
-        private$models <- read.csv(file = file.path(private$dir.path, ".executed"),
+        private$models <- read.csv(file = file.path(private$dir.path, "executed"),
                                     header = TRUE, stringsAsFactors = FALSE, sep = ",")
 
         best.perf <- private$models[max(which(private$models$performance == max(private$models$performance))), ]
@@ -153,7 +153,7 @@ ExecutedModels <- R6::R6Class(
     #'
     save = function() {
       if (!is.null(private$models) && nrow(private$models) > 0) {
-        write.table(private$models, file = file.path(private$dir.path, ".executed"),
+        write.table(private$models, file = file.path(private$dir.path, "executed"),
                     append = FALSE, sep = ",", row.names = FALSE)
       } else {
         message("[", class(self)[1], "][ERROR] File is empty. ",
