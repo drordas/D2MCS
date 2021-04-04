@@ -95,9 +95,5 @@ SingleVoting <- R6::R6Class(
       }
       single.votings
     }
-  ),
-  private = list(
-    voting.schemes = NULL,
-    metrics = NULL
   )
 )

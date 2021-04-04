@@ -91,7 +91,6 @@ ClusterPredictions <- R6::R6Class(
   private = list(
     pred = NULL,
     positive.class = NULL,
-    class.values = NULL,
-    loaded.resources = NULL
+    class.values = NULL
   )
 )
