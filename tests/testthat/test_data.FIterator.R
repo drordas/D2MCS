@@ -107,7 +107,7 @@ testthat::test_that("FIterator: isLast function works", {
   testthat::expect_true(fIterator$isLast())
 })
 
-testthat::test_that("FIterator: isLast function works", {
+testthat::test_that("FIterator: finalize function works", {
 
   file.path <- file.path("resourceFiles",
                          "data",
@@ -131,12 +131,7 @@ testthat::test_that("FIterator: isLast function works", {
   fIterator <- FIterator$new(config.params = config.params,
                              chunk.size = chunk.size,
                              verbose = verbose)
+  fIterator$finalize()
 
-  testthat::expect_message(fIterator$finalize(),
-                           "[FIterator][INFO] Closing connection",
-                           fixed = TRUE)
-
-  testthat::expect_message(fIterator$finalize(),
-                           "[FIterator][INFO] Finalize",
-                           fixed = TRUE)
+  testthat::expect_null(fIterator$.__enclos_env__$private$con)
 })

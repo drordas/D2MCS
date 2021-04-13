@@ -82,11 +82,8 @@ FIterator <- R6::R6Class(
     #'
     finalize = function() {
       if (!is.null(private$con) && isOpen(private$con)) {
-        message("[", class(self)[1], "][INFO] Closing connection")
         close(private$con)
         private$con <- NULL
-      } else {
-        message("[", class(self)[1], "][INFO] Finalize")
       }
     }
   ),
