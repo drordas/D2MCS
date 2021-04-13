@@ -280,7 +280,7 @@ DDMCS <- R6::R6Class(
 
       # VERIFY IF IG.CLASSIFIERS PARAMETER IS DEFINED (AND VALID)
       if (all(is.character(ig.classifiers), length(ig.classifiers) > 0,
-               length(usedModels) > 0)) {
+              length(usedModels) > 0)) {
         message("[", class(self)[1], "][INFO] Ignoring '",
                 length(ig.classifiers), "' M.L models")
         usedModels <- setdiff(usedModels, ig.classifiers)
@@ -312,6 +312,7 @@ DDMCS <- R6::R6Class(
       names(cluster.models) <- metrics
 
       exec.models <- private$availableModels[private$availableModels$name %in% usedModels, ]
+      exec.models <- exec.models[order(exec.models$name), ]
 
       # START TRAINING PROCESS
       for (row in 1:nrow(exec.models)) {
@@ -332,18 +333,7 @@ DDMCS <- R6::R6Class(
                   "Training model for metric '", current.metric, "'")
 
           for (current.cluster in 1:train.set$getNumClusters()) {
-            # DELETE IMCOMPATIBLE MODELS
-            # if ( abs(mean(cor(train.set$getFeatureValues(current.cluster),
-            #                   as.numeric(train.set$getClassValues()) ),
-            #               na.rm = TRUE) ) < 0.3 &
-            #      grepl("Linea[l|r]|Discriminant",
-            #            paste(current.model$description,
-            #                  current.model$family, sep = " "))) {  ##CORRELATION
-            #   message("[", class(self)[1], "][WARNING] Correlated Data (< 0.3).",
-            #           " Incompatible M.L. model '", current.model$name,
-            #           "' on the cluster '", current.cluster, "'")
-            #   next
-            # }
+
             model.path <- file.path(private$path, current.metric,
                                      paste0("C[", current.cluster, "-",
                                             train.set$getNumClusters(), "]"))
@@ -361,8 +351,6 @@ DDMCS <- R6::R6Class(
               if (!isTRUE(loaded.packages)) {
                 packages <- unlist(current.model$library)
                 if (!any(is.null(packages), is.na(packages), identical(packages, "NA"))) {
-                  len.init.packages <- length(.packages())
-                  len.init.DLLs <- length(.dynLibs())
                   message("[", class(self)[1], "][INFO][", current.model$name, "] ",
                           "Loading required packages...")
                   private$loadPackages(packages)
@@ -402,13 +390,6 @@ DDMCS <- R6::R6Class(
                         current.model$name, "'. Skipping...")
                 executed.models$add(model.type, keep.best = !isTRUE(saveAllModels))
                 executed.models$save()
-              }
-
-              # UNLOAD REQUIRED PACKAGES
-              if (isTRUE(loaded.packages)) {
-                message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                        "Detaching required packages...")
-                private$unloadPackages(len.init.packages, len.init.DLLs)
               }
 
             } else {
@@ -640,7 +621,7 @@ DDMCS <- R6::R6Class(
                   paste0(new.packages, collapse = ","), "'...")
           suppressMessages(install.packages(new.packages,
                                             repos = "https://cloud.r-project.org",
-                                            # dependencies = TRUE,
+                                            dependencies = TRUE,
                                             quiet = TRUE, verbose = FALSE))
         }
         lapply(pkgName, function(pkg) {
@@ -653,29 +634,6 @@ DDMCS <- R6::R6Class(
       } else {
         message("[", class(self)[1], "][ERROR] Packages are not available ",
                 "on CRAN...")
-      }
-    },
-    unloadPackages = function(len.init.packages, len.init.DLLs) {
-      pkgs <- paste0("package:", head(x = .packages(), n = length(.packages()) - len.init.packages))
-      if (length(head(x = .packages(), n = length(.packages()) - len.init.packages)) > 0) {
-        message("[", class(self)[1], "][INFO] Package to detach: ", paste(pkgs, collapse = " "))
-        for (p in pkgs) {
-          detach(p, unload = T, character.only = TRUE, force = F)
-        }
-      } else {
-        # message("[", class(self)[1], "][INFO] There are not packages to detach")
-      }
-
-      pkglibs <- tail(x = .dynLibs(), n = length(.dynLibs()) - len.init.DLLs)
-      if (length(pkglibs) > 0) {
-        # message("[", class(self)[1], "][INFO] Dlls to detach: ", paste(pkglibs, collapse = " "))
-        for (lib in pkglibs) {
-          dyn.unload(lib[["path"]])
-        }
-        libs <- .dynLibs()
-        .dynLibs(libs[!(libs %in% pkglibs)])
-      } else {
-        # message("[", class(self)[1], "][INFO] There are not DLLs to unload\n")
       }
     },
     cluster.conf = NULL,
