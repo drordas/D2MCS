@@ -347,7 +347,6 @@ ClassificationOutput <- R6::R6Class(
     #' all cutoffs used during classification stage will be taken into account.
     #'
     #' @import ggplot2
-    #' @importFrom plotly ggplotly
     #'
     plotPerformances = function(dir.path, test.set, measures, voting.names = NULL,
                                 metric.names = NULL, cutoff.values = NULL) {
@@ -376,7 +375,6 @@ ClassificationOutput <- R6::R6Class(
           ggplot2::ggtitle("Classifier performance Benchmarking") + ggplot2::guides(fill = FALSE) +
           ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.title = ggplot2::element_blank(),
                  legend.position = "none")
-        plotly::ggplotly(plot)
 
         ggplot2::ggsave(paste0(file.path(dir.path, peformance.name), ".pdf"), device = "pdf",
                 plot = plot, limitsize = FALSE)

@@ -39,7 +39,6 @@ Imports:
   ModelMetrics,
   mltools,
   questionr,
-  plotly,
   recipes,
   R6,
   tictoc,
