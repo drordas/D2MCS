@@ -6,7 +6,7 @@ testthat::test_that("SingleVoting: initialize function works", {
                       "SingleVoting")
 })
 
-testthat::test_that("SingleVoting: initialize checks parameter type", {
+testthat::test_that("SingleVoting: initialize function checks parameter type", {
 
   voting.schemes <- NULL
   metrics <- c("MCC")

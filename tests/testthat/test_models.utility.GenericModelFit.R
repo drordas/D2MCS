@@ -1,4 +1,4 @@
-testthat::test_that("GenericModelFit: initialize", {
+testthat::test_that("GenericModelFit: initialize function works", {
 
   instances <- data.frame(c(1, 2), c(2, 2))
 

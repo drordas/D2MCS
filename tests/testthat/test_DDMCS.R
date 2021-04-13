@@ -1,4 +1,4 @@
-testthat::test_that("DDMCS: initialize", {
+testthat::test_that("DDMCS: initialize function works", {
 
   dir.path <- file.path("resourceFiles", "DDMCS")
   num.core <- 1
@@ -27,7 +27,7 @@ testthat::teardown({
   }
 })
 
-testthat::test_that("DDMCS: initialize checks parameter type", {
+testthat::test_that("DDMCS: initialize function checks parameter type", {
 
   dir.path <- NULL
   num.core <- NULL
@@ -55,8 +55,7 @@ testthat::test_that("DDMCS: initialize checks parameter type", {
                                      outfile = outfile,
                                      serialize = serialize),
                            paste0("[DDMCS][INFO] Logs path not defined '", outfile, "' does not exist. Creating..."),
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   dir.path <- file.path("resourceFiles", "DDMCS")
   num.core <- NULL
@@ -84,8 +83,7 @@ testthat::test_that("DDMCS: initialize checks parameter type", {
                                      outfile = outfile,
                                      serialize = serialize),
                            "[DDMCS][WARNING] Invalid serialization option. Assuming not serialization",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 })
 
 testthat::teardown({
@@ -187,8 +185,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
                            "[DDMCS][WARNING] Number of clusters not set (must be numeric or vector). Using all clusters",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
                                                         train.function = train.function,
@@ -199,8 +196,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
                            "[DDMCS][WARNING] Model fit must inherit from 'GenericModelFit' type. Using 'DefaultModelFit' class.",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
                                                         train.function = train.function,
@@ -211,8 +207,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
                            "[DDMCS][WARNING] Number of clusters is higher than number of existing clusters. Using all clusters",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
                                                         train.function = train.function,
@@ -223,8 +218,18 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
                            "[DDMCS][INFO] Ignoring '1' M.L models",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
+
+  testthat::expect_error(ddmcs$train(train.set = train.set,
+                                     train.function = train.function,
+                                     num.clusters = num.clusters,
+                                     model.recipe = model.recipe,
+                                     ex.classifiers = ex.classifiers,
+                                     ig.classifiers = ddmcs$.__enclos_env__$private$loadAvailableModels()[["name"]],
+                                     metrics = metrics,
+                                     saveAllModels = saveAllModels),
+                         "[DDMCS][FATAL] Not valid M.L models were selected. Aborting...",
+                         fixed = TRUE)
 
   testthat::expect_error(ddmcs$train(train.set = train.set,
                                      train.function = train.function,
@@ -305,16 +310,14 @@ testthat::test_that("DDMCS: classify function works", {
                                                            voting.types = voting.types,
                                                            positive.class = NULL)),
                            "[DDMCS][WARNING] Positive class not set. Asuming positive class value used during training stage '1'",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(suppressWarnings(ddmcs$classify(train.output = train.output,
                                                            subset = subset,
                                                            voting.types = voting.types,
                                                            positive.class = 10)),
                            "[DDMCS][WARNING] Positive class value is invalid. Must be [1, 0]. Assuming positive class used during training stage (1)",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 })
 
 testthat::teardown({

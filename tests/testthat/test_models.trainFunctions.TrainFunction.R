@@ -1,4 +1,4 @@
-testthat::test_that("TrainFunction: initialize", {
+testthat::test_that("TrainFunction: initialize function works", {
 
   method <- "nb"
   number <- "2"

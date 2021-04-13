@@ -1,5 +1,5 @@
-testthat::test_that("MeasureFunction: initialize", {
-  testthat::skip_if_not_installed("caret")
+testthat::test_that("MeasureFunction: initialize function works", {
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
@@ -17,7 +17,7 @@ testthat::test_that("MeasureFunction: initialize", {
                       "MeasureFunction")
 })
 
-testthat::test_that("MeasureFunction: initialize checks parameter type", {
+testthat::test_that("MeasureFunction: initialize function checks parameter type", {
 
   testthat::expect_error(MeasureFunction$new(performance = list()),
                          "[MeasureFunction][FATAL] Performance parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
@@ -25,7 +25,7 @@ testthat::test_that("MeasureFunction: initialize checks parameter type", {
 })
 
 testthat::test_that("MeasureFunction: compute function works", {
-  testthat::skip_if_not_installed("caret")
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))

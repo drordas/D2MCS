@@ -1,4 +1,4 @@
-testthat::test_that("DatasetLoader: initialize", {
+testthat::test_that("DatasetLoader: initialize function works", {
   data.loader <- DatasetLoader$new()
   testthat::expect_is(data.loader, "DatasetLoader")
 })

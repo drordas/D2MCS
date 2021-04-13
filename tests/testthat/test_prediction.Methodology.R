@@ -1,10 +1,10 @@
-testthat::test_that("Methodology: initialize", {
+testthat::test_that("Methodology: initialize function works", {
 
   testthat::expect_is(Methodology$new(required.metrics = c("MCC", "PPV")),
                       "Methodology")
 })
 
-testthat::test_that("Methodology: initialize checks parameter type", {
+testthat::test_that("Methodology: initialize function checks parameter type", {
 
   testthat::expect_error(Methodology$new(required.metrics = NULL),
                          "[Methodology][FATAL] Required.metrics parameter must be defined as 'character' type. Aborting...",

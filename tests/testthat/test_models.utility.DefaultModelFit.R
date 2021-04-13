@@ -1,4 +1,4 @@
-testthat::test_that("DefaultModelFit: initialize", {
+testthat::test_that("DefaultModelFit: initialize function works", {
 
   testthat::expect_is(DefaultModelFit$new(), "DefaultModelFit")
 

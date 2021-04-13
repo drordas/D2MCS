@@ -1,4 +1,4 @@
-testthat::test_that("TrainOutput: initialize checks parameter type", {
+testthat::test_that("TrainOutput: initialize function checks parameter type", {
 
   testthat::expect_error(TrainOutput$new(models = NULL,
                                          class.values = NULL,

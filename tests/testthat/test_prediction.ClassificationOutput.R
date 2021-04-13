@@ -1,4 +1,4 @@
-testthat::test_that("ClassificationOutput: initialize checks parameter type", {
+testthat::test_that("ClassificationOutput: initialize function checks parameter type", {
 
   testthat::expect_error(ClassificationOutput$new(voting.schemes = NULL, models = list()),
                          "[ClassificationOutput][FATAL] Voting Schemes not executed. Aborting...",
@@ -119,8 +119,7 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                                                                 metric.names = "MCC",
                                                                 cutoff.values = 0),
                          "[ClassificationOutput][WARNING] Defined cutoffs are not available. Using all cutoffs",
-                         fixed = TRUE,
-                         all = FALSE)
+                         fixed = TRUE)
 
   testthat::expect_message(classificationOutput$getPerformances(test.set = test.set,
                                                                 measures = measures,
@@ -128,8 +127,7 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                                                                 metric.names = "a",
                                                                 cutoff.values = 0.7),
                            "[ClassificationOutput][WARNING] Defined metrics are not available. Using all metrics",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(classificationOutput$getPerformances(test.set = test.set,
                                                                 measures = measures,
@@ -137,8 +135,7 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                                                                 metric.names = "MCC",
                                                                 cutoff.values = 0.7),
                            "[ClassificationOutput][WARNING] Defined votings are not available. Using all votings",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   test.set$.__enclos_env__$private$positive.class <- "0"
@@ -169,14 +166,12 @@ testthat::test_that("ClassificationOutput: savePerformances function works", {
   testthat::expect_message(classificationOutput$savePerformances(dir.path = dir.path,
                                                                  test.set = test.set,
                                                                  measures = measures),
-                          "\\[ClassificationOutput\\]\\[INFO\\] Classification performance saved at: [A-Za-z\\\\/_.]+",
-                          all = FALSE)
+                          "\\[ClassificationOutput\\]\\[INFO\\] Classification performance saved at: [A-Za-z\\\\/_.]+")
   testthat::expect_message(classificationOutput$savePerformances(dir.path = dir.path,
                                                                  test.set = test.set,
                                                                  measures = measures),
                            "[ClassificationOutput][INFO] Folder already exists",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 })
 
 testthat::teardown({
@@ -225,15 +220,13 @@ testthat::test_that("ClassificationOutput: plotPerformances function works", {
   testthat::expect_message(classificationOutput$plotPerformances(dir.path = dir.path,
                                                                  test.set = test.set,
                                                                  measures = measures),
-                           "\\[ClassificationOutput\\]\\[INFO\\] Plot has been succesfully saved at: [A-Za-z\\\\/_.]+",
-                           all = FALSE)
+                           "\\[ClassificationOutput\\]\\[INFO\\] Plot has been succesfully saved at: [A-Za-z\\\\/_.]+")
 
   testthat::expect_message(classificationOutput$plotPerformances(dir.path = dir.path,
                                                                  test.set = test.set,
                                                                  measures = measures),
                            "[ClassificationOutput][INFO] Folder already exists",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 })
 
 testthat::teardown({

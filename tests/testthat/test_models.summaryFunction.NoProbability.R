@@ -1,4 +1,4 @@
-testthat::test_that("NoProbability: initialize", {
+testthat::test_that("NoProbability: initialize function works", {
 
   noProbability <- NoProbability$new()
   testthat::expect_is(noProbability,

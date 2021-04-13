@@ -10,7 +10,7 @@ testthat::test_that("CombinedVoting: initialize function works", {
                       "CombinedVoting")
 })
 
-testthat::test_that("CombinedVoting: initialize checks parameter type", {
+testthat::test_that("CombinedVoting: initialize function checks parameter type", {
 
   voting.schemes <- NULL
   combined.metrics <- MinimizeFP$new()

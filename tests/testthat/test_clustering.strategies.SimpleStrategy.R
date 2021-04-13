@@ -1,4 +1,4 @@
-testthat::test_that("SimpleStrategy: initialize", {
+testthat::test_that("SimpleStrategy: initialize function works", {
 
   subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
   heuristic <- ChiSquareHeuristic$new()
@@ -90,14 +90,12 @@ testthat::test_that("SimpleStrategy works", {
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
                                             num.clusters = list(2:60)),
                            "[SimpleStrategy][WARNING] Number of clusters exceeds maximum number of clusters. Saving all cluster configurations",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
                                             num.clusters = list(0:3)),
                            "[SimpleStrategy][WARNING] Number of clusters exceeds the range of minimum and maximum number of clusters. Saving all cluster configurations",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 })
 
 testthat::teardown({

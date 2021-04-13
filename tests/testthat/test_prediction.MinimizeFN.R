@@ -1,10 +1,10 @@
-testthat::test_that("MinimizeFN: initialize", {
+testthat::test_that("MinimizeFN: initialize function works", {
 
   testthat::expect_is(MinimizeFN$new(required.metrics = c("MCC", "PPV")),
                       "MinimizeFN")
 })
 
-testthat::test_that("MinimizeFN: initialize checks parameter type", {
+testthat::test_that("MinimizeFN: initialize function checks parameter type", {
 
   testthat::expect_error(MinimizeFN$new(required.metrics = NULL),
                          "[MinimizeFN][FATAL] Invalid values of required.metrics. Aborting...",

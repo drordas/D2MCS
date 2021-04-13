@@ -1,4 +1,4 @@
-testthat::test_that("Dataset: initialize", {
+testthat::test_that("Dataset: initialize function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
   testthat::expect_is(Dataset$new(filepath = file.path,
@@ -187,15 +187,13 @@ testthat::test_that("Dataset: cleanData function works", {
                                           remove.na = TRUE,
                                           remove.const = TRUE),
                            "[Dataset][INFO] Total 0 NA columns were succesfully removed",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(data$cleanData(remove.funcs = NULL,
                                           remove.na = TRUE,
                                           remove.const = TRUE),
                            "[Dataset][INFO] Total 0 const columns were succesfully removed",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(data$cleanData(remove.funcs = NULL,
                                           remove.na = FALSE,
@@ -234,8 +232,7 @@ testthat::test_that("Dataset: removeColumns function works", {
 
   testthat::expect_message(data$removeColumns(columns = c("Symptoms")),
                            "[Dataset][INFO] Total 1 columns were succesfully removed",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(data$removeColumns(columns = c("a")),
                            "[Dataset][ERROR] Defined column(s) are not valid. Ignoring removal operation",
@@ -243,13 +240,11 @@ testthat::test_that("Dataset: removeColumns function works", {
 
   testthat::expect_message(data$removeColumns(columns = 50),
                            "[Dataset][ERROR] Selected columns are not valid. Must be between [1-49]. Task not performed",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_message(data$removeColumns(columns = 1),
                            "[Dataset][INFO] 1 columns were manually removed",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
 })
 
@@ -483,8 +478,7 @@ testthat::test_that("Dataset: createSubset function works", {
   testthat::expect_message(data$createSubset(num.folds = 4,
                                              opts = list(remove.na = TRUE, remove.const = TRUE)),
                            "[Dataset][INFO] Removed columns containing constant values (total of 1)",
-                           fixed = TRUE,
-                           all = FALSE)
+                           fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
                                         opts = list(remove.na = TRUE, remove.const = TRUE)),

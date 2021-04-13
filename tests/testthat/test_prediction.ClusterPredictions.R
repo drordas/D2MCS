@@ -5,7 +5,7 @@ testthat::test_that("ClusterPredictions: initialize function works", {
                       "ClusterPredictions")
 })
 
-testthat::test_that("ClusterPredictions: initialize checks parameter type", {
+testthat::test_that("ClusterPredictions: initialize function checks parameter type", {
 
   testthat::expect_error(ClusterPredictions$new(class.values = c(0, 1),
                                                 positive.class = 2),

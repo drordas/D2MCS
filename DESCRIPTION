@@ -46,6 +46,7 @@ Imports:
   varhandle
 Suggests:
   knitr,
+  grDevices,
   testthat (>= 3.0.2)
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1

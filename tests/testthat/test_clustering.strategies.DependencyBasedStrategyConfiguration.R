@@ -1,4 +1,4 @@
-testthat::test_that("DependencyBasedStrategyConfiguration: initialize", {
+testthat::test_that("DependencyBasedStrategyConfiguration: initialize function works", {
   testthat::expect_is(DependencyBasedStrategyConfiguration$new(binaryCutoff = 0.6,
                                                                realCutoff = 0.6,
                                                                tiebreakMethod = "lfdc",

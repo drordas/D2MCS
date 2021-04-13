@@ -1,4 +1,4 @@
-testthat::test_that("FinalPred: initialize", {
+testthat::test_that("FinalPred: initialize function works", {
 
   testthat::expect_is(FinalPred$new(),
                       "FinalPred")

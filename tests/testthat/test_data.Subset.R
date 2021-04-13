@@ -1,4 +1,4 @@
-testthat::test_that("Subset: initialize", {
+testthat::test_that("Subset: initialize function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
 

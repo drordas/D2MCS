@@ -1,5 +1,5 @@
-testthat::test_that("NPV: initialize", {
-  testthat::skip_if_not_installed("caret")
+testthat::test_that("NPV: initialize function works", {
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
@@ -18,7 +18,7 @@ testthat::test_that("NPV: initialize", {
 })
 
 testthat::test_that("NPV: compute function works", {
-  testthat::skip_if_not_installed("caret")
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))

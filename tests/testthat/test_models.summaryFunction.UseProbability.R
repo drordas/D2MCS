@@ -1,4 +1,4 @@
-testthat::test_that("UseProbability: initialize", {
+testthat::test_that("UseProbability: initialize function works", {
   useProbability <- UseProbability$new()
   testthat::expect_is(useProbability,
                       "UseProbability")

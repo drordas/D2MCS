@@ -1,10 +1,10 @@
-testthat::test_that("SummaryFunction: initialize", {
+testthat::test_that("SummaryFunction: initialize function works", {
 
   testthat::expect_is(SummaryFunction$new(measures = "example"),
                       "SummaryFunction")
 })
 
-testthat::test_that("SummaryFunction: initialize checks parameter type", {
+testthat::test_that("SummaryFunction: initialize function checks parameter type", {
 
   testthat::expect_error(SummaryFunction$new(measures = NULL),
                          "[SummaryFunction][FATAL] Measures were not defined. Aborting...",

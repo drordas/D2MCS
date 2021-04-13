@@ -1,4 +1,4 @@
-testthat::test_that("SimpleVoting: initialize", {
+testthat::test_that("SimpleVoting: initialize function works", {
 
   cutoff <- 0.5
   testthat::expect_is(SimpleVoting$new(cutoff = cutoff),
@@ -8,7 +8,7 @@ testthat::test_that("SimpleVoting: initialize", {
                       "SimpleVoting")
 })
 
-testthat::test_that("SimpleVoting: initialize checks parameter type", {
+testthat::test_that("SimpleVoting: initialize function checks parameter type", {
 
   cutoff <- "a"
   testthat::expect_error(SimpleVoting$new(cutoff = cutoff),
@@ -16,14 +16,14 @@ testthat::test_that("SimpleVoting: initialize checks parameter type", {
                          fixed = TRUE)
 })
 
-testthat::test_that("SimpleVoting: getCutoff works", {
+testthat::test_that("SimpleVoting: getCutoff function works", {
 
   cutoff <- 0.5
   testthat::expect_equal(SimpleVoting$new(cutoff = cutoff)$getCutoff(),
                          0.5)
 })
 
-testthat::test_that("SimpleVoting: execute works", {
+testthat::test_that("SimpleVoting: execute function works", {
 
   cutoff <- 0.5
   testthat::expect_error(SimpleVoting$new(cutoff = cutoff)$execute(NULL, NULL),
@@ -32,7 +32,7 @@ testthat::test_that("SimpleVoting: execute works", {
 })
 
 
-testthat::test_that("SimpleVoting: getFinalPred works", {
+testthat::test_that("SimpleVoting: getFinalPred function works", {
 
   type <- NULL
   target <- NULL

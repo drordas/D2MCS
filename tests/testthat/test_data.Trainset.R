@@ -1,4 +1,4 @@
-testthat::test_that("Trainset: initialize", {
+testthat::test_that("Trainset: initialize function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
 

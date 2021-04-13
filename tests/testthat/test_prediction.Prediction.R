@@ -10,7 +10,7 @@ testthat::test_that("Prediction: initialize function works", {
                       "Prediction")
 })
 
-testthat::test_that("Prediction: initialize checks parameter type", {
+testthat::test_that("Prediction: initialize function checks parameter type", {
 
   feature.id <- "feature.id"
 

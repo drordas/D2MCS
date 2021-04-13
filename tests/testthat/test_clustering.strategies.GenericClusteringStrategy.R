@@ -1,4 +1,4 @@
-testthat::test_that("GenericClusteringStrategy: initialize", {
+testthat::test_that("GenericClusteringStrategy: initialize function works", {
 
   subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 
@@ -12,7 +12,7 @@ testthat::test_that("GenericClusteringStrategy: initialize", {
                                                  configuration = configuration))
 })
 
-testthat::test_that("GenericClusteringStrategy: initialize checks parameter type", {
+testthat::test_that("GenericClusteringStrategy: initialize function checks parameter type", {
 
   subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
 

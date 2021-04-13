@@ -9,7 +9,7 @@ testthat::test_that("TwoClass: initialize function works", {
 })
 
 testthat::test_that("TwoClass: create function works", {
-  testthat::skip_if_not_installed("caret")
+
   method <- "cv"
   number <- 10
   savePredictions <- "final"
@@ -81,7 +81,7 @@ testthat::test_that("TwoClass: create function checks parameter", {
 })
 
 testthat::test_that("TwoClass: getTrFunction function works", {
-  testthat::skip_if_not_installed("caret")
+
   method <- "cv"
   number <- 10
   savePredictions <- "final"
@@ -142,7 +142,7 @@ testthat::test_that("TwoClass: getTrFunction function checks parameter", {
 })
 
 testthat::test_that("TwoClass: setClassProbs function works (after create)", {
-  testthat::skip_if_not_installed("caret")
+
   method <- "cv"
   number <- 10
   savePredictions <- "final"
@@ -254,7 +254,7 @@ testthat::test_that("TwoClass: getType function works", {
 })
 
 testthat::test_that("TwoClass: setSummaryFunction function works (after create)", {
-  testthat::skip_if_not_installed("caret")
+
   method <- "cv"
   number <- 10
   savePredictions <- "final"

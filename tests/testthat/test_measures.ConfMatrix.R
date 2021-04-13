@@ -1,5 +1,5 @@
-testthat::test_that("ConfMatrix: initialize", {
-  testthat::skip_if_not_installed("caret")
+testthat::test_that("ConfMatrix: initialize function works", {
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
@@ -17,7 +17,7 @@ testthat::test_that("ConfMatrix: initialize", {
                       "ConfMatrix")
 })
 
-testthat::test_that("ConfMatrix: initialize checks parameter type", {
+testthat::test_that("ConfMatrix: initialize function checks parameter type", {
 
   testthat::expect_error(ConfMatrix$new(confMatrix = NULL),
                          "[ConfMatrix][FATAL] ConfMatrix parameter must be defined as 'caret::confusionMatrix' type. Aborting...",
@@ -25,7 +25,7 @@ testthat::test_that("ConfMatrix: initialize checks parameter type", {
 })
 
 testthat::test_that("ConfMatrix: getConfusionMatrix function works", {
-  testthat::skip_if_not_installed("caret")
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
@@ -44,7 +44,7 @@ testthat::test_that("ConfMatrix: getConfusionMatrix function works", {
 })
 
 testthat::test_that("ConfMatrix: getTP function works", {
-  testthat::skip_if_not_installed("caret")
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
@@ -63,7 +63,7 @@ testthat::test_that("ConfMatrix: getTP function works", {
 })
 
 testthat::test_that("ConfMatrix: getTN function works", {
-  testthat::skip_if_not_installed("caret")
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
@@ -82,7 +82,7 @@ testthat::test_that("ConfMatrix: getTN function works", {
 })
 
 testthat::test_that("ConfMatrix: getFN function works", {
-  testthat::skip_if_not_installed("caret")
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
@@ -101,7 +101,7 @@ testthat::test_that("ConfMatrix: getFN function works", {
 })
 
 testthat::test_that("ConfMatrix: getFP function works", {
-  testthat::skip_if_not_installed("caret")
+
   lvs <- c("normal", "abnormal")
   truth <- factor(rep(lvs, times = c(86, 258)),
                   levels = rev(lvs))
