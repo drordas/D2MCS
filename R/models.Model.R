@@ -5,7 +5,7 @@
 #'
 #' @keywords internal misc
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{TrainFunction}}
+#' @seealso \code{\link{D2MCS}}, \code{\link{TrainFunction}}
 #'
 #' @import R6
 #'

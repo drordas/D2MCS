@@ -18,7 +18,7 @@ Predictions)}
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Accuracy}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{Accuracy}
 }
 \section{Methods}{
 \subsection{Public methods}{

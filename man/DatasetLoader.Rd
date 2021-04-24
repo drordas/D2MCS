@@ -15,7 +15,7 @@ Wrapper class able to automatically create a
   # Load input file.
   data <- loader$load(filepath = system.file(file.path("examples",
                                                        "hcc-data-complete-balanced.csv"),
-                                             package = "DDMCS"),
+                                             package = "D2MCS"),
                       header = T, normalize.names = T)
 }
 

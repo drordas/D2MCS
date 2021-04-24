@@ -8,7 +8,7 @@ Encapsulates and handles all the information and operations
 associated with a M.L. model.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{TrainFunction}}
+\code{\link{D2MCS}}, \code{\link{TrainFunction}}
 }
 \keyword{internal}
 \keyword{misc}

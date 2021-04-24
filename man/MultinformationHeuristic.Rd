@@ -15,7 +15,7 @@ problems.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{MultinformationHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{MultinformationHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

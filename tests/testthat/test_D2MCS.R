@@ -1,33 +1,33 @@
-testthat::test_that("DDMCS: initialize function works", {
+testthat::test_that("D2MCS: initialize function works", {
 
-  dir.path <- file.path("resourceFiles", "DDMCS")
+  dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL
 
-  testthat::expect_is(DDMCS$new(dir.path = dir.path,
+  testthat::expect_is(D2MCS$new(dir.path = dir.path,
                                 num.core = num.core,
                                 socket.type = socket.type,
                                 outfile = outfile,
                                 serialize = serialize),
-                      "DDMCS")
+                      "D2MCS")
 
-  testthat::expect_is(DDMCS$new(dir.path = dir.path,
+  testthat::expect_is(D2MCS$new(dir.path = dir.path,
                                 num.core = 2,
                                 socket.type = socket.type,
                                 outfile = outfile,
                                 serialize = TRUE),
-                      "DDMCS")
+                      "D2MCS")
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
-    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
+    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
   }
 })
 
-testthat::test_that("DDMCS: initialize function checks parameter type", {
+testthat::test_that("D2MCS: initialize function checks parameter type", {
 
   dir.path <- NULL
   num.core <- NULL
@@ -35,71 +35,71 @@ testthat::test_that("DDMCS: initialize function checks parameter type", {
   outfile <- NULL
   serialize <- NULL
 
-  testthat::expect_error(DDMCS$new(dir.path = dir.path,
+  testthat::expect_error(D2MCS$new(dir.path = dir.path,
                                    num.core = num.core,
                                    socket.type = socket.type,
                                    outfile = outfile,
                                    serialize = serialize),
-                         "[DDMCS][FATAL] Path to store ML models should be defined",
+                         "[D2MCS][FATAL] Path to store ML models should be defined",
                          fixed = TRUE)
 
-  dir.path <- file.path("resourceFiles", "DDMCS")
+  dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- NULL
   socket.type <- "PSOCK"
-  outfile <- file.path("resourceFiles", "DDMCS", "outfile", "null")
+  outfile <- file.path("resourceFiles", "D2MCS", "outfile", "null")
   serialize <- NULL
 
-  testthat::expect_message(DDMCS$new(dir.path = dir.path,
+  testthat::expect_message(D2MCS$new(dir.path = dir.path,
                                      num.core = num.core,
                                      socket.type = socket.type,
                                      outfile = outfile,
                                      serialize = serialize),
-                           paste0("[DDMCS][INFO] Logs path not defined '", outfile, "' does not exist. Creating..."),
+                           paste0("[D2MCS][INFO] Logs path not defined '", outfile, "' does not exist. Creating..."),
                            fixed = TRUE)
 
-  dir.path <- file.path("resourceFiles", "DDMCS")
+  dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- NULL
   socket.type <- "wrong"
   outfile <- NULL
   serialize <- NULL
 
-  testthat::expect_message(DDMCS$new(dir.path = dir.path,
+  testthat::expect_message(D2MCS$new(dir.path = dir.path,
                                      num.core = num.core,
                                      socket.type = socket.type,
                                      outfile = outfile,
                                      serialize = serialize),
-                           "[DDMCS][WARNING] Invalid socket type. Assuming 'PSOCK' cluster",
+                           "[D2MCS][WARNING] Invalid socket type. Assuming 'PSOCK' cluster",
                            fixed = TRUE)
 
-  dir.path <- file.path("resourceFiles", "DDMCS")
+  dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- NULL
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL
 
-  testthat::expect_message(DDMCS$new(dir.path = dir.path,
+  testthat::expect_message(D2MCS$new(dir.path = dir.path,
                                      num.core = num.core,
                                      socket.type = socket.type,
                                      outfile = outfile,
                                      serialize = serialize),
-                           "[DDMCS][WARNING] Invalid serialization option. Assuming not serialization",
+                           "[D2MCS][WARNING] Invalid serialization option. Assuming not serialization",
                            fixed = TRUE)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
-    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
+    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
   }
 })
 
-testthat::test_that("DDMCS: train function works", {
-  dir.path <- file.path("resourceFiles", "DDMCS")
+testthat::test_that("D2MCS: train function works", {
+  dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL
 
-  ddmcs <- DDMCS$new(dir.path = dir.path,
+  d2mcs <- D2MCS$new(dir.path = dir.path,
                      num.core = num.core,
                      socket.type = socket.type,
                      outfile = outfile,
@@ -114,7 +114,7 @@ testthat::test_that("DDMCS: train function works", {
   metrics <- c("MCC", "PPV")
   saveAllModels <- FALSE
 
-  testthat::expect_is(suppressWarnings(ddmcs$train(train.set = train.set,
+  testthat::expect_is(suppressWarnings(d2mcs$train(train.set = train.set,
                                                    train.function = train.function,
                                                    num.clusters = num.clusters,
                                                    ex.classifiers = ex.classifiers,
@@ -125,20 +125,20 @@ testthat::test_that("DDMCS: train function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
-    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
+    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
   }
 })
 
-testthat::test_that("DDMCS: train function checks parameter types", {
+testthat::test_that("D2MCS: train function checks parameter types", {
 
-  dir.path <- file.path("resourceFiles", "DDMCS")
+  dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL
 
-  ddmcs <- DDMCS$new(dir.path = dir.path,
+  d2mcs <- D2MCS$new(dir.path = dir.path,
                      num.core = num.core,
                      socket.type = socket.type,
                      outfile = outfile,
@@ -154,7 +154,7 @@ testthat::test_that("DDMCS: train function checks parameter types", {
   metrics <- c("MCC", "PPV")
   saveAllModels <- FALSE
 
-  testthat::expect_error(ddmcs$train(train.set = NULL,
+  testthat::expect_error(d2mcs$train(train.set = NULL,
                                      train.function = train.function,
                                      num.clusters = num.clusters,
                                      model.recipe = model.recipe,
@@ -162,10 +162,10 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                      ig.classifiers = ig.classifiers,
                                      metrics = metrics,
                                      saveAllModels = saveAllModels),
-                         "[DDMCS][FATAL] Train set parameter must be defined as 'Trainset' type. Aborting...",
+                         "[D2MCS][FATAL] Train set parameter must be defined as 'Trainset' type. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(ddmcs$train(train.set = train.set,
+  testthat::expect_error(d2mcs$train(train.set = train.set,
                                      train.function = NULL,
                                      num.clusters = num.clusters,
                                      model.recipe = model.recipe,
@@ -173,10 +173,10 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                      ig.classifiers = ig.classifiers,
                                      metrics = metrics,
                                      saveAllModels = saveAllModels),
-                         "[DDMCS][FATAL] Train function parameter must be defined as 'TrainFunction' type. Aborting...",
+                         "[D2MCS][FATAL] Train function parameter must be defined as 'TrainFunction' type. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
+  testthat::expect_message(suppressWarnings(d2mcs$train(train.set = train.set,
                                                         train.function = train.function,
                                                         num.clusters = NULL,
                                                         model.recipe = model.recipe,
@@ -184,10 +184,10 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         ig.classifiers = ig.classifiers,
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
-                           "[DDMCS][WARNING] Number of clusters not set (must be numeric or vector). Using all clusters",
+                           "[D2MCS][WARNING] Number of clusters not set (must be numeric or vector). Using all clusters",
                            fixed = TRUE)
 
-  testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
+  testthat::expect_message(suppressWarnings(d2mcs$train(train.set = train.set,
                                                         train.function = train.function,
                                                         num.clusters = num.clusters,
                                                         model.recipe = NULL,
@@ -195,10 +195,10 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         ig.classifiers = ig.classifiers,
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
-                           "[DDMCS][WARNING] Model fit must inherit from 'GenericModelFit' type. Using 'DefaultModelFit' class.",
+                           "[D2MCS][WARNING] Model fit must inherit from 'GenericModelFit' type. Using 'DefaultModelFit' class.",
                            fixed = TRUE)
 
-  testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
+  testthat::expect_message(suppressWarnings(d2mcs$train(train.set = train.set,
                                                         train.function = train.function,
                                                         num.clusters = 10000,
                                                         model.recipe = model.recipe,
@@ -206,10 +206,10 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         ig.classifiers = ig.classifiers,
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
-                           "[DDMCS][WARNING] Number of clusters is higher than number of existing clusters. Using all clusters",
+                           "[D2MCS][WARNING] Number of clusters is higher than number of existing clusters. Using all clusters",
                            fixed = TRUE)
 
-  testthat::expect_message(suppressWarnings(ddmcs$train(train.set = train.set,
+  testthat::expect_message(suppressWarnings(d2mcs$train(train.set = train.set,
                                                         train.function = train.function,
                                                         num.clusters = num.clusters,
                                                         model.recipe = model.recipe,
@@ -217,21 +217,21 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                                         ig.classifiers = c("ranger"),
                                                         metrics = metrics,
                                                         saveAllModels = saveAllModels)),
-                           "[DDMCS][INFO] Ignoring '1' M.L models",
+                           "[D2MCS][INFO] Ignoring '1' M.L models",
                            fixed = TRUE)
 
-  testthat::expect_error(ddmcs$train(train.set = train.set,
+  testthat::expect_error(d2mcs$train(train.set = train.set,
                                      train.function = train.function,
                                      num.clusters = num.clusters,
                                      model.recipe = model.recipe,
                                      ex.classifiers = ex.classifiers,
-                                     ig.classifiers = ddmcs$.__enclos_env__$private$loadAvailableModels()[["name"]],
+                                     ig.classifiers = d2mcs$.__enclos_env__$private$loadAvailableModels()[["name"]],
                                      metrics = metrics,
                                      saveAllModels = saveAllModels),
-                         "[DDMCS][FATAL] Not valid M.L models were selected. Aborting...",
+                         "[D2MCS][FATAL] Not valid M.L models were selected. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(ddmcs$train(train.set = train.set,
+  testthat::expect_error(d2mcs$train(train.set = train.set,
                                      train.function = train.function,
                                      num.clusters = num.clusters,
                                      model.recipe = model.recipe,
@@ -239,48 +239,48 @@ testthat::test_that("DDMCS: train function checks parameter types", {
                                      ig.classifiers = ig.classifiers,
                                      metrics = NULL,
                                      saveAllModels = saveAllModels),
-                         "[DDMCS][FATAL] Invalid values of metrics",
+                         "[D2MCS][FATAL] Invalid values of metrics",
                          fixed = TRUE)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
-    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
+    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
   }
 })
 
-testthat::test_that("DDMCS: getAvailableModels function works", {
-  dir.path <- file.path("resourceFiles", "DDMCS")
+testthat::test_that("D2MCS: getAvailableModels function works", {
+  dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL
 
-  ddmcs <- DDMCS$new(dir.path = dir.path,
+  d2mcs <- D2MCS$new(dir.path = dir.path,
                      num.core = num.core,
                      socket.type = socket.type,
                      outfile = outfile,
                      serialize = serialize)
 
-  testthat::expect_is(ddmcs$getAvailableModels(),
+  testthat::expect_is(d2mcs$getAvailableModels(),
                       "data.frame")
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "DDMCS"))) {
-    unlink(file.path("resourceFiles", "DDMCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
+    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
   }
 })
 
-testthat::test_that("DDMCS: classify function works", {
+testthat::test_that("D2MCS: classify function works", {
 
-  dir.path <- file.path("resourceFiles", "DDMCS-classify")
+  dir.path <- file.path("resourceFiles", "D2MCS-classify")
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL
 
-  ddmcs <- DDMCS$new(dir.path = dir.path,
+  d2mcs <- D2MCS$new(dir.path = dir.path,
                      num.core = num.core,
                      socket.type = socket.type,
                      outfile = outfile,
@@ -299,42 +299,42 @@ testthat::test_that("DDMCS: classify function works", {
                                        metrics = c("MCC", "PPV")))
   positive.class <- 0
 
-  testthat::expect_is(suppressWarnings(ddmcs$classify(train.output = train.output,
+  testthat::expect_is(suppressWarnings(d2mcs$classify(train.output = train.output,
                                                       subset = subset,
                                                       voting.types = voting.types,
                                                       positive.class = positive.class)),
                       "ClassificationOutput")
 
-  testthat::expect_message(suppressWarnings(ddmcs$classify(train.output = train.output,
+  testthat::expect_message(suppressWarnings(d2mcs$classify(train.output = train.output,
                                                            subset = subset,
                                                            voting.types = voting.types,
                                                            positive.class = NULL)),
-                           "[DDMCS][WARNING] Positive class not set. Asuming positive class value used during training stage '1'",
+                           "[D2MCS][WARNING] Positive class not set. Asuming positive class value used during training stage '1'",
                            fixed = TRUE)
 
-  testthat::expect_message(suppressWarnings(ddmcs$classify(train.output = train.output,
+  testthat::expect_message(suppressWarnings(d2mcs$classify(train.output = train.output,
                                                            subset = subset,
                                                            voting.types = voting.types,
                                                            positive.class = 10)),
-                           "[DDMCS][WARNING] Positive class value is invalid. Must be [1, 0]. Assuming positive class used during training stage (1)",
+                           "[D2MCS][WARNING] Positive class value is invalid. Must be [1, 0]. Assuming positive class used during training stage (1)",
                            fixed = TRUE)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "DDMCS-classify"))) {
-    unlink(file.path("resourceFiles", "DDMCS-classify"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "D2MCS-classify"))) {
+    unlink(file.path("resourceFiles", "D2MCS-classify"), recursive = TRUE, force = TRUE)
   }
 })
 
-testthat::test_that("DDMCS: classify function checks type parameter", {
+testthat::test_that("D2MCS: classify function checks type parameter", {
 
-  dir.path <- file.path("resourceFiles", "DDMCS-classify")
+  dir.path <- file.path("resourceFiles", "D2MCS-classify")
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL
 
-  ddmcs <- DDMCS$new(dir.path = dir.path,
+  d2mcs <- D2MCS$new(dir.path = dir.path,
                      num.core = num.core,
                      socket.type = socket.type,
                      outfile = outfile,
@@ -353,37 +353,37 @@ testthat::test_that("DDMCS: classify function checks type parameter", {
                                        metrics = c("MCC", "PPV")))
   positive.class <- "0"
 
-  testthat::expect_error(ddmcs$classify(train.output = NULL,
+  testthat::expect_error(d2mcs$classify(train.output = NULL,
                                         subset = subset,
                                         voting.types = voting.types,
                                         positive.class = positive.class),
-                         "[DDMCS][FATAL] Train output parameter must be defined as 'TrainOutput' type. Aborting...",
+                         "[D2MCS][FATAL] Train output parameter must be defined as 'TrainOutput' type. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(ddmcs$classify(train.output = train.output,
+  testthat::expect_error(d2mcs$classify(train.output = train.output,
                                         subset = NULL,
                                         voting.types = voting.types,
                                         positive.class = positive.class),
-                         "[DDMCS][FATAL] Subset parameter must be defined as 'Subset' or 'HDSubset' type. Aborting...",
+                         "[D2MCS][FATAL] Subset parameter must be defined as 'Subset' or 'HDSubset' type. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(ddmcs$classify(train.output = train.output,
+  testthat::expect_error(d2mcs$classify(train.output = train.output,
                                         subset = subset,
                                         voting.types = NULL,
                                         positive.class = positive.class),
-                         "[DDMCS][FATAL] Voting types parameter is not defined. Aborting...",
+                         "[D2MCS][FATAL] Voting types parameter is not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(ddmcs$classify(train.output = train.output,
+  testthat::expect_error(d2mcs$classify(train.output = train.output,
                                         subset = subset,
                                         voting.types = c("wrong"),
                                         positive.class = positive.class),
-                         "[DDMCS][FATAL] Voting Schemes parameter must be defined as 'SingleVoting' or 'CombinedVoting' types. Aborting...",
+                         "[D2MCS][FATAL] Voting Schemes parameter must be defined as 'SingleVoting' or 'CombinedVoting' types. Aborting...",
                          fixed = TRUE)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "DDMCS-classify"))) {
-    unlink(file.path("resourceFiles", "DDMCS-classify"), recursive = TRUE, force = TRUE)
+  if (dir.exists(file.path("resourceFiles", "D2MCS-classify"))) {
+    unlink(file.path("resourceFiles", "D2MCS-classify"), recursive = TRUE, force = TRUE)
   }
 })

@@ -31,7 +31,7 @@ SummaryFunction <- R6::R6Class(
     #'
     #' @description Abstract function used to implement the performance
     #' calculator method. To guarantee a proper operation, this method is
-    #' automatically invoked by \code{\link{DDMCS}} framework.
+    #' automatically invoked by \code{\link{D2MCS}} framework.
     #'
     execute = function() {
       stop("[", class(self)[1], "][FATAL] Class is abstract. ",

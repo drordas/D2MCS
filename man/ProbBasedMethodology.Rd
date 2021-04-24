@@ -15,7 +15,7 @@ metrics.
 \keyword{methods}
 \keyword{models}
 \section{Super class}{
-\code{\link[DDMCS:Methodology]{DDMCS::Methodology}} -> \code{ProbBasedMethodology}
+\code{\link[D2MCS:Methodology]{D2MCS::Methodology}} -> \code{ProbBasedMethodology}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -28,7 +28,7 @@ metrics.
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="Methodology" data-id="getRequiredMetrics">}\href{../../DDMCS/html/Methodology.html#method-getRequiredMetrics}{\code{DDMCS::Methodology$getRequiredMetrics()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="Methodology" data-id="getRequiredMetrics">}\href{../../D2MCS/html/Methodology.html#method-getRequiredMetrics}{\code{D2MCS::Methodology$getRequiredMetrics()}}\out{</span>}
 }
 \out{</details>}
 }

@@ -4,7 +4,7 @@
 #' schemes. Additionally, to ensure a proper operation, the class automatically
 #' checks the compatibility of defined voting schemes.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{SimpleVoting}},
+#' @seealso \code{\link{D2MCS}}, \code{\link{SimpleVoting}},
 #' \code{\link{CombinedVoting}}
 #'
 #' @keywords models methods math

@@ -19,7 +19,7 @@ positive and could be termed as false positives.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Specificity}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{Specificity}
 }
 \section{Methods}{
 \subsection{Public methods}{

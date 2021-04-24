@@ -8,7 +8,7 @@ Abstract class used as a template to define new customized
 simple voting schemes.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{D2MCS}}, \code{\link{ClassMajorityVoting}},
 \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
 \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
 \code{\link{CombinedVoting}}

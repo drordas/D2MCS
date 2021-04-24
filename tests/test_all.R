@@ -1,1 +1,1 @@
-testthat::test_check("DDMCS")
+testthat::test_check("D2MCS")

@@ -3,7 +3,7 @@
 #' @description A new implementation of \code{\link{ClassMajorityVoting}} where
 #' each class value has different values (weights).
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' @seealso \code{\link{D2MCS}}, \code{\link{ClassMajorityVoting}},
 #' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
 #' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'

@@ -5,7 +5,7 @@
 #' values are consistent with the performance value achieved by the best M.L.
 #' model on each cluster.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' @seealso \code{\link{D2MCS}}, \code{\link{ClassMajorityVoting}},
 #' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
 #' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'

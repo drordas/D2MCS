@@ -19,7 +19,7 @@ classify N items into C mutually exclusive categories.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Kappa}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{Kappa}
 }
 \section{Methods}{
 \subsection{Public methods}{

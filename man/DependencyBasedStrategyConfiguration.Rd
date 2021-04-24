@@ -16,7 +16,7 @@ Define the default configuration parameters for the
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:StrategyConfiguration]{DDMCS::StrategyConfiguration}} -> \code{DependencyBasedStrategyConfiguration}
+\code{\link[D2MCS:StrategyConfiguration]{D2MCS::StrategyConfiguration}} -> \code{DependencyBasedStrategyConfiguration}
 }
 \section{Methods}{
 \subsection{Public methods}{

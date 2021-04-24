@@ -1,4 +1,4 @@
-Package: DDMCS
+Package: D2MCS
 Type: Package
 Title: Data Driving Multiple Classifier System 
 Version: 0.1.0
@@ -22,8 +22,8 @@ Description:
     Use four spaces when indenting paragraphs within the Description.
 Date: 2020-01-01
 License: GPL-3
-URL: https://github.com/drordas/DDMCS
-BugReports: https://github.com/drordas/DDMCS/issues
+URL: https://github.com/drordas/D2MCS
+BugReports: https://github.com/drordas/D2MCS/issues
 Depends: 
     R (>= 4.0)
 Imports:

@@ -14,7 +14,7 @@ with fixed marginals.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{FisherTestHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{FisherTestHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

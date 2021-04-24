@@ -21,7 +21,7 @@ specific cluster named as 'unclustered'.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericClusteringStrategy]{DDMCS::GenericClusteringStrategy}} -> \code{SimpleStrategy}
+\code{\link[D2MCS:GenericClusteringStrategy]{D2MCS::GenericClusteringStrategy}} -> \code{SimpleStrategy}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -40,9 +40,9 @@ specific cluster named as 'unclustered'.
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getConfiguration">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getConfiguration}{\code{DDMCS::GenericClusteringStrategy$getConfiguration()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getDescription">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getDescription}{\code{DDMCS::GenericClusteringStrategy$getDescription()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getHeuristic">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getHeuristic}{\code{DDMCS::GenericClusteringStrategy$getHeuristic()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getConfiguration">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getConfiguration}{\code{D2MCS::GenericClusteringStrategy$getConfiguration()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getDescription">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getDescription}{\code{D2MCS::GenericClusteringStrategy$getDescription()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getHeuristic">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getHeuristic}{\code{D2MCS::GenericClusteringStrategy$getHeuristic()}}\out{</span>}
 }
 \out{</details>}
 }

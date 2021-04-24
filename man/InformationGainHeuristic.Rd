@@ -13,7 +13,7 @@ Performs the feature-clustering using entropy-based filters.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{InformationGainHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{InformationGainHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

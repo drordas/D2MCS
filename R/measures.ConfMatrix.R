@@ -3,7 +3,7 @@
 #' @description Creates a \code{\link{R6}} confusion matrix from the
 #' \code{\link[caret]{confusionMatrix}} caret package.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{MeasureFunction}},
+#' @seealso \code{\link{D2MCS}}, \code{\link{MeasureFunction}},
 #' \code{\link{ClassificationOutput}}
 #'
 #' @keywords classif math

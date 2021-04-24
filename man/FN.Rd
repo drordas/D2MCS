@@ -14,7 +14,7 @@ final M.L. model.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{FN}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{FN}
 }
 \section{Methods}{
 \subsection{Public methods}{

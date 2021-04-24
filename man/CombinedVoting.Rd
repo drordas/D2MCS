@@ -9,7 +9,7 @@ predictions of different metrics obtained through a \code{\link{SimpleVoting}}
 class.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{D2MCS}}, \code{\link{ClassMajorityVoting}},
 \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
 \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
 \code{\link{SimpleVoting}}
@@ -18,7 +18,7 @@ class.
 \keyword{methods}
 \keyword{models}
 \section{Super class}{
-\code{\link[DDMCS:VotingStrategy]{DDMCS::VotingStrategy}} -> \code{CombinedVoting}
+\code{\link[D2MCS:VotingStrategy]{D2MCS::VotingStrategy}} -> \code{CombinedVoting}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -34,9 +34,9 @@ class.
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="VotingStrategy" data-id="getMetrics">}\href{../../DDMCS/html/VotingStrategy.html#method-getMetrics}{\code{DDMCS::VotingStrategy$getMetrics()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="VotingStrategy" data-id="getName">}\href{../../DDMCS/html/VotingStrategy.html#method-getName}{\code{DDMCS::VotingStrategy$getName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="VotingStrategy" data-id="getVotingSchemes">}\href{../../DDMCS/html/VotingStrategy.html#method-getVotingSchemes}{\code{DDMCS::VotingStrategy$getVotingSchemes()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getMetrics">}\href{../../D2MCS/html/VotingStrategy.html#method-getMetrics}{\code{D2MCS::VotingStrategy$getMetrics()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getName">}\href{../../D2MCS/html/VotingStrategy.html#method-getName}{\code{D2MCS::VotingStrategy$getName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getVotingSchemes">}\href{../../D2MCS/html/VotingStrategy.html#method-getVotingSchemes}{\code{D2MCS::VotingStrategy$getVotingSchemes()}}\out{</span>}
 }
 \out{</details>}
 }

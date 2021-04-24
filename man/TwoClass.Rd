@@ -11,7 +11,7 @@ function for bi-class problems.
 \code{\link{TrainFunction}}
 }
 \section{Super class}{
-\code{\link[DDMCS:TrainFunction]{DDMCS::TrainFunction}} -> \code{TwoClass}
+\code{\link[D2MCS:TrainFunction]{D2MCS::TrainFunction}} -> \code{TwoClass}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -29,13 +29,13 @@ function for bi-class problems.
 \if{html}{
 \out{<details ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="TrainFunction" data-id="getAllowParallel">}\href{../../DDMCS/html/TrainFunction.html#method-getAllowParallel}{\code{DDMCS::TrainFunction$getAllowParallel()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="TrainFunction" data-id="getClassProbs">}\href{../../DDMCS/html/TrainFunction.html#method-getClassProbs}{\code{DDMCS::TrainFunction$getClassProbs()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="TrainFunction" data-id="getNumberFolds">}\href{../../DDMCS/html/TrainFunction.html#method-getNumberFolds}{\code{DDMCS::TrainFunction$getNumberFolds()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="TrainFunction" data-id="getResamplingMethod">}\href{../../DDMCS/html/TrainFunction.html#method-getResamplingMethod}{\code{DDMCS::TrainFunction$getResamplingMethod()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="TrainFunction" data-id="getSavePredictions">}\href{../../DDMCS/html/TrainFunction.html#method-getSavePredictions}{\code{DDMCS::TrainFunction$getSavePredictions()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="TrainFunction" data-id="getSeed">}\href{../../DDMCS/html/TrainFunction.html#method-getSeed}{\code{DDMCS::TrainFunction$getSeed()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="TrainFunction" data-id="getVerboseIter">}\href{../../DDMCS/html/TrainFunction.html#method-getVerboseIter}{\code{DDMCS::TrainFunction$getVerboseIter()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getAllowParallel">}\href{../../D2MCS/html/TrainFunction.html#method-getAllowParallel}{\code{D2MCS::TrainFunction$getAllowParallel()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getClassProbs">}\href{../../D2MCS/html/TrainFunction.html#method-getClassProbs}{\code{D2MCS::TrainFunction$getClassProbs()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getNumberFolds">}\href{../../D2MCS/html/TrainFunction.html#method-getNumberFolds}{\code{D2MCS::TrainFunction$getNumberFolds()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getResamplingMethod">}\href{../../D2MCS/html/TrainFunction.html#method-getResamplingMethod}{\code{D2MCS::TrainFunction$getResamplingMethod()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getSavePredictions">}\href{../../D2MCS/html/TrainFunction.html#method-getSavePredictions}{\code{D2MCS::TrainFunction$getSavePredictions()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getSeed">}\href{../../D2MCS/html/TrainFunction.html#method-getSeed}{\code{D2MCS::TrainFunction$getSeed()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getVerboseIter">}\href{../../D2MCS/html/TrainFunction.html#method-getVerboseIter}{\code{D2MCS::TrainFunction$getVerboseIter()}}\out{</span>}
 }
 \out{</details>}
 }

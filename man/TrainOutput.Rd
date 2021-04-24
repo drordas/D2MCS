@@ -8,7 +8,7 @@ This class manages the results achieved during training stage
 (such as optimized hyperparameters, model information, utilized metrics).
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{D2MCS}}
 }
 \keyword{attribute}
 \keyword{datasets}

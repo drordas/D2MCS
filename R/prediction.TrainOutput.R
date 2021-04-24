@@ -3,7 +3,7 @@
 #' @description This class manages the results achieved during training stage
 #' (such as optimized hyperparameters, model information, utilized metrics).
 #'
-#' @seealso \code{\link{DDMCS}}
+#' @seealso \code{\link{D2MCS}}
 #'
 #' @keywords datasets manip attribute programming utilities
 #'
@@ -206,7 +206,7 @@ TrainOutput <- R6::R6Class(
                          plot.title = ggplot2::element_text(hjust = 0.5))
 
         save.path <- file.path(dir.path, paste0("Performance_Train_Plot_", metric, ".pdf"))
-        message("[DDMCS][INFO] Plot saved has been succesfully saved at : '",
+        message("[", class(self)[1], "][INFO] Plot saved has been succesfully saved at : '",
                 save.path, "'")
         ggplot2::ggsave(filename = save.path, device = "pdf")
       }))

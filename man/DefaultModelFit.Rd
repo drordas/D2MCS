@@ -12,7 +12,7 @@ Creates a default \code{\link[recipes]{recipe}} and
 }
 \keyword{misc}
 \section{Super class}{
-\code{\link[DDMCS:GenericModelFit]{DDMCS::GenericModelFit}} -> \code{DefaultModelFit}
+\code{\link[D2MCS:GenericModelFit]{D2MCS::GenericModelFit}} -> \code{DefaultModelFit}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -92,7 +92,7 @@ of the target class.}
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is automatically invoked by \code{\link{DDMCS}}
+This function is automatically invoked by \code{\link{D2MCS}}
 during model training stage.
 }
 

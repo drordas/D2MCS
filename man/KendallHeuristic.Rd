@@ -18,7 +18,7 @@ Method valid only for bi-class problems.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{KendallHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{KendallHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

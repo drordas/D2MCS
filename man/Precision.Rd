@@ -17,7 +17,7 @@ retrieved instances
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Precision}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{Precision}
 }
 \section{Methods}{
 \subsection{Public methods}{

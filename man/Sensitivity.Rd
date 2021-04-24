@@ -17,7 +17,7 @@ cases that got predicted as positive (or true positive).
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Sensitivity}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{Sensitivity}
 }
 \section{Methods}{
 \subsection{Public methods}{

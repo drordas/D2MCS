@@ -8,7 +8,7 @@ Abstract class used to define new \code{\link{SingleVoting}} and
 \code{\link{CombinedVoting}} schemes.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{SingleVoting}},
+\code{\link{D2MCS}}, \code{\link{SingleVoting}},
 \code{\link{CombinedVoting}}
 }
 \keyword{math}

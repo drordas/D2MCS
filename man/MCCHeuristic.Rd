@@ -13,7 +13,7 @@ Valid for both bi-class and multi-class problems
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{MCCHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{MCCHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

@@ -3,7 +3,7 @@
 #' @description Computes the final prediction by performing the mean value of
 #' the probability achieved by each prediction.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' @seealso \code{\link{D2MCS}}, \code{\link{ClassMajorityVoting}},
 #' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
 #' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 #'

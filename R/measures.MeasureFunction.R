@@ -5,7 +5,7 @@
 #'
 #' @details The \code{\link{GenericHeuristic}} is an full-abstract class so it cannot
 #' be instantiated. To ensure the proper operation, \code{compute} method is
-#' automatically invoke by \code{\link{DDMCS}} framework when needed.
+#' automatically invoke by \code{\link{D2MCS}} framework when needed.
 #'
 #' @seealso \code{\link{MeasureFunction}}
 #'
@@ -39,7 +39,7 @@ MeasureFunction <- R6::R6Class(
     #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
     #' to define the type of object used to compute the measure.
     #'
-    #' @details This function is automatically invoke by the \code{\link{DDMCS}}
+    #' @details This function is automatically invoke by the \code{\link{D2MCS}}
     #' framework.
     #'
     #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error

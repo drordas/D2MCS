@@ -17,7 +17,7 @@ results in statistics and diagnostic tests that are true positive results.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{PPV}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{PPV}
 }
 \section{Methods}{
 \subsection{Public methods}{

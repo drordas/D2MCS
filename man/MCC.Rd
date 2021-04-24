@@ -22,7 +22,7 @@ and +1.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{MCC}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{MCC}
 }
 \section{Methods}{
 \subsection{Public methods}{

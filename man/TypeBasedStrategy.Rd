@@ -20,7 +20,7 @@ features are automatically grouped into a specific cluster named as 'unclustered
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericClusteringStrategy]{DDMCS::GenericClusteringStrategy}} -> \code{TypeBasedStrategy}
+\code{\link[D2MCS:GenericClusteringStrategy]{D2MCS::GenericClusteringStrategy}} -> \code{TypeBasedStrategy}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -37,11 +37,11 @@ features are automatically grouped into a specific cluster named as 'unclustered
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getBestClusterDistribution">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getBestClusterDistribution}{\code{DDMCS::GenericClusteringStrategy$getBestClusterDistribution()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getConfiguration">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getConfiguration}{\code{DDMCS::GenericClusteringStrategy$getConfiguration()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getDescription">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getDescription}{\code{DDMCS::GenericClusteringStrategy$getDescription()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getHeuristic">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getHeuristic}{\code{DDMCS::GenericClusteringStrategy$getHeuristic()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="GenericClusteringStrategy" data-id="getUnclustered">}\href{../../DDMCS/html/GenericClusteringStrategy.html#method-getUnclustered}{\code{DDMCS::GenericClusteringStrategy$getUnclustered()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getBestClusterDistribution">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getBestClusterDistribution}{\code{D2MCS::GenericClusteringStrategy$getBestClusterDistribution()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getConfiguration">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getConfiguration}{\code{D2MCS::GenericClusteringStrategy$getConfiguration()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getDescription">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getDescription}{\code{D2MCS::GenericClusteringStrategy$getDescription()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getHeuristic">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getHeuristic}{\code{D2MCS::GenericClusteringStrategy$getHeuristic()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getUnclustered">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getUnclustered}{\code{D2MCS::GenericClusteringStrategy$getUnclustered()}}\out{</span>}
 }
 \out{</details>}
 }

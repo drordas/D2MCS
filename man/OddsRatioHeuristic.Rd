@@ -13,7 +13,7 @@ Valid only for bi-class problems.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{OddsRatioHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{OddsRatioHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

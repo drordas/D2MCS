@@ -9,14 +9,14 @@ schemes. Additionally, to ensure a proper operation, the class automatically
 checks the compatibility of defined voting schemes.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{SimpleVoting}},
+\code{\link{D2MCS}}, \code{\link{SimpleVoting}},
 \code{\link{CombinedVoting}}
 }
 \keyword{math}
 \keyword{methods}
 \keyword{models}
 \section{Super class}{
-\code{\link[DDMCS:VotingStrategy]{DDMCS::VotingStrategy}} -> \code{SingleVoting}
+\code{\link[D2MCS:VotingStrategy]{D2MCS::VotingStrategy}} -> \code{SingleVoting}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -29,9 +29,9 @@ checks the compatibility of defined voting schemes.
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="VotingStrategy" data-id="getMetrics">}\href{../../DDMCS/html/VotingStrategy.html#method-getMetrics}{\code{DDMCS::VotingStrategy$getMetrics()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="VotingStrategy" data-id="getName">}\href{../../DDMCS/html/VotingStrategy.html#method-getName}{\code{DDMCS::VotingStrategy$getName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="VotingStrategy" data-id="getVotingSchemes">}\href{../../DDMCS/html/VotingStrategy.html#method-getVotingSchemes}{\code{DDMCS::VotingStrategy$getVotingSchemes()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getMetrics">}\href{../../D2MCS/html/VotingStrategy.html#method-getMetrics}{\code{D2MCS::VotingStrategy$getMetrics()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getName">}\href{../../D2MCS/html/VotingStrategy.html#method-getName}{\code{D2MCS::VotingStrategy$getName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getVotingSchemes">}\href{../../D2MCS/html/VotingStrategy.html#method-getVotingSchemes}{\code{D2MCS::VotingStrategy$getVotingSchemes()}}\out{</span>}
 }
 \out{</details>}
 }

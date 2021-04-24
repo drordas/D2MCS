@@ -2,14 +2,14 @@
 % Please edit documentation in R/prediction.ClassificationOutput.R
 \name{ClassificationOutput}
 \alias{ClassificationOutput}
-\title{DDMCS Classification Output.}
+\title{D2MCS Classification Output.}
 \description{
 Allows computing the classification performance values achieved
-by DDMCS. The class is automatically created when \code{\link{DDMCS}}
+by D2MCS. The class is automatically created when \code{\link{D2MCS}}
 classification method is invoked.
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{D2MCS}}
 }
 \keyword{attribute}
 \keyword{datagen}
@@ -105,7 +105,7 @@ A \link{list} with the information of each M.L. model.
 \if{html}{\out{<a id="method-getPerformances"></a>}}
 \if{latex}{\out{\hypertarget{method-getPerformances}{}}}
 \subsection{Method \code{getPerformances()}}{
-The function is used to compute the performance of DDMCS.
+The function is used to compute the performance of D2MCS.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ClassificationOutput$getPerformances(
   test.set,

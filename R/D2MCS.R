@@ -11,7 +11,7 @@
 #' @import R6
 #' @importFrom devtools loaded_packages
 #'
-#' @export DDMCS
+#' @export D2MCS
 #'
 #' @examples
 #'
@@ -21,7 +21,7 @@
 #' ## Load 'hcc-data-complete-balanced.csv' dataset file.
 #' data <- loader$load(filepath = system.file(file.path("examples",
 #'                                                      "hcc-data-complete-balanced.csv"),
-#'                                            package = "DDMCS"),
+#'                                            package = "D2MCS"),
 #'                     header = TRUE, normalize.names = TRUE)
 #' ## Get column names
 #' data$getColumnNames()
@@ -52,7 +52,7 @@
 #' ## Create a train set from the computed clustering distribution
 #' train.set <- distribution$createTrain(subset = train.subset)
 #'
-#' ## Initialization of DDMCS configuration parameters.
+#' ## Initialization of D2MCS configuration parameters.
 #' ##  - Defining training operation.
 #' ##    + 10-fold cross-validation
 #' ##    + Use only 1 CPU core.
@@ -63,18 +63,18 @@
 #' ## - Specify the models to be trained
 #' ex.classifiers <- c("ranger", "lda", "lda2")
 #'
-#' ## Initialize DDMCS
-#' ddmcs <- DDMCS$new(dir.path = file.path(system.file("examples",
-#'                                                     package = "DDMCS"),
+#' ## Initialize D2MCS
+#' d2mcs <- D2MCS$new(dir.path = file.path(system.file("examples",
+#'                                                     package = "D2MCS"),
 #'                                         "MCC_CLUSTERING"))
 #' ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
 #' \dontrun{
-#' trained.models <- ddmcs$train(train.set = train.set,
+#' trained.models <- d2mcs$train(train.set = train.set,
 #'                                  train.function = trFunction,
 #'                                  ex.classifiers = ex.classifiers,
 #'                                  metrics = c("MCC", "PPV"))
 #' ## Execute classification stage using two different voting schemes
-#' predictions <- ddmcs$classify(train.output = trained.models,
+#' predictions <- d2mcs$classify(train.output = trained.models,
 #'                               subset = test.subset,
 #'                               voting.types = c(
 #'                                     SingleVoting$new(voting.schemes = c(ClassMajorityVoting$new(),
@@ -84,13 +84,13 @@
 #' predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 #'
 #' ## Execute classification stage using multiple voting schemes (simple and combined)
-#' predictions <- ddmcs$classify(train.output = trained.models,
+#' predictions <- d2mcs$classify(train.output = trained.models,
 #'                               subset = test.subset,
 #'                               voting.types = c(
 #'                                     SingleVoting$new(voting.schemes = c(ClassMajorityVoting$new(),
 #'                                                                          ClassWeightedVoting$new()),
 #'                                                       metrics = c("MCC", "PPV")),
-#'                                     CombinedVoting$new(voting.scheme = ClassMajorityVoting$new(),
+#'                                     CombinedVoting$new(voting.schemes = ClassMajorityVoting$new(),
 #'                                                         combined.metrics = MinimizeFP$new(),
 #'                                                         methodology = ProbBasedMethodology$new(),
 #'                                                         metrics = c("MCC", "PPV"))))
@@ -98,8 +98,8 @@
 #' predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 #' }
 #'
-DDMCS <- R6::R6Class(
-  classname = "DDMCS",
+D2MCS <- R6::R6Class(
+  classname = "D2MCS",
   portable = TRUE,
   public = list(
     #'
@@ -541,14 +541,14 @@ DDMCS <- R6::R6Class(
         valid.metrics <- intersect(voting.type$getMetrics(),
                                    names(cluster.predictions))
         if (length(valid.metrics) == 0) {
-          message("[DDMCS][INFO] Metrics for '", voting.type$getName(), "' were ",
+          message("[D2MCS][INFO] Metrics for '", voting.type$getName(), "' were ",
                   "not computed. Ignoring voting type...")
           next
         }
         voting.name <- class(voting.type)[1]
         message("[", class(self)[1], "][INFO] ********************************",
                 "***********************")
-        message("[DDMCS][INFO] Computing final prediction values using '",
+        message("[D2MCS][INFO] Computing final prediction values using '",
                 voting.type$getName(), "' schemes")
         message("[", class(self)[1], "][INFO] ********************************",
                 "***********************")

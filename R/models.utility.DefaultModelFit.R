@@ -47,7 +47,7 @@ DefaultModelFit <- R6::R6Class(
     #' \code{\link[recipes]{step_corr}}, \code{\link[recipes]{step_center}},
     #' \code{\link[recipes]{step_scale}}
     #'
-    #' @details This function is automatically invoked by \code{\link{DDMCS}}
+    #' @details This function is automatically invoked by \code{\link{D2MCS}}
     #' during model training stage.
     #'
     #' @param instances A \code{\link{data.frame}} containing the instances used

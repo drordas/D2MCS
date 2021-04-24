@@ -17,7 +17,7 @@ a bivariate normal distribution.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{SpearmanHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{SpearmanHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

@@ -47,7 +47,7 @@ during runtime.
 \subsection{Method \code{execute()}}{
 Abstract function used to implement the performance
 calculator method. To guarantee a proper operation, this method is
-automatically invoked by \code{\link{DDMCS}} framework.
+automatically invoked by \code{\link{D2MCS}} framework.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SummaryFunction$execute()}\if{html}{\out{</div>}}
 }

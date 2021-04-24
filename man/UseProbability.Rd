@@ -12,7 +12,7 @@ probabilities can be computed.
 }
 \keyword{misc}
 \section{Super class}{
-\code{\link[DDMCS:SummaryFunction]{DDMCS::SummaryFunction}} -> \code{UseProbability}
+\code{\link[D2MCS:SummaryFunction]{D2MCS::SummaryFunction}} -> \code{UseProbability}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -25,7 +25,7 @@ probabilities can be computed.
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="SummaryFunction" data-id="getMeasures">}\href{../../DDMCS/html/SummaryFunction.html#method-getMeasures}{\code{DDMCS::SummaryFunction$getMeasures()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SummaryFunction" data-id="getMeasures">}\href{../../D2MCS/html/SummaryFunction.html#method-getMeasures}{\code{D2MCS::SummaryFunction$getMeasures()}}\out{</span>}
 }
 \out{</details>}
 }

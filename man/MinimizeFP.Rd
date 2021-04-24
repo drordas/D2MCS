@@ -14,7 +14,7 @@ class associated.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:CombinedMetrics]{DDMCS::CombinedMetrics}} -> \code{MinimizeFP}
+\code{\link[D2MCS:CombinedMetrics]{D2MCS::CombinedMetrics}} -> \code{MinimizeFP}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -27,7 +27,7 @@ class associated.
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="CombinedMetrics" data-id="getRequiredMetrics">}\href{../../DDMCS/html/CombinedMetrics.html#method-getRequiredMetrics}{\code{DDMCS::CombinedMetrics$getRequiredMetrics()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="CombinedMetrics" data-id="getRequiredMetrics">}\href{../../D2MCS/html/CombinedMetrics.html#method-getRequiredMetrics}{\code{D2MCS::CombinedMetrics$getRequiredMetrics()}}\out{</span>}
 }
 \out{</details>}
 }

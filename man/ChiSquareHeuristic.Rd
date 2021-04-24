@@ -12,7 +12,7 @@ Performs feature-clustering based on ChiSquare method.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{ChiSquareHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{ChiSquareHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

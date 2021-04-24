@@ -17,7 +17,7 @@ amount of relevant instances that were actually retrieved.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{Recall}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{Recall}
 }
 \section{Methods}{
 \subsection{Public methods}{

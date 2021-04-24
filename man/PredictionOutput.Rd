@@ -8,7 +8,7 @@ The class used to encapsulates all the computed predictions to
 facilitate their access and maintenance.
 }
 \seealso{
-\code{\link{DDMCS}}
+\code{\link{D2MCS}}
 }
 \keyword{math}
 \keyword{misc}

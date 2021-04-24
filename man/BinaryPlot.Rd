@@ -14,7 +14,7 @@ bi-class problem.
 \keyword{device}
 \keyword{hplot}
 \section{Super class}{
-\code{\link[DDMCS:GenericPlot]{DDMCS::GenericPlot}} -> \code{BinaryPlot}
+\code{\link[D2MCS:GenericPlot]{D2MCS::GenericPlot}} -> \code{BinaryPlot}
 }
 \section{Methods}{
 \subsection{Public methods}{

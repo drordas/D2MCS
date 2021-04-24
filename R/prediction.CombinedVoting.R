@@ -4,7 +4,7 @@
 #' predictions of different metrics obtained through a \code{\link{SimpleVoting}}
 #' class.
 #'
-#' @seealso \code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+#' @seealso \code{\link{D2MCS}}, \code{\link{ClassMajorityVoting}},
 #' \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
 #' \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}},
 #' \code{\link{SimpleVoting}}

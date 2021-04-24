@@ -20,7 +20,7 @@ interval is given based on Fisher's Z transform.
 \keyword{cluster}
 \keyword{manip}
 \section{Super class}{
-\code{\link[DDMCS:GenericHeuristic]{DDMCS::GenericHeuristic}} -> \code{PearsonHeuristic}
+\code{\link[D2MCS:GenericHeuristic]{D2MCS::GenericHeuristic}} -> \code{PearsonHeuristic}
 }
 \section{Methods}{
 \subsection{Public methods}{

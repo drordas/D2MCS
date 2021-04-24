@@ -9,7 +9,7 @@ The majority class value is defined as final class. All class values have the
 same importance.
 }
 \seealso{
-\code{\link{DDMCS}}, \code{\link{ClassMajorityVoting}},
+\code{\link{D2MCS}}, \code{\link{ClassMajorityVoting}},
 \code{\link{ClassWeightedVoting}}, \code{\link{ProbAverageVoting}},
 \code{\link{ProbAverageWeightedVoting}}, \code{\link{ProbBasedMethodology}}
 }
@@ -17,7 +17,7 @@ same importance.
 \keyword{methods}
 \keyword{models}
 \section{Super class}{
-\code{\link[DDMCS:SimpleVoting]{DDMCS::SimpleVoting}} -> \code{ClassMajorityVoting}
+\code{\link[D2MCS:SimpleVoting]{D2MCS::SimpleVoting}} -> \code{ClassMajorityVoting}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -32,8 +32,8 @@ same importance.
 \if{html}{
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="SimpleVoting" data-id="getCutoff">}\href{../../DDMCS/html/SimpleVoting.html#method-getCutoff}{\code{DDMCS::SimpleVoting$getCutoff()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="DDMCS" data-topic="SimpleVoting" data-id="getFinalPred">}\href{../../DDMCS/html/SimpleVoting.html#method-getFinalPred}{\code{DDMCS::SimpleVoting$getFinalPred()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff">}\href{../../D2MCS/html/SimpleVoting.html#method-getCutoff}{\code{D2MCS::SimpleVoting$getCutoff()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred">}\href{../../D2MCS/html/SimpleVoting.html#method-getFinalPred}{\code{D2MCS::SimpleVoting$getFinalPred()}}\out{</span>}
 }
 \out{</details>}
 }

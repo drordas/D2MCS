@@ -1,10 +1,10 @@
-#' @title DDMCS Classification Output.
+#' @title D2MCS Classification Output.
 #'
 #' @description Allows computing the classification performance values achieved
-#' by DDMCS. The class is automatically created when \code{\link{DDMCS}}
+#' by D2MCS. The class is automatically created when \code{\link{D2MCS}}
 #' classification method is invoked.
 #'
-#' @seealso \code{\link{DDMCS}}
+#' @seealso \code{\link{D2MCS}}
 #'
 #' @keywords datasets manip attribute datagen
 #'
@@ -127,7 +127,7 @@ ClassificationOutput <- R6::R6Class(
       models.info
     },
     #'
-    #' @description The function is used to compute the performance of DDMCS.
+    #' @description The function is used to compute the performance of D2MCS.
     #'
     #' @param dir.path A \link{character} vector with location where the plot
     #' will be saved.

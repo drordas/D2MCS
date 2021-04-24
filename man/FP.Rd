@@ -14,7 +14,7 @@ which the test result is positive. The value entered here must be non-negative.
 \keyword{classif}
 \keyword{math}
 \section{Super class}{
-\code{\link[DDMCS:MeasureFunction]{DDMCS::MeasureFunction}} -> \code{FP}
+\code{\link[D2MCS:MeasureFunction]{D2MCS::MeasureFunction}} -> \code{FP}
 }
 \section{Methods}{
 \subsection{Public methods}{
