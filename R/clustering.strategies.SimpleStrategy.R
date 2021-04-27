@@ -59,7 +59,18 @@ SimpleStrategy <- R6::R6Class(
     #' \code{\link{StrategyConfiguration}} abstract class.
     #'
     initialize = function(subset, heuristic, configuration = StrategyConfiguration$new()) {
-      description <- "<<Pending>>"
+      description <- paste0("SimpleStrategy is a clustering strategy whereby ",
+                            "the features are sorted by descendant according ",
+                            "to the relevance value obtained after applying ",
+                            "an specific heuristic. Next, features are ",
+                            "distributed into N clusters following a ",
+                            "card-dealing methodology. Finally best ",
+                            "distribution is assigned to the distribution ",
+                            "having highest homogeneity. The strategy is ",
+                            "suitable for all features that are valid for the ",
+                            "indicated heuristics. Invalid features are ",
+                            "automatically grouped into a specific cluster ",
+                            "named as 'unclustered'.")
       super$initialize(subset = subset, heuristic = heuristic,
                        description = description, configuration = configuration)
     },

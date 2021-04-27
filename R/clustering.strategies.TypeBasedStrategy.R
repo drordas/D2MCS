@@ -86,7 +86,17 @@ TypeBasedStrategy <- R6::R6Class(
         message("[", class(self)[1], "][INFO] Heuristic for real data defined ",
                 "as '", class(heuristic[[2]])[1], "'")
       }
-      description <- "Binary features are sorted by descendant according to the relevance value obtained after applying an specific heuristic. Next, features are distributed into N clusters following a card-dealing methodology. Finally best distribution is assigned to the cluster distribution having highest homogeneity"
+      description <- paste0("TypeBasedStrategy is a clustering strategy whereby ",
+                            "the features are sorted by descendant according ",
+                            "to the relevance value obtained after applying ",
+                            "an specific heuristic. Next, features are ",
+                            "distributed into N clusters following a ",
+                            "card-dealing methodology. Finally best ",
+                            "distribution is assigned to the distribution ",
+                            "having highest homogeneity. The strategy is ",
+                            "suitable only for binary and real features. ",
+                            "Other  features are automatically grouped into a ",
+                            "specific cluster named as 'unclustered'.")
       super$initialize(subset = subset, heuristic = heuristic,
                        description = description, configuration = configuration)
     },

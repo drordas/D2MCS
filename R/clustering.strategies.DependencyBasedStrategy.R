@@ -137,7 +137,23 @@ DependencyBasedStrategy <- R6::R6Class(
         stop("[", class(self)[1], "][FATAL] Configuration parameter must have ",
              "'isImprovingClustering' method. Aborting...")
       }
-      description <- "<<Pending>>"
+      description <- paste0("DependencyBasedStrategy is a clustering strategy ",
+                            "based on dependency between features. This ",
+                            "strategy is divided into two steps. The first ",
+                            "phase focuses on forming groups with those ",
+                            "features most dependent on each other. This step ",
+                            "also identifies those that are independent from ",
+                            "all the others in the group. The second step is ",
+                            "to try out different numbers of clusters until ",
+                            "you find the one you think is best. These ",
+                            "clusters are formed by inserting in all the ",
+                            "independent characteristics identified ",
+                            "previously and trying to distribute the features ",
+                            "of the groups formed in the previous step in ",
+                            "separate clusters. In this way, it seeks to ",
+                            "ensure that the features are as independent as ",
+                            "possible from those found in the same cluster.")
+
       super$initialize(subset = subset, heuristic = heuristic,
                        description = description, configuration = configuration)
     },
