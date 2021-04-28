@@ -131,14 +131,14 @@ ClassMajorityVoting <- R6::R6Class(
 
         if (length(max.values) > 1) {
           if (self$getMajorityClass() %in% max.values) {
-            message("[", class(self)[1], "][INFO] Found Tie. Resolving using",
-                    " 'majority class' solver")
+            message("[", class(self)[1], "][INFO] Found Tie. Resolving using ",
+                    "'majority class' solver")
             entry <- self$getMajorityClass()
           } else {
             entry <- self$getClassTie()
             if (any(is.null(self$getClassTie()),
                     !(self$getClassTie() %in% max.values))) {
-              message("[", class(self)[1], "][INFO] Resolving tie using first",
+              message("[", class(self)[1], "][INFO] Resolving tie using first ",
                       "occurrence.")
               entry <- max.values[1]
             }
