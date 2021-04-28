@@ -147,7 +147,7 @@ testthat::test_that("CombinedVoting: getFinalPred function works", {
 })
 
 testthat::test_that("CombinedVoting: execute function checks parameter type", {
-
+  testthat::skip_if_not_installed("ranger")
   voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
   combined.metrics <- MinimizeFP$new()
   methodology <- ProbBasedMethodology$new()

@@ -1,5 +1,5 @@
 testthat::test_that("Prediction: initialize function works", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))
@@ -26,7 +26,7 @@ testthat::test_that("Prediction: initialize function checks parameter type", {
 })
 
 testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))
@@ -47,7 +47,7 @@ testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
 })
 
 testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))
@@ -72,7 +72,7 @@ testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
 })
 
 testthat::test_that("Prediction: execute function checks parameter type", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))
@@ -93,7 +93,7 @@ testthat::test_that("Prediction: execute function checks parameter type", {
 })
 
 testthat::test_that("Prediction: getPredicion function works", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))
@@ -125,7 +125,7 @@ testthat::test_that("Prediction: getPredicion function works", {
 })
 
 testthat::test_that("Prediction: getPredicion function checks parameter type", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))
@@ -163,7 +163,7 @@ testthat::test_that("Prediction: getPredicion function checks parameter type", {
 })
 
 testthat::test_that("Prediction: getModelName function works", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))
@@ -176,7 +176,7 @@ testthat::test_that("Prediction: getModelName function works", {
 })
 
 testthat::test_that("Prediction: getModelPerformance function works", {
-
+  testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
                              "testPrediction",
                              "model.classProbsTrue.rds"))

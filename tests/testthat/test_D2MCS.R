@@ -273,7 +273,7 @@ testthat::teardown({
 })
 
 testthat::test_that("D2MCS: classify function works", {
-
+  testthat::skip_if_not_installed("ranger")
   dir.path <- file.path("resourceFiles", "D2MCS-classify")
   num.core <- 1
   socket.type <- "PSOCK"

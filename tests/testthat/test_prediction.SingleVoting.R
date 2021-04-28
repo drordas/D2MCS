@@ -24,7 +24,7 @@ testthat::test_that("SingleVoting: initialize function checks parameter type", {
 })
 
 testthat::test_that("SingleVoting: execute function checks parameter type", {
-
+  testthat::skip_if_not_installed("ranger")
   voting.schemes <- c(ClassWeightedVoting$new(cutoff = 0.7))
   metrics <- c("MCC")
   voting <- SingleVoting$new(voting.schemes = voting.schemes,

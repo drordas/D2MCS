@@ -13,8 +13,8 @@ testthat::test_that("ClusterPredictions: initialize function checks parameter ty
                          fixed = TRUE)
 })
 
-test_that("ClusterPredictions: add function works",{
-
+testthat::test_that("ClusterPredictions: add function works",{
+  testthat::skip_if_not_installed("ranger")
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1,0,1,1),
                                               positive.class = 1)
@@ -42,7 +42,8 @@ testthat::test_that("ClusterPredictions: add function checks parameter type", {
                          fixed = TRUE)
 })
 
-test_that("ClusterPredictions: get function works",{
+testthat::test_that("ClusterPredictions: get function works",{
+  testthat::skip_if_not_installed("ranger")
   clusterPrediction <- ClusterPredictions$new(class.values = c(1,0,1,1),
                                               positive.class = 1)
 
