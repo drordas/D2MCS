@@ -193,7 +193,7 @@ Prediction <- R6::R6Class(
                 length(new.packages), "packages needed to execute aplication\n",
                 "Installing packages...")
         suppressMessages(install.packages(new.packages,
-                                          repos = "https://ftp.cixug.es/CRAN/",
+                                          repos = "https://cloud.r-project.org",
                                           dependencies = TRUE,
                                           quiet = TRUE, verbose = FALSE))
       }

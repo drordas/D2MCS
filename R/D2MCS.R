@@ -614,8 +614,8 @@ D2MCS <- R6::R6Class(
              "Aborting...")
       }
 
-      supported.packages <- unique(available.packages(repos = "https://ftp.cixug.es/CRAN/",
-                                   filters = c("R_version", "OS_type"))[, 1])
+      supported.packages <- unique(available.packages(repos = "https://cloud.r-project.org",
+                                                      filters = c("R_version", "OS_type"))[, 1])
       supported.models <- names(model.list[sapply(model.list, function(model) {
                                 all(model$library %in% supported.packages) })])
 
