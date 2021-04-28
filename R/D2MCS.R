@@ -39,6 +39,9 @@
 #'
 #' @examples
 #'
+#' # Specify the random number generation
+#' set.seed(1234)
+#'
 #' ## Create Dataset Handler object.
 #' loader <- DatasetLoader$new()
 #'
@@ -81,7 +84,7 @@
 #' ##    + 10-fold cross-validation
 #' ##    + Use only 1 CPU core.
 #' ##    + Seed was set to ensure straightforward reproductivity of experiments.
-#' trFunction <- TwoClass$new(method = "cv", number = 1, savePredictions = "final",
+#' trFunction <- TwoClass$new(method = "cv", number = 10, savePredictions = "final",
 #'                            classProbs = TRUE, allowParallel = TRUE,
 #'                            verboseIter = FALSE, seed = 1234)
 #' ## - Specify the models to be trained
@@ -94,9 +97,9 @@
 #' ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
 #' \dontrun{
 #' trained.models <- d2mcs$train(train.set = train.set,
-#'                                  train.function = trFunction,
-#'                                  ex.classifiers = ex.classifiers,
-#'                                  metrics = c("MCC", "PPV"))
+#'                               train.function = trFunction,
+#'                               ex.classifiers = ex.classifiers,
+#'                               metrics = c("MCC", "PPV"))
 #' ## Execute classification stage using two different voting schemes
 #' predictions <- d2mcs$classify(train.output = trained.models,
 #'                               subset = test.subset,
