@@ -96,7 +96,7 @@ Prediction <- R6::R6Class(
         relevel(raw.aux, ref = as.character(positive.class))
 
         private$results$raw <- rbind(private$results$raw, data.frame(raw.aux))
-
+        names(private$results$raw) <- "Raw prediction"
       } else {
         message("[", class(self)[1], "][WARNING] Model '", private$model$model.name,
                 "' is not able to compute a-posteriori probabilities")
@@ -106,9 +106,12 @@ Prediction <- R6::R6Class(
                                       type = "raw"))
 
         private$results$raw <- rbind(private$results$raw, raw.aux)
+        names(private$results$raw) <- "Raw prediction"
 
-        if (is.null(private$results$prob)) {
-          names(private$results$prob) <- class.values
+        if (nrow(private$results$prob) == 0) {
+          private$results$prob <- data.frame(matrix(ncol = 2, nrow = 0,
+                                                    dimnames= list(NULL,
+                                                                   class.values)))
         }
 
         prob.aux <- do.call(rbind, apply(raw.aux, 1, function(row, class.values) {
@@ -118,6 +121,7 @@ Prediction <- R6::R6Class(
         }, class.values = names(private$results$prob)))
 
         private$results$prob <- rbind(private$results$prob, prob.aux)
+        names(private$results$prob) <- make.names(class.values, unique = TRUE)
       }
     },
     #'
