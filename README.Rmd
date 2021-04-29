@@ -71,6 +71,20 @@ It should be taken into account that the case of needing all the dependencies, t
 
 We use [SemVer](http://semver.org/) for versioning. For all available versions, look at the [tags in this repository](https://github.com/drordas/D2MCS/tags).
 
+## Citation ✍
+
+To cite **D2MCS** please use:
+
+> Ruano-Ordás, D; Yevseyeva, I, Basto-Fernandes,V; Méndez, José R; Emmerichc, Michael T.M. (2018). 
+> Improving the drug discovery process by using multiple classifier systems
+> Expert Systems with Applications. Volume 121, pp. 292-303.
+> Elsevier. https://doi.org/10.1016/j.eswa.2018.12.032
+
+> Ruano-Ordás, D., Burggraaff, L., Liu, R. et al.
+> A multiple classifier system identifies novel cannabinoid CB2 receptor ligands.
+> J Cheminform 11, 66 (2019). 
+> https://doi.org/10.1186/s13321-019-0389-9
+
 ## Authors ✒️
 
   - **Miguel Ferreiro Díaz** - *Developer* - [miferreiro](https://github.com/miferreiro)
