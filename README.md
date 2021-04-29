@@ -1,5 +1,7 @@
 
+[![build\_status](https://travis-ci.com/drordas/D2MCS.svg?branch=develop)](https://travis-ci.com/drordas/D2MCS)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![codecov](https://codecov.io/gh/drordas/D2MCS/branch/develop/graph/badge.svg)](https://codecov.io/gh/drordas/D2MCS)
 
 # Data Driving Multiple Classifier System
 
@@ -38,7 +40,7 @@ component).
 ![Figure 1. D2MCS workflow operation
 diagram](additional-material/workflow-operation.png)
 
-*Figure 1. D2MCS workflow operation diagram*
+*Figure 1. D2MCS workflow operation diagram.*
 
 ## Pre-requisites 📋
 
