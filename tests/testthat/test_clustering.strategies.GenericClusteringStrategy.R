@@ -1,6 +1,23 @@
 testthat::test_that("GenericClusteringStrategy: initialize function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -14,7 +31,24 @@ testthat::test_that("GenericClusteringStrategy: initialize function works", {
 
 testthat::test_that("GenericClusteringStrategy: initialize function checks parameter type", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- NULL
@@ -39,7 +73,24 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
                          "[GenericClusteringStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- NULL
   description <- "example"
@@ -52,7 +103,24 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
                          "[GenericClusteringStrategy][FATAL] Heuristics is not correct (must inherit from 'GenericHeuristic' class). Aborting...",
                          fixed = TRUE)
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- list()
   description <- "example"
@@ -65,7 +133,24 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
                          "[GenericClusteringStrategy][FATAL] Adequate heuristics not found (must inherit from 'GenericHeuristic' class). Aborting...",
                          fixed = TRUE)
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -81,7 +166,24 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
 
 testthat::test_that("GenericClusteringStrategy: getDescription function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -97,7 +199,24 @@ testthat::test_that("GenericClusteringStrategy: getDescription function works", 
 
 testthat::test_that("GenericClusteringStrategy: getHeuristic function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -113,7 +232,24 @@ testthat::test_that("GenericClusteringStrategy: getHeuristic function works", {
 
 testthat::test_that("GenericClusteringStrategy: getConfiguration function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -129,7 +265,24 @@ testthat::test_that("GenericClusteringStrategy: getConfiguration function works"
 
 testthat::test_that("GenericClusteringStrategy: getBestClusterDistribution function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -145,7 +298,24 @@ testthat::test_that("GenericClusteringStrategy: getBestClusterDistribution funct
 
 testthat::test_that("GenericClusteringStrategy: getUnclustered function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -161,7 +331,24 @@ testthat::test_that("GenericClusteringStrategy: getUnclustered function works", 
 
 testthat::test_that("GenericClusteringStrategy: execute function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -179,7 +366,24 @@ testthat::test_that("GenericClusteringStrategy: execute function works", {
 
 testthat::test_that("GenericClusteringStrategy: getDistribution function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -197,7 +401,24 @@ testthat::test_that("GenericClusteringStrategy: getDistribution function works",
 
 testthat::test_that("GenericClusteringStrategy: createTrain function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -215,7 +436,24 @@ testthat::test_that("GenericClusteringStrategy: createTrain function works", {
 
 testthat::test_that("GenericClusteringStrategy: plot function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"
@@ -233,7 +471,24 @@ testthat::test_that("GenericClusteringStrategy: plot function works", {
 
 testthat::test_that("GenericClusteringStrategy: saveCSV function works", {
 
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(1, 2),
+                              class.index = "Class",
+                              positive.class = "1")
 
   heuristic <- MCCHeuristic$new()
   description <- "example"

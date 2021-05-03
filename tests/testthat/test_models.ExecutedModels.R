@@ -1,3 +1,45 @@
+testthat::setup({
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "initializeTest"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"))
+
+    file.copy(from = file.path("resourceFiles",
+                               "lda.rds"),
+              to = file.path("resourceFiles",
+                             "testExecutedModels",
+                             "initializeTest",
+                             "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest",
+                         "executed"))
+  }
+
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "initializeWithoutModel"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeWithoutModel"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeWithoutModel",
+                         "executed"))
+  }
+})
+
 testthat::test_that("ExecutedModels: initialize function works", {
 
   dir.path <- file.path("resourceFiles",
@@ -38,6 +80,52 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "initializeTest"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"),
+           recursive = TRUE,
+           force = TRUE)
+  }
+
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "initializeWithoutModel"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeWithoutModel"),
+           recursive = TRUE,
+           force = TRUE)
+  }
+})
+
+testthat::setup({
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "initializeTest"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"))
+
+    file.copy(from = file.path("resourceFiles",
+                               "lda.rds"),
+              to = file.path("resourceFiles",
+                             "testExecutedModels",
+                             "initializeTest",
+                             "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest",
+                         "executed"))
+  }
 })
 
 testthat::test_that("ExecutedModels: getNames function works", {
@@ -67,6 +155,42 @@ testthat::teardown({
                          "dirpathEmpty"),
            recursive = TRUE,
            force = TRUE)
+  }
+
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "initializeTest"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"),
+           recursive = TRUE,
+           force = TRUE)
+  }
+})
+
+testthat::setup({
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "initializeTest"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"))
+
+    file.copy(from = file.path("resourceFiles",
+                               "lda.rds"),
+              to = file.path("resourceFiles",
+                             "testExecutedModels",
+                             "initializeTest",
+                             "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest",
+                         "executed"))
   }
 })
 
@@ -101,20 +225,40 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "initializeTest"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"),
+           recursive = TRUE,
+           force = TRUE)
+  }
 })
 
 testthat::setup({
-  if (!file.exists(file.path("resourceFiles",
+  if (!dir.exists(file.path("resourceFiles",
                             "testExecutedModels",
-                            "addTest-keepBest-FALSE",
-                            "lda.rds"))) {
+                            "addTest-keepBest-FALSE"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "addTest-keepBest-FALSE"))
+
     file.copy(from = file.path("resourceFiles",
-                               "testExecutedModels",
                                "lda.rds"),
               to = file.path("resourceFiles",
                              "testExecutedModels",
                              "addTest-keepBest-FALSE",
                              "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "addTest-keepBest-FALSE",
+                         "executed"))
   }
 })
 
@@ -142,29 +286,40 @@ testthat::test_that("ExecutedModels: add function works (keep.best = FALSE)", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testExecutedModels",
-                            "addTest-keepBest-FALSE",
-                            "newModel.rds"))) {
-    file.remove(file.path("resourceFiles",
-                          "testExecutedModels",
-                          "addTest-keepBest-FALSE",
-                          "newModel.rds"))
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "addTest-keepBest-FALSE"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "addTest-keepBest-FALSE"),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
 testthat::setup({
-  if (!file.exists(file.path("resourceFiles",
-                             "testExecutedModels",
-                             "addTest-keepBest-TRUE",
-                             "lda.rds"))) {
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "addTest-keepBest-TRUE"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "addTest-keepBest-TRUE"))
+
     file.copy(from = file.path("resourceFiles",
-                               "testExecutedModels",
                                "lda.rds"),
               to = file.path("resourceFiles",
                              "testExecutedModels",
                              "addTest-keepBest-TRUE",
                              "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "addTest-keepBest-TRUE",
+                         "executed"))
   }
 })
 
@@ -214,14 +369,41 @@ testthat::test_that("ExecutedModels: add function works (keep.best = TRUE)", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "addTest-keepBest-TRUE"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "addTest-keepBest-TRUE"),
+           recursive = TRUE,
+           force = TRUE)
+  }
+})
+
+testthat::setup({
+
+  if (!dir.exists(file.path("resourceFiles",
                             "testExecutedModels",
-                            "addTest-keepBest-TRUE",
-                            "newModel.rds"))) {
-    file.remove(file.path("resourceFiles",
-                          "testExecutedModels",
-                          "addTest-keepBest-TRUE",
-                          "newModel.rds"))
+                            "initializeTest"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"))
+
+    file.copy(from = file.path("resourceFiles",
+                               "lda.rds"),
+              to = file.path("resourceFiles",
+                             "testExecutedModels",
+                             "initializeTest",
+                             "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest",
+                         "executed"))
   }
 })
 
@@ -241,6 +423,45 @@ testthat::test_that("ExecutedModels: add function checks parameter", {
                            fixed = TRUE)
 })
 
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "initializeTest"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"),
+           recursive = TRUE,
+           force = TRUE)
+  }
+})
+
+testthat::setup({
+
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "initializeTest"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"))
+
+    file.copy(from = file.path("resourceFiles",
+                               "lda.rds"),
+              to = file.path("resourceFiles",
+                             "testExecutedModels",
+                             "initializeTest",
+                             "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest",
+                         "executed"))
+  }
+})
+
 testthat::test_that("ExecutedModels: exist function works", {
   dir.path <- file.path("resourceFiles",
                         "testExecutedModels",
@@ -253,6 +474,45 @@ testthat::test_that("ExecutedModels: exist function works", {
   testthat::expect_false(executedModels$exist(model.name = "wrong"))
 })
 
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "initializeTest"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"),
+           recursive = TRUE,
+           force = TRUE)
+  }
+})
+
+testthat::setup({
+
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "initializeTest"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"))
+
+    file.copy(from = file.path("resourceFiles",
+                               "lda.rds"),
+              to = file.path("resourceFiles",
+                             "testExecutedModels",
+                             "initializeTest",
+                             "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest",
+                         "executed"))
+  }
+})
+
 testthat::test_that("ExecutedModels: size function works", {
   dir.path <- file.path("resourceFiles",
                         "testExecutedModels",
@@ -261,6 +521,18 @@ testthat::test_that("ExecutedModels: size function works", {
   executedModels <- ExecutedModels$new(dir.path = dir.path)
 
   testthat::expect_equal(executedModels$size(), 2)
+})
+
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles",
+                           "testExecutedModels",
+                           "initializeTest"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "initializeTest"),
+           recursive = TRUE,
+           force = TRUE)
+  }
 })
 
 testthat::test_that("ExecutedModels: save function (file is empty)", {
@@ -288,17 +560,28 @@ testthat::teardown({
 })
 
 testthat::setup({
-  if (!file.exists(file.path("resourceFiles",
-                             "testExecutedModels",
-                             "deleteTest",
-                             "lda.rds"))) {
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "deleteTest"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "deleteTest"))
+
     file.copy(from = file.path("resourceFiles",
-                               "testExecutedModels",
                                "lda.rds"),
               to = file.path("resourceFiles",
                              "testExecutedModels",
                              "deleteTest",
                              "lda.rds"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "deleteTest",
+                         "executed"))
   }
 })
 
@@ -317,6 +600,37 @@ testthat::test_that("ExecutedModels: delete function works", {
                                                "lda.rds")))
 })
 
+testthat::teardown({
+  if (file.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "deleteTest"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "deleteTest"),
+           recursive = TRUE,
+           force = TRUE)
+  }
+})
+
+testthat::setup({
+  if (!dir.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "deleteTestError"))) {
+
+    dir.create(file.path("resourceFiles",
+                         "testExecutedModels",
+                         "deleteTestError"))
+
+    writeLines(c('"model","performance","exec.time"',
+                 '"lda",0.7583333,1.939',
+                 '"nb",0.5,2'),
+               file.path("resourceFiles",
+                         "testExecutedModels",
+                         "deleteTestError",
+                         "executed"))
+  }
+})
+
 testthat::test_that("ExecutedModels: delete function checks parameter", {
   dir.path <- file.path("resourceFiles",
                         "testExecutedModels",
@@ -331,4 +645,16 @@ testthat::test_that("ExecutedModels: delete function checks parameter", {
   testthat::expect_message(executedModels$delete(model.name = "nb"),
                            "[ExecutedModels][ERROR] Cannot delete model. Path for model 'nb' not found. Task not performed",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  if (file.exists(file.path("resourceFiles",
+                            "testExecutedModels",
+                            "deleteTestError"))) {
+    unlink(x = file.path("resourceFiles",
+                         "testExecutedModels",
+                         "deleteTestError"),
+           recursive = TRUE,
+           force = TRUE)
+  }
 })

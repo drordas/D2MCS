@@ -93,6 +93,37 @@ testthat::teardown({
 })
 
 testthat::test_that("D2MCS: train function works", {
+
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
+  heuristic <- MCCHeuristic$new()
+  configuration <- StrategyConfiguration$new()
+
+  strategy <- SimpleStrategy$new(subset = subset.cluster,
+                                 heuristic = heuristic,
+                                 configuration = configuration)
+
+  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
+
+  train.set <- strategy$createTrain(subset = subset.cluster)
+
   dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- 1
   socket.type <- "PSOCK"
@@ -105,7 +136,6 @@ testthat::test_that("D2MCS: train function works", {
                      outfile = outfile,
                      serialize = serialize)
 
-  train.set <- readRDS(file.path("resourceFiles", "data", "trainset.rds"))
   train.function <- TwoClass$new(method = "cv", number = 10, savePredictions = "final",
                                  classProbs = TRUE, allowParallel = TRUE, verboseIter = FALSE)
   num.clusters <- NULL
@@ -132,6 +162,36 @@ testthat::teardown({
 
 testthat::test_that("D2MCS: train function checks parameter types", {
 
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
+  heuristic <- MCCHeuristic$new()
+  configuration <- StrategyConfiguration$new()
+
+  strategy <- SimpleStrategy$new(subset = subset.cluster,
+                                 heuristic = heuristic,
+                                 configuration = configuration)
+
+  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
+
+  train.set <- strategy$createTrain(subset = subset.cluster)
+
   dir.path <- file.path("resourceFiles", "D2MCS")
   num.core <- 1
   socket.type <- "PSOCK"
@@ -144,7 +204,6 @@ testthat::test_that("D2MCS: train function checks parameter types", {
                      outfile = outfile,
                      serialize = serialize)
 
-  train.set <- readRDS(file.path("resourceFiles", "data", "trainset.rds"))
   train.function <- TwoClass$new(method = "cv", number = 10, savePredictions = "final",
                                  classProbs = TRUE, allowParallel = TRUE, verboseIter = FALSE)
   num.clusters <- NULL
@@ -287,7 +346,24 @@ testthat::test_that("D2MCS: classify function works", {
                      serialize = serialize)
 
   train.output <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(2, 3),
+                              class.index = "Class",
+                              positive.class = "1")
   voting.types <- c(SingleVoting$new(voting.schemes = c(ClassWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageVoting$new(cutoff = 0.7),
@@ -341,7 +417,24 @@ testthat::test_that("D2MCS: classify function checks type parameter", {
                      serialize = serialize)
 
   train.output <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
-  subset <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset <- data$createSubset(num.folds = c(2, 3),
+                              class.index = "Class",
+                              positive.class = "1")
   voting.types <- c(SingleVoting$new(voting.schemes = c(ClassWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageWeightedVoting$new(cutoff = 0.7),
                                                         ProbAverageVoting$new(cutoff = 0.7),

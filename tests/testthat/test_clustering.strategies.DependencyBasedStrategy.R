@@ -1,8 +1,23 @@
 testthat::test_that("DependencyBasedStrategy: initialize function works", {
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- DependencyBasedStrategyConfiguration$new()
 
@@ -11,9 +26,25 @@ testthat::test_that("DependencyBasedStrategy: initialize function works", {
                                                   configuration = configuration),
                       "DependencyBasedStrategy")
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- DependencyBasedStrategyConfiguration$new()
 
@@ -42,9 +73,25 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
                          "[DependencyBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- NULL
   configuration <- DependencyBasedStrategyConfiguration$new()
 
@@ -54,9 +101,25 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
                          "[DependencyBasedStrategy][FATAL] Heuristic parameter is not defined or incorrect. Must contain two elements. Aborting...",
                          fixed = TRUE, )
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(1, 1)
   configuration <- DependencyBasedStrategyConfiguration$new()
 
@@ -66,9 +129,25 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
                          "[DependencyBasedStrategy][FATAL] Defined heuristics are not correct. Must be inherit from 'GenericHeuristic' class. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(NULL, SpearmanHeuristic$new())
   configuration <- DependencyBasedStrategyConfiguration$new()
 
@@ -78,9 +157,25 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
                            "[DependencyBasedStrategy][WARNING] Heuristic for binary data not defined",
                            fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), NULL)
   configuration <- DependencyBasedStrategyConfiguration$new()
 
@@ -90,9 +185,25 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
                            "[DependencyBasedStrategy][WARNING] Heuristic for real data not defined",
                            fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- NULL
 
@@ -105,9 +216,25 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
 
 testthat::test_that("DependencyBasedStrategy: checks configuration object", {
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- R6::R6Class(classname = "TestConfiguration",
                                inherit = StrategyConfiguration,
@@ -124,9 +251,25 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
                          "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'getBinaryCutoff' method. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- R6::R6Class(classname = "TestConfiguration",
                                inherit = StrategyConfiguration,
@@ -143,9 +286,25 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
                          "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'getRealCutoff' method. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- R6::R6Class(classname = "TestConfiguration",
                                inherit = StrategyConfiguration,
@@ -162,9 +321,25 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
                          "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'tiebreak' method. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- R6::R6Class(classname = "TestConfiguration",
                                inherit = StrategyConfiguration,
@@ -181,9 +356,25 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
                          "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'qualityOfCluster' method. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- R6::R6Class(classname = "TestConfiguration",
                                inherit = StrategyConfiguration,
@@ -211,9 +402,24 @@ testthat::setup({
 
 testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method", {
   testthat::skip_if_not_installed("grDevices")
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- DependencyBasedStrategyConfiguration$new(tiebreakMethod = 'lfdc',
                                                             realCutoff = .9)
@@ -241,11 +447,11 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 5)
+  testthat::expect_equal(length(strategy$getDistribution()), 4)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1)), 0)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:3)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 4)
+  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 3)
 
   testthat::expect_equal(length(strategy$getDistribution(num.groups = c(1, 1))),
                          2)
@@ -258,7 +464,7 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
                            "[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Returning all groups...",
                            fixed = TRUE)
 
-  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 5)
+  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 4)
 
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
@@ -366,9 +572,24 @@ testthat::setup({
 
 testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method", {
   testthat::skip_if_not_installed("grDevices")
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- DependencyBasedStrategyConfiguration$new(tiebreakMethod = "ltdc")
 
@@ -501,10 +722,24 @@ testthat::teardown({
 })
 
 testthat::test_that("DependencyBasedStrategy checks incompatible heuristics", {
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
 
-  subset.cluster <- readRDS(file.path("resourceFiles",
-                                      "data",
-                                      "subset.rds"))
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
 
   configuration <- DependencyBasedStrategyConfiguration$new()
 

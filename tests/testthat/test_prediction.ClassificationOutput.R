@@ -18,28 +18,109 @@ testthat::test_that("ClassificationOutput: initialize function checks parameter 
 })
 
 testthat::test_that("ClassificationOutput: getMetrics function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   testthat::expect_equal(classificationOutput$getMetrics(), c("MCC", "PPV"))
 })
 
 testthat::test_that("ClassificationOutput: getPositiveClass function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   testthat::expect_equal(classificationOutput$getPositiveClass(), 1)
 })
 
 testthat::test_that("ClassificationOutput: getModelInfo function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   testthat::expect_message(classificationOutput$getModelInfo(),
                            "[ClassificationOutput][WARNING] Metrics are not defined or invalid. Asuming all metrics of clasification.output (MCC,PPV)",
@@ -50,12 +131,56 @@ testthat::test_that("ClassificationOutput: getModelInfo function works", {
 })
 
 testthat::test_that("ClassificationOutput: getPerformances function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
 
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
+
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  test.set <- data$createSubset(num.folds = 3,
+                                class.index = "Class",
+                                positive.class = "1")
   measures <- c(PPV$new(), MCC$new())
 
   testthat::expect_is(classificationOutput$getPerformances(test.set = test.set,
@@ -67,12 +192,38 @@ testthat::test_that("ClassificationOutput: getPerformances function works", {
 })
 
 testthat::test_that("ClassificationOutput: getPerformances function checks parameter type", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
 
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
+
   measures <- c(PPV$new(), MCC$new())
 
   testthat::expect_error(classificationOutput$getPerformances(test.set = NULL,
@@ -104,6 +255,24 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                                                               cutoff.values = 0.7),
                          "[ClassificationOutput][FATAL] Testset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  test.set <- data$createSubset(num.folds = 3,
+                                class.index = "Class",
+                                positive.class = "1")
 
   testthat::expect_error(classificationOutput$getPerformances(test.set = test.set,
                                                               measures = NULL,
@@ -137,7 +306,24 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                            "[ClassificationOutput][WARNING] Defined votings are not available. Using all votings",
                            fixed = TRUE)
 
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  test.set <- data$createSubset(num.folds = 3,
+                                class.index = "Class",
+                                positive.class = "1")
   test.set$.__enclos_env__$private$positive.class <- "0"
   testthat::expect_error(classificationOutput$getPerformances(test.set = test.set,
                                                               measures = measures,
@@ -155,13 +341,57 @@ testthat::setup({
 })
 
 testthat::test_that("ClassificationOutput: savePerformances function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  test.set <- data$createSubset(num.folds = 3,
+                                class.index = "Class",
+                                positive.class = "1")
   measures <- c(MCC$new())
   testthat::expect_message(classificationOutput$savePerformances(dir.path = dir.path,
                                                                  test.set = test.set,
@@ -181,13 +411,57 @@ testthat::teardown({
 })
 
 testthat::test_that("ClassificationOutput: savePerformances function checks parameter type", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  test.set <- data$createSubset(num.folds = 3,
+                                class.index = "Class",
+                                positive.class = "1")
   measures <- c(MCC$new())
   testthat::expect_error(classificationOutput$savePerformances(dir.path = NULL,
                                                                test.set = test.set,
@@ -209,13 +483,57 @@ testthat::setup({
 })
 
 testthat::test_that("ClassificationOutput: plotPerformances function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  test.set <- data$createSubset(num.folds = 3,
+                                class.index = "Class",
+                                positive.class = "1")
   measures <- c(MCC$new())
   testthat::expect_message(classificationOutput$plotPerformances(dir.path = dir.path,
                                                                  test.set = test.set,
@@ -236,13 +554,57 @@ testthat::teardown({
 })
 
 testthat::test_that("ClassificationOutput: plotPerformances function checks parameter type", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
-  test.set <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  test.set <- data$createSubset(num.folds = 3,
+                                class.index = "Class",
+                                positive.class = "1")
   measures <- c(MCC$new())
   testthat::expect_error(classificationOutput$plotPerformances(dir.path = NULL,
                                                                test.set = test.set,
@@ -258,10 +620,37 @@ testthat::teardown({
 })
 
 testthat::test_that("ClassificationOutput: getPredictions function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   voting.names <- NULL
   metric.names <- NULL
@@ -278,7 +667,7 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                                                           filter = filter),
                       "PredictionOutput")
 
-  testthat::expect_is(classificationOutput$getPredictions(voting.names = "ProbAverageWeightedVoting",
+  testthat::expect_is(classificationOutput$getPredictions(voting.names = "ClassWeightedVoting",
                                                           metric.names = "MCC",
                                                           cutoff.values = 0.7,
                                                           type = type,
@@ -339,10 +728,37 @@ testthat::setup({
 })
 
 testthat::test_that("ClassificationOutput: savePredictions function works", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
+
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   dir.path <- file.path("resourceFiles", "ClassificationOutput")
   voting.names <- NULL
@@ -360,7 +776,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = target,
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_raw_Predictions.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_raw_Predictions.csv")))
 
   testthat::expect_message(classificationOutput$savePredictions(dir.path = dir.path,
                                                                 voting.names = voting.names,
@@ -380,7 +796,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = "0",
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_raw_0.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_raw_0.csv")))
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
@@ -390,7 +806,7 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = target,
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_1.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_1.csv")))
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
@@ -400,17 +816,17 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = "0",
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_0.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_0.csv")))
 
   classificationOutput$savePredictions(dir.path = dir.path,
-                                       voting.names = "ProbAverageWeightedVoting",
+                                       voting.names = "ClassWeightedVoting",
                                        metric.names = "MCC",
                                        cutoff.values = 0.7,
                                        type = type,
                                        target = target,
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ProbAverageWeightedVoting_raw_Predictions.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_raw_Predictions.csv")))
 
   testthat::expect_message(classificationOutput$savePredictions(dir.path = dir.path,
                                                                 voting.names = voting.names,
@@ -450,10 +866,36 @@ testthat::teardown({
 })
 
 testthat::test_that("ClassificationOutput: savePredictions function checks parameter type", {
-  classificationOutputObject <- readRDS(file.path("resourceFiles", "data", "classificationOutput.rds"))
+  classWeightedVotingProb <- readRDS(file.path("resourceFiles",
+                                               "data",
+                                               "classWeightedVotingProb.rds"))
 
-  classificationOutput <- ClassificationOutput$new(voting.schemes = classificationOutputObject$.__enclos_env__$private$voting.schemes,
-                                                   models = classificationOutputObject$.__enclos_env__$private$trained.models)
+  classWeightedVotingRaw <- readRDS(file.path("resourceFiles",
+                                              "data",
+                                              "classWeightedVotingRaw.rds"))
+
+  final.pred <- D2MCS:::FinalPred$new()
+  final.pred$set(prob = classWeightedVotingProb,
+                 raw = classWeightedVotingRaw,
+                 class.values = c(1, 0),
+                 positive.class = 1)
+
+  classWeightedVoting <- ClassWeightedVoting$new(cutoff = 0.7,
+                                                 weights = c(0.549, 0.382, 0.385))
+
+  classWeightedVoting$.__enclos_env__$private$final.pred <- final.pred
+
+  voting.schemes <- list("SingleVoting" =
+                           list("MCC" =
+                                  list("0.7" =
+                                         list(ClassWeightedVoting = classWeightedVoting))))
+
+  trained.models <- readRDS(file.path("resourceFiles",
+                                      "data",
+                                      "trainedModels.rds"))
+
+  classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
+                                                   models = trained.models)
 
   voting.names <- NULL
   metric.names <- NULL

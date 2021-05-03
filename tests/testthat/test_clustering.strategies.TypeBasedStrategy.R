@@ -1,6 +1,24 @@
 testthat::test_that("TypeBasedStrategy: initialize function works", {
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
@@ -18,7 +36,25 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
                          "[TypeBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- NULL
   configuration <- StrategyConfiguration$new()
 
@@ -26,7 +62,25 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
                          "[TypeBasedStrategy][FATAL] Heuristic parameter is not defined or incorrect. Must contain two elements. Aborting...",
                          fixed = TRUE, )
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(1, 1)
   configuration <- StrategyConfiguration$new()
 
@@ -34,7 +88,25 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
                          "[TypeBasedStrategy][FATAL] Defined heuristics are not correct. Must be inherit from 'GenericHeuristic' class. Aborting...",
                          fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
@@ -46,7 +118,25 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
                            "[TypeBasedStrategy][INFO] Heuristic for real data defined",
                            fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(NULL, SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
@@ -54,7 +144,25 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
                            "[TypeBasedStrategy][WARNING] Heuristic for binary data not defined",
                            fixed = TRUE)
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristics <- list(ChiSquareHeuristic$new(), NULL)
   configuration <- StrategyConfiguration$new()
 
@@ -71,7 +179,24 @@ testthat::setup({
 
 testthat::test_that("TypeBasedStrategy works", {
   testthat::skip_if_not_installed("grDevices")
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
@@ -130,12 +255,12 @@ testthat::test_that("TypeBasedStrategy works", {
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 5)
+  testthat::expect_equal(length(strategy$getDistribution()), 4)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 2)), 2)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 4)
+  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 3)
 
-  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 5)
+  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 4)
 
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
@@ -213,7 +338,24 @@ testthat::teardown({
 
 testthat::test_that("TypeBasedStrategy checks incompatible heuristics", {
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
 
   configuration <- StrategyConfiguration$new()
 

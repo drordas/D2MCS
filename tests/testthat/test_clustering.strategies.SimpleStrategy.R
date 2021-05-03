@@ -1,6 +1,24 @@
 testthat::test_that("SimpleStrategy: initialize function works", {
 
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristic <- ChiSquareHeuristic$new()
   configuration <- StrategyConfiguration$new()
 
@@ -16,7 +34,26 @@ testthat::setup({
 
 testthat::test_that("SimpleStrategy works", {
   testthat::skip_if_not_installed("grDevices")
-  subset.cluster <- readRDS(file.path("resourceFiles", "data", "subset.rds"))
+
+  set.seed(1234)
+  file.path <-  file.path("resourceFiles",
+                          "data",
+                          "hcc-data-complete-balanced.csv")
+
+  data <- Dataset$new(filepath = file.path,
+                      header = TRUE,
+                      sep = ",",
+                      skip = 1,
+                      normalize.names = TRUE,
+                      string.as.factor = FALSE,
+                      ignore.columns = NULL)
+
+  data$createPartitions(num.folds = 4, class.balance = "Class")
+
+  subset.cluster <- data$createSubset(num.folds = c(1, 2),
+                                      class.index = "Class",
+                                      positive.class = "1")
+
   heuristic <- ChiSquareHeuristic$new()
   configuration <- StrategyConfiguration$new()
 
@@ -47,11 +84,11 @@ testthat::test_that("SimpleStrategy works", {
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 5)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1)), 5)
+  testthat::expect_equal(length(strategy$getDistribution()), 2)
+  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1)), 2)
   testthat::expect_equal(length(strategy$getDistribution(num.clusters = 2)), 2)
   testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 1)
-  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 6)
+  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 3)
 
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
