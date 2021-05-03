@@ -26,7 +26,7 @@ Description:
     optimal number of feature clusters, (iii) the training and tuning of ML 
     models and (iv) the execution of voting schemes to combine the outputs of 
     each classifier comprising the Multiple  Classifier System.
-Date: 2021-04-24
+Date: 2021-05-03
 License: GPL-3
 URL: https://github.com/drordas/D2MCS
 BugReports: https://github.com/drordas/D2MCS/issues
