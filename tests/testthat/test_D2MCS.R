@@ -93,7 +93,7 @@ testthat::teardown({
 })
 
 testthat::test_that("D2MCS: train function works", {
-
+  testthat::skip_on_cran()
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
@@ -161,7 +161,7 @@ testthat::teardown({
 })
 
 testthat::test_that("D2MCS: train function checks parameter types", {
-
+  testthat::skip_on_cran()
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
