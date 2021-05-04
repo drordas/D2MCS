@@ -1,6 +1,9 @@
 testthat::test_that("D2MCS: initialize function works", {
 
-  dir.path <- file.path("resourceFiles", "D2MCS")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
@@ -22,8 +25,16 @@ testthat::test_that("D2MCS: initialize function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
-    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "D2MCS"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "D2MCS"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
@@ -43,10 +54,18 @@ testthat::test_that("D2MCS: initialize function checks parameter type", {
                          "[D2MCS][FATAL] Path to store ML models should be defined",
                          fixed = TRUE)
 
-  dir.path <- file.path("resourceFiles", "D2MCS")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 2
   socket.type <- "PSOCK"
-  outfile <- file.path("resourceFiles", "D2MCS", "outfile", "null")
+  outfile <- normalizePath(path = file.path(tempdir(),
+                                            "D2MCS",
+                                            "outfile",
+                                            "null"),
+                           winslash = "/",
+                           mustWork = FALSE)
   serialize <- NULL
 
   testthat::expect_message(D2MCS$new(dir.path = dir.path,
@@ -57,7 +76,10 @@ testthat::test_that("D2MCS: initialize function checks parameter type", {
                            paste0("[D2MCS][INFO] Logs path not defined '", outfile, "' does not exist. Creating..."),
                            fixed = TRUE)
 
-  dir.path <- file.path("resourceFiles", "D2MCS")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 2
   socket.type <- "wrong"
   outfile <- NULL
@@ -71,7 +93,10 @@ testthat::test_that("D2MCS: initialize function checks parameter type", {
                            "[D2MCS][WARNING] Invalid socket type. Assuming 'PSOCK' cluster",
                            fixed = TRUE)
 
-  dir.path <- file.path("resourceFiles", "D2MCS")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 2
   socket.type <- "PSOCK"
   outfile <- NULL
@@ -87,8 +112,16 @@ testthat::test_that("D2MCS: initialize function checks parameter type", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
-    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "D2MCS"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "D2MCS"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
@@ -124,7 +157,10 @@ testthat::test_that("D2MCS: train function works", {
 
   train.set <- strategy$createTrain(subset = subset.cluster)
 
-  dir.path <- file.path("resourceFiles", "D2MCS")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
@@ -155,8 +191,16 @@ testthat::test_that("D2MCS: train function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
-    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "D2MCS"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "D2MCS"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
@@ -192,7 +236,10 @@ testthat::test_that("D2MCS: train function checks parameter types", {
 
   train.set <- strategy$createTrain(subset = subset.cluster)
 
-  dir.path <- file.path("resourceFiles", "D2MCS")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
@@ -303,13 +350,24 @@ testthat::test_that("D2MCS: train function checks parameter types", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
-    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "D2MCS"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "D2MCS"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
 testthat::test_that("D2MCS: getAvailableModels function works", {
-  dir.path <- file.path("resourceFiles", "D2MCS")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
@@ -326,14 +384,25 @@ testthat::test_that("D2MCS: getAvailableModels function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "D2MCS"))) {
-    unlink(file.path("resourceFiles", "D2MCS"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "D2MCS"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "D2MCS"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
 testthat::test_that("D2MCS: classify function works", {
   testthat::skip_if_not_installed("ranger")
-  dir.path <- file.path("resourceFiles", "D2MCS-classify")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS-classify"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
@@ -397,14 +466,25 @@ testthat::test_that("D2MCS: classify function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "D2MCS-classify"))) {
-    unlink(file.path("resourceFiles", "D2MCS-classify"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "D2MCS-classify"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "D2MCS-classify"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
 testthat::test_that("D2MCS: classify function checks type parameter", {
 
-  dir.path <- file.path("resourceFiles", "D2MCS-classify")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "D2MCS-classify"),
+                            winslash = "/",
+                            mustWork = FALSE)
   num.core <- 1
   socket.type <- "PSOCK"
   outfile <- NULL
@@ -476,7 +556,15 @@ testthat::test_that("D2MCS: classify function checks type parameter", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "D2MCS-classify"))) {
-    unlink(file.path("resourceFiles", "D2MCS-classify"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "D2MCS-classify"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "D2MCS-classify"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })

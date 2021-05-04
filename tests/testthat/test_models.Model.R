@@ -1,37 +1,51 @@
 testthat::setup({
-  if (!dir.exists(file.path("resourceFiles",
-                            "testModel",
-                            "initializeTest"))) {
+  if (!dir.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel",
+                                                 "initializeTest"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
 
-    dir.create(file.path("resourceFiles",
-                         "testModel",
-                         "initializeTest",
-                         "model"), recursive = TRUE)
+    dir.create(path = normalizePath(path = file.path(tempdir(),
+                                                     "testModel",
+                                                     "initializeTest",
+                                                     "model"),
+                                winslash = "/",
+                                mustWork = FALSE),
+               recursive = TRUE)
 
     file.copy(from = file.path("resourceFiles",
                                "lda.rds"),
-              to = file.path("resourceFiles",
-                             "testModel",
-                             "initializeTest",
-                             "model",
-                             "lda.rds"))
-    dir.create(file.path("resourceFiles",
-                         "testModel",
-                         "initializeTest",
-                         "wrongModel"))
-    saveRDS("", file.path("resourceFiles",
-                          "testModel",
-                          "initializeTest",
-                          "wrongModel",
-                          "lda.rds"))
+              to = normalizePath(path = file.path(tempdir(),
+                                                  "testModel",
+                                                  "initializeTest",
+                                                  "model",
+                                                  "lda.rds"),
+                                 winslash = "/",
+                                 mustWork = FALSE))
+    dir.create(path = normalizePath(path = file.path(tempdir(),
+                                                     "testModel",
+                                                     "initializeTest",
+                                                     "wrongModel"),
+                                winslash = "/",
+                                mustWork = FALSE),
+               recursive = TRUE)
+    saveRDS("", normalizePath(path = file.path(tempdir(),
+                                               "testModel",
+                                               "initializeTest",
+                                               "wrongModel",
+                                               "lda.rds"),
+                              winslash = "/",
+                              mustWork = FALSE))
   }
 })
 
 testthat::test_that("Model: initialize function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                                winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -46,14 +60,18 @@ testthat::test_that("Model: initialize function works", {
                                          fixed = TRUE)
   testthat::expect_is(modelClass,
                       "Model")
-  testthat::expect_true(file.exists(file.path("resourceFiles",
-                                              "testModel",
-                                              "dirpath")))
+  testthat::expect_true(file.exists(normalizePath(path = file.path(tempdir(),
+                                                                   "testModel",
+                                                                   "dirpath"),
+                                                  winslash = "/",
+                                                  mustWork = FALSE)))
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "initializeTest",
-                        "model")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "initializeTest",
+                                             "model"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   testthat::expect_message(Model$new(dir.path = dir.path, model = model),
                            "[Model][INFO] Model 'lda' already exists. Loading...",
@@ -63,10 +81,12 @@ testthat::test_that("Model: initialize function works", {
                            "[Model][INFO] 'lda', Linear Discriminant Analysis', Discriminant Analysis' has been succesfully loaded!",
                            fixed = TRUE)
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "initializeTest",
-                        "wrongModel")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "initializeTest",
+                                             "wrongModel"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   testthat::expect_message(Model$new(dir.path = dir.path, model = model),
                            "[Model][ERROR] Unable to load trained model. Task not performed",
@@ -74,22 +94,14 @@ testthat::test_that("Model: initialize function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
-           recursive = TRUE,
-           force = TRUE)
-  }
-
-  if (dir.exists(file.path("resourceFiles",
-                           "testModel",
-                           "initializeTest"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "initializeTest"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }
@@ -97,9 +109,11 @@ testthat::teardown({
 
 testthat::test_that("Model: initialize function checks parameter", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -115,12 +129,14 @@ testthat::test_that("Model: initialize function checks parameter", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }
@@ -128,9 +144,11 @@ testthat::teardown({
 
 testthat::test_that("Model: isTrained function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -146,12 +164,14 @@ testthat::test_that("Model: isTrained function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }
@@ -159,9 +179,10 @@ testthat::teardown({
 
 testthat::test_that("Model: getDir function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -177,12 +198,14 @@ testthat::test_that("Model: getDir function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }
@@ -190,9 +213,11 @@ testthat::teardown({
 
 testthat::test_that("Model: getName function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -208,12 +233,14 @@ testthat::test_that("Model: getName function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }
@@ -221,9 +248,11 @@ testthat::teardown({
 
 testthat::test_that("Model: getFamily function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -239,12 +268,14 @@ testthat::test_that("Model: getFamily function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }
@@ -252,9 +283,11 @@ testthat::teardown({
 
 testthat::test_that("Model: getDescription function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -270,12 +303,14 @@ testthat::test_that("Model: getDescription function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }
@@ -283,9 +318,11 @@ testthat::teardown({
 
 testthat::test_that("Model: train function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -331,8 +368,10 @@ testthat::test_that("Model: train function works", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -355,30 +394,25 @@ testthat::test_that("Model: train function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: train function checks parameter", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -423,8 +457,10 @@ testthat::test_that("Model: train function checks parameter", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_error(modelClass$train(train.set = NULL,
@@ -461,29 +497,26 @@ testthat::test_that("Model: train function checks parameter", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: getTrainedModel function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -532,8 +565,10 @@ testthat::test_that("Model: getTrainedModel function works", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -548,29 +583,24 @@ testthat::test_that("Model: getTrainedModel function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
     unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+                         "testModel"),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: getExecutionTime function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -619,8 +649,10 @@ testthat::test_that("Model: getExecutionTime function works", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -635,29 +667,26 @@ testthat::test_that("Model: getExecutionTime function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: getPerformance function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -702,8 +731,10 @@ testthat::test_that("Model: getPerformance function works", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -718,29 +749,26 @@ testthat::test_that("Model: getPerformance function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: getPerformance function checks parameter", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -785,8 +813,10 @@ testthat::test_that("Model: getPerformance function checks parameter", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -803,29 +833,26 @@ testthat::test_that("Model: getPerformance function checks parameter", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: getConfiguration function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpath")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpath"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -874,8 +901,10 @@ testthat::test_that("Model: getConfiguration function works", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -890,29 +919,26 @@ testthat::test_that("Model: getConfiguration function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpath"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpath"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: save function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpathSave")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpathSave"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -961,8 +987,10 @@ testthat::test_that("Model: save function works", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -990,29 +1018,26 @@ testthat::test_that("Model: save function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpathSave"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpathSave"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })
 
 testthat::test_that("Model: remove function works", {
 
-  dir.path <- file.path("resourceFiles",
-                        "testModel",
-                        "dirpathRemove")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "testModel",
+                                             "dirpathRemove"),
+                            winslash = "/",
+                            mustWork = FALSE)
 
   model <- data.frame(name = c("lda"),
                       description = c("Linear Discriminant Analysis"),
@@ -1061,8 +1086,10 @@ testthat::test_that("Model: remove function works", {
   trFunction$create(summaryFunction = UseProbability$new(),
                     search.method = "random")
   metric <- "PPV"
-  logs <-file.path("resourceFiles",
-                   "testModel")
+  logs <- normalizePath(path = file.path(tempdir(),
+                                         "testModel"),
+                        winslash = "/",
+                        mustWork = FALSE)
   file.create(file.path(logs, "error.log"))
 
   testthat::expect_message(modelClass$train(train.set = train.set,
@@ -1091,20 +1118,17 @@ testthat::test_that("Model: remove function works", {
 })
 
 testthat::teardown({
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "dirpathRemove"))) {
-    unlink(x = file.path("resourceFiles",
-                         "testModel",
-                         "dirpathRemove"),
+  if (file.exists(normalizePath(path = file.path(tempdir(),
+                                                 "testModel",
+                                                 "dirpathRemove"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "testModel",
+                                              "dirpathRemove"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
-  }
-  if (file.exists(file.path("resourceFiles",
-                            "testModel",
-                            "error.log"))) {
-    file.remove(file.path("resourceFiles",
-                          "testModel",
-                          "error.log"))
   }
 })

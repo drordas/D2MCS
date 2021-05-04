@@ -393,10 +393,14 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
 })
 
 testthat::setup({
-  if (!dir.exists(file.path("resourceFiles",
-                            "outputslfdc"))) {
-    dir.create(file.path("resourceFiles",
-                         "outputslfdc"))
+  if (!dir.exists(normalizePath(path = file.path(tempdir(),
+                                                 "outputslfdc"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    dir.create(normalizePath(path = file.path(tempdir(),
+                                              "outputslfdc"),
+                             winslash = "/",
+                             mustWork = FALSE))
   }
 })
 
@@ -476,9 +480,11 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles",
-                                                              "outputslfdc",
-                                                              "plots"),
+  testthat::expect_message(strategy$plot(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                   "outputslfdc",
+                                                                                   "plots"),
+                                                                  winslash = "/",
+                                                                  mustWork = FALSE),
                                          file.name = "TypeBasedStrategyPlot"),
                            "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
@@ -487,86 +493,118 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
                          "[DependencyBasedStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputslfdc",
-                                                                 "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputslfdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[DependencyBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputslfdc",
-                                                                 "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputslfdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[DependencyBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputslfdc",
-                                                                 "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputslfdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = 2),
                            "[DependencyBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputslfdc",
-                                                                 "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputslfdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = list(list(2:60), list(2:60))),
                            paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
                            fixed = TRUE)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                        "outputslfdc",
-                                        "saveCSV"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputslfdc",
+                                                             "saveCSV"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(list(2:3),
                                        list(2:3)))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputslfdc",
-                                                        "saveCSV",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputslfdc",
+                                                                             "saveCSV",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                        "outputslfdc",
-                                        "saveCSV2"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputslfdc",
+                                                             "saveCSV2"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(NULL,
                                        list(2:3)))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputslfdc",
-                                                        "saveCSV2",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputslfdc",
+                                                                             "saveCSV2",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                        "outputslfdc",
-                                        "saveCSV3"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputslfdc",
+                                                             "saveCSV3"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(list(2:3),
                                        NULL))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputslfdc",
-                                                        "saveCSV3",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputslfdc",
+                                                                             "saveCSV3",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          4)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "outputslfdc"))) {
-    unlink(file.path("resourceFiles", "outputslfdc"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "outputslfdc"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(normalizePath(path = file.path(tempdir(),
+                                          "outputslfdc"),
+                         winslash = "/",
+                         mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
 testthat::setup({
-  if (!dir.exists(file.path("resourceFiles",
-                            "outputsltdc"))) {
-    dir.create(file.path("resourceFiles",
-                         "outputsltdc"))
+  if (!dir.exists(normalizePath(path = file.path(tempdir(),
+                                                 "outputsltdc"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    dir.create(normalizePath(path = file.path(tempdir(),
+                                              "outputsltdc"),
+                             winslash = "/",
+                             mustWork = FALSE))
   }
 })
 
@@ -603,9 +641,11 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
                          "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
-  testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                               "outputsltdc",
-                                                               "saveCSV")),
+  testthat::expect_error(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                    "outputsltdc",
+                                                                                    "saveCSV"),
+                                                                   winslash = "/",
+                                                                   mustWork = FALSE)),
                          "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
@@ -632,9 +672,11 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles",
-                                                              "outputsltdc",
-                                                              "plots"),
+  testthat::expect_message(strategy$plot(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                   "outputsltdc",
+                                                                                   "plots"),
+                                                                  winslash = "/",
+                                                                  mustWork = FALSE),
                                          file.name = "TypeBasedStrategyPlot"),
                            "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
@@ -643,79 +685,103 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
                          "[DependencyBasedStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputsltdc",
-                                                                 "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputsltdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[DependencyBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputsltdc",
-                                                                 "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputsltdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[DependencyBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputsltdc",
-                                                                 "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputsltdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = 2),
                            "[DependencyBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                                                 "outputsltdc",
-                                                                 "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputsltdc",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = list(list(2:60), list(2:60))),
                            paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
                            fixed = TRUE)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                        "outputsltdc",
-                                        "saveCSV"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputsltdc",
+                                                             "saveCSV"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(list(2:3), list(2:3)))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputsltdc",
-                                                        "saveCSV",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputsltdc",
+                                                                             "saveCSV",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                        "outputsltdc",
-                                        "saveCSV2"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputsltdc",
+                                                             "saveCSV2"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(NULL,
                                        list(2:3)))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputsltdc",
-                                                        "saveCSV2",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputsltdc",
+                                                                             "saveCSV2",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles",
-                                        "outputsltdc",
-                                        "saveCSV3"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputsltdc",
+                                                             "saveCSV3"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(list(2:3),
                                        NULL))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputsltdc",
-                                                        "saveCSV3",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputsltdc",
+                                                                             "saveCSV3",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          4)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles",
-                           "outputsltdc"))) {
-    unlink(x = file.path("resourceFiles",
-                     "outputsltdc"),
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "outputsltdc"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "outputsltdc"),
+                             winslash = "/",
+                             mustWork = FALSE),
            recursive = TRUE,
            force = TRUE)
   }

@@ -334,12 +334,6 @@ testthat::test_that("ClassificationOutput: getPerformances function checks param
                          fixed = TRUE)
 })
 
-testthat::setup({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
-  }
-})
-
 testthat::test_that("ClassificationOutput: savePerformances function works", {
 
   classWeightedVotingProb <- readRDS(file.path("resourceFiles",
@@ -373,7 +367,10 @@ testthat::test_that("ClassificationOutput: savePerformances function works", {
   classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
                                                    models = trained.models)
 
-  dir.path <- file.path("resourceFiles", "ClassificationOutput")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "ClassificationOutput"),
+                            winslash = "/",
+                            mustWork = FALSE)
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
@@ -405,8 +402,16 @@ testthat::test_that("ClassificationOutput: savePerformances function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "ClassificationOutput"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "ClassificationOutput"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
@@ -443,7 +448,10 @@ testthat::test_that("ClassificationOutput: savePerformances function checks para
   classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
                                                    models = trained.models)
 
-  dir.path <- file.path("resourceFiles", "ClassificationOutput")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "ClassificationOutput"),
+                            winslash = "/",
+                            mustWork = FALSE)
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
@@ -471,14 +479,16 @@ testthat::test_that("ClassificationOutput: savePerformances function checks para
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
-  }
-})
-
-testthat::setup({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "ClassificationOutput"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "ClassificationOutput"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
@@ -515,7 +525,10 @@ testthat::test_that("ClassificationOutput: plotPerformances function works", {
   classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
                                                    models = trained.models)
 
-  dir.path <- file.path("resourceFiles", "ClassificationOutput")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "ClassificationOutput"),
+                            winslash = "/",
+                            mustWork = FALSE)
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
@@ -548,8 +561,16 @@ testthat::test_that("ClassificationOutput: plotPerformances function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "ClassificationOutput"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "ClassificationOutput"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
@@ -586,7 +607,10 @@ testthat::test_that("ClassificationOutput: plotPerformances function checks para
   classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
                                                    models = trained.models)
 
-  dir.path <- file.path("resourceFiles", "ClassificationOutput")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "ClassificationOutput"),
+                            winslash = "/",
+                            mustWork = FALSE)
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
@@ -614,8 +638,16 @@ testthat::test_that("ClassificationOutput: plotPerformances function checks para
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "ClassificationOutput"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "ClassificationOutput"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
@@ -721,12 +753,6 @@ testthat::test_that("ClassificationOutput: getPredictions function works", {
                            fixed = TRUE)
 })
 
-testthat::setup({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
-  }
-})
-
 testthat::test_that("ClassificationOutput: savePredictions function works", {
 
   classWeightedVotingProb <- readRDS(file.path("resourceFiles",
@@ -760,7 +786,10 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
   classificationOutput <- ClassificationOutput$new(voting.schemes = voting.schemes,
                                                    models = trained.models)
 
-  dir.path <- file.path("resourceFiles", "ClassificationOutput")
+  dir.path <- normalizePath(path = file.path(tempdir(),
+                                             "ClassificationOutput"),
+                            winslash = "/",
+                            mustWork = FALSE)
   voting.names <- NULL
   metric.names <- NULL
   cutoff.values <- NULL
@@ -776,7 +805,8 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = target,
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_raw_Predictions.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path,
+                                              "MCC_0.7_ClassWeightedVoting_raw_Predictions.csv")))
 
   testthat::expect_message(classificationOutput$savePredictions(dir.path = dir.path,
                                                                 voting.names = voting.names,
@@ -796,7 +826,8 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = "0",
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_raw_0.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path,
+                                              "MCC_0.7_ClassWeightedVoting_raw_0.csv")))
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
@@ -806,7 +837,8 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = target,
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_1.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path,
+                                              "MCC_0.7_ClassWeightedVoting_1.csv")))
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = voting.names,
@@ -816,7 +848,8 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = "0",
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_0.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path,
+                                              "MCC_0.7_ClassWeightedVoting_0.csv")))
 
   classificationOutput$savePredictions(dir.path = dir.path,
                                        voting.names = "ClassWeightedVoting",
@@ -826,7 +859,8 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
                                        target = target,
                                        filter = filter)
 
-  testthat::expect_true(file.exists(file.path(dir.path, "MCC_0.7_ClassWeightedVoting_raw_Predictions.csv")))
+  testthat::expect_true(file.exists(file.path(dir.path,
+                                              "MCC_0.7_ClassWeightedVoting_raw_Predictions.csv")))
 
   testthat::expect_message(classificationOutput$savePredictions(dir.path = dir.path,
                                                                 voting.names = voting.names,
@@ -860,8 +894,16 @@ testthat::test_that("ClassificationOutput: savePredictions function works", {
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "ClassificationOutput"))) {
-    unlink(file.path("resourceFiles", "ClassificationOutput"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "ClassificationOutput"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "ClassificationOutput"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 

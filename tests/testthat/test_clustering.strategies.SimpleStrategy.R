@@ -27,8 +27,14 @@ testthat::test_that("SimpleStrategy: initialize function works", {
 })
 
 testthat::setup({
-  if (!dir.exists(file.path("resourceFiles", "outputs"))) {
-    dir.create(file.path("resourceFiles", "outputs"))
+  if (!dir.exists(normalizePath(path = file.path(tempdir(),
+                                                 "outputs"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    dir.create(normalizePath(path = file.path(tempdir(),
+                                              "outputs"),
+                             winslash = "/",
+                             mustWork = FALSE))
   }
 })
 
@@ -75,7 +81,11 @@ testthat::test_that("SimpleStrategy works", {
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
                          "[SimpleStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
-  testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_error(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                    "outputs",
+                                                                                    "saveCSV"),
+                                                                   winslash = "/",
+                                                                   mustWork = FALSE)),
                          "[SimpleStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
@@ -102,7 +112,11 @@ testthat::test_that("SimpleStrategy works", {
                          class(strategy$plot(dir.path = NULL,
                                              file.name = NULL)))
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"),
+  testthat::expect_message(strategy$plot(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                   "outputs",
+                                                                                   "plots"),
+                                                                  winslash = "/",
+                                                                  mustWork = FALSE),
                                          file.name = "SimpleGenericClusteringStrategyPlot"),
                            "[SimpleStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
@@ -111,32 +125,60 @@ testthat::test_that("SimpleStrategy works", {
                          "[SimpleStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[SimpleStrategy][WARNING] File name not defined. Using 'MCCHeuristic.csv'",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[SimpleStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = 2),
                            "[SimpleStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = list(2:60)),
                            "[SimpleStrategy][WARNING] Number of clusters exceeds maximum number of clusters. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = list(0:3)),
                            "[SimpleStrategy][WARNING] Number of clusters exceeds the range of minimum and maximum number of clusters. Saving all cluster configurations",
                            fixed = TRUE)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "outputs"))) {
-    unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "outputs"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "outputs"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })

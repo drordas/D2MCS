@@ -94,9 +94,7 @@
 #' ex.classifiers <- c("ranger", "lda", "lda2")
 #'
 #' ## Initialize D2MCS
-#' #' d2mcs <- D2MCS$new(dir.path = file.path(system.file("examples",
-#'                                                     package = "D2MCS"),
-#'                                         "MCC_CLUSTERING"),
+#' #' d2mcs <- D2MCS$new(dir.path = tempdir(),
 #'                       num.cores = 1)
 #'
 #' ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.

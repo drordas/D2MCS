@@ -172,8 +172,15 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
 })
 
 testthat::setup({
-  if (!dir.exists(file.path("resourceFiles", "outputs"))) {
-    dir.create(file.path("resourceFiles", "outputs"))
+  if (!dir.exists(normalizePath(path = file.path(tempdir(),
+                                                 "outputs"),
+                                winslash = "/",
+                                mustWork = FALSE))) {
+    dir.create(path = normalizePath(path = file.path(tempdir(),
+                                                     "outputs"),
+                                    winslash = "/",
+                                    mustWork = FALSE),
+               recursive = TRUE)
   }
 })
 
@@ -246,7 +253,11 @@ testthat::test_that("TypeBasedStrategy works", {
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
                          "[TypeBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
-  testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_error(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                    "outputs",
+                                                                                    "saveCSV"),
+                                                                   winslash = "/",
+                                                                   mustWork = FALSE)),
                          "[TypeBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
@@ -270,7 +281,12 @@ testthat::test_that("TypeBasedStrategy works", {
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
 
-  testthat::expect_message(strategy$plot(dir.path = file.path("resourceFiles", "outputs", "plots"), file.name = "TypeBasedStrategyPlot"),
+  testthat::expect_message(strategy$plot(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                   "outputs",
+                                                                                   "plots"),
+                                                                  winslash = "/",
+                                                                  mustWork = FALSE),
+                                         file.name = "TypeBasedStrategyPlot"),
                            "[TypeBasedStrategy][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
@@ -278,61 +294,103 @@ testthat::test_that("TypeBasedStrategy works", {
                          "[TypeBasedStrategy][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[TypeBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV")),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE)),
                            "[TypeBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = 2),
                            "[TypeBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                      "outputs",
+                                                                                      "saveCSV"),
+                                                                     winslash = "/",
+                                                                     mustWork = FALSE),
                                             num.clusters = list(list(2:60), list(2:60))),
                            "[TypeBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and 50. Ignoring clustering for real type features...",
                            fixed = TRUE)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputs",
+                                                             "saveCSV"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(list(3:6), list(3:6)))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputs",
-                                                        "saveCSV",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputs",
+                                                                             "saveCSV",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          8)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV2"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputs",
+                                                             "saveCSV2"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(NULL, list(3:6)))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputs",
-                                                        "saveCSV2",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputs",
+                                                                             "saveCSV2",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          53)
 
-  strategy$saveCSV(dir.path = file.path("resourceFiles", "outputs", "saveCSV3"),
+  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                             "outputs",
+                                                             "saveCSV3"),
+                                            winslash = "/",
+                                            mustWork = FALSE),
                    num.clusters = list(list(3:6), NULL))
 
-  testthat::expect_equal(nrow(read.csv(file = file.path("resourceFiles",
-                                                        "outputs",
-                                                        "saveCSV3",
-                                                        "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+  testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
+                                                                             "outputs",
+                                                                             "saveCSV3",
+                                                                             "ChiSquareHeuristic-SpearmanHeuristic.csv"),
+                                                            winslash = "/",
+                                                            mustWork = FALSE),
                                        header = TRUE,
                                        sep = ";")),
                          53)
 })
 
 testthat::teardown({
-  if (dir.exists(file.path("resourceFiles", "outputs"))) {
-    unlink(file.path("resourceFiles", "outputs"), recursive = TRUE, force = TRUE)
+  if (dir.exists(normalizePath(path = file.path(tempdir(),
+                                                "outputs"),
+                               winslash = "/",
+                               mustWork = FALSE))) {
+    unlink(x = normalizePath(path = file.path(tempdir(),
+                                              "outputs"),
+                             winslash = "/",
+                             mustWork = FALSE),
+           recursive = TRUE,
+           force = TRUE)
   }
 })
 
