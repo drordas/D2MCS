@@ -44,7 +44,7 @@ testthat::test_that("D2MCS: initialize function checks parameter type", {
                          fixed = TRUE)
 
   dir.path <- file.path("resourceFiles", "D2MCS")
-  num.core <- NULL
+  num.core <- 2
   socket.type <- "PSOCK"
   outfile <- file.path("resourceFiles", "D2MCS", "outfile", "null")
   serialize <- NULL
@@ -58,7 +58,7 @@ testthat::test_that("D2MCS: initialize function checks parameter type", {
                            fixed = TRUE)
 
   dir.path <- file.path("resourceFiles", "D2MCS")
-  num.core <- NULL
+  num.core <- 2
   socket.type <- "wrong"
   outfile <- NULL
   serialize <- NULL
@@ -72,7 +72,7 @@ testthat::test_that("D2MCS: initialize function checks parameter type", {
                            fixed = TRUE)
 
   dir.path <- file.path("resourceFiles", "D2MCS")
-  num.core <- NULL
+  num.core <- 2
   socket.type <- "PSOCK"
   outfile <- NULL
   serialize <- NULL

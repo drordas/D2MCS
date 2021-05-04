@@ -1,3 +1,6 @@
+## Resubmission
+This is a resubmission. In this version I have:
+* Ensured no more than 2 cores are used in the examples, vignettes, etc. 
 ## Test environments
 * Ubuntu 20.04.2 LTS (on local and travis-ci), R 4.0.5
 * local Windows 10 Pro, R 4.0.5

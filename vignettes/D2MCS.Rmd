@@ -106,7 +106,7 @@ From the previous execution of the selected clustering strategy, a *Trainset* ob
 ```{R, echo = TRUE, results = "hide", eval = FALSE}
 ## D2MCS FRAMEWORK INITIALIZATION
 d2mcs <- D2MCS$new(dir.path, 
-                   num.cores = NULL, 
+                   num.cores = 2, 
                    socket.type = "PSOCK", 
                    outfile = NULL)
 

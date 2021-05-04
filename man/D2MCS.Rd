@@ -50,6 +50,8 @@ distribution$getBestClusterDistribution()
 ## Create a train set from the computed clustering distribution
 train.set <- distribution$createTrain(subset = train.subset)
 
+\dontrun{
+
 ## Initialization of D2MCS configuration parameters.
 ##  - Defining training operation.
 ##    + 10-fold cross-validation
@@ -58,19 +60,22 @@ train.set <- distribution$createTrain(subset = train.subset)
 trFunction <- TwoClass$new(method = "cv", number = 10, savePredictions = "final",
                            classProbs = TRUE, allowParallel = TRUE,
                            verboseIter = FALSE, seed = 1234)
-## - Specify the models to be trained
+
+#' ## - Specify the models to be trained
 ex.classifiers <- c("ranger", "lda", "lda2")
 
 ## Initialize D2MCS
-d2mcs <- D2MCS$new(dir.path = file.path(system.file("examples",
+#' d2mcs <- D2MCS$new(dir.path = file.path(system.file("examples",
                                                     package = "D2MCS"),
-                                        "MCC_CLUSTERING"))
+                                        "MCC_CLUSTERING"),
+                      num.cores = 1)
+
 ## Execute training stage for using 'MCC' and 'PPV' measures to optimize model hyperparameters.
-\dontrun{
 trained.models <- d2mcs$train(train.set = train.set,
                               train.function = trFunction,
                               ex.classifiers = ex.classifiers,
                               metrics = c("MCC", "PPV"))
+
 ## Execute classification stage using two different voting schemes
 predictions <- d2mcs$classify(train.output = trained.models,
                               subset = test.subset,
@@ -78,6 +83,7 @@ predictions <- d2mcs$classify(train.output = trained.models,
                                     SingleVoting$new(voting.schemes = c(ClassMajorityVoting$new(),
                                                                         ClassWeightedVoting$new()),
                                                      metrics = c("MCC", "PPV"))))
+
 ## Compute the performance of each voting scheme using PPV and MMC measures.
 predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 
@@ -92,6 +98,7 @@ predictions <- d2mcs$classify(train.output = trained.models,
                                                         combined.metrics = MinimizeFP$new(),
                                                         methodology = ProbBasedMethodology$new(),
                                                         metrics = c("MCC", "PPV"))))
+
 ## Compute the performance of each voting scheme using PPV and MMC measures.
 predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 }
