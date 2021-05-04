@@ -186,8 +186,7 @@ Prediction <- R6::R6Class(
     feature.id = NULL,
     loadPackages = function(pkgName) {
       if (is.list(pkgName)) { pkgName <- unlist(pkgName) }
-
-      new.packages <- pkgName[!(pkgName %in% installed.packages()[, "Package"])]
+      new.packages <- pkgName[sapply(pkgName, function(pkg) system.file(package = pkg) == "")]
       if (length(new.packages)) {
         message("[", class(self)[1], "][INFO][", private$model$model.name, "]",
                 length(new.packages), "packages needed to execute aplication\n",

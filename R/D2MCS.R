@@ -646,7 +646,7 @@ D2MCS <- R6::R6Class(
     },
     loadPackages = function(pkgName) {
       if (length(pkgName) > 0) {
-        new.packages <- pkgName[!(pkgName %in% installed.packages()[, "Package"])]
+        new.packages <- pkgName[sapply(pkgName, function(pkg) system.file(package = pkg) == "")]
         if (length(new.packages) > 0) {
           message("[", class(self)[1], "][INFO] ", length(new.packages),
                   " packages needed. Installing packages '",
