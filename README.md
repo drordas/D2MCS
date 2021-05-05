@@ -97,15 +97,16 @@ repository](https://github.com/drordas/D2MCS/tags).
 
 To cite **D2MCS** please use:
 
-> Ruano-Ordás, D; Yevseyeva, I, Basto-Fernandes,V; Méndez, José R;
-> Emmerichc, Michael T.M. (2018). Improving the drug discovery process
-> by using multiple classifier systems Expert Systems with Applications.
-> Volume 121, pp. 292-303. Elsevier.
+> Ruano-Ordás, David; Yevseyeva, Iryna; Basto-Fernandes, Vitor; Méndez,
+> José R; Emmerichc, Michael T.M. (2019). Improving the drug discovery
+> process by using multiple classifier systems. Expert Systems with
+> Applications. Volume 121, pp. 292-303. Elsevier.
 > <https://doi.org/10.1016/j.eswa.2018.12.032>
 
-> Ruano-Ordás, D., Burggraaff, L., Liu, R. et al. A multiple classifier
-> system identifies novel cannabinoid CB2 receptor ligands. J Cheminform
-> 11, 66 (2019). <https://doi.org/10.1186/s13321-019-0389-9>
+> Ruano-Ordás, David; Burggraaff, Lindsey; Liu, Rongfang et al. (2019).
+> A multiple classifier system identifies novel cannabinoid CB2 receptor
+> ligands. J Cheminform. Volume 11, pp. 66. BMC BioInformatics.
+> <https://doi.org/10.1186/s13321-019-0389-9>
 
 ## Authors ✒️
 
