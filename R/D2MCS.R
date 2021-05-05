@@ -651,10 +651,8 @@ D2MCS <- R6::R6Class(
           message("[", class(self)[1], "][INFO] ", length(new.packages),
                   " packages needed. Installing packages '",
                   paste0(new.packages, collapse = ","), "'...")
-          suppressMessages(install.packages(new.packages,
-                                            repos = "https://cloud.r-project.org",
-                                            dependencies = TRUE,
-                                            quiet = TRUE, verbose = FALSE))
+
+          lapply(new.packages, function(pkg) caret::checkInstall(pkg = pkg))
         }
         lapply(pkgName, function(pkg) {
           if (!pkg %in% devtools::loaded_packages()) {

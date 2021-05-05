@@ -191,10 +191,7 @@ Prediction <- R6::R6Class(
         message("[", class(self)[1], "][INFO][", private$model$model.name, "]",
                 length(new.packages), "packages needed to execute aplication\n",
                 "Installing packages...")
-        suppressMessages(install.packages(new.packages,
-                                          repos = "https://cloud.r-project.org",
-                                          dependencies = TRUE,
-                                          quiet = TRUE, verbose = FALSE))
+        lapply(new.packages, function(pkg) caret::checkInstall(pkg = pkg))
       }
       lapply(pkgName, function(pkg) {
         if (!pkg %in% devtools::loaded_packages()) {

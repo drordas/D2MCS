@@ -127,6 +127,11 @@ testthat::teardown({
 
 testthat::test_that("D2MCS: train function works", {
   testthat::skip_on_cran()
+  testthat::skip_if_not_installed("klaR")
+  testthat::skip_if_not_installed("e1071")
+  testthat::skip_if_not_installed("ranger")
+  testthat::skip_if_not_installed("dplyr")
+  testthat::skip_if_not_installed("MASS")
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
@@ -206,6 +211,11 @@ testthat::teardown({
 
 testthat::test_that("D2MCS: train function checks parameter types", {
   testthat::skip_on_cran()
+  testthat::skip_if_not_installed("klaR")
+  testthat::skip_if_not_installed("e1071")
+  testthat::skip_if_not_installed("ranger")
+  testthat::skip_if_not_installed("dplyr")
+  testthat::skip_if_not_installed("MASS")
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
                           "data",
