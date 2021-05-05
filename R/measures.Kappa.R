@@ -1,16 +1,40 @@
-#' @title <<tittle>>
+#
+# D2MCS provides a novel framework to able to automatically develop and deploy
+# an accurate Multiple Classifier System (MCS) based on the feature-clustering
+# distribution achieved from an input dataset. D2MCS was developed focused on
+# four main aspects: (i) the ability to determine an effective method to
+# evaluate the independence of features, (ii) the identification of the optimal
+# number of feature clusters, (iii) the training and tuning of ML models and
+# (iv) the execution of voting schemes to combine the outputs of each classifier
+# comprising the MCS.
+#
+# Copyright (C) 2021 Sing Group (University of Vigo)
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>
+
+#' @title Computes the Kappa Cohen value.
 #'
-#' @description Kappa
+#' @description Cohen's Kappa measures the agreement between two raters who each
+#' classify N items into C mutually exclusive categories.
 #'
-#' @docType class
+#' @details \deqn{\kappa \hspace{0.1cm} is \hspace{0.1cm} equivalent
+#' \hspace{0.1cm} to \hspace{0.1cm} (p_o - p_e) / (1 - p_e) = 1 - (1 - p_0) /
+#' (1 - p_e)}
 #'
-#' @format NULL
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+#' \code{\link{ConfMatrix}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{MeasureFunction}}
-#'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -22,19 +46,27 @@ Kappa <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} used as
+    #' basis to compute the performance.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description <<description>>
+    #' @description The function computes the \strong{Kappa} achieved by the M.L.
+    #' model.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the \code{Kappa}
+    #' measure.
     #'
-    #' @return <<description>>
+    #' @details This function is automatically invoked by the
+    #' \link{ClassificationOutput} object.
+    #'
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
+    #' occurred.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

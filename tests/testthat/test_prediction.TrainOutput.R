@@ -1,4 +1,4 @@
-testthat::test_that("TrainOutput: initialize checks parameter type", {
+testthat::test_that("TrainOutput: initialize function checks parameter type", {
 
   testthat::expect_error(TrainOutput$new(models = NULL,
                                          class.values = NULL,
@@ -9,13 +9,13 @@ testthat::test_that("TrainOutput: initialize checks parameter type", {
   testthat::expect_error(TrainOutput$new(models = list("example"),
                                          class.values = NULL,
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Class.values parameter must be defined as 'character' type. Aborting...",
+                         "[TrainOutput][FATAL] Class values parameter must be defined as 'factor' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(TrainOutput$new(models = list("example"),
-                                         class.values = "class",
+                                         class.values = factor(c(0, 1, 1, 0)),
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Positive.class parameter must be defined as 'character' type. Aborting...",
+                         "[TrainOutput][FATAL] Positive class parameter not found. Aborting...",
                          fixed = TRUE)
 })
 
@@ -71,8 +71,12 @@ testthat::test_that("TrainOutput: savePerformance function works", {
   testthat::expect_message(trainOutput$savePerformance(dir.path = dir.path),
                            "[TrainOutput][INFO] Folder already exists",
                            fixed = TRUE)
+})
 
-  unlink(dir.path, recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
+    unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("TrainOutput: savePerformance function checks parameter type", {
@@ -87,7 +91,14 @@ testthat::test_that("TrainOutput: savePerformance function checks parameter type
                          fixed = TRUE)
 })
 
+testthat::setup({
+  if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
+    unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
+  }
+})
+
 testthat::test_that("TrainOutput: plot function works", {
+  testthat::skip_if_not_installed("grDevices")
   trainOutputObject <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
 
   trainOutput <- TrainOutput$new(models = trainOutputObject$.__enclos_env__$private$models,
@@ -95,14 +106,19 @@ testthat::test_that("TrainOutput: plot function works", {
                                  positive.class = trainOutputObject$.__enclos_env__$private$positive.class)
 
   dir.path <- file.path("resourceFiles", "TrainOutput")
+  grDevices::pdf(NULL)
   trainOutput$plot(dir.path = dir.path)
   testthat::expect_true(file.exists(file.path(dir.path, "Performance_Train_Plot_PPV.pdf")))
 
   testthat::expect_message(trainOutput$plot(dir.path = dir.path),
                            "[TrainOutput][INFO] Folder already exists",
                            fixed = TRUE)
+})
 
-  unlink(dir.path, recursive = TRUE, force = TRUE)
+testthat::teardown({
+  if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
+    unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
+  }
 })
 
 testthat::test_that("TrainOutput: plot function checks parameter type", {
@@ -147,7 +163,7 @@ testthat::test_that("TrainOutput: getPositiveClass function works", {
                                  positive.class = trainOutputObject$.__enclos_env__$private$positive.class)
 
   testthat::expect_equal(trainOutput$getPositiveClass(),
-                         "class0")
+                         1)
 })
 
 testthat::test_that("TrainOutput: getSize function works", {

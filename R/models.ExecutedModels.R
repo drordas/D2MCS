@@ -1,16 +1,34 @@
-#' @title <<tittle>>
+#
+# D2MCS provides a novel framework to able to automatically develop and deploy
+# an accurate Multiple Classifier System (MCS) based on the feature-clustering
+# distribution achieved from an input dataset. D2MCS was developed focused on
+# four main aspects: (i) the ability to determine an effective method to
+# evaluate the independence of features, (ii) the identification of the optimal
+# number of feature clusters, (iii) the training and tuning of ML models and
+# (iv) the execution of voting schemes to combine the outputs of each classifier
+# comprising the MCS.
+#
+# Copyright (C) 2021 Sing Group (University of Vigo)
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>
+
+#' @title Handles training of M.L. models
 #'
-#' @description ExecutedModels
-#'
-#' @docType class
-#'
-#' @format NULL
-#'
-#' @details <<details>
+#' @description Allows to manage the executed M.L. models.
 #'
 #' @seealso \code{\link{Model}}
 #'
-#' @keywords NULL
+#' @keywords internal methods error utilities misc
 #'
 #' @import R6
 #'
@@ -21,9 +39,9 @@ ExecutedModels <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param dir.path <<description>>
+    #' @param dir.path The location were the executed models will be saved.
     #'
     initialize = function(dir.path) {
       private$dir.path <- gsub("\\/$", "", dir.path)
@@ -33,15 +51,16 @@ ExecutedModels <- R6::R6Class(
         private$best.model <- NULL
       }
 
-      if (!file.exists(file.path(private$dir.path, ".executed")) ||
-          file.info(file.path(private$dir.path, ".executed"))$size <= 0) {
-        file.create(file.path(private$dir.path, ".executed"))
+      if (!file.exists(file.path(private$dir.path, "executed")) ||
+          file.info(file.path(private$dir.path, "executed"))$size <= 0) {
+        file.create(file.path(private$dir.path, "executed"))
         private$models <- NULL
         private$best.model <- NULL
       } else {
-        private$models <- read.csv(file = file.path(private$dir.path, ".executed"),
+        private$models <- read.csv(file = file.path(private$dir.path, "executed"),
                                     header = TRUE, stringsAsFactors = FALSE, sep = ",")
-        best.perf <- private$models[which.max(private$models$performance), ]
+
+        best.perf <- private$models[max(which(private$models$performance == max(private$models$performance))), ]
 
         if (length(which(best.perf$performance != 0)) != 0) {
           best.path <- file.path(private$dir.path, paste0(best.perf$model, ".rds"))
@@ -52,16 +71,18 @@ ExecutedModels <- R6::R6Class(
                                        train = readRDS(best.path)
             )
           } else {
-            message("[", class(self)[1], "][WARNING] Best model cannot be loaded.")
+            message("[", class(self)[1], "][WARNING] Best model cannot be loaded.", best.path)
             private$best.model <- NULL
           }
         }
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to obtain the name of the ML model
+    #' achieved the best performance during training stage.
     #'
-    #' @return <<description>>
+    #' @return A \link{character} vector of length 1 of \link{NULL}
+    #' if no ML model have been trained.
     #'
     getNames = function() {
       if (!is.null(private$best.model)) {
@@ -69,9 +90,10 @@ ExecutedModels <- R6::R6Class(
       } else { NULL }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible of returning the model achieving
+    #' the best performance value during training stage.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{Model}} object.
     #'
     getBest = function() {
       if (!is.null(private$best.model)) {
@@ -82,12 +104,13 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function inserts a new model to the list of executed
+    #' models.
     #'
-    #' @param model <<description>>
-    #' @param keep.best <<description>>
-    #'
-    #' @return <<description>>
+    #' @param model A previously trained model (in \code{\link{Model}} object).
+    #' @param keep.best A \link{logical} value to define the saving operation.
+    #' If \link{TRUE} only saves the best model, otherwise all executed models
+    #' are saved.
     #'
     add = function(model, keep.best = TRUE) {
       if (!inherits(model, "Model")) {
@@ -98,12 +121,15 @@ ExecutedModels <- R6::R6Class(
         private$models <- rbind(private$models,
                                 data.frame(model = model$getName(),
                                            performance = model$getPerformance(),
-                                           exec.time = model$getExecutionTime()))
+                                           exec.time = model$getExecutionTime(),
+                                           row.names = NULL))
 
         if (isTRUE(keep.best)) { # SAVE ONLY BEST MODELS. REMOVE WORST
 
-          if (any(is.null(private$best.model), # IS BEST MODEL
-                  model$getPerformance() > private$best.model$performance)) {
+          if (is.null(private$best.model) || # IS BEST MODEL
+              model$getPerformance() > private$best.model$performance ||
+              isTRUE(all.equal.numeric(model$getPerformance(), private$best.model$performance))) {
+
             if (!is.null(private$best.model)) {
               message("[", class(self)[1], "][INFO] Best model found. Replacing '",
                       private$best.model$model, "' with '",
@@ -111,20 +137,25 @@ ExecutedModels <- R6::R6Class(
               self$delete(private$best.model$model)
             }
             private$best.model <- list(model = model$getName(),
-                                        performance = model$getPerformance(),
-                                        exec.time = model$getExecutionTime(),
-                                        train = model$getTrainedModel())
+                                       performance = model$getPerformance(),
+                                       exec.time = model$getExecutionTime(),
+                                       train = model$getTrainedModel())
             model$save()
           }
-        } else { model$save() }
+        } else {
+          model$save()
+        }
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to discern if a specific model has been
+    #' executed previously.
     #'
-    #' @param model.name <<description>>
+    #' @param model.name A \link{character} vector with the name of the
+    #' model to check for existence.
     #'
-    #' @return <<description>>
+    #' @return A \link{logical} value. \link{TRUE} if the model exists
+    #' and \link{FALSE} otherwise.
     #'
     exist = function(model.name) {
       if (!is.character(model.name) || is.null(private$models$model)) {
@@ -132,21 +163,21 @@ ExecutedModels <- R6::R6Class(
       } else { model.name %in% (private$models$model) }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to compute the number of executed ML
+    #' models.
     #'
-    #' @return <<description>>
+    #' @return A \link{numeric} vector or size 1.
     #'
     size = function() {
       ifelse(is.null(private$models), 0, nrow(private$models))
     },
     #'
-    #' @description <<description>>
-    #'
-    #' @return <<description>>
+    #' @description The function is responsible of saving the information of all
+    #' executed models into a hidden file.
     #'
     save = function() {
-      if (nrow(private$models) > 0) {
-        write.table(private$models, file = file.path(private$dir.path, ".executed"),
+      if (!is.null(private$models) && nrow(private$models) > 0) {
+        write.table(private$models, file = file.path(private$dir.path, "executed"),
                     append = FALSE, sep = ",", row.names = FALSE)
       } else {
         message("[", class(self)[1], "][ERROR] File is empty. ",
@@ -154,11 +185,10 @@ ExecutedModels <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function removes an specific model.
     #'
-    #' @param model.name <<description>>
-    #'
-    #' @return <<description>>
+    #' @param model.name A \link{character} vector with the name of the
+    #' model to be removed.
     #'
     delete = function(model.name) {
       if (self$exist(model.name)) {

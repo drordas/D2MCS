@@ -1,16 +1,36 @@
-#' @title <<tittle>>
+#
+# D2MCS provides a novel framework to able to automatically develop and deploy
+# an accurate Multiple Classifier System (MCS) based on the feature-clustering
+# distribution achieved from an input dataset. D2MCS was developed focused on
+# four main aspects: (i) the ability to determine an effective method to
+# evaluate the independence of features, (ii) the identification of the optimal
+# number of feature clusters, (iii) the training and tuning of ML models and
+# (iv) the execution of voting schemes to combine the outputs of each classifier
+# comprising the MCS.
+#
+# Copyright (C) 2021 Sing Group (University of Vigo)
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>
+
+#' @title D2MCS Classification Output.
 #'
-#' @description ClassificationOutput
+#' @description Allows computing the classification performance values achieved
+#' by D2MCS. The class is automatically created when \code{\link{D2MCS}}
+#' classification method is invoked.
 #'
-#' @docType class
+#' @seealso \code{\link{D2MCS}}
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
-#' @seealso \code{\link{DDMCS}}
-#'
-#' @keywords NULL
+#' @keywords datasets manip attribute datagen
 #'
 #' @import R6
 #'
@@ -21,10 +41,12 @@ ClassificationOutput <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param voting.schemes <<description>>
-    #' @param models <<description>>
+    #' @param voting.schemes A \link{list} containing the voting schemes used
+    #' (inherited from \code{\link{VotingStrategy}}.
+    #' @param models A \link{list} containing the used \code{\link{Model}}
+    #' during classification stage.
     #'
     initialize = function(voting.schemes, models) {
       if (length(voting.schemes) == 0) {
@@ -86,23 +108,27 @@ ClassificationOutput <- R6::R6Class(
                                                                    }))))
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the measures used during training stage.
     #'
-    #' @return <<description>>
+    #' @return A \link{character} vector or \link{NULL} if training was not
+    #' performed.
     #'
     getMetrics = function() { unique(names(private$trained.models)) },
     #'
-    #' @description <<description>>
+    #' @description The function gets the name of the positive class used for
+    #' training/classification.
     #'
-    #' @return <<description>>
+    #' @return A \link{character} vector of size 1.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description <<description>>
+    #' @description The function compiled all the information concerning to
+    #' the M.L. models used during training/classification.
     #'
-    #' @param metrics <<description>>
+    #' @param metrics A \link{character} vector defining the metrics used during
+    #' training/classification.
     #'
-    #' @return <<description>>
+    #' @return A \link{list} with the information of each M.L. model.
     #'
     getModelInfo = function(metrics = NULL) {
       if (missing(metrics) ||
@@ -125,24 +151,32 @@ ClassificationOutput <- R6::R6Class(
       models.info
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to compute the performance of D2MCS.
     #'
-    #' @param test.set <<description>>
-    #' @param measures <<description>>
-    #' @param voting.names <<description>>
-    #' @param metric.names <<description>>
-    #' @param cutoff.values <<description>>
+    #' @param dir.path A \link{character} vector with location where the plot
+    #' will be saved.
+    #' @param test.set A \code{\link{Subset}} object used to compute the
+    #' performance.
+    #' @param measures A \link{character} vector with the measures to be used to
+    #' compute performance value (inherited from \code{\link{MeasureFunction}}).
+    #' @param voting.names A \link{character} vector with the name of the
+    #' voting schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a a positive classification. If is not
+    #' defined, all cutoffs used during classification stage will be taken into
+    #' account.
     #'
-    #' @return <<description>>
+    #' @return A \link{list} of performance values.
     #'
     getPerformances = function(test.set, measures, voting.names = NULL,
                                metric.names = NULL, cutoff.values = NULL) {
       if (!inherits(test.set, "Subset"))
         stop("[", class(self)[1], "][FATAL] Testset parameter must be defined ",
              "as 'Subset' type. Aborting...")
-
-      if (test.set$getNrow() == 0)
-        stop("[", class(self)[1], "][FATAL] Test set is empty. Aborting...")
 
       if (!is.list(measures) || !all(sapply(measures, inherits, "MeasureFunction"))) {
         stop("[", class(self)[1], "][FATAL] Measures should be a list comprised of ",
@@ -158,10 +192,10 @@ ClassificationOutput <- R6::R6Class(
 
       real.values <- test.set$getClassValues()
 
-      if (!all(unique(real.values) %in% union(private$positive.class,
-                                             private$negative.class))) {
+      if (!all(levels(real.values) %in% union(private$positive.class,
+                                              private$negative.class))) {
         stop("[", class(self)[1], "][FATAL] Predicted values and Real values ",
-             "missmatch, Aborting...")
+             "missmatch. Aborting...")
       }
 
       if (!is.character(cutoff.values)) cutoff.values <- as.character(cutoff.values)
@@ -221,8 +255,8 @@ ClassificationOutput <- R6::R6Class(
       if (!is.factor(real.values)) {
         real.values <- relevel(x = factor(real.values,
                                           levels = c(private$positive.class,
-                                                   private$negative.class)),
-                               ref = private$positive.class)
+                                                     private$negative.class)),
+                               ref = as.character(private$positive.class))
       }
 
       for (voting.name in names(valid.votings)) {
@@ -247,7 +281,7 @@ ClassificationOutput <- R6::R6Class(
           pred.values <- relevel(x = factor(pred.values,
                                             levels = c(voting.positive,
                                                        voting.negative)),
-                                 ref = voting.positive)
+                                 ref = as.character(voting.positive))
         }
 
         performance <- do.call(rbind, lapply(measures, function(entry, cf) {
@@ -258,22 +292,31 @@ ClassificationOutput <- R6::R6Class(
           df
         }, cf = ConfMatrix$new(caret::confusionMatrix(data = pred.values,
                                                       reference = real.values,
-                                                      positive = private$positive.class))))
+                                                      positive = as.character(private$positive.class)))))
         performances[[voting.name]] <- performance
       }
       performances
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to save the computed predictions into a
+    #' CSV file.
     #'
-    #' @param dir.path <<description>>
-    #' @param test.set <<description>>
-    #' @param measures <<description>>
-    #' @param voting.names <<description>>
-    #' @param metric.names <<description>>
-    #' @param cutoff.values <<description>>
-    #'
-    #' @return <<description>>
+    #' @param dir.path A \link{character} vector with location where the plot
+    #' will be saved.
+    #' @param test.set A \code{\link{Subset}} object used to compute the
+    #' performance.
+    #' @param measures A \link{character} vector with the measures to be used to
+    #'  compute performance value (inherited from \code{\link{MeasureFunction}}).
+    #' @param voting.names A \link{character} vector with the name of the voting
+    #' schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a a positive classification. If is not
+    #' defined, all cutoffs used during classification stage will be taken into
+    #' account.
     #'
     savePerformances = function(dir.path, test.set, measures, voting.names = NULL,
                                 metric.names = NULL, cutoff.values = NULL) {
@@ -308,19 +351,26 @@ ClassificationOutput <- R6::R6Class(
 
     },
     #'
-    #' @description <<description>>
+    #' @description The function allows to graphically visualize the computed
+    #' performance.
     #'
-    #' @param dir.path <<description>>
-    #' @param test.set <<description>>
-    #' @param measures <<description>>
-    #' @param voting.names <<description>>
-    #' @param metric.names <<description>>
-    #' @param cutoff.values <<description>>
-    #'
-    #' @return <<description>>
+    #' @param dir.path A \link{character} vector with location where the plot
+    #' will be saved.
+    #' @param test.set A \code{\link{Subset}} object used to compute the
+    #' performance.
+    #' @param measures A \link{character} vector with the measures to be used to
+    #' compute performance value (inherited from \code{\link{MeasureFunction}}).
+    #' @param voting.names A \link{character} vector with the name of the voting
+    #' schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a positive classification. If is not defined,
+    #' all cutoffs used during classification stage will be taken into account.
     #'
     #' @import ggplot2
-    #' @importFrom plotly ggplotly
     #'
     plotPerformances = function(dir.path, test.set, measures, voting.names = NULL,
                                 metric.names = NULL, cutoff.values = NULL) {
@@ -349,7 +399,6 @@ ClassificationOutput <- R6::R6Class(
           ggplot2::ggtitle("Classifier performance Benchmarking") + ggplot2::guides(fill = FALSE) +
           ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.title = ggplot2::element_blank(),
                  legend.position = "none")
-        plotly::ggplotly(plot)
 
         ggplot2::ggsave(paste0(file.path(dir.path, peformance.name), ".pdf"), device = "pdf",
                 plot = plot, limitsize = FALSE)
@@ -358,16 +407,31 @@ ClassificationOutput <- R6::R6Class(
       }
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to obtain the computed predictions.
     #'
-    #' @param voting.names <<description>>
-    #' @param metric.names <<description>>
-    #' @param cutoff.values <<description>>
-    #' @param type <<description>>
-    #' @param target <<description>>
-    #' @param filter <<description>>
+    #' @param voting.names A \link{character} vector with the name of the voting
+    #' schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a a positive classification. If is not
+    #' defined, all cutoffs used during classification stage will be taken into
+    #' account.
+    #' @param type A \link{character} to define which type of predictions should
+    #' be returned. If not defined all type of probabilities will be returned.
+    #' Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+    #' 'class' values are returned.
+    #' @param target A \link{character} defining the value of the positive
+    #' class.
+    #' @param filter A \link{logical} value used to specify if only predictions
+    #' matching the target value should be returned or not. If \link{TRUE} the
+    #' function returns only the predictions matching the target value.
+    #' Conversely if \link{FALSE} (by default) the function returns all the
+    #' predictions.
     #'
-    #' @return <<description>>
+    #' @return A \code{\link{PredictionOutput}} object.
     #'
     getPredictions = function(voting.names = NULL, metric.names = NULL,
                               cutoff.values = NULL, type = NULL, target = NULL,
@@ -380,12 +444,11 @@ ClassificationOutput <- R6::R6Class(
       }
 
       if (!isTRUE(all.equal(type, "raw")) &&
-          (is.null(target) || !(target %in% private$positive.class)))
-      {
+          (is.null(target) || !(target %in% private$positive.class))) {
         message("[", class(self)[1], "][WARNING] Target value does not match with",
                 " actual target values: '", paste(private$positive.class,
-                                                 private$negative.class,
-                                                 sep = ", "), "'. Assuming '",
+                                                  private$negative.class,
+                                                  sep = ", "), "'. Assuming '",
                 private$positive.class, "' as default value")
         target <- private$positive.class
       }
@@ -454,24 +517,36 @@ ClassificationOutput <- R6::R6Class(
       for (voting.name in names(valid.votings)) {
         voting <- valid.votings[[voting.name]]
         prediction <- voting$getFinalPred(type = type, target = target,
-                                           filter = filter)
+                                          filter = filter)
         predictions[[voting.name]] <- prediction
       }
 
       PredictionOutput$new(predictions = predictions, type = type, target = target)
     },
     #'
-    #' @description <<description>>
+    #' @description The function saves the predictions into a CSV file.
     #'
-    #' @param dir.path <<description>>
-    #' @param voting.names <<description>>
-    #' @param type <<description>>
-    #' @param metric.names <<description>>
-    #' @param cutoff.values <<description>>
-    #' @param target <<description>>
-    #' @param filter <<description>>
-    #'
-    #' @return <<description>>
+    #' @param dir.path A \link{character} vector with location defining the
+    #' location of the CSV file.
+    #' @param voting.names A \link{character} vector with the name of the
+    #' voting schemes to analyze the performance. If not defined, all the voting
+    #' schemes used during classification stage will be taken into account.
+    #' @param type A \link{character} to define which type of predictions should
+    #' be returned. If not defined all type of probabilities will be returned.
+    #' Conversely if "prob" or "raw" is defined then computed 'probabilistic' or
+    #' 'class' values are returned.
+    #' @param metric.names A \link{character} containing the measures used
+    #' during training stage. If not defined, all training metrics used during
+    #' classification will be taken into account.
+    #' @param cutoff.values A \link{character} vector defining the minimum
+    #' probability used to perform a positive classification. If is not defined,
+    #' all cutoffs used during classification stage will be taken into account.
+    #' @param target A \link{character} defining the value of the positive class.
+    #' @param filter A \link{logical} value used to specify if only predictions
+    #' matching the target value should be returned or not. If \link{TRUE} the
+    #' function returns only the predictions matching the target value.
+    #' Conversely if \link{FALSE} (by default) the function returns all the
+    #' predictions.
     #'
     savePredictions = function(dir.path, voting.names = NULL, metric.names = NULL,
                                cutoff.values = NULL, type = NULL,
@@ -596,7 +671,7 @@ ClassificationOutput <- R6::R6Class(
                     "value '", target, "'")
             for (i in c("prob", "raw")) {
               path <- file.path(dir.path, paste0(voting.name, "_",
-                                                 i, "_", private$positive.class,
+                                                 i, "_", target,
                                                  ".csv"))
               df <- data.frame(voting.scheme$getFinalPred(i, target, filter = filter))
               names(df) <- target

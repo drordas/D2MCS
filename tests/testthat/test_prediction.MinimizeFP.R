@@ -1,10 +1,10 @@
-testthat::test_that("MinimizeFP: initialize", {
+testthat::test_that("MinimizeFP: initialize function works", {
 
   testthat::expect_is(MinimizeFP$new(required.metrics = c("MCC", "PPV")),
                       "MinimizeFP")
 })
 
-testthat::test_that("MinimizeFP: initialize checks parameter type", {
+testthat::test_that("MinimizeFP: initialize function checks parameter type", {
 
   testthat::expect_error(MinimizeFP$new(required.metrics = NULL),
                          "[MinimizeFP][FATAL] Invalid values of required.metrics. Aborting...",
@@ -105,7 +105,7 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Positive class parameter must be defined as 'character' type. Aborting...",
+                         "[MinimizeFP][FATAL] Positive class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -119,7 +119,7 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Negative class parameter must be defined as 'character' type. Aborting...",
+                         "[MinimizeFP][FATAL] Negative class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
 })

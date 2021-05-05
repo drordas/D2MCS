@@ -1,32 +1,11 @@
-testthat::test_that("GenericModelFit: initialize", {
+testthat::test_that("GenericModelFit: initialize function works", {
 
   instances <- data.frame(c(1, 2), c(2, 2))
 
   colnames(instances) <- c("C1", "Class")
 
+  testthat::expect_is(GenericModelFit$new(), "GenericModelFit")
 
-  testthat::expect_is(GenericModelFit$new(instances = instances,
-                                          class.name = "Class"),
-                      "GenericModelFit")
-})
-
-testthat::test_that("GenericModelFit: initialize checks parameter type", {
-
-  instances <- NULL
-
-  testthat::expect_error(GenericModelFit$new(instances = instances,
-                                             class.name = "Class"),
-                         "[GenericModelFit][FATAL] Instances must be a non-empty data.frame. Aborting...",
-                         fixed = TRUE)
-
-  instances <- data.frame(c(1, 2), c(2, 2))
-
-  colnames(instances) <- c("C1", "C2")
-
-  testthat::expect_error(GenericModelFit$new(instances = instances,
-                                             class.name = "Class"),
-                         "[GenericModelFit][FATAL] Class name not included in instances data.frame. Aborting...",
-                         fixed = TRUE)
 })
 
 testthat::test_that("GenericModelFit: createFormula function works", {
@@ -35,8 +14,8 @@ testthat::test_that("GenericModelFit: createFormula function works", {
 
   colnames(instances) <- c("C1", "Class")
 
-  testthat::expect_error(GenericModelFit$new(instances = instances,
-                                             class.name = "Class")$createFormula(),
+  testthat::expect_error(GenericModelFit$new()$createFormula(instances = instances,
+                                                             class.name = "Class"),
                          "[GenericModelFit][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
 })
@@ -47,8 +26,8 @@ testthat::test_that("GenericModelFit: createRecipe function works", {
 
   colnames(instances) <- c("C1", "Class")
 
-  testthat::expect_error(GenericModelFit$new(instances = instances,
-                                             class.name = "Class")$createRecipe(),
+  testthat::expect_error(GenericModelFit$new()$createRecipe(instances = instances,
+                                                            class.name = "Class"),
                          "[GenericModelFit][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
 })

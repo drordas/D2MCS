@@ -1,16 +1,40 @@
-#' @title <<tittle>>
+#
+# D2MCS provides a novel framework to able to automatically develop and deploy
+# an accurate Multiple Classifier System (MCS) based on the feature-clustering
+# distribution achieved from an input dataset. D2MCS was developed focused on
+# four main aspects: (i) the ability to determine an effective method to
+# evaluate the independence of features, (ii) the identification of the optimal
+# number of feature clusters, (iii) the training and tuning of ML models and
+# (iv) the execution of voting schemes to combine the outputs of each classifier
+# comprising the MCS.
+#
+# Copyright (C) 2021 Sing Group (University of Vigo)
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>
+
+#' @title Computes the Specificity Value.
 #'
-#' @description Specificity
+#' @description Specificity is defined as the proportion of actual negatives,
+#' which got predicted as the negative (or true negative). This implies that
+#' there will be another proportion of actual negative, which got predicted as
+#' positive and could be termed as false positives.
 #'
-#' @docType class
+#' @details \deqn{Specificity = True Negative / (True Negative + False Positive)}
 #'
-#' @format NULL
+#' @seealso \code{\link{MeasureFunction}}, \code{\link{ClassificationOutput}},
+#' \code{\link{ConfMatrix}}
 #'
-#' @details <<details>
-#'
-#' @seealso \code{\link{MeasureFunction}}
-#'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -22,19 +46,27 @@ Specificity <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the measure.
     #'
     initialize = function(performance.output = NULL) {
       super$initialize(performance.output)
     },
     #'
-    #' @description <<description>>
+    #' @description The function computes the \strong{Specificity} achieved by the
+    #' M.L. model.
     #'
-    #' @param performance.output <<description>>
+    #' @param performance.output An optional \code{\link{ConfMatrix}} parameter
+    #' to define the type of object used as basis to compute the
+    #' \strong{Specificity} measure.
     #'
-    #' @return <<description>>
+    #' @details This function is automatically invoke by the
+    #' \code{\link{ClassificationOutput}} object.
+    #'
+    #' @return A \link{numeric} vector of size 1 or \link{NULL} if an error
+    #' occurred.
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))

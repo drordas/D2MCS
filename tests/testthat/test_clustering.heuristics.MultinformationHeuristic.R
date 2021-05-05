@@ -1,4 +1,4 @@
-test_that("MultinformationHeuristic: heuristic function works", {
+testthat::test_that("MultinformationHeuristic: heuristic function works", {
 
   heuristic <- MultinformationHeuristic$new()
 

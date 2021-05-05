@@ -1,16 +1,36 @@
-#' @title <<tittle>>
+#
+# D2MCS provides a novel framework to able to automatically develop and deploy
+# an accurate Multiple Classifier System (MCS) based on the feature-clustering
+# distribution achieved from an input dataset. D2MCS was developed focused on
+# four main aspects: (i) the ability to determine an effective method to
+# evaluate the independence of features, (ii) the identification of the optimal
+# number of feature clusters, (iii) the training and tuning of ML models and
+# (iv) the execution of voting schemes to combine the outputs of each classifier
+# comprising the MCS.
+#
+# Copyright (C) 2021 Sing Group (University of Vigo)
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>
+
+#' @title High Dimensional Dataset handler.
 #'
-#' @description Dataset
+#' @description Creates a high dimensional dataset object. Only the required
+#' instances are loaded in memory to avoid unnecessary of resources and memory.
 #'
-#' @docType class
+#' @seealso \code{\link{Dataset}}, \code{\link{HDSubset}},
+#' \code{\link{DatasetLoader}}
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
-#' @seealso \code{\link{Dataset}}
-#'
-#' @keywords NULL
+#' @keywords datasets manip attribute datagen
 #'
 #' @import R6
 #'
@@ -22,14 +42,24 @@ HDDataset <- R6::R6Class(
   cloneable = FALSE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method for initializing the object arguments during runtime.
     #'
-    #' @param filepath <<description>>
-    #' @param header <<description>>
-    #' @param sep <<description>>
-    #' @param skip <<description>>
-    #' @param normalize.names <<description>>
-    #' @param ignore.columns <<description>>
+    #' @param filepath The name of the file which the data are to be read from.
+    #' Each row of the table appears as one line of the file. If it does not
+    #' contain an _absolute_ path, the file name is _relative_ to the current
+    #' working directory, '\code{getwd()}'.
+    #' @param header A \link{logical} value indicating whether the file contains
+    #' the names of the variables as its first line. If missing, the value is
+    #' determined from the file format: '\code{header}' is set to '\code{TRUE}'
+    #' if and only if the first row contains one fewer field than the number of
+    #' columns.
+    #' @param sep The field separator character. Values on each line of the file
+    #' are separated by this character.
+    #' @param skip Defines the number of header lines should be skipped.
+    #' @param normalize.names A \link{logical} value indicating whether the
+    #' columns names should be automatically renamed to ensure R compatibility.
+    #' @param ignore.columns Specify the columns from the input file that should
+    #' be ignored.
     #'
     initialize = function(filepath, header = TRUE, sep = ",", skip = 0,
                           normalize.names = FALSE, ignore.columns = NULL)
@@ -77,24 +107,28 @@ HDDataset <- R6::R6Class(
       message("[", class(self)[1], "][INFO] Finish!")
     },
     #'
-    #' @description <<description>>
+    #' @description Gets the name of the columns comprising the dataset
     #'
-    #' @return <<return>>
+    #' @return A \link{character} vector with the name of each column.
     #'
-    getFeatureNames = function() { names(private$corpus) },
+    getColumnNames = function() { names(private$corpus) },
     #'
-    #' @description <<description>>
+    #' @description Obtains the number of columns present in the dataset.
     #'
-    #' @return <<return>>
+    #' @return An \link{integer} of length 1 or \link{NULL}
     #'
     getNcol = function() { ncol(private$corpus) },
     #'
-    #' @description <<description>>
+    #' @description Creates a blinded \link{HDSubset} for classification purposes.
     #'
-    #' @param column.id <<description>>
-    #' @param chunk.size <<description>>
+    #' @param column.id An \link{integer} or \link{character} indicating the
+    #' column (number or name respectively) identifier. Default \link{NULL}
+    #' value is valid ignores defining a identification column.
+    #' @param chunk.size an \link{integer} value indicating the size of chunks
+    #' taken over each iteration.
     #'
-    #' @return <<return>>
+    #' @return A \code{\link{HDSubset}} object.
+    #'
     #' @importFrom dplyr between
     #'
     createSubset = function(column.id = FALSE, chunk.size = 100000) {

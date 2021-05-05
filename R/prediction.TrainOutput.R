@@ -1,16 +1,35 @@
-#' @title <<tittle>>
+#
+# D2MCS provides a novel framework to able to automatically develop and deploy
+# an accurate Multiple Classifier System (MCS) based on the feature-clustering
+# distribution achieved from an input dataset. D2MCS was developed focused on
+# four main aspects: (i) the ability to determine an effective method to
+# evaluate the independence of features, (ii) the identification of the optimal
+# number of feature clusters, (iii) the training and tuning of ML models and
+# (iv) the execution of voting schemes to combine the outputs of each classifier
+# comprising the MCS.
+#
+# Copyright (C) 2021 Sing Group (University of Vigo)
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>
+
+#' @title Stores the results achieved during training.
 #'
-#' @description TrainOutput
+#' @description This class manages the results achieved during training stage
+#' (such as optimized hyperparameters, model information, utilized metrics).
 #'
-#' @docType class
+#' @seealso \code{\link{D2MCS}}
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
-#' @seealso \code{\link{DDMCS}}
-#'
-#' @keywords NULL
+#' @keywords datasets manip attribute programming utilities
 #'
 #' @import R6
 #'
@@ -21,35 +40,40 @@ TrainOutput <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Function used to initialize the object arguments during
+    #' runtime.
     #'
-    #' @param models <<descrription>>
-    #' @param class.values <<descrription>>
-    #' @param positive.class <<descrription>>
+    #' @param models A \link{list} containing the best M.L. model for each
+    #' cluster.
+    #' @param class.values A \link{character} vector containing the values of
+    #' the target class.
+    #' @param positive.class A \link{character} with the value of the positive
+    #' class.
     #'
     initialize = function(models, class.values, positive.class) {
       if (is.null(models) || !is.list(models)) {
         stop("[", class(self)[1], "][FATAL] Models parameter must be defined as ",
              "'list' type. Aborting...")
       }
-      if (is.null(class.values) || !is.character(class.values) && length(class.values) < 2) {
-        stop("[", class(self)[1], "][FATAL] Class.values parameter must be defined as ",
-             "'character' type. Aborting...")
+      if (is.null(class.values) || !is.factor(class.values) && levels(class.values) < 2) {
+        stop("[", class(self)[1], "][FATAL] Class values parameter must be defined as ",
+             "'factor' type. Aborting...")
       }
-      if (is.null(positive.class) || !is.character(positive.class) || !positive.class %in% class.values) {
-        stop("[", class(self)[1], "][FATAL] Positive.class parameter must be defined as ",
-             "'character' type. Aborting...")
+      if (is.null(positive.class) || !positive.class %in% class.values) {
+        stop("[", class(self)[1], "][FATAL] Positive class parameter not found. Aborting...")
       }
       private$models <- models
       private$class.values <- class.values
       private$positive.class <- positive.class
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to obtain the best M.L. model of each
+    #' cluster.
     #'
-    #' @param metric <<descrription>>
+    #' @param metric A \link{character} vector which specifies the metric(s)
+    #' used for configuring M.L. hyperparameters.
     #'
-    #' @return <<description>>
+    #' @return A \link{list} is returned of class train.
     #'
     getModels = function(metric) {
       if (is.null(metric) || is.list(metric) || !metric %in% self$getMetrics()) {
@@ -58,15 +82,18 @@ TrainOutput <- R6::R6Class(
       private$models[[metric]]
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns the performance value of M.L. models
+    #' during training stage.
     #'
-    #' @param metrics <<descrription>>
+    #' @param metrics A \link{character} vector which specifies the metric(s)
+    #' used to train the M.L. models.
     #'
-    #' @return <<description>>
+    #' @return A \link{character} vector containing the metrics used for
+    #' configuring M.L. hyperparameters.
     #'
     getPerformance = function(metrics = NULL) {
       if (is.null(metrics) || !is.character(metrics) ||
-           !any(metrics %in% self$getMetrics())) {
+          !any(metrics %in% self$getMetrics())) {
         message("[", class(self)[1], "][INFO] Metrics not defined or invalid. ",
                 "Asuming all available metrics '",
                 paste0(self$getMetrics(), collapse = ", "), "'")
@@ -87,12 +114,14 @@ TrainOutput <- R6::R6Class(
       performance
     },
     #'
-    #' @description <<description>>
+    #' @description The function is used to save into CSV file the performance
+    #' achieved by the M.L. models during training stage.
     #'
-    #' @param dir.path <<description>>
-    #' @param metrics <<descrription>>
-    #'
-    #' @return <<description>>
+    #' @param dir.path The location to store the into a CSV file the performance
+    #' of the trained M.L.
+    #' @param metrics An optional parameter specifying the metric(s) used to
+    #' train the M.L. models. If not defined, all the metrics used in train
+    #' stage will be saved.
     #'
     savePerformance = function(dir.path, metrics = NULL) {
       if (is.null(dir.path))
@@ -102,15 +131,12 @@ TrainOutput <- R6::R6Class(
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
-        if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Folder '", dir.path,
-                  "' has been succesfully created")
-        } else { stop("[", class(self)[1], "][FATAL] Cannot create directory '",
-                      dir.path, "'. Aborting... ") }
+        message("[", class(self)[1], "][INFO] Folder '", dir.path,
+                "' has been succesfully created")
       } else { message("[", class(self)[1], "][INFO] Folder already exists") }
 
       if (is.null(metrics) && !is.character(metrics) &&
-           !any(metrics %in% self$getMetrics())) {
+          !any(metrics %in% self$getMetrics())) {
         message("[", class(self)[1], "][INFO] Metrics not defined or invalid. ",
                 "Asuming all available metrics '",
                 paste0(self$getMetrics(), collapse = ", "), "'")
@@ -134,12 +160,13 @@ TrainOutput <- R6::R6Class(
               path)
     },
     #'
-    #' @description <<description>>
+    #' @description The function is responsible for creating a plot to visualize
+    #' the performance achieved by the best M.L. model on each cluster.
     #'
-    #' @param dir.path <<description>>
-    #' @param metrics <<descrription>>
-    #'
-    #' @return <<description>>
+    #' @param dir.path The location to store the exported plot will be saved.
+    #' @param metrics An optional parameter specifying the metric(s) used to
+    #' train the M.L. models. If not defined, all the metrics used in train
+    #' stage will be plotted.
     #'
     plot = function(dir.path, metrics = NULL) {
       if (is.null(dir.path))
@@ -149,17 +176,14 @@ TrainOutput <- R6::R6Class(
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
-        if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Folder '", dir.path,
-                  "' has been succesfully created")
-        } else { stop("[", class(self)[1], "][FATAL] Cannot create directory '",
-                      dir.path, "'. Aborting... ") }
+        message("[", class(self)[1], "][INFO] Folder '", dir.path,
+                "' has been succesfully created")
       } else { message("[", class(self)[1], "][INFO] Folder already exists") }
 
 
       if (is.null(metrics) &&
-           !is.character(metrics) &&
-           !any(metrics %in% self$getMetrics())) {
+          !is.character(metrics) &&
+          !any(metrics %in% self$getMetrics())) {
         message("[", class(self)[1], "][WARNING] Metrics are invalid. ",
                 "Asuming all available metrics", self$getMetrics())
         metrics <- self$getMetrics()
@@ -181,58 +205,61 @@ TrainOutput <- R6::R6Class(
         max <- data.frame(x = summary[max.pos, ]$clusters, y = max(summary[, 3]))
         avg <- round(mean(summary$measure), digits = 2)
         remainning <- data.frame(x = summary[-c(min.pos, max.pos), ]$clusters,
-                                  y = summary[-c(min.pos, max.pos), ]$measure)
+                                 y = summary[-c(min.pos, max.pos), ]$measure)
         measure <- metric
 
-        ggplot(summary, aes(clusters, measure, group = 1)) + geom_line() +
-          geom_point() +
-          geom_text(aes(x, y, label = sprintf("%.3f", y)), remainning,
-                    size = 3, hjust = -.4, vjust = 1.5, color = 'black') +
-          geom_point(aes(x, y), min, fill = "transparent", color = "red",
-                     shape = 21, size = 3, stroke = 1) +
-          geom_text(aes(x, y, label = sprintf("%.3f", y)), min, size = 3,
-                    hjust = -.4, vjust = 1.5, color = 'red') +
-          geom_text(aes(x, y, label = sprintf("%.3f", y)), max, size = 3,
-                    hjust = -.4, vjust = 1.5, color = 'blue') +
-          geom_point(aes(x, y), max, fill = "transparent", color = "blue",
-                     shape = 21, size = 3, stroke = 1) +
-          geom_hline(aes(yintercept = avg), linetype = "twodash",
-                     color = "#696969", show.legend = TRUE) +
-          geom_text(aes(0, avg, label = "Average"), hjust = -.2, vjust = -1) +
-          geom_text(aes(label = models), hjust = -.2, vjust = 0) +
-          labs(x = "Model name", y = paste0(measure, " value"),
-               title = paste0("Performance benchmarking plot during training")) +
-          theme(axis.text.x = element_text(angle = 75, hjust = 1),
-                plot.title = element_text(hjust = 0.5))
+        ggplot2::ggplot(summary, ggplot2::aes(clusters, measure, group = 1)) + ggplot2::geom_line() +
+          ggplot2::geom_point() +
+          ggplot2::geom_text(ggplot2::aes(x, y, label = sprintf("%.3f", y)), remainning,
+                             size = 3, hjust = -.4, vjust = 1.5, color = 'black') +
+          ggplot2::geom_point(ggplot2::aes(x, y), min, fill = "transparent", color = "red",
+                              shape = 21, size = 3, stroke = 1) +
+          ggplot2::geom_text(ggplot2::aes(x, y, label = sprintf("%.3f", y)), min, size = 3,
+                             hjust = -.4, vjust = 1.5, color = 'red') +
+          ggplot2::geom_text(ggplot2::aes(x, y, label = sprintf("%.3f", y)), max, size = 3,
+                             hjust = -.4, vjust = 1.5, color = 'blue') +
+          ggplot2::geom_point(ggplot2::aes(x, y), max, fill = "transparent", color = "blue",
+                              shape = 21, size = 3, stroke = 1) +
+          ggplot2::geom_hline(ggplot2::aes(yintercept = avg), linetype = "twodash",
+                              color = "#696969", show.legend = TRUE) +
+          ggplot2::geom_text(ggplot2::aes(0, avg, label = "Average"), hjust = -.2, vjust = -1) +
+          ggplot2::geom_text(ggplot2::aes(label = models), hjust = -.2, vjust = 0) +
+          ggplot2::labs(x = "Model name", y = paste0(measure, " value"),
+                        title = paste0("Performance benchmarking plot during training")) +
+          ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 75, hjust = 1),
+                         plot.title = ggplot2::element_text(hjust = 0.5))
 
         save.path <- file.path(dir.path, paste0("Performance_Train_Plot_", metric, ".pdf"))
-        message("[DDMCS][INFO] Plot saved has been succesfully saved at : '",
+        message("[", class(self)[1], "][INFO] Plot saved has been succesfully saved at : '",
                 save.path, "'")
-        ggsave(filename = save.path, device = "pdf")
+        ggplot2::ggsave(filename = save.path, device = "pdf")
       }))
     },
     #'
-    #' @description <<description>>
+    #' @description The function returns all metrics used for configuring M.L.
+    #' hyperparameters during train stage.
     #'
-    #' @return <<description>>
+    #' @return A \link{character} value.
     #'
     getMetrics = function() { names(private$models) },
     #'
-    #' @description <<description>>
+    #' @description The function is used to get the values of the target class.
     #'
-    #' @return <<description>>
+    #' @return A \link{character} containing the values of the target class.
     #'
     getClassValues = function() { private$class.values },
     #'
-    #' @description <<description>>
+    #' @description The function returns the value of the positive class.
     #'
-    #' @return <<description>>
+    #' @return A \link{character} vector of size 1.
     #'
     getPositiveClass = function() { private$positive.class },
     #'
-    #' @description <<description>>
+    #' @description The function is used to get the number of the trained M.L.
+    #' models. Each cluster contains the best M.L. model.
     #'
-    #' @return <<description>>
+    #' @return A \link{numeric} value or \link{NULL} training was not
+    #' successfully performed.
     #'
     getSize = function() { length(names(private$models)) }
   ),

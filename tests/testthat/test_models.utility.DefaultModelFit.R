@@ -1,13 +1,7 @@
-testthat::test_that("DefaultModelFit: initialize", {
+testthat::test_that("DefaultModelFit: initialize function works", {
 
-  instances <- data.frame(c(1, 2), c(2, 2))
+  testthat::expect_is(DefaultModelFit$new(), "DefaultModelFit")
 
-  colnames(instances) <- c("C1", "Class")
-
-
-  testthat::expect_is(DefaultModelFit$new(instances = instances,
-                                          class.name = "Class"),
-                      "DefaultModelFit")
 })
 
 testthat::test_that("DefaultModelFit: createFormula function works", {
@@ -16,12 +10,12 @@ testthat::test_that("DefaultModelFit: createFormula function works", {
 
   colnames(instances) <- c("C1", "Class")
 
-  testthat::expect_is(DefaultModelFit$new(instances = instances,
-                                             class.name = "Class")$createFormula(simplify = FALSE),
+  testthat::expect_is(DefaultModelFit$new()$createFormula(instances, "Class",
+                                                          simplify = FALSE),
                         "formula")
 
-  testthat::expect_is(DefaultModelFit$new(instances = instances,
-                                            class.name = "Class")$createFormula(simplify = TRUE),
+  testthat::expect_is(DefaultModelFit$new()$createFormula(instances, "Class",
+                                                          simplify = TRUE),
                         "formula")
 })
 
@@ -31,7 +25,6 @@ testthat::test_that("DefaultModelFit: createRecipe function works", {
 
   colnames(instances) <- c("C1", "Class")
 
-  testthat::expect_is(DefaultModelFit$new(instances = instances,
-                                             class.name = "Class")$createRecipe(),
+  testthat::expect_is(DefaultModelFit$new()$createRecipe(instances, "Class"),
                         "recipe")
 })

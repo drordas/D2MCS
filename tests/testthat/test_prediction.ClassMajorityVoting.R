@@ -1,19 +1,33 @@
-testthat::test_that("ClassMajorityVoting: initialize", {
+test_that("ClassMajorityVoting: initialize function works", {
 
   cutoff <- 0.5
-  class.tie <- "Positive"
+  class.tie.character <- "Positive"
   majority.class <- "Positive"
 
   testthat::expect_is(ClassMajorityVoting$new(cutoff = cutoff,
-                                              class.tie = class.tie,
+                                              class.tie = class.tie.character,
+                                              majority.class = majority.class),
+                      "ClassMajorityVoting")
+
+  class.tie.numeric <- 1
+
+  testthat::expect_is(ClassMajorityVoting$new(cutoff = cutoff,
+                                              class.tie = class.tie.numeric,
+                                              majority.class = majority.class),
+                      "ClassMajorityVoting")
+
+  class.tie.null <- NULL
+
+  testthat::expect_is(ClassMajorityVoting$new(cutoff = cutoff,
+                                              class.tie = class.tie.null,
                                               majority.class = majority.class),
                       "ClassMajorityVoting")
 })
 
-testthat::test_that("ClassMajorityVoting: initialize checks parameter type", {
+testthat::test_that("ClassMajorityVoting: initialize function checks parameter type", {
 
   cutoff <- 0.5
-  class.tie <- 1
+  class.tie <- list()
   majority.class <- "Positive"
 
   testthat::expect_error(ClassMajorityVoting$new(cutoff = cutoff,
@@ -23,7 +37,7 @@ testthat::test_that("ClassMajorityVoting: initialize checks parameter type", {
                          fixed = TRUE)
 })
 
-testthat::test_that("ClassMajorityVoting: getMajorityClass", {
+testthat::test_that("ClassMajorityVoting: getMajorityClass function works", {
 
   cutoff <- 0.5
   class.tie <- "Positive"
@@ -35,7 +49,7 @@ testthat::test_that("ClassMajorityVoting: getMajorityClass", {
                          "Positive")
 })
 
-testthat::test_that("ClassMajorityVoting: getClassTie", {
+testthat::test_that("ClassMajorityVoting: getClassTie function works", {
 
   cutoff <- 0.5
   class.tie <- "Positive"
@@ -45,6 +59,49 @@ testthat::test_that("ClassMajorityVoting: getClassTie", {
                                                  class.tie = class.tie,
                                                  majority.class = majority.class)$getClassTie(),
                          "Positive")
+})
+
+testthat::test_that("ClassMajorityVoting: execute function works", {
+
+  cutoff <- 0.5
+  class.tie <- "Positive"
+  majority.class <- "Positive"
+
+  voting <- ClassMajorityVoting$new(cutoff = cutoff,
+                                    class.tie = class.tie,
+                                    majority.class = majority.class)
+
+  predictionts <- readRDS(file.path("resourceFiles",
+                                    "testVotings",
+                                    "predictions.rds"))
+  verbose <- TRUE
+  testthat::expect_message(voting$execute(predictions = predictionts,
+                                          verbose = verbose),
+                         "[ClassMajorityVoting][INFO] Performing voting using '1' as majority class",
+                         fixed = TRUE)
+})
+
+testthat::test_that("ClassMajorityVoting: execute function works (tie)", {
+
+  cutoff <- 1
+  class.tie <- "1"
+  majority.class <- "1"
+
+  voting <- ClassMajorityVoting$new(cutoff = cutoff,
+                                    class.tie = class.tie,
+                                    majority.class = majority.class)
+
+  predictions <- readRDS(file.path("resourceFiles",
+                                   "testVotings",
+                                   "predictions.rds"))
+
+  predictions$add(prediction = predictions$get(1))
+
+  verbose <- TRUE
+  testthat::expect_message(voting$execute(predictions = predictions,
+                                          verbose = verbose),
+                           "[ClassMajorityVoting][INFO] Found Tie. Resolving using 'majority class' solver",
+                           fixed = TRUE)
 })
 
 testthat::test_that("ClassMajorityVoting: execute function checks parameter type", {

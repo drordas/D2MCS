@@ -1,16 +1,36 @@
-#' @title <<tittle>>
+#
+# D2MCS provides a novel framework to able to automatically develop and deploy
+# an accurate Multiple Classifier System (MCS) based on the feature-clustering
+# distribution achieved from an input dataset. D2MCS was developed focused on
+# four main aspects: (i) the ability to determine an effective method to
+# evaluate the independence of features, (ii) the identification of the optimal
+# number of feature clusters, (iii) the training and tuning of ML models and
+# (iv) the execution of voting schemes to combine the outputs of each classifier
+# comprising the MCS.
+#
+# Copyright (C) 2021 Sing Group (University of Vigo)
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>
+
+#' @title Confusion matrix wrapper.
 #'
-#' @description ConfMatrix
+#' @description Creates a \code{\link{R6}} confusion matrix from the
+#' \code{\link[caret]{confusionMatrix}} caret package.
 #'
-#' @docType class
+#' @seealso \code{\link{D2MCS}}, \code{\link{MeasureFunction}},
+#' \code{\link{ClassificationOutput}}
 #'
-#' @format NULL
-#'
-#' @details <<details>
-#'
-#' @seealso \code{\link{DDMCS}}
-#'
-#' @keywords NULL
+#' @keywords classif math
 #'
 #' @import R6
 #'
@@ -21,9 +41,10 @@ ConfMatrix <- R6::R6Class(
   portable = TRUE,
   public = list(
     #'
-    #' @description <<description>>
+    #' @description Method to create a confusion matrix object from a
+    #' \code{caret} \code{\link[caret]{confusionMatrix}}
     #'
-    #' @param confMatrix <<description>>
+    #' @param confMatrix A \code{caret} \link[caret]{confusionMatrix} argument.
     #'
     initialize = function(confMatrix) {
       if (!inherits(confMatrix, "confusionMatrix"))
@@ -35,33 +56,37 @@ ConfMatrix <- R6::R6Class(
       private$confusionMatrix <- confMatrix
     },
     #'
-    #' @description <<description>>
+    #' @description The function obtains the \code{\link[caret]{confusionMatrix}}
+    #' following the same structured as defined in the \code{caret} package
     #'
-    #' @return <<description>>
+    #' @return A \code{\link[caret]{confusionMatrix}} object.
     #'
     getConfusionMatrix = function() { private$confusionMatrix },
     #'
-    #' @description <<description>>
+    #' @description The function is used to compute the number of True Positive
+    #' values achieved.
     #'
-    #' @return <<description>>
+    #' @return A \link{numeric} vector of size 1.
     #'
     getTP = function() { private$confusionMatrix$table[private$positive.class, private$positive.class] },
     #'
-    #' @description <<description>>
+    #' @description The function computes the True Negative values.
     #'
-    #' @return <<description>>
+    #' @return A \link{numeric} vector of size 1.
     #'
     getTN = function() { private$confusionMatrix$table[private$negative.class, private$negative.class] },
     #'
-    #' @description <<description>>
+    #' @description The function returns the number of Type II errors
+    #' (False Negative).
     #'
-    #' @return <<description>>
+    #' @return A \link{numeric} vector of size 1.
     #'
     getFN = function() { private$confusionMatrix$table[private$negative.class, private$positive.class] },
     #'
-    #' @description <<description>>
+    #' @description The function returns the number of Type I errors
+    #' (False Negative).
     #'
-    #' @return <<description>>
+    #' @return A \link{numeric} vector of size 1.
     #'
     getFP = function() { private$confusionMatrix$table[private$positive.class, private$negative.class] }
   ),

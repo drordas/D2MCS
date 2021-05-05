@@ -1,10 +1,10 @@
-testthat::test_that("ProbBasedMethodology: initialize", {
+testthat::test_that("ProbBasedMethodology: initialize function works", {
 
   testthat::expect_is(ProbBasedMethodology$new(required.metrics = c("MCC", "PPV")),
                       "ProbBasedMethodology")
 })
 
-testthat::test_that("ProbBasedMethodology: initialize checks parameter type", {
+testthat::test_that("ProbBasedMethodology: initialize function checks parameter type", {
 
   testthat::expect_error(ProbBasedMethodology$new(required.metrics = NULL),
                          "[ProbBasedMethodology][FATAL] Invalid values of required.metrics. Aborting...",
@@ -99,7 +99,7 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Positive class parameter must be defined as 'character' type. Aborting...",
+                         "[ProbBasedMethodology][FATAL] Positive class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -113,6 +113,6 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Negative class parameter must be defined as 'character' type. Aborting...",
+                         "[ProbBasedMethodology][FATAL] Negative class parameter must be defined. Aborting...",
                          fixed = TRUE)
 })

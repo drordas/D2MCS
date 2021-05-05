@@ -1,4 +1,4 @@
-testthat::test_that("VotingStrategy: initialize", {
+testthat::test_that("VotingStrategy: initialize function works", {
 
   testthat::expect_is(VotingStrategy$new(),
                       "VotingStrategy")

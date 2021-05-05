@@ -2,15 +2,19 @@ language: r
 
 cache: packages
 
+sudo: required
+
 r_packages:
   - covr
-  - styler
 
-before_cache:
-  - Rscript -e 'styler::style_pkg(scope = "spaces", strict = FALSE, start_comments_with_one_space = FALSE, math_token_spacing = styler::tidyverse_math_token_spacing())'
+apt_packages:
+  - r-cran-rjava
+
+before_install:
+  - sudo $(which R) CMD javareconf
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  -  Rscript -e 'library(covr); codecov()'
 
 notifications:
   email:

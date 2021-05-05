@@ -1,4 +1,4 @@
-testthat::test_that("PredictionOutput: initialize", {
+testthat::test_that("PredictionOutput: initialize function works", {
 
   testthat::expect_is(PredictionOutput$new(predictions = NULL,
                                            type = NULL,

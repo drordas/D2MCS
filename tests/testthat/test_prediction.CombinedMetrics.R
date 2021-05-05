@@ -1,13 +1,13 @@
-testthat::test_that("CombinedMetrics: initialize", {
+testthat::test_that("CombinedMetrics: initialize function works", {
 
   testthat::expect_is(CombinedMetrics$new(required.metrics = c("MCC", "PPV")),
                       "CombinedMetrics")
 })
 
-testthat::test_that("CombinedMetrics: initialize checks parameter type", {
+testthat::test_that("CombinedMetrics: initialize function checks parameter type", {
 
   testthat::expect_error(CombinedMetrics$new(required.metrics = NULL),
-                         "[CombinedMetrics][FATAL] Required.metrics parameter must be defined as 'character' type. Aborting...",
+                         "[CombinedMetrics][FATAL] The required.metrics parameter must be defined as 'character' type. Aborting...",
                          fixed = TRUE)
 })
 
