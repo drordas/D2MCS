@@ -1,4 +1,7 @@
 
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/D2MCS)](https://cran.r-project.org/package=D2MCS)
+[![rstudio\_mirror\_downloads](http://cranlogs.r-pkg.org/badges/D2MCS)](https://github.com/metacran/cranlogs.app)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/D2MCS)](https://cran.r-project.org/package=D2MCS)
 [![build\_status](https://travis-ci.com/drordas/D2MCS.svg?branch=develop)](https://travis-ci.com/drordas/D2MCS)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![codecov](https://codecov.io/gh/drordas/D2MCS/branch/develop/graph/badge.svg)](https://codecov.io/gh/drordas/D2MCS)
@@ -66,6 +69,16 @@ diagram](additional-material/workflow-operation.png)
 |  grDevices  | knitr | rmarkdown | testthat (&gt;= 3.0.2) |
 
 ## Installation 🔧
+
+#### Install the package from the CRAN:
+
+``` r
+install.packages('D2MCS')
+```
+
+It should be taken into account that the case of needing all the
+dependencies, the parameter *dependencies = TRUE* should be included in
+the command *install.packages*.
 
 #### Install the development version from GitHub:
 
