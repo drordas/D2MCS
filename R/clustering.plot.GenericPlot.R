@@ -60,7 +60,7 @@ GenericPlot <- R6::R6Class(
       max <- data.frame(x = summary[which.max(summary[, 2]), ][, 1], y = max(summary[, 2]))
       ggplot2::ggplot(summary, ggplot2::aes(k, dispersion)) +
         ggplot2::geom_point(ggplot2::aes(color = dispersion), position = ggplot2::position_jitter()) +
-        ggplot2::scale_color_continuous(name = "", low = "blue", high = "red", guide = FALSE) +
+        ggplot2::scale_color_continuous(name = "", low = "blue", high = "red", guide = "none") +
         ggrepel::geom_text_repel(ggplot2::aes(x, y, label = sprintf("%s", format(min["y"], digits = 2, scientific = TRUE))),
                                  min, hjust = 0.5, vjust = 0, point.padding = 0.25, color = 'blue', size = 3) +
         ggrepel::geom_text_repel(ggplot2::aes(x, y, label = sprintf("%s", format(max["y"], digits = 2, scientific = TRUE))),

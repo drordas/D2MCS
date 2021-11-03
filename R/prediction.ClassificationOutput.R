@@ -396,7 +396,7 @@ ClassificationOutput <- R6::R6Class(
         performance <- performances[[peformance.name]]
         plot <- ggplot2::ggplot(performance, ggplot2::aes(x = Measure, y = Value)) + ggplot2::geom_bar(stat = "identity") +
           ggplot2::geom_point(ggplot2::aes(shape = 15, stroke = 1)) + ggplot2::scale_shape_identity() +
-          ggplot2::ggtitle("Classifier performance Benchmarking") + ggplot2::guides(fill = FALSE) +
+          ggplot2::ggtitle("Classifier performance Benchmarking") + ggplot2::guides(fill = "none") +
           ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.title = ggplot2::element_blank(),
                  legend.position = "none")
 
