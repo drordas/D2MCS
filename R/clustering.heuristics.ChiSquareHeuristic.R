@@ -66,8 +66,12 @@ ChiSquareHeuristic <- R6::R6Class(
         # WARNING! Chi-squared approximation may be incorrect
         stats::chisq.test(col1, col2)$p.value,
         error = function(e) {
-          message("[", class(self)[1], "][ERROR] Error occurred calculating ",
-                  "chi.square heuristic: '", e, "' . Returning NA")
+          d2mcs.log(message = paste0("Error occurred calculating ",
+                                     "chi.square heuristic: '", e,
+                                     "'. Returning NA"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "heuristic")
           NA
         })
     }

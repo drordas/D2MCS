@@ -57,30 +57,50 @@ GenericClusteringStrategy <- R6::R6Class(
     initialize = function(subset, heuristic, description, configuration) {
 
       if (is.null(description) || !is.character(description)) {
-        stop("[", class(self)[1], "][FATAL] Strategy description parameter must ",
-             "be defined as 'character' type. Aborting...")
+        d2mcs.log(message = paste0("Strategy description parameter must ",
+                                   "be defined as 'character' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!inherits(subset, "Subset")) {
-        stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
-             "'Subset' type. Aborting...")
+        d2mcs.log(message = paste0("Subset parameter must be defined as ",
+                                   "'Subset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (is.list(heuristic)) {
         if (length(Filter(function(x) inherits(x, "GenericHeuristic"), heuristic)) == 0) {
-          stop("[", class(self)[1], "][FATAL] Adequate heuristics not found ",
-               "(must inherit from 'GenericHeuristic' class). Aborting...")
+          d2mcs.log(message = paste0("Adequate heuristics not found (must ",
+                                     "inherit from 'GenericHeuristic' class). ",
+                                     "Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
       } else {
         if (inherits(heuristic, "GenericHeuristic")) {
           heuristic <- list(heuristic)
-        } else { stop("[", class(self)[1], "][FATAL] Heuristics is not correct ",
-                      "(must inherit from 'GenericHeuristic' class). Aborting...") }
+        } else {
+          d2mcs.log(message = paste0("Heuristics is not correct (must inherit ",
+                                     "from 'GenericHeuristic' class). ",
+                                     "Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
+        }
       }
 
       if (!inherits(configuration, "StrategyConfiguration")) {
-        stop("[", class(self)[1], "][FATAL] Configuration parameter must be ",
-             "inherit from 'StrategyConfiguration' class. Aborting...")
+        d2mcs.log(message = paste0("Configuration parameter must be inherit ",
+                                   "from 'StrategyConfiguration' class. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$description <- description
@@ -134,8 +154,11 @@ GenericClusteringStrategy <- R6::R6Class(
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     execute = function(verbose, ...) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "execute")
     },
     #'
     #' @description Abstract function used to obtain the set of features
@@ -153,8 +176,11 @@ GenericClusteringStrategy <- R6::R6Class(
     #'
     getDistribution = function(num.clusters = NULL, num.groups = NULL,
                                include.unclustered = FALSE) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "getDistribution")
     },
     #'
     #' @description Abstract function in charge of creating a
@@ -171,8 +197,11 @@ GenericClusteringStrategy <- R6::R6Class(
     #'
     createTrain = function(subset, num.cluster = NULL, num.groups = NULL,
                            include.unclustered = FALSE) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "createTrain")
     },
     #'
     #' @description Abstract function responsible of creating a plot to
@@ -186,8 +215,11 @@ GenericClusteringStrategy <- R6::R6Class(
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     plot = function(dir.path = NULL, file.name = NULL, ...) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "plot")
     },
     #'
     #' @description Abstract function to save the clustering distribution to a
@@ -199,8 +231,11 @@ GenericClusteringStrategy <- R6::R6Class(
     #' clusters to be saved. If not defined, all clusters will be saved.
     #'
     saveCSV = function(dir.path, name, num.clusters = NULL) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "saveCSV")
     }
   ),
   private = list(

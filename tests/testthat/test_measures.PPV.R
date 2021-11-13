@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("PPV: initialize function works", {
 
   lvs <- c("normal", "abnormal")
@@ -15,6 +20,16 @@ testthat::test_that("PPV: initialize function works", {
 
   testthat::expect_is(PPV$new(performance = confMatrix),
                       "PPV")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("PPV: compute function works", {
@@ -39,8 +54,23 @@ testthat::test_that("PPV: compute function works", {
                       "numeric")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("PPV: compute function checks parameter type", {
   testthat::expect_error(PPV$new(performance = NULL)$compute(performance.output = NULL),
-                         "[PPV][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
+                         "[PPV][compute][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

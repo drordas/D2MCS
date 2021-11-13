@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("FIterator: initialize function works", {
 
   file.path <- file.path("resourceFiles",
@@ -24,6 +29,16 @@ testthat::test_that("FIterator: initialize function works", {
                              verbose = verbose)
   testthat::expect_is(fIterator,
                       "FIterator")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
 })
 
 testthat::test_that("FIterator: getNext function works", {
@@ -74,8 +89,18 @@ testthat::test_that("FIterator: getNext function works", {
 
   fIterator$getNext()
   testthat::expect_message(fIterator$getNext(),
-                           "[FIterator][INFO] Read lines 100 to 200 [100]",
+                           "[FIterator][getNext][DEBUG] Read lines 100 to 200 [100]",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("FIterator: isLast function works", {
@@ -107,6 +132,16 @@ testthat::test_that("FIterator: isLast function works", {
   testthat::expect_true(fIterator$isLast())
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("FIterator: finalize function works", {
 
   file.path <- file.path("resourceFiles",
@@ -134,4 +169,9 @@ testthat::test_that("FIterator: finalize function works", {
   fIterator$finalize()
 
   testthat::expect_null(fIterator$.__enclos_env__$private$con)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

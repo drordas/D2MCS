@@ -1,9 +1,24 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DependencyBasedStrategyConfiguration: initialize function works", {
   testthat::expect_is(DependencyBasedStrategyConfiguration$new(binaryCutoff = 0.6,
                                                                realCutoff = 0.6,
                                                                tiebreakMethod = "lfdc",
                                                                metric = "dep.tar"),
                       "DependencyBasedStrategyConfiguration")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategyConfiguration: initialize function checks parameter type", {
@@ -17,72 +32,82 @@ testthat::test_that("DependencyBasedStrategyConfiguration: initialize function c
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = tiebreakMethod,
                                                                   metric = metric),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid binary cut-off value. Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid binary cut-off value. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = 1.5,
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = tiebreakMethod,
                                                                   metric = metric),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid binary cut-off value. Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid binary cut-off value. Aborting...",
                          fixed = TRUE)
 
    testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = NULL,
                                                                   tiebreakMethod = tiebreakMethod,
                                                                   metric = metric),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real cut-off value. Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid real cut-off value. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = 1.5,
                                                                   tiebreakMethod = tiebreakMethod,
                                                                   metric = metric),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real cut-off value. Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid real cut-off value. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = NULL,
                                                                   metric = metric),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real tiebreak method ('lfdc' or 'ltdc'). Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid real tiebreak method ('lfdc' or 'ltdc'). Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = 1,
                                                                   metric = metric),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real tiebreak method ('lfdc' or 'ltdc'). Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid real tiebreak method ('lfdc' or 'ltdc'). Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = "a",
                                                                   metric = metric),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real tiebreak method ('lfdc' or 'ltdc'). Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid real tiebreak method ('lfdc' or 'ltdc'). Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = tiebreakMethod,
                                                                   metric = NULL),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid metric value ('dep.fea' or 'dep.tar'). Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid metric value ('dep.fea' or 'dep.tar'). Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = tiebreakMethod,
                                                                   metric = 1),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid metric value ('dep.fea' or 'dep.tar'). Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid metric value ('dep.fea' or 'dep.tar'). Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(DependencyBasedStrategyConfiguration$new(binaryCutoff = binaryCutoff,
                                                                   realCutoff = realCutoff,
                                                                   tiebreakMethod = tiebreakMethod,
                                                                   metric = "a"),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid metric value ('dep.fea' or 'dep.tar'). Aborting...",
+                         "[DependencyBasedStrategyConfiguration][initialize][FATAL] Invalid metric value ('dep.fea' or 'dep.tar'). Aborting...",
                          fixed = TRUE)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategyConfiguration: minNumClusters function works", {
@@ -92,13 +117,32 @@ testthat::test_that("DependencyBasedStrategyConfiguration: minNumClusters functi
   testthat::expect_type(configuration$minNumClusters(), "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DependencyBasedStrategyConfiguration: maxNumClusters function works", {
 
   configuration <- DependencyBasedStrategyConfiguration$new()
 
   testthat::expect_equal(configuration$maxNumClusters(features = list(list(1, 2), list(1))), 2)
   testthat::expect_equivalent(suppressWarnings(configuration$maxNumClusters()), 3)
+})
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategyConfiguration: getBinaryCutoff function works", {
@@ -108,6 +152,16 @@ testthat::test_that("DependencyBasedStrategyConfiguration: getBinaryCutoff funct
   testthat::expect_type(configuration$getBinaryCutoff(), "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DependencyBasedStrategyConfiguration: getRealCutoff function works", {
 
   configuration <- DependencyBasedStrategyConfiguration$new()
@@ -115,13 +169,33 @@ testthat::test_that("DependencyBasedStrategyConfiguration: getRealCutoff functio
   testthat::expect_type(configuration$getRealCutoff(), "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DependencyBasedStrategyConfiguration: setBinaryCutoff function works", {
 
   configuration <- DependencyBasedStrategyConfiguration$new()
 
   cutoff <- 0.2
-  configuration$setBinaryCutoff(cutoff=cutoff)
+  configuration$setBinaryCutoff(cutoff = cutoff)
   testthat::expect_equal(configuration$getBinaryCutoff(), cutoff)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategyConfiguration: setRealCutoff function works", {
@@ -133,37 +207,61 @@ testthat::test_that("DependencyBasedStrategyConfiguration: setRealCutoff functio
   testthat::expect_equal(configuration$getRealCutoff(), cutoff)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DependencyBasedStrategyConfiguration: setBinaryCutoff function checks parameter type", {
 
   configuration <- DependencyBasedStrategyConfiguration$new()
 
-  testthat::expect_error(configuration$setBinaryCutoff(cutoff=NULL),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid binary cut-off value. Aborting...",
+  testthat::expect_error(configuration$setBinaryCutoff(cutoff = NULL),
+                         "[DependencyBasedStrategyConfiguration][setBinaryCutoff][FATAL] Invalid binary cut-off value. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(configuration$setBinaryCutoff(cutoff="a"),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid binary cut-off value. Aborting...",
+  testthat::expect_error(configuration$setBinaryCutoff(cutoff = "a"),
+                         "[DependencyBasedStrategyConfiguration][setBinaryCutoff][FATAL] Invalid binary cut-off value. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(configuration$setBinaryCutoff(cutoff=1.1),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid binary cut-off value. Aborting...",
+  testthat::expect_error(configuration$setBinaryCutoff(cutoff = 1.1),
+                         "[DependencyBasedStrategyConfiguration][setBinaryCutoff][FATAL] Invalid binary cut-off value. Aborting...",
                          fixed = TRUE)
+})
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategyConfiguration: setRealCutoff function checks parameter type", {
 
   configuration <- DependencyBasedStrategyConfiguration$new()
 
-  testthat::expect_error(configuration$setRealCutoff(cutoff=NULL),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real cut-off value. Aborting...",
+  testthat::expect_error(configuration$setRealCutoff(cutoff = NULL),
+                         "[DependencyBasedStrategyConfiguration][setRealCutoff][FATAL] Invalid real cut-off value. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(configuration$setRealCutoff(cutoff="a"),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real cut-off value. Aborting...",
+  testthat::expect_error(configuration$setRealCutoff(cutoff = "a"),
+                         "[DependencyBasedStrategyConfiguration][setRealCutoff][FATAL] Invalid real cut-off value. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(configuration$setRealCutoff(cutoff=1.1),
-                         "[DependencyBasedStrategyConfiguration][FATAL] Invalid real cut-off value. Aborting...",
+  testthat::expect_error(configuration$setRealCutoff(cutoff = 1.1),
+                         "[DependencyBasedStrategyConfiguration][setRealCutoff][FATAL] Invalid real cut-off value. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

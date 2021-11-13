@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: initialize function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -19,6 +24,16 @@ testthat::test_that("Subset: initialize function works", {
                       "Subset")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: initialize function checks parameter type", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -27,7 +42,7 @@ testthat::test_that("Subset: initialize function checks parameter type", {
                                     class.index = 50,
                                     class.values = factor(corpus[[50]]),
                                     positive.class = 1),
-                         "[Subset][FATAL] Dataset empty or incorrect (must be a data.frame). Aborting...",
+                         "[Subset][initialize][FATAL] Dataset empty or incorrect (must be a data.frame). Aborting...",
                          fixed = TRUE)
 
   corpus <- read.csv(file = file.path, header = TRUE,
@@ -41,14 +56,14 @@ testthat::test_that("Subset: initialize function checks parameter type", {
                                     class.index = "a",
                                     class.values = factor(corpus[[50]]),
                                     positive.class = 1),
-                         "[Subset][FATAL] Class index parameter is incorrect. Must be between 1 and 50. Aborting...",
+                         "[Subset][initialize][FATAL] Class index parameter is incorrect. Must be between 1 and 50. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(Subset$new(dataset = corpus,
                                     class.index = 50,
                                     class.values = 3,
                                     positive.class = 1),
-                         "[Subset][FATAL] Class values parameter must be defined as 'factor' type. Aborting...",
+                         "[Subset][initialize][FATAL] Class values parameter must be defined as 'factor' type. Aborting...",
                          fixed = TRUE)
 
   set.seed(123)
@@ -56,15 +71,25 @@ testthat::test_that("Subset: initialize function checks parameter type", {
                                     class.index = 50,
                                     class.values = factor(sample(c(0, 1), nrow(corpus), replace = TRUE)),
                                     positive.class = 1),
-                         "[Subset][FATAL] Class values parameter is incorrect. Must match with the values in column 50 in the dataset. Aborting...",
+                         "[Subset][initialize][FATAL] Class values parameter is incorrect. Must match with the values in column 50 in the dataset. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(Subset$new(dataset = corpus,
                                     class.index = 50,
                                     class.values = factor(corpus[[50]]),
                                     positive.class = 2),
-                         "[Subset][FATAL] Positive Class parameter is incorrect. Must be '0' '1'. Aborting...",
+                         "[Subset][initialize][FATAL] Positive Class parameter is incorrect. Must be '0' '1'. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Subset: getColumnNames function works", {
@@ -84,6 +109,16 @@ testthat::test_that("Subset: getColumnNames function works", {
                        positive.class = 1)
 
   testthat::expect_equal(subset$getColumnNames(), names(corpus[, -50]))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Subset: getFeatures function works", {
@@ -116,6 +151,16 @@ testthat::test_that("Subset: getFeatures function works", {
   testthat::expect_equal(subset$getFeatures(feature.names = "Gender"), corpus[["Gender"]])
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: getID function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -144,6 +189,16 @@ testthat::test_that("Subset: getID function works", {
   testthat::expect_equal(subset$getID(), names(corpus)[2])
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: getIterator function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -161,19 +216,29 @@ testthat::test_that("Subset: getIterator function works", {
                        positive.class = 1,
                        feature.id = NULL)
 
-  testthat::expect_message(subset$getIterator(chunk.size = "wrong",
+  testthat::expect_warning(subset$getIterator(chunk.size = "wrong",
                                               verbose = FALSE),
-                           "[Subset][WARNING] Chunk size is not valid. Assuming default value",
+                           "[Subset][getIterator][WARN] Chunk size is not valid. Assuming default value",
                            fixed = TRUE)
 
-  testthat::expect_message(subset$getIterator(chunk.size = 10000,
+  testthat::expect_warning(subset$getIterator(chunk.size = 10000,
                                               verbose = "a"),
-                           "[Subset][WARNING] Verbose type is not valid. Assuming 'FALSE' as default value",
+                           "[Subset][getIterator][WARN] Verbose type is not valid. Assuming 'FALSE' as default value",
                            fixed = TRUE)
 
   testthat::expect_is(subset$getIterator(chunk.size = 10000,
                                               verbose = TRUE),
                       "DIterator")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Subset: getClassValues function works", {
@@ -196,6 +261,16 @@ testthat::test_that("Subset: getClassValues function works", {
   testthat::expect_true(all(subset$getClassValues() == factor(corpus[[50]])))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: getClassBalance function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -214,8 +289,8 @@ testthat::test_that("Subset: getClassBalance function works", {
                        feature.id = NULL)
 
   testthat::expect_equal(subset$getClassBalance(target.value = NULL), 1)
-  testthat::expect_message(subset$getClassBalance(target.value = 2),
-                           "[Subset][WARNING] Target class not found. Assuming default '1' value",
+  testthat::expect_warning(subset$getClassBalance(target.value = 2),
+                           "[Subset][getClassBalance][WARN] Target class not found. Assuming default '1' value",
                            fixed = TRUE)
 
   subset <- Subset$new(dataset = corpus,
@@ -225,8 +300,18 @@ testthat::test_that("Subset: getClassBalance function works", {
                        feature.id = NULL)
 
   testthat::expect_message(subset$getClassBalance(target.value = 2),
-                           "[Subset][WARNING] Subset has no associated class. Task not performed",
+                           "[Subset][getClassBalance][ERROR] Subset has no associated class. Task not performed",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Subset: getClassIndex function works", {
@@ -249,6 +334,16 @@ testthat::test_that("Subset: getClassIndex function works", {
   testthat::expect_equal(subset$getClassIndex(), 50)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: getClassName function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -267,6 +362,16 @@ testthat::test_that("Subset: getClassName function works", {
                        feature.id = NULL)
 
   testthat::expect_equal(subset$getClassName(), "Class")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Subset: getNcol function works", {
@@ -289,6 +394,16 @@ testthat::test_that("Subset: getNcol function works", {
   testthat::expect_equal(subset$getNcol(), 50)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: getNrow function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -307,6 +422,16 @@ testthat::test_that("Subset: getNrow function works", {
                        feature.id = NULL)
 
   testthat::expect_equal(subset$getNrow(), 202)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Subset: getPositiveClass function works", {
@@ -329,6 +454,16 @@ testthat::test_that("Subset: getPositiveClass function works", {
   testthat::expect_equal(subset$getPositiveClass(), 1)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Subset: isBlinded function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -347,4 +482,9 @@ testthat::test_that("Subset: isBlinded function works", {
                        feature.id = NULL)
 
   testthat::expect_equal(subset$isBlinded(), FALSE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

@@ -62,12 +62,18 @@ Subset <- R6::R6Class(
     initialize = function(dataset, class.index = NULL, class.values = NULL,
                           positive.class = NULL, feature.id = NULL) {
       if (any(is.null(dataset), nrow(dataset) == 0, !is.data.frame(dataset))) {
-        stop("[", class(self)[1], "][FATAL] Dataset empty or incorrect ",
-             "(must be a data.frame). Aborting...")
+        d2mcs.log(message = paste0("Dataset empty or incorrect (must be a ",
+                                   "data.frame). Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       private$data <- dataset
       if (any(is.null(class.index), is.null(class.values), is.null(positive.class))) {
-        message("[", class(self)[1], "][INFO] Subset created without an associated class")
+        d2mcs.log(message = "Subset created without an associated class",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
         class.index <- NULL
         class.values <- NULL
         positive.class <- NULL
@@ -76,19 +82,31 @@ Subset <- R6::R6Class(
         private$feature.names <- names(private$data)
       } else {
         if (!is.numeric(class.index) || !class.index %in% c(1:ncol(dataset))) {
-          stop("[", class(self)[1], "][FATAL] Class index parameter is incorrect. ",
-               "Must be between 1 and ", ncol(dataset), ". Aborting...")
+          d2mcs.log(message = paste0("Class index parameter is incorrect. Must ",
+                                     "be between 1 and ", ncol(dataset),
+                                     ". Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
 
         if (!is.factor(class.values)) {
-          stop("[", class(self)[1], "][FATAL] Class values parameter must be defined ",
-               "as 'factor' type. Aborting...")
+          d2mcs.log(message = paste0("Class values parameter must be defined ",
+                                     "as 'factor' type. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
         private$positive.class <- positive.class
 
         if (!private$positive.class %in% dataset[[class.index]]) {
-          stop("[", class(self)[1], "][FATAL] Positive Class parameter is incorrect. ",
-               "Must be '", paste(levels(class.values), collapse = "' '"), "'. Aborting...")
+          d2mcs.log(message = paste0("Positive Class parameter is incorrect. ",
+                                     "Must be '", paste(levels(class.values),
+                                                        collapse = "' '"),
+                                     "'. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
 
         class.values <- relevel(x = factor(class.values,
@@ -98,9 +116,12 @@ Subset <- R6::R6Class(
         if (!all(class.values == relevel(x = factor(dataset[[class.index]],
                                                     levels = unique(dataset[[class.index]])),
                                          ref = as.character(private$positive.class)))) {
-          stop("[", class(self)[1], "][FATAL] Class values parameter is incorrect. ",
-               "Must match with the values in column ", class.index, " in the ",
-               "dataset. Aborting...")
+          d2mcs.log(message = paste0("Class values parameter is incorrect. ",
+                                     "Must match with the values in column ",
+                                     class.index, " in the dataset. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
 
         private$class.name <- names(private$data)[class.index]
@@ -166,14 +187,19 @@ Subset <- R6::R6Class(
     #'
     getIterator = function(chunk.size = private$chunk.size, verbose = FALSE) {
       if (!is.numeric(chunk.size)) {
-        message("[", class(self)[1], "][WARNING] Chunk size is not valid. ",
-                "Assuming default value")
+        d2mcs.log(message = "Chunk size is not valid. Assuming default value",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getIterator")
         chunk.size <- private$chunk.size
       }
 
       if (!is.logical(verbose)) {
-        message("[", class(self)[1], "][WARNING] Verbose type is not valid. ",
-                "Assuming 'FALSE' as default value")
+        d2mcs.log(message = paste0("Verbose type is not valid. Assuming ",
+                                   "'FALSE' as default value"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getIterator")
         verbose <- FALSE
       }
       DIterator$new(data = private$data, chunk.size = chunk.size,
@@ -196,15 +222,21 @@ Subset <- R6::R6Class(
     #'
     getClassBalance = function(target.value = NULL) {
       if (is.null(private$class.index)) {
-        message("[", class(self)[1], "][WARNING] Subset has no associated class. ",
-                "Task not performed")
+        d2mcs.log(message = "Subset has no associated class. Task not performed",
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "getClassBalance")
       } else {
         if (is.null(target.value)) {
           target.value <- private$positive.class
         } else {
           if (!(target.value %in% private$class.values)) {
-            message("[", class(self)[1], "][WARNING] Target class not found. ",
-                    "Assuming default '", private$positive.class, "' value")
+            d2mcs.log(message = paste0("Target class not found. Assuming ",
+                                       "default '", private$positive.class,
+                                       "' value"),
+                      level = "WARN",
+                      className = class(self)[1],
+                      methodName = "getClassBalance")
             target.value <- private$positive.class
           }
         }

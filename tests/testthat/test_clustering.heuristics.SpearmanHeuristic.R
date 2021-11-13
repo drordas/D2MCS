@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
+})
+
 testthat::test_that("SpearmanHeuristic: heuristic function works", {
 
   heuristic <- SpearmanHeuristic$new()
@@ -11,6 +16,16 @@ testthat::test_that("SpearmanHeuristic: heuristic function works", {
                         "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
+})
+
 testthat::test_that("SpearmanHeuristic: heuristic function checks parameter type", {
 
   heuristic <- SpearmanHeuristic$new()
@@ -22,7 +37,7 @@ testthat::test_that("SpearmanHeuristic: heuristic function checks parameter type
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[SpearmanHeuristic][WARNING] Columns must be 'numeric' type. Returning NA",
+                           "[SpearmanHeuristic][DEBUG] Columns must be 'numeric' type. Returning NA",
                            fixed = TRUE)
 
   testthat::expect_equal(heuristic$heuristic(col1 = col1,
@@ -41,7 +56,11 @@ testthat::test_that("SpearmanHeuristic: heuristic function checks parameter type
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[SpearmanHeuristic][ERROR] Error occurred calculating spearman heuristic: 'Error in cor.test.default(col1, col2, method = \"spearman\", exact = FALSE): 'x' and 'y' must have the same length
-' . Returning NA",
+                           "[SpearmanHeuristic][ERROR] Error occurred calculating spearman heuristic: 'Error in cor.test.default(col1, col2, method = \"spearman\", exact = FALSE): 'x' and 'y' must have the same length'. Returning NA",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

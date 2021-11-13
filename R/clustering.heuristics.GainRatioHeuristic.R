@@ -68,8 +68,12 @@ GainRatioHeuristic <- R6::R6Class(
       tryCatch(
       FSelector::gain.ratio(as.formula(sprintf("`%s` ~.", column.names[2])), data)$attr_importance,
       error = function(e) {
-        message("[", class(self)[1], "][ERROR] Error occurred calculating ",
-                "gain.ratio heuristic: '", e, "' . Returning NA")
+        d2mcs.log(message = paste0("Error occurred calculating ",
+                                   "gain.ratio heuristic: '", e,
+                                   "'. Returning NA"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = NULL)
         NA
       })
     }

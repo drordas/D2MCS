@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClusterPredictions: initialize function works", {
 
   testthat::expect_is(ClusterPredictions$new(class.values = c(0, 1),
@@ -5,12 +10,32 @@ testthat::test_that("ClusterPredictions: initialize function works", {
                       "ClusterPredictions")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClusterPredictions: initialize function checks parameter type", {
 
   testthat::expect_error(ClusterPredictions$new(class.values = c(0, 1),
                                                 positive.class = 2),
-                         "[ClusterPredictions][FATAL] Positive class not found. Should be 0 or 1. Aborting...",
+                         "[ClusterPredictions][initialize][FATAL] Positive class not found. Should be 0 or 1. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClusterPredictions: add function works",{
@@ -30,6 +55,16 @@ testthat::test_that("ClusterPredictions: add function works",{
   testthat::expect_invisible(clusterPrediction$add(prediction = prediction))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClusterPredictions: add function checks parameter type", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
@@ -38,8 +73,18 @@ testthat::test_that("ClusterPredictions: add function checks parameter type", {
   prediction <- NULL
 
   testthat::expect_error(clusterPrediction$add(prediction = prediction),
-                         "[ClusterPredictions][FATAL] Prediction parameter must be defined as 'Prediction' object. Aborting...",
+                         "[ClusterPredictions][add][FATAL] Prediction parameter must be defined as 'Prediction' object. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClusterPredictions: get function works",{
@@ -62,6 +107,16 @@ testthat::test_that("ClusterPredictions: get function works",{
   testthat::expect_is(clusterPrediction$get(1), "Prediction")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClusterPredictions: get function checks parameter type", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
@@ -70,8 +125,18 @@ testthat::test_that("ClusterPredictions: get function checks parameter type", {
   position <- NULL
 
   testthat::expect_error(clusterPrediction$get(position = 1),
-                         "[ClusterPredictions][FATAL] Position exceeds list size. Aborting...",
+                         "[ClusterPredictions][get][FATAL] Position exceeds list size. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClusterPredictions: getAll function works", {
@@ -82,12 +147,32 @@ testthat::test_that("ClusterPredictions: getAll function works", {
   testthat::expect_is(clusterPrediction$getAll(), "list")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClusterPredictions: size function works", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)
 
   testthat::expect_equal(clusterPrediction$size(), 0)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClusterPredictions: getPositiveClass function works", {
@@ -98,10 +183,25 @@ testthat::test_that("ClusterPredictions: getPositiveClass function works", {
   testthat::expect_equal(clusterPrediction$getPositiveClass(), 1)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClusterPredictions: getClassValues function works", {
 
   clusterPrediction <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                               positive.class = 1)
 
   testthat::expect_equal(clusterPrediction$getClassValues(), c(1, 0, 1, 1))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

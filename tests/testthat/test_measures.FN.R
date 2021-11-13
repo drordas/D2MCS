@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("FN: initialize function works", {
 
   lvs <- c("normal", "abnormal")
@@ -15,6 +20,16 @@ testthat::test_that("FN: initialize function works", {
 
   testthat::expect_is(FN$new(performance = confMatrix),
                       "FN")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("FN: compute function works", {
@@ -39,8 +54,23 @@ testthat::test_that("FN: compute function works", {
                       "character")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("FN: compute function checks parameter type", {
   testthat::expect_error(FN$new(performance = NULL)$compute(performance.output = NULL),
-                         "[FN][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
+                         "[FN][compute][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

@@ -60,18 +60,29 @@ Trainset <- R6::R6Class(
     initialize = function(cluster.dist, class.name, class.values, positive.class) {
 
       if (!is.vector(cluster.dist) || length(cluster.dist) == 0) {
-        stop("[", class(self)[1], "][FATAL] Clusters empty or incorrect (must be a list). ",
-             "Aborting...")
+        d2mcs.log(message = paste0("Clusters empty or incorrect (must be a list). ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!is.factor(class.values)) {
-        stop("[", class(self)[1], "][FATAL] Class.values parameter must be ",
-             "defined as 'factor' type. Aborting...")
+        d2mcs.log(message = paste0("Class.values parameter must be defined as ",
+                                   "'factor' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (is.null(positive.class) || !positive.class %in% class.values) {
-        stop("[", class(self)[1], "][FATAL] Positive Class parameter is incorrect. Must be '",
-             paste(levels(class.values), collapse = "' '"), "'. Aborting...")
+        d2mcs.log(message = paste0("Positive Class parameter is incorrect. ",
+                                   "Must be '", paste(levels(class.values),
+                                                      collapse = "' '"),
+                                   "'. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$clusters <- cluster.dist
@@ -112,9 +123,13 @@ Trainset <- R6::R6Class(
     getColumnNames = function(num.cluster) {
       if (any(!is.numeric(num.cluster),
               !num.cluster %in% c(1:length(private$clusters)))) {
-        stop("[", class(self)[1], "][FATAL] Position not defined or incorrect. ",
-             "Must be included between 1 and ", length(private$clusters),
-             ". Aborting...")
+        d2mcs.log(message = paste0("Position not defined or incorrect. ",
+                                   "Must be included between 1 and ",
+                                   length(private$clusters),
+                                   ". Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getColumnNames")
       }
       names(private$clusters[[num.cluster]])
     },
@@ -131,11 +146,13 @@ Trainset <- R6::R6Class(
     #'
     getFeatureValues = function(num.cluster) {
       if (any(!is.numeric(num.cluster),
-              !num.cluster %in% c(1:length(private$clusters))))
-      {
-        stop("[", class(self)[1], "][FATAL] Position not defined or incorrect. ",
-             "Must be included between 1 and ", length(private$clusters),
-             ". Aborting...")
+              !num.cluster %in% c(1:length(private$clusters)))) {
+        d2mcs.log(message = paste0("Position not defined or incorrect. ",
+                                   "Must be included between 1 and ",
+                                   length(private$clusters), ". Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getFeatureValues")
       }
       private$clusters[[num.cluster]]
     },
@@ -153,11 +170,13 @@ Trainset <- R6::R6Class(
     #'
     getInstances = function(num.cluster) {
       if (any(is.null(num.cluster), !is.numeric(num.cluster),
-              !num.cluster %in% c(1:length(private$clusters))))
-      {
-        stop("[", class(self)[1], "][FATAL] Position not defined or incorrect. ",
-             "Must be included between 1 and ", length(private$clusters),
-             ". Aborting...")
+              !num.cluster %in% c(1:length(private$clusters)))) {
+        d2mcs.log(message = paste0("Position not defined or incorrect. ",
+                                   "Must be included between 1 and ",
+                                   length(private$clusters), ". Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getInstances")
       }
       instances <- cbind(private$clusters[[num.cluster]], private$class.values)
       names(instances)[length(instances)] <- private$class.name

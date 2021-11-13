@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("InformationGainHeuristic: heuristic function works", {
 
   heuristic <- InformationGainHeuristic$new()
@@ -11,6 +16,16 @@ testthat::test_that("InformationGainHeuristic: heuristic function works", {
                         "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("InformationGainHeuristic: heuristic function checks parameter type", {
 
   heuristic <- InformationGainHeuristic$new()
@@ -22,4 +37,9 @@ testthat::test_that("InformationGainHeuristic: heuristic function checks paramet
                                              col2 = col2,
                                              column.names = column.names),
                          NA)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

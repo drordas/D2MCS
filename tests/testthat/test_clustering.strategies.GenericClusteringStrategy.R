@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("GenericClusteringStrategy: initialize function works", {
 
   set.seed(1234)
@@ -24,9 +29,19 @@ testthat::test_that("GenericClusteringStrategy: initialize function works", {
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_silent(GenericClusteringStrategy$new(subset = subset,
-                                                 heuristic = heuristic,
-                                                 description = description,
-                                                 configuration = configuration))
+                                                        heuristic = heuristic,
+                                                        description = description,
+                                                        configuration = configuration))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: initialize function checks parameter type", {
@@ -55,10 +70,10 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_error(GenericClusteringStrategy$new(subset = subset,
-                                                heuristic = heuristic,
-                                                description = description,
-                                                configuration = configuration),
-                         "[GenericClusteringStrategy][FATAL] Strategy description parameter must be defined as 'character' type. Aborting...",
+                                                       heuristic = heuristic,
+                                                       description = description,
+                                                       configuration = configuration),
+                         "[GenericClusteringStrategy][initialize][FATAL] Strategy description parameter must be defined as 'character' type. Aborting...",
                          fixed = TRUE)
 
   subset <- NULL
@@ -67,10 +82,10 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_error(GenericClusteringStrategy$new(subset = subset,
-                                                heuristic = heuristic,
-                                                description = description,
-                                                configuration = configuration),
-                         "[GenericClusteringStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                                                       heuristic = heuristic,
+                                                       description = description,
+                                                       configuration = configuration),
+                         "[GenericClusteringStrategy][initialize][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -97,10 +112,10 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_error(GenericClusteringStrategy$new(subset = subset,
-                                                heuristic = heuristic,
-                                                description = description,
-                                                configuration = configuration),
-                         "[GenericClusteringStrategy][FATAL] Heuristics is not correct (must inherit from 'GenericHeuristic' class). Aborting...",
+                                                       heuristic = heuristic,
+                                                       description = description,
+                                                       configuration = configuration),
+                         "[GenericClusteringStrategy][initialize][FATAL] Heuristics is not correct (must inherit from 'GenericHeuristic' class). Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -127,10 +142,10 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_error(GenericClusteringStrategy$new(subset = subset,
-                                                heuristic = heuristic,
-                                                description = description,
-                                                configuration = configuration),
-                         "[GenericClusteringStrategy][FATAL] Adequate heuristics not found (must inherit from 'GenericHeuristic' class). Aborting...",
+                                                       heuristic = heuristic,
+                                                       description = description,
+                                                       configuration = configuration),
+                         "[GenericClusteringStrategy][initialize][FATAL] Adequate heuristics not found (must inherit from 'GenericHeuristic' class). Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -157,11 +172,21 @@ testthat::test_that("GenericClusteringStrategy: initialize function checks param
   configuration <- NULL
 
   testthat::expect_error(GenericClusteringStrategy$new(subset = subset,
-                                                heuristic = heuristic,
-                                                description = description,
-                                                configuration = configuration),
-                         "[GenericClusteringStrategy][FATAL] Configuration parameter must be inherit from 'StrategyConfiguration' class. Aborting...",
+                                                       heuristic = heuristic,
+                                                       description = description,
+                                                       configuration = configuration),
+                         "[GenericClusteringStrategy][initialize][FATAL] Configuration parameter must be inherit from 'StrategyConfiguration' class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: getDescription function works", {
@@ -190,11 +215,21 @@ testthat::test_that("GenericClusteringStrategy: getDescription function works", 
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_equal(strategy$getDescription(), description)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: getHeuristic function works", {
@@ -223,11 +258,21 @@ testthat::test_that("GenericClusteringStrategy: getHeuristic function works", {
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_equal(strategy$getHeuristic(), list(heuristic))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: getConfiguration function works", {
@@ -256,11 +301,21 @@ testthat::test_that("GenericClusteringStrategy: getConfiguration function works"
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_equal(strategy$getConfiguration(), configuration)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: getBestClusterDistribution function works", {
@@ -289,11 +344,21 @@ testthat::test_that("GenericClusteringStrategy: getBestClusterDistribution funct
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_null(strategy$getBestClusterDistribution())
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: getUnclustered function works", {
@@ -322,11 +387,21 @@ testthat::test_that("GenericClusteringStrategy: getUnclustered function works", 
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_null(strategy$getUnclustered())
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: execute function works", {
@@ -355,13 +430,23 @@ testthat::test_that("GenericClusteringStrategy: execute function works", {
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_error(strategy$execute(verbose = TRUE),
-                         "[GenericClusteringStrategy][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[GenericClusteringStrategy][execute][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: getDistribution function works", {
@@ -390,13 +475,23 @@ testthat::test_that("GenericClusteringStrategy: getDistribution function works",
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_error(strategy$getDistribution(),
-                         "[GenericClusteringStrategy][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[GenericClusteringStrategy][getDistribution][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: createTrain function works", {
@@ -425,13 +520,23 @@ testthat::test_that("GenericClusteringStrategy: createTrain function works", {
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_error(strategy$createTrain(subset = subset),
-                         "[GenericClusteringStrategy][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[GenericClusteringStrategy][createTrain][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: plot function works", {
@@ -460,13 +565,23 @@ testthat::test_that("GenericClusteringStrategy: plot function works", {
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_error(strategy$plot(),
-                         "[GenericClusteringStrategy][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[GenericClusteringStrategy][plot][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("GenericClusteringStrategy: saveCSV function works", {
@@ -495,11 +610,16 @@ testthat::test_that("GenericClusteringStrategy: saveCSV function works", {
   configuration <- StrategyConfiguration$new()
 
   strategy <- GenericClusteringStrategy$new(subset = subset,
-                                     heuristic = heuristic,
-                                     description = description,
-                                     configuration = configuration)
+                                            heuristic = heuristic,
+                                            description = description,
+                                            configuration = configuration)
 
   testthat::expect_error(strategy$saveCSV(dir.path = "example", "example"),
-                         "[GenericClusteringStrategy][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[GenericClusteringStrategy][saveCSV][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

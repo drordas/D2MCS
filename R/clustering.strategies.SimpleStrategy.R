@@ -105,8 +105,12 @@ SimpleStrategy <- R6::R6Class(
 
       ## DISTRIBUTE FEATURES IN CLUSTERS (2 <= k <= maxClusters)
       if (isTRUE(verbose)) {
-        message("[", class(self)[1], "][INFO] Performing feature clustering using '",
-                 class(private$heuristic[[1]])[1], "' heuristic")
+        d2mcs.log(message = paste0("Performing feature clustering using '",
+                                   class(private$heuristic[[1]])[1],
+                                   "' heuristic"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         pb <- txtProgressBar(min = 0, max = (maxClusters - 1), style = 3)
       }
 
@@ -149,9 +153,13 @@ SimpleStrategy <- R6::R6Class(
         }
       }
       if (length(notHeuristic) > 0) {
-        message("[", class(self)[1], "][WARNING] ",
-                 length(notHeuristic), " features were incompatible with '",
-                 class(private$heuristic[[1]])[1], "' heuristic")
+        d2mcs.log(message = paste0(length(notHeuristic), " features were ",
+                                   "incompatible with '",
+                                   class(private$heuristic[[1]])[1],
+                                   "' heuristic"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "execute")
         private$not.distribution <- data.frame(cluster = 1,
                                                dist = I(list(notHeuristic)))
       } else private$not.distribution <- data.frame()
@@ -186,8 +194,10 @@ SimpleStrategy <- R6::R6Class(
     getDistribution = function(num.clusters = NULL, num.groups = NULL,
                                include.unclustered = FALSE) {
       if (is.null(private$best.distribution) || is.null(private$all.distribution)) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getDistribution")
       }
 
       if (is.null(num.clusters)) {
@@ -196,8 +206,11 @@ SimpleStrategy <- R6::R6Class(
         if (is.numeric(num.clusters) && (num.clusters %in% c(2:tail(private$all.distribution$k, n = 1)))) {
           distribution <- unlist(private$all.distribution[which(num.clusters == private$all.distribution$k), ]$dist, recursive = FALSE)
         } else {
-          message("[", class(self)[1], "][WARNING] Number of clusters not found. ",
-                  "Assuming best cluster distribution")
+          d2mcs.log(message = paste0("Number of clusters not found. Assuming ",
+                                     "best cluster distribution"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
           distribution <- unlist(private$all.distribution[which.min(private$all.distribution$deltha), ]$dist, recursive = FALSE)
         }
       }
@@ -234,13 +247,18 @@ SimpleStrategy <- R6::R6Class(
     createTrain = function(subset, num.clusters = NULL, num.groups = NULL,
                            include.unclustered = FALSE) {
       if (!inherits(subset, "Subset")) {
-        stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
-             "'Subset' type. Aborting...")
+        d2mcs.log(message = paste0("Subset parameter must be defined as ",
+                                   "'Subset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "createTrain")
       }
 
       if (is.null(private$best.distribution) || is.null(private$all.distribution)) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "createTrain")
       }
       distribution <- self$getDistribution(num.clusters = num.clusters,
                                            num.groups = num.groups,
@@ -280,17 +298,27 @@ SimpleStrategy <- R6::R6Class(
         if (!dir.exists(dir.path)) {
           dir.create(dir.path, recursive = TRUE)
           if (dir.exists(dir.path)) {
-            message("[", class(self)[1], "][INFO] Directory '", dir.path,
-                    "'has been succesfully created")
+            d2mcs.log(message = paste0("Directory '", dir.path, "' has been ",
+                                       "susccesfully created"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "plot")
           } else {
-            stop("[", class(self)[1], "][FATAL] Cannot create directory '", dir.path,
-                 "'. Aborting...")
+            d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                       "'. Aborting..."),
+                      level = "FATAL",
+                      className = class(self)[1],
+                      methodName = "plot")
           }
         }
         ggplot2::ggsave(paste0(file.path(dir.path, file.name), ".pdf"), device = "pdf",
                         plot = plot, limitsize = FALSE)
-        message("[", class(self)[1], "][INFO] Plot has been succesfully saved ",
-                "at: ", file.path(dir.path, file.name, ".pdf"))
+
+        d2mcs.log(message = paste0("Plot has been succesfully saved at: ",
+                                   file.path(dir.path, file.name, ".pdf")),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plot")
       } else { show(plot) }
       plot
     },
@@ -304,51 +332,80 @@ SimpleStrategy <- R6::R6Class(
     #' clusters to be saved. If not defined, all cluster distributions will be saved.
     #'
     saveCSV = function(dir.path, name = NULL, num.clusters = NULL) {
-      if (is.null(dir.path))
-        stop("[", class(self)[1], "][FATAL] Path not defined. Aborting...")
+      if (is.null(dir.path)) {
+        d2mcs.log(message = "Path not defined. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
+      }
 
       if (is.null(name)) {
         name <- class(private$heuristic[[1]])[1]
-        message("[", class(self)[1], "][WARNING] File name not defined. Using '",
-                name, ".csv'")
+        d2mcs.log(message = paste0("File name not defined. Using '", name, ".csv'"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
       }
 
       if (is.null(private$all.distribution) || nrow(private$all.distribution) == 0) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
       }
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
         if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Directory '", dir.path,
-                  "'has been succesfully created")
+          d2mcs.log(message = paste0("Directory '", dir.path, "' has been ",
+                                     "succesfully created"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
         } else {
-          stop("[", class(self)[1], "][FATAL] Cannot create directory '", dir.path,
-               "'. Aborting...")
+          d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                     "'. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
         }
       }
 
       if (is.null(num.clusters)) {
-        message("[", class(self)[1], "][WARNING] Number of clusters not defined. ",
-                "Saving all cluster configurations")
+        d2mcs.log(message = paste0("Number of clusters not defined. Saving all ",
+                                   "cluster configurations"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
         num.clusters <- list(2:max(private$all.distribution$k))
       } else {
         if (!is.list(num.clusters)) {
-          message("[", class(self)[1], "][WARNING] Type of num.clusters not valid ",
-                  "(must be NULL or list type). Saving all cluster configurations")
+          d2mcs.log(message = paste0("Type of num.clusters not valid (must be ",
+                                     "NULL or list type). Saving all cluster ",
+                                     "configurations"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
           num.clusters <- list(2:max(private$all.distribution$k))
         } else {
           if (any(unlist(num.clusters) > max(private$all.distribution$k))) {
-            message("[", class(self)[1], "][WARNING] Number of clusters exceeds ",
-                    "maximum number of clusters. Saving all cluster configurations")
+            d2mcs.log(message = paste0("Number of clusters exceeds maximum ",
+                                       "number of clusters. Saving all cluster ",
+                                       "configurations"),
+                      level = "WARN",
+                      className = class(self)[1],
+                      methodName = "saveCSV")
             num.clusters <- list(2:max(private$all.distribution$k))
           } else {
             if (!all(unlist(num.clusters) <= max(private$all.distribution$k),
                      unlist(num.clusters) >= min(private$all.distribution$k))) {
-              message("[", class(self)[1], "][WARNING] Number of clusters ",
-                      "exceeds the range of minimum and maximum number of ",
-                      "clusters. Saving all cluster configurations")
+              d2mcs.log(message = paste0("Number of clusters exceeds the range ",
+                                         "of minimum and maximum number of ",
+                                         "clusters. Saving all cluster ",
+                                         "configurations"),
+                        level = "WARN",
+                        className = class(self)[1],
+                        methodName = "saveCSV")
               num.clusters <- list(2:max(private$all.distribution$k))
             }
           }

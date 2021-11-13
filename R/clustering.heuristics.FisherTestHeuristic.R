@@ -69,18 +69,31 @@ FisherTestHeuristic <- R6::R6Class(
         col1.factor <- factor(col1, levels =  levels(col2.factor))
         tryCatch(
         stats::fisher.test(col1.factor, col2.factor)$p.value,
-        # stats::fisher.test(table(col1.factor, col2.factor))$p.value
         error = function(e) {
-          message("[", class(self)[1], "][ERROR] Error occurred calculating ",
-                  "fisher.test heuristic: '", e, "' . Returning NA")
+          d2mcs.log(message = paste0("Error occurred calculating ",
+                                     "fisher.test heuristic: '", gsub("[\r\n]",
+                                                                      "",
+                                                                      e),
+                                     "'. Returning NA"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = NULL)
           NA
         })
       } else {
-        if (!private$isBinary(col1))
-          message("[", class(self)[1], "][WARNING] Column '",
-                  column.names[1], "' is not binary. Returning NA")
-        else message("[", class(self)[1], "][WARNING] Column '",
-                     column.names[2], "' is not binary. Returning NA")
+        if (!private$isBinary(col1)) {
+          d2mcs.log(message = paste0("Column '", column.names[1],
+                                     "' is not binary. Returning NA"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = NULL)
+        } else {
+          d2mcs.log(message = paste0("Column '", column.names[2],
+                                     "' is not binary. Returning NA"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = NULL)
+        }
         NA
       }
     }

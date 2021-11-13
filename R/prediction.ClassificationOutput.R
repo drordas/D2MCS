@@ -50,18 +50,27 @@ ClassificationOutput <- R6::R6Class(
     #'
     initialize = function(voting.schemes, models) {
       if (length(voting.schemes) == 0) {
-        stop("[", class(self)[1], "][FATAL] Voting Schemes not executed. ",
-             "Aborting...")
+        d2mcs.log(message = "Voting Schemes not executed. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!all(names(voting.schemes) %in% c("SingleVoting", "CombinedVoting"))) {
-        stop("[", class(self)[1], "][FATAL] Voting Schemes must inherit from ",
-             "'SimpleVoting' or 'CombinedVoting' classes. Aborting...")
+        d2mcs.log(message = paste0("Voting Schemes must inherit from ",
+                                   "'SimpleVoting' or 'CombinedVoting' ",
+                                   "classes. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!is.list(models)) {
-        stop("[", class(self)[1], "][FATAL] Models parameter must be defined ",
-             "as 'list' type. Aborting...")
+        d2mcs.log(message = paste0("Models parameter must be defined as 'list' ",
+                                   "type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       positive.class <- unique(as.vector(unlist(sapply(voting.schemes, function(metrics) {
@@ -83,8 +92,10 @@ ClassificationOutput <- R6::R6Class(
       ))))
 
       if (length(positive.class) != 1) {
-        stop("[", class(self)[1], "][FATAL] Defined positive class does ",
-             "not match. Aborting...")
+        d2mcs.log(message = "Defined positive class does not match. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$voting.schemes <- voting.schemes
@@ -134,9 +145,13 @@ ClassificationOutput <- R6::R6Class(
       if (missing(metrics) ||
           !is.character(metrics) ||
           !all(metrics %in% self$getMetrics())) {
-        message("[", class(self)[1], "][WARNING] Metrics are not defined or invalid. ",
-                "Asuming all metrics of clasification.output (",
-                paste(self$getMetrics(), collapse = ","), ")")
+        d2mcs.log(message = paste0("Metrics are not defined or invalid. ",
+                                   "Asuming all metrics of clasification.output (",
+                                   paste(self$getMetrics(),
+                                         collapse = ","), ")"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getModelInfo")
         metrics <- self$getMetrics()
       }
       models.info <- lapply(metrics, function(metric) {
@@ -174,28 +189,42 @@ ClassificationOutput <- R6::R6Class(
     #'
     getPerformances = function(test.set, measures, voting.names = NULL,
                                metric.names = NULL, cutoff.values = NULL) {
-      if (!inherits(test.set, "Subset"))
-        stop("[", class(self)[1], "][FATAL] Testset parameter must be defined ",
-             "as 'Subset' type. Aborting...")
+      if (!inherits(test.set, "Subset")) {
+        d2mcs.log(message = paste0("Testset parameter must be defined as ",
+                                   "'Subset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
+      }
 
       if (!is.list(measures) || !all(sapply(measures, inherits, "MeasureFunction"))) {
-        stop("[", class(self)[1], "][FATAL] Measures should be a list comprised of ",
-             "'MeasureFunction' objects. Aborting...")
+        d2mcs.log(message = paste0("Measures should be a list comprised of ",
+                                   "'MeasureFunction' objects. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
       }
 
       if (private$positive.class != test.set$getPositiveClass()) {
-        stop("[", class(self)[1], "][FATAL] Positive class values missmatch. ['",
-             test.set$getPositiveClass(), "' vs '",
-             private$positive.class, "'] used in classification ",
-             "and test respectively. Aborting... ")
+        d2mcs.log(message = paste0("Positive class values missmatch. ['",
+                                   test.set$getPositiveClass(), "' vs '",
+                                   private$positive.class, "'] used in ",
+                                   "classification and test respectively. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
       }
 
       real.values <- test.set$getClassValues()
 
       if (!all(levels(real.values) %in% union(private$positive.class,
                                               private$negative.class))) {
-        stop("[", class(self)[1], "][FATAL] Predicted values and Real values ",
-             "missmatch. Aborting...")
+        d2mcs.log(message = paste0("Predicted values and Real values ",
+                                   "missmatch. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
       }
 
       if (!is.character(cutoff.values)) cutoff.values <- as.character(cutoff.values)
@@ -204,13 +233,19 @@ ClassificationOutput <- R6::R6Class(
         if (any(cutoff.values %in% private$available$cutoffs)) {
           aval.cutoffs <- intersect(private$available$cutoffs, cutoff.values)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined cutoffs are not ",
-                  "available. Using all cutoffs")
+          d2mcs.log(message = paste0("Defined cutoffs are not available. ",
+                                     "Using all cutoffs"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getPerformances")
           aval.cutoffs <- private$available$cutoffs
         }
       } else {
-        message("[", class(self)[1], "][INFO] Cutoff values not defined or invalid. ",
-                "Using all cutoffs")
+        d2mcs.log(message = paste0("Cutoff values not defined or invalid. ",
+                                   "Using all cutoffs"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
         aval.cutoffs <- private$available$cutoffs
       }
 
@@ -218,13 +253,18 @@ ClassificationOutput <- R6::R6Class(
         if (any(metric.names %in% private$available$metrics)) {
           aval.metrics <- intersect(metric.names, private$available$metrics)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined metrics are not available. ",
-                  "Using all metrics")
+          d2mcs.log(message = paste0("Defined metrics are not available. Using ",
+                                     "all metrics"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getPerformances")
           aval.metrics <- private$available$metrics
         }
       } else {
-        message("[", class(self)[1], "][INFO] Metrics are not defined. ",
-                "Using all metrics")
+        d2mcs.log(message = "Metrics are not defined. Using all metrics",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
         aval.metrics <- private$available$metrics
       }
 
@@ -232,13 +272,18 @@ ClassificationOutput <- R6::R6Class(
         if (any(voting.names %in% private$available$votings)) {
           aval.votings <- intersect(voting.names, private$available$votings)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined votings are not available. ",
-                  "Using all votings")
+          d2mcs.log(message = paste0("Defined votings are not available. ",
+                                     "Using all votings"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getPerformances")
           aval.votings <- private$available$votings
         }
       } else {
-        message("[", class(self)[1], "][INFO] Votings are not defined. ",
-                "Using all votings")
+        d2mcs.log(message = "Votings are not defined. Using all votings",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
         aval.votings <- private$available$votings
       }
 
@@ -246,9 +291,14 @@ ClassificationOutput <- R6::R6Class(
 
       performances <- list()
       if (length(valid.votings) == 0) {
-        message("[", class(self)[1], "][ERROR] There are no voting schemes ",
-                "with '", paste0(metric.names, collapse = ", "), " metrics and ",
-                "'", paste0(aval.cutoffs, collapse = ", "), "' cutoffs.")
+        d2mcs.log(message = paste0("There are no voting schemes with '",
+                                   paste0(metric.names,
+                                          collapse = ", "), " metrics and '",
+                                   paste0(aval.cutoffs,
+                                          collapse = ", "), "' cutoffs"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "getPerformances")
         return(performances)
       }
 
@@ -262,10 +312,13 @@ ClassificationOutput <- R6::R6Class(
       for (voting.name in names(valid.votings)) {
         voting <- valid.votings[[voting.name]]
         if (!(test.set$getPositiveClass() %in% voting$getFinalPred()$getClassValues())) {
-          stop("[", class(self)[1], "][FATAL] Positive class mismatch '",
-               test.set$getPositiveClass(), "' vs [",
-               paste0(voting$getFinalPred()$getClassValues(),
-                      collapse = ", "), "]")
+          d2mcs.log(message = paste0("Positive class mismatch '",
+                                     test.set$getPositiveClass(), "' vs [",
+                                     paste0(voting$getFinalPred()$getClassValues(),
+                                            collapse = ", "), "]"),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "getPerformances")
         }
 
         pred.values <- voting$getFinalPred()$getRaw()
@@ -273,8 +326,11 @@ ClassificationOutput <- R6::R6Class(
         voting.negative <- voting$getFinalPred()$getNegativeClass()
 
         if (!all(levels(real.values) %in% levels(pred.values))) {
-          stop("[", class(self)[1], "][FATAL] Real target values and predicted ",
-               "target values missmatch. Aborting...")
+          d2mcs.log(message = paste0("Real target values and predicted target ",
+                                     "values missmatch. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "getPerformances")
         }
 
         if (!is.factor(pred.values)) {
@@ -320,19 +376,36 @@ ClassificationOutput <- R6::R6Class(
     #'
     savePerformances = function(dir.path, test.set, measures, voting.names = NULL,
                                 metric.names = NULL, cutoff.values = NULL) {
-      if (is.null(dir.path))
-        stop("[", class(self)[1], "][FATAL] Save folder not set. Aborting...")
+      if (is.null(dir.path)) {
+        d2mcs.log(message = "Save folder not set. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "savePerformances")
+      }
 
       dir.path <- gsub("\\/$", "", dir.path)
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
         if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Folder '", dir.path,
-                  "' has been succesfully created")
-        } else { stop("[", class(self)[1], "][FATAL] Cannot create directory '",
-                      dir.path, "'. Aborting... ") }
-      } else { message("[", class(self)[1], "][INFO] Folder already exists") }
+          d2mcs.log(message = paste0("Folder '", dir.path, "' has been ",
+                                     "succesfully created"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "savePerformances")
+        } else {
+          d2mcs.log(message = paste0("Cannot create directory '", dir.path,"'. ",
+                                     "Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "savePerformances")
+        }
+      } else {
+        d2mcs.log(message = "Folder already exists",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "savePerformances")
+      }
 
       performances <- self$getPerformances(test.set, measures, voting.names = NULL,
                                            metric.names = NULL, cutoff.values = NULL)
@@ -347,8 +420,11 @@ ClassificationOutput <- R6::R6Class(
       save.path <- file.path(dir.path, "Classification_Performances.csv")
       write.table(summary, file = save.path, sep = ";",
                    dec = ".", row.names = FALSE)
-      message("[", class(self)[1], "][INFO] Classification performance saved at: ", save.path)
-
+      d2mcs.log(message = paste0("Classification performance saved at: ",
+                                 save.path),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "savePerformances")
     },
     #'
     #' @description The function allows to graphically visualize the computed
@@ -374,17 +450,34 @@ ClassificationOutput <- R6::R6Class(
     #'
     plotPerformances = function(dir.path, test.set, measures, voting.names = NULL,
                                 metric.names = NULL, cutoff.values = NULL) {
-      if (is.null(dir.path) || !is.character(dir.path))
-        stop("[", class(self)[1], "][FATAL] Path not defined. Aborting...")
+      if (is.null(dir.path) || !is.character(dir.path)) {
+        d2mcs.log(message = "Path not defined. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "plotPerformances")
+      }
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
         if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Folder '", dir.path,
-                  "' has been succesfully created")
-        } else { stop("[", class(self)[1], "][FATAL] Cannot create directory '",
-                      dir.path, "'. Aborting...") }
-      } else { message("[", class(self)[1], "][INFO] Folder already exists") }
+          d2mcs.log(message = paste0("Folder '", dir.path, "' has been ",
+                                     "succesfully created"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "plotPerformances")
+        } else {
+          d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                     "'. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "plotPerformances")
+        }
+      } else {
+        d2mcs.log(message = "Folder already exists",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plotPerformances")
+      }
 
       performances <- self$getPerformances(test.set = test.set,
                                            measures = measures,
@@ -402,8 +495,13 @@ ClassificationOutput <- R6::R6Class(
 
         ggplot2::ggsave(paste0(file.path(dir.path, peformance.name), ".pdf"), device = "pdf",
                 plot = plot, limitsize = FALSE)
-        message("[", class(self)[1], "][INFO] Plot has been succesfully saved at: ",
-                paste0(file.path(dir.path, peformance.name), ".pdf"))
+        d2mcs.log(message = paste0("Plot has been succesfully saved at: ",
+                                   paste0(file.path(dir.path,
+                                                    peformance.name),
+                                          ".pdf")),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plotPerformances")
       }
     },
     #'
@@ -438,24 +536,35 @@ ClassificationOutput <- R6::R6Class(
                               filter = FALSE) {
 
       if (is.null(type) || !type %in% c("raw", "prob")) {
-        message("[", class(self)[1], "][WARNING] Type value is invalid. ",
-                "Must be 'raw' of 'prob'. Assuming 'raw'")
+        d2mcs.log(message = paste0("Type value is invalid. Must be 'raw' of ",
+                                   "'prob'. Assuming 'raw'"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getPredictions")
         type <- "raw"
       }
 
       if (!isTRUE(all.equal(type, "raw")) &&
           (is.null(target) || !(target %in% private$positive.class))) {
-        message("[", class(self)[1], "][WARNING] Target value does not match with",
-                " actual target values: '", paste(private$positive.class,
-                                                  private$negative.class,
-                                                  sep = ", "), "'. Assuming '",
-                private$positive.class, "' as default value")
+        d2mcs.log(message = paste0("Target value does not match with actual ",
+                                   "target values: '", paste(private$positive.class,
+                                                             private$negative.class,
+                                                             sep = ", "),
+                                   "'. Assuming '", private$positive.class,
+                                   "' as default value"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getPredictions")
         target <- private$positive.class
       }
 
       if (!is.logical(filter)) {
-        message("[", class(self)[1], "][WARNING] Filter parameter must be defined ",
-                "as 'logical' type. Assuming 'FALSE' as default value")
+        d2mcs.log(message = paste0("Filter parameter must be defined as ",
+                                   "'logical' type. Assuming 'FALSE' as ",
+                                   "default value"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getPredictions")
         filter <- FALSE
       }
 
@@ -465,13 +574,19 @@ ClassificationOutput <- R6::R6Class(
         if (any(cutoff.values %in% private$available$cutoffs)) {
           aval.cutoffs <- intersect(cutoff.values, private$available$cutoffs)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined Cutoffs are not ",
-                  "available. Using all available cutoffs")
+          d2mcs.log(message = paste0("Defined Cutoffs are not available. ",
+                                     "Using all available cutoffs"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getPredictions")
           aval.cutoffs <- private$available$cutoffs
         }
       } else {
-        message("[", class(self)[1], "][INFO] Cutoffs are not defined. ",
-                "Using all available cutoffs")
+        d2mcs.log(message = paste0("Cutoffs are not defined. Using all ",
+                                   "available cutoffs"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "getPredictions")
         aval.cutoffs <- private$available$cutoffs
       }
 
@@ -479,13 +594,19 @@ ClassificationOutput <- R6::R6Class(
         if (any(metric.names %in% private$available$metrics)) {
           aval.metrics <- intersect(metric.names, private$available$metrics)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined Metrics are not ",
-                  "available. Using all available metrics")
+          d2mcs.log(message = paste0("Defined Metrics are not available. Using ",
+                                     "all available metrics"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getPredictions")
           aval.metrics <- private$available$metrics
         }
       } else {
-        message("[", class(self)[1], "][INFO] Metrics are not defined. ",
-                "Using all available metrics")
+        d2mcs.log(message = paste0("Metrics are not defined. Using all ",
+                                   "available metrics"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "getPredictions")
         aval.metrics <- private$available$metrics
       }
 
@@ -493,22 +614,33 @@ ClassificationOutput <- R6::R6Class(
         if (any(voting.names %in% private$available$votings)) {
           aval.votings <- intersect(voting.names, private$available$votings)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined Votings are not ",
-                  "available. Using all available votings")
+          d2mcs.log(message = paste0("Defined Votings are not available. ",
+                                     "Using all available votings"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getPredictions")
           aval.votings <- private$available$votings
         }
       } else {
-        message("[", class(self)[1], "][INFO] Votings are not defined. ",
-                "Using all available votings")
+        d2mcs.log(message = paste0("Votings are not defined. Using all ",
+                                   "available votings"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "getPredictions")
         aval.votings <- private$available$votings
       }
 
       valid.votings <- private$getVotings(aval.metrics, aval.cutoffs, aval.votings)
 
       if (length(valid.votings) == 0) {
-        message("[", class(self)[1], "][ERROR] There are no voting schemes ",
-                "with '", paste(metric.names, collapse = ", "), " metrics and ",
-                "'", paste(cutoff.values, collapse = " "), "' cutoffs.")
+        d2mcs.log(message = paste0("There are no voting schemes with '",
+                                   paste(metric.names,
+                                         collapse = ", "), " metrics and '",
+                                   paste(cutoff.values,
+                                         collapse = " "), "' cutoffs"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "getPredictions")
         return(NULL)
       }
 
@@ -551,33 +683,58 @@ ClassificationOutput <- R6::R6Class(
     savePredictions = function(dir.path, voting.names = NULL, metric.names = NULL,
                                cutoff.values = NULL, type = NULL,
                                target = NULL, filter = FALSE) {
-      if (is.null(dir.path))
-        stop("[", class(self)[1], "][FATAL] Save folder not set. Aborting...")
+      if (is.null(dir.path)) {
+        d2mcs.log(message = "Save folder not set. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "savePredictions")
+      }
 
       dir.path <- gsub("\\/$", "", dir.path)
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
         if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Folder '", dir.path,
-                  "' has been succesfully created")
-        } else { stop("[", class(self)[1], "][FATAL] Cannot create directory '",
-                      dir.path, "'. Aborting... ") }
-      } else { message("[", class(self)[1], "][INFO] Folder already exists") }
+          d2mcs.log(message = paste0("Folder '", dir.path, "' has been ",
+                                     "succesfully created"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "savePredictions")
+        } else {
+          d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                     "'. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "savePredictions")
+        }
+      } else {
+        d2mcs.log(message = "Folder already exists",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "savePredictions")
+      }
 
-      if (!is.character(cutoff.values)) cutoff.values <- as.character(cutoff.values)
+      if (!is.character(cutoff.values)) {
+        cutoff.values <- as.character(cutoff.values)
+      }
 
       if (length(cutoff.values) != 0) {
         if (any(cutoff.values %in% private$available$cutoffs)) {
           aval.cutoffs <- intersect(cutoff.values, private$available$cutoffs)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined cutoffs are not ",
-                  "available. Using all cutoffs")
+          d2mcs.log(message = paste0("Defined cutoffs are not available. Using ",
+                                     "all cutoffs"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "savePredictions")
           aval.cutoffs <- private$available$cutoffs
         }
       } else {
-        message("[", class(self)[1], "][INFO] Cutoff values not defined or invalid. ",
-                " Using all cutoffs")
+        d2mcs.log(message = paste0("Cutoff values not defined or invalid. ",
+                                   "Using all cutoffs"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "savePredictions")
         aval.cutoffs <- private$available$cutoffs
       }
 
@@ -585,13 +742,18 @@ ClassificationOutput <- R6::R6Class(
         if (any(metric.names %in% private$available$metrics)) {
           aval.metrics <- intersect(metric.names, private$available$metrics)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined metrics are not available. ",
-                  "Using all metrics")
+          d2mcs.log(message = paste0("Defined metrics are not available. Using ",
+                                     "all metrics"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "savePredictions")
           aval.metrics <- private$available$metrics
         }
       } else {
-        message("[", class(self)[1], "][INFO] Metrics are not defined. ",
-                "Using all metrics")
+        d2mcs.log(message = "Metrics are not defined.  Using all metrics",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "savePredictions")
         aval.metrics <- private$available$metrics
       }
 
@@ -599,22 +761,33 @@ ClassificationOutput <- R6::R6Class(
         if (any(voting.names %in% private$available$votings)) {
           aval.votings <- intersect(voting.names, private$available$votings)
         } else {
-          message("[", class(self)[1], "][WARNING] Defined votings are not available. ",
-                  "Using all votings")
+          d2mcs.log(message = paste0("Defined votings are not available. Using ",
+                                     "all votings"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "savePredictions")
           aval.votings <- private$available$votings
         }
       } else {
-        message("[", class(self)[1], "][INFO] Votings are not defined. ",
-                "Using all votings")
+        d2mcs.log(message = "Votings are not defined. Using all votings",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "savePredictions")
         aval.votings <- private$available$votings
       }
 
       valid.votings <- private$getVotings(aval.metrics, aval.cutoffs, aval.votings)
 
       if (length(valid.votings) == 0) {
-        stop("[", class(self)[1], "][ERROR] There are no voting schemes ",
-             "with '", paste(aval.metrics, collapse = ", "), "' metrics and ",
-             "'", paste(aval.cutoffs, collapse = " "), "' cutoffs. Aborting...")
+        d2mcs.log(message = paste0("There are no voting schemes with '",
+                                   paste(aval.metrics,
+                                         collapse = ", "), "' metrics and '",
+                                   paste(aval.cutoffs,
+                                         collapse = " "), "' cutoffs. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "savePredictions")
       }
 
       predictions <- list()
@@ -629,11 +802,18 @@ ClassificationOutput <- R6::R6Class(
         voting.scheme <- valid.votings[[voting.name]]
 
         if (is.null(type) || (!type %in% c("prob", "raw"))) {
-          message("[", class(self)[1], "][INFO] Prediction type not set or invalid.")
+          d2mcs.log(message = "Prediction type not set or invalid",
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "savePredictions")
           if (is.null(target) || !(target %in% c(private$positive.class,
                                                  private$negative.class))) {
-            message("[", class(self)[1], "][INFO] Target class not set or invalid. ",
-                    "Saving all predictions with all target values")
+            d2mcs.log(message = paste0("Target class not set or invalid. ",
+                                       "Saving all predictions with all target ",
+                                       "values"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "savePredictions")
             # SAVING PROB
             path <- file.path(dir.path, paste0(voting.name, "_prob_",
                                                private$positive.class, ".csv"))
@@ -667,8 +847,11 @@ ClassificationOutput <- R6::R6Class(
             names(df) <- c("ID", "Prediction", "Probability")
             write.table(df, file = path, sep = ";", dec = ".", row.names = FALSE)
           } else {
-            message("[", class(self)[1], "][INFO] Saving all predictions for target ",
-                    "value '", target, "'")
+            d2mcs.log(message = paste0("Saving all predictions for target value '",
+                                       target, "'"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "savePredictions")
             for (i in c("prob", "raw")) {
               path <- file.path(dir.path, paste0(voting.name, "_",
                                                  i, "_", target,
@@ -679,11 +862,17 @@ ClassificationOutput <- R6::R6Class(
             }
           }
         } else {
-          message("[", class(self)[1], "][INFO] Prediction type set as '", type, "'.")
+          d2mcs.log(message = paste0("Prediction type set as '", type, "'"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "savePredictions")
           if (is.null(target) || !(target %in% c(private$positive.class,
                                                   private$negative.class))) {
-            message("[", class(self)[1], "][INFO] Target class not set or invalid. ",
-                    "Saving '", type, "' predictions for all target values")
+            d2mcs.log(message = paste0("Target class not set or invalid. Saving '",
+                                       type, "' predictions for all target values"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "savePredictions")
             path <- file.path(dir.path, paste0(voting.name, "_", private$positive.class,
                                                ".csv"))
             df <- data.frame(voting.scheme$getFinalPred(type, private$positive.class, filter = filter),
@@ -691,8 +880,11 @@ ClassificationOutput <- R6::R6Class(
             names(df) <- c(private$positive.class, private$negative.class)
             write.table(df, file = path, sep = ";", dec = ".", row.names = FALSE)
           } else {
-            message("[", class(self)[1], "][INFO] Saving '", type, "' predictions ",
-                    "for '", target, "'target values")
+            d2mcs.log(message = paste0("Saving '", type, "' predictions for '",
+                                       target, "'target values"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "savePredictions")
             path <- file.path(dir.path, paste0(voting.name, "_", target, ".csv"))
             df <- data.frame(voting.scheme$getFinalPred(type, target, filter = filter))
             names(df) <- target

@@ -65,22 +65,34 @@ HDDataset <- R6::R6Class(
                           normalize.names = FALSE, ignore.columns = NULL)
     {
       if (!file.exists(filepath)) {
-        stop("[", class(self)[1], "][FATAL] Corpus cannot be found at defined ",
-             "location. Aborting...")
+        d2mcs.log(message = paste0("Corpus cannot be found at defined location. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$file.path <- filepath
       dt.size <- (file.info(filepath)$size / 2^30)
 
-      message("[", class(self)[1], "][INFO] Dataset size: ",
-              round(dt.size, digits = 4), " Gb.")
+      d2mcs.log(message = paste0("Dataset size: ", round(dt.size, digits = 4),
+                                 " Gb."),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "initialize")
 
       if (dt.size < 1) {
-        stop("[", class(self)[1], "][FATAL] Low Dimensional Dataset is not ",
-             "compatible with HDDataset class loader. Aborting...")
+        d2mcs.log(message = paste0("Low Dimensional Dataset is not compatible ",
+                                   "with HDDataset class loader. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
-      message("[", class(self)[1], "][INFO] Loading High Dimensional Dataset...")
+      d2mcs.log(message = "Loading High Dimensional Dataset...",
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "initialize")
 
       if (isTRUE(header)) {
         column.names <- unlist(strsplit(scan(file = filepath, nlines = 1,
@@ -104,7 +116,10 @@ HDDataset <- R6::R6Class(
       private$sep <- sep
       private$start.at <- skip
 
-      message("[", class(self)[1], "][INFO] Finish!")
+      d2mcs.log(message = "Finish!",
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "initialize")
     },
     #'
     #' @description Gets the name of the columns comprising the dataset
@@ -133,14 +148,22 @@ HDDataset <- R6::R6Class(
     #'
     createSubset = function(column.id = FALSE, chunk.size = 100000) {
       if (!all.equal(chunk.size, as.integer(chunk.size))) {
-        message("[", class(self)[1], "][WARNING] Chunk size is not valid. Must ",
-                "be an integer higher than 0. Asumming 100000 as default value")
+        d2mcs.log(message = paste0("Chunk size is not valid. Must be an ",
+                                   "integer higher than 0. Asumming 100000 as ",
+                                   "default value"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "createSubset")
         chunk.size <- 100000
       }
 
       if (is.numeric(column.id) && !dplyr::between(column.id, 0, self$getNcol())) {
-        message("[", class(self)[1], "][WARNING] Identifier cannot exceed number ",
-                "of columns [1-", self$getNcol(), "]. Assuming no identifier")
+        d2mcs.log(message = paste0("Identifier cannot exceed number of columns ",
+                                   "[1-", self$getNcol(), "]. Assuming no ",
+                                   "identifier"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "createSubset")
         column.id <- FALSE
       }
 

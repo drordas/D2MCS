@@ -75,10 +75,16 @@ TrainFunction <- R6::R6Class(
       private$verboseIter <- verboseIter
       if (!is.numeric(seed)) {
         private$seed <- .Random.seed[ceiling(runif(1, 0, length(.Random.seed)))]
-        message("[", class(self)[1], "][INFO] Using random seed '", private$seed, "'")
+        d2mcs.log(message = paste0("Using random seed '", private$seed, "'"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
       } else {
         private$seed <- seed
-        message("[", class(self)[1], "][INFO] Using static seed '", private$seed, "'")
+        d2mcs.log(message = paste0("Using static seed '", private$seed, "'"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
     },
     #'
@@ -94,8 +100,11 @@ TrainFunction <- R6::R6Class(
     #' in each resample.
     #'
     create = function(summaryFunction, search.method = "grid", class.probs) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "create")
     },
     #'
     #' @description Returns the resampling method used during training staged.
@@ -147,8 +156,11 @@ TrainFunction <- R6::R6Class(
     #' @return A \code{\link[caret]{trainControl}} object.
     #'
     getTrFunction = function() {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "getTrFunction")
     },
     #'
     #' @description Returns the measures used to optimize model hyperparameters.
@@ -156,8 +168,11 @@ TrainFunction <- R6::R6Class(
     #' @return A \link{character} vector.
     #'
     getMeasures = function() {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "getMeasures")
     },
     #'
     #' @description Obtains the type of classification problem ("Bi-class" or
@@ -167,8 +182,11 @@ TrainFunction <- R6::R6Class(
     #' or "Multi-class".
     #'
     getType = function() {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "getType")
     },
     #'
     #' @description Indicates seed used during model training stage.
@@ -184,8 +202,11 @@ TrainFunction <- R6::R6Class(
     #' \code{\link{SummaryFunction}} class.
     #'
     setSummaryFunction = function(summaryFunction) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "setSummaryFunction")
     },
     #'
     #' @description The function allows changing the class computation
@@ -196,8 +217,11 @@ TrainFunction <- R6::R6Class(
     #' in each resample
     #'
     setClassProbs = function(class.probs) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "setClassProbs")
     }
   ),
   private = list(

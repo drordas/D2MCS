@@ -1,7 +1,22 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DefaultModelFit: initialize function works", {
 
   testthat::expect_is(DefaultModelFit$new(), "DefaultModelFit")
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DefaultModelFit: createFormula function works", {
@@ -12,11 +27,21 @@ testthat::test_that("DefaultModelFit: createFormula function works", {
 
   testthat::expect_is(DefaultModelFit$new()$createFormula(instances, "Class",
                                                           simplify = FALSE),
-                        "formula")
+                      "formula")
 
   testthat::expect_is(DefaultModelFit$new()$createFormula(instances, "Class",
                                                           simplify = TRUE),
-                        "formula")
+                      "formula")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DefaultModelFit: createRecipe function works", {
@@ -26,5 +51,10 @@ testthat::test_that("DefaultModelFit: createRecipe function works", {
   colnames(instances) <- c("C1", "Class")
 
   testthat::expect_is(DefaultModelFit$new()$createRecipe(instances, "Class"),
-                        "recipe")
+                      "recipe")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

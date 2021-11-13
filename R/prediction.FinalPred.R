@@ -62,15 +62,20 @@ FinalPred <- R6::R6Class(
     #'
     set = function(prob, raw, class.values, positive.class) {
       if (length(positive.class) != 1 || !(positive.class %in% class.values)) {
-        stop("[", class(self)[1], "][FATAL] Positive class is invalid. ",
-             "Must be one of (", paste0(class.values, collapse = ", "),
-             "). Aborting...")
+        d2mcs.log(message = paste0("Positive class is invalid. Must be one of (",
+                                   paste0(class.values,
+                                          collapse = ", "), "). Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "set")
       }
 
       if (any(is.null(prob), is.null(raw), nrow(prob) == 0,
              ncol(row) == 0, length(raw) == 0)) {
-        stop("[", class(self)[1], "][FATAL] Predictions were not computed. ",
-             "Aborting...")
+        d2mcs.log(message = "Predictions were not computed. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "set")
       }
 
       private$negative.class <- setdiff(class.values, positive.class)
@@ -88,8 +93,10 @@ FinalPred <- R6::R6Class(
       }
 
       if (any(is.na(private$raw))) {
-        stop("[", class(self)[1], "][FATAL] Class values contains NA's. ",
-             "Aborting...")
+        d2mcs.log(message = "Class values contains NA's. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "set")
       }
 
       names(private$prob) <- self$getClassValues()

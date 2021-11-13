@@ -68,21 +68,33 @@ Dataset <- R6::R6Class(
                           ignore.columns = NULL) {
 
       if (is.null(filepath) || !file.exists(filepath)) {
-        stop("[", class(self)[1], "][FATAL] Corpus cannot be found at defined ",
-             "location. Aborting...")
+        d2mcs.log(message = paste0("Corpus cannot be found at defined location. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       dt.size <- (file.info(filepath)$size / 2^30)
 
-      message("[", class(self)[1], "][INFO] Dataset size: ",
-              round(dt.size, digits = 4), " Gb.")
+      d2mcs.log(message = paste0("Dataset size: ", round(dt.size, digits = 4),
+                                 " Gb."),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "initialize")
 
       if (dt.size > 1) {
-        stop("[", class(self)[1], "][FATAL] High Dimensional Dataset is not ",
-             "compatible with Dataset class loader. Aborting...")
+        d2mcs.log(message = paste0("High Dimensional Dataset is not compatible ",
+                                   "with Dataset class loader. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
-      message("[", class(self)[1], "][INFO] Loading Dataset...")
+      d2mcs.log(message = "Loading Dataset...",
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "initialize")
 
       if (isTRUE(header)) {
         private$corpus <- read.csv(filepath, header = header,
@@ -107,9 +119,11 @@ Dataset <- R6::R6Class(
 
       if (is.numeric(ignore.columns)) { self$removeColumns(ignore.columns) }
 
-      message("[", class(self)[1], "][INFO] Load finished! Total: ",
-              nrow(private$corpus), " rows and ",
-              ncol(private$corpus), " columns")
+      d2mcs.log(message = paste0("Load finished! Total: ", nrow(private$corpus),
+                                 " rows and ", ncol(private$corpus), " columns"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "initialize")
     },
     #'
     #' @description Get the name of the columns comprising the dataset.
@@ -165,9 +179,13 @@ Dataset <- R6::R6Class(
                                                                 subset.removed)
           }
         }
-        message("[", class(self)[1], "][INFO] Total ",
-                length(private$removed.columns[["remove.funcs"]]),
-                " columns were succesfully removed")
+
+        d2mcs.log(message = paste0("Total ",
+                                   length(private$removed.columns[["remove.funcs"]]),
+                                   " columns were succesfully removed"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "cleanData")
 
         if (isTRUE(remove.na)) {
           subset.names <- names(subset)
@@ -177,8 +195,11 @@ Dataset <- R6::R6Class(
             private$removed.columns[["remove.na"]] <- append(private$removed.columns[["na.remove"]],
                                                              subset.removed)
           }
-          message("[", class(self)[1], "][INFO] Total ", length(subset.removed),
-                  " NA columns were succesfully removed")
+          d2mcs.log(message = paste0("Total ", length(subset.removed), " NA ",
+                                     "columns were succesfully removed"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "cleanData")
         }
 
         if (isTRUE(remove.const)) {
@@ -189,8 +210,11 @@ Dataset <- R6::R6Class(
             private$removed.columns[["remove.const"]] <- append(private$removed.columns[["remove.const"]],
                                                                 subset.removed)
           }
-          message("[", class(self)[1], "][INFO] Total ", length(subset.removed),
-                  " const columns were succesfully removed")
+          d2mcs.log(message = paste0("Total ", length(subset.removed), " const ",
+                                     "columns were succesfully removed"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "cleanData")
         }
 
         private$corpus <- subset
@@ -220,28 +244,42 @@ Dataset <- R6::R6Class(
           private$corpus <- private$corpus[, -which(names(private$corpus) %in% valid.columns)]
           private$removed.columns[["manually"]] <- append(private$removed.columns[["manually"]],
                                                           valid.columns)
-          message("[", class(self)[1], "][INFO] Total ", length(valid.columns),
-                  " columns were succesfully removed")
+          d2mcs.log(message = paste0("Total ", length(valid.columns),
+                                     " columns were succesfully removed"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "removeColumns")
         } else {
-          message("[", class(self)[1], "][ERROR] Defined column(s) are not valid.",
-                  " Ignoring removal operation")
+          d2mcs.log(message = paste0("Defined column(s) are not valid. ",
+                                     "Ignoring removal operation"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "removeColumns")
         }
       } else {
         if (is.numeric(columns) && all(dplyr::between(columns, 1, ncol(private$corpus)))) {
           private$removed.columns <- c(private$removed.columns,
                                        names(private$corpus)[columns])
           private$corpus <- private$corpus[, -columns]
-          message("[", class(self)[1], "][INFO] ", length(columns),
-                  " columns were manually removed")
+          d2mcs.log(message = paste0(length(columns), " columns were manually ",
+                                     "removed"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "removeColumns")
         } else {
-          message("[", class(self)[1], "][ERROR] Selected columns are not valid. ",
-                  "Must be between [1-", ncol(private$corpus), "]. ",
-                  "Task not performed")
+          d2mcs.log(message = paste0("Selected columns are not valid. ",
+                                     "Must be between [1-", ncol(private$corpus),
+                                     "]. Task not performed"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "removeColumns")
         }
       }
       self$cleanData(remove.funcs, remove.na, remove.const)
-      message("[", class(self)[1], "][INFO] Remaining ",
-              ncol(private$corpus), " columns")
+      d2mcs.log(message = paste0("Remaining ", ncol(private$corpus), " columns"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "removeColumns")
     },
     #'
     #' @description Creates a k-folds partition from the initial dataset.
@@ -270,8 +308,10 @@ Dataset <- R6::R6Class(
           } else {
             class.values <- NULL
             class.index <- NULL
-            message("[", class(self)[1], "][WARNING] Class not found into dataset ",
-                    "limits")
+            d2mcs.log(message = "Class not found into dataset limits",
+                      level = "WARN",
+                      className = class(self)[1],
+                      methodName = "createPartitions")
           }
         }
       }
@@ -280,23 +320,34 @@ Dataset <- R6::R6Class(
            !is.numeric(percent.folds))) {
 
         if (is.null(class.balance) || is.null(class.index)) {
-          stop("[", class(self)[1], "][FATAL] Class not defined. ",
-               "Aborting...")
+          d2mcs.log(message = "Class not defined. Aborting...",
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "createPartitions")
         }
-        message("[", class(self)[1], "][WARNING] Parameters are invalid. ",
-                "Assuming division with default k=10 folds")
+        d2mcs.log(message = paste0("Parameters are invalid. Assuming division ",
+                                   "with default k=10 folds"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "createPartitions")
+
         private$partitions <- caret::createFolds(private$corpus[, class.index],
                                                  k = 10, list = TRUE)
       } else {
         if (is.numeric(num.folds) && length(num.folds) == 1 && !is.numeric(percent.folds)) {
 
           if (is.null(class.balance) || is.null(class.index)) {
-            stop("[", class(self)[1], "][FATAL] Class not defined. ",
-                 "Aborting...")
+            d2mcs.log(message = "Class not defined. Aborting...",
+                      level = "FATAL",
+                      className = class(self)[1],
+                      methodName = "createPartitions")
           }
 
-          message("[", class(self)[1], "][INFO] Perfoming dataset partitioning into ",
-                   num.folds, " groups using class balance")
+          d2mcs.log(message = paste0("Perfoming dataset partitioning into ",
+                                     num.folds, " groups using class balance"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "createPartitions")
           private$partitions <- caret::createFolds(private$corpus[, class.index],
                                                    k = num.folds, list = TRUE)
         } else {
@@ -306,22 +357,40 @@ Dataset <- R6::R6Class(
               if (sum(percent.folds) == 100) {
                 percent.folds <- percent.folds / 100
               }
-              message("[", class(self)[1], "][INFO] Perfoming dataset ",
-                      "partitioning into ", length(percent.folds), " groups")
+
+              d2mcs.log(message = paste0("Perfoming dataset partitioning into ",
+                                         length(percent.folds), " groups"),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
+
               remaining <- private$corpus
 
               numElemFolds <- round(percent.folds * nrow(private$corpus))
 
               for (index in 1:(num.folds - 1)) {
-                message("===============================================================")
-                message("[", class(self)[1], "][INFO] Spliting ", index,
-                        " group with ", percent.folds[index])
-                message("===============================================================")
+                d2mcs.log(message = "===============================================================",
+                          level = "INFO",
+                          className = class(self)[1],
+                          methodName = "createPartitions")
+                d2mcs.log(message = paste0("Spliting ", index, " group with ",
+                                           percent.folds[index]),
+                          level = "INFO",
+                          className = class(self)[1],
+                          methodName = "createPartitions")
+                d2mcs.log(message = "===============================================================",
+                          level = "INFO",
+                          className = class(self)[1],
+                          methodName = "createPartitions")
                 if (isTRUE(class.balance)) {
                   if (length(levels(class.values)) != 2) {
-                    stop("[", class(self)[1], "][ERROR] Create partitions with ",
-                         "option of class.balance for multiclass data is not ",
-                         "still available. Aborting...")
+                    d2mcs.log(message = paste0("Create partitions with option ",
+                                               "of class.balance for ",
+                                               "multiclass data is not still ",
+                                               "available. Aborting..."),
+                              level = "FATAL",
+                              className = class(self)[1],
+                              methodName = "createPartitions")
                   }
                   class.percents <- table(private$corpus[, class.index]) / nrow(private$corpus)
 
@@ -339,10 +408,19 @@ Dataset <- R6::R6Class(
                                              list(which(rownames(private$corpus) %in% rownames(remaining)[split])))
                 remaining <- remaining[-split, ]
               }
-              message("===============================================================")
-              message("[", class(self)[1], "][INFO] Spliting ", index + 1,
-                      " group with ", percent.folds[index + 1])
-              message("===============================================================")
+              d2mcs.log(message = "===============================================================",
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
+              d2mcs.log(message = paste0("Spliting ", index + 1, " group with ",
+                                         percent.folds[index + 1]),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
+              d2mcs.log(message = "===============================================================",
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
               private$partitions <-  append(private$partitions,
                                             list(which(rownames(private$corpus) %in% rownames(remaining))))
               names(private$partitions) <- paste0("Fold0",
@@ -351,8 +429,13 @@ Dataset <- R6::R6Class(
                 names(private$partitions)[10:num.folds] <- paste0("Fold",
                                                                   which(1:num.folds >= 10))
               }
-            } else { message("[", class(self)[1], "][ERROR] Fold partition and/or ",
-                             "probability mismatch. Task not performed") }
+            } else {
+              d2mcs.log(message = paste0("Fold partition and/or probability ",
+                                         "mismatch. Task not performed"),
+                        level = "ERROR",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
+            }
           } else {
             if ((!is.numeric(num.folds) || length(num.folds) != 1) &&
                 is.numeric(percent.folds) && (sum(percent.folds) == 100 ||
@@ -360,22 +443,38 @@ Dataset <- R6::R6Class(
               if (sum(percent.folds) == 100) {
                 percent.folds <- percent.folds / 100
               }
-              message("[", class(self)[1], "][INFO] Perfoming dataset partitioning into ",
-                      length(percent.folds), " groups")
+              d2mcs.log(message = paste0("Perfoming dataset partitioning into ",
+                                         length(percent.folds), " groups"),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
               remaining <- private$corpus
 
               numElemFolds <- round(percent.folds * nrow(private$corpus))
 
               for (index in 1:(length(percent.folds) - 1)) {
-                message("===============================================================")
-                message("[", class(self)[1], "][INFO] Spliting ", index,
-                        " group with ", percent.folds[index])
-                message("===============================================================")
+                d2mcs.log(message = "===============================================================",
+                          level = "INFO",
+                          className = class(self)[1],
+                          methodName = "createPartitions")
+                d2mcs.log(message = paste0("Spliting ", index + 1, " group with ",
+                                           percent.folds[index + 1]),
+                          level = "INFO",
+                          className = class(self)[1],
+                          methodName = "createPartitions")
+                d2mcs.log(message = "===============================================================",
+                          level = "INFO",
+                          className = class(self)[1],
+                          methodName = "createPartitions")
                 if (isTRUE(class.balance)) {
                   if (length(levels(class.values)) != 2) {
-                    stop("[", class(self)[1], "][ERROR] Create partitions with ",
-                         "option of class.balance for multiclass data is not ",
-                         "still available. Aborting...")
+                    d2mcs.log(message = paste0("Create partitions with option ",
+                                               "of class.balance for ",
+                                               "multiclass data is not still ",
+                                               "available. Aborting..."),
+                              level = "FATAL",
+                              className = class(self)[1],
+                              methodName = "createPartitions")
                   }
 
                   class.percents <- table(private$corpus[, class.index]) / nrow(private$corpus)
@@ -394,10 +493,19 @@ Dataset <- R6::R6Class(
                                              list(which(rownames(private$corpus) %in% rownames(remaining)[split])))
                 remaining <- remaining[-split, ]
               }
-              message("===============================================================")
-              message("[", class(self)[1], "][INFO] Spliting ", index + 1,
-                      " group with ", percent.folds[index + 1])
-              message("===============================================================")
+              d2mcs.log(message = "===============================================================",
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
+              d2mcs.log(message = paste0("Spliting ", index + 1, " group with ",
+                                         percent.folds[index + 1]),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
+              d2mcs.log(message = "===============================================================",
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
               private$partitions <-  append(private$partitions,
                                             list(which(rownames(private$corpus) %in% rownames(remaining))))
               names(private$partitions) <- paste0("Fold0",
@@ -407,8 +515,11 @@ Dataset <- R6::R6Class(
                                                                               which(1:length(percent.folds) >= 10))
               }
             } else {
-              message("[", class(self)[1], "][ERROR] Cannot perform ",
-                      "partition process. Task not performed")
+              d2mcs.log(message = paste0("Cannot perform partition process. ",
+                                         "Task not performed"),
+                        level = "ERROR",
+                        className = class(self)[1],
+                        methodName = "createPartitions")
             }
           }
         }
@@ -437,38 +548,49 @@ Dataset <- R6::R6Class(
                             positive.class = NULL) {
       subset <- NULL
       if (is.null(private$partitions)) {
-        message("[", class(self)[1], "][ERROR] Dataset distribution is null. ",
-                "Task not performed")
+        d2mcs.log(message = "Dataset distribution is null. Task not performed",
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "createSubset")
         return(NULL)
       }
 
       if (is.null(num.folds) || !is.numeric(num.folds) ||
-           !(max(num.folds) %in% c(1:length(private$partitions))))
-      {
-        message("[", class(self)[1], "][WARNING] Incorrect number of folds. ",
-                "Must be between 1 and ", length(private$partitions),
-                ". Assuming whole dataset")
+           !(max(num.folds) %in% c(1:length(private$partitions)))) {
+        d2mcs.log(message = paste0("Incorrect number of folds. Must be between ",
+                                   "1 and ", length(private$partitions), ". ",
+                                   "Assuming whole dataset"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "createSubset")
         num.folds <- length(private$partitions)
       }
 
       subset <- private$corpus[ sort(Reduce(union, private$partitions[num.folds])), ]
 
       if (is.null(class.index)) {
-        message("[", class(self)[1], "][INFO] Creating subset without an associated class")
+        d2mcs.log(message = "Creating subset without an associated class",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "createSubset")
         class.values <- NULL
       } else {
         if (all(is.character(class.index), class.index %in% names(subset))) {
           class.index <- which(class.index == names(subset))
         } else {
           if (!all(is.numeric(class.index), class.index %in% 1:ncol(subset))) {
-            stop("[", class(self)[1], "][FATAL] Class not found into dataset ",
-                 "limits. Aborting...")
+            d2mcs.log(message = "Class not found into dataset limits. Aborting...",
+                      level = "FATAL",
+                      className = class(self)[1],
+                      methodName = "createSubset")
           }
         }
 
         if (any(is.null(positive.class), !positive.class %in% subset[, class.index])) {
-          stop("[", class(self)[1], "][FATAL] Positive class value not found. ",
-               "Aborting...")
+          d2mcs.log(message = "Positive class value not found. Aborting...",
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "createSubset")
         }
         class.values <- relevel(x = factor(subset[, class.index]),
                                 levels = unique(subset[, class.index]),
@@ -493,8 +615,11 @@ Dataset <- R6::R6Class(
           } else {
             na.remov <- (ncol(subset) - ncol(filtered))
           }
-          message("[", class(self)[1], "][INFO] Removed columns containing ",
-                  "NA values (total of ", na.remov, ")")
+          d2mcs.log(message = paste0("Removed columns containing NA values ",
+                                     "(total of ", na.remov, ")"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "createSubset")
         }
         if (exists("remove.const", opts) && isTRUE(opts$remove.const)) {
           filtered <- Filter(function(col) all(length(unique(col)) != 1), filtered)
@@ -503,8 +628,11 @@ Dataset <- R6::R6Class(
           } else {
             const.remov <- (ncol(subset) - ncol(filtered)) + na.remov
           }
-          message("[", class(self)[1], "][INFO] Removed columns containing ",
-                  "constant values (total of ", const.remov, ")")
+          d2mcs.log(message = paste0("Removed columns containing constant ",
+                                     "values (total of ", const.remov, ")"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "createSubset")
         }
         if (!is.null(class.index)) {
           if (class.index >= ncol(filtered)) {
@@ -550,8 +678,10 @@ Dataset <- R6::R6Class(
                            opts = list(remove.na = TRUE, remove.const = FALSE)) {
       trainSet <- NULL
       if (is.null(private$partitions)) {
-        message("[", class(self)[1], "][ERROR] Dataset distribution is null. ",
-                "Task not performed")
+        d2mcs.log(message = "Dataset distribution is null. Task not performed",
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "createTrain")
         return(NULL)
       }
 
@@ -559,24 +689,31 @@ Dataset <- R6::R6Class(
         class.index <- which(class.index == names(private$corpus))
       } else {
         if (!all(is.numeric(class.index), class.index %in% 1:ncol(private$corpus))) {
-          stop("[", class(self)[1], "][FATAL] Class not found into dataset ",
-               "limits. Aborting...")
+          d2mcs.log(message = "Class not found into dataset limits. Aborting...",
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "createTrain")
         }
       }
 
       if (is.null(num.folds) || !is.numeric(num.folds) ||
            !(max(num.folds) %in% c(1:length(private$partitions)))) {
-        message("[", class(self)[1], "][WARNING] Incorrect number of folds. ",
-                "Must be between 1 and ", length(private$partitions),
-                ". Assuming whole dataset")
+        d2mcs.log(message = paste0("Incorrect number of folds. Must be between ",
+                                   "1 and ", length(private$partitions), ". ",
+                                   "Assuming whole dataset"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "createTrain")
         num.folds <- length(private$partitions)
       }
 
       trainSet <- private$corpus[ sort(Reduce(union, private$partitions[num.folds])), ]
 
       if (is.null(positive.class) || !positive.class %in% trainSet[, class.index]) {
-        stop("[", class(self)[1], "][FATAL] Positive class value not found. ",
-             "Aborting...")
+        d2mcs.log(message = "Positive class value not found. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "createTrain")
       }
 
       class.values <- relevel(x = factor(trainSet[, class.index],
@@ -592,14 +729,20 @@ Dataset <- R6::R6Class(
         if (exists("remove.na", opts) && isTRUE(opts$remove.na)) {
           filtered <- Filter(function(col) !all(is.na(col)), filtered)
           na.remov <- ((ncol(trainSet) - 1) - ncol(filtered))
-          message("[", class(self)[1], "][INFO] Removed columns containing NA ",
-                  "values (total of ", na.remov, ")")
+          d2mcs.log(message = paste0("Removed columns containing NA values (",
+                                     "total of ", na.remov, ")"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "createTrain")
         }
         if (exists("remove.const", opts) && isTRUE(opts$remove.const)) {
           filtered <- Filter(function(col) all(length(unique(col)) != 1), filtered)
           const.remov <- ((ncol(trainSet) - 1) - ncol(filtered)) + na.remov
-          message("[", class(self)[1], "][INFO] Removed columns containing ",
-                  "constant values (total of ", const.remov, ")")
+          d2mcs.log(message = paste0("Removed columns containing constant ",
+                                     "values (total of ", const.remov, ")"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "createTrain")
         }
         trainSet <- filtered
       }

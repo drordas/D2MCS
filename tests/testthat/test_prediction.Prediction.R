@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Prediction: initialize function works", {
   testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
@@ -10,19 +15,39 @@ testthat::test_that("Prediction: initialize function works", {
                       "Prediction")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Prediction: initialize function checks parameter type", {
 
   feature.id <- "feature.id"
 
   testthat::expect_error(Prediction$new(model = NULL,
                                         feature.id = feature.id),
-                         "[Prediction][FATAL] Model parameter must be defined as a list of five elements. Aborting...",
+                         "[Prediction][initialize][FATAL] Model parameter must be defined as a list of five elements. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(Prediction$new(model = list(),
                                         feature.id = feature.id),
-                         "[Prediction][FATAL] Model parameter must be defined as a list of five elements. Aborting...",
+                         "[Prediction][initialize][FATAL] Model parameter must be defined as a list of five elements. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
@@ -46,6 +71,16 @@ testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
                                                               positive.class = positive.class)))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
   testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
@@ -64,11 +99,21 @@ testthat::test_that("Prediction: execute function works (classProbs=TRUE)", {
   class.values <- c("1", "0")
   positive.class <- 1
 
-  testthat::expect_message(suppressWarnings(prediction$execute(pred.values = pred.values,
-                                                               class.values = class.values,
-                                                               positive.class = positive.class)),
-                           "[Prediction][WARNING] Model 'ranger' is not able to compute a-posteriori probabilities",
+  testthat::expect_warning(prediction$execute(pred.values = pred.values,
+                                              class.values = class.values,
+                                              positive.class = positive.class),
+                           "[Prediction][execute][WARN] Model 'ranger' is not able to compute a-posteriori probabilities",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Prediction: execute function checks parameter type", {
@@ -88,8 +133,18 @@ testthat::test_that("Prediction: execute function checks parameter type", {
   testthat::expect_error(prediction$execute(pred.values = NULL,
                                             class.values = class.values,
                                             positive.class = positive.class),
-                         "[Prediction][FATAL] Prediction values parameter must be defined as 'data.frame' type. Aborting...",
+                         "[Prediction][execute][FATAL] Prediction values parameter must be defined as 'data.frame' type. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Prediction: getPredicion function works", {
@@ -124,6 +179,16 @@ testthat::test_that("Prediction: getPredicion function works", {
 
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Prediction: getPredicion function checks parameter type", {
   testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
@@ -146,20 +211,30 @@ testthat::test_that("Prediction: getPredicion function checks parameter type", {
 
   type <- "prob"
   target <- 1
-  testthat::expect_message(prediction$getPrediction(type = "wrong",
+  testthat::expect_warning(prediction$getPrediction(type = "wrong",
                                                     target = target),
-                           "[Prediction][WARNING] Probability type missing or incorrect. Should be 'raw' or 'prob'. Assuming 'raw' by default",
+                           "[Prediction][getPrediction][WARN] Probability type missing or incorrect. Should be 'raw' or 'prob'. Assuming 'raw' by default",
                            fixed = TRUE)
 
-  testthat::expect_message(prediction$getPrediction(type = type,
+  testthat::expect_warning(prediction$getPrediction(type = type,
                                                     target = NULL),
-                           "[Prediction][WARNING] Target not specified or invalid. Using '1' as default value",
+                           "[Prediction][getPrediction][WARN] Target not specified or invalid. Using '1' as default value",
                            fixed = TRUE)
 
-  testthat::expect_message(prediction$getPrediction(type = type,
+  testthat::expect_warning(prediction$getPrediction(type = type,
                                                     target = 100),
-                           "[Prediction][WARNING] Target not specified or invalid. Using '1' as default value",
+                           "[Prediction][getPrediction][WARN] Target not specified or invalid. Using '1' as default value",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Prediction: getModelName function works", {
@@ -175,6 +250,16 @@ testthat::test_that("Prediction: getModelName function works", {
   testthat::expect_equal(prediction$getModelName(), model$model.name)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Prediction: getModelPerformance function works", {
   testthat::skip_if_not_installed("ranger")
   model <- readRDS(file.path("resourceFiles",
@@ -186,4 +271,9 @@ testthat::test_that("Prediction: getModelPerformance function works", {
                                feature.id = feature.id)
 
   testthat::expect_equal(prediction$getModelPerformance(), model$model.performance)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

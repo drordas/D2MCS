@@ -80,9 +80,14 @@ DIterator <- R6::R6Class(
       data.chunk <- private$data[private$read.chunk, ]
 
       if (isTRUE(private$verbose)) {
-        message("[", class(self)[1], "][INFO] Read lines ",
-                private$start, " to ", private$end,
-                " [", format(private$end - private$start, scientific = FALSE), "]")
+        d2mcs.log(message = paste0("Read lines ", private$start, " to ",
+                                   private$end, " [",
+                                   format(private$end - private$start,
+                                          scientific = FALSE),
+                                   "]"),
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "getNext")
       }
       private$start <- private$end + 1
       data.chunk

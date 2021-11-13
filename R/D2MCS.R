@@ -162,31 +162,50 @@ D2MCS <- R6::R6Class(
                           serialize = FALSE) {
 
       if (is.null(dir.path) || !is.character(dir.path)) {
-        stop("[", class(self)[1], "][FATAL] Path to store ML models should be defined")
+        d2mcs.log(message = "Path to store ML models should be defined",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       dir.path <- gsub("\\/$", "", dir.path)
 
       if (is.null(outfile)) {
-        message("[", class(self)[1], "][INFO] Path for Log file not defined")
+        d2mcs.log(message = "Path for Log file not defined",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
         outfile <- "/dev/null"
-      }
-      else {
+      } else {
         if (!file.exists(outfile)) {
           dir.create(outfile, recursive = TRUE)
-          message("[", class(self)[1], "][INFO] Logs path not defined '",
-                  outfile, "' does not exist. Creating...")
+          d2mcs.log(message = paste0("Logs path not defined '", outfile,
+                                     "' does not exist. Creating..."),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
       }
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
         if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Directory '", dir.path,
-                  "' has been succesfully created")
-        } else { stop("[", class(self)[1], "][FALTAL] Cannot create directory '",
-                     dir.path, "'") }
+          d2mcs.log(message = paste0("Directory '", dir.path, "' has been ",
+                                     "succesfully created"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "initialize")
+        } else {
+          d2mcs.log(message = paste0("Cannot create directory '", dir.path, "'"),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
+        }
+      } else {
+        d2mcs.log(message = "Directory already exists",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
-      else { message("[", class(self)[1], "][INFO] Directory already exists") }
 
       private$logs <- file.path(dir.path, "logs")
 
@@ -199,31 +218,46 @@ D2MCS <- R6::R6Class(
 
       if (any(is.null(num.cores), (num.cores >= parallel::detectCores()), num.cores > 10)) {
         if (parallel::detectCores() > 10) {
-          message("[", class(self)[1], "][WARNING] Invalid number of cores ",
-                  "(1>= num.cores <= 10)")
+          d2mcs.log(message = "Invalid number of cores (1>= num.cores <= 10)",
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "initialize")
         } else {
-          message("[", class(self)[1], "][WARNING] Invalid number of cores ",
-                  "(1>= num.cores < ", parallel::detectCores(), ")")
+          d2mcs.log(message = paste0("Invalid number of cores ",
+                                     "(1>= num.cores < ", parallel::detectCores(),
+                                     ")"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
         cores <- min(max(1, parallel::detectCores() - 2), 10)
-        message("[", class(self)[1], "][INFO] Using default number of cores (",
-                cores, "/", parallel::detectCores(), ")")
+        d2mcs.log(message = paste0("Using default number of cores (", cores, "/",
+                                   parallel::detectCores(), ")"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       else {cores <- num.cores}
 
       if (!socket.type %in% c("PSOCK", "FORK")) {
-        message("[", class(self)[1], "][WARNING] Invalid socket type. ",
-                "Assuming 'PSOCK' cluster")
+        d2mcs.log(message = "Invalid socket type. Assuming 'PSOCK' cluster",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
         socket <- "PSOCK"
       }
       else { socket <- socket.type }
 
       if (!is.logical(serialize)) {
-        message("[", class(self)[1], "][WARNING] Invalid serialization ",
-                "option. Assuming not serialization")
+        d2mcs.log(message = paste0("Invalid serialization option. Assuming not ",
+                                   "serialization"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
         xdr <- FALSE
+      } else {
+        xdr <- serialize
       }
-      else xdr <- serialize
 
       private$availableModels <- private$loadAvailableModels()
       private$path <- dir.path
@@ -276,31 +310,46 @@ D2MCS <- R6::R6Class(
 
       # CHECK IF TRAIN.SET IS VALID
       if (!inherits(train.set, "Trainset")) {
-        stop("[", class(self)[1], "][FATAL] Train set parameter must be ",
-             "defined as 'Trainset' type. Aborting...")
+        d2mcs.log(message = paste0("Train set parameter must be defined as ",
+                                   "'Trainset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "train")
       }
 
       if (!inherits(train.function, "TrainFunction")) {
-        stop("[", class(self)[1], "][FATAL] Train function parameter must be ",
-             "defined as 'TrainFunction' type. Aborting...")
+        d2mcs.log(message = paste0("Train function parameter must be defined as ",
+                                   "'TrainFunction' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "train")
       }
 
       if (!inherits(model.recipe, "GenericModelFit")) {
-        message("[", class(self)[1], "][WARNING] Model fit must inherit from ",
-                "'GenericModelFit' type. Using 'DefaultModelFit' class.")
+        d2mcs.log(message = paste0("Model fit must inherit from ",
+                                   "'GenericModelFit' type. Using ",
+                                   "'DefaultModelFit' class"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "train")
         model.recipe <- DefaultModelFit$new()
       }
 
       if (any(is.null(num.clusters), !is.numeric(num.clusters),
                !is.vector(num.clusters))) {
-        message("[", class(self)[1], "][WARNING] Number of clusters not set ",
-                "(must be numeric or vector). Using all clusters")
+        d2mcs.log(message = paste0("Number of clusters not set (must be ",
+                                   "numeric or vector). Using all clusters"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "train")
         num.clusters <- c(1:train.set$getNumClusters())
       } else {
         if (all(is.numeric(num.clusters), num.clusters > train.set$getNumClusters())) {
-          message("[", class(self)[1], "][WARNING] Number of clusters ",
-                  "is higher than number of existing clusters. ",
-                  "Using all clusters")
+          d2mcs.log(message = paste0("Number of clusters is higher than number ",
+                                     "of existing clusters. Using all clusters"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "train")
           num.clusters <- c(1:train.set$getNumClusters())
         } else num.clusters <- c(1:num.clusters)
       }
@@ -313,26 +362,41 @@ D2MCS <- R6::R6Class(
       # VERIFY IF IG.CLASSIFIERS PARAMETER IS DEFINED (AND VALID)
       if (all(is.character(ig.classifiers), length(ig.classifiers) > 0,
               length(usedModels) > 0)) {
-        message("[", class(self)[1], "][INFO] Ignoring '",
-                length(ig.classifiers), "' M.L models")
+        d2mcs.log(message = paste0("Ignoring '", length(ig.classifiers),
+                                   "' M.L models"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
         usedModels <- setdiff(usedModels, ig.classifiers)
-        message("[", class(self)[1], "][INFO] Still '", length(usedModels),
-                "' M.L models available")
+        d2mcs.log(message = paste0("Still '", length(usedModels),
+                                   "' M.L models available"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
       }
 
       if (length(usedModels) == 0) {
-        stop("[", class(self)[1], "][FATAL] Not valid M.L models were selected.",
-             " Aborting...")
+        d2mcs.log(message = paste0("Not valid M.L models were selected. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "train")
       }
 
       # VERIFY IF METRIC PARAMETER IS DEFINED (AND VALID)
       if (!all(is.character(metrics), length(metrics) > 0)) {
-        stop("[", class(self)[1], "][FATAL] Invalid values of metrics.",
-             " Aborting...")
+        d2mcs.log(message = paste0("Invalid values of metrics. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "train")
       }
 
-      message("[", class(self)[1], "][INFO] Making parallel socket cluster with ",
-              private$cluster.conf$cores, " cores")
+      d2mcs.log(message = paste0("Making parallel socket cluster with ",
+                                 private$cluster.conf$cores, " cores"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "train")
 
       private$cluster.obj <- parallel::makeCluster(private$cluster.conf$cores,
                                                    type = private$cluster.conf$socket,
@@ -349,20 +413,39 @@ D2MCS <- R6::R6Class(
       # START TRAINING PROCESS
       for (row in 1:nrow(exec.models)) {
         current.model <- exec.models[row, ]
-        message("[", class(self)[1], "][INFO][", current.model$name, "]",
-                " ***********************************************************************")
-        message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                "'Model [", row, "-", nrow(exec.models), "]': Start training")
-        message("[", class(self)[1], "][INFO][", current.model$name, "]",
-                " ***********************************************************************")
+        d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                   "******************************************",
+                                   "*****************************"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
+        d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                   "'Model [", row, "-", nrow(exec.models),
+                                   "]': Start training"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
+        d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                  "*******************************************",
+                                  "*****************************"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
         loaded.packages <- FALSE
 
         for (current.metric in metrics) {
-          message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                  "----------------------------------------------------------------------")
-          message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                  "'Metric [", which(current.metric == metrics), "-", length(metrics), "]': ",
-                  "Training model for metric '", current.metric, "'")
+          d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                    "-----------------------------------------",
+                                    "-----------------------------"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "train")
+          d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                     "'Metric [", which(current.metric == metrics), "-", length(metrics), "]': ",
+                                     "Training model for metric '", current.metric, "'"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "train")
 
           for (current.cluster in 1:train.set$getNumClusters()) {
 
@@ -373,18 +456,34 @@ D2MCS <- R6::R6Class(
 
             if (!executed.models$exist(current.model$name)) {
 
-              message("[", class(self)[1], "][INFO][", current.model$name, "]",
-                      " ----------------------------------------------------------------------")
-              message("[", class(self)[1], "][INFO][", current.model$name, "]",
-                      " Training on cluster 'C[", current.cluster, "-", train.set$getNumClusters(), "]'")
-              message("[", class(self)[1], "][INFO][", current.model$name, "]",
-                      " ----------------------------------------------------------------------")
+              d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                         " -----------------------------------",
+                                         "-----------------------------------"),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "train")
+              d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                        "Training on cluster 'C[",
+                                        current.cluster, "-",
+                                        train.set$getNumClusters(), "]'"),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "train")
+              d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                         " -----------------------------------",
+                                         "-----------------------------------"),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "train")
               # LOAD REQUIRED PACKAGES
               if (!isTRUE(loaded.packages)) {
                 packages <- unlist(current.model$library)
                 if (!any(is.null(packages), is.na(packages), identical(packages, "NA"))) {
-                  message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                          "Loading required packages...")
+                  d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                             "Loading required packages..."),
+                            level = "INFO",
+                            className = class(self)[1],
+                            methodName = "train")
                   private$loadPackages(packages)
                   loaded.packages <- TRUE
                 }
@@ -413,32 +512,52 @@ D2MCS <- R6::R6Class(
                                trFunction = train.function, metric = current.metric,
                                logs = private$logs)
               if (model.type$isTrained()) {
-                message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                        "Model has been succesfully trained")
+                d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                           "Model has been succesfully trained"),
+                          level = "INFO",
+                          className = class(self)[1],
+                          methodName = "train")
                 executed.models$add(model.type, keep.best = !isTRUE(saveAllModels))
                 executed.models$save()
               } else {
-                message("[", class(self)[1], "][WARNING] Unable to train model '",
-                        current.model$name, "'. Skipping...")
+                d2mcs.log(message = paste0("Unable to train model '",
+                                           current.model$name, "'. Skipping..."),
+                          level = "ERROR",
+                          className = class(self)[1],
+                          methodName = "train")
                 executed.models$add(model.type, keep.best = !isTRUE(saveAllModels))
                 executed.models$save()
               }
 
             } else {
-              message("[", class(self)[1], "][INFO][", current.model$name, "] ",
-                      "'Cluster[", current.cluster, "-", train.set$getNumClusters(), "]': ",
-                      "Model has been previously trained. Skipping...")
+              d2mcs.log(message = paste0("[", current.model$name, "] ",
+                                         "'Cluster[", current.cluster, "-",
+                                         train.set$getNumClusters(), "]': ",
+                                         "Model has been previously trained. ",
+                                         "Skipping..."),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "train")
             }
             cluster.models[[current.metric]][[current.cluster]] <- executed.models$getBest()$train
           }
         }
       }
 
-      message("[", class(self)[1], "][INFO] ----------------------------------",
-              "---------------------")
-      message("[", class(self)[1], "][INFO] Finished")
-      message("[", class(self)[1], "][INFO] ----------------------------------",
-              "---------------------")
+      d2mcs.log(message = paste0("--------------------------------------------",
+                                 "-----------"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "train")
+      d2mcs.log(message = "Finished",
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "train")
+      d2mcs.log(message = paste0("--------------------------------------------",
+                                "-----------"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "train")
 
       if (!is.null(private$cluster.obj)) {
         parallel::stopCluster(private$cluster.obj)
@@ -466,17 +585,27 @@ D2MCS <- R6::R6Class(
     #'
     classify = function(train.output, subset, voting.types, positive.class = NULL) {
 
-      if (!inherits(train.output, "TrainOutput"))
-        stop("[", class(self)[1], "][FATAL] Train output parameter must be ",
-             "defined as 'TrainOutput' type. Aborting...")
+      if (!inherits(train.output, "TrainOutput")) {
+        d2mcs.log(message = paste0("Train output parameter must be defined as ",
+                                   "'TrainOutput' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "classify")
+      }
 
-      if (!inherits(subset, c("Subset", "HDSubset")))
-        stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
-             "'Subset' or 'HDSubset' type. Aborting...")
+      if (!inherits(subset, c("Subset", "HDSubset"))) {
+        d2mcs.log(message = paste0("Subset parameter must be defined as ",
+                                   "'Subset' or 'HDSubset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "classify")
+      }
 
       if (is.null(voting.types)) {
-        stop("[", class(self)[1], "][FATAL] Voting types parameter is not defined. ",
-             "Aborting...")
+        d2mcs.log(message = "Voting types parameter is not defined. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "classify")
       }
 
       if (!is.list(voting.types) || !is.vector(voting.types)) {
@@ -486,69 +615,106 @@ D2MCS <- R6::R6Class(
       if (!all(sapply(voting.types,  function(x) {
         inherits(x, c("SingleVoting", "CombinedVoting"))
       }))) {
-        stop("[", class(self)[1], "][FATAL] Voting Schemes parameter must be ",
-             "defined as 'SingleVoting' or 'CombinedVoting' types. Aborting...")
+        d2mcs.log(message = paste0("Voting Schemes parameter must be defined ",
+                                   "as 'SingleVoting' or 'CombinedVoting' ",
+                                   "types. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "classify")
       }
 
       class.values <- levels(train.output$getClassValues())
 
       if (subset$isBlinded()) {
         if (is.null(positive.class)) {
-          message("[", class(self)[1], "][WARNING] Positive class is not set. ",
-                  "Asuming positive class value used during training stage '",
-                  train.output$getPositiveClass(), "'")
+          d2mcs.log(message = paste0("Positive class is not set. Asuming ",
+                                     "positive class value used during training ",
+                                     "stage '", train.output$getPositiveClass(),
+                                     "'"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "classify")
           positive.class <- train.output$getPositiveClass()
         } else {
           if (!(positive.class %in% class.values)) {
-            stop("[", class(self)[1], "][FATAL] Positive class has ",
-                 "not being defined during training stage. Aborting...")
+            d2mcs.log(message = paste0("Positive class has not being defined ",
+                                       "during training stage. Aborting..."),
+                      level = "FATAL",
+                      className = class(self)[1],
+                      methodName = "classify")
           }
         }
       } else {
         if (is.null(positive.class)) {
-          message("[", class(self)[1], "][WARNING] Positive class not set. ",
-                  "Asuming positive class value used during training stage '",
-                  train.output$getPositiveClass(), "'")
+          d2mcs.log(message = paste0("Positive class not set. Asuming positive ",
+                                     "class value used during training stage '",
+                                     train.output$getPositiveClass(), "'"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "classify")
           positive.class <- train.output$getPositiveClass()
         } else {
           if (!(positive.class %in% class.values)) {
-            message("[", class(self)[1], "][WARNING] Positive class value is ",
-                    "invalid. Must be [", paste0(class.values, collapse = ", "), "].",
-                    " Assuming positive class used during training stage (",
-                    train.output$getPositiveClass(), ")")
+            d2mcs.log(message = paste0("Positive class value is invalid. Must ",
+                                       "be [", paste0(class.values,
+                                                      collapse = ", "), "]. ",
+                                       "Assuming positive class used during ",
+                                       "training stage (",
+                                       train.output$getPositiveClass(), ")"),
+                      level = "WARN",
+                      className = class(self)[1],
+                      methodName = "classify")
             positive.class <- train.output$getPositiveClass()
           }
         }
       }
 
       exec.metrics <- unique(unlist(sapply(voting.types, function(voting) {
-        voting$getMetrics() })))
+        voting$getMetrics()
+      })))
 
       cluster.predictions <- list()
       final.votings <- list()
       final.models <- list()
 
       for (metric in exec.metrics) {
-        if (!metric %in% train.output$getMetrics())
-        {
-          message("[", class(self)[1], "][WARNING] Models were not trained for '",
-                  metric, "' metric. Executing next metric...")
+        if (!metric %in% train.output$getMetrics()) {
+          d2mcs.log(message = paste0("Models were not trained for '", metric,
+                                     "' metric. Executing next metric..."),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "classify")
           next
         }
         predictions <- ClusterPredictions$new(class.values = class.values,
                                               positive.class = positive.class)
         num.clusters <- length(train.output$getModels(metric))
-        message("[", class(self)[1], "][INFO] ********************************",
-                "***********************")
-        message("[", class(self)[1], "][INFO] Executing predictions for ",
-                metric, " metric")
-        message("[", class(self)[1], "][INFO] ********************************",
-                "***********************")
+        d2mcs.log(message = paste0("******************************************",
+                                   "*************"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
+        d2mcs.log(message = paste0("Executing predictions for ", metric,
+                                   " metric"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
+        d2mcs.log(message = paste0("******************************************",
+                                   "*************"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
         for (cluster in seq_len(num.clusters)) {
-          message("[", class(self)[1], "][INFO] ------------------------------",
-                  "-------------------------")
-          message("[", class(self)[1], "][INFO] Computing cluster '",
-                  cluster, "' of '", num.clusters, "'")
+          d2mcs.log(message = paste0("----------------------------------------",
+                                     "---------------"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "classify")
+          d2mcs.log(message = paste0("Computing cluster '", cluster, "' of '",
+                                     num.clusters, "'"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "classify")
 
           pred <- Prediction$new(model = train.output$getModels(metric)[[cluster]],
                                  feature.id = subset$getID())
@@ -564,8 +730,11 @@ D2MCS <- R6::R6Class(
           rm(iterator)
           predictions$add(pred)
         }
-        message("[", class(self)[1], "][INFO] --------------------------------",
-                "-----------------------")
+        d2mcs.log(message = paste0("------------------------------------------",
+                                   "-------------"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
         cluster.predictions[[metric]] <- predictions
       }
 
@@ -573,17 +742,29 @@ D2MCS <- R6::R6Class(
         valid.metrics <- intersect(voting.type$getMetrics(),
                                    names(cluster.predictions))
         if (length(valid.metrics) == 0) {
-          message("[D2MCS][INFO] Metrics for '", voting.type$getName(), "' were ",
-                  "not computed. Ignoring voting type...")
+          d2mcs.log(message = paste0("Metrics for '", voting.type$getName(),
+                                     "' were not computed. Ignoring voting type..."),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "classify")
           next
         }
         voting.name <- class(voting.type)[1]
-        message("[", class(self)[1], "][INFO] ********************************",
-                "***********************")
-        message("[D2MCS][INFO] Computing final prediction values using '",
-                voting.type$getName(), "' schemes")
-        message("[", class(self)[1], "][INFO] ********************************",
-                "***********************")
+        d2mcs.log(message = paste0("******************************************",
+                                   "*************"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
+        d2mcs.log(message = paste0("Computing final prediction values using '",
+                                   voting.type$getName(), "' schemes"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
+        d2mcs.log(message = paste0("******************************************",
+                                   "*************"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
         voting.result <- voting.type$execute(cluster.predictions[valid.metrics])
 
         final.votings[[voting.name]] <- append(final.votings[[voting.name]],
@@ -591,16 +772,27 @@ D2MCS <- R6::R6Class(
       }
 
       if (length(final.votings) == 0) {
-        message("[", class(self)[1], "][ERROR] No voting system could be ",
-                "executed for the indicated metrics. Task not performed")
+        d2mcs.log(message = paste0("No voting system could be executed for the ",
+                                   "indicated metrics. Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "classify")
         NULL
       } else {
-
-        message("[", class(self)[1], "][INFO] ----------------------------------",
-                "---------------------")
-        message("[", class(self)[1], "][INFO] Finished")
-        message("[", class(self)[1], "][INFO] ----------------------------------",
-                "---------------------")
+        d2mcs.log(message = paste0("------------------------------------------",
+                                   "-------------"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
+        d2mcs.log(message = "Finished",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
+        d2mcs.log(message = paste0("------------------------------------------",
+                                   "-------------"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "classify")
 
         ClassificationOutput$new(voting.schemes = final.votings, models = final.models)
       }
@@ -618,8 +810,10 @@ D2MCS <- R6::R6Class(
       model.list <- caret::getModelInfo()
 
       if (is.null(model.list)) {
-        stop("[", class(self)[1], "][FATAL] Models not found in caret library. ",
-             "Aborting...")
+        d2mcs.log(message = "Models not found in caret library. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "loadAvailableModels")
       }
 
       supported.packages <- unique(available.packages(repos = "https://cloud.r-project.org",
@@ -639,8 +833,11 @@ D2MCS <- R6::R6Class(
         }
       }, modelList = model.list))
 
-      message("[", class(self)[1], "][INFO] ", nrow(models),
-              " M.L. classifiers has been succesfully loaded")
+      d2mcs.log(message = paste0(nrow(models), " M.L. classifiers has been ",
+                                 "succesfully loaded"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "loadAvailableModels")
       models <- with(models, models[order(models$family, models$name), ])
       models
     },
@@ -648,9 +845,13 @@ D2MCS <- R6::R6Class(
       if (length(pkgName) > 0) {
         new.packages <- pkgName[sapply(pkgName, function(pkg) system.file(package = pkg) == "")]
         if (length(new.packages) > 0) {
-          message("[", class(self)[1], "][INFO] ", length(new.packages),
-                  " packages needed. Installing packages '",
-                  paste0(new.packages, collapse = ","), "'...")
+          d2mcs.log(message = paste0(length(new.packages), " packages needed. ",
+                                     "Installing packages '",
+                                     paste0(new.packages,
+                                            collapse = ","), "'..."),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "loadPackages")
 
           lapply(new.packages, function(pkg) caret::checkInstall(pkg = pkg))
         }
@@ -662,8 +863,10 @@ D2MCS <- R6::R6Class(
           }
         })
       } else {
-        message("[", class(self)[1], "][ERROR] Packages are not available ",
-                "on CRAN...")
+        d2mcs.log(message = "Packages are not available on CRAN...",
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "loadPackages")
       }
     },
     cluster.conf = NULL,

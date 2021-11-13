@@ -65,8 +65,10 @@ HDSubset <- R6::R6Class(
     initialize = function(file.path, feature.names, feature.id, start.at = 0,
                           sep = ",", chunk.size) {
       if (is.null(feature.names) || ncol(feature.names) == 0) {
-        stop("[", class(self)[1], "][FATAL] Dataset has not being preloaded. ",
-             "Aborting...")
+        d2mcs.log(message = "Dataset has not being preloaded. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       private$chunk.size <- chunk.size
       private$file.path <- file.path
@@ -78,8 +80,11 @@ HDSubset <- R6::R6Class(
       else private$feature.id <- feature.id
 
       if (!is.numeric(start.at) || start.at < 0) {
-        message("[", class(self)[1], "][WARNING] Starting point must be a ",
-                "non-negative numeric value. Assuming 0 as default value")
+        d2mcs.log(message = paste0("Starting point must be a non-negative ",
+                                   "numeric value. Assuming 0 as default value"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
         private$start.at <- 0
       } else private$start.at <- start.at
     },
@@ -115,14 +120,19 @@ HDSubset <- R6::R6Class(
     #'
     getIterator = function(chunk.size = private$chunk.size, verbose = FALSE) {
       if (!is.numeric(chunk.size)) {
-        message("[", class(self)[1], "][WARNING] Chunk size is not valid. ",
-                "Assuming default value")
+        d2mcs.log(message = "Chunk size is not valid. Assuming default value",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getIterator")
         chunk.size <- private$chunk.size
       }
 
       if (!is.logical(verbose)) {
-        message("[", class(self)[1], "][WARNING] Verbose type is not valid. ",
-                "Assuming 'FALSE' as default value")
+        d2mcs.log(message = paste0("Verbose type is not valid. Assuming ",
+                                   "'FALSE' as default value"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getIterator")
         verbose <- FALSE
       }
 

@@ -71,8 +71,12 @@ PearsonHeuristic <- R6::R6Class(
       tryCatch(
       stats::cor(col1, col2, method = "pearson"),
       error = function(e) {
-        message("[", class(self)[1], "][ERROR] Error occurred calculating ",
-                "pearson heuristic: '", e, "' . Returning NA")
+        d2mcs.log(message = paste0("Error occurred calculating ",
+                                   "pearson heuristic: '", e,
+                                   "'. Returning NA"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = NULL)
         NA
       })
     }

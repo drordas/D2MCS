@@ -1,21 +1,56 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("SummaryFunction: initialize function works", {
 
   testthat::expect_is(SummaryFunction$new(measures = "example"),
                       "SummaryFunction")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("SummaryFunction: initialize function checks parameter type", {
 
   testthat::expect_error(SummaryFunction$new(measures = NULL),
-                         "[SummaryFunction][FATAL] Measures were not defined. Aborting...",
+                         "[SummaryFunction][initialize][FATAL] Measures were not defined. Aborting...",
                          fixed = TRUE)
-  })
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
 
 testthat::test_that("SummaryFunction: execute function works", {
 
   testthat::expect_error(SummaryFunction$new(measures = "example")$execute(),
-                         "[SummaryFunction][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[SummaryFunction][execute][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("SummaryFunction: getMeasures function works", {
@@ -23,4 +58,9 @@ testthat::test_that("SummaryFunction: getMeasures function works", {
   testthat::expect_equal(SummaryFunction$new(measures = "example")$getMeasures(),
                          "example",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

@@ -49,7 +49,10 @@ SummaryFunction <- R6::R6Class(
     #'
     initialize = function(measures) {
       if (is.null(measures))
-        stop("[", class(self)[1], "][FATAL] Measures were not defined. Aborting...")
+        d2mcs.log(message = "Measures were not defined. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       private$measures <- measures
     },
     #'
@@ -58,8 +61,11 @@ SummaryFunction <- R6::R6Class(
     #' automatically invoked by \code{\link{D2MCS}} framework.
     #'
     execute = function() {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "execute")
     },
     #'
     #' @description The function obtains the measures used to compute the

@@ -85,15 +85,21 @@ TwoClass <- R6::R6Class(
     #'
     create = function(summaryFunction, search.method = "grid", class.probs = NULL) {
       if (is.null(summaryFunction) ||  !"SummaryFunction" %in% class(summaryFunction)) {
-        stop("[", class(self)[1], "][FATAL] SummaryFunction parameter must be ",
-             "defined as 'SummaryFunction' type. Aborting...")
+        d2mcs.log(message = paste0("SummaryFunction parameter must be defined ",
+                                   "as 'SummaryFunction' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "create")
       } else {
         if (all(!is.null(search.method), search.method %in% c("grid", "random"))) {
           private$search <- search.method
         } else {
-          message("[", class(self)[1], "][WARNING] Invalid search method. ",
-                  "Only 'random' or 'grid' search method are available. ",
-                  "Assuming grid method")
+          d2mcs.log(message = paste0("Invalid search method. Only 'random' or ",
+                                     "'grid' search method are available. ",
+                                     "Assuming grid method"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "create")
           private$search <- "grid"
         }
         class.probability <- ifelse((!is.null(class.probs) &&
@@ -119,9 +125,13 @@ TwoClass <- R6::R6Class(
     #' @return A \code{\link[caret]{trainControl}} object.
     #'
     getTrFunction = function() {
-      if (is.null(private$trFunction))
-        message("[", class(self)[1], "][WARNING] TrainFunction is not created. ",
-                "Execute create method first. Task not performed")
+      if (is.null(private$trFunction)) {
+        d2mcs.log(message = paste0("TrainFunction is not created. Execute ",
+                                   "create method first. Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "getTrFunction")
+      }
       private$trFunction
     },
     #'
@@ -134,12 +144,18 @@ TwoClass <- R6::R6Class(
     #'
     setClassProbs = function(class.probs) {
       if (is.null(class.probs) || !is.logical(class.probs)) {
-        message("[", class(self)[1], "][WARNING] Class probabilities parameter ",
-                "is null or erroneous. Task not performed")
+        d2mcs.log(message = paste0("Class probabilities parameter is null or ",
+                                   "erroneous. Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "setClassProbs")
       } else {
         if (is.null(private$trFunction)) {
-          message("[", class(self)[1], "][WARNING] TrainFunction is not created. ",
-                  "Execute create method first. Task not performed")
+          d2mcs.log(message = paste0("TrainFunction is not created. Execute ",
+                                     "create method first. Task not performed"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "setClassProbs")
         } else {
           private$trFunction$classProbs <- class.probs
         }
@@ -167,12 +183,18 @@ TwoClass <- R6::R6Class(
     #'
     setSummaryFunction = function(summaryFunction) {
       if (is.null(summaryFunction) || !"SummaryFunction" %in% class(summaryFunction)) {
-        message("[", class(self)[1], "][WARNING] SummaryFunction parameter ",
-                "is null or incorrect type. Task not performed")
+        d2mcs.log(message = paste0("SummaryFunction parameter is null or ",
+                                   "incorrect type. Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "setSummaryFunction")
       } else {
         if (is.null(private$trFunction)) {
-          message("[", class(self)[1], "][WARNING] TrainFunction is not created. ",
-                  "Execute create method first. Task not performed")
+          d2mcs.log(message = paste0("TrainFunction is not created. Execute ",
+                                     "create method first. Task not performed"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "setSummaryFunction")
         } else {
           private$trFunction$summaryFunction <- summaryFunction$execute
         }

@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("SimpleVoting: initialize function works", {
 
   cutoff <- 0.5
@@ -8,12 +13,32 @@ testthat::test_that("SimpleVoting: initialize function works", {
                       "SimpleVoting")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("SimpleVoting: initialize function checks parameter type", {
 
   cutoff <- "a"
   testthat::expect_error(SimpleVoting$new(cutoff = cutoff),
-                         "[SimpleVoting][FATAL] Invalid values of cutoff. Aborting...",
+                         "[SimpleVoting][initialize][FATAL] Invalid values of cutoff. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("SimpleVoting: getCutoff function works", {
@@ -23,14 +48,33 @@ testthat::test_that("SimpleVoting: getCutoff function works", {
                          0.5)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("SimpleVoting: execute function works", {
 
   cutoff <- 0.5
   testthat::expect_error(SimpleVoting$new(cutoff = cutoff)$execute(NULL, NULL),
-                         "[SimpleVoting][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[SimpleVoting][execute][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
 
 testthat::test_that("SimpleVoting: getFinalPred function works", {
 
@@ -44,10 +88,10 @@ testthat::test_that("SimpleVoting: getFinalPred function works", {
   type <- "raw"
   target <- NULL
   filter <- NULL
-  testthat::expect_message(SimpleVoting$new()$getFinalPred(type = type,
+  testthat::expect_warning(SimpleVoting$new()$getFinalPred(type = type,
                                                            target = target,
                                                            filter = filter),
-                           "[SimpleVoting][WARNING] Filter parameter must be defined as 'logical' type. Aborting...",
+                           "[SimpleVoting][getFinalPred][WARN] Filter parameter must be defined as 'logical' type. Assuming FALSE value",
                            fixed = TRUE)
   type <- "raw"
   target <- NULL
@@ -66,14 +110,19 @@ testthat::test_that("SimpleVoting: getFinalPred function works", {
   type <- "prob"
   target <- NULL
   filter <- FALSE
-  testthat::expect_null(SimpleVoting$new()$getFinalPred(type = type,
-                                                        target = target,
-                                                        filter = filter))
+  testthat::expect_null(suppressWarnings(SimpleVoting$new()$getFinalPred(type = type,
+                                                                         target = target,
+                                                                         filter = filter)))
 
   type <- "prob"
   target <- NULL
   filter <- TRUE
-  testthat::expect_null(SimpleVoting$new()$getFinalPred(type = type,
-                                                        target = target,
-                                                        filter = filter))
+  testthat::expect_null(suppressWarnings(SimpleVoting$new()$getFinalPred(type = type,
+                                                                         target = target,
+                                                                         filter = filter)))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("KendallHeuristic: heuristic function works", {
 
   heuristic <- KendallHeuristic$new()
@@ -11,6 +16,17 @@ testthat::test_that("KendallHeuristic: heuristic function works", {
                         "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
+})
+
+
 testthat::test_that("KendallHeuristic: heuristic function checks parameter type", {
 
   heuristic <- KendallHeuristic$new()
@@ -21,7 +37,7 @@ testthat::test_that("KendallHeuristic: heuristic function checks parameter type"
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[KendallHeuristic][WARNING] Columns must be real. Returning NA",
+                           "[KendallHeuristic][DEBUG] Columns must be real. Returning NA",
                            fixed = TRUE)
 
   col1 <- c(1, 2, 1)
@@ -30,7 +46,7 @@ testthat::test_that("KendallHeuristic: heuristic function checks parameter type"
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[KendallHeuristic][WARNING] Columns must be real. Returning NA",
+                           "[KendallHeuristic][DEBUG] Columns must be real. Returning NA",
                            fixed = TRUE)
 
   col1 <- c("2", "0", "1")
@@ -44,8 +60,12 @@ testthat::test_that("KendallHeuristic: heuristic function checks parameter type"
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[KendallHeuristic][ERROR] Error occurred calculating kendall heuristic: 'Error in cor.test.default(col1, col2, method = \"kendall\"): 'x' must be a numeric vector
-' . Returning NA",
+                           "[KendallHeuristic][ERROR] Error occurred calculating kendall heuristic: 'Error in cor.test.default(col1, col2, method = \"kendall\"): 'x' must be a numeric vector'. Returning NA",
                            fixed = TRUE)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

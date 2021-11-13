@@ -70,8 +70,11 @@ ClassWeightedVoting <- R6::R6Class(
     #'
     setWeights = function(weights) {
       if (missing(weights) || is.null(weights)) {
-        message("[", class(self)[1], "][WARNING] Weights values not changed due ",
-                "to inconsistency error")
+        d2mcs.log(message = paste0("Weights values not changed due to ",
+                                   "inconsistency error"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "setWeights")
       } else {
         private$weights <- data.frame(matrix(NA, nrow = 1, ncol = 0),
                                       stringsAsFactors = FALSE)
@@ -96,27 +99,39 @@ ClassWeightedVoting <- R6::R6Class(
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {
-        stop("[", class(self)[1], "][FATAL] Predictions parameter must be defined ",
-             "as 'ClusterPrediction' type. Aborting...")
+        d2mcs.log(message = paste0("Predictions parameter must be defined as ",
+                                   "'ClusterPrediction' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (predictions$size() <= 0) {
-        stop("[", class(self)[1], "][FATAL] Cluster predictions were not ",
-             "computed. Aborting...")
+        d2mcs.log(message = "Cluster predictions were not computed. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (isTRUE(verbose)) {
-        message("[", class(self)[1], "][INFO] Performing voting with '~",
-                paste0(round(self$getWeights(), digits = 4), collapse = ", ~"),
-                "' weights and cutoff of ", self$getCutoff())
+        d2mcs.log(message = paste0("Performing voting with '~",
+                                   paste0(round(self$getWeights(),
+                                                digits = 4),
+                                          collapse = ", ~"),
+                                   "' weights and cutoff of ", self$getCutoff()),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (any(is.null(private$weights),
-                length(private$weights) != predictions$size()))
-      {
+              length(private$weights) != predictions$size())) {
         if (isTRUE(verbose)) {
-          message("[", class(self)[1], "][WARNING] Weight values are missing or ",
-                   "incorrect. Assuming default model performance values")
+          d2mcs.log(message = paste0("Weight values are missing or incorrect. ",
+                                     "Assuming default model performance values"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "execute")
         }
         private$weights <- sapply(predictions$getAll(), function(x) {
           x$getModelPerformance()
@@ -147,8 +162,10 @@ ClassWeightedVoting <- R6::R6Class(
         winner.class <- names(row.sum)[which(row.sum == max(row.sum))]
 
         if (length(winner.class) != 1) {
-          stop("[", class(self)[1], "][FATAL] Tie found. Untied method under ",
-               "development")
+          d2mcs.log(message = "Tie found. Untied method under development",
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "execute")
         } else {
           winner.prob <- weighted.mean(prob.pred[row, which(raw.pred[row, ] == winner.class)],
                                        self$getWeights()[which(raw.pred[row, ] == winner.class)])

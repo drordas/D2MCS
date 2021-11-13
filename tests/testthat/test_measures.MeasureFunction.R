@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("MeasureFunction: initialize function works", {
 
   lvs <- c("normal", "abnormal")
@@ -17,11 +22,31 @@ testthat::test_that("MeasureFunction: initialize function works", {
                       "MeasureFunction")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("MeasureFunction: initialize function checks parameter type", {
 
   testthat::expect_error(MeasureFunction$new(performance = list()),
-                         "[MeasureFunction][FATAL] Performance parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
+                         "[MeasureFunction][initialize][FATAL] Performance parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("MeasureFunction: compute function works", {
@@ -40,6 +65,11 @@ testthat::test_that("MeasureFunction: compute function works", {
   confMatrix <- ConfMatrix$new(confMatrix = caret::confusionMatrix(xtab))
 
   testthat::expect_error(MeasureFunction$new(performance = confMatrix)$compute(),
-                         "[MeasureFunction][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
+                         "[MeasureFunction][compute][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

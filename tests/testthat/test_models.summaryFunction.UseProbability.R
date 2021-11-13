@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("UseProbability: initialize function works", {
   useProbability <- UseProbability$new()
   testthat::expect_is(useProbability,
@@ -5,6 +10,16 @@ testthat::test_that("UseProbability: initialize function works", {
 
   testthat::expect_equal(useProbability$getMeasures(),
                          c("ROC", "Sens", "Spec", "Kappa", "Accuracy", "TCR_9", "MCC", "PPV"))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("UseProbability: execute function works", {
@@ -26,6 +41,16 @@ testthat::test_that("UseProbability: execute function works", {
   testthat::expect_equal(class(result), "numeric")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("UseProbability: execute function checks parameter", {
 
   useProbability <- UseProbability$new()
@@ -38,7 +63,7 @@ testthat::test_that("UseProbability: execute function checks parameter", {
   testthat::expect_error(useProbability$execute(data = data,
                                                 lev = NULL,
                                                 model = NULL),
-                         "[UseProbability][FATAL] Your outcome has 3 levels. The 'UseProbability' function is not appropriate. Aborting...",
+                         "[UseProbability][execute][FATAL] Your outcome has 3 levels. The 'UseProbability' function is not appropriate. Aborting...",
                          fixed = TRUE)
 
   data <- data.frame(c(1, 1, 0), c(0, 1, 2))
@@ -49,6 +74,11 @@ testthat::test_that("UseProbability: execute function checks parameter", {
   testthat::expect_error(useProbability$execute(data = data,
                                                 lev = NULL,
                                                 model = NULL),
-                         "[UseProbability][FATAL] Levels of observed and predicted data do not match. Aborting...",
+                         "[UseProbability][execute][FATAL] Levels of observed and predicted data do not match. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

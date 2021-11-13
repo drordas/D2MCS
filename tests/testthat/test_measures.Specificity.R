@@ -41,6 +41,6 @@ testthat::test_that("Specificity: compute function works", {
 
 testthat::test_that("Specificity: compute function checks parameter type", {
   testthat::expect_error(Specificity$new(performance = NULL)$compute(performance.output = NULL),
-                         "[Specificity][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
+                         "[Specificity][compute][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
                          fixed = TRUE)
 })

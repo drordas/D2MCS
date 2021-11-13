@@ -62,23 +62,33 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
                           metric = "dep.tar") {
 
       if (!(is.numeric(binaryCutoff) && binaryCutoff >= 0 && binaryCutoff <= 1)) {
-        stop("[", class(self)[1], "][FATAL] Invalid binary cut-off value. ",
-             "Aborting...")
+        d2mcs.log(message = "Invalid binary cut-off value. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!(is.numeric(realCutoff) && realCutoff >= 0 && realCutoff <= 1)) {
-        stop("[", class(self)[1], "][FATAL] Invalid real cut-off value. ",
-             "Aborting...")
+        d2mcs.log(message = "Invalid real cut-off value. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!(is.character(tiebreakMethod) && tiebreakMethod %in% c("lfdc", "ltdc"))) {
-        stop("[", class(self)[1], "][FATAL] Invalid real tiebreak method ('lfdc' ",
-             "or 'ltdc'). Aborting...")
+        d2mcs.log(message = paste0("Invalid real tiebreak method ('lfdc' or ",
+                                   "'ltdc'). Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!(is.character(metric) && metric %in% c("dep.tar", "dep.fea"))) {
-        stop("[", class(self)[1], "][FATAL] Invalid metric value ('dep.fea' or ",
-             "'dep.tar'). Aborting...")
+        d2mcs.log(message = paste0("Invalid metric value ('dep.fea' or ",
+                                   "'dep.tar'). Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$binaryCutoff <- binaryCutoff
@@ -140,8 +150,10 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     #'
     setBinaryCutoff = function(cutoff) {
       if (!(is.numeric(cutoff) && cutoff >= 0 && cutoff <= 1)) {
-        stop("[", class(self)[1], "][FATAL] Invalid binary cut-off value. ",
-             "Aborting...")
+        d2mcs.log(message = "Invalid binary cut-off value. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "setBinaryCutoff")
       }
       private$binaryCutoff <- cutoff
     },
@@ -153,8 +165,10 @@ DependencyBasedStrategyConfiguration <- R6::R6Class(
     #'
     setRealCutoff = function(cutoff) {
       if (!(is.numeric(cutoff) && cutoff >= 0 && cutoff <= 1)) {
-        stop("[", class(self)[1], "][FATAL] Invalid real cut-off value. ",
-             "Aborting...")
+        d2mcs.log(message = "Invalid real cut-off value. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "setRealCutoff")
       }
       private$realCutoff <- cutoff
     },

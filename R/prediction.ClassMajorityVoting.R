@@ -57,7 +57,10 @@ ClassMajorityVoting <- R6::R6Class(
     #'
     initialize = function(cutoff = 0.5, class.tie = NULL, majority.class = NULL) {
       if (all(!is.null(class.tie), !is.character(class.tie), !is.numeric(class.tie))) {
-        stop("[", class(self)[1], "][FATAL] Invalid class tie value. Aborting...")
+        d2mcs.log(message = "Invalid class tie value. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       super$initialize(cutoff = cutoff)
       private$class.tie <- class.tie
@@ -86,31 +89,46 @@ ClassMajorityVoting <- R6::R6Class(
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {
-        stop("[", class(self)[1], "][FATAL] Predictions parameter must be defined ",
-             "as 'ClusterPrediction' type. Aborting...")
+        d2mcs.log(message = paste0("Predictions parameter must be defined as ",
+                                   "'ClusterPrediction' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (predictions$size() <= 0) {
-        stop("[", class(self)[1], "][FATAL] Cluster predictions were not computed. ",
-             "Aborting...")
+        d2mcs.log(message = "Cluster predictions were not computed. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (is.null(private$majority.class) ||
           !(private$majority.class %in% predictions$getClassValues())) {
-        message("[", class(self)[1], "][WARNING] Majority class unset or invalid.",
-                " Assuming '", predictions$getPositiveClass(), "' by default")
+        d2mcs.log(message = paste0("Majority class unset or invalid. Assuming '",
+                                   predictions$getPositiveClass(), "' by default"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "execute")
         private$majority.class <- predictions$getPositiveClass()
       }
 
       if (any(is.null(private$class.tie),
              !(private$class.tie %in% predictions$getClassValues()))) {
-        message("[", class(self)[1], "][INFO] Class tie unset or invalid")
+        d2mcs.log(message = "Class tie unset or invalid",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         private$class.tie <- NULL
       }
 
       if (isTRUE(verbose)) {
-        message("[", class(self)[1], "][INFO] Performing voting using '",
-                self$getMajorityClass(), "' as majority class")
+        d2mcs.log(message = paste0("Performing voting using '",
+                                   self$getMajorityClass(),
+                                   "' as majority class"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       final.raw <- c()
@@ -131,15 +149,21 @@ ClassMajorityVoting <- R6::R6Class(
 
         if (length(max.values) > 1) {
           if (self$getMajorityClass() %in% max.values) {
-            message("[", class(self)[1], "][INFO] Found Tie. Resolving using ",
-                    "'majority class' solver")
+            d2mcs.log(message = paste0("Found Tie. Resolving using 'majority ",
+                                       "class' solver"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "execute")
             entry <- self$getMajorityClass()
           } else {
             entry <- self$getClassTie()
             if (any(is.null(self$getClassTie()),
                     !(self$getClassTie() %in% max.values))) {
-              message("[", class(self)[1], "][INFO] Resolving tie using first ",
-                      "occurrence.")
+              d2mcs.log(message = "Resolving tie using first occurrence",
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "execute")
+
               entry <- max.values[1]
             }
           }

@@ -66,15 +66,23 @@ SpearmanHeuristic <- R6::R6Class(
     #'
     heuristic = function(col1, col2, column.names = NULL) {
       if (!is.numeric(col1) || !is.numeric(col2)) {
-        message("[", class(self)[1], "][WARNING] Columns must be 'numeric' type. ",
-                "Returning NA")
+        d2mcs.log(message = "Columns must be 'numeric' type. Returning NA",
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = NULL)
         NA
       } else {
         tryCatch(
         stats::cor.test(col1, col2, method = "spearman", exact = FALSE)$p.value,
         error = function(e) {
-          message("[", class(self)[1], "][ERROR] Error occurred calculating ",
-                  "spearman heuristic: '", e, "' . Returning NA")
+          d2mcs.log(message = paste0("Error occurred calculating ",
+                                     "spearman heuristic: '", gsub("[\r\n]",
+                                                                      "",
+                                                                      e),
+                                     "'. Returning NA"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = NULL)
           NA
         })
       }

@@ -67,8 +67,12 @@ InformationGainHeuristic <- R6::R6Class(
       tryCatch(
       FSelector::information.gain(as.formula(sprintf("`%s` ~.", column.names[2])), data)$attr_importance,
       error = function(e) {
-        message("[", class(self)[1], "][ERROR] Error occurred calculating ",
-                "information.gain heuristic: '", e, "' . Returning NA")
+        d2mcs.log(message = paste0("Error occurred calculating ",
+                                   "information.gain heuristic: '", e,
+                                   "'. Returning NA"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = NULL)
         NA
       })
     }

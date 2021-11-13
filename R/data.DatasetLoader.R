@@ -89,8 +89,11 @@ DatasetLoader <- R6::R6Class(
                     ignore.columns = NULL) {
 
       if (is.null(filepath) || !file.exists(filepath)) {
-        stop("[", class(self)[1], "][FATAL] Corpus cannot be found at defined ",
-             "location. Aborting...")
+        d2mcs.log(message = paste0("Corpus cannot be found at defined ",
+                                   "location. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "load")
       }
 
       dt.size <- (file.info(filepath)$size / 2^30)

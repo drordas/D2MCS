@@ -68,15 +68,23 @@ KendallHeuristic <- R6::R6Class(
     #'
     heuristic = function(col1, col2, column.names = NULL) {
       if (private$isBinary(col1) || !private$isBinary(col2)) {
-        message("[", class(self)[1], "][WARNING] Columns must be real. ",
-                "Returning NA")
+        d2mcs.log(message = "Columns must be real. Returning NA",
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = NULL)
         NA
       } else {
         tryCatch(
         unname(stats::cor.test(col1, col2, method = "kendall")$estimate, force = TRUE),
         error = function(e) {
-          message("[", class(self)[1], "][ERROR] Error occurred calculating ",
-                  "kendall heuristic: '", e, "' . Returning NA")
+          d2mcs.log(message = paste0("Error occurred calculating ",
+                                     "kendall heuristic: '", gsub("[\r\n]",
+                                                                      "",
+                                                                      e),
+                                     "'. Returning NA"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = NULL)
           NA
         })
       }

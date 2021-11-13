@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("MCCHeuristic: heuristic function works", {
 
   heuristic <- MCCHeuristic$new()
@@ -11,6 +16,16 @@ testthat::test_that("MCCHeuristic: heuristic function works", {
                         "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
+})
+
 testthat::test_that("MCCHeuristic: heuristic function checks parameter type", {
 
   heuristic <- MCCHeuristic$new()
@@ -21,7 +36,7 @@ testthat::test_that("MCCHeuristic: heuristic function checks parameter type", {
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[MCCHeuristic][WARNING] Columns must be binary. Returning NA",
+                           "[MCCHeuristic][DEBUG] Columns must be binary. Returning NA",
                            fixed = TRUE)
 
   col1 <- c(1, 0, 1)
@@ -30,6 +45,11 @@ testthat::test_that("MCCHeuristic: heuristic function checks parameter type", {
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[MCCHeuristic][WARNING] Columns must be binary. Returning NA",
+                           "[MCCHeuristic][DEBUG] Columns must be binary. Returning NA",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

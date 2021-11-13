@@ -59,7 +59,10 @@ ProbAverageWeightedVoting <- R6::R6Class(
     #'
     initialize = function(cutoff = 0.5, class.tie = NULL, weights = NULL) {
       if (all(!is.null(class.tie), !is.character(class.tie), !is.numeric(class.tie))) {
-        stop("[", class(self)[1], "][FATAL] Invalid class tie value. Aborting...")
+        d2mcs.log(message = "Invalid class tie value. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       super$initialize(cutoff = cutoff)
@@ -86,8 +89,11 @@ ProbAverageWeightedVoting <- R6::R6Class(
     #'
     setWeights = function(weights) {
       if (missing(weights) || is.null(weights)) {
-        message("[", class(self)[1], "][WARNING] Weights values not changed due ",
-                "to inconsistency error")
+        d2mcs.log(message = paste0("Weights values not changed due to ",
+                                   "inconsistency error"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "setWeights")
       } else {
         private$weights <- data.frame(matrix(NA, nrow = 1, ncol = 0),
                                       stringsAsFactors = FALSE)
@@ -112,13 +118,18 @@ ProbAverageWeightedVoting <- R6::R6Class(
     #'
     execute = function(predictions, verbose = FALSE) {
       if (!inherits(predictions, "ClusterPredictions")) {
-        stop("[", class(self)[1], "][FATAL] Predictions parameter must be defined ",
-             "as 'ClusterPrediction' type. Aborting...")
+        d2mcs.log(message = paste0("Predictions parameter must be defined as ",
+                                   "'ClusterPrediction' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (predictions$size() <= 0) {
-        stop("[", class(self)[1], "][FATAL] Cluster predictions were not computed. ",
-             "Aborting...")
+        d2mcs.log(message = "Cluster predictions were not computed. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
 
@@ -126,8 +137,11 @@ ProbAverageWeightedVoting <- R6::R6Class(
                 length(private$weights) != predictions$size()))
       {
         if (isTRUE(verbose)) {
-          message("[", class(self)[1], "][WARNING] Weight values are missing or ",
-                   "incorrect. Assuming default model performance values")
+          d2mcs.log(message = paste0("Weight values are missing or incorrect. ",
+                                     "Assuming default model performance values"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "execute")
         }
         private$weights <- sapply(predictions$getAll(), function(x) {
           x$getModelPerformance()
@@ -136,8 +150,11 @@ ProbAverageWeightedVoting <- R6::R6Class(
 
 
       if (isTRUE(verbose)) {
-        message("[", class(self)[1], "][INFO] Performing voting using '",
-                self$getClassTie(), "' as tie solving")
+        d2mcs.log(message = paste0("Performing voting using '",
+                                   self$getClassTie(), "' as tie solving"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       final.prob <- data.frame()
@@ -176,12 +193,18 @@ ProbAverageWeightedVoting <- R6::R6Class(
           max.values <- names(row)[max.col]
           if (is.null(self$getClassTie()) ||
               !(self$getClassTie() %in% max.values)) {
-            message("[", class(self)[1], "][INFO] Tie solver not found. ",
-                    "Resolving tie using first occurrence.")
+            d2mcs.log(message = paste0("Tie solver not found. Resolving tie ",
+                                       "using first occurrence"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "execute")
             entry <- max.values[1]
           } else {
-            message("[", class(self)[1], "][INFO] Tie solver found. ",
-                    "Resolving tie using '", self$getClassTie(), "'.")
+            d2mcs.log(message = paste0("Tie solver found. Resolving tie using '",
+                                       self$getClassTie(),"'"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "execute")
             entry <- self$getClassTie()
           }
         }

@@ -69,8 +69,11 @@ VotingStrategy <- R6::R6Class(
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
     execute = function(predictions, ...) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "execute")
     },
     #'
     #' @description The function returns the name of the voting scheme.

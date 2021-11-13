@@ -1,4 +1,6 @@
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel",
                                                  "initializeTest"),
@@ -56,7 +58,7 @@ testthat::test_that("Model: initialize function works", {
 
   modelClass <- testthat::expect_message(Model$new(dir.path = dir.path,
                                                    model = model),
-                                         "[Model][INFO] Save directory not exist. Creating...",
+                                         "[Model][initialize][INFO] Save directory not exist. Creating...",
                                          fixed = TRUE)
   testthat::expect_is(modelClass,
                       "Model")
@@ -74,11 +76,11 @@ testthat::test_that("Model: initialize function works", {
                             mustWork = FALSE)
 
   testthat::expect_message(Model$new(dir.path = dir.path, model = model),
-                           "[Model][INFO] Model 'lda' already exists. Loading...",
+                           "[Model][initialize][INFO] Model 'lda' already exists. Loading...",
                            fixed = TRUE)
 
   testthat::expect_message(Model$new(dir.path = dir.path, model = model),
-                           "[Model][INFO] 'lda', Linear Discriminant Analysis', Discriminant Analysis' has been succesfully loaded!",
+                           "[Model][initialize][INFO] 'lda', Linear Discriminant Analysis', Discriminant Analysis' has been succesfully loaded!",
                            fixed = TRUE)
 
   dir.path <- normalizePath(path = file.path(tempdir(),
@@ -89,11 +91,13 @@ testthat::test_that("Model: initialize function works", {
                             mustWork = FALSE)
 
   testthat::expect_message(Model$new(dir.path = dir.path, model = model),
-                           "[Model][ERROR] Unable to load trained model. Task not performed",
+                           "[Model][initialize][ERROR] Unable to load trained model. Task not performed",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -105,6 +109,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: initialize function checks parameter", {
@@ -124,11 +133,13 @@ testthat::test_that("Model: initialize function checks parameter", {
 
   testthat::expect_error(Model$new(dir.path = dir.path,
                                    model = NULL),
-                         "[Model][FATAL] Model was not defined. Aborting...",
+                         "[Model][initialize][FATAL] Model was not defined. Aborting...",
                          fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -140,6 +151,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: isTrained function works", {
@@ -164,6 +180,8 @@ testthat::test_that("Model: isTrained function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -175,6 +193,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getDir function works", {
@@ -198,6 +221,8 @@ testthat::test_that("Model: getDir function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -209,6 +234,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getName function works", {
@@ -233,6 +263,8 @@ testthat::test_that("Model: getName function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -244,6 +276,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getFamily function works", {
@@ -268,6 +305,8 @@ testthat::test_that("Model: getFamily function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -279,6 +318,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getDescription function works", {
@@ -303,6 +347,8 @@ testthat::test_that("Model: getDescription function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -314,6 +360,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: train function works", {
@@ -379,7 +430,7 @@ testthat::test_that("Model: train function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_true(modelClass$isTrained())
@@ -389,11 +440,13 @@ testthat::test_that("Model: train function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "[Model][INFO][lda] Model has already been trained",
+                           "[Model][train][INFO] [lda] Model has already been trained",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -405,6 +458,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: train function checks parameter", {
@@ -468,7 +526,7 @@ testthat::test_that("Model: train function checks parameter", {
                                           trFunction = trFunction,
                                           metric = metric,
                                           logs = logs),
-                         "[Model][FATAL][lda] Cannot perform trainning stage. Train set must be defined as 'data.frame' type. Aborting...",
+                         "[Model][train][FATAL] [lda] Cannot perform trainning stage. Train set must be defined as 'data.frame' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(modelClass$train(train.set = data.frame(),
@@ -476,7 +534,7 @@ testthat::test_that("Model: train function checks parameter", {
                                           trFunction = trFunction,
                                           metric = metric,
                                           logs = logs),
-                         "[Model][FATAL][lda] Cannot perform trainning stage. Train set is empty. Aborting...",
+                         "[Model][train][FATAL] [lda] Cannot perform trainning stage. Train set is empty. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(modelClass$train(train.set = train.set,
@@ -484,7 +542,7 @@ testthat::test_that("Model: train function checks parameter", {
                                           trFunction = NULL,
                                           metric = metric,
                                           logs = logs),
-                         "[Model][FATAL][lda] TrainFunction must be inherits from 'TrainFunction' class. Aborting...",
+                         "[Model][train][FATAL] [lda] TrainFunction must be inherits from 'TrainFunction' class. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(modelClass$train(train.set = train.set,
@@ -492,11 +550,13 @@ testthat::test_that("Model: train function checks parameter", {
                                           trFunction = trFunction,
                                           metric = "WRONG",
                                           logs = logs),
-                         "[Model][FATAL][lda] Metric is not defined or unavailable. Must be a [ROC, Sens, Spec, Kappa, Accuracy, TCR_9, MCC, PPV] type. Aborting...",
+                         "[Model][train][FATAL] [lda] Metric is not defined or unavailable. Must be a [ROC, Sens, Spec, Kappa, Accuracy, TCR_9, MCC, PPV] type. Aborting...",
                          fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -508,6 +568,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getTrainedModel function works", {
@@ -529,7 +594,7 @@ testthat::test_that("Model: getTrainedModel function works", {
                           model = model)
 
   testthat::expect_message(modelClass$getTrainedModel(),
-                           "[Model][WARNING] Model 'lda' is not trained. Task not performed",
+                           "[Model][getTrainedModel][ERROR] Model 'lda' is not trained. Task not performed",
                            fixed = TRUE)
 
   train.set <- data.frame(Gender = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1),
@@ -576,13 +641,15 @@ testthat::test_that("Model: getTrainedModel function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_type(modelClass$getTrainedModel(), "list")
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -592,6 +659,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getExecutionTime function works", {
@@ -613,7 +685,7 @@ testthat::test_that("Model: getExecutionTime function works", {
                           model = model)
 
   testthat::expect_message(modelClass$getExecutionTime(),
-                           "[Model][WARNING] Model 'lda' is not trained. Task not performed",
+                           "[Model][getExecutionTime][ERROR] Model 'lda' is not trained. Task not performed",
                            fixed = TRUE)
 
   train.set <- data.frame(Gender = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1),
@@ -660,13 +732,15 @@ testthat::test_that("Model: getExecutionTime function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_type(modelClass$getExecutionTime(), "double")
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -678,6 +752,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getPerformance function works", {
@@ -742,13 +821,15 @@ testthat::test_that("Model: getPerformance function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_is(modelClass$getPerformance(), "numeric")
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -760,6 +841,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getPerformance function checks parameter", {
@@ -824,15 +910,17 @@ testthat::test_that("Model: getPerformance function checks parameter", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_error(modelClass$getPerformance(metric = "WRONG"),
-                         "[Model][FATAL] Metric is not defined or unavailable. Must be a [ROC, Sens, Spec, Kappa, Accuracy, TCR_9, MCC, PPV] type. Aborting...",
+                         "[Model][getPerformance][FATAL] Metric is not defined or unavailable. Must be a [ROC, Sens, Spec, Kappa, Accuracy, TCR_9, MCC, PPV] type. Aborting...",
                          fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -844,6 +932,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: getConfiguration function works", {
@@ -865,7 +958,7 @@ testthat::test_that("Model: getConfiguration function works", {
                           model = model)
 
   testthat::expect_message(modelClass$getConfiguration(),
-                           "[Model][WARNING] Model 'lda' is not trained. Task not performed",
+                           "[Model][getConfiguration][ERROR] Model 'lda' is not trained. Task not performed",
                            fixed = TRUE)
 
   train.set <- data.frame(Gender = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1),
@@ -912,13 +1005,15 @@ testthat::test_that("Model: getConfiguration function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_type(modelClass$getConfiguration(), "list")
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -930,6 +1025,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: save function works", {
@@ -951,7 +1051,7 @@ testthat::test_that("Model: save function works", {
                           model = model)
 
   testthat::expect_message(modelClass$save(),
-                           "[Model][ERROR] Cannot save untrained model. Task not performed",
+                           "[Model][save][ERROR] Cannot save untrained model. Task not performed",
                            fixed = TRUE)
 
   train.set <- data.frame(Gender = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1),
@@ -998,26 +1098,28 @@ testthat::test_that("Model: save function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_message(modelClass$save(replace = FALSE),
-                           "[Model][INFO][lda] Model succesfully saved at: ",
+                           "[Model][save][INFO] [lda] Model succesfully saved at: ",
                            fixed = TRUE)
 
   testthat::expect_true(file.exists(file.path(dir.path,
                                               "lda.rds")))
 
   testthat::expect_message(modelClass$save(replace = FALSE),
-                           "[Model][INFO][lda] Model already exists. Model not saved",
+                           "[Model][save][INFO] [lda] Model already exists. Model not saved",
                            fixed = TRUE)
 
   testthat::expect_message(modelClass$save(replace = TRUE),
-                           "[Model][WARNING][lda] Model already exists. Replacing previous model",
+                           "[Model][save][INFO] [lda] Model already exists. Replacing previous model",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel"),
                                 winslash = "/",
@@ -1029,6 +1131,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Model: remove function works", {
@@ -1050,7 +1157,7 @@ testthat::test_that("Model: remove function works", {
                           model = model)
 
   testthat::expect_message(modelClass$save(),
-                           "[Model][ERROR] Cannot save untrained model. Task not performed",
+                           "[Model][save][ERROR] Cannot save untrained model. Task not performed",
                            fixed = TRUE)
 
   train.set <- data.frame(Gender = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1),
@@ -1097,15 +1204,15 @@ testthat::test_that("Model: remove function works", {
                                             trFunction = trFunction,
                                             metric = metric,
                                             logs = logs),
-                           "\\[Model\\]\\[INFO\\]\\[lda\\] Finished in \\[[0-9.]+ segs\\]",
+                           "\\[Model\\]\\[train\\]\\[INFO\\] \\[lda\\] Finished in \\[[0-9.]+ segs\\]",
                            perl = TRUE)
 
   testthat::expect_message(modelClass$remove(),
-                           "[Model][ERROR] Cannot remove unsaved model. Task not performed",
+                           "[Model][remove][ERROR] Cannot remove unsaved model. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(modelClass$save(replace = FALSE),
-                           "[Model][INFO][lda] Model succesfully saved at: ",
+                           "[Model][save][INFO] [lda] Model succesfully saved at: ",
                            fixed = TRUE)
 
   testthat::expect_true(file.exists(file.path(dir.path,
@@ -1118,6 +1225,8 @@ testthat::test_that("Model: remove function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testModel",
                                                  "dirpathRemove"),

@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TwoClass: initialize function works", {
   testthat::expect_is(TwoClass$new(method = "cv",
                                    number = 10,
@@ -6,6 +11,17 @@ testthat::test_that("TwoClass: initialize function works", {
                                    allowParallel = TRUE,
                                    verboseIter = FALSE),
                       "TwoClass")
+})
+
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TwoClass: create function works", {
@@ -45,6 +61,16 @@ testthat::test_that("TwoClass: create function works", {
   testthat::expect_equal(twoClass$getMeasures(), summaryFunction$getMeasures())
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TwoClass: create function checks parameter", {
 
   method <- "cv"
@@ -64,20 +90,30 @@ testthat::test_that("TwoClass: create function checks parameter", {
   testthat::expect_error(twoClass$create(summaryFunction = NULL,
                                          search.method = search.method,
                                          class.probs = class.probs),
-                         "[TwoClass][FATAL] SummaryFunction parameter must be defined as 'SummaryFunction' type. Aborting...",
+                         "[TwoClass][create][FATAL] SummaryFunction parameter must be defined as 'SummaryFunction' type. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(twoClass$create(summaryFunction = summaryFunction,
+  testthat::expect_warning(twoClass$create(summaryFunction = summaryFunction,
                                            search.method = NULL,
                                            class.probs = class.probs),
-                         "[TwoClass][WARNING] Invalid search method. Only 'random' or 'grid' search method are available. Assuming grid method",
+                         "[TwoClass][create][WARN] Invalid search method. Only 'random' or 'grid' search method are available. Assuming grid method",
                          fixed = TRUE)
 
-  testthat::expect_message(twoClass$create(summaryFunction = summaryFunction,
+  testthat::expect_warning(twoClass$create(summaryFunction = summaryFunction,
                                            search.method = "wrong",
                                            class.probs = class.probs),
-                           "[TwoClass][WARNING] Invalid search method. Only 'random' or 'grid' search method are available. Assuming grid method",
+                           "[TwoClass][create][WARN] Invalid search method. Only 'random' or 'grid' search method are available. Assuming grid method",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TwoClass: getTrFunction function works", {
@@ -116,6 +152,16 @@ testthat::test_that("TwoClass: getTrFunction function works", {
   testthat::expect_equal(twoClass$getTrFunction(), tr)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TwoClass: getTrFunction function checks parameter", {
 
   method <- "cv"
@@ -134,11 +180,21 @@ testthat::test_that("TwoClass: getTrFunction function checks parameter", {
 
   testthat::expect_equal(twoClass$getTrFunction(), NULL)
   testthat::expect_message(twoClass$getTrFunction(),
-                           "[TwoClass][WARNING] TrainFunction is not created. Execute create method first. Task not performed",
+                           "[TwoClass][getTrFunction][ERROR] TrainFunction is not created. Execute create method first. Task not performed",
                            fixed = TRUE)
 
 
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TwoClass: setClassProbs function works (after create)", {
@@ -176,6 +232,16 @@ testthat::test_that("TwoClass: setClassProbs function works (after create)", {
   testthat::expect_equal(twoClass$getTrFunction()$classProbs, class.probs.false)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TwoClass: setClassProbs function checks parameter", {
 
   method <- "cv"
@@ -193,18 +259,28 @@ testthat::test_that("TwoClass: setClassProbs function checks parameter", {
                            verboseIter = verboseIter)
 
   testthat::expect_message(twoClass$setClassProbs(class.probs = NULL),
-                           "[TwoClass][WARNING] Class probabilities parameter is null or erroneous. Task not performed",
+                           "[TwoClass][setClassProbs][ERROR] Class probabilities parameter is null or erroneous. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(twoClass$setClassProbs(class.probs = list()),
-                           "[TwoClass][WARNING] Class probabilities parameter is null or erroneous. Task not performed",
+                           "[TwoClass][setClassProbs][ERROR] Class probabilities parameter is null or erroneous. Task not performed",
                            fixed = TRUE)
 
   class.probs <- TRUE
 
   testthat::expect_message(twoClass$setClassProbs(class.probs = class.probs),
-                           "[TwoClass][WARNING] TrainFunction is not created. Execute create method first. Task not performed",
+                           "[TwoClass][setClassProbs][ERROR] TrainFunction is not created. Execute create method first. Task not performed",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TwoClass: getMeasures function works", {
@@ -234,6 +310,16 @@ testthat::test_that("TwoClass: getMeasures function works", {
   testthat::expect_equal(twoClass$getMeasures(), summaryFunction$getMeasures())
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TwoClass: getType function works", {
 
   method <- "cv"
@@ -251,6 +337,16 @@ testthat::test_that("TwoClass: getType function works", {
                            verboseIter = verboseIter)
 
   testthat::expect_equal(twoClass$getType(), "Bi-Class")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TwoClass: setSummaryFunction function works (after create)", {
@@ -283,6 +379,16 @@ testthat::test_that("TwoClass: setSummaryFunction function works (after create)"
   testthat::expect_equal(twoClass$getTrFunction()$summaryFunction, NoProbability$new()$execute)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TwoClass: setSummaryFunction function checks parameter", {
 
   method <- "cv"
@@ -300,14 +406,19 @@ testthat::test_that("TwoClass: setSummaryFunction function checks parameter", {
                            verboseIter = verboseIter)
 
   testthat::expect_message(twoClass$setSummaryFunction(summaryFunction = NULL),
-                           "[TwoClass][WARNING] SummaryFunction parameter is null or incorrect type. Task not performed",
+                           "[TwoClass][setSummaryFunction][ERROR] SummaryFunction parameter is null or incorrect type. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(twoClass$setSummaryFunction(summaryFunction = list()),
-                           "[TwoClass][WARNING] SummaryFunction parameter is null or incorrect type. Task not performed",
+                           "[TwoClass][setSummaryFunction][ERROR] SummaryFunction parameter is null or incorrect type. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(twoClass$setSummaryFunction(summaryFunction = UseProbability$new()),
-                           "[TwoClass][WARNING] TrainFunction is not created. Execute create method first. Task not performed",
+                           "[TwoClass][setSummaryFunction][ERROR] TrainFunction is not created. Execute create method first. Task not performed",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

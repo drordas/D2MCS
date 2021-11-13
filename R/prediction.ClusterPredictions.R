@@ -50,8 +50,12 @@ ClusterPredictions <- R6::R6Class(
     initialize = function(class.values, positive.class) {
 
       if (is.null(positive.class) || !(positive.class %in% class.values)) {
-        stop("[", class(self)[1], "][FATAL] Positive class not found. Should be ",
-             paste0(class.values, collapse = " or "), ". Aborting...")
+        d2mcs.log(message = paste0("Positive class not found. Should be ",
+                                   paste0(class.values,
+                                          collapse = " or "), ". Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$positive.class <- positive.class
@@ -67,8 +71,11 @@ ClusterPredictions <- R6::R6Class(
     #'
     add = function(prediction) {
       if (!"Prediction" %in% class(prediction)) {
-        stop("[", class(self)[1], "][FATAL] Prediction parameter must be ",
-             "defined as 'Prediction' object. Aborting... ")
+        d2mcs.log(message = paste0("Prediction parameter must be defined as ",
+                                   "'Prediction' object. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "add")
       }
       private$pred <- append(private$pred, prediction)
     },
@@ -83,7 +90,10 @@ ClusterPredictions <- R6::R6Class(
     #'
     get = function(position) {
       if (!all(position > 0, position <= length(private$pred))) {
-        stop("[", class(self)[1], "][FATAL] Position exceeds list size. Aborting...")
+        d2mcs.log(message = "Position exceeds list size. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "get")
       }
       private$pred[[position]]
     },

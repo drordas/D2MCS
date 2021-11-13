@@ -48,8 +48,11 @@ ConfMatrix <- R6::R6Class(
     #'
     initialize = function(confMatrix) {
       if (!inherits(confMatrix, "confusionMatrix"))
-        stop("[", class(self)[1], "][FATAL] ConfMatrix parameter must be defined ",
-             "as 'caret::confusionMatrix' type. Aborting...")
+        d2mcs.log(message = paste0("ConfMatrix parameter must be defined as ",
+                                   "'caret::confusionMatrix' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
 
       private$positive.class <- confMatrix$positive
       private$negative.class <- colnames(confMatrix$table)[which(colnames(confMatrix$table) != confMatrix$positive)]

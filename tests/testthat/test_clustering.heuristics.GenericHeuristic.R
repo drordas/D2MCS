@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("GenericHeuristic: heuristic function works", {
 
   heuristic <- GenericHeuristic$new()
@@ -10,4 +15,9 @@ testthat::test_that("GenericHeuristic: heuristic function works", {
                                              column.names = column.names),
                          "[GenericHeuristic][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

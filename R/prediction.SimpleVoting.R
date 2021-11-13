@@ -51,7 +51,10 @@ SimpleVoting <- R6::R6Class(
     #'
     initialize = function(cutoff = NULL) {
       if (!is.null(cutoff) && !is.numeric(cutoff)) {
-        stop("[", class(self)[1], "][FATAL] Invalid values of cutoff. Aborting...")
+        d2mcs.log(message = "Invalid values of cutoff. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (is.null(cutoff) || !is.numeric(cutoff) || !(dplyr::between(cutoff, 0, 1))) {
@@ -90,8 +93,11 @@ SimpleVoting <- R6::R6Class(
         private$final.pred
       } else {
         if (!is.logical(filter)) {
-          message("[", class(self)[1], "][WARNING] Filter parameter must be ",
-                  "defined as 'logical' type. Aborting...")
+          d2mcs.log(message = paste0("Filter parameter must be defined as ",
+                                     "'logical' type. Assuming FALSE value"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getFinalPred")
           filter <- FALSE
         }
         class.values <- private$final.pred$getClassValues()
@@ -99,9 +105,13 @@ SimpleVoting <- R6::R6Class(
         switch(type,
                "prob" = {
                  if (is.null(target) || !(target %in% class.values)) {
-                   message("[", class(self)[1], "][WARNING] Target not ",
-                           "specified or invalid. Using '",
-                           paste0(class.values, collapse = ", "), "'")
+                   d2mcs.log(message = paste0("Target not specified or invalid. ",
+                                              "Using '", paste0(class.values,
+                                                                collapse = ", "),
+                                              "'"),
+                             level = "WARN",
+                             className = class(self)[1],
+                             methodName = "getFinalPred")
                    target <- class.values
                  }
                  if (filter) {
@@ -130,8 +140,11 @@ SimpleVoting <- R6::R6Class(
     #' needed.
     #'
     execute = function(predictions, verbose = FALSE) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "execute")
     }
   ),
   private = list(

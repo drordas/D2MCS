@@ -57,8 +57,11 @@ GenericModelFit <- R6::R6Class(
     #' @return A \code{\link{formula}} object.
     #'
     createFormula = function(instances, class.name, simplify = TRUE) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "createFormula")
     },
     #'
     #' @description The function is responsible of creating a
@@ -72,8 +75,11 @@ GenericModelFit <- R6::R6Class(
     #' @return A object of class \code{\link[recipes]{recipe}}.
     #'
     createRecipe = function(instances, class.name) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "createRecipe")
     }
   ),
   private = list()

@@ -1,4 +1,9 @@
-test_that("ClassMajorityVoting: initialize function works", {
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::test_that("ClassMajorityVoting: initialize function works", {
 
   cutoff <- 0.5
   class.tie.character <- "Positive"
@@ -24,6 +29,16 @@ test_that("ClassMajorityVoting: initialize function works", {
                       "ClassMajorityVoting")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClassMajorityVoting: initialize function checks parameter type", {
 
   cutoff <- 0.5
@@ -33,8 +48,18 @@ testthat::test_that("ClassMajorityVoting: initialize function checks parameter t
   testthat::expect_error(ClassMajorityVoting$new(cutoff = cutoff,
                                                  class.tie = class.tie,
                                                  majority.class = majority.class),
-                         "[ClassMajorityVoting][FATAL] Invalid class tie value. Aborting...",
+                         "[ClassMajorityVoting][initialize][FATAL] Invalid class tie value. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClassMajorityVoting: getMajorityClass function works", {
@@ -49,6 +74,16 @@ testthat::test_that("ClassMajorityVoting: getMajorityClass function works", {
                          "Positive")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ClassMajorityVoting: getClassTie function works", {
 
   cutoff <- 0.5
@@ -59,6 +94,16 @@ testthat::test_that("ClassMajorityVoting: getClassTie function works", {
                                                  class.tie = class.tie,
                                                  majority.class = majority.class)$getClassTie(),
                          "Positive")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClassMajorityVoting: execute function works", {
@@ -75,10 +120,20 @@ testthat::test_that("ClassMajorityVoting: execute function works", {
                                     "testVotings",
                                     "predictions.rds"))
   verbose <- TRUE
-  testthat::expect_message(voting$execute(predictions = predictionts,
+  testthat::expect_warning(voting$execute(predictions = predictionts,
                                           verbose = verbose),
-                         "[ClassMajorityVoting][INFO] Performing voting using '1' as majority class",
+                         "[ClassMajorityVoting][execute][WARN] Performing voting using '1' as majority class",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClassMajorityVoting: execute function works (tie)", {
@@ -98,10 +153,20 @@ testthat::test_that("ClassMajorityVoting: execute function works (tie)", {
   predictions$add(prediction = predictions$get(1))
 
   verbose <- TRUE
-  testthat::expect_message(voting$execute(predictions = predictions,
-                                          verbose = verbose),
-                           "[ClassMajorityVoting][INFO] Found Tie. Resolving using 'majority class' solver",
+  testthat::expect_message(suppressWarnings(voting$execute(predictions = predictions,
+                                                           verbose = verbose)),
+                           "[ClassMajorityVoting][execute][INFO] Found Tie. Resolving using 'majority class' solver",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ClassMajorityVoting: execute function checks parameter type", {
@@ -116,13 +181,18 @@ testthat::test_that("ClassMajorityVoting: execute function checks parameter type
 
   testthat::expect_error(voting$execute(predictions = NULL,
                                         verbose = FALSE),
-                         "[ClassMajorityVoting][FATAL] Predictions parameter must be defined as 'ClusterPrediction' type. Aborting...",
+                         "[ClassMajorityVoting][execute][FATAL] Predictions parameter must be defined as 'ClusterPrediction' type. Aborting...",
                          fixed = TRUE)
 
   predictions  <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                          positive.class = 1)
   testthat::expect_error(voting$execute(predictions = predictions,
                                         verbose = FALSE),
-                         "[ClassMajorityVoting][FATAL] Cluster predictions were not computed. Aborting...",
+                         "[ClassMajorityVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

@@ -1,14 +1,39 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("MinimizeFP: initialize function works", {
 
   testthat::expect_is(MinimizeFP$new(required.metrics = c("MCC", "PPV")),
                       "MinimizeFP")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("MinimizeFP: initialize function checks parameter type", {
 
   testthat::expect_error(MinimizeFP$new(required.metrics = NULL),
-                         "[MinimizeFP][FATAL] Invalid values of required.metrics. Aborting...",
+                         "[MinimizeFP][initialize][FATAL] Invalid values of required.metrics. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("MinimizeFP: getFinalPrediction function works", {
@@ -36,6 +61,16 @@ testthat::test_that("MinimizeFP: getFinalPrediction function works", {
                                                   negative.class = negative.class))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter type", {
 
   minFP <- MinimizeFP$new(required.metrics = c("MCC", "PPV"))
@@ -50,7 +85,7 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Raw.pred parameter must be defined as 'list' type. Aborting...",
+                         "[MinimizeFP][getFinalPrediction][FATAL] Raw.pred parameter must be defined as 'list' type. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -64,7 +99,7 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Raw.pred parameter must have required metrics. MCC PPV. Aborting...",
+                         "[MinimizeFP][getFinalPrediction][FATAL] Raw.pred parameter must have required metrics. MCC PPV. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -77,7 +112,7 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Prob.pred parameter must be defined as 'list' type. Aborting...",
+                         "[MinimizeFP][getFinalPrediction][FATAL] Prob.pred parameter must be defined as 'list' type. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -91,7 +126,7 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Prob.pred parameter must have required metrics. MCC PPV. Aborting...",
+                         "[MinimizeFP][getFinalPrediction][FATAL] Prob.pred parameter must have required metrics. MCC PPV. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -105,7 +140,7 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Positive class parameter must be defined. Aborting...",
+                         "[MinimizeFP][getFinalPrediction][FATAL] Positive class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -119,7 +154,12 @@ testthat::test_that("MinimizeFP: getFinalPrediction function checks parameter ty
                                                   prob.pred = prob.pred,
                                                   positive.class = positive.class,
                                                   negative.class = negative.class),
-                         "[MinimizeFP][FATAL] Negative class parameter must be defined. Aborting...",
+                         "[MinimizeFP][getFinalPrediction][FATAL] Negative class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

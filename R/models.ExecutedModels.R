@@ -71,7 +71,10 @@ ExecutedModels <- R6::R6Class(
                                        train = readRDS(best.path)
             )
           } else {
-            message("[", class(self)[1], "][WARNING] Best model cannot be loaded.", best.path)
+            d2mcs.log(message = paste0("Best model cannot be loaded ", best.path),
+                      level = "WARN",
+                      className = class(self)[1],
+                      methodName = "initialize")
             private$best.model <- NULL
           }
         }
@@ -99,7 +102,10 @@ ExecutedModels <- R6::R6Class(
       if (!is.null(private$best.model)) {
         private$best.model
       } else {
-        message("[", class(self)[1], "][WARNING] Best model not found.")
+        d2mcs.log(message = "Best model not found",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getBest")
         NULL
       }
     },
@@ -114,8 +120,12 @@ ExecutedModels <- R6::R6Class(
     #'
     add = function(model, keep.best = TRUE) {
       if (!inherits(model, "Model")) {
-        message("[", class(self)[1], "][ERROR] Model parameter must be defined ",
-                "as 'Model' type. Model not inserted. Task not performed")
+        d2mcs.log(message = paste0("Model parameter must be defined ",
+                                   "as 'Model' type. Model not inserted. ",
+                                   "Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "add")
       } else {
 
         private$models <- rbind(private$models,
@@ -131,9 +141,12 @@ ExecutedModels <- R6::R6Class(
               isTRUE(all.equal.numeric(model$getPerformance(), private$best.model$performance))) {
 
             if (!is.null(private$best.model)) {
-              message("[", class(self)[1], "][INFO] Best model found. Replacing '",
-                      private$best.model$model, "' with '",
-                      model$getName(), "'")
+              d2mcs.log(message = paste0("Best model found. Replacing '",
+                                         private$best.model$model, "' with '",
+                                         model$getName(), "'"),
+                        level = "INFO",
+                        className = class(self)[1],
+                        methodName = "add")
               self$delete(private$best.model$model)
             }
             private$best.model <- list(model = model$getName(),
@@ -180,8 +193,10 @@ ExecutedModels <- R6::R6Class(
         write.table(private$models, file = file.path(private$dir.path, "executed"),
                     append = FALSE, sep = ",", row.names = FALSE)
       } else {
-        message("[", class(self)[1], "][ERROR] File is empty. ",
-                "Task not performed")
+        d2mcs.log(message = "File is empty. Task not performed",
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "save")
       }
     },
     #'
@@ -196,12 +211,20 @@ ExecutedModels <- R6::R6Class(
         if (file.exists(object.path)) {
           file.remove(object.path)
         } else {
-          message("[", class(self)[1], "][ERROR] Cannot delete model. ",
-                  "Path for model '", model.name, "' not found. Task not performed")
+          d2mcs.log(message = paste0("Cannot delete model. Path for model '",
+                                     model.name, "' not found. Task not ",
+                                     "performed"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "delete")
         }
       } else {
-        message("[", class(self)[1], "][ERROR] Cannot delete model. ",
-                "Model '", model.name, "' has not been executed. Task not performed")
+        d2mcs.log(message = paste0("Cannot delete model. Model '", model.name,
+                                   "' has not been executed. Task not ",
+                                   "performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "delete")
       }
     }
   ),

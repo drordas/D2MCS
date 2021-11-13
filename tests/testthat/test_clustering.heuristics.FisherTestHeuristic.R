@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("FisherTestHeuristic: heuristic function works", {
 
   heuristic <- FisherTestHeuristic$new()
@@ -11,6 +16,16 @@ testthat::test_that("FisherTestHeuristic: heuristic function works", {
                         "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
+})
+
 testthat::test_that("FisherTestHeuristic: heuristic function checks parameter type", {
 
   heuristic <- FisherTestHeuristic$new()
@@ -21,7 +36,7 @@ testthat::test_that("FisherTestHeuristic: heuristic function checks parameter ty
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[FisherTestHeuristic][WARNING] Column 'ex' is not binary. Returning NA",
+                           "[FisherTestHeuristic][DEBUG] Column 'ex' is not binary. Returning NA",
                            fixed = TRUE)
 
   col1 <- c(1, 0, 1)
@@ -30,7 +45,7 @@ testthat::test_that("FisherTestHeuristic: heuristic function checks parameter ty
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[FisherTestHeuristic][WARNING] Column 'Class' is not binary. Returning NA",
+                           "[FisherTestHeuristic][DEBUG] Column 'Class' is not binary. Returning NA",
                            fixed = TRUE)
 
   col1 <- c("1", "2")
@@ -44,7 +59,11 @@ testthat::test_that("FisherTestHeuristic: heuristic function checks parameter ty
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[FisherTestHeuristic][ERROR] Error occurred calculating fisher.test heuristic: 'Error in stats::fisher.test(col1.factor, col2.factor): 'x' and 'y' must have the same length
-' . Returning NA",
+                           "[FisherTestHeuristic][ERROR] Error occurred calculating fisher.test heuristic: 'Error in stats::fisher.test(col1.factor, col2.factor): 'x' and 'y' must have the same length'. Returning NA",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

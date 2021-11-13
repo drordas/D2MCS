@@ -61,8 +61,11 @@ GenericHeuristic <- R6::R6Class(
     #' @return A \link{numeric} vector of length 1.
     #'
     heuristic = function(col1, col2, column.names = NULL, ...) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be ",
+                                 "defined in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = NULL)
     }
   ),
   private = list(

@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ConfMatrix: initialize function works", {
 
   lvs <- c("normal", "abnormal")
@@ -17,11 +22,31 @@ testthat::test_that("ConfMatrix: initialize function works", {
                       "ConfMatrix")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ConfMatrix: initialize function checks parameter type", {
 
   testthat::expect_error(ConfMatrix$new(confMatrix = NULL),
-                         "[ConfMatrix][FATAL] ConfMatrix parameter must be defined as 'caret::confusionMatrix' type. Aborting...",
+                         "[ConfMatrix][initialize][FATAL] ConfMatrix parameter must be defined as 'caret::confusionMatrix' type. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ConfMatrix: getConfusionMatrix function works", {
@@ -43,6 +68,16 @@ testthat::test_that("ConfMatrix: getConfusionMatrix function works", {
                          confMatrix)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ConfMatrix: getTP function works", {
 
   lvs <- c("normal", "abnormal")
@@ -60,6 +95,16 @@ testthat::test_that("ConfMatrix: getTP function works", {
 
   testthat::expect_equal(ConfMatrix$new(confMatrix = confMatrix)$getTP(),
                          231)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ConfMatrix: getTN function works", {
@@ -81,6 +126,16 @@ testthat::test_that("ConfMatrix: getTN function works", {
                          54)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ConfMatrix: getFN function works", {
 
   lvs <- c("normal", "abnormal")
@@ -100,6 +155,16 @@ testthat::test_that("ConfMatrix: getFN function works", {
                          27)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ConfMatrix: getFP function works", {
 
   lvs <- c("normal", "abnormal")
@@ -117,4 +182,9 @@ testthat::test_that("ConfMatrix: getFP function works", {
 
   testthat::expect_equal(ConfMatrix$new(confMatrix = confMatrix)$getFP(),
                          32)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("HDSubset: initialize function works", {
 
   file.path <- file.path("resourceFiles",
@@ -32,6 +37,16 @@ testthat::test_that("HDSubset: initialize function works", {
                       "HDSubset")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("HDSubset: initialize function checks parameter type", {
 
   file.path <- file.path("resourceFiles",
@@ -55,17 +70,27 @@ testthat::test_that("HDSubset: initialize function checks parameter type", {
                                       start.at = start.at,
                                       sep = sep,
                                       chunk.size = chunk.size),
-                         "[HDSubset][FATAL] Dataset has not being preloaded. Aborting...",
+                         "[HDSubset][initialize][FATAL] Dataset has not being preloaded. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(HDSubset$new(file.path = file.path,
+  testthat::expect_warning(HDSubset$new(file.path = file.path,
                                         feature.names = corpus,
                                         feature.id = feature.id,
                                         start.at = -1,
                                         sep = sep,
                                         chunk.size = chunk.size),
-                           "[HDSubset][WARNING] Starting point must be a non-negative numeric value. Assuming 0 as default value",
+                           "[HDSubset][initialize][WARN] Starting point must be a non-negative numeric value. Assuming 0 as default value",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("HDSubset: getColumnNames function works", {
@@ -96,6 +121,16 @@ testthat::test_that("HDSubset: getColumnNames function works", {
                          names(corpus))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("HDSubset: getNcol function works", {
 
   file.path <- file.path("resourceFiles",
@@ -124,6 +159,16 @@ testthat::test_that("HDSubset: getNcol function works", {
                          length(names(corpus)))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("HDSubset: getID function works", {
 
   file.path <- file.path("resourceFiles",
@@ -149,6 +194,16 @@ testthat::test_that("HDSubset: getID function works", {
 
   testthat::expect_equal(hdSubset$getID(),
                          names(corpus)[feature.id])
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("HDSubset: getNcol function works", {
@@ -180,6 +235,16 @@ testthat::test_that("HDSubset: getNcol function works", {
                       "FIterator")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("HDSubset: getIterator function works", {
 
   file.path <- file.path("resourceFiles",
@@ -204,14 +269,24 @@ testthat::test_that("HDSubset: getIterator function works", {
                            sep = sep,
                            chunk.size = chunk.size)
 
-  testthat::expect_message(hdSubset$getIterator(chunk.size = "wrong",
+  testthat::expect_warning(hdSubset$getIterator(chunk.size = "wrong",
                                                 verbose = TRUE),
-                           "[HDSubset][WARNING] Chunk size is not valid. Assuming default value",
+                           "[HDSubset][getIterator][WARN] Chunk size is not valid. Assuming default value",
                            fixed = TRUE)
-  testthat::expect_message(hdSubset$getIterator(chunk.size = 100,
+  testthat::expect_warning(hdSubset$getIterator(chunk.size = 100,
                                                 verbose = "wrong"),
-                           "[HDSubset][WARNING] Verbose type is not valid. Assuming 'FALSE' as default value",
+                           "[HDSubset][getIterator][WARN] Verbose type is not valid. Assuming 'FALSE' as default value",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("HDSubset: isBlinded function works", {
@@ -239,4 +314,9 @@ testthat::test_that("HDSubset: isBlinded function works", {
                            chunk.size = chunk.size)
 
   testthat::expect_true(hdSubset$isBlinded())
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

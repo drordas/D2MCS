@@ -68,8 +68,12 @@ Precision <- R6::R6Class(
     #'
     compute = function(performance.output = NULL) {
       if (is.null(private$performance) && !inherits(performance.output, c("MinResult", "ConfMatrix")))
-        stop("[", class(self)[1], "][FATAL] Performance output parameter must be ",
-             "defined as 'MinResult' or 'ConfMatrix' type. Aborting...")
+        d2mcs.log(message = paste0("Performance output parameter must be ",
+                                   "defined as 'MinResult' or 'ConfMatrix' type. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "compute")
 
       if (!is.null(performance.output) && inherits(performance.output, c("MinResult", "ConfMatrix")))
         output <- performance.output$getConfusionMatrix()$byClass["Precision"]

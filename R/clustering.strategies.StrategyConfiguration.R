@@ -58,7 +58,11 @@ StrategyConfiguration <- R6::R6Class(
     #' @return A \link{numeric} vector of length 1.
     #'
     minNumClusters = function(...) {
-      message("[", class(self)[1], "][INFO] Using default minCluster configuration: 2 clusters minimun")
+      d2mcs.log(message = paste0("Using default minCluster configuration: 2 ",
+                                 "clusters minimun"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "minNumClusters")
       2
     },
     #'
@@ -71,7 +75,11 @@ StrategyConfiguration <- R6::R6Class(
     #' @return A \link{numeric} vector of length 1.
     #'
     maxNumClusters = function(...) {
-      message("[", class(self)[1], "][INFO] Using default maxCluster configuration: 50 clusters maximun")
+      d2mcs.log(message = paste0("Using default maxCluster configuration: 50 ",
+                                 "clusters maximun"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "maxNumClusters")
       50
     }
   )

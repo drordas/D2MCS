@@ -66,8 +66,10 @@ MultinformationHeuristic <- R6::R6Class(
     #'
     heuristic = function(col1, col2, column.names = NULL) {
       if (!(private$isBinary(col1) && private$isBinary(col2))) {
-        message("[", class(self)[1], "][WARNING] Columns must be binary. ",
-                "Returning NA")
+        d2mcs.log(message = "Columns must be binary. Returning NA",
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = NULL)
         NA
       } else {
         infotheo::mutinformation(col1, col2)

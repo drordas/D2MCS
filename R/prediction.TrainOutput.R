@@ -52,15 +52,24 @@ TrainOutput <- R6::R6Class(
     #'
     initialize = function(models, class.values, positive.class) {
       if (is.null(models) || !is.list(models)) {
-        stop("[", class(self)[1], "][FATAL] Models parameter must be defined as ",
-             "'list' type. Aborting...")
+        d2mcs.log(message = paste0("Models parameter must be defined as 'list' ",
+                                   "type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (is.null(class.values) || !is.factor(class.values) && levels(class.values) < 2) {
-        stop("[", class(self)[1], "][FATAL] Class values parameter must be defined as ",
-             "'factor' type. Aborting...")
+        d2mcs.log(message = paste0("Class values parameter must be defined as 'factor' ",
+                                   "type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (is.null(positive.class) || !positive.class %in% class.values) {
-        stop("[", class(self)[1], "][FATAL] Positive class parameter not found. Aborting...")
+        d2mcs.log(message = "Positive class parameter not found. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       private$models <- models
       private$class.values <- class.values
@@ -77,7 +86,10 @@ TrainOutput <- R6::R6Class(
     #'
     getModels = function(metric) {
       if (is.null(metric) || is.list(metric) || !metric %in% self$getMetrics()) {
-        stop("[", class(self)[1], "][FATAL] Metric not defined or invalid. Aborting...")
+        d2mcs.log(message = "Metric not defined or invalid. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getModels")
       }
       private$models[[metric]]
     },
@@ -94,9 +106,14 @@ TrainOutput <- R6::R6Class(
     getPerformance = function(metrics = NULL) {
       if (is.null(metrics) || !is.character(metrics) ||
           !any(metrics %in% self$getMetrics())) {
-        message("[", class(self)[1], "][INFO] Metrics not defined or invalid. ",
-                "Asuming all available metrics '",
-                paste0(self$getMetrics(), collapse = ", "), "'")
+        d2mcs.log(message = paste0("Metrics not defined or invalid. Asuming ",
+                                   "all available metrics '",
+                                   paste0(self$getMetrics(),
+                                          collapse = ", "),
+                                   "'"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getPerformance")
         metrics <- self$getMetrics()
       }
 
@@ -124,22 +141,38 @@ TrainOutput <- R6::R6Class(
     #' stage will be saved.
     #'
     savePerformance = function(dir.path, metrics = NULL) {
-      if (is.null(dir.path))
-        stop("[", class(self)[1], "][FATAL] Save folder not set. Aborting...")
+      if (is.null(dir.path)) {
+        d2mcs.log(message = "Save folder not set. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "savePerformance")
+      }
 
       dir.path <- gsub("\\/$", "", dir.path)
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
-        message("[", class(self)[1], "][INFO] Folder '", dir.path,
-                "' has been succesfully created")
-      } else { message("[", class(self)[1], "][INFO] Folder already exists") }
+        d2mcs.log(message = paste0("Folder '", dir.path, "' has been ",
+                                   "succesfully created"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "savePerformance")
+      } else {
+        d2mcs.log(message = "Folder already exists",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "savePerformance")
+      }
 
       if (is.null(metrics) && !is.character(metrics) &&
           !any(metrics %in% self$getMetrics())) {
-        message("[", class(self)[1], "][INFO] Metrics not defined or invalid. ",
-                "Asuming all available metrics '",
-                paste0(self$getMetrics(), collapse = ", "), "'")
+        d2mcs.log(message = paste0("Metrics not defined or invalid. Asuming ",
+                                   "all available metrics '",
+                                   paste0(self$getMetrics(),
+                                          collapse = ", "), "'"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "savePerformance")
         metrics <- self$getMetrics()
       }
 
@@ -156,8 +189,10 @@ TrainOutput <- R6::R6Class(
       names(output) <- c("Measure", "Cluster", "Model", "Performance")
       path <- file.path(dir.path, "Performance_Train_Measures.csv")
       write.table(output, file = path, sep = ";", dec = ".", row.names = FALSE)
-      message("[", class(self)[1], "][INFO] Performances successfully saved at: ",
-              path)
+      d2mcs.log(message = paste0("Performances successfully saved at: ", path),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "savePerformance")
     },
     #'
     #' @description The function is responsible for creating a plot to visualize
@@ -169,23 +204,41 @@ TrainOutput <- R6::R6Class(
     #' stage will be plotted.
     #'
     plot = function(dir.path, metrics = NULL) {
-      if (is.null(dir.path))
-        stop("[", class(self)[1], "][FATAL] Save folder not set. Aborting...")
+      if (is.null(dir.path)){
+        d2mcs.log(message = "Save folder not set. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "plot")
+      }
+
 
       dir.path <- gsub("\\/$", "", dir.path)
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
-        message("[", class(self)[1], "][INFO] Folder '", dir.path,
-                "' has been succesfully created")
-      } else { message("[", class(self)[1], "][INFO] Folder already exists") }
+        d2mcs.log(message = paste0("Folder '", dir.path, "' has been ",
+                                   "succesfully created"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plot")
+      } else {
+        d2mcs.log(message = "Folder already exists",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plot")
+      }
 
 
       if (is.null(metrics) &&
           !is.character(metrics) &&
           !any(metrics %in% self$getMetrics())) {
-        message("[", class(self)[1], "][WARNING] Metrics are invalid. ",
-                "Asuming all available metrics", self$getMetrics())
+        d2mcs.log(message = paste0("Metrics not defined or invalid. Asuming ",
+                                   "all available metrics '",
+                                   paste0(self$getMetrics(),
+                                          collapse = ", "), "'"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plot")
         metrics <- self$getMetrics()
       }
 
@@ -230,8 +283,13 @@ TrainOutput <- R6::R6Class(
                          plot.title = ggplot2::element_text(hjust = 0.5))
 
         save.path <- file.path(dir.path, paste0("Performance_Train_Plot_", metric, ".pdf"))
-        message("[", class(self)[1], "][INFO] Plot saved has been succesfully saved at : '",
-                save.path, "'")
+
+        d2mcs.log(message = paste0("Plot saved has been succesfully saved at : '",
+                                   save.path, "'"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plot")
+
         ggplot2::ggsave(filename = save.path, device = "pdf")
       }))
     },

@@ -51,8 +51,12 @@ MeasureFunction <- R6::R6Class(
     #'
     initialize = function(performance = NULL) {
       if (!is.null(performance) && !inherits(performance, c("MinResult", "ConfMatrix")))
-        stop("[", class(self)[1], "][FATAL] Performance parameter must be ",
-             "defined as 'MinResult' or 'ConfMatrix' type. Aborting...")
+        d2mcs.log(message = paste0("Performance parameter must be ",
+                                   "defined as 'MinResult' or 'ConfMatrix' type. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
 
       private$performance <- performance
     },
@@ -70,8 +74,11 @@ MeasureFunction <- R6::R6Class(
     #' occurred.
     #'
     compute = function(performance.output = NULL) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "compute")
     }
   ),
   private = list(

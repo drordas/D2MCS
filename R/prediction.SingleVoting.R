@@ -55,13 +55,19 @@ SingleVoting <- R6::R6Class(
           !all(sapply(voting.schemes, function(voting) {
         inherits(voting, "SimpleVoting")
       }))) {
-        stop("[", class(self)[1], "][FATAL] Voting schemes parameter must be a ",
-             "list comprised of 'SimpleVoting' objects. Aborting...")
+        d2mcs.log(message = paste0("Voting schemes parameter must be a list ",
+                                   "comprised of 'SimpleVoting' objects. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!all(is.character(metrics))) {
-        stop("[", class(self)[1], "][FATAL] Metrics parameter must be a list ",
-             "comprised of 'character' objects. Aborting... ")
+        d2mcs.log(message = paste0("Metrics parameter must be a list comprised ",
+                                   "of 'character' objects. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       super$initialize()
@@ -81,19 +87,28 @@ SingleVoting <- R6::R6Class(
       if (is.null(predictions) || !is.vector(predictions) ||
           !all(sapply(predictions, function(pred) {
                       inherits(pred, "ClusterPredictions") }))) {
-        stop("[", class(self)[1], "][FATAL] Predictions parameter must be a ",
-             "list comprised of 'ClusterPredictions' objects. Aborting...")
+        d2mcs.log(message = paste0("Predictions parameter must be a list ",
+                                   "comprised of 'ClusterPredictions' objects. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (any(sapply(predictions, function(pred) { pred$size() <= 0 }))) {
-        stop("[", class(self)[1], "][FATAL] Cluster predictions were not ",
-             "computed. Aborting...")
+        d2mcs.log(message = "Cluster predictions were not computed. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (!any(self$getMetrics() %in% names(predictions))) {
-        stop("[", class(self)[1], "][FATAL] Metrics are incorrect. ",
-             "Must be: [", paste(names(predictions), collapse = ", "),
-             "]. Aborting...")
+        d2mcs.log(message = paste0("Metrics are incorrect. Must be: [",
+                                   paste(names(predictions),
+                                         collapse = ", "), "]. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
       single.votings <- list()
       for (preds in seq_len(length(predictions))) {
@@ -101,13 +116,22 @@ SingleVoting <- R6::R6Class(
         votings.list <- list()
         for (voting.scheme in private$voting.schemes) {
           voting.name <- class(voting.scheme)[1]
-          message("[", class(self)[1], "][INFO] ------------------------------",
-                  "-------------------------")
-          message("[", class(self)[1], "][INFO] Executing '", voting.name,
-                  "' for '", metric, "' metric with '",
-                  voting.scheme$getCutoff(), "' cutoff")
-          message("[", class(self)[1], "][INFO] ------------------------------",
-                  "-------------------------")
+          d2mcs.log(message = paste0("-----------------------------------------",
+                                     "--------------"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
+          d2mcs.log(message = paste0("Executing '", voting.name, "' for '",
+                                     metric, "' metric with '",
+                                     voting.scheme$getCutoff(), "' cutoff"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
+          d2mcs.log(message = paste0("-----------------------------------------",
+                                     "--------------"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
           voting.scheme$execute(predictions[[preds]])
           list.element <- list(voting.scheme)
           names(list.element) <- paste0(voting.name)

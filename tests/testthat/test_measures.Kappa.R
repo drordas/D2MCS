@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Kappa: initialize function works", {
 
   lvs <- c("normal", "abnormal")
@@ -15,6 +20,16 @@ testthat::test_that("Kappa: initialize function works", {
 
   testthat::expect_is(Kappa$new(performance = confMatrix),
                       "Kappa")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Kappa: compute function works", {
@@ -39,8 +54,23 @@ testthat::test_that("Kappa: compute function works", {
                       "numeric")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Kappa: compute function checks parameter type", {
   testthat::expect_error(Kappa$new(performance = NULL)$compute(performance.output = NULL),
-                         "[Kappa][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
+                         "[Kappa][compute][FATAL] Performance output parameter must be defined as 'MinResult' or 'ConfMatrix' type. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

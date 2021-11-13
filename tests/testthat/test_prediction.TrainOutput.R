@@ -1,22 +1,37 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TrainOutput: initialize function checks parameter type", {
 
   testthat::expect_error(TrainOutput$new(models = NULL,
                                          class.values = NULL,
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Models parameter must be defined as 'list' type. Aborting...",
+                         "[TrainOutput][initialize][FATAL] Models parameter must be defined as 'list' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(TrainOutput$new(models = list("example"),
                                          class.values = NULL,
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Class values parameter must be defined as 'factor' type. Aborting...",
+                         "[TrainOutput][initialize][FATAL] Class values parameter must be defined as 'factor' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(TrainOutput$new(models = list("example"),
                                          class.values = factor(c(0, 1, 1, 0)),
                                          positive.class = NULL),
-                         "[TrainOutput][FATAL] Positive class parameter not found. Aborting...",
+                         "[TrainOutput][initialize][FATAL] Positive class parameter not found. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TrainOutput: getModels function works", {
@@ -30,6 +45,16 @@ testthat::test_that("TrainOutput: getModels function works", {
                          trainOutputObject$.__enclos_env__$private$models[["MCC"]])
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TrainOutput: getModels function checks parameter type", {
   trainOutputObject <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
 
@@ -38,8 +63,18 @@ testthat::test_that("TrainOutput: getModels function checks parameter type", {
                                  positive.class = trainOutputObject$.__enclos_env__$private$positive.class)
 
   testthat::expect_error(trainOutput$getModels(metric = NULL),
-                         "[TrainOutput][FATAL] Metric not defined or invalid. Aborting...",
+                         "[TrainOutput][getModels][FATAL] Metric not defined or invalid. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TrainOutput: getModels function works", {
@@ -52,9 +87,19 @@ testthat::test_that("TrainOutput: getModels function works", {
   testthat::expect_is(trainOutput$getPerformance(metrics = "MCC"),
                       "list")
 
-  testthat::expect_message(trainOutput$getPerformance(),
-                           "[TrainOutput][INFO] Metrics not defined or invalid. Asuming all available metrics 'MCC, PPV'",
+  testthat::expect_warning(trainOutput$getPerformance(),
+                           "[TrainOutput][getPerformance][WARN] Metrics not defined or invalid. Asuming all available metrics 'MCC, PPV'",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TrainOutput: savePerformance function works", {
@@ -69,14 +114,21 @@ testthat::test_that("TrainOutput: savePerformance function works", {
   testthat::expect_true(file.exists(file.path(dir.path, "Performance_Train_Measures.csv")))
 
   testthat::expect_message(trainOutput$savePerformance(dir.path = dir.path),
-                           "[TrainOutput][INFO] Folder already exists",
+                           "[TrainOutput][savePerformance][INFO] Folder already exists",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
     unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TrainOutput: savePerformance function checks parameter type", {
@@ -87,8 +139,13 @@ testthat::test_that("TrainOutput: savePerformance function checks parameter type
                                  positive.class = trainOutputObject$.__enclos_env__$private$positive.class)
 
   testthat::expect_error(trainOutput$savePerformance(dir.path = NULL),
-                         "[TrainOutput][FATAL] Save folder not set. Aborting...",
+                         "[TrainOutput][savePerformance][FATAL] Save folder not set. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::setup({
@@ -111,7 +168,7 @@ testthat::test_that("TrainOutput: plot function works", {
   testthat::expect_true(file.exists(file.path(dir.path, "Performance_Train_Plot_PPV.pdf")))
 
   testthat::expect_message(trainOutput$plot(dir.path = dir.path),
-                           "[TrainOutput][INFO] Folder already exists",
+                           "[TrainOutput][plot][INFO] Folder already exists",
                            fixed = TRUE)
 })
 
@@ -119,6 +176,11 @@ testthat::teardown({
   if (dir.exists(file.path("resourceFiles", "TrainOutput"))) {
     unlink(file.path("resourceFiles", "TrainOutput"), recursive = TRUE, force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TrainOutput: plot function checks parameter type", {
@@ -129,8 +191,18 @@ testthat::test_that("TrainOutput: plot function checks parameter type", {
                                  positive.class = trainOutputObject$.__enclos_env__$private$positive.class)
 
   testthat::expect_error(trainOutput$plot(dir.path = NULL),
-                         "[TrainOutput][FATAL] Save folder not set. Aborting...",
+                         "[TrainOutput][plot][FATAL] Save folder not set. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TrainOutput: getMetrics function works", {
@@ -144,6 +216,16 @@ testthat::test_that("TrainOutput: getMetrics function works", {
                          c("MCC", "PPV"))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TrainOutput: getClassValues function works", {
   trainOutputObject <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
 
@@ -153,6 +235,16 @@ testthat::test_that("TrainOutput: getClassValues function works", {
 
   testthat::expect_equal(trainOutput$getClassValues(),
                          trainOutputObject$.__enclos_env__$private$class.values)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TrainOutput: getPositiveClass function works", {
@@ -166,6 +258,16 @@ testthat::test_that("TrainOutput: getPositiveClass function works", {
                          1)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TrainOutput: getSize function works", {
   trainOutputObject <- readRDS(file.path("resourceFiles", "data", "trainoutput.rds"))
 
@@ -175,4 +277,9 @@ testthat::test_that("TrainOutput: getSize function works", {
 
   testthat::expect_equal(trainOutput$getSize(),
                          2)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

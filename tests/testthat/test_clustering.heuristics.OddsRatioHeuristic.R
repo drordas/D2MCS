@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
+})
+
 testthat::test_that("OddsRatioHeuristic: heuristic function works", {
 
   heuristic <- OddsRatioHeuristic$new()
@@ -11,6 +16,16 @@ testthat::test_that("OddsRatioHeuristic: heuristic function works", {
                         "double")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
+})
+
 testthat::test_that("OddsRatioHeuristic: heuristic function checks parameter type", {
 
   heuristic <- OddsRatioHeuristic$new()
@@ -21,7 +36,7 @@ testthat::test_that("OddsRatioHeuristic: heuristic function checks parameter typ
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[OddsRatioHeuristic][WARNING] Columns must be binary. Returning NA",
+                           "[OddsRatioHeuristic][DEBUG] Columns must be binary. Returning NA",
                            fixed = TRUE)
 
   col1 <- c(1, 0, 1)
@@ -30,7 +45,7 @@ testthat::test_that("OddsRatioHeuristic: heuristic function checks parameter typ
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[OddsRatioHeuristic][WARNING] Columns must be binary. Returning NA",
+                           "[OddsRatioHeuristic][DEBUG] Columns must be binary. Returning NA",
                            fixed = TRUE)
 
   col1 <- c("1", "0", "1")
@@ -43,7 +58,11 @@ testthat::test_that("OddsRatioHeuristic: heuristic function checks parameter typ
   testthat::expect_message(heuristic$heuristic(col1 = col1,
                                                col2 = col2,
                                                column.names = column.names),
-                           "[OddsRatioHeuristic][ERROR] Error occurred calculating odds.ratio heuristic: 'Error in table(col1, col2): all arguments must have the same length
-' . Returning NA",
+                           "[OddsRatioHeuristic][ERROR] Error occurred calculating odds.ratio heuristic: 'Error in table(col1, col2): all arguments must have the same length'. Returning NA",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

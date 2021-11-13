@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DependencyBasedStrategy: initialize function works", {
   set.seed(1234)
   file.path <-  file.path("resourceFiles",
@@ -51,14 +56,24 @@ testthat::test_that("DependencyBasedStrategy: initialize function works", {
   testthat::expect_message(DependencyBasedStrategy$new(subset = subset.cluster,
                                                        heuristic = heuristics,
                                                        configuration = configuration),
-                           "[DependencyBasedStrategy][INFO] Heuristic for binary data defined",
+                           "[DependencyBasedStrategy][initialize][INFO] Heuristic for binary data defined as 'ChiSquareHeuristic'",
                            fixed = TRUE)
 
   testthat::expect_message(DependencyBasedStrategy$new(subset = subset.cluster,
                                                        heuristic = heuristics,
                                                        configuration = configuration),
-                           "[DependencyBasedStrategy][INFO] Heuristic for real data defined",
+                           "[DependencyBasedStrategy][initialize][INFO] Heuristic for real data defined as 'SpearmanHeuristic'",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategy: initialize function checks parameter type", {
@@ -70,7 +85,7 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -98,7 +113,7 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Heuristic parameter is not defined or incorrect. Must contain two elements. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Heuristic parameter is not defined or incorrect. Must contain two elements. Aborting...",
                          fixed = TRUE, )
 
   set.seed(1234)
@@ -126,7 +141,7 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Defined heuristics are not correct. Must be inherit from 'GenericHeuristic' class. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Defined heuristics are not correct. Must be inherit from 'GenericHeuristic' class. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -151,10 +166,10 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
   heuristics <- list(NULL, SpearmanHeuristic$new())
   configuration <- DependencyBasedStrategyConfiguration$new()
 
-  testthat::expect_message(DependencyBasedStrategy$new(subset = subset.cluster,
+  testthat::expect_warning(DependencyBasedStrategy$new(subset = subset.cluster,
                                                        heuristic = heuristics,
                                                        configuration = configuration),
-                           "[DependencyBasedStrategy][WARNING] Heuristic for binary data not defined",
+                           "[DependencyBasedStrategy][initialize][WARN] Heuristic for binary data not defined",
                            fixed = TRUE)
 
   set.seed(1234)
@@ -179,10 +194,10 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
   heuristics <- list(ChiSquareHeuristic$new(), NULL)
   configuration <- DependencyBasedStrategyConfiguration$new()
 
-  testthat::expect_message(DependencyBasedStrategy$new(subset = subset.cluster,
+  testthat::expect_warning(DependencyBasedStrategy$new(subset = subset.cluster,
                                                        heuristic = heuristics,
                                                        configuration = configuration),
-                           "[DependencyBasedStrategy][WARNING] Heuristic for real data not defined",
+                           "[DependencyBasedStrategy][initialize][WARN] Heuristic for real data not defined",
                            fixed = TRUE)
 
   set.seed(1234)
@@ -210,8 +225,18 @@ testthat::test_that("DependencyBasedStrategy: initialize function checks paramet
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Configuration parameter must be inherit from 'StrategyConfiguration' class. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Configuration parameter must be inherit from 'StrategyConfiguration' class. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategy: checks configuration object", {
@@ -248,7 +273,7 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'getBinaryCutoff' method. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Configuration parameter must have 'getBinaryCutoff' method. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -283,7 +308,7 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'getRealCutoff' method. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Configuration parameter must have 'getRealCutoff' method. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -318,7 +343,7 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'tiebreak' method. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Configuration parameter must have 'tiebreak' method. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -353,7 +378,7 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'qualityOfCluster' method. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Configuration parameter must have 'qualityOfCluster' method. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -388,11 +413,18 @@ testthat::test_that("DependencyBasedStrategy: checks configuration object", {
   testthat::expect_error(DependencyBasedStrategy$new(subset = subset.cluster,
                                                      heuristic = heuristics,
                                                      configuration = configuration),
-                         "[DependencyBasedStrategy][FATAL] Configuration parameter must have 'isImprovingClustering' method. Aborting...",
+                         "[DependencyBasedStrategy][initialize][FATAL] Configuration parameter must have 'isImprovingClustering' method. Aborting...",
                          fixed = TRUE)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "outputslfdc"),
                                 winslash = "/",
@@ -433,15 +465,15 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
                                           configuration = configuration)
 
   testthat::expect_error(strategy$getDistribution(),
-                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[DependencyBasedStrategy][getDistribution][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
-                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[DependencyBasedStrategy][createTrain][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_error(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputslfdc", "saveCSV")),
-                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+  testthat::expect_error(suppressWarnings(strategy$saveCSV(dir.path = file.path("resourceFiles", "outputslfdc", "saveCSV"))),
+                         "[DependencyBasedStrategy][saveCSV][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
@@ -451,21 +483,26 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 4)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1)), 0)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:3)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 3)
+  testthat::expect_equal(length(strategy$getDistribution()),
+                         4)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.clusters = 1))),
+                         0)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.clusters = 1:2))),
+                         2)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.clusters = 1:3))),
+                         2)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.groups = 1))),
+                         3)
 
   testthat::expect_equal(length(strategy$getDistribution(num.groups = c(1, 1))),
                          2)
 
-  testthat::expect_message(strategy$getDistribution(num.groups = c(5, 1)),
-                           "[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Returning all groups...",
+  testthat::expect_warning(strategy$getDistribution(num.groups = c(5, 1)),
+                           "[DependencyBasedStrategy][getDistribution][WARN] Number of clusters incorrect. Returning all groups...",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$getDistribution(num.groups = c(1, 5)),
-                           "[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Returning all groups...",
+  testthat::expect_warning(strategy$getDistribution(num.groups = c(1, 5)),
+                           "[DependencyBasedStrategy][getDistribution][WARN] Number of clusters incorrect. Returning all groups...",
                            fixed = TRUE)
 
   testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 4)
@@ -473,7 +510,7 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
   testthat::expect_error(strategy$createTrain(subset = NULL),
-                         "[DependencyBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                         "[DependencyBasedStrategy][createTrain][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
   grDevices::pdf(NULL)
@@ -486,54 +523,54 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
                                                                   winslash = "/",
                                                                   mustWork = FALSE),
                                          file.name = "TypeBasedStrategyPlot"),
-                           "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
+                           "[DependencyBasedStrategy][plot][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
   testthat::expect_error(strategy$saveCSV(dir.path = NULL),
-                         "[DependencyBasedStrategy][FATAL] Path not defined. Aborting...",
+                         "[DependencyBasedStrategy][saveCSV][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputslfdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE)),
-                           "[DependencyBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
+                           "[DependencyBasedStrategy][saveCSV][WARN] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputslfdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE)),
-                           "[DependencyBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
+                           "[DependencyBasedStrategy][saveCSV][WARN] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputslfdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE),
                                             num.clusters = 2),
-                           "[DependencyBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
+                           "[DependencyBasedStrategy][saveCSV][WARN] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputslfdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE),
                                             num.clusters = list(list(2:60), list(2:60))),
-                           paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
+                           paste0("[DependencyBasedStrategy][saveCSV][WARN] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
                            fixed = TRUE)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputslfdc",
-                                                             "saveCSV"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(list(2:3),
-                                       list(2:3)))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                              "outputslfdc",
+                                                                              "saveCSV"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(list(2:3),
+                                                        list(2:3))))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputslfdc",
@@ -545,13 +582,13 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputslfdc",
-                                                             "saveCSV2"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(NULL,
-                                       list(2:3)))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                              "outputslfdc",
+                                                                              "saveCSV2"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(NULL,
+                                                        list(2:3))))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputslfdc",
@@ -563,13 +600,13 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputslfdc",
-                                                             "saveCSV3"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(list(2:3),
-                                       NULL))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                              "outputslfdc",
+                                                                              "saveCSV3"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(list(2:3),
+                                                        NULL)))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputslfdc",
@@ -583,6 +620,8 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "outputslfdc"),
                                winslash = "/",
@@ -597,6 +636,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "outputsltdc"),
                                 winslash = "/",
@@ -635,18 +676,18 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
 
 
   testthat::expect_error(strategy$getDistribution(),
-                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[DependencyBasedStrategy][getDistribution][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
-                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[DependencyBasedStrategy][createTrain][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
-  testthat::expect_error(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                                                    "outputsltdc",
-                                                                                    "saveCSV"),
-                                                                   winslash = "/",
-                                                                   mustWork = FALSE)),
-                         "[DependencyBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+  testthat::expect_error(suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                                     "outputsltdc",
+                                                                                                     "saveCSV"),
+                                                                                    winslash = "/",
+                                                                                    mustWork = FALSE))),
+                         "[DependencyBasedStrategy][saveCSV][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
@@ -656,16 +697,21 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 4)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1)), 0)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 3)
-  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 4)
+  testthat::expect_equal(length(strategy$getDistribution()),
+                         4)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.clusters = 1))),
+                         0)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.clusters = 1:2))),
+                         2)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.groups = 1))),
+                         3)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(include.unclustered = TRUE))),
+                         4)
 
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
   testthat::expect_error(strategy$createTrain(subset = NULL),
-                         "[DependencyBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                         "[DependencyBasedStrategy][createTrain][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
   grDevices::pdf(NULL)
@@ -678,53 +724,53 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
                                                                   winslash = "/",
                                                                   mustWork = FALSE),
                                          file.name = "TypeBasedStrategyPlot"),
-                           "[DependencyBasedStrategy][INFO] Plot has been succesfully saved at",
+                           "[DependencyBasedStrategy][plot][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
   testthat::expect_error(strategy$saveCSV(dir.path = NULL),
-                         "[DependencyBasedStrategy][FATAL] Path not defined. Aborting...",
+                         "[DependencyBasedStrategy][saveCSV][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputsltdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE)),
-                           "[DependencyBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
+                           "[DependencyBasedStrategy][saveCSV][WARN] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputsltdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE)),
-                           "[DependencyBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
+                           "[DependencyBasedStrategy][saveCSV][WARN] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputsltdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE),
                                             num.clusters = 2),
-                           "[DependencyBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
+                           "[DependencyBasedStrategy][saveCSV][WARN] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputsltdc",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE),
                                             num.clusters = list(list(2:60), list(2:60))),
-                           paste0("[DependencyBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
+                           paste0("[DependencyBasedStrategy][saveCSV][WARN] Number of clusters incorrect. Must be between 2 and ", max(strategy$.__enclos_env__$private$all.distribution[[2]]$k), ". Ignoring clustering for real type features..."),
                            fixed = TRUE)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputsltdc",
-                                                             "saveCSV"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(list(2:3), list(2:3)))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                             "outputsltdc",
+                                                                             "saveCSV"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(list(2:3), list(2:3))))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputsltdc",
@@ -736,13 +782,13 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputsltdc",
-                                                             "saveCSV2"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(NULL,
-                                       list(2:3)))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                              "outputsltdc",
+                                                                              "saveCSV2"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(NULL,
+                                                        list(2:3))))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputsltdc",
@@ -754,13 +800,13 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
                                        sep = ";")),
                          4)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                              "outputsltdc",
                                                              "saveCSV3"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(list(2:3),
-                                       NULL))
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(list(2:3),
+                                                        NULL)))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputsltdc",
@@ -774,6 +820,8 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "outputsltdc"),
                                winslash = "/",
@@ -785,6 +833,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DependencyBasedStrategy checks incompatible heuristics", {
@@ -809,21 +862,33 @@ testthat::test_that("DependencyBasedStrategy checks incompatible heuristics", {
 
   configuration <- DependencyBasedStrategyConfiguration$new()
 
-  strategyIncompatibleBinary <- DependencyBasedStrategy$new(subset = subset.cluster,
-                                                            heuristic = list(KendallHeuristic$new(), NULL),
-                                                            configuration = configuration)
+  strategyIncompatibleBinary <- suppressWarnings(DependencyBasedStrategy$new(subset = subset.cluster,
+                                                                             heuristic = list(KendallHeuristic$new(),
+                                                                                              NULL),
+                                                                             configuration = configuration))
 
-  strategyIncompatibleReal <- DependencyBasedStrategy$new(subset = subset.cluster,
-                                                          heuristic = list(NULL, OddsRatioHeuristic$new()),
-                                                          configuration = configuration)
+  strategyIncompatibleReal <- suppressWarnings(DependencyBasedStrategy$new(subset = subset.cluster,
+                                                                           heuristic = list(NULL,
+                                                                                            OddsRatioHeuristic$new()),
+                                                                           configuration = configuration))
 
-  testthat::expect_message(suppressWarnings(strategyIncompatibleBinary$execute()),
-                           "[DependencyBasedStrategy][WARNING] 44 features were incompatible with 'KendallHeuristic' heuristic",
+  testthat::expect_message(strategyIncompatibleBinary$execute(),
+                           "[DependencyBasedStrategy][execute][INFO] 44 features were incompatible with 'KendallHeuristic' heuristic",
                            fixed = TRUE)
 
-  testthat::expect_message(suppressWarnings(strategyIncompatibleReal$execute()),
-                           "[DependencyBasedStrategy][WARNING] 50 features were incompatible with 'OddsRatioHeuristic' heuristic",
+  testthat::expect_message(strategyIncompatibleReal$execute(),
+                           "[DependencyBasedStrategy][execute][INFO] 50 features were incompatible with 'OddsRatioHeuristic' heuristic",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TypeBasedStrategy checks no binary or real features", {
@@ -837,13 +902,13 @@ testthat::test_that("TypeBasedStrategy checks no binary or real features", {
                                          class.values = as.factor(c(0, 1)),
                                          positive.class = 1)
 
-  strategyNoBinaryFeatures <- DependencyBasedStrategy$new(subset = subset.cluster.no.binary,
-                                                          heuristic = list(ChiSquareHeuristic$new(),
-                                                                           NULL),
-                                                          configuration = configuration)
+  strategyNoBinaryFeatures <- suppressWarnings(DependencyBasedStrategy$new(subset = subset.cluster.no.binary,
+                                                                           heuristic = list(ChiSquareHeuristic$new(),
+                                                                                            NULL),
+                                                                           configuration = configuration))
 
   testthat::expect_message(suppressWarnings(strategyNoBinaryFeatures$execute()),
-                           "[DependencyBasedStrategy][INFO] Not binary features for clustering",
+                           "[DependencyBasedStrategy][execute][INFO] Not binary features for clustering",
                            fixed = TRUE)
 
   subset.cluster.no.real <- Subset$new(dataset = data.frame(c(0, 1, 0, 1),
@@ -853,12 +918,17 @@ testthat::test_that("TypeBasedStrategy checks no binary or real features", {
                                        class.values = as.factor(c(0, 1)),
                                        positive.class = 1)
 
-  strategyNoRealFeatures <- DependencyBasedStrategy$new(subset = subset.cluster.no.real,
-                                                        heuristic = list(NULL,
-                                                                         SpearmanHeuristic$new()),
-                                                        configuration = configuration)
+  strategyNoRealFeatures <- suppressWarnings(DependencyBasedStrategy$new(subset = subset.cluster.no.real,
+                                                                         heuristic = list(NULL,
+                                                                                          SpearmanHeuristic$new()),
+                                                                         configuration = configuration))
 
   testthat::expect_message(suppressWarnings(strategyNoRealFeatures$execute()),
-                           "[DependencyBasedStrategy][INFO] Not real features for clustering",
+                           "[DependencyBasedStrategy][execute][INFO] Not real features for clustering",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

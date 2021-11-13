@@ -54,8 +54,11 @@ BinaryPlot <- R6::R6Class(
     #'
     plot = function(summary) {
       if (!is.data.frame(summary)) {
-        stop("[", class(self)[1], "][FATAL] Summary parameter must be defined ",
-             "as 'data.frame' type. Aborting...")
+        d2mcs.log(message = paste0("Summary parameter must be defined as ",
+                                   "'data.frame' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = NULL)
       }
       super$plot(summary) + ggplot2::labs(title = "Binary Data") +
         ggplot2::theme_light() +

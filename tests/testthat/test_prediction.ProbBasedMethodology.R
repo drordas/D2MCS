@@ -1,14 +1,39 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ProbBasedMethodology: initialize function works", {
 
   testthat::expect_is(ProbBasedMethodology$new(required.metrics = c("MCC", "PPV")),
                       "ProbBasedMethodology")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ProbBasedMethodology: initialize function checks parameter type", {
 
   testthat::expect_error(ProbBasedMethodology$new(required.metrics = NULL),
-                         "[ProbBasedMethodology][FATAL] Invalid values of required.metrics. Aborting...",
+                         "[ProbBasedMethodology][initialize][FATAL] Invalid values of required.metrics. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ProbBasedMethodology: compute function works", {
@@ -30,6 +55,16 @@ testthat::test_that("ProbBasedMethodology: compute function works", {
 
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ProbBasedMethodology: compute function checks parameter type", {
 
   probAV <- ProbBasedMethodology$new(required.metrics = c("MCC", "PPV"))
@@ -44,7 +79,7 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Raw.pred parameter must be defined as 'list' type. Aborting...",
+                         "[ProbBasedMethodology][compute][FATAL] Raw.pred parameter must be defined as 'list' type. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -58,7 +93,7 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Raw.pred parameter must have required metrics. MCC PPV. Aborting...",
+                         "[ProbBasedMethodology][compute][FATAL] Raw.pred parameter must have required metrics. MCC PPV. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -71,7 +106,7 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Prob.pred parameter must be defined as 'list' type. Aborting...",
+                         "[ProbBasedMethodology][compute][FATAL] Prob.pred parameter must be defined as 'list' type. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -85,7 +120,7 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Prob.pred parameter must have required metrics. MCC PPV. Aborting...",
+                         "[ProbBasedMethodology][compute][FATAL] Prob.pred parameter must have required metrics. MCC PPV. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -99,7 +134,7 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Positive class parameter must be defined. Aborting...",
+                         "[ProbBasedMethodology][compute][FATAL] Positive class parameter must be defined. Aborting...",
                          fixed = TRUE)
 
   raw.pred <- list("Positive", "Positive")
@@ -113,6 +148,11 @@ testthat::test_that("ProbBasedMethodology: compute function checks parameter typ
                                         prob.pred = prob.pred,
                                         positive.class = positive.class,
                                         negative.class = negative.class),
-                         "[ProbBasedMethodology][FATAL] Negative class parameter must be defined. Aborting...",
+                         "[ProbBasedMethodology][compute][FATAL] Negative class parameter must be defined. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

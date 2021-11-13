@@ -48,16 +48,24 @@ Model <- R6::R6Class(
     initialize = function(dir.path, model) {
       private$dir.path <- gsub("\\/$", "", dir.path)
       if (!dir.exists(private$dir.path)) {
-        message("[", class(self)[1], "][INFO] Save directory not exist. Creating...")
+        d2mcs.log(message = "Save directory not exist. Creating...",
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
         dir.create(private$dir.path, showWarnings = FALSE, recursive = TRUE)
         if (!dir.exists(private$dir.path))
-          stop("[", class(self)[1], "][FATAL] Path '", private$dir.path,
-               "' cannot be created. Aborting...")
+          d2mcs.log(message = paste0("Path '", private$dir.path, "' cannot be ",
+                                     "created. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "initialize")
       }
 
       if (is.null(model)) {
-        stop("[", class(self)[1], "][FATAL] Model was not defined. ",
-             "Aborting...")
+        d2mcs.log(message = "Model was not defined. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$RDS.path <- file.path(private$dir.path, paste0(model$name, ".rds"))
@@ -68,20 +76,29 @@ Model <- R6::R6Class(
       private$metric <- NULL
 
       if (file.exists(private$RDS.path)) {
-        message("[", class(self)[1], "][INFO] Model '", private$model.info$name,
-                "' already exists. Loading...")
+        d2mcs.log(message = paste0("Model '", private$model.info$name,
+                                   "' already exists. Loading..."),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
         private$model.train <- readRDS(private$RDS.path)
 
         if (is.null(private$model.train) ||
             any(sapply(private$model.train, is.null)) ||
             !inherits(private$model.train, "list") ||
             length(private$model.train) != 5) {
-          message("[", class(self)[1], "][ERROR] Unable to load trained model. ",
-                  "Task not performed")
+          d2mcs.log(message = paste0("Unable to load trained model. Task not ",
+                                     "performed"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "initialize")
         } else {
-          message("[", class(self)[1], "][INFO] '",
-                  paste(private$model.info[1:3], collapse = "', "),
-                  "' has been succesfully loaded!")
+          d2mcs.log(message = paste0("'", paste(private$model.info[1:3],
+                                                collapse = "', "),
+                                     "' has been succesfully loaded!"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "initialize")
         }
       }
     },
@@ -143,36 +160,56 @@ Model <- R6::R6Class(
     train = function(train.set, fitting, trFunction, metric, logs) {
       if (is.null(private$model.train) ||
           any(sapply(private$model.train, is.null))) {
-        message("[", class(self)[1], "][INFO][", self$getName(), "] Model ",
-                "has not been trained. Starting training process...")
+        d2mcs.log(message = paste0("[", self$getName(), "] Model ",
+                                   "has not been trained. Starting training ",
+                                   "process..."),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
 
         if (!inherits(train.set, "data.frame")) {
-          stop("[", class(self)[1], "][FATAL][", self$getName(), "] ",
-               "Cannot perform trainning stage. ",
-               "Train set must be defined as 'data.frame' type. Aborting...")
+          d2mcs.log(message = paste0("[", self$getName(), "] Cannot perform ",
+                                     "trainning stage. Train set must be ",
+                                     "defined as 'data.frame' type. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "train")
         }
 
         if (nrow(train.set) == 0) {
-          stop("[", class(self)[1], "][FATAL][", self$getName(), "] ",
-               "Cannot perform trainning stage. Train set is empty. Aborting...")
+          d2mcs.log(message = paste0("[", self$getName(), "] Cannot perform ",
+                                     "trainning stage. Train set is empty. ",
+                                     "Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "train")
         }
 
         if (!inherits(trFunction, "TrainFunction")) {
-          stop("[", class(self)[1], "][FATAL][", self$getName(), "] ",
-               "TrainFunction must be inherits from 'TrainFunction' class. ",
-               "Aborting...")
+          d2mcs.log(message = paste0("[", self$getName(), "] TrainFunction ",
+                                     "must be inherits from 'TrainFunction' ",
+                                     "class. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "train")
         }
 
         valid.metrics <- trFunction$getMeasures()
         if (any(is.null(metric), !(metric %in% valid.metrics))) {
-          stop("[", class(self)[1], "][FATAL][", self$getName(), "] ",
-               "Metric is not defined or unavailable. ",
-               "Must be a [", paste(valid.metrics, collapse = ", "), "] type. ",
-               "Aborting...")
+          d2mcs.log(message = paste0("[", self$getName(), "] Metric is not ",
+                                     "defined or unavailable. Must be a [",
+                                     paste(valid.metrics, collapse = ", "),
+                                     "] type. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "train")
         }
 
-        message("[", class(self)[1], "][INFO][", self$getName(), "] ",
-                "Performing training and hyperparameter optimization stage...")
+        d2mcs.log(message = paste0("[", self$getName(), "] Performing training ",
+                                   "and hyperparameter optimization stage..."),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
 
         tryCatch({
           private$metric <- metric
@@ -186,17 +223,27 @@ Model <- R6::R6Class(
           private$model.train$model.performance <- self$getPerformance()
 
           if (!is.null(private$model.train$model.data)) {
-            message("[", class(self)[1], "][INFO][", self$getName(), "] ",
-                    "Finished in [", round(time$toc - time$tic, digits = 2), " segs]")
+            d2mcs.log(message = paste0("[", self$getName(), "] Finished in [",
+                                       round(time$toc - time$tic, digits = 2),
+                                       " segs]"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "train")
             private$model.train$exec.time <- (time$toc - time$tic)
           } else {
-            message("[", class(self)[1], "][ERROR][", self$getName(), "] ",
-                    "Unable to train model. Task not performed")
+            d2mcs.log(message = paste0("[", self$getName(), "] Unable to train ",
+                                       "model. Task not performed"),
+                      level = "ERROR",
+                      className = class(self)[1],
+                      methodName = "train")
           }
         }, error = function(err) {
-          message("[", class(self)[1], "][ERROR][", self$getName(), "] Model ",
-                  "could not be trained for current data. See '", logs,
-                  "' for more information.")
+          d2mcs.log(message = paste0("[", self$getName(), "] Model could not ",
+                                     "be trained for current data. See '", logs,
+                                     "' for more information"),
+                    level = "ERROR",
+                    className = class(self)[1],
+                    methodName = "train")
           cat(paste0(format(Sys.time(), "%H:%m:%S %d/%m/%Y"),
                              ": [", class(self)[1], "][", self$getName(), "] ", err),
                       file = file.path(logs, "error.log"), append = TRUE)
@@ -205,8 +252,11 @@ Model <- R6::R6Class(
           private$model.train$exec.time <- 0.0
         })
       } else {
-        message("[", class(self)[1], "][INFO][", self$getName(), "] ",
-                "Model has already been trained")
+        d2mcs.log(message = paste0("[", self$getName(), "] Model has already ",
+                                   "been trained"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "train")
       }
     },
     #'
@@ -216,8 +266,11 @@ Model <- R6::R6Class(
     #'
     getTrainedModel = function() {
       if (!self$isTrained()) {
-        message("[", class(self)[1], "][WARNING] Model '", private$model.info$name,
-                "' is not trained. Task not performed")
+        d2mcs.log(message = paste0("Model '", private$model.info$name,
+                                   "' is not trained. Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "getTrainedModel")
         NULL
       } else { private$model.train }
     },
@@ -229,8 +282,11 @@ Model <- R6::R6Class(
     #'
     getExecutionTime = function() {
       if (!self$isTrained()) {
-        message("[", class(self)[1], "][WARNING] Model '", private$model.info$name,
-                "' is not trained. Task not performed")
+        d2mcs.log(message = paste0("Model '", private$model.info$name,
+                                   "' is not trained. Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "getExecutionTime")
         0.0
       } else { private$model.train$exec.time }
     },
@@ -252,16 +308,15 @@ Model <- R6::R6Class(
           model.result <- private$model.train$model.data$results
           model.result[best(model.result, metric = metric, maximize = TRUE), ][[metric]]
         } else {
-          stop("[", class(self)[1], "][FATAL] Metric is not defined or unavailable. ",
-               "Must be a [", paste(model.result$perfNames, collapse = ", "), "] type. ",
-               "Aborting...")
+          d2mcs.log(message = paste0("Metric is not defined or unavailable. ",
+                                     "Must be a [", paste(model.result$perfNames,
+                                                          collapse = ", "),
+                                     "] type. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "getPerformance")
         }
       } else {
-        # if (is.null(private$model.train$model.data))
-        #  message("[",class(self)[1],"][ERROR] Model '",
-        #          private$model.info$name,"' is not trained. Task not performed")
-        # if (is.null(private$metric))
-        #  message("[",class(self)[1],"][ERROR] Metric is NULL. Task not performed")
         private$model.train$model.performance
       }
     },
@@ -275,8 +330,11 @@ Model <- R6::R6Class(
       if (self$isTrained()) {
         private$model.train$model.data$bestTune
       } else {
-        message("[", class(self)[1], "][WARNING] Model '", private$model.info$name,
-                "' is not trained. Task not performed")
+        d2mcs.log(message = paste0("Model '", private$model.info$name,
+                                   "' is not trained. Task not performed"),
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "getConfiguration")
         NULL
       }
     },
@@ -290,24 +348,38 @@ Model <- R6::R6Class(
     #'
     save = function(replace = TRUE) {
       if (is.null(private$model.train$model.data))
-        message("[", class(self)[1], "][ERROR] Cannot save untrained model. ",
-                "Task not performed")
+        d2mcs.log(message = "Cannot save untrained model. Task not performed",
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "save")
       else {
         if (file.exists(private$RDS.path)) {
           if (replace) {
-            message("[", class(self)[1], "][WARNING][", private$model.info$name,
-                    "] Model already exists. Replacing previous model")
+            d2mcs.log(message = paste0("[", private$model.info$name,"] Model ",
+                                       "already exists. Replacing previous model"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "save")
             saveRDS (object = private$model.train, file = private$RDS.path)
-            message("[", class(self)[1], "][INFO][", private$model.info$name,
-                    "] Model succesfully saved at: ", private$RDS.path)
+            d2mcs.log(message = paste0("[", private$model.info$name,"] Model ",
+                                       "succesfully saved at: ", private$RDS.path),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "save")
           } else {
-            message("[", class(self)[1], "][INFO][", private$model.info$name,
-                    "] Model already exists. Model not saved")
+            d2mcs.log(message = paste0("[", private$model.info$name,"] Model ",
+                                       "already exists. Model not saved"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "save")
           }
         } else {
           saveRDS(object = private$model.train, file = private$RDS.path)
-          message("[", class(self)[1], "][INFO][", private$model.info$name, "] ",
-                  "Model succesfully saved at: ", private$RDS.path)
+          d2mcs.log(message = paste0("[", private$model.info$name,"] Model ",
+                                     "succesfully saved at: ", private$RDS.path),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "save")
         }
       }
     },
@@ -318,8 +390,10 @@ Model <- R6::R6Class(
       if (file.exists(private$RDS.path)) {
         file.remove(private$RDS.path)
       } else {
-        message("[", class(self)[1], "][ERROR] Cannot remove unsaved model. ",
-                "Task not performed")
+        d2mcs.log(message = "Cannot remove unsaved model. Task not performed",
+                  level = "ERROR",
+                  className = class(self)[1],
+                  methodName = "remove")
       }
     }
   ),

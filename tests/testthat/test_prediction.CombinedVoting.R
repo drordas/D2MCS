@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("CombinedVoting: initialize function works", {
   voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
   combined.metrics <- MinimizeFP$new()
@@ -10,6 +15,16 @@ testthat::test_that("CombinedVoting: initialize function works", {
                       "CombinedVoting")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("CombinedVoting: initialize function checks parameter type", {
 
   voting.schemes <- NULL
@@ -20,7 +35,7 @@ testthat::test_that("CombinedVoting: initialize function checks parameter type",
                                             combined.metrics = combined.metrics,
                                             methodology = methodology,
                                             metrics = metrics),
-                         "[CombinedVoting][FATAL] Voting.schemes parameter must be defined as 'SimpleVoting' type. Aborting...",
+                         "[CombinedVoting][initialize][FATAL] Voting.schemes parameter must be defined as 'SimpleVoting' type. Aborting...",
                          fixed = TRUE)
 
   voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
@@ -31,7 +46,7 @@ testthat::test_that("CombinedVoting: initialize function checks parameter type",
                                             combined.metrics = combined.metrics,
                                             methodology = methodology,
                                             metrics = metrics),
-                         "[CombinedVoting][FATAL] Combined.metrics parameter must be defined as 'CombinedMetrics' type. Aborting...",
+                         "[CombinedVoting][initialize][FATAL] Combined.metrics parameter must be defined as 'CombinedMetrics' type. Aborting...",
                          fixed = TRUE)
 
   voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
@@ -42,7 +57,7 @@ testthat::test_that("CombinedVoting: initialize function checks parameter type",
                                             combined.metrics = combined.metrics,
                                             methodology = methodology,
                                             metrics = metrics),
-                         "[CombinedVoting][FATAL] Methodology parameter must be defined as 'Methodology' type. Aborting...",
+                         "[CombinedVoting][initialize][FATAL] Methodology parameter must be defined as 'Methodology' type. Aborting...",
                          fixed = TRUE)
 
   voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
@@ -53,8 +68,18 @@ testthat::test_that("CombinedVoting: initialize function checks parameter type",
                                             combined.metrics = combined.metrics,
                                             methodology = methodology,
                                             metrics = metrics),
-                         "[CombinedVoting][FATAL] Invalid values of metrics. Aborting...",
+                         "[CombinedVoting][initialize][FATAL] Invalid values of metrics. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("CombinedVoting: getCombinedMetrics function works", {
@@ -71,6 +96,16 @@ testthat::test_that("CombinedVoting: getCombinedMetrics function works", {
   testthat::expect_equal(voting$getCombinedMetrics(), combined.metrics)
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("CombinedVoting: getCombinedMetrics function works", {
   voting.schemes <- ClassWeightedVoting$new(cutoff = 0.7)
   combined.metrics <- MinimizeFP$new()
@@ -83,6 +118,16 @@ testthat::test_that("CombinedVoting: getCombinedMetrics function works", {
                                metrics = c("MCC", "PPV"))
 
   testthat::expect_equal(voting$getMethodology(), methodology)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("CombinedVoting: getFinalPred function works", {
@@ -98,52 +143,62 @@ testthat::test_that("CombinedVoting: getFinalPred function works", {
   type <- NULL
   target <- NULL
   filter <- NULL
-  testthat::expect_is(voting$getFinalPred(type = type,
-                                          target = target,
-                                          filter = filter),
+  testthat::expect_is(suppressWarnings(voting$getFinalPred(type = type,
+                                                           target = target,
+                                                           filter = filter)),
                       "FinalPred")
 
   type <- "raw"
   target <- NULL
   filter <- NULL
-  testthat::expect_null(voting$getFinalPred(type = type,
-                                          target = target,
-                                          filter = filter))
+  testthat::expect_null(suppressWarnings(voting$getFinalPred(type = type,
+                                                             target = target,
+                                                             filter = filter)))
 
   type <- "raw"
   target <- NULL
   filter <- TRUE
-  testthat::expect_null(voting$getFinalPred(type = type,
-                                            target = target,
-                                            filter = filter))
+  testthat::expect_null(suppressWarnings(voting$getFinalPred(type = type,
+                                                             target = target,
+                                                             filter = filter)))
 
   type <- "prob"
   target <- NULL
   filter <- NULL
-  testthat::expect_null(voting$getFinalPred(type = type,
-                                          target = target,
-                                          filter = filter))
+  testthat::expect_null(suppressWarnings(voting$getFinalPred(type = type,
+                                                             target = target,
+                                                             filter = filter)))
 
   type <- "prob"
   target <- NULL
   filter <- FALSE
-  testthat::expect_null(voting$getFinalPred(type = type,
-                                            target = target,
-                                            filter = filter))
+  testthat::expect_null(suppressWarnings(voting$getFinalPred(type = type,
+                                                             target = target,
+                                                             filter = filter)))
 
   type <- "prob"
   target <- NULL
   filter <- NULL
-  testthat::expect_null(voting$getFinalPred(type = type,
-                                            target = target,
-                                            filter = filter))
+  testthat::expect_null(suppressWarnings(voting$getFinalPred(type = type,
+                                                             target = target,
+                                                             filter = filter)))
 
   type <- "prob"
   target <- NULL
   filter <- TRUE
-  testthat::expect_null(voting$getFinalPred(type = type,
-                                            target = target,
-                                            filter = filter))
+  testthat::expect_null(suppressWarnings(voting$getFinalPred(type = type,
+                                                             target = target,
+                                                             filter = filter)))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("CombinedVoting: execute function checks parameter type", {
@@ -159,14 +214,14 @@ testthat::test_that("CombinedVoting: execute function checks parameter type", {
   predictions <- NULL
   testthat::expect_error(voting$execute(predictions = predictions,
                                         verbose = FALSE),
-                         "[CombinedVoting][FATAL] Predictions parameter must be a list comprised of 'ClusterPredictions' objects. Aborting...",
+                         "[CombinedVoting][execute][FATAL] Predictions parameter must be a list comprised of 'ClusterPredictions' objects. Aborting...",
                          fixed = TRUE)
 
   predictions <- list(ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                              positive.class = 1))
   testthat::expect_error(voting$execute(predictions = predictions,
                                         verbose = FALSE),
-                         "[CombinedVoting][FATAL] Cluster predictions were not computed. Aborting...",
+                         "[CombinedVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
 
   voting <- CombinedVoting$new(voting.schemes = voting.schemes,
@@ -192,7 +247,12 @@ testthat::test_that("CombinedVoting: execute function checks parameter type", {
 
   testthat::expect_error(voting$execute(predictions = predictions,
                                         verbose = FALSE),
-                         "[CombinedVoting][FATAL] Metrics are incorrect. Must be: [MCC, PPV]. Aborting...",
+                         "[CombinedVoting][execute][FATAL] Metrics are incorrect. Must be: [MCC, PPV]. Aborting...",
                          fixed = TRUE)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

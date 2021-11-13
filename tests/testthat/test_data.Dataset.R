@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Dataset: initialize function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -48,6 +53,16 @@ testthat::test_that("Dataset: initialize function works", {
 
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Dataset: initialize function checks parameter type", {
 
   testthat::expect_error(Dataset$new(filepath = NULL,
@@ -57,7 +72,7 @@ testthat::test_that("Dataset: initialize function checks parameter type", {
                                      normalize.names = TRUE,
                                      string.as.factor = FALSE,
                                      ignore.columns = NULL),
-                         "[Dataset][FATAL] Corpus cannot be found at defined location. Aborting...",
+                         "[Dataset][initialize][FATAL] Corpus cannot be found at defined location. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(Dataset$new(filepath = "wrongFile.csv",
@@ -67,8 +82,18 @@ testthat::test_that("Dataset: initialize function checks parameter type", {
                                      normalize.names = TRUE,
                                      string.as.factor = FALSE,
                                      ignore.columns = NULL),
-                         "[Dataset][FATAL] Corpus cannot be found at defined location. Aborting...",
+                         "[Dataset][initialize][FATAL] Corpus cannot be found at defined location. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: getColumnNames function works", {
@@ -88,6 +113,16 @@ testthat::test_that("Dataset: getColumnNames function works", {
 
   testthat::expect_equal(data$getColumnNames(), column.names)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: getDataset function works", {
@@ -114,6 +149,16 @@ testthat::test_that("Dataset: getDataset function works", {
 
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Dataset: getNcol function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -130,6 +175,16 @@ testthat::test_that("Dataset: getNcol function works", {
 
   testthat::expect_equal(data$getNcol(), ncol(corpus))
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: getNrow function works", {
@@ -150,6 +205,16 @@ testthat::test_that("Dataset: getNrow function works", {
 
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("Dataset: getRemovedColumns function works", {
 
   file.path <-  file.path("resourceFiles", "data", "hcc-data-complete-balanced.csv")
@@ -166,6 +231,16 @@ testthat::test_that("Dataset: getRemovedColumns function works", {
 
   testthat::expect_equal(data$getRemovedColumns(), list())
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: cleanData function works", {
@@ -186,25 +261,25 @@ testthat::test_that("Dataset: cleanData function works", {
   testthat::expect_message(data$cleanData(remove.funcs = NULL,
                                           remove.na = TRUE,
                                           remove.const = TRUE),
-                           "[Dataset][INFO] Total 0 NA columns were succesfully removed",
+                           "[Dataset][cleanData][INFO] Total 0 NA columns were succesfully removed",
                            fixed = TRUE)
 
   testthat::expect_message(data$cleanData(remove.funcs = NULL,
                                           remove.na = TRUE,
                                           remove.const = TRUE),
-                           "[Dataset][INFO] Total 0 const columns were succesfully removed",
+                           "[Dataset][cleanData][INFO] Total 0 const columns were succesfully removed",
                            fixed = TRUE)
 
   testthat::expect_message(data$cleanData(remove.funcs = NULL,
                                           remove.na = FALSE,
                                           remove.const = TRUE),
-                           "[Dataset][INFO] Total 0 const columns were succesfully removed",
+                           "[Dataset][cleanData][INFO] Total 0 const columns were succesfully removed",
                            fixed = TRUE)
 
   testthat::expect_message(data$cleanData(remove.funcs = NULL,
                                           remove.na = TRUE,
                                           remove.const = FALSE),
-                           "[Dataset][INFO] Total 0 NA columns were succesfully removed",
+                           "[Dataset][cleanData][INFO] Total 0 NA columns were succesfully removed",
                            fixed = TRUE)
 
   rm <- function(col) {
@@ -214,9 +289,19 @@ testthat::test_that("Dataset: cleanData function works", {
   testthat::expect_message(data$cleanData(remove.funcs = list(rm),
                                           remove.na = TRUE,
                                           remove.const = FALSE),
-                           "[Dataset][INFO] Total 0 NA columns were succesfully removed",
+                           "[Dataset][cleanData][INFO] Total 0 NA columns were succesfully removed",
                            fixed = TRUE)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: removeColumns function works", {
@@ -231,21 +316,31 @@ testthat::test_that("Dataset: removeColumns function works", {
                       ignore.columns = NULL)
 
   testthat::expect_message(data$removeColumns(columns = c("Symptoms")),
-                           "[Dataset][INFO] Total 1 columns were succesfully removed",
+                           "[Dataset][removeColumns][INFO] Total 1 columns were succesfully removed",
                            fixed = TRUE)
 
   testthat::expect_message(data$removeColumns(columns = c("a")),
-                           "[Dataset][ERROR] Defined column(s) are not valid. Ignoring removal operation",
+                           "[Dataset][removeColumns][ERROR] Defined column(s) are not valid. Ignoring removal operation",
                            fixed = TRUE)
 
   testthat::expect_message(data$removeColumns(columns = 50),
-                           "[Dataset][ERROR] Selected columns are not valid. Must be between [1-49]. Task not performed",
+                           "[Dataset][removeColumns][ERROR] Selected columns are not valid. Must be between [1-49]. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(data$removeColumns(columns = 1),
-                           "[Dataset][INFO] 1 columns were manually removed",
+                           "[Dataset][removeColumns][INFO] 1 columns were manually removed",
                            fixed = TRUE)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: createPartitions function works", {
@@ -262,79 +357,89 @@ testthat::test_that("Dataset: createPartitions function works", {
   testthat::expect_message(data$createPartitions(num.folds = 4,
                                                  percent.folds = "wrong",
                                                  class.balance = 50),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 4,
                                                  percent.folds = c(.25, .25, .25, .25),
                                                  class.balance = 50),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 4,
                                                  percent.folds = c(.25, .25, .25, .25),
                                                  class.balance = "Class"),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 4,
                                                  percent.folds = c(25, 25, 25, 25),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 4,
                                                  percent.folds = c(25, 25, 25, 25),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 10,
                                                  percent.folds = c(10, 10, 10, 10, 10,
                                                                    10, 10, 10, 10, 10),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 10 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 10 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 10,
                                                  percent.folds = c(10, 10, 10, 10, 10,
                                                                    10, 10, 10, 10, 10),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 10 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 10 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = NULL,
                                                  percent.folds = c(25, 25, 25, 25),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = NULL,
                                                  percent.folds = c(.25, .25, .25, .25),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = NULL,
                                                  percent.folds = c(25, 25, 25, 25),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 4 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 4 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = NULL,
                                                  percent.folds = c(10, 10, 10, 10, 10,
                                                                    10, 10, 10, 10, 10),
                                                  class.balance = NULL),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 10 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 10 groups",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = NULL,
                                                  percent.folds = c(10, 10, 10, 10, 10,
                                                                    10, 10, 10, 10, 10),
                                                  class.balance = 50),
-                           "[Dataset][INFO] Perfoming dataset partitioning into 10 groups",
+                           "[Dataset][createPartitions][INFO] Perfoming dataset partitioning into 10 groups",
                            fixed = TRUE)
 
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: createPartitions function checks parameter type", {
@@ -351,80 +456,90 @@ testthat::test_that("Dataset: createPartitions function checks parameter type", 
   testthat::expect_error(data$createPartitions(num.folds = NULL,
                                                percent.folds = NULL,
                                                class.balance = NULL),
-                           "[Dataset][FATAL] Class not defined. Aborting...",
+                           "[Dataset][createPartitions][FATAL] Class not defined. Aborting...",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createPartitions(num.folds = NULL,
+  testthat::expect_warning(data$createPartitions(num.folds = NULL,
                                                  percent.folds = NULL,
                                                  class.balance = 50),
-                           "[Dataset][WARNING] Parameters are invalid. Assuming division with default k=10 folds",
+                           "[Dataset][createPartitions][WARN] Parameters are invalid. Assuming division with default k=10 folds",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createPartitions(num.folds = "wrong",
+  testthat::expect_warning(data$createPartitions(num.folds = "wrong",
                                                  percent.folds = NULL,
                                                  class.balance = 50),
-                           "[Dataset][WARNING] Parameters are invalid. Assuming division with default k=10 folds",
+                           "[Dataset][createPartitions][WARN] Parameters are invalid. Assuming division with default k=10 folds",
                            fixed = TRUE)
 
   testthat::expect_error(data$createPartitions(num.folds = 1,
                                                percent.folds = NULL,
                                                class.balance = NULL),
-                           "[Dataset][FATAL] Class not defined. Aborting...",
+                           "[Dataset][createPartitions][FATAL] Class not defined. Aborting...",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createPartitions(num.folds = 1:2,
+  testthat::expect_warning(data$createPartitions(num.folds = 1:2,
                                                  percent.folds = NULL,
                                                  class.balance = 50),
-                           "[Dataset][WARNING] Parameters are invalid. Assuming division with default k=10 folds",
+                           "[Dataset][createPartitions][WARN] Parameters are invalid. Assuming division with default k=10 folds",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createPartitions(num.folds = NULL,
+  testthat::expect_warning(data$createPartitions(num.folds = NULL,
                                                  percent.folds = "wrong",
                                                  class.balance = 50),
-                           "[Dataset][WARNING] Parameters are invalid. Assuming division with default k=10 folds",
+                           "[Dataset][createPartitions][WARN] Parameters are invalid. Assuming division with default k=10 folds",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createPartitions(num.folds = 4,
+  testthat::expect_warning(data$createPartitions(num.folds = 4,
                                                  percent.folds = c(.25, .25, .25, .25),
                                                  class.balance = "A"),
-                         "[Dataset][WARNING] Class not found into dataset limits",
+                         "[Dataset][createPartitions][WARN] Class not found into dataset limits",
                          fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 4,
                                                  percent.folds = c(30, 25, 25, 25),
                                                  class.balance = 50),
-                           "[Dataset][ERROR] Fold partition and/or probability mismatch. Task not performed",
+                           "[Dataset][createPartitions][ERROR] Fold partition and/or probability mismatch. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 4,
                                                  percent.folds = c(.30, .25, .25, .25),
                                                  class.balance = 50),
-                           "[Dataset][ERROR] Fold partition and/or probability mismatch. Task not performed",
+                           "[Dataset][createPartitions][ERROR] Fold partition and/or probability mismatch. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 20,
                                                  percent.folds = c(25, 25, 25, 25),
                                                  class.balance = 50),
-                           "[Dataset][ERROR] Fold partition and/or probability mismatch. Task not performed",
+                           "[Dataset][createPartitions][ERROR] Fold partition and/or probability mismatch. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = 20,
                                                  percent.folds = 3,
                                                  class.balance = 50),
-                           "[Dataset][ERROR] Fold partition and/or probability mismatch. Task not performed",
+                           "[Dataset][createPartitions][ERROR] Fold partition and/or probability mismatch. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = NULL,
                                                  percent.folds = c(30, 25, 25, 25),
                                                  class.balance = 50),
-                           "[Dataset][ERROR] Cannot perform partition process. Task not performed",
+                           "[Dataset][createPartitions][ERROR] Cannot perform partition process. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(data$createPartitions(num.folds = NULL,
                                                  percent.folds = c(.30, .25, .25, .25),
                                                  class.balance = 50),
-                           "[Dataset][ERROR] Cannot perform partition process. Task not performed",
+                           "[Dataset][createPartitions][ERROR] Cannot perform partition process. Task not performed",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: createSubset function works", {
@@ -458,7 +573,7 @@ testthat::test_that("Dataset: createSubset function works", {
 
   testthat::expect_message(data$createSubset(num.folds = 4,
                                              opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][INFO] Removed columns containing NA values (total of 0)",
+                           "[Dataset][createSubset][INFO] Removed columns containing NA values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
@@ -468,7 +583,7 @@ testthat::test_that("Dataset: createSubset function works", {
 
   testthat::expect_message(data$createSubset(num.folds = 4,
                                              opts = list(remove.na = TRUE, remove.const = TRUE)),
-                           "[Dataset][INFO] Removed columns containing NA values (total of 0)",
+                           "[Dataset][createSubset][INFO] Removed columns containing NA values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
@@ -477,7 +592,7 @@ testthat::test_that("Dataset: createSubset function works", {
 
   testthat::expect_message(data$createSubset(num.folds = 4,
                                              opts = list(remove.na = TRUE, remove.const = TRUE)),
-                           "[Dataset][INFO] Removed columns containing constant values (total of 1)",
+                           "[Dataset][createSubset][INFO] Removed columns containing constant values (total of 1)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
@@ -486,12 +601,22 @@ testthat::test_that("Dataset: createSubset function works", {
 
   testthat::expect_message(data$createSubset(num.folds = 4,
                                              opts = list(remove.na = FALSE, remove.const = TRUE)),
-                           "[Dataset][INFO] Removed columns containing constant values (total of 1)",
+                           "[Dataset][createSubset][INFO] Removed columns containing constant values (total of 1)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createSubset(num.folds = 4,
                                         opts = list(remove.na = FALSE, remove.const = TRUE)),
                       "Subset")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: createSubset function checks parameter type", {
@@ -507,7 +632,7 @@ testthat::test_that("Dataset: createSubset function checks parameter type", {
 
   testthat::expect_message(data$createSubset(num.folds = NULL,
                                              opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][ERROR] Dataset distribution is null. Task not performed",
+                           "[Dataset][createSubset][ERROR] Dataset distribution is null. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_null(data$createSubset(num.folds = NULL,
@@ -515,41 +640,51 @@ testthat::test_that("Dataset: createSubset function checks parameter type", {
 
   data$createPartitions(num.folds = 4, class.balance = 50)
 
-  testthat::expect_message(data$createSubset(num.folds = NULL,
+  testthat::expect_warning(data$createSubset(num.folds = NULL,
                                              opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][WARNING] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
+                           "[Dataset][createSubset][WARN] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createSubset(num.folds = "a",
+  testthat::expect_warning(data$createSubset(num.folds = "a",
                                              opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][WARNING] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
+                           "[Dataset][createSubset][WARN] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createSubset(num.folds = 8,
+  testthat::expect_warning(data$createSubset(num.folds = 8,
                                              opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][WARNING] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
+                           "[Dataset][createSubset][WARN] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
                            fixed = TRUE)
 
   testthat::expect_error(data$createSubset(num.folds = 4,
                                            opts = list(remove.na = TRUE, remove.const = TRUE),
                                            class.index = 51,
                                            positive.class = 1),
-                      "[Dataset][FATAL] Class not found into dataset limits. Aborting...",
+                      "[Dataset][createSubset][FATAL] Class not found into dataset limits. Aborting...",
                       fixed = TRUE)
 
   testthat::expect_error(data$createSubset(num.folds = 4,
                                            opts = list(remove.na = TRUE, remove.const = TRUE),
                                            class.index = "wrong",
                                            positive.class = 1),
-                         "[Dataset][FATAL] Class not found into dataset limits. Aborting...",
+                         "[Dataset][createSubset][FATAL] Class not found into dataset limits. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(data$createSubset(num.folds = 4,
                                            opts = list(remove.na = TRUE, remove.const = TRUE),
                                            class.index = 50,
                                            positive.class = "wrong"),
-                         "[Dataset][FATAL] Positive class value not found. Aborting...",
+                         "[Dataset][createSubset][FATAL] Positive class value not found. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: createTrain function works", {
@@ -575,7 +710,7 @@ testthat::test_that("Dataset: createTrain function works", {
 
   testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
                                             opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][INFO] Removed columns containing NA values (total of 0)",
+                           "[Dataset][createTrain][INFO] Removed columns containing NA values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
@@ -585,7 +720,7 @@ testthat::test_that("Dataset: createTrain function works", {
 
   testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
                                             opts = list(remove.na = TRUE, remove.const = TRUE)),
-                           "[Dataset][INFO] Removed columns containing NA values (total of 0)",
+                           "[Dataset][createTrain][INFO] Removed columns containing NA values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
@@ -594,7 +729,7 @@ testthat::test_that("Dataset: createTrain function works", {
 
   testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
                                             opts = list(remove.na = TRUE, remove.const = TRUE)),
-                           "[Dataset][INFO] Removed columns containing constant values (total of 0)",
+                           "[Dataset][createTrain][INFO] Removed columns containing constant values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
@@ -603,12 +738,22 @@ testthat::test_that("Dataset: createTrain function works", {
 
   testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
                                             opts = list(remove.na = FALSE, remove.const = TRUE)),
-                           "[Dataset][INFO] Removed columns containing constant values (total of 0)",
+                           "[Dataset][createTrain][INFO] Removed columns containing constant values (total of 0)",
                            fixed = TRUE)
 
   testthat::expect_is(data$createTrain(class.index = 50, positive.class = 1, num.folds = 4,
                                        opts = list(remove.na = FALSE, remove.const = TRUE)),
                       "Trainset")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("Dataset: createTrain function checks parameter type", {
@@ -624,7 +769,7 @@ testthat::test_that("Dataset: createTrain function checks parameter type", {
 
   testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = NULL,
                                             opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][ERROR] Dataset distribution is null. Task not performed",
+                           "[Dataset][createTrain][ERROR] Dataset distribution is null. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_null(data$createTrain(class.index = 50, positive.class = 1, num.folds = NULL,
@@ -634,31 +779,36 @@ testthat::test_that("Dataset: createTrain function checks parameter type", {
 
   testthat::expect_error(data$createTrain(class.index = 51, positive.class = 1, num.folds = 4,
                                           opts = list(remove.na = TRUE, remove.const = FALSE)),
-                         "[Dataset][FATAL] Class not found into dataset limits. Aborting...",
+                         "[Dataset][createTrain][FATAL] Class not found into dataset limits. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(data$createTrain(class.index = "wrong", positive.class = 1, num.folds = 4,
                                           opts = list(remove.na = TRUE, remove.const = FALSE)),
-                         "[Dataset][FATAL] Class not found into dataset limits. Aborting...",
+                         "[Dataset][createTrain][FATAL] Class not found into dataset limits. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(data$createTrain(class.index = 50, positive.class = "wrong", num.folds = 4,
                                           opts = list(remove.na = TRUE, remove.const = FALSE)),
-                         "[Dataset][FATAL] Positive class value not found. Aborting...",
+                         "[Dataset][createTrain][FATAL] Positive class value not found. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = NULL,
+  testthat::expect_warning(data$createTrain(class.index = 50, positive.class = 1, num.folds = NULL,
                                             opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][WARNING] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
+                           "[Dataset][createTrain][WARN] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = "a",
+  testthat::expect_warning(data$createTrain(class.index = 50, positive.class = 1, num.folds = "a",
                                             opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][WARNING] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
+                           "[Dataset][createTrain][WARN] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
                            fixed = TRUE)
 
-  testthat::expect_message(data$createTrain(class.index = 50, positive.class = 1, num.folds = 8,
+  testthat::expect_warning(data$createTrain(class.index = 50, positive.class = 1, num.folds = 8,
                                             opts = list(remove.na = TRUE, remove.const = FALSE)),
-                           "[Dataset][WARNING] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
+                           "[Dataset][createTrain][WARN] Incorrect number of folds. Must be between 1 and 4. Assuming whole dataset",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

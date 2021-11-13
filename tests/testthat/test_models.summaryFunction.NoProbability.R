@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("NoProbability: initialize function works", {
 
   noProbability <- NoProbability$new()
@@ -6,6 +11,16 @@ testthat::test_that("NoProbability: initialize function works", {
 
   testthat::expect_equal(noProbability$getMeasures(),
                          c("Kappa", "Accuracy", "TCR_9", "MCC", "PPV"))
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("NoProbability: execute function works", {
@@ -26,6 +41,16 @@ testthat::test_that("NoProbability: execute function works", {
   testthat::expect_equal(class(result), "numeric")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("NoProbability: execute function checks parameter", {
 
   noProbability <- NoProbability$new()
@@ -38,7 +63,7 @@ testthat::test_that("NoProbability: execute function checks parameter", {
   testthat::expect_error(noProbability$execute(data = data,
                                                lev = NULL,
                                                model = NULL),
-                         "[NoProbability][FATAL] Your outcome has 3 levels. The 'NoProbability' function is not appropriate. Aborting...",
+                         "[NoProbability][execute][FATAL] Your outcome has 3 levels. The 'NoProbability' function is not appropriate. Aborting...",
                          fixed = TRUE)
 
   data <- data.frame(c(1, 1, 0), c(0, 1, 2))
@@ -49,6 +74,11 @@ testthat::test_that("NoProbability: execute function checks parameter", {
   testthat::expect_error(noProbability$execute(data = data,
                                                lev = NULL,
                                                model = NULL),
-                         "[NoProbability][FATAL] Levels of observed and predicted data do not match. Aborting...",
+                         "[NoProbability][execute][FATAL] Levels of observed and predicted data do not match. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

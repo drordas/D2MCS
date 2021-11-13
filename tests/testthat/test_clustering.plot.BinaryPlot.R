@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("BinaryPlot: plot function works", {
   testthat::skip_if_not_installed("grDevices")
   plot <- BinaryPlot$new()
@@ -10,6 +15,16 @@ testthat::test_that("BinaryPlot: plot function works", {
   testthat::expect_equal(c("gg", "ggplot"), class(plot$plot(summary)))
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("BinaryPlot: plot function checks parameter type", {
 
   plot <- BinaryPlot$new()
@@ -17,4 +32,9 @@ testthat::test_that("BinaryPlot: plot function checks parameter type", {
   testthat::expect_error(plot$plot("wrong"),
                          "[BinaryPlot][FATAL] Summary parameter must be defined as 'data.frame' type. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

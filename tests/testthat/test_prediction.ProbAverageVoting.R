@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ProbAverageVoting: initialize function works", {
 
   cutoff <- 0.5
@@ -24,6 +29,16 @@ testthat::test_that("ProbAverageVoting: initialize function works", {
                       "ProbAverageVoting")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ProbAverageVoting: initialize function checks parameter type", {
 
   cutoff <- 0.5
@@ -33,8 +48,18 @@ testthat::test_that("ProbAverageVoting: initialize function checks parameter typ
   testthat::expect_error(ProbAverageVoting$new(cutoff = cutoff,
                                                class.tie = class.tie,
                                                majority.class = majority.class),
-                         "[ProbAverageVoting][FATAL] Invalid class tie value. Aborting...",
+                         "[ProbAverageVoting][initialize][FATAL] Invalid class tie value. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ProbAverageVoting: getMajorityClass function works", {
@@ -49,6 +74,16 @@ testthat::test_that("ProbAverageVoting: getMajorityClass function works", {
                          "Positive")
 })
 
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("ProbAverageVoting: getClassTie function works", {
 
   cutoff <- 0.5
@@ -59,6 +94,16 @@ testthat::test_that("ProbAverageVoting: getClassTie function works", {
                                                class.tie = class.tie,
                                                majority.class = majority.class)$getClassTie(),
                          "Positive")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ProbAverageVoting: execute function works", {
@@ -78,8 +123,18 @@ testthat::test_that("ProbAverageVoting: execute function works", {
   verbose <- TRUE
   testthat::expect_message(voting$execute(predictions = predictions,
                                           verbose = verbose),
-                           "[ProbAverageVoting][INFO] Performing voting using '1' as tie solving",
+                           "[ProbAverageVoting][execute][INFO] Performing voting using '1' as tie solving",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ProbAverageVoting: execute function works (tie)", {
@@ -103,7 +158,7 @@ testthat::test_that("ProbAverageVoting: execute function works (tie)", {
   verbose <- TRUE
   testthat::expect_message(voting$execute(predictions = predictions,
                                           verbose = verbose),
-                           "[ProbAverageVoting][INFO] Tie solver found. Resolving tie using '1'.",
+                           "[ProbAverageVoting][execute][INFO] Tie solver found. Resolving tie using '1'",
                            fixed = TRUE)
 
   cutoff <- 0.5
@@ -125,8 +180,18 @@ testthat::test_that("ProbAverageVoting: execute function works (tie)", {
   verbose <- TRUE
   testthat::expect_message(voting$execute(predictions = predictions,
                                           verbose = verbose),
-                           "[ProbAverageVoting][INFO] Tie solver not found. Resolving tie using first occurrence.",
+                           "[ProbAverageVoting][execute][INFO] Tie solver not found. Resolving tie using first occurrence",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("ProbAverageVoting: execute function checks parameter type", {
@@ -141,13 +206,18 @@ testthat::test_that("ProbAverageVoting: execute function checks parameter type",
 
   testthat::expect_error(voting$execute(predictions = NULL,
                                         verbose = FALSE),
-                         "[ProbAverageVoting][FATAL] Predictions parameter must be defined as 'ClusterPrediction' type. Aborting...",
+                         "[ProbAverageVoting][execute][FATAL] Predictions parameter must be defined as 'ClusterPrediction' type. Aborting...",
                          fixed = TRUE)
 
   predictions  <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                          positive.class = 1)
   testthat::expect_error(voting$execute(predictions = predictions,
                                         verbose = FALSE),
-                         "[ProbAverageVoting][FATAL] Cluster predictions were not computed. Aborting...",
+                         "[ProbAverageVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

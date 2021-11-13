@@ -50,8 +50,11 @@ Prediction <- R6::R6Class(
     #'
     initialize = function(model, feature.id = NULL) {
       if (!inherits(model, "list") || length(model) != 5) {
-        stop("[", class(self)[1], "][FATAL] Model parameter must be defined as a ",
-             "list of five elements. Aborting...")
+        d2mcs.log(message = paste0("Model parameter must be defined as a list ",
+                                   "of five elements. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       private$model <- model
@@ -70,8 +73,11 @@ Prediction <- R6::R6Class(
     #'
     execute = function(pred.values, class.values, positive.class) {
       if (!inherits(pred.values, "data.frame")) {
-        stop("[", class(self)[1], "][FATAL] Prediction values parameter must be ",
-             "defined as 'data.frame' type. Aborting...")
+        d2mcs.log(message = paste0("Prediction values parameter must be ",
+                                   "defined as 'data.frame' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (all(!is.null(private$feature.id), length(private$feature.id) > 0)) {
@@ -98,8 +104,12 @@ Prediction <- R6::R6Class(
         private$results$raw <- rbind(private$results$raw, data.frame(raw.aux))
         names(private$results$raw) <- "Raw prediction"
       } else {
-        message("[", class(self)[1], "][WARNING] Model '", private$model$model.name,
-                "' is not able to compute a-posteriori probabilities")
+        d2mcs.log(message = paste0("Model '", private$model$model.name, "' is ",
+                                   "not able to compute a-posteriori ",
+                                   "probabilities"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "execute")
 
         raw.aux <- data.frame(predict(object = private$model$model.data,
                                       newdata = pred.values,
@@ -139,18 +149,24 @@ Prediction <- R6::R6Class(
     #'
     getPrediction = function(type = NULL, target = NULL) {
       if (is.null(type) || !type %in% c("raw", "prob")) {
-        message("[", class(self)[1], "][WARNING] Probability type ",
-                "missing or incorrect. Should be 'raw' or 'prob'. ",
-                "Assuming 'raw' by default")
+        d2mcs.log(message = paste0("Probability type missing or incorrect. ",
+                                   "Should be 'raw' or 'prob'. Assuming 'raw' ",
+                                   "by default"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "getPrediction")
         type <- "raw"
       }
       switch (type,
               "prob" = {
                 class.names <- names(private$results$prob)
                 if (is.null(target) || !(target %in% class.names)) {
-                  message("[", class(self)[1], "][WARNING] Target not ",
-                          "specified or invalid. Using '",
-                          class.names[1], "' as default value")
+                  d2mcs.log(message = paste0("Target not specified or invalid. ",
+                                             "Using '", class.names[1],
+                                             "' as default value"),
+                            level = "WARN",
+                            className = class(self)[1],
+                            methodName = "getPrediction")
                   target <- class.names[1]
                 }
                 ret <- private$results$prob[, as.character(target), drop = FALSE]
@@ -188,9 +204,12 @@ Prediction <- R6::R6Class(
       if (is.list(pkgName)) { pkgName <- unlist(pkgName) }
       new.packages <- pkgName[sapply(pkgName, function(pkg) system.file(package = pkg) == "")]
       if (length(new.packages)) {
-        message("[", class(self)[1], "][INFO][", private$model$model.name, "]",
-                length(new.packages), "packages needed to execute aplication\n",
-                "Installing packages...")
+        d2mcs.log(message = paste0("[", private$model$model.name, "]",
+                                   length(new.packages), "packages needed to ",
+                                   "execute aplication Installing packages..."),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "loadPackages")
         lapply(new.packages, function(pkg) caret::checkInstall(pkg = pkg))
       }
       lapply(pkgName, function(pkg) {

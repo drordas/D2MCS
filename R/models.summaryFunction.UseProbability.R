@@ -66,11 +66,18 @@ UseProbability <- R6::R6Class(
     execute = function(data, lev = NULL, model = NULL) {
       lvls <- levels(data$obs)
       if (length(lvls) > 2)
-        stop("[", class(self)[1], "][FATAL] Your outcome has ", length(lvls),
-             " levels. The 'UseProbability' function is not appropriate. Aborting...")
+        d2mcs.log(message = paste0("Your outcome has ", length(lvls),
+                                   " levels. The 'UseProbability' function is ",
+                                   "not appropriate. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       if (!all(levels(data[, "pred"]) == lvls))
-        stop("[", class(self)[1], "][FATAL] Levels of observed and predicted data ",
-             "do not match. Aborting...")
+        d2mcs.log(message = paste0("Levels of observed and predicted data do ",
+                                   "not match. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
 
       data$y = as.numeric(data$obs == lvls[2])
       data$z = as.numeric(data$pred == lvls[2])

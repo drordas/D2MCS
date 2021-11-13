@@ -1,4 +1,6 @@
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "initializeTest"),
@@ -89,12 +91,14 @@ testthat::test_that("ExecutedModels: initialize function works", {
                             winslash = "/",
                             mustWork = FALSE)
 
-  testthat::expect_message(ExecutedModels$new(dir.path = dir.path),
-                           "[ExecutedModels][WARNING] Best model cannot be loaded.",
+  testthat::expect_warning(ExecutedModels$new(dir.path = dir.path),
+                           "[ExecutedModels][initialize][WARN] Best model cannot be loaded",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "testExecutedModels"),
                                winslash = "/",
@@ -109,6 +113,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "initializeTest"),
@@ -166,6 +172,8 @@ testthat::test_that("ExecutedModels: getNames function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "testExecutedModels"),
                                winslash = "/",
@@ -180,6 +188,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "initializeTest"),
@@ -234,12 +244,14 @@ testthat::test_that("ExecutedModels: getBest function works", {
 
   executedModels <- ExecutedModels$new(dir.path = dir.path)
 
-  testthat::expect_message(executedModels$getBest(),
-                           "[ExecutedModels][WARNING] Best model not found.",
+  testthat::expect_warning(executedModels$getBest(),
+                           "[ExecutedModels][getBest][WARN] Best model not found",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels"),
                                 winslash = "/",
@@ -254,6 +266,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "addTest-keepBest-FALSE"),
@@ -314,6 +328,8 @@ testthat::test_that("ExecutedModels: add function works (keep.best = FALSE)", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "testExecutedModels"),
                                winslash = "/",
@@ -328,6 +344,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "addTest-keepBest-TRUE"),
@@ -397,7 +415,7 @@ testthat::test_that("ExecutedModels: add function works (keep.best = TRUE)", {
 
   testthat::expect_message(executedModels$add(model = model,
                                               keep.best = keep.best),
-                           "[ExecutedModels][INFO] Best model found. Replacing 'lda' with 'newModel'",
+                           "[ExecutedModels][add][INFO] Best model found. Replacing 'lda' with 'newModel'",
                            fixed = TRUE)
 
   testthat::expect_false(file.exists(normalizePath(path = file.path(tempdir(),
@@ -418,6 +436,8 @@ testthat::test_that("ExecutedModels: add function works (keep.best = TRUE)", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "testExecutedModels"),
                                winslash = "/",
@@ -432,6 +452,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "initializeTest"),
@@ -480,11 +502,13 @@ testthat::test_that("ExecutedModels: add function checks parameter", {
 
   testthat::expect_message(executedModels$add(model = model,
                                               keep.best = keep.best),
-                           "[ExecutedModels][ERROR] Model parameter must be defined as 'Model' type. Model not inserted. Task not performed",
+                           "[ExecutedModels][add][ERROR] Model parameter must be defined as 'Model' type. Model not inserted. Task not performed",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "testExecutedModels"),
                                winslash = "/",
@@ -499,7 +523,8 @@ testthat::teardown({
 })
 
 testthat::setup({
-
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "initializeTest"),
@@ -549,6 +574,8 @@ testthat::test_that("ExecutedModels: exist function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "testExecutedModels"),
                                winslash = "/",
@@ -563,7 +590,8 @@ testthat::teardown({
 })
 
 testthat::setup({
-
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "initializeTest"),
@@ -611,6 +639,8 @@ testthat::test_that("ExecutedModels: size function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "testExecutedModels"),
                                winslash = "/",
@@ -634,11 +664,13 @@ testthat::test_that("ExecutedModels: save function (file is empty)", {
   executedModels <- ExecutedModels$new(dir.path = dir.path)
 
   testthat::expect_message(executedModels$save(),
-                           "[ExecutedModels][ERROR] File is empty. Task not performed",
+                           "[ExecutedModels][save][ERROR] File is empty. Task not performed",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels"),
                                 winslash = "/",
@@ -653,6 +685,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "deleteTest"),
@@ -707,6 +741,8 @@ testthat::test_that("ExecutedModels: delete function works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels"),
                                 winslash = "/",
@@ -721,6 +757,8 @@ testthat::teardown({
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels",
                                                  "deleteTestError"),
@@ -753,18 +791,20 @@ testthat::test_that("ExecutedModels: delete function checks parameter", {
                             winslash = "/",
                             mustWork = FALSE)
 
-  executedModels <- ExecutedModels$new(dir.path = dir.path)
+  executedModels <- suppressWarnings(ExecutedModels$new(dir.path = dir.path))
 
   testthat::expect_message(executedModels$delete(model.name = "wrong"),
-                           "[ExecutedModels][ERROR] Cannot delete model. Model 'wrong' has not been executed. Task not performed",
+                           "[ExecutedModels][delete][ERROR] Cannot delete model. Model 'wrong' has not been executed. Task not performed",
                            fixed = TRUE)
 
   testthat::expect_message(executedModels$delete(model.name = "nb"),
-                           "[ExecutedModels][ERROR] Cannot delete model. Path for model 'nb' not found. Task not performed",
+                           "[ExecutedModels][delete][ERROR] Cannot delete model. Path for model 'nb' not found. Task not performed",
                            fixed = TRUE)
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (file.exists(normalizePath(path = file.path(tempdir(),
                                                  "testExecutedModels"),
                                 winslash = "/",

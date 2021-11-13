@@ -1,3 +1,8 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("TypeBasedStrategy: initialize function works", {
 
   set.seed(1234)
@@ -22,8 +27,18 @@ testthat::test_that("TypeBasedStrategy: initialize function works", {
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
-  testthat::expect_is(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
+  testthat::expect_is(suppressWarnings(TypeBasedStrategy$new(subset.cluster, heuristics, configuration)),
                       "TypeBasedStrategy")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TypeBasedStrategy: initialize function checks parameter type", {
@@ -33,7 +48,7 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_error(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
-                         "[TypeBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                         "[TypeBasedStrategy][initialize][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -59,7 +74,7 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_error(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
-                         "[TypeBasedStrategy][FATAL] Heuristic parameter is not defined or incorrect. Must contain two elements. Aborting...",
+                         "[TypeBasedStrategy][initialize][FATAL] Heuristic parameter is not defined or incorrect. Must contain two elements. Aborting...",
                          fixed = TRUE, )
 
   set.seed(1234)
@@ -85,7 +100,7 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
   configuration <- StrategyConfiguration$new()
 
   testthat::expect_error(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
-                         "[TypeBasedStrategy][FATAL] Defined heuristics are not correct. Must be inherit from 'GenericHeuristic' class. Aborting...",
+                         "[TypeBasedStrategy][initialize][FATAL] Defined heuristics are not correct. Must be inherit from 'GenericHeuristic' class. Aborting...",
                          fixed = TRUE)
 
   set.seed(1234)
@@ -110,12 +125,12 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
-  testthat::expect_message(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
-                           "[TypeBasedStrategy][INFO] Heuristic for binary data defined",
+  testthat::expect_warning(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
+                           "[TypeBasedStrategy][initialize][WARN] Heuristic for binary data defined",
                            fixed = TRUE)
 
-  testthat::expect_message(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
-                           "[TypeBasedStrategy][INFO] Heuristic for real data defined",
+  testthat::expect_warning(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
+                           "[TypeBasedStrategy][initialize][WARN] Heuristic for real data defined",
                            fixed = TRUE)
 
   set.seed(1234)
@@ -140,8 +155,8 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
   heuristics <- list(NULL, SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
-  testthat::expect_message(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
-                           "[TypeBasedStrategy][WARNING] Heuristic for binary data not defined",
+  testthat::expect_warning(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
+                           "[TypeBasedStrategy][initialize][WARN] Heuristic for binary data not defined",
                            fixed = TRUE)
 
   set.seed(1234)
@@ -166,12 +181,14 @@ testthat::test_that("TypeBasedStrategy: initialize function checks parameter typ
   heuristics <- list(ChiSquareHeuristic$new(), NULL)
   configuration <- StrategyConfiguration$new()
 
-  testthat::expect_message(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
-                           "[TypeBasedStrategy][WARNING] Heuristic for real data not defined",
+  testthat::expect_warning(TypeBasedStrategy$new(subset.cluster, heuristics, configuration),
+                           "[TypeBasedStrategy][initialize][WARN] Heuristic for real data not defined",
                            fixed = TRUE)
 })
 
 testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (!dir.exists(normalizePath(path = file.path(tempdir(),
                                                  "outputs"),
                                 winslash = "/",
@@ -182,6 +199,11 @@ testthat::setup({
                                     mustWork = FALSE),
                recursive = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TypeBasedStrategy works", {
@@ -207,7 +229,9 @@ testthat::test_that("TypeBasedStrategy works", {
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
-  strategy <- TypeBasedStrategy$new(subset.cluster, heuristics, configuration)
+  strategy <- suppressWarnings(TypeBasedStrategy$new(subset.cluster,
+                                                     heuristics,
+                                                     configuration))
 
   capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
 
@@ -216,17 +240,23 @@ testthat::test_that("TypeBasedStrategy works", {
   heuristics <- list(ChiSquareHeuristic$new(), SpearmanHeuristic$new())
   configuration <- StrategyConfiguration$new()
 
-  strategyNoReal <- TypeBasedStrategy$new(subset.cluster, list(ChiSquareHeuristic$new(), NULL), configuration)
-  strategyNoBinary <- TypeBasedStrategy$new(subset.cluster, list(NULL, SpearmanHeuristic$new()), configuration)
+  strategyNoReal <- suppressWarnings(TypeBasedStrategy$new(subset.cluster,
+                                                           list(ChiSquareHeuristic$new(),
+                                                                NULL),
+                                                           configuration))
+  strategyNoBinary <- suppressWarnings(TypeBasedStrategy$new(subset.cluster,
+                                                             list(NULL,
+                                                                  SpearmanHeuristic$new()),
+                                                             configuration))
 
   testthat::expect_message(suppressWarnings(strategyNoReal$execute()),
-                           "[TypeBasedStrategy][INFO] TypeBasedStrategy has not heuristic to real features. Assuming one cluster by default",
+                           "[TypeBasedStrategy][execute][INFO] TypeBasedStrategy has not heuristic to real features. Assuming one cluster by default",
                            fixed = TRUE)
 
   testthat::expect_equal(c("gg", "ggplot"), class(strategyNoReal$plot()))
 
   testthat::expect_message(suppressWarnings(strategyNoBinary$execute()),
-                           "[TypeBasedStrategy][INFO] TypeBasedStrategy has not heuristic to binary features. Assuming one cluster by default",
+                           "[TypeBasedStrategy][execute][INFO] TypeBasedStrategy has not heuristic to binary features. Assuming one cluster by default",
                            fixed = TRUE)
 
   grDevices::pdf(NULL)
@@ -236,29 +266,31 @@ testthat::test_that("TypeBasedStrategy works", {
   testthat::expect_equal(length(strategyNoReal$getDistribution(num.groups = c(1, 1))),
                          2)
 
-  testthat::expect_message(strategyNoReal$getDistribution(num.groups = c(5, 1)),
-                           "[TypeBasedStrategy][WARNING] Number of clusters incorrect. Returning all groups ...",
+  testthat::expect_warning(strategyNoReal$getDistribution(num.groups = c(5, 1)),
+                           "[TypeBasedStrategy][getDistribution][WARN] Number of clusters incorrect. Returning all groups...",
                            fixed = TRUE)
 
-  testthat::expect_message(strategyNoReal$getDistribution(num.groups = c(1, 5)),
-                           "[TypeBasedStrategy][WARNING] Number of clusters incorrect. Returning all groups ...",
+  testthat::expect_warning(strategyNoReal$getDistribution(num.groups = c(1, 5)),
+                           "[TypeBasedStrategy][getDistribution][WARN] Number of clusters incorrect. Returning all groups...",
                            fixed = TRUE)
 
-  strategy <- TypeBasedStrategy$new(subset.cluster, heuristics, configuration)
+  strategy <- suppressWarnings(TypeBasedStrategy$new(subset.cluster,
+                                                     heuristics,
+                                                     configuration))
 
   testthat::expect_error(strategy$getDistribution(),
-                         "[TypeBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[TypeBasedStrategy][getDistribution][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(strategy$createTrain(subset = subset.cluster),
-                         "[TypeBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+                         "[TypeBasedStrategy][createTrain][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
-  testthat::expect_error(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                                                    "outputs",
-                                                                                    "saveCSV"),
-                                                                   winslash = "/",
-                                                                   mustWork = FALSE)),
-                         "[TypeBasedStrategy][FATAL] Clustering not done or errorneous. Aborting...",
+  testthat::expect_error(suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                                                     "outputs",
+                                                                                                     "saveCSV"),
+                                                                                    winslash = "/",
+                                                                                    mustWork = FALSE))),
+                         "[TypeBasedStrategy][saveCSV][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
   capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
@@ -266,17 +298,22 @@ testthat::test_that("TypeBasedStrategy works", {
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
   testthat::expect_is(strategy$getUnclustered(), "list")
 
-  testthat::expect_equal(length(strategy$getDistribution()), 4)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 2)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.clusters = 1:2)), 2)
-  testthat::expect_equal(length(strategy$getDistribution(num.groups = 1)), 3)
+  testthat::expect_equal(length(strategy$getDistribution()),
+                         4)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.clusters = 2))),
+                         2)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.clusters = 1:2))),
+                         2)
+  testthat::expect_equal(length(suppressWarnings(strategy$getDistribution(num.groups = 1))),
+                         3)
 
-  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)), 4)
+  testthat::expect_equal(length(strategy$getDistribution(include.unclustered = TRUE)),
+                         4)
 
   testthat::expect_is(strategy$createTrain(subset = subset.cluster),
                       "Trainset")
   testthat::expect_error(strategy$createTrain(subset = NULL),
-                         "[TypeBasedStrategy][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
+                         "[TypeBasedStrategy][createTrain][FATAL] Subset parameter must be defined as 'Subset' type. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_equal(c("gtable", "gTree", "grob", "gDesc"), class(strategy$plot()))
@@ -287,53 +324,53 @@ testthat::test_that("TypeBasedStrategy works", {
                                                                   winslash = "/",
                                                                   mustWork = FALSE),
                                          file.name = "TypeBasedStrategyPlot"),
-                           "[TypeBasedStrategy][INFO] Plot has been succesfully saved at",
+                           "[TypeBasedStrategy][plot][INFO] Plot has been succesfully saved at",
                            fixed = TRUE)
 
   testthat::expect_error(strategy$saveCSV(dir.path = NULL),
-                         "[TypeBasedStrategy][FATAL] Path not defined. Aborting...",
+                         "[TypeBasedStrategy][saveCSV][FATAL] Path not defined. Aborting...",
                          fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputs",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE)),
-                           "[TypeBasedStrategy][WARNING] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
+                           "[TypeBasedStrategy][saveCSV][WARN] File name not defined. Using 'ChiSquareHeuristic-SpearmanHeuristic.csv'",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputs",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE)),
-                           "[TypeBasedStrategy][WARNING] Number of clusters not defined. Saving all cluster configurations",
+                           "[TypeBasedStrategy][saveCSV][WARN] Number of clusters not defined. Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputs",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE),
                                             num.clusters = 2),
-                           "[TypeBasedStrategy][WARNING] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
+                           "[TypeBasedStrategy][saveCSV][WARN] Type of num.clusters not valid (must be NULL or list type). Saving all cluster configurations",
                            fixed = TRUE)
 
-  testthat::expect_message(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+  testthat::expect_warning(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
                                                                                       "outputs",
                                                                                       "saveCSV"),
                                                                      winslash = "/",
                                                                      mustWork = FALSE),
                                             num.clusters = list(list(2:60), list(2:60))),
-                           "[TypeBasedStrategy][WARNING] Number of clusters incorrect. Must be between 2 and 50. Ignoring clustering for real type features...",
+                           "[TypeBasedStrategy][saveCSV][WARN] Number of clusters incorrect. Must be between 2 and 50. Ignoring clustering for real type features...",
                            fixed = TRUE)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputs",
-                                                             "saveCSV"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(list(3:6), list(3:6)))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                              "outputs",
+                                                                              "saveCSV"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(list(3:6), list(3:6))))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputs",
@@ -345,12 +382,12 @@ testthat::test_that("TypeBasedStrategy works", {
                                        sep = ";")),
                          8)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputs",
-                                                             "saveCSV2"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(NULL, list(3:6)))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                              "outputs",
+                                                                              "saveCSV2"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(NULL, list(3:6))))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputs",
@@ -362,12 +399,12 @@ testthat::test_that("TypeBasedStrategy works", {
                                        sep = ";")),
                          53)
 
-  strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
-                                                             "outputs",
-                                                             "saveCSV3"),
-                                            winslash = "/",
-                                            mustWork = FALSE),
-                   num.clusters = list(list(3:6), NULL))
+  suppressWarnings(strategy$saveCSV(dir.path = normalizePath(path = file.path(tempdir(),
+                                                                              "outputs",
+                                                                              "saveCSV3"),
+                                                             winslash = "/",
+                                                             mustWork = FALSE),
+                                    num.clusters = list(list(3:6), NULL)))
 
   testthat::expect_equal(nrow(read.csv(file = normalizePath(path = file.path(tempdir(),
                                                                              "outputs",
@@ -381,6 +418,8 @@ testthat::test_that("TypeBasedStrategy works", {
 })
 
 testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
   if (dir.exists(normalizePath(path = file.path(tempdir(),
                                                 "outputs"),
                                winslash = "/",
@@ -392,6 +431,11 @@ testthat::teardown({
            recursive = TRUE,
            force = TRUE)
   }
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("TypeBasedStrategy checks incompatible heuristics", {
@@ -417,17 +461,34 @@ testthat::test_that("TypeBasedStrategy checks incompatible heuristics", {
 
   configuration <- StrategyConfiguration$new()
 
-  strategyIncompatibleBinary <- TypeBasedStrategy$new(subset.cluster, list(KendallHeuristic$new(), NULL), configuration)
-  strategyIncompatibleReal <- TypeBasedStrategy$new(subset.cluster, list(NULL, OddsRatioHeuristic$new()), configuration)
+  strategyIncompatibleBinary <- suppressWarnings(TypeBasedStrategy$new(subset.cluster,
+                                                                       list(KendallHeuristic$new(),
+                                                                            NULL),
+                                                                       configuration))
+  strategyIncompatibleReal <- suppressWarnings(TypeBasedStrategy$new(subset.cluster,
+                                                                     list(NULL,
+                                                                          OddsRatioHeuristic$new()),
+                                                                     configuration))
 
-  testthat::expect_message(suppressWarnings(strategyIncompatibleBinary$execute()),
-                           "[TypeBasedStrategy][WARNING] 23 features were incompatible with 'KendallHeuristic' heuristic",
+  testthat::expect_warning(strategyIncompatibleBinary$execute(),
+                           "[TypeBasedStrategy][execute][WARN] 23 features were incompatible with 'KendallHeuristic' heuristic",
                            fixed = TRUE)
 
-  testthat::expect_message(suppressWarnings(strategyIncompatibleReal$execute()),
-                           "[TypeBasedStrategy][WARNING] 26 features were incompatible with 'OddsRatioHeuristic' heuristic",
+  testthat::expect_warning(strategyIncompatibleReal$execute(),
+                           "[TypeBasedStrategy][execute][WARN] 26 features were incompatible with 'OddsRatioHeuristic' heuristic",
                            fixed = TRUE)
 })
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 
 testthat::test_that("TypeBasedStrategy checks no binary or real features", {
 
@@ -440,13 +501,13 @@ testthat::test_that("TypeBasedStrategy checks no binary or real features", {
                                          class.values = as.factor(c(0, 1)),
                                          positive.class = 1)
 
-  strategyNoBinaryFeatures <- TypeBasedStrategy$new(subset.cluster.no.binary,
-                                                    list(ChiSquareHeuristic$new(),
-                                                         NULL),
-                                                    configuration)
+  strategyNoBinaryFeatures <- suppressWarnings(TypeBasedStrategy$new(subset.cluster.no.binary,
+                                                                     list(ChiSquareHeuristic$new(),
+                                                                          NULL),
+                                                                     configuration))
 
   testthat::expect_message(suppressWarnings(strategyNoBinaryFeatures$execute()),
-                           "[TypeBasedStrategy][INFO] Not binary features for clustering",
+                           "[TypeBasedStrategy][execute][INFO] Not binary features for clustering",
                            fixed = TRUE)
 
   subset.cluster.no.real <- Subset$new(dataset = data.frame(c(0, 1, 0, 1),
@@ -456,12 +517,17 @@ testthat::test_that("TypeBasedStrategy checks no binary or real features", {
                                        class.values = as.factor(c(0, 1)),
                                        positive.class = 1)
 
-  strategyNoRealFeatures <- TypeBasedStrategy$new(subset.cluster.no.real,
-                                                  list(NULL,
-                                                       SpearmanHeuristic$new()),
-                                                  configuration)
+  strategyNoRealFeatures <- suppressWarnings(TypeBasedStrategy$new(subset.cluster.no.real,
+                                                                   list(NULL,
+                                                                        SpearmanHeuristic$new()),
+                                                                   configuration))
 
   testthat::expect_message(suppressWarnings(strategyNoRealFeatures$execute()),
-                           "[TypeBasedStrategy][INFO] Not real features for clustering",
+                           "[TypeBasedStrategy][execute][INFO] Not real features for clustering",
                            fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })

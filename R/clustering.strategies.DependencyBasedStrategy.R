@@ -87,55 +87,97 @@ DependencyBasedStrategy <- R6::R6Class(
     #'
     initialize = function(subset, heuristic, configuration = DependencyBasedStrategyConfiguration$new()) {
       if (!inherits(subset, "Subset")) {
-        stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
-             "'Subset' type. Aborting...")
+        d2mcs.log(message = paste0("Subset parameter must be defined as ",
+                                   "'Subset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!is.list(heuristic) || length(heuristic) != 2) {
-        stop("[", class(self)[1], "][FATAL] Heuristic parameter is not defined ",
-             "or incorrect. Must contain two elements. Aborting...")
+        d2mcs.log(message = paste0("Heuristic parameter is not defined or ",
+                                   "incorrect. Must contain two elements. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
-
       if (!any(sapply(heuristic, inherits, "GenericHeuristic"))) {
-        stop("[", class(self)[1], "][FATAL] Defined heuristics are not correct. ",
-             "Must be inherit from 'GenericHeuristic' class. Aborting...")
+        d2mcs.log(message = paste0("Defined heuristics are not correct. Must ",
+                                   "be inherit from 'GenericHeuristic' class. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (is.null(heuristic[[1]])) {
-        message("[", class(self)[1], "][WARNING] Heuristic for binary data not defined")
+        d2mcs.log(message = "Heuristic for binary data not defined",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
       } else {
-        message("[", class(self)[1], "][INFO] Heuristic for binary data defined ",
-                "as '", class(heuristic[[1]])[1], "'")
+        d2mcs.log(message = paste0("Heuristic for binary data defined as '",
+                                  class(heuristic[[1]])[1], "'"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (is.null(heuristic[[2]])) {
-        message("[", class(self)[1], "][WARNING] Heuristic for real data not defined")
+        d2mcs.log(message = "Heuristic for real data not defined",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
       } else {
-        message("[", class(self)[1], "][INFO] Heuristic for real data defined ",
-                "as '", class(heuristic[[2]])[1], "'")
+        d2mcs.log(message = paste0("Heuristic for real data defined as '",
+                                   class(heuristic[[2]])[1], "'"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!"StrategyConfiguration" %in% class(configuration)) {
-        stop("[", class(self)[1], "][FATAL] Configuration parameter must be inherit ",
-             "from 'StrategyConfiguration' class. Aborting...")
+        d2mcs.log(message = paste0("Configuration parameter must be inherit ",
+                                   "from 'StrategyConfiguration' class. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!exists("getBinaryCutoff", configuration)) {
-        stop("[", class(self)[1], "][FATAL] Configuration parameter must have ",
-             "'getBinaryCutoff' method. Aborting...")
+        d2mcs.log(message = paste0("Configuration parameter must have ",
+                                   "'getBinaryCutoff' method. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!exists("getRealCutoff", configuration)) {
-        stop("[", class(self)[1], "][FATAL] Configuration parameter must have ",
-             "'getRealCutoff' method. Aborting...")
+        d2mcs.log(message = paste0("Configuration parameter must have ",
+                                   "'getRealCutoff' method. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!exists("tiebreak", configuration)) {
-        stop("[", class(self)[1], "][FATAL] Configuration parameter must have ",
-             "'tiebreak' method. Aborting...")
+        d2mcs.log(message = paste0("Configuration parameter must have ",
+                                   "'tiebreak' method. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!exists("qualityOfCluster", configuration)) {
-        stop("[", class(self)[1], "][FATAL] Configuration parameter must have ",
-             "'qualityOfCluster' method. Aborting...")
+        d2mcs.log(message = paste0("Configuration parameter must have ",
+                                   "'qualityOfCluster' method. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!exists("isImprovingClustering", configuration)) {
-        stop("[", class(self)[1], "][FATAL] Configuration parameter must have ",
-             "'isImprovingClustering' method. Aborting...")
+        d2mcs.log(message = paste0("Configuration parameter must have ",
+                                   "'isImprovingClustering' method. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       description <- paste0("DependencyBasedStrategy is a clustering strategy ",
                             "based on dependency between features. This ",
@@ -180,13 +222,21 @@ DependencyBasedStrategy <- R6::R6Class(
       binary.data <- private$getBinaryFeatures(private$subset$getFeatures())
       ## COMPUTING HEURISTIC FOR BINARY DATA
       if (!is.null(binary.heuristic)) {
-        message("[", class(self)[1], "][INFO] Using '", class(binary.heuristic)[1],
-                "' heuristic to distribute binary features")
+        d2mcs.log(message = paste0("Using '",class(binary.heuristic)[1],
+                                   "' heuristic to distribute binary features"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         if (ncol(binary.data) > 0) {
           private$computeGrouping(binary.data, binary.heuristic, binary.cutoff,
                                   verbose, binary = T)
-          message("[", class(self)[1], "][INFO] Computing the distributions to ",
-                  "binary features with the strategy")
+
+          d2mcs.log(message = paste0("Computing the distributions to binary ",
+                                     "features with the strategy"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
+
           private$all.distribution[[1]] <- private$computeDistribution(binary.data,
                                                                        binary.heuristic,
                                                                        private$dep.fea[[1]], # dependent features grouping
@@ -212,22 +262,33 @@ DependencyBasedStrategy <- R6::R6Class(
             private$best.distribution[[1]] <- rbind(private$best.distribution[[1]], df)
           }
           if (length(private$not.clus.fea[[1]]) > 0) {
-            message("[", class(self)[1], "][WARNING] ",
-                    length(private$not.clus.fea[[1]]), " features were incompatible with '",
-                    class(private$heuristic[[1]])[1], "' heuristic")
+            d2mcs.log(message = paste0(length(private$not.clus.fea[[1]]),
+                                       " features were incompatible with '",
+                                       class(private$heuristic[[1]])[1],
+                                       "' heuristic"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "execute")
             private$not.distribution[[1]] <- data.frame(cluster = 1,
                                                         dist = I(list(private$not.clus.fea[[1]])))
           }
         } else {
-          message("[", class(self)[1], "][INFO] Not binary features for clustering")
+          d2mcs.log(message = "Not binary features for clustering",
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
           private$best.distribution[[1]] <- append(private$best.distribution[[1]],
                                                    list(NULL))
           private$all.distribution[[1]] <- append(private$all.distribution[[1]],
                                                   list(NULL))
         }
       } else {
-        message("[", class(self)[1], "][INFO] ", class(self)[1],
-                " has not heuristic to binary features. Assuming one cluster by default")
+        d2mcs.log(message = paste0(class(self)[1], " has not heuristic to ",
+                                   "binary features. Assuming one cluster by ",
+                                   "default"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         private$all.distribution[[1]] <- data.frame(k = 1, deltha = 0,
                                                     dist = I(list(names(binary.data))))
         private$best.distribution[[1]] <- data.frame(cluster = 1,
@@ -239,13 +300,19 @@ DependencyBasedStrategy <- R6::R6Class(
       real.data <- private$getRealFeatures(private$subset$getFeatures())
       ## COMPUTING HEURISTIC FOR REAL DATA
       if (!is.null(real.heuristic)) {
-        message("[", class(self)[1], "][INFO] Using '", class(real.heuristic)[1],
-                "' heuristic to distribute real features")
+        d2mcs.log(message = paste0("Using '", class(real.heuristic)[1],
+                                   "' heuristic to distribute real features"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         if (ncol(real.data) > 0) {
           private$computeGrouping(real.data, real.heuristic, real.cutoff,
                                   verbose, binary = F)
-          message("[", class(self)[1], "][INFO] Computing the distributions to ",
-                  "real features with the strategy")
+          d2mcs.log(message = paste0("Computing the distributions to ",
+                                     "real features with the strategy"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
           private$all.distribution[[2]] <- private$computeDistribution(real.data,
                                                                        real.heuristic,
                                                                        private$dep.fea[[2]], # dependent features grouping
@@ -272,23 +339,32 @@ DependencyBasedStrategy <- R6::R6Class(
                                                     df)
           }
           if (length(private$not.clus.fea[[2]]) > 0) {
-            message("[", class(self)[1], "][WARNING] ",
-                    length(private$not.clus.fea[[2]]), " features were incompatible with '",
-                    class(real.heuristic)[1], "' heuristic")
+            d2mcs.log(message = paste0(length(private$not.clus.fea[[2]]),
+                                       " features were incompatible with '",
+                                       class(real.heuristic)[1], "' heuristic"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "execute")
             private$not.distribution[[2]] <- data.frame(cluster = 1,
                                                         dist = I(list(private$not.clus.fea[[2]])))
           }
 
         } else {
-          message("[", class(self)[1], "][INFO] Not real features for clustering")
+          d2mcs.log(message = "Not real features for clustering",
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
           private$best.distribution[[2]] <- append(private$best.distribution[[2]],
                                                    list(NULL))
           private$all.distribution[[2]] <- append(private$all.distribution[[2]],
                                                   list(NULL))
         }
       } else {
-        message("[", class(self)[1], "][INFO] ", class(self)[1],
-                " has not heuristic to real features. Assuming one cluster by default")
+        d2mcs.log(message = paste0(class(self)[1], " has not heuristic to real ",
+                                   "features. Assuming one cluster by default"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         private$all.distribution[[2]] <- data.frame(k = 1, deltha = 0,
                                                     dist = I(list(names(real.data))))
         private$best.distribution[[2]] <- data.frame(cluster = 1,
@@ -315,8 +391,10 @@ DependencyBasedStrategy <- R6::R6Class(
           is.null(private$all.distribution) ||
           all(sapply(private$best.distribution, is.null)) ||
           all(sapply(private$all.distribution, is.null))) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getDistribution")
       }
 
       if (is.null(num.clusters) || !is.numeric(num.clusters)) {
@@ -333,9 +411,13 @@ DependencyBasedStrategy <- R6::R6Class(
         }
 
         if (!(num.clusters[1] %in% c(min(all.binary$k):max(all.binary$k)))) {
-          message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                  "Must be between ", min(all.binary$k), " and ", max(all.binary$k),
-                  ". Ignoring clustering for binary type features...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                     "between ", min(all.binary$k), " and ",
+                                     max(all.binary$k), ". Ignoring clustering ",
+                                     "for binary type features..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
           dist.binary <- NULL
         } else {
           dist.binary <- unlist(all.binary[which(all.binary$k == num.clusters[1]), ]$dist,
@@ -343,9 +425,13 @@ DependencyBasedStrategy <- R6::R6Class(
         }
 
         if (!(num.clusters[2] %in% c(min(all.real$k):max(all.real$k)))) {
-          message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                  "Must be between ", min(all.real$k), " and ", max(all.real$k),
-                  ". Ignoring clustering for real type features...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                     "between ", min(all.real$k), " and ",
+                                     max(all.real$k), ". Ignoring clustering ",
+                                     "for real type features..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
           dist.real <- NULL
         } else {
           dist.real <- unlist(all.real[which(all.real$k == num.clusters[2]), ]$dist,
@@ -360,14 +446,20 @@ DependencyBasedStrategy <- R6::R6Class(
           num.groups <- c(num.groups, rep(0, length(private$all.distribution) - length(num.groups)))
         }
         if (!(num.groups[1] %in% c(1:length(dist.binary)))) {
-          message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                  "Returning all groups...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Returning ",
+                                     "all groups..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
 
         } else { dist.binary <- dist.binary[num.groups[1]] }
 
         if (!(num.groups[2] %in% c(1:length(dist.real)))) {
-          message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                  "Returning all groups...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Returning ",
+                                     "all groups..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
 
         } else { dist.real <- dist.real[num.groups[2]] }
       }
@@ -406,13 +498,18 @@ DependencyBasedStrategy <- R6::R6Class(
     createTrain = function(subset, num.clusters = NULL, num.groups = NULL,
                            include.unclustered = FALSE) {
       if (!inherits(subset, "Subset")) {
-        stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
-             "'Subset' type. Aborting...")
+        d2mcs.log(message = paste0("Subset parameter must be defined as ",
+                                   "'Subset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "createTrain")
       }
 
       if (is.null(private$best.distribution) || is.null(private$all.distribution)) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "createTrain")
       }
 
       distribution <- self$getDistribution(num.clusters = num.clusters,
@@ -465,17 +562,26 @@ DependencyBasedStrategy <- R6::R6Class(
         if (!dir.exists(dir.path)) {
           dir.create(dir.path, recursive = TRUE)
           if (dir.exists(dir.path)) {
-            message("[", class(self)[1], "][INFO] Directory '", dir.path,
-                    "'has been succesfully created")
+            d2mcs.log(message = paste0("Directory '", dir.path, "' has been ",
+                                       "succesfully created"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "plot")
           } else {
-            stop("[", class(self)[1], "][FATAL] Cannot create directory '", dir.path,
-                 "'. Aborting...")
+            d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                       "'. Aborting..."),
+                      level = "FATAL",
+                      className = class(self)[1],
+                      methodName = "plot")
           }
         }
         ggplot2::ggsave(paste0(file.path(dir.path, file.name), ".pdf"), device = "pdf",
                          plot = plot, limitsize = FALSE)
-        message("[", class(self)[1], "][INFO] Plot has been succesfully saved at: ",
-                file.path(dir.path, file.name, ".pdf"))
+        d2mcs.log(message = paste0("Plot has been succesfully saved at: ",
+                                   file.path(dir.path, file.name, ".pdf")),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plot")
       } # else { show(plot) }
       plot
     },
@@ -490,41 +596,65 @@ DependencyBasedStrategy <- R6::R6Class(
     #' saved.
     #'
     saveCSV = function(dir.path = NULL, name = NULL, num.clusters = NULL) {
-      if (is.null(dir.path))
-        stop("[", class(self)[1], "][FATAL] Path not defined. Aborting...")
+      if (is.null(dir.path)) {
+        d2mcs.log(message = "Path not defined. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
+      }
 
       if (is.null(name)) {
         name <- paste(class(private$heuristic[[1]])[1],
                       class(private$heuristic[[2]])[1],
                       sep = "-")
-        message("[", class(self)[1], "][WARNING] File name not defined. Using '",
-                name, ".csv'")
+        d2mcs.log(message = paste0("File name not defined. Using '", name,
+                                   ".csv'"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
       }
 
       if (is.null(private$all.distribution) ||
            length(private$all.distribution) == 0) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
       }
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
         if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Directory '", dir.path,
-                  "'has been succesfully created")
-        } else { stop("[", class(self)[1], "][FATAL] Cannot create directory '",
-                      dir.path, "'. Aborting...") }
+          d2mcs.log(message = paste0("Directory '", dir.path, "' has been ",
+                                     "succesfully created"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
+        } else {
+          d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                     "'. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
+        }
       }
 
       if (is.null(num.clusters)) {
-        message("[", class(self)[1], "][WARNING] Number of clusters not defined. ",
-                 "Saving all cluster configurations")
+        d2mcs.log(message = paste0("Number of clusters not defined. Saving ",
+                                   "all cluster configurations"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
         num.clusters <- list(list(2:max(private$all.distribution[[1]]$k)),
                              list(2:max(private$all.distribution[[2]]$k)))
       } else {
         if (!(is.list(num.clusters) && length(num.clusters) >= 0)) {
-          message("[", class(self)[1], "][WARNING] Type of num.clusters not valid ",
-                   "(must be NULL or list type). Saving all cluster configurations")
+          d2mcs.log(message = paste0("Type of num.clusters not valid (must be ",
+                                     "NULL or list type). Saving all cluster ",
+                                     "configurations"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
           num.clusters <- list(list(2:max(private$all.distribution[[1]]$k)),
                                list(2:max(private$all.distribution[[2]]$k)))
         } else {
@@ -541,9 +671,13 @@ DependencyBasedStrategy <- R6::R6Class(
       all.real <- private$all.distribution[[2]]
 
       if (!all(unlist(num.clusters[[1]]) %in% all.binary$k)) {
-        message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                "Must be between ", min(all.binary$k), " and ", max(all.binary$k),
-                ". Ignoring clustering for binary type features...")
+        d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                   "between ", min(all.binary$k), " and ",
+                                   max(all.binary$k), ". Ignoring clustering ",
+                                   "for binary type features..."),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
         dist.binary <- data.frame(k = numeric(), dispersion = numeric(),
                                   feature_type = character())
       } else {
@@ -553,9 +687,13 @@ DependencyBasedStrategy <- R6::R6Class(
       }
 
       if (!all(unlist(num.clusters[[2]]) %in% all.real$k)) {
-        message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                "Must be between ", min(all.real$k), " and ", max(all.real$k),
-                ". Ignoring clustering for real type features...")
+        d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                   "between ", min(all.real$k), " and ",
+                                   max(all.real$k), ". Ignoring clustering ",
+                                   "for real type features..."),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
         dist.real <- data.frame(k = numeric(), dispersion = numeric(),
                                 feature_type = character())
       } else {
@@ -599,10 +737,17 @@ DependencyBasedStrategy <- R6::R6Class(
 
       # Computing the metrics with independent features ----
 
-      message("[", class(self)[1], "][INFO] Computing metric of dependency between ",
-              "independent features and the target")
-      message("[", class(self)[1], "][INFO] Computing metric of dependency between ",
-              "the ", length(indep.fea.list), " independent features")
+      d2mcs.log(message = paste0("Computing metric of dependency between ",
+                                 "independent features and the target"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "computeDistribution")
+
+      d2mcs.log(message = paste0("Computing metric of dependency between the ",
+                                 length(indep.fea.list), " independent features"),
+                level = "INFO",
+                className = class(self)[1],
+                methodName = "computeDistribution")
 
       if (length(indep.fea.list) > 1) {
         if (isTRUE(verbose)) {
@@ -647,22 +792,49 @@ DependencyBasedStrategy <- R6::R6Class(
         }
       }
 
-      message("[", class(self)[1], "][INFO] Metric of dependency between independent ",
-              "features and the target: ", mean.indep.tar)
-      message("[", class(self)[1], "][INFO] Metric of dependency between independent ",
-              "features: ", mean.indep.fea)
-      message("---------------------------------------------------------------")
+      d2mcs.log(message = paste0("Metric of dependency between independent ",
+                                 "features and the target: ", mean.indep.tar),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeDistribution")
+      d2mcs.log(message = paste0("Metric of dependency between independent ",
+                                 "features: ", mean.indep.fea),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeDistribution")
+      d2mcs.log(message = paste0("--------------------------------------------",
+                                 "-------------------"),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeDistribution")
 
       # Clustering dependent features... ----
-      message("[", class(self)[1], "][INFO] Start of clustering dependent features...")
-      message("[", class(self)[1], "][INFO] Independent features: ", length(indep.fea.list))
-      message("[", class(self)[1], "][INFO] Dependent features: ", length(dep.fea.groups))
-      message("[", class(self)[1], "][INFO] A total of ", length(dep.fea.groups),
-              " groups of dependent variables have been generated")
+      d2mcs.log(message = "Start of clustering dependent features...",
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeDistribution")
+      d2mcs.log(message = paste0("Independent features: ", length(indep.fea.list)),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeDistribution")
+      d2mcs.log(message = paste0("Dependent features: ", length(dep.fea.groups)),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeDistribution")
+
+      d2mcs.log(message = paste0("A total of ", length(dep.fea.groups),
+                                 " groups of dependent variables have been ",
+                                 "generated"),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeDistribution")
 
       if (length(dep.fea.groups) == 0) {
-        message("[", class(self)[1], "][INFO] Creating only a one cluster ",
-                "because all features are independent")
+        d2mcs.log(message = paste0("Creating only a one cluster because all ",
+                                   "features are independent"),
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "computeDistribution")
 
         # Initializing metrics of independent features
         metrics.indep <- list(
@@ -687,19 +859,33 @@ DependencyBasedStrategy <- R6::R6Class(
         quality.cluster <- private$configuration$qualityOfCluster(indep.fea.list,
                                                                   metrics)
 
-        message("[", class(self)[1], "][INFO] Added independent features to all clusters")
+        d2mcs.log(message = "Added independent features to all clusters",
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "computeDistribution")
         cluster.data <- rbind(cluster.data,
                               data.frame(k = 1,
                                          deltha = quality.cluster,
                                          dist = I(list(indep.fea.list))))
       } else {
 
-        message("[", class(self)[1], "][INFO] Checking set of clusters: ",
-                min.num.clusters, ":", max.num.clusters)
-        message("[", class(self)[1], "][INFO] Starting the distribution in clusters...")
+        d2mcs.log(message = paste0("Checking set of clusters: ",
+                                   min.num.clusters, ":", max.num.clusters),
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "computeDistribution")
+
+        d2mcs.log(message = "Starting the distribution in clusters...",
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "computeDistribution")
+
         for (current.num.cluster in min.num.clusters:max.num.clusters) {
-          message("[", class(self)[1], "][INFO] Checking next set of clusters: ",
-                  current.num.cluster, "/", max.num.clusters)
+          d2mcs.log(message = paste0("Checking next set of clusters: ",
+                                     current.num.cluster, "/", max.num.clusters),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
           ########################## Independent features...#########################
           # Initializing clusters with independent features ----
 
@@ -726,8 +912,10 @@ DependencyBasedStrategy <- R6::R6Class(
           metrics.indep[["dep.tar"]] <- sapply(metrics.indep[["dep.tar"]], function(fea, current.num.cluster) {
             mean.indep.tar
           }, current.num.cluster)
-          message("[", class(self)[1], "][INFO] Added independent features to all clusters")
-
+          d2mcs.log(message = "Added independent features to all clusters",
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
           # Dependent features
           # Initializing clusters of dependent features ----
 
@@ -745,7 +933,10 @@ DependencyBasedStrategy <- R6::R6Class(
 
           if (length(all.fea.dep) > 0) {
             if (isTRUE(verbose)) {
-              message("[", class(self)[1], "][INFO] Beginning add features")
+              d2mcs.log(message = "Beginning add features",
+                        level = "DEBUG",
+                        className = class(self)[1],
+                        methodName = "computeDistribution")
               pb <- txtProgressBar(min = 0, max = (length(all.fea.dep)), style = 3)
             }
             for (fea in all.fea.dep) {
@@ -819,8 +1010,11 @@ DependencyBasedStrategy <- R6::R6Class(
             if (isTRUE(verbose)) { close(pb) }
           }
           # Computing final distribution ----
-          message("[", class(self)[1], "][INFO] Added the ", length(all.fea.dep),
-                  " dependent features to all clusters")
+          d2mcs.log(message = paste0("Added the ", length(all.fea.dep),
+                                     " dependent features to all clusters"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
 
           metrics <- list(
             dep.fea = vector(mode = "numeric", length = current.num.cluster), # dependencyFeatures
@@ -852,24 +1046,54 @@ DependencyBasedStrategy <- R6::R6Class(
             aux <- paste0(aux, length(final.dist.current.cluster[[clus]]), "\t")
           }
 
-          message("[", class(self)[1], "][INFO] Metric of clusters ", current.num.cluster,
-                  " independencyTarget: ", mean(metrics.indep[["dep.tar"]]))
-          message("[", class(self)[1], "][INFO] Metric of clusters ", current.num.cluster,
-                  " independencyFeatures: ", mean(metrics.indep[["dep.fea"]]))
-          message("[", class(self)[1], "][INFO] Metric of clusters ", current.num.cluster,
-                  " dependencyTarget: ", mean(metrics.dep[["dep.tar"]]))
-          message("[", class(self)[1], "][INFO] Metric of clusters ", current.num.cluster,
-                  " dependencyFeatures: ", mean(metrics.dep[["dep.fea"]]))
-          message("[", class(self)[1], "][INFO] Metric of clusters ", current.num.cluster,
-                  " Target: ", mean(metrics[["dep.tar"]]))
-          message("[", class(self)[1], "][INFO] Metric of clusters ", current.num.cluster,
-                  " Features: ", mean(metrics[["dep.fea"]]))
+          d2mcs.log(message = paste0("Metric of clusters ", current.num.cluster,
+                                     " independencyTarget: ",
+                                     mean(metrics.indep[["dep.tar"]])),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
+
+          d2mcs.log(message = paste0("Metric of clusters ", current.num.cluster,
+                                     " independencyFeatures: ",
+                                     mean(metrics.indep[["dep.fea"]])),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
+
+          d2mcs.log(message = paste0("Metric of clusters ", current.num.cluster,
+                                     " dependencyTarget: ",
+                                     mean(metrics.dep[["dep.tar"]])),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
+
+          d2mcs.log(message = paste0("Metric of clusters ", current.num.cluster,
+                                     " dependencyFeatures: ",
+                                     mean(metrics.dep[["dep.fea"]])),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
+
+          d2mcs.log(message = paste0("Metric of clusters ", current.num.cluster,
+                                     " Target: ", mean(metrics[["dep.tar"]])),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
+
+          d2mcs.log(message = paste0("Metric of clusters ", current.num.cluster,
+                                     " Features: ", mean(metrics[["dep.fea"]])),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
 
           # Quality of the distribution of features between the clusters
           quality.cluster <- private$configuration$qualityOfCluster(final.dist.current.cluster,
                                                                     metrics)
-          message("[", class(self)[1], "][INFO] Metric of clusters ", current.num.cluster,
-                  " : ", quality.cluster)
+          d2mcs.log(message = paste0("Metric of clusters ", current.num.cluster,
+                                     " : ", quality.cluster),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeDistribution")
 
           cluster.data <- rbind(cluster.data,
                                 data.frame(k = current.num.cluster,
@@ -880,10 +1104,20 @@ DependencyBasedStrategy <- R6::R6Class(
           clusters.deltha <- cluster.data$deltha
           names(clusters.deltha) <- cluster.data$k
           if (!private$configuration$isImprovingClustering(clusters.deltha)) {
-            message("[", class(self)[1], "][INFO] Clustering is not considered to ",
-                    "improve from the number of clusters: ", current.num.cluster)
-            message("[", class(self)[1], "][WARNING] Stopping to check the following ",
-                    "clusters (", min.num.clusters, ":", max.num.clusters, ")")
+            d2mcs.log(message = paste0("Clustering is not considered to ",
+                                       "improve from the number of clusters: ",
+                                       current.num.cluster),
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "computeDistribution")
+
+            d2mcs.log(message = paste0("Stopping to check the following ",
+                                       "clusters (", min.num.clusters, ":",
+                                       max.num.clusters, ")"),
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "computeDistribution")
+
             return(cluster.data)
           }
         }
@@ -897,8 +1131,12 @@ DependencyBasedStrategy <- R6::R6Class(
       indep.fea <- list()
       not.clus.fea <- list()
       if (isTRUE(verbose)) {
-        message("[", class(self)[1], "][INFO] Performing feature grouping through ",
-                "dependency between them using '", class(heu)[1], "' heuristic")
+        d2mcs.log(message = paste0("Performing feature grouping through ",
+                                   "dependency between them using '",
+                                   class(heu)[1], "' heuristic"),
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "computeGrouping")
       }
       for (i in 1:(length(corpus) - 1)) {
         for (j in (i + 1):length(corpus)) {
@@ -952,13 +1190,17 @@ DependencyBasedStrategy <- R6::R6Class(
                                                     names.corpus[[j]])
                       added <- TRUE
                       if (isTRUE(verbose)) {
-                        message("[", class(self)[1], "][INFO] Added: ",
-                                names.corpus[[j]], " ",
-                                "to an existent group. Group ",
-                                pos.list, " ",
-                                "(Current ", ifelse(binary, "binary", "real"),
-                                " column: ", i, ")")
-
+                        d2mcs.log(message = paste0("Added: ",
+                                                   names.corpus[[j]], " ",
+                                                   "to an existent group. Group ",
+                                                   pos.list, " ",
+                                                   "(Current ", ifelse(binary,
+                                                                       "binary",
+                                                                       "real"),
+                                                   " column: ", i, ")"),
+                                  level = "DEBUG",
+                                  className = class(self)[1],
+                                  methodName = "computeGrouping")
                       }
                     }
                   } else {
@@ -979,12 +1221,17 @@ DependencyBasedStrategy <- R6::R6Class(
               dep.fea <- append(dep.fea,
                                 aux)
               if (isTRUE(verbose)) {
-                message("[", class(self)[1], "][INFO] New group (",
-                        length(dep.fea), "): ",
-                        names(corpus)[[i]], " - ",
-                        names.corpus[[j]], " ",
-                        "(Current ", ifelse(binary, "binary", "real"),
-                        " column: ", i, ")")
+                d2mcs.log(message = paste0("New group (",
+                                           length(dep.fea), "): ",
+                                           names(corpus)[[i]], " - ",
+                                           names.corpus[[j]], " ",
+                                           "(Current ", ifelse(binary,
+                                                               "binary",
+                                                               "real"),
+                                           " column: ", i, ")"),
+                          level = "DEBUG",
+                          className = class(self)[1],
+                          methodName = "computeGrouping")
               }
             }
           }
@@ -994,10 +1241,15 @@ DependencyBasedStrategy <- R6::R6Class(
           not.clus.fea <- append(not.clus.fea,
                                  names.corpus[i])
           if (isTRUE(verbose)) {
-            message("[", class(self)[1], "][INFO] Column name: '",
-                    names.corpus[[i]], "' is no clustering ",
-                    "(Current ", ifelse(binary, "binary", "real"),
-                    " column: ", i, ")")
+            d2mcs.log(message = paste0("Column name: '",
+                                       names.corpus[[i]], "' is no clustering ",
+                                       "(Current ", ifelse(binary,
+                                                           "binary",
+                                                           "real"),
+                                       " column: ", i, ")"),
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "computeGrouping")
           }
           next
         }
@@ -1006,17 +1258,27 @@ DependencyBasedStrategy <- R6::R6Class(
           indep.fea <- append(indep.fea,
                               names.corpus[[i]])
           if (isTRUE(verbose)) {
-            message("[", class(self)[1], "][INFO] Column name: '",
-                    names.corpus[[i]], "' is independent ",
-                    "(Current ", ifelse(binary, "binary", "real"),
-                    " column: ", i, ")")
+            d2mcs.log(message = paste0("Column name: '",
+                                       names.corpus[[i]], "' is independent ",
+                                       "(Current ", ifelse(binary,
+                                                           "binary",
+                                                           "real"),
+                                       " column: ", i, ")"),
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "computeGrouping")
           }
         } else {
           if (isTRUE(verbose)) {
-            message("[", class(self)[1], "][INFO] Column name: '",
-                    names.corpus[[i]], "' is dependent ",
-                    "(Current ", ifelse(binary, "binary", "real"),
-                    " column: ", i, ")")
+            d2mcs.log(message = paste0("Column name: '",
+                                       names.corpus[[i]], "' is dependent ",
+                                       "(Current ", ifelse(binary,
+                                                           "binary",
+                                                           "real"),
+                                       " column: ", i, ")"),
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "computeGrouping")
           }
         }
       }
@@ -1026,17 +1288,29 @@ DependencyBasedStrategy <- R6::R6Class(
         indep.fea <- append(indep.fea,
                             names.corpus[[length(corpus)]])
         if (isTRUE(verbose)) {
-          message("[", class(self)[1], "][INFO] Column name: '",
-                  names.corpus[[length(corpus)]], "' is independent ",
-                  "(Current ", ifelse(binary, "binary", "real"),
-                  " column: ", length(corpus), ")")
+          d2mcs.log(message = paste0("Column name: '",
+                                     names.corpus[[length(corpus)]],
+                                     "' is independent ",
+                                     "(Current ", ifelse(binary,
+                                                         "binary",
+                                                         "real"),
+                                     " column: ", length(corpus), ")"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeGrouping")
         }
       } else {
         if (isTRUE(verbose)) {
-          message("[", class(self)[1], "][INFO] Column name: '",
-                  names.corpus[[length(corpus)]], "' is dependent ",
-                  "(Current ", ifelse(binary, "binary", "real"),
-                  " column: ", length(corpus), ")")
+          d2mcs.log(message = paste0("Column name: '",
+                                     names.corpus[[length(corpus)]],
+                                     "' is dependent ",
+                                     "(Current ", ifelse(binary,
+                                                         "binary",
+                                                         "real"),
+                                     " column: ", length(corpus), ")"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeGrouping")
         }
       }
       if (isTRUE(binary)) {

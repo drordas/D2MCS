@@ -53,8 +53,11 @@ GenericPlot <- R6::R6Class(
     #'
     plot = function(summary) {
       if (!is.data.frame(summary)) {
-        stop("[", class(self)[1], "][FATAL] Summary parameter must be defined ",
-             "as 'data.frame' type. Aborting...")
+        d2mcs.log(message = paste0("Summary parameter must be defined as ",
+                                   "'data.frame' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = NULL)
       }
       min <- data.frame(x = summary[which.min(summary[, 2]), ][, 1], y = min(summary[, 2]))
       max <- data.frame(x = summary[which.max(summary[, 2]), ][, 1], y = max(summary[, 2]))

@@ -59,32 +59,55 @@ TypeBasedStrategy <- R6::R6Class(
     #'
     initialize = function(subset, heuristic, configuration = StrategyConfiguration$new()) {
       if (!inherits(subset, "Subset")) {
-        stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
-             "'Subset' type. Aborting...")
+        d2mcs.log(message = paste0("Subset parameter must be defined as ",
+                                   "'Subset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!is.list(heuristic) || length(heuristic) != 2) {
-        stop("[", class(self)[1], "][FATAL] Heuristic parameter is not defined ",
-             "or incorrect. Must contain two elements. Aborting...")
+        d2mcs.log(message = paste0("Heuristic parameter is not defined or ",
+                                   "incorrect. Must contain two elements. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!any(sapply(heuristic, inherits, "GenericHeuristic"))) {
-        stop("[", class(self)[1], "][FATAL] Defined heuristics are not correct. ",
-             "Must be inherit from 'GenericHeuristic' class. Aborting...")
+        d2mcs.log(message = paste0("Defined heuristics are not correct. Must ",
+                                   "be inherit from 'GenericHeuristic' class. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (is.null(heuristic[[1]])) {
-        message("[", class(self)[1], "][WARNING] Heuristic for binary data not defined")
+        d2mcs.log(message = "Heuristic for binary data not defined",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
       } else {
-        message("[", class(self)[1], "][INFO] Heuristic for binary data defined ",
-                "as '", class(heuristic[[1]])[1], "'")
+        d2mcs.log(message = paste0("Heuristic for binary data defined as '",
+                                   class(heuristic[[1]])[1], "'"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (is.null(heuristic[[2]])) {
-        message("[", class(self)[1], "][WARNING] Heuristic for real data not defined")
+        d2mcs.log(message = "Heuristic for real data not defined",
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
       } else {
-        message("[", class(self)[1], "][INFO] Heuristic for real data defined ",
-                "as '", class(heuristic[[2]])[1], "'")
+        d2mcs.log(message = paste0("Heuristic for real data defined as '",
+                                   class(heuristic[[2]])[1], "'"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       description <- paste0("TypeBasedStrategy is a clustering strategy whereby ",
                             "the features are sorted by descendant according ",
@@ -129,9 +152,11 @@ TypeBasedStrategy <- R6::R6Class(
           binary.allDistribution <- data.frame(k = integer(), deltha = numeric(),
                                                dist = I(list()))
 
-          message("[", class(self)[1], "][INFO] Using '",
-                  class(private$heuristic[[1]])[1],
-                  "' heuristic to cluster binary features")
+          d2mcs.log(message = paste0("Using '", class(private$heuristic[[1]])[1],
+                                     "' heuristic to cluster binary features"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
 
           bheuristic.values <- sapply(names(binary.data), function(col.name, class) {
             abs(private$heuristic[[1]]$heuristic(col1 = binary.data[, col.name],
@@ -146,8 +171,13 @@ TypeBasedStrategy <- R6::R6Class(
           if (length(binary.valid) > 0) {
             ## DISTRIBUTE FEATURES IN CLUSTERS (2 >= k <= maxClusters)
             if (isTRUE(verbose)) {
-              message("[", class(self)[1], "][INFO] Performing binary feature clustering using '",
-                      class(private$heuristic[[1]])[1], "' heuristic")
+              d2mcs.log(message = paste0("Performing binary feature clustering ",
+                                         "using '",
+                                         class(private$heuristic[[1]])[1],
+                                         "' heuristic"),
+                        level = "DEBUG",
+                        className = class(self)[1],
+                        methodName = "execute")
               pb <- txtProgressBar(min = 0, max = (maxClusters - 1), style = 3)
             }
 
@@ -197,18 +227,29 @@ TypeBasedStrategy <- R6::R6Class(
           }
 
           if (length(binary.invalid) > 0) {
-            message("[", class(self)[1], "][WARNING] ",
-                     length(binary.invalid), " features were incompatible with '",
-                     class(private$heuristic[[1]])[1], "' heuristic")
+            d2mcs.log(message = paste0(length(binary.invalid), " features were ",
+                                       "incompatible with '",
+                                       class(private$heuristic[[1]])[1],
+                                       "' heuristic"),
+                      level = "WARN",
+                      className = class(self)[1],
+                      methodName = "execute")
             private$not.distribution[[1]] <- data.frame(cluster = 1,
                                                         dist = I(list(binary.invalid)))
           }
         } else {
-          message("[", class(self)[1], "][INFO] Not binary features for clustering")
+          d2mcs.log(message = "Not binary features for clustering",
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
         }
       } else {
-        message("[", class(self)[1], "][INFO] ", class(self)[1], " has not ",
-                "heuristic to binary features. Assuming one cluster by default")
+        d2mcs.log(message = paste0(class(self)[1], " has not heuristic to ",
+                                   "binary features. Assuming one cluster by ",
+                                   "default"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         private$all.distribution[[1]] <- data.frame(k = 1, deltha = 0,
                                                     dist = I(list(names(binary.data))))
         private$best.distribution[[1]] <- data.frame(cluster = 1,
@@ -220,8 +261,11 @@ TypeBasedStrategy <- R6::R6Class(
       real.data <- private$getRealFeatures(private$subset$getFeatures())
       ## COMPUTING HEURISTIC FOR REAL DATA (BETWEEN EACH FEATURE AND THE CLASS)
       if (!is.null(private$heuristic[[2]])) {
-        message("[", class(self)[1], "][INFO] Using '", class(private$heuristic[[2]])[1],
-                "' heuristic to distribute real features")
+        d2mcs.log(message = paste0("Using '", class(private$heuristic[[2]])[1],
+                                   "' heuristic to distribute real features"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         if (ncol(real.data) > 0) {
           real.bestDistribution <- data.frame(cluster = integer(), dist = I(list()))
           real.allDistribution <- data.frame(k = integer(), deltha = numeric(),
@@ -239,8 +283,12 @@ TypeBasedStrategy <- R6::R6Class(
 
           ## DISTRIBUTE FEATURES IN CLUSTERS (2 >= k <= maxClusters)
           if (isTRUE(verbose)) {
-            message("[", class(self)[1], "][INFO] Performing real feature clustering using '",
-                     class(private$heuristic[[2]])[1], "' heuristic")
+            d2mcs.log(message = paste0("Performing real feature clustering ",
+                                       "using '", class(private$heuristic[[2]])[1],
+                                       "' heuristic"),
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "execute")
             pb <- txtProgressBar(min = 0, max = (maxClusters - 1), style = 3)
           }
 
@@ -287,21 +335,31 @@ TypeBasedStrategy <- R6::R6Class(
           }
 
           if (length(real.invalid) > 0) {
-            message("[", class(self)[1], "][WARNING] ",
-                     length(real.invalid), " features were incompatible with '",
-                     class(private$heuristic[[2]])[1], "' heuristic")
+            d2mcs.log(message = paste0(length(real.invalid), " features were ",
+                                       "incompatible with '",
+                                       class(private$heuristic[[2]])[1],
+                                       "' heuristic"),
+                      level = "WARN",
+                      className = class(self)[1],
+                      methodName = "execute")
             private$not.distribution[[2]] <- data.frame(cluster = 1,
                                                         dist = I(list(real.invalid)))
           }
 
         } else {
-          message("[", class(self)[1], "][INFO] Not real features for clustering")
+          d2mcs.log(message = "Not real features for clustering",
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "execute")
           private$best.distribution[[2]] <- append(private$best.distribution[[2]], list(NULL))
           private$all.distribution[[2]] <- append(private$all.distribution[[2]], list(NULL))
         }
       } else {
-        message("[", class(self)[1], "][INFO] ", class(self)[1],
-                " has not heuristic to real features. Assuming one cluster by default")
+        d2mcs.log(message = paste0(class(self)[1], " has not heuristic to real ",
+                                   "features. Assuming one cluster by default"),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "execute")
         private$all.distribution[[2]] <- data.frame(k = 1, deltha = 0,
                                                     dist = I(list(names(real.data))))
         private$best.distribution[[2]] <- data.frame(cluster = 1,
@@ -328,8 +386,10 @@ TypeBasedStrategy <- R6::R6Class(
            is.null(private$all.distribution) ||
            all(sapply(private$best.distribution, is.null)) ||
            all(sapply(private$all.distribution, is.null))) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "getDistribution")
       }
 
       if (is.null(num.clusters) || !is.numeric(num.clusters)) {
@@ -346,9 +406,13 @@ TypeBasedStrategy <- R6::R6Class(
         }
 
         if (!(num.clusters[1] %in% c(min(all.binary$k):max(all.binary$k)))) {
-          message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                  "Must be between ", min(all.binary$k), " and ", max(all.binary$k),
-                  ". Ignoring clustering for binary type features...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                     "between ", min(all.binary$k), " and ",
+                                     max(all.binary$k), ". Ignoring clustering ",
+                                     "for binary type features..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
           dist.binary <- NULL
         } else {
           dist.binary <- unlist(all.binary[which(all.binary$k == num.clusters[1]), ]$dist,
@@ -356,9 +420,13 @@ TypeBasedStrategy <- R6::R6Class(
         }
 
         if (!(num.clusters[2] %in% c(min(all.real$k):max(all.real$k)))) {
-          message("[", class(self)[1], "][INFO] Number of clusters incorrect. ",
-                  "Must be between ", min(all.real$k), " and ", max(all.real$k),
-                  ". Ignoring clustering for real type features...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                     "between ", min(all.real$k), " and ",
+                                     max(all.real$k), ". Ignoring clustering ",
+                                     "for real type features..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
           dist.real <- NULL
         } else {
           dist.real <- unlist(all.real[which(all.real$k == num.clusters[2]), ]$dist,
@@ -373,13 +441,19 @@ TypeBasedStrategy <- R6::R6Class(
           num.groups <- c(num.groups, rep(0, length(private$all.distribution) - length(num.groups)))
         }
         if (!(num.groups[1] %in% c(1:length(dist.binary)))) {
-          message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                   "Returning all groups ...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Returning ",
+                                     "all groups..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
         } else { dist.binary <- dist.binary[num.groups[1]] }
 
         if (!(num.groups[2] %in% c(1:length(dist.real)))) {
-          message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                  "Returning all groups ...")
+          d2mcs.log(message = paste0("Number of clusters incorrect. Returning ",
+                                     "all groups..."),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getDistribution")
         } else { dist.real <- dist.real[num.groups[2]] }
       }
 
@@ -419,13 +493,18 @@ TypeBasedStrategy <- R6::R6Class(
     createTrain = function(subset, num.clusters = NULL, num.groups = NULL,
                            include.unclustered = FALSE) {
       if (!inherits(subset, "Subset")) {
-        stop("[", class(self)[1], "][FATAL] Subset parameter must be defined as ",
-             "'Subset' type. Aborting...")
+        d2mcs.log(message = paste0("Subset parameter must be defined as ",
+                                   "'Subset' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "createTrain")
       }
 
       if (is.null(private$best.distribution) || is.null(private$all.distribution)) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "createTrain")
       }
 
       distribution <- self$getDistribution(num.clusters = num.clusters,
@@ -488,17 +567,26 @@ TypeBasedStrategy <- R6::R6Class(
         if (!dir.exists(dir.path)) {
           dir.create(dir.path, recursive = TRUE)
           if (dir.exists(dir.path)) {
-            message("[", class(self)[1], "][INFO] Directory '", dir.path,
-                    "'has been succesfully created")
+            d2mcs.log(message = paste0("Directory '", dir.path, "'has been ",
+                                       "succesfully created"),
+                      level = "INFO",
+                      className = class(self)[1],
+                      methodName = "plot")
           } else {
-            stop("[", class(self)[1], "][FATAL] Cannot create directory '", dir.path,
-                 "'. Aborting...")
+            d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                       "'. Aborting..."),
+                      level = "FATAL",
+                      className = class(self)[1],
+                      methodName = "plot")
           }
         }
         ggplot2::ggsave(paste0(file.path(dir.path, file.name), ".pdf"), device = "pdf",
                         plot = plot, limitsize = FALSE)
-        message("[", class(self)[1], "][INFO] Plot has been succesfully saved at: ",
-                file.path(dir.path, file.name, ".pdf"))
+        d2mcs.log(message = paste0("Plot has been succesfully saved at: ",
+                                   file.path(dir.path, file.name, ".pdf")),
+                  level = "INFO",
+                  className = class(self)[1],
+                  methodName = "plot")
       } # else { plot }
       plot
     },
@@ -513,43 +601,65 @@ TypeBasedStrategy <- R6::R6Class(
     #' saved.
     #'
     saveCSV = function(dir.path = NULL, name = NULL, num.clusters = NULL) {
-      if (is.null(dir.path))
-        stop("[", class(self)[1], "][FATAL] Path not defined. Aborting...")
+      if (is.null(dir.path)) {
+        d2mcs.log(message = "Path not defined. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
+      }
 
       if (is.null(name)) {
         name <- paste(class(private$heuristic[[1]])[1],
                       class(private$heuristic[[2]])[1],
                       sep = "-")
-        message("[", class(self)[1], "][WARNING] File name not defined. Using '",
-                name, ".csv'")
+        d2mcs.log(message = paste0("File name not defined. Using '", name,
+                                   ".csv'"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
       }
 
       if (is.null(private$all.distribution) ||
            length(private$all.distribution) == 0) {
-        stop("[", class(self)[1], "][FATAL] Clustering not done or errorneous. ",
-             "Aborting...")
+        d2mcs.log(message = "Clustering not done or errorneous. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
       }
 
       if (!dir.exists(dir.path)) {
         dir.create(dir.path, recursive = TRUE)
         if (dir.exists(dir.path)) {
-          message("[", class(self)[1], "][INFO] Directory '", dir.path,
-                  "'has been succesfully created")
+          d2mcs.log(message = paste0("Directory '", dir.path, "'has been ",
+                                     "succesfully created"),
+                    level = "INFO",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
         } else {
-          stop("[", class(self)[1], "][FATAL] Cannot create directory '", dir.path,
-               "'. Aborting...")
+          d2mcs.log(message = paste0("Cannot create directory '", dir.path,
+                                     "'. Aborting..."),
+                    level = "FATAL",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
         }
       }
 
       if (is.null(num.clusters)) {
-        message("[", class(self)[1], "][WARNING] Number of clusters not defined. ",
-                "Saving all cluster configurations")
+        d2mcs.log(message = paste0("Number of clusters not defined. Saving all ",
+                                   "cluster configurations"),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
         num.clusters <- list(list(2:max(private$all.distribution[[1]]$k)),
                              list(2:max(private$all.distribution[[2]]$k)))
       } else {
         if (!(is.list(num.clusters) && length(num.clusters) >= 0)) {
-          message("[", class(self)[1], "][WARNING] Type of num.clusters not valid ",
-                  "(must be NULL or list type). Saving all cluster configurations")
+          d2mcs.log(message = paste0("Type of num.clusters not valid (must be ",
+                                     "NULL or list type). Saving all cluster ",
+                                     "configurations"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "saveCSV")
           num.clusters <- list(list(2:max(private$all.distribution[[1]]$k)),
                                list(2:max(private$all.distribution[[2]]$k)))
         } else {
@@ -566,9 +676,13 @@ TypeBasedStrategy <- R6::R6Class(
       all.real <- private$all.distribution[[2]]
 
       if (!all(unlist(num.clusters[[1]]) %in% all.binary$k)) {
-        message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                "Must be between ", min(all.binary$k), " and ", max(all.binary$k),
-                ". Ignoring clustering for binary type features...")
+        d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                   "between ", min(all.binary$k), " and ",
+                                   max(all.binary$k), ". Ignoring clustering ",
+                                   "for binary type features..."),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
         dist.binary <- data.frame(k = numeric(), dispersion = numeric(),
                                   feature_type = character())
       } else {
@@ -578,9 +692,13 @@ TypeBasedStrategy <- R6::R6Class(
       }
 
       if (!all(unlist(num.clusters[[2]]) %in% all.real$k)) {
-        message("[", class(self)[1], "][WARNING] Number of clusters incorrect. ",
-                "Must be between ", min(all.real$k), " and ", max(all.real$k),
-                ". Ignoring clustering for real type features...")
+        d2mcs.log(message = paste0("Number of clusters incorrect. Must be ",
+                                   "between ", min(all.real$k), " and ",
+                                   max(all.real$k), ". Ignoring clustering ",
+                                   "for real type features..."),
+                  level = "WARN",
+                  className = class(self)[1],
+                  methodName = "saveCSV")
         dist.real <- data.frame(k = numeric(), dispersion = numeric(),
                                 feature_type = character())
       } else {

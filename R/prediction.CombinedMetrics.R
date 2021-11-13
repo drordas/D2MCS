@@ -48,8 +48,11 @@ CombinedMetrics <- R6::R6Class(
     #'
     initialize = function(required.metrics) {
       if (is.null(required.metrics) || !is.character(required.metrics) || length(required.metrics) < 2) {
-        stop("[", class(self)[1], "][FATAL] The required.metrics parameter must be ",
-             "defined as 'character' type. Aborting...")
+        d2mcs.log(message = paste0("The required.metrics parameter must be ",
+                                   "defined as 'character' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       private$required.metrics <- required.metrics
     },
@@ -78,8 +81,11 @@ CombinedMetrics <- R6::R6Class(
     #' positive class or not.
     #'
     getFinalPrediction = function(raw.pred, prob.pred, positive.class, negative.class) {
-      stop("[", class(self)[1], "][FATAL] Class is abstract. ",
-           "Method should be defined in inherited class. Aborting...")
+      d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
+                                 "in inherited class. Aborting..."),
+                level = "FATAL",
+                className = class(self)[1],
+                methodName = "getFinalPrediction")
     }
   ),
   private = list(

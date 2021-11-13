@@ -61,20 +61,32 @@ CombinedVoting <- R6::R6Class(
     #'
     initialize = function(voting.schemes, combined.metrics, methodology, metrics) {
       if (!inherits(voting.schemes, "SimpleVoting")) {
-        stop("[", class(self)[1], "][FATAL] Voting.schemes parameter must be ",
-             "defined as 'SimpleVoting' type. Aborting...")
+        d2mcs.log(message = paste0("Voting.schemes parameter must be defined ",
+                                   "as 'SimpleVoting' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!inherits(combined.metrics, "CombinedMetrics")) {
-        stop("[", class(self)[1], "][FATAL] Combined.metrics parameter must be ",
-             "defined as 'CombinedMetrics' type. Aborting...")
+        d2mcs.log(message = paste0("Combined.metrics parameter must be defined ",
+                                   "as 'CombinedMetrics' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
       if (!inherits(methodology, "Methodology")) {
-        stop("[", class(self)[1], "][FATAL] Methodology parameter must be ",
-             "defined as 'Methodology' type. Aborting...")
+        d2mcs.log(message = paste0("Methodology parameter must be defined as ",
+                                   "'Methodology' type. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       if (!all(is.character(metrics), length(metrics) >= 2)) {
-        stop("[", class(self)[1], "][FATAL] Invalid values of metrics. Aborting...")
+        d2mcs.log(message = "Invalid values of metrics. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "initialize")
       }
 
       super$initialize()
@@ -121,8 +133,11 @@ CombinedVoting <- R6::R6Class(
         private$final.pred
       } else {
         if (!is.logical(filter)) {
-          message("[", class(self)[1], "][WARNING] Filter parameter must be ",
-                  "defined as 'logical' type. Aborting...")
+          d2mcs.log(message = paste0("Filter parameter must be defined as ",
+                                     "'logical' type"),
+                    level = "WARN",
+                    className = class(self)[1],
+                    methodName = "getFinalPred")
           filter <- FALSE
         }
         class.values <- private$final.pred$getClassValues()
@@ -130,10 +145,13 @@ CombinedVoting <- R6::R6Class(
         switch(type,
                "prob" = {
                  if (is.null(target) || !(target %in% class.values)) {
-                   message("[", class(self)[1], "][WARNING] Target not ",
-                           "specified or invalid. Using '",
-                           private$final.pred$getPositiveClass(),
-                           "' as default value")
+                   d2mcs.log(message = paste0("Target not specified or ",
+                                              "invalid. Using '",
+                                              private$final.pred$getPositiveClass(),
+                                              "' as default value"),
+                             level = "WARN",
+                             className = class(self)[1],
+                             methodName = "getFinalPred")
                    target <- private$final.pred$getPositiveClass()
                  }
                  if (filter) {
@@ -165,19 +183,28 @@ CombinedVoting <- R6::R6Class(
       if (is.null(predictions) || !is.vector(predictions) ||
            !all(sapply(predictions, function(pred) {
                        inherits(pred, "ClusterPredictions") }))) {
-        stop("[", class(self)[1], "][FATAL] Predictions parameter must be a ",
-             "list comprised of 'ClusterPredictions' objects. Aborting...")
+        d2mcs.log(message = paste0("Predictions parameter must be a list ",
+                                   "comprised of 'ClusterPredictions' objects. ",
+                                   "Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (any(sapply(predictions, function(pred) { pred$size() <= 0 }))) {
-        stop("[", class(self)[1], "][FATAL] Cluster predictions were not ",
-             "computed. Aborting...")
+        d2mcs.log(message = "Cluster predictions were not computed. Aborting...",
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       if (!any(self$getMetrics() %in% names(predictions))) {
-        stop("[", class(self)[1], "][FATAL] Metrics are incorrect. ",
-             "Must be: [", paste(names(predictions), collapse = ", "),
-             "]. Aborting...")
+        d2mcs.log(message = paste0("Metrics are incorrect. Must be: [",
+                                   paste(names(predictions),
+                                         collapse = ", "), "]. Aborting..."),
+                  level = "FATAL",
+                  className = class(self)[1],
+                  methodName = "execute")
       }
 
       predictions <- predictions[self$getMetrics()]

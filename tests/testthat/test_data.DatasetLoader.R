@@ -1,6 +1,21 @@
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
 testthat::test_that("DatasetLoader: initialize function works", {
   data.loader <- DatasetLoader$new()
   testthat::expect_is(data.loader, "DatasetLoader")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DatasetLoader: load function checks parameter type", {
@@ -10,14 +25,24 @@ testthat::test_that("DatasetLoader: load function checks parameter type", {
   testthat::expect_error(data.loader$load(filepath = "wrongFile.csv", header = TRUE,
                                           sep = ",", skip.lines = 1, normalize.names = TRUE,
                                           string.as.factor = FALSE, ignore.columns = NULL),
-                         "[DatasetLoader][FATAL] Corpus cannot be found at defined location. Aborting...",
+                         "[DatasetLoader][load][FATAL] Corpus cannot be found at defined location. Aborting...",
                          fixed = TRUE)
 
   testthat::expect_error(data.loader$load(filepath = NULL, header = TRUE, sep = ",",
                                           skip.lines = 1, normalize.names = TRUE,
                                           string.as.factor = FALSE, ignore.columns = NULL),
-                         "[DatasetLoader][FATAL] Corpus cannot be found at defined location. Aborting...",
+                         "[DatasetLoader][load][FATAL] Corpus cannot be found at defined location. Aborting...",
                          fixed = TRUE)
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
+})
+
+testthat::setup({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
 
 testthat::test_that("DatasetLoader: load function works", {
@@ -29,4 +54,9 @@ testthat::test_that("DatasetLoader: load function works", {
                            string.as.factor = FALSE, ignore.columns = NULL)
 
   testthat::expect_is(data, "Dataset")
+})
+
+testthat::teardown({
+  d2mcs.Options$reset()
+  d2mcs.Options$configureLog()
 })
