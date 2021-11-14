@@ -117,7 +117,7 @@ Dataset <- R6::R6Class(
 
       private$removed.columns <- list()
 
-      if (is.numeric(ignore.columns)) { self$removeColumns(ignore.columns) }
+      self$removeColumns(ignore.columns)
 
       d2mcs.log(message = paste0("Load finished! Total: ", nrow(private$corpus),
                                  " rows and ", ncol(private$corpus), " columns"),
