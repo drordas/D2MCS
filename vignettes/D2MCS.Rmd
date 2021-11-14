@@ -177,6 +177,47 @@ When the classification stage is completed, the tool produces a *ClassificationO
 
 </div>
 
+
+# d2mcs.Options
+
+<div style = "text-align: justify">
+
+The *d2mcs.Options* object is used to store the different configuration parameters of the MCS creation. It is important to keep in mind that if the parameters are not needed, the value can be omitted.
+
+The option that exist initially and how its value is indicated to you are shown below. 
+</div>
+```R
+# [verbose]
+bdpar.Options$set("verbose", <<status_verbose>>)
+```
+
+Note that this feature is oriented to make it easier to extend and improve the future configuration of the package.
+
+## Logging on D2MCS
+
+<div style = "text-align: justify">
+The *D2MCS* log is configured through the *configureLog* function. This system manages both the place to display the messages and the priority level of each message showing only the messages with a higher level than indicated in the threshold variable. The log can be output either by console, by file, or both.
+
+```R
+d2mcs.options$configureLog(console = TRUE, threshold = "INFO", file = "fileLog.log")
+```
+
+The type of message changes according to the level indicated:
+
+<ul>
+  <li> The **DEBUG**, **INFO** and **ERROR** levels return a text using the *message* function.</li>
+  <li> The **WARN** level returns a text using the *warning* function.</li>
+  <li> The **FATAL** level returns a text using the *stop* function.</li>
+</ul>
+
+If the case of wanting to deactivate the bdpar log completely, the *disableLog* method in *d2mcs.Options* object does this task. It is important to note that the messages with **WARN** or **FATAL** level will still be displayed by console.
+
+```R
+d2mcs.options$disableLog()
+```
+
+</div>
+
 # Development
 
 The *D2MCS* package is also available in a development version at the Github development page:
