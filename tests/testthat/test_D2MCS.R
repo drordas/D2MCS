@@ -177,7 +177,7 @@ testthat::test_that("D2MCS: train function works", {
                                  heuristic = heuristic,
                                  configuration = configuration)
 
-  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
+  capture.output(suppressWarnings(strategy$execute()))
 
   train.set <- strategy$createTrain(subset = subset.cluster)
 
@@ -268,7 +268,7 @@ testthat::test_that("D2MCS: train function checks parameter types", {
                                  heuristic = heuristic,
                                  configuration = configuration)
 
-  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
+  capture.output(suppressWarnings(strategy$execute()))
 
   train.set <- strategy$createTrain(subset = subset.cluster)
 

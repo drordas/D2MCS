@@ -80,7 +80,7 @@ testthat::teardown({
 
 testthat::setup({
   d2mcs.Options$reset()
-  d2mcs.Options$configureLog()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
 })
 
 testthat::test_that("ClassWeightedVoting: execute function works", {
@@ -97,16 +97,12 @@ testthat::test_that("ClassWeightedVoting: execute function works", {
 
   predictions$add(prediction = predictions$get(1))
 
-  verbose <- TRUE
-
-  testthat::expect_warning(voting$execute(predictions = predictions,
-                                          verbose = verbose),
-                           "[ClassWeightedVoting][execute][WARN] Weight values are missing or incorrect. Assuming default model performance values",
+  testthat::expect_message(voting$execute(predictions = predictions),
+                           "[ClassWeightedVoting][execute][DEBUG] Weight values are missing or incorrect. Assuming default model performance values",
                            fixed = TRUE)
 
-  testthat::expect_message(voting$execute(predictions = predictions,
-                                          verbose = verbose),
-                           "[ClassWeightedVoting][execute][INFO] Performing voting with '~0.5486, ~0.3824, ~0.3854, ~0.5486' weights and cutoff of 0.5",
+  testthat::expect_message(voting$execute(predictions = predictions),
+                           "[ClassWeightedVoting][execute][DEBUG] Performing voting with '~0.5486, ~0.3824, ~0.3854, ~0.5486' weights and cutoff of 0.5",
                            fixed = TRUE)
 })
 
@@ -128,15 +124,13 @@ testthat::test_that("ClassWeightedVoting: execute function checks parameter type
   voting <- ClassWeightedVoting$new(cutoff = cutoff,
                                     weights = weights)
 
-  testthat::expect_error(voting$execute(predictions = NULL,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = NULL),
                          "[ClassWeightedVoting][execute][FATAL] Predictions parameter must be defined as 'ClusterPrediction' type. Aborting...",
                          fixed = TRUE)
 
   predictions  <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                          positive.class = 1)
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[ClassWeightedVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
 })

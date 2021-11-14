@@ -78,11 +78,9 @@ SimpleStrategy <- R6::R6Class(
     #' @description Function responsible of performing the clustering
     #' strategy over the defined \code{\link{Subset}}.
     #'
-    #' @param verbose A logical value to specify if more verbosity is needed.
-    #'
     #' @importFrom varhandle to.dummy
     #'
-    execute = function(verbose = FALSE) {
+    execute = function() {
       private$all.distribution <- data.frame(k = integer(), deltha = numeric(), dist = I(list()))
 
       colIndex <- which(levels(as.factor(private$subset$getClassValues())) == private$subset$getPositiveClass())
@@ -104,15 +102,12 @@ SimpleStrategy <- R6::R6Class(
       sorted.values <- heuristic.valid[order(heuristic.valid, decreasing = TRUE)]
 
       ## DISTRIBUTE FEATURES IN CLUSTERS (2 <= k <= maxClusters)
-      if (isTRUE(verbose)) {
-        d2mcs.log(message = paste0("Performing feature clustering using '",
-                                   class(private$heuristic[[1]])[1],
-                                   "' heuristic"),
-                  level = "INFO",
-                  className = class(self)[1],
-                  methodName = "execute")
-        pb <- txtProgressBar(min = 0, max = (maxClusters - 1), style = 3)
-      }
+      d2mcs.log(message = paste0("Performing feature clustering using '",
+                                 class(private$heuristic[[1]])[1],
+                                 "' heuristic"),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "execute")
 
       if (length(heuristic.valid) > 0) {
         for (k in minClusters:maxClusters) {
@@ -128,10 +123,7 @@ SimpleStrategy <- R6::R6Class(
           deltha <- (max(groupMeasure) - min(groupMeasure))
           df <- data.frame(k = k, deltha = deltha, dist = I(list(cluster)))
           private$all.distribution <- rbind(private$all.distribution, df)
-          if (isTRUE(verbose)) { setTxtProgressBar(pb, (k - 1)) }
         }
-
-        if (isTRUE(verbose)) { close(pb) }
 
         for (i in 1:nrow(private$all.distribution)) {
           aux.dist <- unlist(private$all.distribution[i, ]$dist, recursive = FALSE)

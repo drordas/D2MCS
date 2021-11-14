@@ -109,17 +109,9 @@ parameters for the strategy. Must inherited from
 Function responsible of performing the dependency-based
 feature clustering strategy over the defined \code{\link{Subset}}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$execute(verbose = TRUE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DependencyBasedStrategy$execute()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
-needed.}
-}
-\if{html}{\out{</div>}}
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DependencyBasedStrategy-getDistribution"></a>}}

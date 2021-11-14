@@ -46,13 +46,10 @@ DIterator <- R6::R6Class(
     #' @param chunk.size An \link{integer} value indicating the size of chunks
     #' taken over each iteration. By default \code{chunk.size} is defined as
     #' 10000.
-    #' @param verbose A \link{logical} value to specify if more verbosity is
-    #' needed.
     #'
-    initialize = function(data, chunk.size, verbose) {
+    initialize = function(data, chunk.size) {
       private$chunk.size  <- chunk.size
       private$read.chunk  <- chunk.size
-      private$verbose <- verbose
       private$start <- 0
       private$end <- 0
       private$data <- data
@@ -79,16 +76,14 @@ DIterator <- R6::R6Class(
 
       data.chunk <- private$data[private$read.chunk, ]
 
-      if (isTRUE(private$verbose)) {
-        d2mcs.log(message = paste0("Read lines ", private$start, " to ",
-                                   private$end, " [",
-                                   format(private$end - private$start,
-                                          scientific = FALSE),
-                                   "]"),
-                  level = "DEBUG",
-                  className = class(self)[1],
-                  methodName = "getNext")
-      }
+      d2mcs.log(message = paste0("Read lines ", private$start, " to ",
+                                 private$end, " [",
+                                 format(private$end - private$start,
+                                        scientific = FALSE),
+                                 "]"),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "getNext")
       private$start <- private$end + 1
       data.chunk
     },
@@ -107,7 +102,6 @@ DIterator <- R6::R6Class(
   ),
   private = list(
     chunk.size = NULL,
-    verbose = FALSE,
     start = NULL,
     end = 0,
     read.chunk = 0,

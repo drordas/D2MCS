@@ -127,12 +127,9 @@ TypeBasedStrategy <- R6::R6Class(
     #' @description Function responsible of performing the clustering strategy
     #' over the defined \code{\link{Subset}}.
     #'
-    #' @param verbose A \link{logical} value to specify if more verbosity is
-    #' needed.
-    #'
     #' @importFrom varhandle to.dummy
     #'
-    execute = function(verbose = FALSE) {
+    execute = function() {
       col.index <- which(levels(as.factor(private$subset$getClassValues())) == private$subset$getPositiveClass())
       class <- varhandle::to.dummy(as.character(private$subset$getClassValues()),
                                    as.character(private$subset$getPositiveClass()))[, col.index]
@@ -170,16 +167,13 @@ TypeBasedStrategy <- R6::R6Class(
 
           if (length(binary.valid) > 0) {
             ## DISTRIBUTE FEATURES IN CLUSTERS (2 >= k <= maxClusters)
-            if (isTRUE(verbose)) {
-              d2mcs.log(message = paste0("Performing binary feature clustering ",
-                                         "using '",
-                                         class(private$heuristic[[1]])[1],
-                                         "' heuristic"),
-                        level = "DEBUG",
-                        className = class(self)[1],
-                        methodName = "execute")
-              pb <- txtProgressBar(min = 0, max = (maxClusters - 1), style = 3)
-            }
+            d2mcs.log(message = paste0("Performing binary feature clustering ",
+                                       "using '",
+                                       class(private$heuristic[[1]])[1],
+                                       "' heuristic"),
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "execute")
 
             for (k in minClusters:maxClusters) {
               clustering <- rep(c(1:k, (k:1)), length(binary.sorted) / (2 * k) + 1)[1:length(binary.sorted)]
@@ -196,10 +190,7 @@ TypeBasedStrategy <- R6::R6Class(
               deltha <- (max(group.measure) - min(group.measure))
               df <- data.frame(k = k, deltha = deltha, dist = I(list(cluster)))
               binary.allDistribution <- rbind(binary.allDistribution, df)
-              if (isTRUE(verbose)) { setTxtProgressBar(pb, (k - 1)) }
             }
-
-            if (isTRUE(verbose)) { close(pb) }
 
             for (i in 1:nrow(binary.allDistribution)) {
               aux.dist <- unlist(binary.allDistribution[i, ]$dist,
@@ -282,15 +273,12 @@ TypeBasedStrategy <- R6::R6Class(
           real.sorted <- real.valid[order(real.valid, decreasing = TRUE)]
 
           ## DISTRIBUTE FEATURES IN CLUSTERS (2 >= k <= maxClusters)
-          if (isTRUE(verbose)) {
-            d2mcs.log(message = paste0("Performing real feature clustering ",
-                                       "using '", class(private$heuristic[[2]])[1],
-                                       "' heuristic"),
-                      level = "DEBUG",
-                      className = class(self)[1],
-                      methodName = "execute")
-            pb <- txtProgressBar(min = 0, max = (maxClusters - 1), style = 3)
-          }
+          d2mcs.log(message = paste0("Performing real feature clustering ",
+                                     "using '", class(private$heuristic[[2]])[1],
+                                     "' heuristic"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "execute")
 
           if (length(real.valid) > 0) {
             for (k in minClusters:maxClusters) {
@@ -308,10 +296,7 @@ TypeBasedStrategy <- R6::R6Class(
               deltha <- (max(group.measure) - min(group.measure))
               df <- data.frame(k = k, deltha = deltha, dist = I(list(cluster)))
               real.allDistribution <- rbind(real.allDistribution, df)
-              if (isTRUE(verbose)) { setTxtProgressBar(pb, (k - 1)) }
             }
-
-            if (isTRUE(verbose)) { close(pb) }
 
             for (i in 1:nrow(real.allDistribution)) {
               aux.dist <- unlist(real.allDistribution[i, ]$dist, recursive = FALSE)

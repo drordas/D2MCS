@@ -55,15 +55,13 @@ testthat::test_that("SingleVoting: execute function checks parameter type", {
   voting <- SingleVoting$new(voting.schemes = voting.schemes,
                             metrics = metrics)
   predictions <- NULL
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[SingleVoting][execute][FATAL] Predictions parameter must be a list comprised of 'ClusterPredictions' objects. Aborting...",
                          fixed = TRUE)
 
   predictions <- list(ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                              positive.class = 1))
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[SingleVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
 
@@ -84,8 +82,7 @@ testthat::test_that("SingleVoting: execute function checks parameter type", {
   predictions <- list(clusterPrediction, clusterPrediction)
   names(predictions) <- c("WRONG1", "WRONG2")
 
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[SingleVoting][execute][FATAL] Metrics are incorrect. Must be: [WRONG1, WRONG2]. Aborting...",
                          fixed = TRUE)
 })

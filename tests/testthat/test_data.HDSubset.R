@@ -230,8 +230,7 @@ testthat::test_that("HDSubset: getNcol function works", {
                            sep = sep,
                            chunk.size = chunk.size)
 
-  testthat::expect_is(hdSubset$getIterator(chunk.size = 100,
-                                           verbose = TRUE),
+  testthat::expect_is(hdSubset$getIterator(chunk.size = 100),
                       "FIterator")
 })
 
@@ -269,13 +268,8 @@ testthat::test_that("HDSubset: getIterator function works", {
                            sep = sep,
                            chunk.size = chunk.size)
 
-  testthat::expect_warning(hdSubset$getIterator(chunk.size = "wrong",
-                                                verbose = TRUE),
+  testthat::expect_warning(hdSubset$getIterator(chunk.size = "wrong"),
                            "[HDSubset][getIterator][WARN] Chunk size is not valid. Assuming default value",
-                           fixed = TRUE)
-  testthat::expect_warning(hdSubset$getIterator(chunk.size = 100,
-                                                verbose = "wrong"),
-                           "[HDSubset][getIterator][WARN] Verbose type is not valid. Assuming 'FALSE' as default value",
                            fixed = TRUE)
 })
 

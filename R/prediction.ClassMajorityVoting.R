@@ -84,10 +84,8 @@ ClassMajorityVoting <- R6::R6Class(
     #'
     #' @param predictions A \code{\link{ClusterPredictions}} object containing
     #' all the predictions achieved for each cluster.
-    #' @param verbose A \link{logical} value to specify if more verbosity is
-    #' needed.
     #'
-    execute = function(predictions, verbose = FALSE) {
+    execute = function(predictions) {
       if (!inherits(predictions, "ClusterPredictions")) {
         d2mcs.log(message = paste0("Predictions parameter must be defined as ",
                                    "'ClusterPrediction' type. Aborting..."),
@@ -107,7 +105,7 @@ ClassMajorityVoting <- R6::R6Class(
           !(private$majority.class %in% predictions$getClassValues())) {
         d2mcs.log(message = paste0("Majority class unset or invalid. Assuming '",
                                    predictions$getPositiveClass(), "' by default"),
-                  level = "WARN",
+                  level = "DEBUG",
                   className = class(self)[1],
                   methodName = "execute")
         private$majority.class <- predictions$getPositiveClass()
@@ -122,14 +120,12 @@ ClassMajorityVoting <- R6::R6Class(
         private$class.tie <- NULL
       }
 
-      if (isTRUE(verbose)) {
-        d2mcs.log(message = paste0("Performing voting using '",
-                                   self$getMajorityClass(),
-                                   "' as majority class"),
-                  level = "WARN",
-                  className = class(self)[1],
-                  methodName = "execute")
-      }
+      d2mcs.log(message = paste0("Performing voting using '",
+                                 self$getMajorityClass(),
+                                 "' as majority class"),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "execute")
 
       final.raw <- c()
       final.prob <- data.frame()

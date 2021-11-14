@@ -212,15 +212,13 @@ testthat::test_that("CombinedVoting: execute function checks parameter type", {
                                methodology = methodology,
                                metrics = metrics)
   predictions <- NULL
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[CombinedVoting][execute][FATAL] Predictions parameter must be a list comprised of 'ClusterPredictions' objects. Aborting...",
                          fixed = TRUE)
 
   predictions <- list(ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                              positive.class = 1))
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[CombinedVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
 
@@ -245,8 +243,7 @@ testthat::test_that("CombinedVoting: execute function checks parameter type", {
   predictions <- list(clusterPrediction, clusterPrediction)
   names(predictions) <- c("MCC", "PPV")
 
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[CombinedVoting][execute][FATAL] Metrics are incorrect. Must be: [MCC, PPV]. Aborting...",
                          fixed = TRUE)
 

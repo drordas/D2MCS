@@ -84,7 +84,7 @@ dbs <- DependencyBasedStrategy$new(subset,
                                    configuration = conf)
 
 ## FEATURE-CLUSTERING ALGORITHM EXECUTION 
-dbs$execute(verbose = FALSE)
+dbs$execute()
 
 ## FEATURE-CLUSTERING ALGORITHM FUNCTIONALITIES
 dbs$getBestClusterDistribution()

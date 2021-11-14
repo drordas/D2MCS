@@ -203,10 +203,8 @@ DependencyBasedStrategy <- R6::R6Class(
     #' @description Function responsible of performing the dependency-based
     #' feature clustering strategy over the defined \code{\link{Subset}}.
     #'
-    #' @param verbose A \link{logical} value to specify if more verbosity is
-    #' needed.
     #'
-    execute = function(verbose = TRUE) {
+    execute = function() {
 
       private$not.distribution[[1]] <- list()
       private$not.clus.fea[[1]] <- list()
@@ -229,7 +227,7 @@ DependencyBasedStrategy <- R6::R6Class(
                   methodName = "execute")
         if (ncol(binary.data) > 0) {
           private$computeGrouping(binary.data, binary.heuristic, binary.cutoff,
-                                  verbose, binary = T)
+                                  binary = TRUE)
 
           d2mcs.log(message = paste0("Computing the distributions to binary ",
                                      "features with the strategy"),
@@ -240,8 +238,7 @@ DependencyBasedStrategy <- R6::R6Class(
           private$all.distribution[[1]] <- private$computeDistribution(binary.data,
                                                                        binary.heuristic,
                                                                        private$dep.fea[[1]], # dependent features grouping
-                                                                       private$indep.fea[[1]],  # independent features grouping
-                                                                       verbose)
+                                                                       private$indep.fea[[1]])  # independent features grouping
 
           bestK <- which.min(private$all.distribution[[1]]$deltha)
 
@@ -307,7 +304,7 @@ DependencyBasedStrategy <- R6::R6Class(
                   methodName = "execute")
         if (ncol(real.data) > 0) {
           private$computeGrouping(real.data, real.heuristic, real.cutoff,
-                                  verbose, binary = F)
+                                  binary = F)
           d2mcs.log(message = paste0("Computing the distributions to ",
                                      "real features with the strategy"),
                     level = "INFO",
@@ -316,8 +313,7 @@ DependencyBasedStrategy <- R6::R6Class(
           private$all.distribution[[2]] <- private$computeDistribution(real.data,
                                                                        real.heuristic,
                                                                        private$dep.fea[[2]], # dependent features grouping
-                                                                       private$indep.fea[[2]],  # independent features grouping
-                                                                       verbose)
+                                                                       private$indep.fea[[2]])  # independent features grouping
 
           bestK <- which.min(private$all.distribution[[2]]$deltha)
 
@@ -711,7 +707,7 @@ DependencyBasedStrategy <- R6::R6Class(
     not.clus.fea = vector(mode = "list", length = 2),
     dep.fea = vector(mode = "list", length = 2), # dependentFeatures
     indep.fea = vector(mode = "list", length = 2), # independentFeatures
-    computeDistribution = function(corpus, heuristic, dep.fea.groups, indep.fea.list, verbose) {
+    computeDistribution = function(corpus, heuristic, dep.fea.groups, indep.fea.list) {
       # Initializing variables ----
 
       heu <- heuristic
@@ -750,10 +746,6 @@ DependencyBasedStrategy <- R6::R6Class(
                 methodName = "computeDistribution")
 
       if (length(indep.fea.list) > 1) {
-        if (isTRUE(verbose)) {
-          pb <- txtProgressBar(min = 0, max = (length(indep.fea.list)), style = 3)
-        }
-
         for (feature1 in 1:(length(indep.fea.list) - 1)) {
           # Updates metric of dependency between features and target
           result.heuristic <- abs(heu$heuristic(corpus[, indep.fea.list[[feature1]]],
@@ -770,7 +762,6 @@ DependencyBasedStrategy <- R6::R6Class(
                                                                    indep.fea.list[[feature2]])))
             mean.indep.fea <- c(mean.indep.fea, result.heuristic)
           }
-          if (isTRUE(verbose)) { setTxtProgressBar(pb, (feature1 - 1)) }
         }
 
         # Computing metric between class and the last independent feature
@@ -778,8 +769,6 @@ DependencyBasedStrategy <- R6::R6Class(
                                               class,
                                               column.names = c(names(corpus)[indep.fea.list[[length(indep.fea.list)]]],
                                                                className)))
-        if (isTRUE(verbose)) { setTxtProgressBar(pb, (length(indep.fea.list))) }
-        if (isTRUE(verbose)) { close(pb) }
         mean.indep.tar <- mean(c(mean.indep.tar, result.heuristic))
         mean.indep.fea <- mean(mean.indep.fea)
       } else {
@@ -932,15 +921,12 @@ DependencyBasedStrategy <- R6::R6Class(
           ## All features that have dependency are checked
 
           if (length(all.fea.dep) > 0) {
-            if (isTRUE(verbose)) {
-              d2mcs.log(message = "Beginning add features",
-                        level = "DEBUG",
-                        className = class(self)[1],
-                        methodName = "computeDistribution")
-              pb <- txtProgressBar(min = 0, max = (length(all.fea.dep)), style = 3)
-            }
+
+            d2mcs.log(message = "Beginning add features",
+                      level = "DEBUG",
+                      className = class(self)[1],
+                      methodName = "computeDistribution")
             for (fea in all.fea.dep) {
-              if (isTRUE(verbose)) { setTxtProgressBar(pb, (which(fea == all.fea.dep))) }
               ## Obtains the subgroups where feature are in the list of dependent feature groups
               pos.groups.list <- lapply(names(dep.fea.groups), function(pos, fea, dep.fea.groups) {
                 if (fea %in% dep.fea.groups[[pos]]) { pos }
@@ -1006,8 +992,6 @@ DependencyBasedStrategy <- R6::R6Class(
                 metrics.dep[["dep.fea"]][[clus]] <- numerator / denominator
               }
             }
-            if (isTRUE(verbose)) { setTxtProgressBar(pb, (length(all.fea.dep))) }
-            if (isTRUE(verbose)) { close(pb) }
           }
           # Computing final distribution ----
           d2mcs.log(message = paste0("Added the ", length(all.fea.dep),
@@ -1124,20 +1108,18 @@ DependencyBasedStrategy <- R6::R6Class(
       }
       cluster.data
     },
-    computeGrouping = function(corpus, heuristic, cutoff, verbose, binary = TRUE) {
+    computeGrouping = function(corpus, heuristic, cutoff, binary = TRUE) {
       names.corpus <- names(corpus)
       heu <- heuristic
       dep.fea <- list()
       indep.fea <- list()
       not.clus.fea <- list()
-      if (isTRUE(verbose)) {
-        d2mcs.log(message = paste0("Performing feature grouping through ",
-                                   "dependency between them using '",
-                                   class(heu)[1], "' heuristic"),
-                  level = "DEBUG",
-                  className = class(self)[1],
-                  methodName = "computeGrouping")
-      }
+      d2mcs.log(message = paste0("Performing feature grouping through ",
+                                 "dependency between them using '",
+                                 class(heu)[1], "' heuristic"),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "computeGrouping")
       for (i in 1:(length(corpus) - 1)) {
         for (j in (i + 1):length(corpus)) {
           val.heu <- abs(heu$heuristic(corpus[, i],
@@ -1189,19 +1171,17 @@ DependencyBasedStrategy <- R6::R6Class(
                       dep.fea[[pos.list]] <- append(dep.fea[[pos.list]],
                                                     names.corpus[[j]])
                       added <- TRUE
-                      if (isTRUE(verbose)) {
-                        d2mcs.log(message = paste0("Added: ",
-                                                   names.corpus[[j]], " ",
-                                                   "to an existent group. Group ",
-                                                   pos.list, " ",
-                                                   "(Current ", ifelse(binary,
-                                                                       "binary",
-                                                                       "real"),
-                                                   " column: ", i, ")"),
-                                  level = "DEBUG",
-                                  className = class(self)[1],
-                                  methodName = "computeGrouping")
-                      }
+                      d2mcs.log(message = paste0("Added: ",
+                                                 names.corpus[[j]], " ",
+                                                 "to an existent group. Group ",
+                                                 pos.list, " ",
+                                                 "(Current ", ifelse(binary,
+                                                                     "binary",
+                                                                     "real"),
+                                                 " column: ", i, ")"),
+                                level = "DEBUG",
+                                className = class(self)[1],
+                                methodName = "computeGrouping")
                     }
                   } else {
                     included <- TRUE
@@ -1220,19 +1200,17 @@ DependencyBasedStrategy <- R6::R6Class(
                                  names.corpus[[j]])
               dep.fea <- append(dep.fea,
                                 aux)
-              if (isTRUE(verbose)) {
-                d2mcs.log(message = paste0("New group (",
-                                           length(dep.fea), "): ",
-                                           names(corpus)[[i]], " - ",
-                                           names.corpus[[j]], " ",
-                                           "(Current ", ifelse(binary,
-                                                               "binary",
-                                                               "real"),
-                                           " column: ", i, ")"),
-                          level = "DEBUG",
-                          className = class(self)[1],
-                          methodName = "computeGrouping")
-              }
+              d2mcs.log(message = paste0("New group (",
+                                         length(dep.fea), "): ",
+                                         names(corpus)[[i]], " - ",
+                                         names.corpus[[j]], " ",
+                                         "(Current ", ifelse(binary,
+                                                             "binary",
+                                                             "real"),
+                                         " column: ", i, ")"),
+                        level = "DEBUG",
+                        className = class(self)[1],
+                        methodName = "computeGrouping")
             }
           }
         }
@@ -1240,46 +1218,40 @@ DependencyBasedStrategy <- R6::R6Class(
         if (is.na(val.heu)) {
           not.clus.fea <- append(not.clus.fea,
                                  names.corpus[i])
-          if (isTRUE(verbose)) {
-            d2mcs.log(message = paste0("Column name: '",
-                                       names.corpus[[i]], "' is no clustering ",
-                                       "(Current ", ifelse(binary,
-                                                           "binary",
-                                                           "real"),
-                                       " column: ", i, ")"),
-                      level = "DEBUG",
-                      className = class(self)[1],
-                      methodName = "computeGrouping")
-          }
+          d2mcs.log(message = paste0("Column name: '",
+                                     names.corpus[[i]], "' is no clustering ",
+                                     "(Current ", ifelse(binary,
+                                                         "binary",
+                                                         "real"),
+                                     " column: ", i, ")"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeGrouping")
           next
         }
 
         if (!names.corpus[[i]] %in% unlist(dep.fea)) {
           indep.fea <- append(indep.fea,
                               names.corpus[[i]])
-          if (isTRUE(verbose)) {
-            d2mcs.log(message = paste0("Column name: '",
-                                       names.corpus[[i]], "' is independent ",
-                                       "(Current ", ifelse(binary,
-                                                           "binary",
-                                                           "real"),
-                                       " column: ", i, ")"),
-                      level = "DEBUG",
-                      className = class(self)[1],
-                      methodName = "computeGrouping")
-          }
+          d2mcs.log(message = paste0("Column name: '",
+                                     names.corpus[[i]], "' is independent ",
+                                     "(Current ", ifelse(binary,
+                                                         "binary",
+                                                         "real"),
+                                     " column: ", i, ")"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeGrouping")
         } else {
-          if (isTRUE(verbose)) {
-            d2mcs.log(message = paste0("Column name: '",
-                                       names.corpus[[i]], "' is dependent ",
-                                       "(Current ", ifelse(binary,
-                                                           "binary",
-                                                           "real"),
-                                       " column: ", i, ")"),
-                      level = "DEBUG",
-                      className = class(self)[1],
-                      methodName = "computeGrouping")
-          }
+          d2mcs.log(message = paste0("Column name: '",
+                                     names.corpus[[i]], "' is dependent ",
+                                     "(Current ", ifelse(binary,
+                                                         "binary",
+                                                         "real"),
+                                     " column: ", i, ")"),
+                    level = "DEBUG",
+                    className = class(self)[1],
+                    methodName = "computeGrouping")
         }
       }
 
@@ -1287,31 +1259,27 @@ DependencyBasedStrategy <- R6::R6Class(
       if (!names(corpus)[[length(corpus)]] %in% unlist(dep.fea)) {
         indep.fea <- append(indep.fea,
                             names.corpus[[length(corpus)]])
-        if (isTRUE(verbose)) {
-          d2mcs.log(message = paste0("Column name: '",
-                                     names.corpus[[length(corpus)]],
-                                     "' is independent ",
-                                     "(Current ", ifelse(binary,
-                                                         "binary",
-                                                         "real"),
-                                     " column: ", length(corpus), ")"),
-                    level = "DEBUG",
-                    className = class(self)[1],
-                    methodName = "computeGrouping")
-        }
+        d2mcs.log(message = paste0("Column name: '",
+                                   names.corpus[[length(corpus)]],
+                                   "' is independent ",
+                                   "(Current ", ifelse(binary,
+                                                       "binary",
+                                                       "real"),
+                                   " column: ", length(corpus), ")"),
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "computeGrouping")
       } else {
-        if (isTRUE(verbose)) {
-          d2mcs.log(message = paste0("Column name: '",
-                                     names.corpus[[length(corpus)]],
-                                     "' is dependent ",
-                                     "(Current ", ifelse(binary,
-                                                         "binary",
-                                                         "real"),
-                                     " column: ", length(corpus), ")"),
-                    level = "DEBUG",
-                    className = class(self)[1],
-                    methodName = "computeGrouping")
-        }
+        d2mcs.log(message = paste0("Column name: '",
+                                   names.corpus[[length(corpus)]],
+                                   "' is dependent ",
+                                   "(Current ", ifelse(binary,
+                                                       "binary",
+                                                       "real"),
+                                   " column: ", length(corpus), ")"),
+                  level = "DEBUG",
+                  className = class(self)[1],
+                  methodName = "computeGrouping")
       }
       if (isTRUE(binary)) {
         private$indep.fea[[1]] <- indep.fea

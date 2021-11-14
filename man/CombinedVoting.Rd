@@ -137,7 +137,7 @@ A \link{data.frame} with the computed predictions.
 \subsection{Method \code{execute()}}{
 The function implements the combined voting scheme.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CombinedVoting$execute(predictions)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -145,9 +145,6 @@ The function implements the combined voting scheme.
 \describe{
 \item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
 the predictions computed for each cluster.}
-
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
-needed.}
 }
 \if{html}{\out{</div>}}
 }

@@ -103,7 +103,7 @@ testthat::teardown({
 
 testthat::setup({
   d2mcs.Options$reset()
-  d2mcs.Options$configureLog()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
 })
 
 testthat::test_that("ClassMajorityVoting: execute function works", {
@@ -119,10 +119,9 @@ testthat::test_that("ClassMajorityVoting: execute function works", {
   predictionts <- readRDS(file.path("resourceFiles",
                                     "testVotings",
                                     "predictions.rds"))
-  verbose <- TRUE
-  testthat::expect_warning(voting$execute(predictions = predictionts,
-                                          verbose = verbose),
-                         "[ClassMajorityVoting][execute][WARN] Performing voting using '1' as majority class",
+
+  testthat::expect_message(voting$execute(predictions = predictionts),
+                         "[ClassMajorityVoting][execute][DEBUG] Performing voting using '1' as majority class",
                          fixed = TRUE)
 })
 
@@ -152,9 +151,7 @@ testthat::test_that("ClassMajorityVoting: execute function works (tie)", {
 
   predictions$add(prediction = predictions$get(1))
 
-  verbose <- TRUE
-  testthat::expect_message(suppressWarnings(voting$execute(predictions = predictions,
-                                                           verbose = verbose)),
+  testthat::expect_message(suppressWarnings(voting$execute(predictions = predictions)),
                            "[ClassMajorityVoting][execute][INFO] Found Tie. Resolving using 'majority class' solver",
                            fixed = TRUE)
 })
@@ -179,15 +176,13 @@ testthat::test_that("ClassMajorityVoting: execute function checks parameter type
                                     class.tie = class.tie,
                                     majority.class = majority.class)
 
-  testthat::expect_error(voting$execute(predictions = NULL,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = NULL),
                          "[ClassMajorityVoting][execute][FATAL] Predictions parameter must be defined as 'ClusterPrediction' type. Aborting...",
                          fixed = TRUE)
 
   predictions  <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                          positive.class = 1)
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[ClassMajorityVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
 })

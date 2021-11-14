@@ -119,7 +119,7 @@ A \link{character} vector of size 1.
 \subsection{Method \code{getIterator()}}{
 Creates the \code{\link{FIterator}} object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{HDSubset$getIterator(chunk.size = private$chunk.size, verbose = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{HDSubset$getIterator(chunk.size = private$chunk.size)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -128,9 +128,6 @@ Creates the \code{\link{FIterator}} object.
 \item{\code{chunk.size}}{An \link{integer} value indicating the size of chunks
 taken over each iteration. By default \code{chunk.size} is defined as
 10000.}
-
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
-needed.}
 }
 \if{html}{\out{</div>}}
 }

@@ -82,16 +82,9 @@ parameters for the strategy. Must inherited from
 Function responsible of performing the clustering
 strategy over the defined \code{\link{Subset}}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SimpleStrategy$execute(verbose = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SimpleStrategy$execute()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{verbose}}{A logical value to specify if more verbosity is needed.}
-}
-\if{html}{\out{</div>}}
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SimpleStrategy-getBestClusterDistribution"></a>}}

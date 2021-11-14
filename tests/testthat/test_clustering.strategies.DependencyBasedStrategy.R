@@ -476,7 +476,7 @@ testthat::test_that("DependencyBasedStrategy works with 'lfdc' tiebreak method",
                          "[DependencyBasedStrategy][saveCSV][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
-  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
+  capture.output(suppressWarnings(strategy$execute()))
 
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
 
@@ -690,7 +690,7 @@ testthat::test_that("DependencyBasedStrategy works with 'ltdc' tiebreak method",
                          "[DependencyBasedStrategy][saveCSV][FATAL] Clustering not done or errorneous. Aborting...",
                          fixed = TRUE)
 
-  capture.output(suppressWarnings(strategy$execute(verbose = TRUE)))
+  capture.output(suppressWarnings(strategy$execute()))
 
   testthat::expect_is(strategy$getBestClusterDistribution(), "list")
 

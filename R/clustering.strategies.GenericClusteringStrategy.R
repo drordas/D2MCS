@@ -149,11 +149,9 @@ GenericClusteringStrategy <- R6::R6Class(
     #' @description Abstract function responsible of performing the clustering
     #' strategy over the defined \code{\link{Subset}}.
     #'
-    #' @param verbose A \link{logical} value to specify if more verbosity is
-    #' needed.
     #' @param ... Further arguments passed down to \code{execute} function.
     #'
-    execute = function(verbose, ...) {
+    execute = function(...) {
       d2mcs.log(message = paste0("Class is abstract. Method should be defined ",
                                  "in inherited class. Aborting..."),
                 level = "FATAL",

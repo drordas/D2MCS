@@ -103,7 +103,7 @@ testthat::teardown({
 
 testthat::setup({
   d2mcs.Options$reset()
-  d2mcs.Options$configureLog()
+  d2mcs.Options$configureLog(threshold = "DEBUG")
 })
 
 testthat::test_that("ProbAverageVoting: execute function works", {
@@ -120,10 +120,8 @@ testthat::test_that("ProbAverageVoting: execute function works", {
                                    "testVotings",
                                    "predictions.rds"))
 
-  verbose <- TRUE
-  testthat::expect_message(voting$execute(predictions = predictions,
-                                          verbose = verbose),
-                           "[ProbAverageVoting][execute][INFO] Performing voting using '1' as tie solving",
+  testthat::expect_message(voting$execute(predictions = predictions),
+                           "[ProbAverageVoting][execute][DEBUG] Performing voting using '1' as tie solving",
                            fixed = TRUE)
 })
 
@@ -155,9 +153,7 @@ testthat::test_that("ProbAverageVoting: execute function works (tie)", {
   pred[[1]]$.__enclos_env__$private$results$prob[1, ] <- c(0.5, 0.5)
   predictions$.__enclos_env__$private$pred <- pred
 
-  verbose <- TRUE
-  testthat::expect_message(voting$execute(predictions = predictions,
-                                          verbose = verbose),
+  testthat::expect_message(voting$execute(predictions = predictions),
                            "[ProbAverageVoting][execute][INFO] Tie solver found. Resolving tie using '1'",
                            fixed = TRUE)
 
@@ -177,9 +173,7 @@ testthat::test_that("ProbAverageVoting: execute function works (tie)", {
   pred[[1]]$.__enclos_env__$private$results$prob[1, ] <- c(0.5, 0.5)
   predictions$.__enclos_env__$private$pred <- pred
 
-  verbose <- TRUE
-  testthat::expect_message(voting$execute(predictions = predictions,
-                                          verbose = verbose),
+  testthat::expect_message(voting$execute(predictions = predictions),
                            "[ProbAverageVoting][execute][INFO] Tie solver not found. Resolving tie using first occurrence",
                            fixed = TRUE)
 })
@@ -204,15 +198,14 @@ testthat::test_that("ProbAverageVoting: execute function checks parameter type",
                                   class.tie = class.tie,
                                   majority.class = majority.class)
 
-  testthat::expect_error(voting$execute(predictions = NULL,
-                                        verbose = FALSE),
+  testthat::expect_error(voting$execute(predictions = NULL),
                          "[ProbAverageVoting][execute][FATAL] Predictions parameter must be defined as 'ClusterPrediction' type. Aborting...",
                          fixed = TRUE)
 
   predictions  <- ClusterPredictions$new(class.values = c(1, 0, 1, 1),
                                          positive.class = 1)
-  testthat::expect_error(voting$execute(predictions = predictions,
-                                        verbose = FALSE),
+
+  testthat::expect_error(voting$execute(predictions = predictions),
                          "[ProbAverageVoting][execute][FATAL] Cluster predictions were not computed. Aborting...",
                          fixed = TRUE)
 })

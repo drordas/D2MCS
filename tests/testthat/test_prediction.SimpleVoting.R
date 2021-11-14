@@ -61,7 +61,7 @@ testthat::setup({
 testthat::test_that("SimpleVoting: execute function works", {
 
   cutoff <- 0.5
-  testthat::expect_error(SimpleVoting$new(cutoff = cutoff)$execute(NULL, NULL),
+  testthat::expect_error(SimpleVoting$new(cutoff = cutoff)$execute(predictions = NULL),
                          "[SimpleVoting][execute][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
 })

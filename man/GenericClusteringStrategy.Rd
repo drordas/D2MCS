@@ -141,15 +141,12 @@ A \link{character} vector containing the unclassified features.
 Abstract function responsible of performing the clustering
 strategy over the defined \code{\link{Subset}}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GenericClusteringStrategy$execute(verbose, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{GenericClusteringStrategy$execute(...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
-needed.}
-
 \item{\code{...}}{Further arguments passed down to \code{execute} function.}
 }
 \if{html}{\out{</div>}}

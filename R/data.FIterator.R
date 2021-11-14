@@ -49,14 +49,11 @@ FIterator <- R6::R6Class(
     #' @param chunk.size An \link{integer} value indicating the size of chunks
     #' taken over each iteration. By default \code{chunk.size} is defined as
     #' 10000.
-    #' @param verbose A \link{logical} value to specify if more verbosity is
-    #' needed.
     #'
-    initialize = function(config.params, chunk.size, verbose) {
+    initialize = function(config.params, chunk.size) {
       private$params <- config.params
       private$chunk.size  <- chunk.size
       private$read.chunk  <- chunk.size
-      private$verbose <- verbose
       private$con <- file(description = config.params$file.path, open = "r")
       private$start <- config.params$start
       private$index <- 0
@@ -82,17 +79,15 @@ FIterator <- R6::R6Class(
                                col.names = private$params$feature.names,
                                stringsAsFactors = FALSE)
 
-      if (isTRUE(private$verbose)) {
-        initial <- (private$index * private$chunk.size) + private$start
-        d2mcs.log(message = paste0("Read lines ", initial, " to ",
-                                   initial + private$chunk.size,
-                                   " [", format(private$chunk.size,
-                                                scientific = FALSE),
-                                   "]"),
-                  level = "DEBUG",
-                  className = class(self)[1],
-                  methodName = "getNext")
-      }
+      initial <- (private$index * private$chunk.size) + private$start
+      d2mcs.log(message = paste0("Read lines ", initial, " to ",
+                                 initial + private$chunk.size,
+                                 " [", format(private$chunk.size,
+                                              scientific = FALSE),
+                                 "]"),
+                level = "DEBUG",
+                className = class(self)[1],
+                methodName = "getNext")
       private$start <- 0
       private$index <- private$index + 1
       private$read.chunk <- nrow(data.chunk)
@@ -119,7 +114,6 @@ FIterator <- R6::R6Class(
   private = list(
     params = NULL,
     chunk.size = NULL,
-    verbose = FALSE,
     con = NULL,
     start = NULL,
     index = 0,

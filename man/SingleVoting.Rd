@@ -63,7 +63,7 @@ perform the voting strategy.}
 The function is used to execute all the previously defined
 (and compatible) voting schemes.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SingleVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SingleVoting$execute(predictions)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -71,8 +71,6 @@ The function is used to execute all the previously defined
 \describe{
 \item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
 all the predictions computed in the classification stage.}
-
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is needed.}
 }
 \if{html}{\out{</div>}}
 }

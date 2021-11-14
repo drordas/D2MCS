@@ -22,11 +22,9 @@ testthat::test_that("FIterator: initialize function works", {
                         start = 0, sep = sep)
 
   chunk.size <- 1
-  verbose <- TRUE
 
   fIterator <- FIterator$new(config.params = config.params,
-                             chunk.size = chunk.size,
-                             verbose = verbose)
+                             chunk.size = chunk.size)
   testthat::expect_is(fIterator,
                       "FIterator")
 })
@@ -60,32 +58,26 @@ testthat::test_that("FIterator: getNext function works", {
                         start = 0, sep = sep)
 
   chunk.size <- 1000000
-  verbose <- FALSE
 
   fIterator <- FIterator$new(config.params = config.params,
-                             chunk.size = chunk.size,
-                             verbose = verbose)
+                             chunk.size = chunk.size)
 
   fIterator$getNext()
   testthat::expect_null(fIterator$getNext())
 
   chunk.size <- 100
-  verbose <- FALSE
 
   fIterator <- FIterator$new(config.params = config.params,
-                             chunk.size = chunk.size,
-                             verbose = verbose)
+                             chunk.size = chunk.size)
 
   fIterator$getNext()
   testthat::expect_is(fIterator$getNext(),
                       "data.frame")
 
   chunk.size <- 100
-  verbose <- TRUE
 
   fIterator <- FIterator$new(config.params = config.params,
-                             chunk.size = chunk.size,
-                             verbose = verbose)
+                             chunk.size = chunk.size)
 
   fIterator$getNext()
   testthat::expect_message(fIterator$getNext(),
@@ -122,11 +114,9 @@ testthat::test_that("FIterator: isLast function works", {
                         start = 0, sep = sep)
 
   chunk.size <- 1000000
-  verbose <- TRUE
 
   fIterator <- FIterator$new(config.params = config.params,
-                             chunk.size = chunk.size,
-                             verbose = verbose)
+                             chunk.size = chunk.size)
 
   fIterator$getNext()
   testthat::expect_true(fIterator$isLast())
@@ -161,11 +151,9 @@ testthat::test_that("FIterator: finalize function works", {
                         start = 0, sep = sep)
 
   chunk.size <- 1000000
-  verbose <- TRUE
 
   fIterator <- FIterator$new(config.params = config.params,
-                             chunk.size = chunk.size,
-                             verbose = verbose)
+                             chunk.size = chunk.size)
   fIterator$finalize()
 
   testthat::expect_null(fIterator$.__enclos_env__$private$con)

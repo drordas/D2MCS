@@ -97,7 +97,7 @@ The function allows changing the value of the weights.
 The function implements the cluster-weighted majority voting
 procedure.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ClassWeightedVoting$execute(predictions, verbose = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ClassWeightedVoting$execute(predictions)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -105,9 +105,6 @@ procedure.
 \describe{
 \item{\code{predictions}}{A \code{\link{ClusterPredictions}} object containing
 all the predictions achieved for each cluster.}
-
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
-needed.}
 }
 \if{html}{\out{</div>}}
 }

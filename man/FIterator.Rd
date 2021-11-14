@@ -35,7 +35,7 @@ Use \code{\link{HDDataset}} class to ensure the creation of a valid
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{FIterator$new(config.params, chunk.size, verbose)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{FIterator$new(config.params, chunk.size)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -46,9 +46,6 @@ Method for initializing the object arguments during runtime.
 \item{\code{chunk.size}}{An \link{integer} value indicating the size of chunks
 taken over each iteration. By default \code{chunk.size} is defined as
 10000.}
-
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
-needed.}
 }
 \if{html}{\out{</div>}}
 }

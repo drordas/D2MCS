@@ -216,18 +216,11 @@ testthat::test_that("Subset: getIterator function works", {
                        positive.class = 1,
                        feature.id = NULL)
 
-  testthat::expect_warning(subset$getIterator(chunk.size = "wrong",
-                                              verbose = FALSE),
+  testthat::expect_warning(subset$getIterator(chunk.size = "wrong"),
                            "[Subset][getIterator][WARN] Chunk size is not valid. Assuming default value",
                            fixed = TRUE)
 
-  testthat::expect_warning(subset$getIterator(chunk.size = 10000,
-                                              verbose = "a"),
-                           "[Subset][getIterator][WARN] Verbose type is not valid. Assuming 'FALSE' as default value",
-                           fixed = TRUE)
-
-  testthat::expect_is(subset$getIterator(chunk.size = 10000,
-                                              verbose = TRUE),
+  testthat::expect_is(subset$getIterator(chunk.size = 10000),
                       "DIterator")
 })
 

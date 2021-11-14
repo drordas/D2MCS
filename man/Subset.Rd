@@ -129,7 +129,7 @@ defined.
 \subsection{Method \code{getIterator()}}{
 Creates the \link{DIterator} object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Subset$getIterator(chunk.size = private$chunk.size, verbose = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Subset$getIterator(chunk.size = private$chunk.size)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -137,9 +137,6 @@ Creates the \link{DIterator} object.
 \describe{
 \item{\code{chunk.size}}{An \link{integer} value indicating the size of chunks taken
 over each iteration. By default chunk.size is defined as 10000.}
-
-\item{\code{verbose}}{A \link{logical} value to specify if more verbosity is
-needed.}
 }
 \if{html}{\out{</div>}}
 }

@@ -434,7 +434,7 @@ testthat::test_that("GenericClusteringStrategy: execute function works", {
                                             description = description,
                                             configuration = configuration)
 
-  testthat::expect_error(strategy$execute(verbose = TRUE),
+  testthat::expect_error(strategy$execute(),
                          "[GenericClusteringStrategy][execute][FATAL] Class is abstract. Method should be defined in inherited class. Aborting...",
                          fixed = TRUE)
 })

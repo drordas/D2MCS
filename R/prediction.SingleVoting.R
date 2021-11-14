@@ -80,9 +80,8 @@ SingleVoting <- R6::R6Class(
     #'
     #' @param predictions A \code{\link{ClusterPredictions}} object containing
     #' all the predictions computed in the classification stage.
-    #' @param verbose A \link{logical} value to specify if more verbosity is needed.
     #'
-    execute = function(predictions, verbose = FALSE) {
+    execute = function(predictions) {
 
       if (is.null(predictions) || !is.vector(predictions) ||
           !all(sapply(predictions, function(pred) {

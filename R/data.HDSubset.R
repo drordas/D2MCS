@@ -112,13 +112,11 @@ HDSubset <- R6::R6Class(
     #' @param chunk.size An \link{integer} value indicating the size of chunks
     #' taken over each iteration. By default \code{chunk.size} is defined as
     #' 10000.
-    #' @param verbose A \link{logical} value to specify if more verbosity is
-    #' needed.
     #'
     #' @return A \code{\link{FIterator}} object to transverse through
     #' \code{\link{HDSubset}} instances
     #'
-    getIterator = function(chunk.size = private$chunk.size, verbose = FALSE) {
+    getIterator = function(chunk.size = private$chunk.size) {
       if (!is.numeric(chunk.size)) {
         d2mcs.log(message = "Chunk size is not valid. Assuming default value",
                   level = "WARN",
@@ -127,19 +125,10 @@ HDSubset <- R6::R6Class(
         chunk.size <- private$chunk.size
       }
 
-      if (!is.logical(verbose)) {
-        d2mcs.log(message = paste0("Verbose type is not valid. Assuming ",
-                                   "'FALSE' as default value"),
-                  level = "WARN",
-                  className = class(self)[1],
-                  methodName = "getIterator")
-        verbose <- FALSE
-      }
-
       it.params <- list(file.path = private$file.path,
                         feature.names = private$feature.names,
                         start = private$start.at, sep = private$sep)
-      FIterator$new(it.params, chunk.size, verbose = verbose)
+      FIterator$new(it.params, chunk.size)
     },
     #'
     #' @description Checks if the subset contains a target class.
