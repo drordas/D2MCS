@@ -14,26 +14,26 @@ to control the computational nuances of train function.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TrainFunction$new()}}
-\item \href{#method-create}{\code{TrainFunction$create()}}
-\item \href{#method-getResamplingMethod}{\code{TrainFunction$getResamplingMethod()}}
-\item \href{#method-getNumberFolds}{\code{TrainFunction$getNumberFolds()}}
-\item \href{#method-getSavePredictions}{\code{TrainFunction$getSavePredictions()}}
-\item \href{#method-getClassProbs}{\code{TrainFunction$getClassProbs()}}
-\item \href{#method-getAllowParallel}{\code{TrainFunction$getAllowParallel()}}
-\item \href{#method-getVerboseIter}{\code{TrainFunction$getVerboseIter()}}
-\item \href{#method-getTrFunction}{\code{TrainFunction$getTrFunction()}}
-\item \href{#method-getMeasures}{\code{TrainFunction$getMeasures()}}
-\item \href{#method-getType}{\code{TrainFunction$getType()}}
-\item \href{#method-getSeed}{\code{TrainFunction$getSeed()}}
-\item \href{#method-setSummaryFunction}{\code{TrainFunction$setSummaryFunction()}}
-\item \href{#method-setClassProbs}{\code{TrainFunction$setClassProbs()}}
-\item \href{#method-clone}{\code{TrainFunction$clone()}}
+\item \href{#method-TrainFunction-new}{\code{TrainFunction$new()}}
+\item \href{#method-TrainFunction-create}{\code{TrainFunction$create()}}
+\item \href{#method-TrainFunction-getResamplingMethod}{\code{TrainFunction$getResamplingMethod()}}
+\item \href{#method-TrainFunction-getNumberFolds}{\code{TrainFunction$getNumberFolds()}}
+\item \href{#method-TrainFunction-getSavePredictions}{\code{TrainFunction$getSavePredictions()}}
+\item \href{#method-TrainFunction-getClassProbs}{\code{TrainFunction$getClassProbs()}}
+\item \href{#method-TrainFunction-getAllowParallel}{\code{TrainFunction$getAllowParallel()}}
+\item \href{#method-TrainFunction-getVerboseIter}{\code{TrainFunction$getVerboseIter()}}
+\item \href{#method-TrainFunction-getTrFunction}{\code{TrainFunction$getTrFunction()}}
+\item \href{#method-TrainFunction-getMeasures}{\code{TrainFunction$getMeasures()}}
+\item \href{#method-TrainFunction-getType}{\code{TrainFunction$getType()}}
+\item \href{#method-TrainFunction-getSeed}{\code{TrainFunction$getSeed()}}
+\item \href{#method-TrainFunction-setSummaryFunction}{\code{TrainFunction$setSummaryFunction()}}
+\item \href{#method-TrainFunction-setClassProbs}{\code{TrainFunction$setClassProbs()}}
+\item \href{#method-TrainFunction-clone}{\code{TrainFunction$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TrainFunction-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-new}{}}}
 \subsection{Method \code{new()}}{
 Function used to initialize the object parameters during
 execution time.
@@ -84,8 +84,8 @@ during model training stage.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-create"></a>}}
-\if{latex}{\out{\hypertarget{method-create}{}}}
+\if{html}{\out{<a id="method-TrainFunction-create"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-create}{}}}
 \subsection{Method \code{create()}}{
 Creates a \code{\link[caret]{trainControl}} requires for the
 training stage.
@@ -110,8 +110,8 @@ in each resample.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getResamplingMethod"></a>}}
-\if{latex}{\out{\hypertarget{method-getResamplingMethod}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getResamplingMethod"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getResamplingMethod}{}}}
 \subsection{Method \code{getResamplingMethod()}}{
 Returns the resampling method used during training staged.
 \subsection{Usage}{
@@ -124,8 +124,8 @@ if not defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNumberFolds"></a>}}
-\if{latex}{\out{\hypertarget{method-getNumberFolds}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getNumberFolds"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getNumberFolds}{}}}
 \subsection{Method \code{getNumberFolds()}}{
 Returns the number or folds or number of iterations used
 during training.
@@ -139,8 +139,8 @@ defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getSavePredictions"></a>}}
-\if{latex}{\out{\hypertarget{method-getSavePredictions}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getSavePredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getSavePredictions}{}}}
 \subsection{Method \code{getSavePredictions()}}{
 Indicates if the predictions for each resample should be
 saved.
@@ -153,8 +153,8 @@ A \link{logical} value or \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassProbs"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassProbs}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getClassProbs"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getClassProbs}{}}}
 \subsection{Method \code{getClassProbs()}}{
 Indicates if class probabilities should be computed for
 classification models in each resample.
@@ -167,8 +167,8 @@ A \link{logical} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getAllowParallel"></a>}}
-\if{latex}{\out{\hypertarget{method-getAllowParallel}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getAllowParallel"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getAllowParallel}{}}}
 \subsection{Method \code{getAllowParallel()}}{
 Determines if model training is performed in parallel.
 \subsection{Usage}{
@@ -181,8 +181,8 @@ enabled and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getVerboseIter"></a>}}
-\if{latex}{\out{\hypertarget{method-getVerboseIter}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getVerboseIter"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getVerboseIter}{}}}
 \subsection{Method \code{getVerboseIter()}}{
 Determines if training log should be printed.
 \subsection{Usage}{
@@ -195,8 +195,8 @@ enabled and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTrFunction"></a>}}
-\if{latex}{\out{\hypertarget{method-getTrFunction}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getTrFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getTrFunction}{}}}
 \subsection{Method \code{getTrFunction()}}{
 Function used to return the
 \code{\link[caret]{trainControl}} object.
@@ -209,8 +209,8 @@ A \code{\link[caret]{trainControl}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMeasures"></a>}}
-\if{latex}{\out{\hypertarget{method-getMeasures}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getMeasures"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getMeasures}{}}}
 \subsection{Method \code{getMeasures()}}{
 Returns the measures used to optimize model hyperparameters.
 \subsection{Usage}{
@@ -222,8 +222,8 @@ A \link{character} vector.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getType"></a>}}
-\if{latex}{\out{\hypertarget{method-getType}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getType}{}}}
 \subsection{Method \code{getType()}}{
 Obtains the type of classification problem ("Bi-class" or
 "Multi-class").
@@ -237,8 +237,8 @@ or "Multi-class".
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getSeed"></a>}}
-\if{latex}{\out{\hypertarget{method-getSeed}{}}}
+\if{html}{\out{<a id="method-TrainFunction-getSeed"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-getSeed}{}}}
 \subsection{Method \code{getSeed()}}{
 Indicates seed used during model training stage.
 \subsection{Usage}{
@@ -250,8 +250,8 @@ An \link{integer} value or \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setSummaryFunction"></a>}}
-\if{latex}{\out{\hypertarget{method-setSummaryFunction}{}}}
+\if{html}{\out{<a id="method-TrainFunction-setSummaryFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-setSummaryFunction}{}}}
 \subsection{Method \code{setSummaryFunction()}}{
 Function used to change the \code{\link{SummaryFunction}}
 used in the training stage.
@@ -269,8 +269,8 @@ used in the training stage.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setClassProbs"></a>}}
-\if{latex}{\out{\hypertarget{method-setClassProbs}{}}}
+\if{html}{\out{<a id="method-TrainFunction-setClassProbs"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-setClassProbs}{}}}
 \subsection{Method \code{setClassProbs()}}{
 The function allows changing the class computation
 capabilities.
@@ -289,8 +289,8 @@ in each resample}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TrainFunction-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainFunction-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

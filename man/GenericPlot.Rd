@@ -15,14 +15,14 @@ The \code{\link{GenericPlot}} implements a basic plot.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{GenericPlot$new()}}
-\item \href{#method-plot}{\code{GenericPlot$plot()}}
-\item \href{#method-clone}{\code{GenericPlot$clone()}}
+\item \href{#method-GenericPlot-new}{\code{GenericPlot$new()}}
+\item \href{#method-GenericPlot-plot}{\code{GenericPlot$plot()}}
+\item \href{#method-GenericPlot-clone}{\code{GenericPlot$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-GenericPlot-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericPlot-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -32,8 +32,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot"></a>}}
-\if{latex}{\out{\hypertarget{method-plot}{}}}
+\if{html}{\out{<a id="method-GenericPlot-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericPlot-plot}{}}}
 \subsection{Method \code{plot()}}{
 Implements a generic plot to visualize basic
 feature-clustering data.
@@ -50,8 +50,8 @@ feature-clustering data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-GenericPlot-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericPlot-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

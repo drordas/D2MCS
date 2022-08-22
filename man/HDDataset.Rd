@@ -18,15 +18,15 @@ instances are loaded in memory to avoid unnecessary of resources and memory.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{HDDataset$new()}}
-\item \href{#method-getColumnNames}{\code{HDDataset$getColumnNames()}}
-\item \href{#method-getNcol}{\code{HDDataset$getNcol()}}
-\item \href{#method-createSubset}{\code{HDDataset$createSubset()}}
+\item \href{#method-HDDataset-new}{\code{HDDataset$new()}}
+\item \href{#method-HDDataset-getColumnNames}{\code{HDDataset$getColumnNames()}}
+\item \href{#method-HDDataset-getNcol}{\code{HDDataset$getNcol()}}
+\item \href{#method-HDDataset-createSubset}{\code{HDDataset$createSubset()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-HDDataset-new"></a>}}
+\if{latex}{\out{\hypertarget{method-HDDataset-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -69,8 +69,8 @@ be ignored.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getColumnNames"></a>}}
-\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
+\if{html}{\out{<a id="method-HDDataset-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-HDDataset-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 Gets the name of the columns comprising the dataset
 \subsection{Usage}{
@@ -82,8 +82,8 @@ A \link{character} vector with the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNcol"></a>}}
-\if{latex}{\out{\hypertarget{method-getNcol}{}}}
+\if{html}{\out{<a id="method-HDDataset-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-HDDataset-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 Obtains the number of columns present in the dataset.
 \subsection{Usage}{
@@ -95,8 +95,8 @@ An \link{integer} of length 1 or \link{NULL}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createSubset"></a>}}
-\if{latex}{\out{\hypertarget{method-createSubset}{}}}
+\if{html}{\out{<a id="method-HDDataset-createSubset"></a>}}
+\if{latex}{\out{\hypertarget{method-HDDataset-createSubset}{}}}
 \subsection{Method \code{createSubset()}}{
 Creates a blinded \link{HDSubset} for classification purposes.
 \subsection{Usage}{

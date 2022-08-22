@@ -16,22 +16,22 @@ Creates a valid simple dataset object.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Dataset$new()}}
-\item \href{#method-getColumnNames}{\code{Dataset$getColumnNames()}}
-\item \href{#method-getDataset}{\code{Dataset$getDataset()}}
-\item \href{#method-getNcol}{\code{Dataset$getNcol()}}
-\item \href{#method-getNrow}{\code{Dataset$getNrow()}}
-\item \href{#method-getRemovedColumns}{\code{Dataset$getRemovedColumns()}}
-\item \href{#method-cleanData}{\code{Dataset$cleanData()}}
-\item \href{#method-removeColumns}{\code{Dataset$removeColumns()}}
-\item \href{#method-createPartitions}{\code{Dataset$createPartitions()}}
-\item \href{#method-createSubset}{\code{Dataset$createSubset()}}
-\item \href{#method-createTrain}{\code{Dataset$createTrain()}}
+\item \href{#method-Dataset-new}{\code{Dataset$new()}}
+\item \href{#method-Dataset-getColumnNames}{\code{Dataset$getColumnNames()}}
+\item \href{#method-Dataset-getDataset}{\code{Dataset$getDataset()}}
+\item \href{#method-Dataset-getNcol}{\code{Dataset$getNcol()}}
+\item \href{#method-Dataset-getNrow}{\code{Dataset$getNrow()}}
+\item \href{#method-Dataset-getRemovedColumns}{\code{Dataset$getRemovedColumns()}}
+\item \href{#method-Dataset-cleanData}{\code{Dataset$cleanData()}}
+\item \href{#method-Dataset-removeColumns}{\code{Dataset$removeColumns()}}
+\item \href{#method-Dataset-createPartitions}{\code{Dataset$createPartitions()}}
+\item \href{#method-Dataset-createSubset}{\code{Dataset$createSubset()}}
+\item \href{#method-Dataset-createTrain}{\code{Dataset$createTrain()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Dataset-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -78,8 +78,8 @@ be ignored.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getColumnNames"></a>}}
-\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
+\if{html}{\out{<a id="method-Dataset-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 Get the name of the columns comprising the dataset.
 \subsection{Usage}{
@@ -91,8 +91,8 @@ A \link{character} vector with the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDataset"></a>}}
-\if{latex}{\out{\hypertarget{method-getDataset}{}}}
+\if{html}{\out{<a id="method-Dataset-getDataset"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-getDataset}{}}}
 \subsection{Method \code{getDataset()}}{
 Gets the full dataset.
 \subsection{Usage}{
@@ -104,8 +104,8 @@ A \link{data.frame} with all the loaded information.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNcol"></a>}}
-\if{latex}{\out{\hypertarget{method-getNcol}{}}}
+\if{html}{\out{<a id="method-Dataset-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 Obtains the number of columns present in the dataset.
 \subsection{Usage}{
@@ -117,8 +117,8 @@ An \link{integer} of length 1 or \link{NULL}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNrow"></a>}}
-\if{latex}{\out{\hypertarget{method-getNrow}{}}}
+\if{html}{\out{<a id="method-Dataset-getNrow"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-getNrow}{}}}
 \subsection{Method \code{getNrow()}}{
 Obtains the number of rows present in the dataset.
 \subsection{Usage}{
@@ -130,8 +130,8 @@ An \link{integer} of length 1 or \link{NULL}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRemovedColumns"></a>}}
-\if{latex}{\out{\hypertarget{method-getRemovedColumns}{}}}
+\if{html}{\out{<a id="method-Dataset-getRemovedColumns"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-getRemovedColumns}{}}}
 \subsection{Method \code{getRemovedColumns()}}{
 Get the columns removed or ignored.
 \subsection{Usage}{
@@ -143,8 +143,8 @@ A \link{list} containing the name of the removed columns.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-cleanData"></a>}}
-\if{latex}{\out{\hypertarget{method-cleanData}{}}}
+\if{html}{\out{<a id="method-Dataset-cleanData"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-cleanData}{}}}
 \subsection{Method \code{cleanData()}}{
 Removes \link{data.frame} columns matching some criterion.
 \subsection{Usage}{
@@ -167,8 +167,8 @@ values should be removed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-removeColumns"></a>}}
-\if{latex}{\out{\hypertarget{method-removeColumns}{}}}
+\if{html}{\out{<a id="method-Dataset-removeColumns"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-removeColumns}{}}}
 \subsection{Method \code{removeColumns()}}{
 Applies \code{cleanData} function over an specific set of
 columns.
@@ -200,8 +200,8 @@ values should be removed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createPartitions"></a>}}
-\if{latex}{\out{\hypertarget{method-createPartitions}{}}}
+\if{html}{\out{<a id="method-Dataset-createPartitions"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-createPartitions}{}}}
 \subsection{Method \code{createPartitions()}}{
 Creates a k-folds partition from the initial dataset.
 \subsection{Usage}{
@@ -227,8 +227,8 @@ should be kept.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createSubset"></a>}}
-\if{latex}{\out{\hypertarget{method-createSubset}{}}}
+\if{html}{\out{<a id="method-Dataset-createSubset"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-createSubset}{}}}
 \subsection{Method \code{createSubset()}}{
 Creates a \code{\link{Subset}} for testing or classification
 purposes. A target class should be provided for testing purposes.
@@ -263,8 +263,8 @@ A \link{Subset} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createTrain"></a>}}
-\if{latex}{\out{\hypertarget{method-createTrain}{}}}
+\if{html}{\out{<a id="method-Dataset-createTrain"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-createTrain}{}}}
 \subsection{Method \code{createTrain()}}{
 Creates a set for training purposes. A class should be
 defined to guarantee full-compatibility with supervised models.

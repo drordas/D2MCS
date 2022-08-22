@@ -22,18 +22,18 @@ Use \code{\link{HDDataset}} to ensure the creation of a valid
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{HDSubset$new()}}
-\item \href{#method-getColumnNames}{\code{HDSubset$getColumnNames()}}
-\item \href{#method-getNcol}{\code{HDSubset$getNcol()}}
-\item \href{#method-getID}{\code{HDSubset$getID()}}
-\item \href{#method-getIterator}{\code{HDSubset$getIterator()}}
-\item \href{#method-isBlinded}{\code{HDSubset$isBlinded()}}
-\item \href{#method-clone}{\code{HDSubset$clone()}}
+\item \href{#method-HDSubset-new}{\code{HDSubset$new()}}
+\item \href{#method-HDSubset-getColumnNames}{\code{HDSubset$getColumnNames()}}
+\item \href{#method-HDSubset-getNcol}{\code{HDSubset$getNcol()}}
+\item \href{#method-HDSubset-getID}{\code{HDSubset$getID()}}
+\item \href{#method-HDSubset-getIterator}{\code{HDSubset$getIterator()}}
+\item \href{#method-HDSubset-isBlinded}{\code{HDSubset$isBlinded()}}
+\item \href{#method-HDSubset-clone}{\code{HDSubset$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-HDSubset-new"></a>}}
+\if{latex}{\out{\hypertarget{method-HDSubset-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -75,8 +75,8 @@ taken over each iteration. By default chunk.size is defined as 10000.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getColumnNames"></a>}}
-\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
+\if{html}{\out{<a id="method-HDSubset-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-HDSubset-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 Gets the name of the columns comprising the subset.
 \subsection{Usage}{
@@ -88,8 +88,8 @@ A \link{character} vector containing the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNcol"></a>}}
-\if{latex}{\out{\hypertarget{method-getNcol}{}}}
+\if{html}{\out{<a id="method-HDSubset-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-HDSubset-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 Obtains the number of columns present in the dataset.
 \subsection{Usage}{
@@ -101,8 +101,8 @@ A \link{numeric} value or 0 if is empty.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getID"></a>}}
-\if{latex}{\out{\hypertarget{method-getID}{}}}
+\if{html}{\out{<a id="method-HDSubset-getID"></a>}}
+\if{latex}{\out{\hypertarget{method-HDSubset-getID}{}}}
 \subsection{Method \code{getID()}}{
 Obtains the column identifier.
 \subsection{Usage}{
@@ -114,8 +114,8 @@ A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getIterator"></a>}}
-\if{latex}{\out{\hypertarget{method-getIterator}{}}}
+\if{html}{\out{<a id="method-HDSubset-getIterator"></a>}}
+\if{latex}{\out{\hypertarget{method-HDSubset-getIterator}{}}}
 \subsection{Method \code{getIterator()}}{
 Creates the \code{\link{FIterator}} object.
 \subsection{Usage}{
@@ -140,8 +140,8 @@ A \code{\link{FIterator}} object to transverse through
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isBlinded"></a>}}
-\if{latex}{\out{\hypertarget{method-isBlinded}{}}}
+\if{html}{\out{<a id="method-HDSubset-isBlinded"></a>}}
+\if{latex}{\out{\hypertarget{method-HDSubset-isBlinded}{}}}
 \subsection{Method \code{isBlinded()}}{
 Checks if the subset contains a target class.
 \subsection{Usage}{
@@ -154,8 +154,8 @@ or not.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-HDSubset-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-HDSubset-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

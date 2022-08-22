@@ -20,15 +20,15 @@ archetype to define new customized parameters.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{StrategyConfiguration$new()}}
-\item \href{#method-minNumClusters}{\code{StrategyConfiguration$minNumClusters()}}
-\item \href{#method-maxNumClusters}{\code{StrategyConfiguration$maxNumClusters()}}
-\item \href{#method-clone}{\code{StrategyConfiguration$clone()}}
+\item \href{#method-StrategyConfiguration-new}{\code{StrategyConfiguration$new()}}
+\item \href{#method-StrategyConfiguration-minNumClusters}{\code{StrategyConfiguration$minNumClusters()}}
+\item \href{#method-StrategyConfiguration-maxNumClusters}{\code{StrategyConfiguration$maxNumClusters()}}
+\item \href{#method-StrategyConfiguration-clone}{\code{StrategyConfiguration$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-StrategyConfiguration-new"></a>}}
+\if{latex}{\out{\hypertarget{method-StrategyConfiguration-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -38,8 +38,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-minNumClusters"></a>}}
-\if{latex}{\out{\hypertarget{method-minNumClusters}{}}}
+\if{html}{\out{<a id="method-StrategyConfiguration-minNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-StrategyConfiguration-minNumClusters}{}}}
 \subsection{Method \code{minNumClusters()}}{
 Function used to return the minimum number of clusters
 distributions used. By default the minimum is set in 2.
@@ -60,8 +60,8 @@ A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-maxNumClusters"></a>}}
-\if{latex}{\out{\hypertarget{method-maxNumClusters}{}}}
+\if{html}{\out{<a id="method-StrategyConfiguration-maxNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-StrategyConfiguration-maxNumClusters}{}}}
 \subsection{Method \code{maxNumClusters()}}{
 The function is responsible of returning the maximum number
 of cluster distributions used. By default the maximum number is set in 50.
@@ -82,8 +82,8 @@ A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-StrategyConfiguration-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-StrategyConfiguration-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

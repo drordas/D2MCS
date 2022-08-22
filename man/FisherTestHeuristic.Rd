@@ -19,20 +19,14 @@ with fixed marginals.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FisherTestHeuristic$new()}}
-\item \href{#method-heuristic}{\code{FisherTestHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{FisherTestHeuristic$clone()}}
+\item \href{#method-FisherTestHeuristic-new}{\code{FisherTestHeuristic$new()}}
+\item \href{#method-FisherTestHeuristic-heuristic}{\code{FisherTestHeuristic$heuristic()}}
+\item \href{#method-FisherTestHeuristic-clone}{\code{FisherTestHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FisherTestHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FisherTestHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -42,8 +36,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-FisherTestHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-FisherTestHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Performs the Fisher's exact test for testing the null of
 independence between two columns (col1 and col2).
@@ -71,8 +65,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FisherTestHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FisherTestHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

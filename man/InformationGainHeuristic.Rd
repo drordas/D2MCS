@@ -18,20 +18,14 @@ Performs the feature-clustering using entropy-based filters.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{InformationGainHeuristic$new()}}
-\item \href{#method-heuristic}{\code{InformationGainHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{InformationGainHeuristic$clone()}}
+\item \href{#method-InformationGainHeuristic-new}{\code{InformationGainHeuristic$new()}}
+\item \href{#method-InformationGainHeuristic-heuristic}{\code{InformationGainHeuristic$heuristic()}}
+\item \href{#method-InformationGainHeuristic-clone}{\code{InformationGainHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-InformationGainHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-InformationGainHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -41,8 +35,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-InformationGainHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-InformationGainHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 The algorithm find weights of discrete attributes basing on
 their correlation with continuous class attribute. Particularly
@@ -71,8 +65,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-InformationGainHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-InformationGainHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

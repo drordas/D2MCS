@@ -25,20 +25,14 @@ interval is given based on Fisher's Z transform.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{PearsonHeuristic$new()}}
-\item \href{#method-heuristic}{\code{PearsonHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{PearsonHeuristic$clone()}}
+\item \href{#method-PearsonHeuristic-new}{\code{PearsonHeuristic$new()}}
+\item \href{#method-PearsonHeuristic-heuristic}{\code{PearsonHeuristic$heuristic()}}
+\item \href{#method-PearsonHeuristic-clone}{\code{PearsonHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-PearsonHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-PearsonHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{PearsonHeuristic} object.
 \subsection{Usage}{
@@ -47,8 +41,8 @@ Creates a \link{PearsonHeuristic} object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-PearsonHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-PearsonHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Test for association between paired samples using Pearson
 test.
@@ -76,8 +70,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-PearsonHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-PearsonHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

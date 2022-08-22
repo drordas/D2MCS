@@ -22,16 +22,16 @@ Use \code{\link{HDDataset}} class to ensure the creation of a valid
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FIterator$new()}}
-\item \href{#method-getNext}{\code{FIterator$getNext()}}
-\item \href{#method-isLast}{\code{FIterator$isLast()}}
-\item \href{#method-finalize}{\code{FIterator$finalize()}}
-\item \href{#method-clone}{\code{FIterator$clone()}}
+\item \href{#method-FIterator-new}{\code{FIterator$new()}}
+\item \href{#method-FIterator-getNext}{\code{FIterator$getNext()}}
+\item \href{#method-FIterator-isLast}{\code{FIterator$isLast()}}
+\item \href{#method-FIterator-finalize}{\code{FIterator$finalize()}}
+\item \href{#method-FIterator-clone}{\code{FIterator$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FIterator-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FIterator-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -54,8 +54,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNext"></a>}}
-\if{latex}{\out{\hypertarget{method-getNext}{}}}
+\if{html}{\out{<a id="method-FIterator-getNext"></a>}}
+\if{latex}{\out{\hypertarget{method-FIterator-getNext}{}}}
 \subsection{Method \code{getNext()}}{
 Gets the next chunk of data. Each iteration returns the same
 instances (data.frame rows) as chunk.size. However, if remaining data if
@@ -72,8 +72,8 @@ previously returned.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isLast"></a>}}
-\if{latex}{\out{\hypertarget{method-isLast}{}}}
+\if{html}{\out{<a id="method-FIterator-isLast"></a>}}
+\if{latex}{\out{\hypertarget{method-FIterator-isLast}{}}}
 \subsection{Method \code{isLast()}}{
 Checks if the \code{\link{FIterator}} object reached the end
 of the \link{data.frame}
@@ -87,8 +87,8 @@ has been reached.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-finalize"></a>}}
-\if{latex}{\out{\hypertarget{method-finalize}{}}}
+\if{html}{\out{<a id="method-FIterator-finalize"></a>}}
+\if{latex}{\out{\hypertarget{method-FIterator-finalize}{}}}
 \subsection{Method \code{finalize()}}{
 Destroys the \code{\link{FIterator}} object.
 \subsection{Usage}{
@@ -97,8 +97,8 @@ Destroys the \code{\link{FIterator}} object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FIterator-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FIterator-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

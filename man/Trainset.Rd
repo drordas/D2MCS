@@ -24,19 +24,19 @@ Use \code{\link{Dataset}} object to ensure the creation of a valid
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Trainset$new()}}
-\item \href{#method-getPositiveClass}{\code{Trainset$getPositiveClass()}}
-\item \href{#method-getClassName}{\code{Trainset$getClassName()}}
-\item \href{#method-getClassValues}{\code{Trainset$getClassValues()}}
-\item \href{#method-getColumnNames}{\code{Trainset$getColumnNames()}}
-\item \href{#method-getFeatureValues}{\code{Trainset$getFeatureValues()}}
-\item \href{#method-getInstances}{\code{Trainset$getInstances()}}
-\item \href{#method-getNumClusters}{\code{Trainset$getNumClusters()}}
+\item \href{#method-Trainset-new}{\code{Trainset$new()}}
+\item \href{#method-Trainset-getPositiveClass}{\code{Trainset$getPositiveClass()}}
+\item \href{#method-Trainset-getClassName}{\code{Trainset$getClassName()}}
+\item \href{#method-Trainset-getClassValues}{\code{Trainset$getClassValues()}}
+\item \href{#method-Trainset-getColumnNames}{\code{Trainset$getColumnNames()}}
+\item \href{#method-Trainset-getFeatureValues}{\code{Trainset$getFeatureValues()}}
+\item \href{#method-Trainset-getInstances}{\code{Trainset$getInstances()}}
+\item \href{#method-Trainset-getNumClusters}{\code{Trainset$getNumClusters()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Trainset-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -62,8 +62,8 @@ positive class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPositiveClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
+\if{html}{\out{<a id="method-Trainset-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function is used to obtain the value of the positive
 class.
@@ -76,8 +76,8 @@ A \link{numeric} value with the positive class value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassName"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassName}{}}}
+\if{html}{\out{<a id="method-Trainset-getClassName"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-getClassName}{}}}
 \subsection{Method \code{getClassName()}}{
 The function is used to return the name of the target class.
 \subsection{Usage}{
@@ -89,8 +89,8 @@ A \link{character} vector with length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassValues"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
+\if{html}{\out{<a id="method-Trainset-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 The function is used to compute all the possible target class
 values.
@@ -103,8 +103,8 @@ A \link{factor} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getColumnNames"></a>}}
-\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
+\if{html}{\out{<a id="method-Trainset-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 The function returns the name of the columns comprising
 an specific cluster distribution.
@@ -126,8 +126,8 @@ A \link{character} vector with all column names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFeatureValues"></a>}}
-\if{latex}{\out{\hypertarget{method-getFeatureValues}{}}}
+\if{html}{\out{<a id="method-Trainset-getFeatureValues"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-getFeatureValues}{}}}
 \subsection{Method \code{getFeatureValues()}}{
 The function returns the values of the columns comprising
 an specific cluster distribution. Target class is omitted.
@@ -150,8 +150,8 @@ the selected cluster distribution.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getInstances"></a>}}
-\if{latex}{\out{\hypertarget{method-getInstances}{}}}
+\if{html}{\out{<a id="method-Trainset-getInstances"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-getInstances}{}}}
 \subsection{Method \code{getInstances()}}{
 The function returns the values of the columns comprising
 an specific cluster distribution. Target class is included as the last
@@ -175,8 +175,8 @@ the selected cluster distribution.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNumClusters"></a>}}
-\if{latex}{\out{\hypertarget{method-getNumClusters}{}}}
+\if{html}{\out{<a id="method-Trainset-getNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-Trainset-getNumClusters}{}}}
 \subsection{Method \code{getNumClusters()}}{
 The function obtains the number of groups (clusters) that
 forms the cluster distribution.

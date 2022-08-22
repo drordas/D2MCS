@@ -21,24 +21,24 @@ the probability achieved by each prediction.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ProbAverageVoting$new()}}
-\item \href{#method-getMajorityClass}{\code{ProbAverageVoting$getMajorityClass()}}
-\item \href{#method-getClassTie}{\code{ProbAverageVoting$getClassTie()}}
-\item \href{#method-execute}{\code{ProbAverageVoting$execute()}}
-\item \href{#method-clone}{\code{ProbAverageVoting$clone()}}
+\item \href{#method-ProbAverageVoting-new}{\code{ProbAverageVoting$new()}}
+\item \href{#method-ProbAverageVoting-getMajorityClass}{\code{ProbAverageVoting$getMajorityClass()}}
+\item \href{#method-ProbAverageVoting-getClassTie}{\code{ProbAverageVoting$getClassTie()}}
+\item \href{#method-ProbAverageVoting-execute}{\code{ProbAverageVoting$execute()}}
+\item \href{#method-ProbAverageVoting-clone}{\code{ProbAverageVoting$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff">}\href{../../D2MCS/html/SimpleVoting.html#method-getCutoff}{\code{D2MCS::SimpleVoting$getCutoff()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred">}\href{../../D2MCS/html/SimpleVoting.html#method-getFinalPred}{\code{D2MCS::SimpleVoting$getFinalPred()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getCutoff'><code>D2MCS::SimpleVoting$getCutoff()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getFinalPred'><code>D2MCS::SimpleVoting$getFinalPred()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ProbAverageVoting-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageVoting-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -63,8 +63,8 @@ majority class. If \link{NULL} will be used same value as training stage.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMajorityClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getMajorityClass}{}}}
+\if{html}{\out{<a id="method-ProbAverageVoting-getMajorityClass"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageVoting-getMajorityClass}{}}}
 \subsection{Method \code{getMajorityClass()}}{
 The function returns the value of the majority class.
 \subsection{Usage}{
@@ -77,8 +77,8 @@ majority class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassTie"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassTie}{}}}
+\if{html}{\out{<a id="method-ProbAverageVoting-getClassTie"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageVoting-getClassTie}{}}}
 \subsection{Method \code{getClassTie()}}{
 The function gets the class value assigned to solve ties.
 \subsection{Usage}{
@@ -90,8 +90,8 @@ A \link{character} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-ProbAverageVoting-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageVoting-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the majority voting procedure.
 \subsection{Usage}{
@@ -111,8 +111,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ProbAverageVoting-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageVoting-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

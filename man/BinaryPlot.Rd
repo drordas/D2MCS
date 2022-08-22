@@ -19,20 +19,14 @@ bi-class problem.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{BinaryPlot$new()}}
-\item \href{#method-plot}{\code{BinaryPlot$plot()}}
-\item \href{#method-clone}{\code{BinaryPlot$clone()}}
+\item \href{#method-BinaryPlot-new}{\code{BinaryPlot$new()}}
+\item \href{#method-BinaryPlot-plot}{\code{BinaryPlot$plot()}}
+\item \href{#method-BinaryPlot-clone}{\code{BinaryPlot$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-BinaryPlot-new"></a>}}
+\if{latex}{\out{\hypertarget{method-BinaryPlot-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -42,8 +36,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot"></a>}}
-\if{latex}{\out{\hypertarget{method-plot}{}}}
+\if{html}{\out{<a id="method-BinaryPlot-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-BinaryPlot-plot}{}}}
 \subsection{Method \code{plot()}}{
 Plots feature-clustering data from a bi-class problem.
 \subsection{Usage}{
@@ -59,8 +53,8 @@ Plots feature-clustering data from a bi-class problem.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-BinaryPlot-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-BinaryPlot-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -113,16 +113,16 @@ predictions$getPerformances(test.subset, measures = list(MCC$new(), PPV$new()))
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{D2MCS$new()}}
-\item \href{#method-train}{\code{D2MCS$train()}}
-\item \href{#method-classify}{\code{D2MCS$classify()}}
-\item \href{#method-getAvailableModels}{\code{D2MCS$getAvailableModels()}}
-\item \href{#method-clone}{\code{D2MCS$clone()}}
+\item \href{#method-D2MCS-new}{\code{D2MCS$new()}}
+\item \href{#method-D2MCS-train}{\code{D2MCS$train()}}
+\item \href{#method-D2MCS-classify}{\code{D2MCS$classify()}}
+\item \href{#method-D2MCS-getAvailableModels}{\code{D2MCS$getAvailableModels()}}
+\item \href{#method-D2MCS-clone}{\code{D2MCS$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-D2MCS-new"></a>}}
+\if{latex}{\out{\hypertarget{method-D2MCS-new}{}}}
 \subsection{Method \code{new()}}{
 The function is used to initialize all parameters needed
 to build a Multiple Classifier System.
@@ -165,8 +165,8 @@ substantially faster if this is set to false.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-train"></a>}}
-\if{latex}{\out{\hypertarget{method-train}{}}}
+\if{html}{\out{<a id="method-D2MCS-train"></a>}}
+\if{latex}{\out{\hypertarget{method-D2MCS-train}{}}}
 \subsection{Method \code{train()}}{
 The function is responsible of performing the M.L. model
 training stage.
@@ -229,8 +229,8 @@ computed during the training stage.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-classify"></a>}}
-\if{latex}{\out{\hypertarget{method-classify}{}}}
+\if{html}{\out{<a id="method-D2MCS-classify"></a>}}
+\if{latex}{\out{\hypertarget{method-D2MCS-classify}{}}}
 \subsection{Method \code{classify()}}{
 The function is responsible for executing the classification
 stage.
@@ -260,8 +260,8 @@ during classification stage.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getAvailableModels"></a>}}
-\if{latex}{\out{\hypertarget{method-getAvailableModels}{}}}
+\if{html}{\out{<a id="method-D2MCS-getAvailableModels"></a>}}
+\if{latex}{\out{\hypertarget{method-D2MCS-getAvailableModels}{}}}
 \subsection{Method \code{getAvailableModels()}}{
 The function obtains all the available M.L. models.
 \subsection{Usage}{
@@ -274,8 +274,8 @@ M.L. models.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-D2MCS-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-D2MCS-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

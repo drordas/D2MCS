@@ -19,20 +19,14 @@ final M.L. model.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FN$new()}}
-\item \href{#method-compute}{\code{FN$compute()}}
-\item \href{#method-clone}{\code{FN$clone()}}
+\item \href{#method-FN-new}{\code{FN$new()}}
+\item \href{#method-FN-compute}{\code{FN$compute()}}
+\item \href{#method-FN-clone}{\code{FN$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FN-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FN-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,8 +43,8 @@ to define the type of object used to compute the \strong{FN} measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-FN-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-FN-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{FN} achieved by the M.L.
 model.
@@ -78,8 +72,8 @@ occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FN-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FN-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

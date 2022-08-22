@@ -20,14 +20,14 @@ automatically invoke by \code{\link{D2MCS}} framework when needed.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{MeasureFunction$new()}}
-\item \href{#method-compute}{\code{MeasureFunction$compute()}}
-\item \href{#method-clone}{\code{MeasureFunction$clone()}}
+\item \href{#method-MeasureFunction-new}{\code{MeasureFunction$new()}}
+\item \href{#method-MeasureFunction-compute}{\code{MeasureFunction$compute()}}
+\item \href{#method-MeasureFunction-clone}{\code{MeasureFunction$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-MeasureFunction-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MeasureFunction-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -44,8 +44,8 @@ define the type of object used to compute the measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-MeasureFunction-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-MeasureFunction-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function implements the metric used to measure the
 performance achieved by the M.L. model.
@@ -72,8 +72,8 @@ occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-MeasureFunction-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MeasureFunction-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

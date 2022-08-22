@@ -18,21 +18,21 @@ This class manages the results achieved during training stage
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TrainOutput$new()}}
-\item \href{#method-getModels}{\code{TrainOutput$getModels()}}
-\item \href{#method-getPerformance}{\code{TrainOutput$getPerformance()}}
-\item \href{#method-savePerformance}{\code{TrainOutput$savePerformance()}}
-\item \href{#method-plot}{\code{TrainOutput$plot()}}
-\item \href{#method-getMetrics}{\code{TrainOutput$getMetrics()}}
-\item \href{#method-getClassValues}{\code{TrainOutput$getClassValues()}}
-\item \href{#method-getPositiveClass}{\code{TrainOutput$getPositiveClass()}}
-\item \href{#method-getSize}{\code{TrainOutput$getSize()}}
-\item \href{#method-clone}{\code{TrainOutput$clone()}}
+\item \href{#method-TrainOutput-new}{\code{TrainOutput$new()}}
+\item \href{#method-TrainOutput-getModels}{\code{TrainOutput$getModels()}}
+\item \href{#method-TrainOutput-getPerformance}{\code{TrainOutput$getPerformance()}}
+\item \href{#method-TrainOutput-savePerformance}{\code{TrainOutput$savePerformance()}}
+\item \href{#method-TrainOutput-plot}{\code{TrainOutput$plot()}}
+\item \href{#method-TrainOutput-getMetrics}{\code{TrainOutput$getMetrics()}}
+\item \href{#method-TrainOutput-getClassValues}{\code{TrainOutput$getClassValues()}}
+\item \href{#method-TrainOutput-getPositiveClass}{\code{TrainOutput$getPositiveClass()}}
+\item \href{#method-TrainOutput-getSize}{\code{TrainOutput$getSize()}}
+\item \href{#method-TrainOutput-clone}{\code{TrainOutput$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TrainOutput-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-new}{}}}
 \subsection{Method \code{new()}}{
 Function used to initialize the object arguments during
 runtime.
@@ -56,8 +56,8 @@ class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getModels"></a>}}
-\if{latex}{\out{\hypertarget{method-getModels}{}}}
+\if{html}{\out{<a id="method-TrainOutput-getModels"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-getModels}{}}}
 \subsection{Method \code{getModels()}}{
 The function is used to obtain the best M.L. model of each
 cluster.
@@ -78,8 +78,8 @@ A \link{list} is returned of class train.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPerformance"></a>}}
-\if{latex}{\out{\hypertarget{method-getPerformance}{}}}
+\if{html}{\out{<a id="method-TrainOutput-getPerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-getPerformance}{}}}
 \subsection{Method \code{getPerformance()}}{
 The function returns the performance value of M.L. models
 during training stage.
@@ -101,8 +101,8 @@ configuring M.L. hyperparameters.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-savePerformance"></a>}}
-\if{latex}{\out{\hypertarget{method-savePerformance}{}}}
+\if{html}{\out{<a id="method-TrainOutput-savePerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-savePerformance}{}}}
 \subsection{Method \code{savePerformance()}}{
 The function is used to save into CSV file the performance
 achieved by the M.L. models during training stage.
@@ -124,8 +124,8 @@ stage will be saved.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot"></a>}}
-\if{latex}{\out{\hypertarget{method-plot}{}}}
+\if{html}{\out{<a id="method-TrainOutput-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-plot}{}}}
 \subsection{Method \code{plot()}}{
 The function is responsible for creating a plot to visualize
 the performance achieved by the best M.L. model on each cluster.
@@ -146,8 +146,8 @@ stage will be plotted.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMetrics"></a>}}
-\if{latex}{\out{\hypertarget{method-getMetrics}{}}}
+\if{html}{\out{<a id="method-TrainOutput-getMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-getMetrics}{}}}
 \subsection{Method \code{getMetrics()}}{
 The function returns all metrics used for configuring M.L.
 hyperparameters during train stage.
@@ -160,8 +160,8 @@ A \link{character} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassValues"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
+\if{html}{\out{<a id="method-TrainOutput-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 The function is used to get the values of the target class.
 \subsection{Usage}{
@@ -173,8 +173,8 @@ A \link{character} containing the values of the target class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPositiveClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
+\if{html}{\out{<a id="method-TrainOutput-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function returns the value of the positive class.
 \subsection{Usage}{
@@ -186,8 +186,8 @@ A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getSize"></a>}}
-\if{latex}{\out{\hypertarget{method-getSize}{}}}
+\if{html}{\out{<a id="method-TrainOutput-getSize"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-getSize}{}}}
 \subsection{Method \code{getSize()}}{
 The function is used to get the number of the trained M.L.
 models. Each cluster contains the best M.L. model.
@@ -201,8 +201,8 @@ successfully performed.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TrainOutput-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TrainOutput-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

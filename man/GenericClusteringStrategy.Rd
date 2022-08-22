@@ -20,23 +20,23 @@ cannot be instantiated.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{GenericClusteringStrategy$new()}}
-\item \href{#method-getDescription}{\code{GenericClusteringStrategy$getDescription()}}
-\item \href{#method-getHeuristic}{\code{GenericClusteringStrategy$getHeuristic()}}
-\item \href{#method-getConfiguration}{\code{GenericClusteringStrategy$getConfiguration()}}
-\item \href{#method-getBestClusterDistribution}{\code{GenericClusteringStrategy$getBestClusterDistribution()}}
-\item \href{#method-getUnclustered}{\code{GenericClusteringStrategy$getUnclustered()}}
-\item \href{#method-execute}{\code{GenericClusteringStrategy$execute()}}
-\item \href{#method-getDistribution}{\code{GenericClusteringStrategy$getDistribution()}}
-\item \href{#method-createTrain}{\code{GenericClusteringStrategy$createTrain()}}
-\item \href{#method-plot}{\code{GenericClusteringStrategy$plot()}}
-\item \href{#method-saveCSV}{\code{GenericClusteringStrategy$saveCSV()}}
-\item \href{#method-clone}{\code{GenericClusteringStrategy$clone()}}
+\item \href{#method-GenericClusteringStrategy-new}{\code{GenericClusteringStrategy$new()}}
+\item \href{#method-GenericClusteringStrategy-getDescription}{\code{GenericClusteringStrategy$getDescription()}}
+\item \href{#method-GenericClusteringStrategy-getHeuristic}{\code{GenericClusteringStrategy$getHeuristic()}}
+\item \href{#method-GenericClusteringStrategy-getConfiguration}{\code{GenericClusteringStrategy$getConfiguration()}}
+\item \href{#method-GenericClusteringStrategy-getBestClusterDistribution}{\code{GenericClusteringStrategy$getBestClusterDistribution()}}
+\item \href{#method-GenericClusteringStrategy-getUnclustered}{\code{GenericClusteringStrategy$getUnclustered()}}
+\item \href{#method-GenericClusteringStrategy-execute}{\code{GenericClusteringStrategy$execute()}}
+\item \href{#method-GenericClusteringStrategy-getDistribution}{\code{GenericClusteringStrategy$getDistribution()}}
+\item \href{#method-GenericClusteringStrategy-createTrain}{\code{GenericClusteringStrategy$createTrain()}}
+\item \href{#method-GenericClusteringStrategy-plot}{\code{GenericClusteringStrategy$plot()}}
+\item \href{#method-GenericClusteringStrategy-saveCSV}{\code{GenericClusteringStrategy$saveCSV()}}
+\item \href{#method-GenericClusteringStrategy-clone}{\code{GenericClusteringStrategy$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-new}{}}}
 \subsection{Method \code{new()}}{
 A function responsible for creating a
 \link{GenericClusteringStrategy} object.
@@ -63,8 +63,8 @@ abstract class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDescription"></a>}}
-\if{latex}{\out{\hypertarget{method-getDescription}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-getDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-getDescription}{}}}
 \subsection{Method \code{getDescription()}}{
 The function is used to obtain the description of the
 strategy.
@@ -77,8 +77,8 @@ A \link{character} vector of \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getHeuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-getHeuristic}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-getHeuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-getHeuristic}{}}}
 \subsection{Method \code{getHeuristic()}}{
 The function returns the heuristic applied for the
 clustering strategy.
@@ -92,8 +92,8 @@ class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getConfiguration"></a>}}
-\if{latex}{\out{\hypertarget{method-getConfiguration}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-getConfiguration"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-getConfiguration}{}}}
 \subsection{Method \code{getConfiguration()}}{
 The function returns the configuration parameters used to
 perform the clustering strategy.
@@ -107,8 +107,8 @@ class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getBestClusterDistribution"></a>}}
-\if{latex}{\out{\hypertarget{method-getBestClusterDistribution}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-getBestClusterDistribution"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-getBestClusterDistribution}{}}}
 \subsection{Method \code{getBestClusterDistribution()}}{
 The function obtains the best clustering distribution.
 \subsection{Usage}{
@@ -121,8 +121,8 @@ group.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getUnclustered"></a>}}
-\if{latex}{\out{\hypertarget{method-getUnclustered}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-getUnclustered"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-getUnclustered}{}}}
 \subsection{Method \code{getUnclustered()}}{
 The function is used to return the features that cannot be
 clustered due to incompatibilities with the used heuristic.
@@ -135,8 +135,8 @@ A \link{character} vector containing the unclassified features.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-execute}{}}}
 \subsection{Method \code{execute()}}{
 Abstract function responsible of performing the clustering
 strategy over the defined \code{\link{Subset}}.
@@ -156,8 +156,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDistribution"></a>}}
-\if{latex}{\out{\hypertarget{method-getDistribution}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-getDistribution"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-getDistribution}{}}}
 \subsection{Method \code{getDistribution()}}{
 Abstract function used to obtain the set of features
 following an specific clustering distribution.
@@ -189,8 +189,8 @@ distribution.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createTrain"></a>}}
-\if{latex}{\out{\hypertarget{method-createTrain}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-createTrain"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-createTrain}{}}}
 \subsection{Method \code{createTrain()}}{
 Abstract function in charge of creating a
 \code{\link{Trainset}} object for training purposes.
@@ -222,8 +222,8 @@ unclustered features should be included.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot"></a>}}
-\if{latex}{\out{\hypertarget{method-plot}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-plot}{}}}
 \subsection{Method \code{plot()}}{
 Abstract function responsible of creating a plot to
 visualize the clustering distribution.
@@ -247,8 +247,8 @@ directory, '\code{getwd()}'.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-saveCSV"></a>}}
-\if{latex}{\out{\hypertarget{method-saveCSV}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-saveCSV"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-saveCSV}{}}}
 \subsection{Method \code{saveCSV()}}{
 Abstract function to save the clustering distribution to a
 CSV file.
@@ -270,8 +270,8 @@ clusters to be saved. If not defined, all clusters will be saved.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-GenericClusteringStrategy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericClusteringStrategy-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

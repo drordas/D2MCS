@@ -19,14 +19,14 @@ instantiated.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{GenericHeuristic$new()}}
-\item \href{#method-heuristic}{\code{GenericHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{GenericHeuristic$clone()}}
+\item \href{#method-GenericHeuristic-new}{\code{GenericHeuristic$new()}}
+\item \href{#method-GenericHeuristic-heuristic}{\code{GenericHeuristic$heuristic()}}
+\item \href{#method-GenericHeuristic-clone}{\code{GenericHeuristic$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-GenericHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -36,8 +36,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-GenericHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Function used to implement the clustering heuristic.
 \subsection{Usage}{
@@ -65,8 +65,8 @@ A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-GenericHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

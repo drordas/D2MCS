@@ -18,20 +18,14 @@ Valid for both bi-class and multi-class problems
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{MCCHeuristic$new()}}
-\item \href{#method-heuristic}{\code{MCCHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{MCCHeuristic$clone()}}
+\item \href{#method-MCCHeuristic-new}{\code{MCCHeuristic$new()}}
+\item \href{#method-MCCHeuristic-heuristic}{\code{MCCHeuristic$heuristic()}}
+\item \href{#method-MCCHeuristic-clone}{\code{MCCHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-MCCHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MCCHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -41,8 +35,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-MCCHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-MCCHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Calculates the Matthews correlation Coefficient (MCC) score.
 \subsection{Usage}{
@@ -69,8 +63,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-MCCHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MCCHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

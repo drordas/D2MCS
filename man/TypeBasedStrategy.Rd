@@ -25,29 +25,29 @@ features are automatically grouped into a specific cluster named as 'unclustered
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TypeBasedStrategy$new()}}
-\item \href{#method-execute}{\code{TypeBasedStrategy$execute()}}
-\item \href{#method-getDistribution}{\code{TypeBasedStrategy$getDistribution()}}
-\item \href{#method-createTrain}{\code{TypeBasedStrategy$createTrain()}}
-\item \href{#method-plot}{\code{TypeBasedStrategy$plot()}}
-\item \href{#method-saveCSV}{\code{TypeBasedStrategy$saveCSV()}}
-\item \href{#method-clone}{\code{TypeBasedStrategy$clone()}}
+\item \href{#method-TypeBasedStrategy-new}{\code{TypeBasedStrategy$new()}}
+\item \href{#method-TypeBasedStrategy-execute}{\code{TypeBasedStrategy$execute()}}
+\item \href{#method-TypeBasedStrategy-getDistribution}{\code{TypeBasedStrategy$getDistribution()}}
+\item \href{#method-TypeBasedStrategy-createTrain}{\code{TypeBasedStrategy$createTrain()}}
+\item \href{#method-TypeBasedStrategy-plot}{\code{TypeBasedStrategy$plot()}}
+\item \href{#method-TypeBasedStrategy-saveCSV}{\code{TypeBasedStrategy$saveCSV()}}
+\item \href{#method-TypeBasedStrategy-clone}{\code{TypeBasedStrategy$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getBestClusterDistribution">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getBestClusterDistribution}{\code{D2MCS::GenericClusteringStrategy$getBestClusterDistribution()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getConfiguration">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getConfiguration}{\code{D2MCS::GenericClusteringStrategy$getConfiguration()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getDescription">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getDescription}{\code{D2MCS::GenericClusteringStrategy$getDescription()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getHeuristic">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getHeuristic}{\code{D2MCS::GenericClusteringStrategy$getHeuristic()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getUnclustered">}\href{../../D2MCS/html/GenericClusteringStrategy.html#method-getUnclustered}{\code{D2MCS::GenericClusteringStrategy$getUnclustered()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getBestClusterDistribution"><a href='../../D2MCS/html/GenericClusteringStrategy.html#method-GenericClusteringStrategy-getBestClusterDistribution'><code>D2MCS::GenericClusteringStrategy$getBestClusterDistribution()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getConfiguration"><a href='../../D2MCS/html/GenericClusteringStrategy.html#method-GenericClusteringStrategy-getConfiguration'><code>D2MCS::GenericClusteringStrategy$getConfiguration()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getDescription"><a href='../../D2MCS/html/GenericClusteringStrategy.html#method-GenericClusteringStrategy-getDescription'><code>D2MCS::GenericClusteringStrategy$getDescription()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getHeuristic"><a href='../../D2MCS/html/GenericClusteringStrategy.html#method-GenericClusteringStrategy-getHeuristic'><code>D2MCS::GenericClusteringStrategy$getHeuristic()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="GenericClusteringStrategy" data-id="getUnclustered"><a href='../../D2MCS/html/GenericClusteringStrategy.html#method-GenericClusteringStrategy-getUnclustered'><code>D2MCS::GenericClusteringStrategy$getUnclustered()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TypeBasedStrategy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TypeBasedStrategy-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -75,8 +75,8 @@ parameters for the strategy. Must inherited from
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-TypeBasedStrategy-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-TypeBasedStrategy-execute}{}}}
 \subsection{Method \code{execute()}}{
 Function responsible of performing the clustering strategy
 over the defined \code{\link{Subset}}.
@@ -94,8 +94,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDistribution"></a>}}
-\if{latex}{\out{\hypertarget{method-getDistribution}{}}}
+\if{html}{\out{<a id="method-TypeBasedStrategy-getDistribution"></a>}}
+\if{latex}{\out{\hypertarget{method-TypeBasedStrategy-getDistribution}{}}}
 \subsection{Method \code{getDistribution()}}{
 Function used to obtain a specific cluster distribution.
 \subsection{Usage}{
@@ -126,8 +126,8 @@ distribution.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createTrain"></a>}}
-\if{latex}{\out{\hypertarget{method-createTrain}{}}}
+\if{html}{\out{<a id="method-TypeBasedStrategy-createTrain"></a>}}
+\if{latex}{\out{\hypertarget{method-TypeBasedStrategy-createTrain}{}}}
 \subsection{Method \code{createTrain()}}{
 The function is used to create a \link{Trainset} object from
 a specific clustering distribution.
@@ -167,8 +167,8 @@ A \code{\link{Trainset}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot"></a>}}
-\if{latex}{\out{\hypertarget{method-plot}{}}}
+\if{html}{\out{<a id="method-TypeBasedStrategy-plot"></a>}}
+\if{latex}{\out{\hypertarget{method-TypeBasedStrategy-plot}{}}}
 \subsection{Method \code{plot()}}{
 The function is responsible for creating a plot to visualize
 the clustering distribution.
@@ -191,8 +191,8 @@ where the plot is exported.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-saveCSV"></a>}}
-\if{latex}{\out{\hypertarget{method-saveCSV}{}}}
+\if{html}{\out{<a id="method-TypeBasedStrategy-saveCSV"></a>}}
+\if{latex}{\out{\hypertarget{method-TypeBasedStrategy-saveCSV}{}}}
 \subsection{Method \code{saveCSV()}}{
 The function is used to save the clustering distribution to
 a CSV file.
@@ -215,8 +215,8 @@ saved.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TypeBasedStrategy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TypeBasedStrategy-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -22,20 +22,14 @@ results in statistics and diagnostic tests that are true positive results.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{PPV$new()}}
-\item \href{#method-compute}{\code{PPV$compute()}}
-\item \href{#method-clone}{\code{PPV$clone()}}
+\item \href{#method-PPV-new}{\code{PPV$new()}}
+\item \href{#method-PPV-compute}{\code{PPV$compute()}}
+\item \href{#method-PPV-clone}{\code{PPV$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-PPV-new"></a>}}
+\if{latex}{\out{\hypertarget{method-PPV-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -53,8 +47,8 @@ measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-PPV-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-PPV-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{PPV} achieved by the M.L.
 model.
@@ -82,8 +76,8 @@ occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-PPV-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-PPV-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

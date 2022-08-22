@@ -21,28 +21,22 @@ Define the default configuration parameters for the
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{DependencyBasedStrategyConfiguration$new()}}
-\item \href{#method-minNumClusters}{\code{DependencyBasedStrategyConfiguration$minNumClusters()}}
-\item \href{#method-maxNumClusters}{\code{DependencyBasedStrategyConfiguration$maxNumClusters()}}
-\item \href{#method-getBinaryCutoff}{\code{DependencyBasedStrategyConfiguration$getBinaryCutoff()}}
-\item \href{#method-getRealCutoff}{\code{DependencyBasedStrategyConfiguration$getRealCutoff()}}
-\item \href{#method-setBinaryCutoff}{\code{DependencyBasedStrategyConfiguration$setBinaryCutoff()}}
-\item \href{#method-setRealCutoff}{\code{DependencyBasedStrategyConfiguration$setRealCutoff()}}
-\item \href{#method-tiebreak}{\code{DependencyBasedStrategyConfiguration$tiebreak()}}
-\item \href{#method-qualityOfCluster}{\code{DependencyBasedStrategyConfiguration$qualityOfCluster()}}
-\item \href{#method-isImprovingClustering}{\code{DependencyBasedStrategyConfiguration$isImprovingClustering()}}
-\item \href{#method-clone}{\code{DependencyBasedStrategyConfiguration$clone()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-new}{\code{DependencyBasedStrategyConfiguration$new()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-minNumClusters}{\code{DependencyBasedStrategyConfiguration$minNumClusters()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-maxNumClusters}{\code{DependencyBasedStrategyConfiguration$maxNumClusters()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-getBinaryCutoff}{\code{DependencyBasedStrategyConfiguration$getBinaryCutoff()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-getRealCutoff}{\code{DependencyBasedStrategyConfiguration$getRealCutoff()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-setBinaryCutoff}{\code{DependencyBasedStrategyConfiguration$setBinaryCutoff()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-setRealCutoff}{\code{DependencyBasedStrategyConfiguration$setRealCutoff()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-tiebreak}{\code{DependencyBasedStrategyConfiguration$tiebreak()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-qualityOfCluster}{\code{DependencyBasedStrategyConfiguration$qualityOfCluster()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-isImprovingClustering}{\code{DependencyBasedStrategyConfiguration$isImprovingClustering()}}
+\item \href{#method-DependencyBasedStrategyConfiguration-clone}{\code{DependencyBasedStrategyConfiguration$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-new"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -75,8 +69,8 @@ to obtain the quality of a cluster. The two metrics available are
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-minNumClusters"></a>}}
-\if{latex}{\out{\hypertarget{method-minNumClusters}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-minNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-minNumClusters}{}}}
 \subsection{Method \code{minNumClusters()}}{
 Function used to return the minimum number of clusters
 distributions used. By default the minimum is set in 2.
@@ -97,8 +91,8 @@ A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-maxNumClusters"></a>}}
-\if{latex}{\out{\hypertarget{method-maxNumClusters}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-maxNumClusters"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-maxNumClusters}{}}}
 \subsection{Method \code{maxNumClusters()}}{
 The function is responsible of returning the maximum number
 of cluster distributions used. By default the maximum number is set in 50.
@@ -119,8 +113,8 @@ A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getBinaryCutoff"></a>}}
-\if{latex}{\out{\hypertarget{method-getBinaryCutoff}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-getBinaryCutoff"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-getBinaryCutoff}{}}}
 \subsection{Method \code{getBinaryCutoff()}}{
 Gets the cutoff to consider the dependency between binary
 features.
@@ -133,8 +127,8 @@ The \link{numeric} value of binary cutoff.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRealCutoff"></a>}}
-\if{latex}{\out{\hypertarget{method-getRealCutoff}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-getRealCutoff"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-getRealCutoff}{}}}
 \subsection{Method \code{getRealCutoff()}}{
 Gets the cutoff to consider the dependency between real
 features.
@@ -147,8 +141,8 @@ The \link{numeric} value of real cutoff.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setBinaryCutoff"></a>}}
-\if{latex}{\out{\hypertarget{method-setBinaryCutoff}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-setBinaryCutoff"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-setBinaryCutoff}{}}}
 \subsection{Method \code{setBinaryCutoff()}}{
 Sets the cutoff to consider the dependency between binary
 features.
@@ -165,8 +159,8 @@ features.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setRealCutoff"></a>}}
-\if{latex}{\out{\hypertarget{method-setRealCutoff}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-setRealCutoff"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-setRealCutoff}{}}}
 \subsection{Method \code{setRealCutoff()}}{
 Sets the cutoff to consider the dependency between real
 features.
@@ -183,8 +177,8 @@ features.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tiebreak"></a>}}
-\if{latex}{\out{\hypertarget{method-tiebreak}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-tiebreak"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-tiebreak}{}}}
 \subsection{Method \code{tiebreak()}}{
 The function solves the ties between two (or more) features.
 \subsection{Usage}{
@@ -226,8 +220,8 @@ target class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-qualityOfCluster"></a>}}
-\if{latex}{\out{\hypertarget{method-qualityOfCluster}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-qualityOfCluster"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-qualityOfCluster}{}}}
 \subsection{Method \code{qualityOfCluster()}}{
 The function determines the quality of a cluster.
 \subsection{Usage}{
@@ -251,8 +245,8 @@ A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isImprovingClustering"></a>}}
-\if{latex}{\out{\hypertarget{method-isImprovingClustering}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-isImprovingClustering"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-isImprovingClustering}{}}}
 \subsection{Method \code{isImprovingClustering()}}{
 The function indicates if clustering is getting better as
 the number of them increases.
@@ -273,8 +267,8 @@ A \link{numeric} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-DependencyBasedStrategyConfiguration-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-DependencyBasedStrategyConfiguration-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

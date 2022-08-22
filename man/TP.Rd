@@ -19,20 +19,14 @@ which the test result is positive. The value entered here must be non-negative.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TP$new()}}
-\item \href{#method-compute}{\code{TP$compute()}}
-\item \href{#method-clone}{\code{TP$clone()}}
+\item \href{#method-TP-new}{\code{TP$new()}}
+\item \href{#method-TP-compute}{\code{TP$compute()}}
+\item \href{#method-TP-clone}{\code{TP$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TP-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TP-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,8 +43,8 @@ to define the type of object used to compute the measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-TP-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-TP-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{TP} achieved by the M.L.
 model.
@@ -78,8 +72,8 @@ an error occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TP-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TP-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

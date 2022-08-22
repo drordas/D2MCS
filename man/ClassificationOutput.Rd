@@ -18,21 +18,21 @@ classification method is invoked.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ClassificationOutput$new()}}
-\item \href{#method-getMetrics}{\code{ClassificationOutput$getMetrics()}}
-\item \href{#method-getPositiveClass}{\code{ClassificationOutput$getPositiveClass()}}
-\item \href{#method-getModelInfo}{\code{ClassificationOutput$getModelInfo()}}
-\item \href{#method-getPerformances}{\code{ClassificationOutput$getPerformances()}}
-\item \href{#method-savePerformances}{\code{ClassificationOutput$savePerformances()}}
-\item \href{#method-plotPerformances}{\code{ClassificationOutput$plotPerformances()}}
-\item \href{#method-getPredictions}{\code{ClassificationOutput$getPredictions()}}
-\item \href{#method-savePredictions}{\code{ClassificationOutput$savePredictions()}}
-\item \href{#method-clone}{\code{ClassificationOutput$clone()}}
+\item \href{#method-ClassificationOutput-new}{\code{ClassificationOutput$new()}}
+\item \href{#method-ClassificationOutput-getMetrics}{\code{ClassificationOutput$getMetrics()}}
+\item \href{#method-ClassificationOutput-getPositiveClass}{\code{ClassificationOutput$getPositiveClass()}}
+\item \href{#method-ClassificationOutput-getModelInfo}{\code{ClassificationOutput$getModelInfo()}}
+\item \href{#method-ClassificationOutput-getPerformances}{\code{ClassificationOutput$getPerformances()}}
+\item \href{#method-ClassificationOutput-savePerformances}{\code{ClassificationOutput$savePerformances()}}
+\item \href{#method-ClassificationOutput-plotPerformances}{\code{ClassificationOutput$plotPerformances()}}
+\item \href{#method-ClassificationOutput-getPredictions}{\code{ClassificationOutput$getPredictions()}}
+\item \href{#method-ClassificationOutput-savePredictions}{\code{ClassificationOutput$savePredictions()}}
+\item \href{#method-ClassificationOutput-clone}{\code{ClassificationOutput$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -52,8 +52,8 @@ during classification stage.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMetrics"></a>}}
-\if{latex}{\out{\hypertarget{method-getMetrics}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-getMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-getMetrics}{}}}
 \subsection{Method \code{getMetrics()}}{
 The function returns the measures used during training stage.
 \subsection{Usage}{
@@ -66,8 +66,8 @@ performed.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPositiveClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function gets the name of the positive class used for
 training/classification.
@@ -80,8 +80,8 @@ A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getModelInfo"></a>}}
-\if{latex}{\out{\hypertarget{method-getModelInfo}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-getModelInfo"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-getModelInfo}{}}}
 \subsection{Method \code{getModelInfo()}}{
 The function compiled all the information concerning to
 the M.L. models used during training/classification.
@@ -102,8 +102,8 @@ A \link{list} with the information of each M.L. model.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPerformances"></a>}}
-\if{latex}{\out{\hypertarget{method-getPerformances}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-getPerformances"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-getPerformances}{}}}
 \subsection{Method \code{getPerformances()}}{
 The function is used to compute the performance of D2MCS.
 \subsection{Usage}{
@@ -148,8 +148,8 @@ A \link{list} of performance values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-savePerformances"></a>}}
-\if{latex}{\out{\hypertarget{method-savePerformances}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-savePerformances"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-savePerformances}{}}}
 \subsection{Method \code{savePerformances()}}{
 The function is used to save the computed predictions into a
 CSV file.
@@ -193,8 +193,8 @@ account.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plotPerformances"></a>}}
-\if{latex}{\out{\hypertarget{method-plotPerformances}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-plotPerformances"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-plotPerformances}{}}}
 \subsection{Method \code{plotPerformances()}}{
 The function allows to graphically visualize the computed
 performance.
@@ -237,8 +237,8 @@ all cutoffs used during classification stage will be taken into account.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPredictions"></a>}}
-\if{latex}{\out{\hypertarget{method-getPredictions}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-getPredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-getPredictions}{}}}
 \subsection{Method \code{getPredictions()}}{
 The function is used to obtain the computed predictions.
 \subsection{Usage}{
@@ -289,8 +289,8 @@ A \code{\link{PredictionOutput}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-savePredictions"></a>}}
-\if{latex}{\out{\hypertarget{method-savePredictions}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-savePredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-savePredictions}{}}}
 \subsection{Method \code{savePredictions()}}{
 The function saves the predictions into a CSV file.
 \subsection{Usage}{
@@ -340,8 +340,8 @@ predictions.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ClassificationOutput-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassificationOutput-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

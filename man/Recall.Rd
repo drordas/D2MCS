@@ -22,20 +22,14 @@ amount of relevant instances that were actually retrieved.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Recall$new()}}
-\item \href{#method-compute}{\code{Recall$compute()}}
-\item \href{#method-clone}{\code{Recall$clone()}}
+\item \href{#method-Recall-new}{\code{Recall$new()}}
+\item \href{#method-Recall-compute}{\code{Recall$compute()}}
+\item \href{#method-Recall-clone}{\code{Recall$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Recall-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Recall-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -52,8 +46,8 @@ to define the type of object used as basis to compute the measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-Recall-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-Recall-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{Recall} achieved by the M.L.
 model.
@@ -81,8 +75,8 @@ an error occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Recall-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Recall-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
