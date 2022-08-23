@@ -20,20 +20,14 @@ problems.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{MultinformationHeuristic$new()}}
-\item \href{#method-heuristic}{\code{MultinformationHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{MultinformationHeuristic$clone()}}
+\item \href{#method-MultinformationHeuristic-new}{\code{MultinformationHeuristic$new()}}
+\item \href{#method-MultinformationHeuristic-heuristic}{\code{MultinformationHeuristic$heuristic()}}
+\item \href{#method-MultinformationHeuristic-clone}{\code{MultinformationHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-MultinformationHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MultinformationHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -43,8 +37,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-MultinformationHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-MultinformationHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Mutinformation takes two random variables as input and
 computes the mutual information in nats according to the entropy
@@ -73,8 +67,8 @@ Returns the mutual information I(X;Y) in nats.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-MultinformationHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MultinformationHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

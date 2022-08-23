@@ -14,15 +14,15 @@ Template to create a \code{\link[recipes]{recipe}} or
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{GenericModelFit$new()}}
-\item \href{#method-createFormula}{\code{GenericModelFit$createFormula()}}
-\item \href{#method-createRecipe}{\code{GenericModelFit$createRecipe()}}
-\item \href{#method-clone}{\code{GenericModelFit$clone()}}
+\item \href{#method-GenericModelFit-new}{\code{GenericModelFit$new()}}
+\item \href{#method-GenericModelFit-createFormula}{\code{GenericModelFit$createFormula()}}
+\item \href{#method-GenericModelFit-createRecipe}{\code{GenericModelFit$createRecipe()}}
+\item \href{#method-GenericModelFit-clone}{\code{GenericModelFit$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-GenericModelFit-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericModelFit-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -31,8 +31,8 @@ Method for initializing the object arguments during runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createFormula"></a>}}
-\if{latex}{\out{\hypertarget{method-createFormula}{}}}
+\if{html}{\out{<a id="method-GenericModelFit-createFormula"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericModelFit-createFormula}{}}}
 \subsection{Method \code{createFormula()}}{
 The function is responsible of creating a
 \code{\link{formula}} for M.L. model.
@@ -59,8 +59,8 @@ A \code{\link{formula}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createRecipe"></a>}}
-\if{latex}{\out{\hypertarget{method-createRecipe}{}}}
+\if{html}{\out{<a id="method-GenericModelFit-createRecipe"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericModelFit-createRecipe}{}}}
 \subsection{Method \code{createRecipe()}}{
 The function is responsible of creating a
 \code{\link[recipes]{recipe}} for M.L. model.
@@ -84,8 +84,8 @@ A object of class \code{\link[recipes]{recipe}}.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-GenericModelFit-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GenericModelFit-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

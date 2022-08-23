@@ -15,25 +15,25 @@ associated with a M.L. model.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Model$new()}}
-\item \href{#method-isTrained}{\code{Model$isTrained()}}
-\item \href{#method-getDir}{\code{Model$getDir()}}
-\item \href{#method-getName}{\code{Model$getName()}}
-\item \href{#method-getFamily}{\code{Model$getFamily()}}
-\item \href{#method-getDescription}{\code{Model$getDescription()}}
-\item \href{#method-train}{\code{Model$train()}}
-\item \href{#method-getTrainedModel}{\code{Model$getTrainedModel()}}
-\item \href{#method-getExecutionTime}{\code{Model$getExecutionTime()}}
-\item \href{#method-getPerformance}{\code{Model$getPerformance()}}
-\item \href{#method-getConfiguration}{\code{Model$getConfiguration()}}
-\item \href{#method-save}{\code{Model$save()}}
-\item \href{#method-remove}{\code{Model$remove()}}
-\item \href{#method-clone}{\code{Model$clone()}}
+\item \href{#method-Model-new}{\code{Model$new()}}
+\item \href{#method-Model-isTrained}{\code{Model$isTrained()}}
+\item \href{#method-Model-getDir}{\code{Model$getDir()}}
+\item \href{#method-Model-getName}{\code{Model$getName()}}
+\item \href{#method-Model-getFamily}{\code{Model$getFamily()}}
+\item \href{#method-Model-getDescription}{\code{Model$getDescription()}}
+\item \href{#method-Model-train}{\code{Model$train()}}
+\item \href{#method-Model-getTrainedModel}{\code{Model$getTrainedModel()}}
+\item \href{#method-Model-getExecutionTime}{\code{Model$getExecutionTime()}}
+\item \href{#method-Model-getPerformance}{\code{Model$getPerformance()}}
+\item \href{#method-Model-getConfiguration}{\code{Model$getConfiguration()}}
+\item \href{#method-Model-save}{\code{Model$save()}}
+\item \href{#method-Model-remove}{\code{Model$remove()}}
+\item \href{#method-Model-clone}{\code{Model$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Model-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -51,8 +51,8 @@ Method for initializing the object arguments during runtime.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isTrained"></a>}}
-\if{latex}{\out{\hypertarget{method-isTrained}{}}}
+\if{html}{\out{<a id="method-Model-isTrained"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-isTrained}{}}}
 \subsection{Method \code{isTrained()}}{
 The function is used to determine is the model has been
 already trained.
@@ -66,8 +66,8 @@ has been trained and \link{FALSE} otherwise.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDir"></a>}}
-\if{latex}{\out{\hypertarget{method-getDir}{}}}
+\if{html}{\out{<a id="method-Model-getDir"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getDir}{}}}
 \subsection{Method \code{getDir()}}{
 The function returns the location path of the specific
 model.
@@ -81,8 +81,8 @@ model.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getName"></a>}}
-\if{latex}{\out{\hypertarget{method-getName}{}}}
+\if{html}{\out{<a id="method-Model-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getName}{}}}
 \subsection{Method \code{getName()}}{
 The function is used to obtain the name of the model.
 \subsection{Usage}{
@@ -94,8 +94,8 @@ A \link{character} vector with the name of the model.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFamily"></a>}}
-\if{latex}{\out{\hypertarget{method-getFamily}{}}}
+\if{html}{\out{<a id="method-Model-getFamily"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getFamily}{}}}
 \subsection{Method \code{getFamily()}}{
 The function gets the family of the model.
 \subsection{Usage}{
@@ -108,8 +108,8 @@ model.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDescription"></a>}}
-\if{latex}{\out{\hypertarget{method-getDescription}{}}}
+\if{html}{\out{<a id="method-Model-getDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getDescription}{}}}
 \subsection{Method \code{getDescription()}}{
 The function allows obtaining the description associated
 with an specific ML model.
@@ -122,8 +122,8 @@ A \link{character} vector with the model description.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-train"></a>}}
-\if{latex}{\out{\hypertarget{method-train}{}}}
+\if{html}{\out{<a id="method-Model-train"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-train}{}}}
 \subsection{Method \code{train()}}{
 The function is responsible of performing model training
 operation.
@@ -153,8 +153,8 @@ error logs.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTrainedModel"></a>}}
-\if{latex}{\out{\hypertarget{method-getTrainedModel}{}}}
+\if{html}{\out{<a id="method-Model-getTrainedModel"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getTrainedModel}{}}}
 \subsection{Method \code{getTrainedModel()}}{
 The function allows obtaining the trained model.
 \subsection{Usage}{
@@ -166,8 +166,8 @@ A \code{\link[caret]{train}} class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getExecutionTime"></a>}}
-\if{latex}{\out{\hypertarget{method-getExecutionTime}{}}}
+\if{html}{\out{<a id="method-Model-getExecutionTime"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getExecutionTime}{}}}
 \subsection{Method \code{getExecutionTime()}}{
 The function is used to compute the time taken to
 perform training operation.
@@ -180,8 +180,8 @@ A \link{numeric} vector with length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPerformance"></a>}}
-\if{latex}{\out{\hypertarget{method-getPerformance}{}}}
+\if{html}{\out{<a id="method-Model-getPerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getPerformance}{}}}
 \subsection{Method \code{getPerformance()}}{
 The function obtains the performance achieved by the model
 during training stage.
@@ -202,8 +202,8 @@ A \link{numeric} value with the performance achieved.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getConfiguration"></a>}}
-\if{latex}{\out{\hypertarget{method-getConfiguration}{}}}
+\if{html}{\out{<a id="method-Model-getConfiguration"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-getConfiguration}{}}}
 \subsection{Method \code{getConfiguration()}}{
 The function is used to get the configuration parameters
 achieved by the ML model after the training stage.
@@ -216,8 +216,8 @@ A \link{list} object with the configuration parameters.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-save"></a>}}
-\if{latex}{\out{\hypertarget{method-save}{}}}
+\if{html}{\out{<a id="method-Model-save"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-save}{}}}
 \subsection{Method \code{save()}}{
 The function is responsible of saving the model to disc into
 a RDS file.
@@ -236,8 +236,8 @@ be resaved. \link{TRUE} forces to replace previous saved model while
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-remove"></a>}}
-\if{latex}{\out{\hypertarget{method-remove}{}}}
+\if{html}{\out{<a id="method-Model-remove"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-remove}{}}}
 \subsection{Method \code{remove()}}{
 The function is used to delete a model from disc.
 \subsection{Usage}{
@@ -246,8 +246,8 @@ The function is used to delete a model from disc.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Model-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Model-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

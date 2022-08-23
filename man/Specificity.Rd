@@ -24,20 +24,14 @@ positive and could be termed as false positives.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Specificity$new()}}
-\item \href{#method-compute}{\code{Specificity$compute()}}
-\item \href{#method-clone}{\code{Specificity$clone()}}
+\item \href{#method-Specificity-new}{\code{Specificity$new()}}
+\item \href{#method-Specificity-compute}{\code{Specificity$compute()}}
+\item \href{#method-Specificity-clone}{\code{Specificity$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Specificity-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Specificity-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -54,8 +48,8 @@ to define the type of object used as basis to compute the measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-Specificity-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-Specificity-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{Specificity} achieved by the
 M.L. model.
@@ -83,8 +77,8 @@ occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Specificity-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Specificity-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

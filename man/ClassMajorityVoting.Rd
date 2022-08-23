@@ -22,24 +22,24 @@ same importance.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ClassMajorityVoting$new()}}
-\item \href{#method-getMajorityClass}{\code{ClassMajorityVoting$getMajorityClass()}}
-\item \href{#method-getClassTie}{\code{ClassMajorityVoting$getClassTie()}}
-\item \href{#method-execute}{\code{ClassMajorityVoting$execute()}}
-\item \href{#method-clone}{\code{ClassMajorityVoting$clone()}}
+\item \href{#method-ClassMajorityVoting-new}{\code{ClassMajorityVoting$new()}}
+\item \href{#method-ClassMajorityVoting-getMajorityClass}{\code{ClassMajorityVoting$getMajorityClass()}}
+\item \href{#method-ClassMajorityVoting-getClassTie}{\code{ClassMajorityVoting$getClassTie()}}
+\item \href{#method-ClassMajorityVoting-execute}{\code{ClassMajorityVoting$execute()}}
+\item \href{#method-ClassMajorityVoting-clone}{\code{ClassMajorityVoting$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff">}\href{../../D2MCS/html/SimpleVoting.html#method-getCutoff}{\code{D2MCS::SimpleVoting$getCutoff()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred">}\href{../../D2MCS/html/SimpleVoting.html#method-getFinalPred}{\code{D2MCS::SimpleVoting$getFinalPred()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getCutoff'><code>D2MCS::SimpleVoting$getCutoff()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getFinalPred'><code>D2MCS::SimpleVoting$getFinalPred()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ClassMajorityVoting-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassMajorityVoting-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -64,8 +64,8 @@ majority class. If \link{NULL} will be used same value as training stage.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMajorityClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getMajorityClass}{}}}
+\if{html}{\out{<a id="method-ClassMajorityVoting-getMajorityClass"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassMajorityVoting-getMajorityClass}{}}}
 \subsection{Method \code{getMajorityClass()}}{
 The function returns the value of the majority class.
 \subsection{Usage}{
@@ -78,8 +78,8 @@ majority class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassTie"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassTie}{}}}
+\if{html}{\out{<a id="method-ClassMajorityVoting-getClassTie"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassMajorityVoting-getClassTie}{}}}
 \subsection{Method \code{getClassTie()}}{
 The function gets the class value assigned to solve ties.
 \subsection{Usage}{
@@ -91,8 +91,8 @@ A \link{character} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-ClassMajorityVoting-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassMajorityVoting-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the majority voting procedure.
 \subsection{Usage}{
@@ -112,8 +112,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ClassMajorityVoting-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassMajorityVoting-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

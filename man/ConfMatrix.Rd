@@ -16,18 +16,18 @@ Creates a \code{\link{R6}} confusion matrix from the
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ConfMatrix$new()}}
-\item \href{#method-getConfusionMatrix}{\code{ConfMatrix$getConfusionMatrix()}}
-\item \href{#method-getTP}{\code{ConfMatrix$getTP()}}
-\item \href{#method-getTN}{\code{ConfMatrix$getTN()}}
-\item \href{#method-getFN}{\code{ConfMatrix$getFN()}}
-\item \href{#method-getFP}{\code{ConfMatrix$getFP()}}
-\item \href{#method-clone}{\code{ConfMatrix$clone()}}
+\item \href{#method-ConfMatrix-new}{\code{ConfMatrix$new()}}
+\item \href{#method-ConfMatrix-getConfusionMatrix}{\code{ConfMatrix$getConfusionMatrix()}}
+\item \href{#method-ConfMatrix-getTP}{\code{ConfMatrix$getTP()}}
+\item \href{#method-ConfMatrix-getTN}{\code{ConfMatrix$getTN()}}
+\item \href{#method-ConfMatrix-getFN}{\code{ConfMatrix$getFN()}}
+\item \href{#method-ConfMatrix-getFP}{\code{ConfMatrix$getFP()}}
+\item \href{#method-ConfMatrix-clone}{\code{ConfMatrix$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ConfMatrix-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ConfMatrix-new}{}}}
 \subsection{Method \code{new()}}{
 Method to create a confusion matrix object from a
 \code{caret} \code{\link[caret]{confusionMatrix}}
@@ -44,8 +44,8 @@ Method to create a confusion matrix object from a
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getConfusionMatrix"></a>}}
-\if{latex}{\out{\hypertarget{method-getConfusionMatrix}{}}}
+\if{html}{\out{<a id="method-ConfMatrix-getConfusionMatrix"></a>}}
+\if{latex}{\out{\hypertarget{method-ConfMatrix-getConfusionMatrix}{}}}
 \subsection{Method \code{getConfusionMatrix()}}{
 The function obtains the \code{\link[caret]{confusionMatrix}}
 following the same structured as defined in the \code{caret} package
@@ -58,8 +58,8 @@ A \code{\link[caret]{confusionMatrix}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTP"></a>}}
-\if{latex}{\out{\hypertarget{method-getTP}{}}}
+\if{html}{\out{<a id="method-ConfMatrix-getTP"></a>}}
+\if{latex}{\out{\hypertarget{method-ConfMatrix-getTP}{}}}
 \subsection{Method \code{getTP()}}{
 The function is used to compute the number of True Positive
 values achieved.
@@ -72,8 +72,8 @@ A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTN"></a>}}
-\if{latex}{\out{\hypertarget{method-getTN}{}}}
+\if{html}{\out{<a id="method-ConfMatrix-getTN"></a>}}
+\if{latex}{\out{\hypertarget{method-ConfMatrix-getTN}{}}}
 \subsection{Method \code{getTN()}}{
 The function computes the True Negative values.
 \subsection{Usage}{
@@ -85,8 +85,8 @@ A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFN"></a>}}
-\if{latex}{\out{\hypertarget{method-getFN}{}}}
+\if{html}{\out{<a id="method-ConfMatrix-getFN"></a>}}
+\if{latex}{\out{\hypertarget{method-ConfMatrix-getFN}{}}}
 \subsection{Method \code{getFN()}}{
 The function returns the number of Type II errors
 (False Negative).
@@ -99,8 +99,8 @@ A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFP"></a>}}
-\if{latex}{\out{\hypertarget{method-getFP}{}}}
+\if{html}{\out{<a id="method-ConfMatrix-getFP"></a>}}
+\if{latex}{\out{\hypertarget{method-ConfMatrix-getFP}{}}}
 \subsection{Method \code{getFP()}}{
 The function returns the number of Type I errors
 (False Negative).
@@ -113,8 +113,8 @@ A \link{numeric} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ConfMatrix-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ConfMatrix-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

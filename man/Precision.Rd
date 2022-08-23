@@ -22,20 +22,14 @@ retrieved instances
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Precision$new()}}
-\item \href{#method-compute}{\code{Precision$compute()}}
-\item \href{#method-clone}{\code{Precision$clone()}}
+\item \href{#method-Precision-new}{\code{Precision$new()}}
+\item \href{#method-Precision-compute}{\code{Precision$compute()}}
+\item \href{#method-Precision-clone}{\code{Precision$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Precision-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Precision-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -52,8 +46,8 @@ to define the type of object used as basis to compute the measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-Precision-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-Precision-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{Precision} achieved by the
 M.L. model.
@@ -81,8 +75,8 @@ occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Precision-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Precision-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

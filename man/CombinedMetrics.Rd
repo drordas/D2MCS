@@ -17,15 +17,15 @@ strategies to combine the class predictions made by different metrics.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{CombinedMetrics$new()}}
-\item \href{#method-getRequiredMetrics}{\code{CombinedMetrics$getRequiredMetrics()}}
-\item \href{#method-getFinalPrediction}{\code{CombinedMetrics$getFinalPrediction()}}
-\item \href{#method-clone}{\code{CombinedMetrics$clone()}}
+\item \href{#method-CombinedMetrics-new}{\code{CombinedMetrics$new()}}
+\item \href{#method-CombinedMetrics-getRequiredMetrics}{\code{CombinedMetrics$getRequiredMetrics()}}
+\item \href{#method-CombinedMetrics-getFinalPrediction}{\code{CombinedMetrics$getFinalPrediction()}}
+\item \href{#method-CombinedMetrics-clone}{\code{CombinedMetrics$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-CombinedMetrics-new"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedMetrics-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -42,8 +42,8 @@ Method for initializing the object arguments during runtime.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRequiredMetrics"></a>}}
-\if{latex}{\out{\hypertarget{method-getRequiredMetrics}{}}}
+\if{html}{\out{<a id="method-CombinedMetrics-getRequiredMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedMetrics-getRequiredMetrics}{}}}
 \subsection{Method \code{getRequiredMetrics()}}{
 The function returns the required metrics that will
 participate in the combined metric process.
@@ -57,8 +57,8 @@ of the required metrics.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFinalPrediction"></a>}}
-\if{latex}{\out{\hypertarget{method-getFinalPrediction}{}}}
+\if{html}{\out{<a id="method-CombinedMetrics-getFinalPrediction"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedMetrics-getFinalPrediction}{}}}
 \subsection{Method \code{getFinalPrediction()}}{
 Function used to implement the strategy to obtain the final
 prediction based on different metrics.
@@ -94,8 +94,8 @@ positive class or not.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-CombinedMetrics-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedMetrics-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

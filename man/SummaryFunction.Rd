@@ -17,15 +17,15 @@ This class is an archetype, so it cannot be instantiated.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{SummaryFunction$new()}}
-\item \href{#method-execute}{\code{SummaryFunction$execute()}}
-\item \href{#method-getMeasures}{\code{SummaryFunction$getMeasures()}}
-\item \href{#method-clone}{\code{SummaryFunction$clone()}}
+\item \href{#method-SummaryFunction-new}{\code{SummaryFunction$new()}}
+\item \href{#method-SummaryFunction-execute}{\code{SummaryFunction$execute()}}
+\item \href{#method-SummaryFunction-getMeasures}{\code{SummaryFunction$getMeasures()}}
+\item \href{#method-SummaryFunction-clone}{\code{SummaryFunction$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-SummaryFunction-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryFunction-new}{}}}
 \subsection{Method \code{new()}}{
 The function carries out the initialization of parameters
 during runtime.
@@ -42,8 +42,8 @@ during runtime.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-SummaryFunction-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryFunction-execute}{}}}
 \subsection{Method \code{execute()}}{
 Abstract function used to implement the performance
 calculator method. To guarantee a proper operation, this method is
@@ -54,8 +54,8 @@ automatically invoked by \code{\link{D2MCS}} framework.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMeasures"></a>}}
-\if{latex}{\out{\hypertarget{method-getMeasures}{}}}
+\if{html}{\out{<a id="method-SummaryFunction-getMeasures"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryFunction-getMeasures}{}}}
 \subsection{Method \code{getMeasures()}}{
 The function obtains the measures used to compute the
 performance across resamples.
@@ -69,8 +69,8 @@ defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-SummaryFunction-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryFunction-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

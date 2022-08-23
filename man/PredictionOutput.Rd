@@ -15,16 +15,16 @@ facilitate their access and maintenance.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{PredictionOutput$new()}}
-\item \href{#method-getPredictions}{\code{PredictionOutput$getPredictions()}}
-\item \href{#method-getType}{\code{PredictionOutput$getType()}}
-\item \href{#method-getTarget}{\code{PredictionOutput$getTarget()}}
-\item \href{#method-clone}{\code{PredictionOutput$clone()}}
+\item \href{#method-PredictionOutput-new}{\code{PredictionOutput$new()}}
+\item \href{#method-PredictionOutput-getPredictions}{\code{PredictionOutput$getPredictions()}}
+\item \href{#method-PredictionOutput-getType}{\code{PredictionOutput$getType()}}
+\item \href{#method-PredictionOutput-getTarget}{\code{PredictionOutput$getTarget()}}
+\item \href{#method-PredictionOutput-clone}{\code{PredictionOutput$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-PredictionOutput-new"></a>}}
+\if{latex}{\out{\hypertarget{method-PredictionOutput-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,8 +49,8 @@ positive class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPredictions"></a>}}
-\if{latex}{\out{\hypertarget{method-getPredictions}{}}}
+\if{html}{\out{<a id="method-PredictionOutput-getPredictions"></a>}}
+\if{latex}{\out{\hypertarget{method-PredictionOutput-getPredictions}{}}}
 \subsection{Method \code{getPredictions()}}{
 The function returns the final predictions.
 \subsection{Usage}{
@@ -63,8 +63,8 @@ classification stage was not successfully performed.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getType"></a>}}
-\if{latex}{\out{\hypertarget{method-getType}{}}}
+\if{html}{\out{<a id="method-PredictionOutput-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-PredictionOutput-getType}{}}}
 \subsection{Method \code{getType()}}{
 The function returns the type of prediction should be
 returned. If "prob" or "raw" is defined then computed 'probabilistic' or
@@ -78,8 +78,8 @@ A \link{character} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTarget"></a>}}
-\if{latex}{\out{\hypertarget{method-getTarget}{}}}
+\if{html}{\out{<a id="method-PredictionOutput-getTarget"></a>}}
+\if{latex}{\out{\hypertarget{method-PredictionOutput-getTarget}{}}}
 \subsection{Method \code{getTarget()}}{
 The function returns the value of the target class.
 \subsection{Usage}{
@@ -91,8 +91,8 @@ A \link{character} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-PredictionOutput-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-PredictionOutput-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

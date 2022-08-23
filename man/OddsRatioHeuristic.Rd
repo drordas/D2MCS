@@ -18,20 +18,14 @@ Valid only for bi-class problems.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OddsRatioHeuristic$new()}}
-\item \href{#method-heuristic}{\code{OddsRatioHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{OddsRatioHeuristic$clone()}}
+\item \href{#method-OddsRatioHeuristic-new}{\code{OddsRatioHeuristic$new()}}
+\item \href{#method-OddsRatioHeuristic-heuristic}{\code{OddsRatioHeuristic$heuristic()}}
+\item \href{#method-OddsRatioHeuristic-clone}{\code{OddsRatioHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OddsRatioHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OddsRatioHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -41,8 +35,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-OddsRatioHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-OddsRatioHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Calculates the Odds Ratio method.
 \subsection{Usage}{
@@ -67,8 +61,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OddsRatioHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OddsRatioHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

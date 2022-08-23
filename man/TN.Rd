@@ -19,20 +19,14 @@ which the test result is negative. The value entered here must be non-negative.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TN$new()}}
-\item \href{#method-compute}{\code{TN$compute()}}
-\item \href{#method-clone}{\code{TN$clone()}}
+\item \href{#method-TN-new}{\code{TN$new()}}
+\item \href{#method-TN-compute}{\code{TN$compute()}}
+\item \href{#method-TN-clone}{\code{TN$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TN-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TN-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,8 +43,8 @@ to define the type of object used to compute the \strong{TN} measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-TN-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-TN-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{TN} achieved by the M.L. model.
 \subsection{Usage}{
@@ -77,8 +71,8 @@ an error occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TN-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TN-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

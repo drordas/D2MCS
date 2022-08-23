@@ -16,15 +16,15 @@ strategies to combine the probability predictions made by different metrics.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Methodology$new()}}
-\item \href{#method-getRequiredMetrics}{\code{Methodology$getRequiredMetrics()}}
-\item \href{#method-compute}{\code{Methodology$compute()}}
-\item \href{#method-clone}{\code{Methodology$clone()}}
+\item \href{#method-Methodology-new}{\code{Methodology$new()}}
+\item \href{#method-Methodology-getRequiredMetrics}{\code{Methodology$getRequiredMetrics()}}
+\item \href{#method-Methodology-compute}{\code{Methodology$compute()}}
+\item \href{#method-Methodology-clone}{\code{Methodology$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Methodology-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Methodology-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -41,8 +41,8 @@ Method for initializing the object arguments during runtime.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRequiredMetrics"></a>}}
-\if{latex}{\out{\hypertarget{method-getRequiredMetrics}{}}}
+\if{html}{\out{<a id="method-Methodology-getRequiredMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-Methodology-getRequiredMetrics}{}}}
 \subsection{Method \code{getRequiredMetrics()}}{
 The function returns the required metrics that will
 participate in the methodology to compute a metric based on all of them.
@@ -56,8 +56,8 @@ of the required metrics.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-Methodology-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-Methodology-compute}{}}}
 \subsection{Method \code{compute()}}{
 Function to compute the probability of the final prediction
 based on different metrics.
@@ -88,8 +88,8 @@ is predicted as positive class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Methodology-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Methodology-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -20,21 +20,21 @@ metrics.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ProbBasedMethodology$new()}}
-\item \href{#method-compute}{\code{ProbBasedMethodology$compute()}}
-\item \href{#method-clone}{\code{ProbBasedMethodology$clone()}}
+\item \href{#method-ProbBasedMethodology-new}{\code{ProbBasedMethodology$new()}}
+\item \href{#method-ProbBasedMethodology-compute}{\code{ProbBasedMethodology$compute()}}
+\item \href{#method-ProbBasedMethodology-clone}{\code{ProbBasedMethodology$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="Methodology" data-id="getRequiredMetrics">}\href{../../D2MCS/html/Methodology.html#method-getRequiredMetrics}{\code{D2MCS::Methodology$getRequiredMetrics()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="Methodology" data-id="getRequiredMetrics"><a href='../../D2MCS/html/Methodology.html#method-Methodology-getRequiredMetrics'><code>D2MCS::Methodology$getRequiredMetrics()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ProbBasedMethodology-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbBasedMethodology-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -51,8 +51,8 @@ greater than 2 with the name of the required metrics.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-ProbBasedMethodology-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbBasedMethodology-compute}{}}}
 \subsection{Method \code{compute()}}{
 Function to compute the probability of the final prediction
 based on different metrics.
@@ -88,8 +88,8 @@ is predicted as positive class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ProbBasedMethodology-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbBasedMethodology-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

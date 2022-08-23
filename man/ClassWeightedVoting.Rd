@@ -21,24 +21,24 @@ each class value has different values (weights).
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ClassWeightedVoting$new()}}
-\item \href{#method-getWeights}{\code{ClassWeightedVoting$getWeights()}}
-\item \href{#method-setWeights}{\code{ClassWeightedVoting$setWeights()}}
-\item \href{#method-execute}{\code{ClassWeightedVoting$execute()}}
-\item \href{#method-clone}{\code{ClassWeightedVoting$clone()}}
+\item \href{#method-ClassWeightedVoting-new}{\code{ClassWeightedVoting$new()}}
+\item \href{#method-ClassWeightedVoting-getWeights}{\code{ClassWeightedVoting$getWeights()}}
+\item \href{#method-ClassWeightedVoting-setWeights}{\code{ClassWeightedVoting$setWeights()}}
+\item \href{#method-ClassWeightedVoting-execute}{\code{ClassWeightedVoting$execute()}}
+\item \href{#method-ClassWeightedVoting-clone}{\code{ClassWeightedVoting$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff">}\href{../../D2MCS/html/SimpleVoting.html#method-getCutoff}{\code{D2MCS::SimpleVoting$getCutoff()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred">}\href{../../D2MCS/html/SimpleVoting.html#method-getFinalPred}{\code{D2MCS::SimpleVoting$getFinalPred()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getCutoff'><code>D2MCS::SimpleVoting$getCutoff()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getFinalPred'><code>D2MCS::SimpleVoting$getFinalPred()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ClassWeightedVoting-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassWeightedVoting-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -60,8 +60,8 @@ default.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getWeights"></a>}}
-\if{latex}{\out{\hypertarget{method-getWeights}{}}}
+\if{html}{\out{<a id="method-ClassWeightedVoting-getWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassWeightedVoting-getWeights}{}}}
 \subsection{Method \code{getWeights()}}{
 The function returns the weights used to perform the voting
 scheme.
@@ -74,8 +74,8 @@ A \link{numeric} vector.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setWeights"></a>}}
-\if{latex}{\out{\hypertarget{method-setWeights}{}}}
+\if{html}{\out{<a id="method-ClassWeightedVoting-setWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassWeightedVoting-setWeights}{}}}
 \subsection{Method \code{setWeights()}}{
 The function allows changing the value of the weights.
 \subsection{Usage}{
@@ -91,8 +91,8 @@ The function allows changing the value of the weights.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-ClassWeightedVoting-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassWeightedVoting-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the cluster-weighted majority voting
 procedure.
@@ -113,8 +113,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ClassWeightedVoting-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ClassWeightedVoting-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

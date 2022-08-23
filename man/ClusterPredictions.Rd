@@ -15,19 +15,19 @@ Stores the predictions achieved by the best M.L. of each cluster.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ClusterPredictions$new()}}
-\item \href{#method-add}{\code{ClusterPredictions$add()}}
-\item \href{#method-get}{\code{ClusterPredictions$get()}}
-\item \href{#method-getAll}{\code{ClusterPredictions$getAll()}}
-\item \href{#method-size}{\code{ClusterPredictions$size()}}
-\item \href{#method-getPositiveClass}{\code{ClusterPredictions$getPositiveClass()}}
-\item \href{#method-getClassValues}{\code{ClusterPredictions$getClassValues()}}
-\item \href{#method-clone}{\code{ClusterPredictions$clone()}}
+\item \href{#method-ClusterPredictions-new}{\code{ClusterPredictions$new()}}
+\item \href{#method-ClusterPredictions-add}{\code{ClusterPredictions$add()}}
+\item \href{#method-ClusterPredictions-get}{\code{ClusterPredictions$get()}}
+\item \href{#method-ClusterPredictions-getAll}{\code{ClusterPredictions$getAll()}}
+\item \href{#method-ClusterPredictions-size}{\code{ClusterPredictions$size()}}
+\item \href{#method-ClusterPredictions-getPositiveClass}{\code{ClusterPredictions$getPositiveClass()}}
+\item \href{#method-ClusterPredictions-getClassValues}{\code{ClusterPredictions$getClassValues()}}
+\item \href{#method-ClusterPredictions-clone}{\code{ClusterPredictions$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -47,8 +47,8 @@ class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add"></a>}}
-\if{latex}{\out{\hypertarget{method-add}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-add"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-add}{}}}
 \subsection{Method \code{add()}}{
 The function is used to add the prediction achieved by a
 specific M.L. model.
@@ -66,8 +66,8 @@ computed predictions.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get"></a>}}
-\if{latex}{\out{\hypertarget{method-get}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-get"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-get}{}}}
 \subsection{Method \code{get()}}{
 The function returns the predictions placed at specific
 position.
@@ -88,8 +88,8 @@ A \code{\link{Prediction}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getAll"></a>}}
-\if{latex}{\out{\hypertarget{method-getAll}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-getAll"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-getAll}{}}}
 \subsection{Method \code{getAll()}}{
 The function returns all the predictions.
 \subsection{Usage}{
@@ -101,8 +101,8 @@ A \link{list} containing all computed predictions.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-size"></a>}}
-\if{latex}{\out{\hypertarget{method-size}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-size"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-size}{}}}
 \subsection{Method \code{size()}}{
 The function returns the number of computed predictions.
 \subsection{Usage}{
@@ -114,8 +114,8 @@ A \link{numeric} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPositiveClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function gets the value of the positive class.
 \subsection{Usage}{
@@ -127,8 +127,8 @@ A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassValues"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 The function returns all the values of the target class.
 \subsection{Usage}{
@@ -140,8 +140,8 @@ A \link{character} vector containing all target values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ClusterPredictions-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ClusterPredictions-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

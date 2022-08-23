@@ -23,20 +23,14 @@ Method valid only for bi-class problems.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{KendallHeuristic$new()}}
-\item \href{#method-heuristic}{\code{KendallHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{KendallHeuristic$clone()}}
+\item \href{#method-KendallHeuristic-new}{\code{KendallHeuristic$new()}}
+\item \href{#method-KendallHeuristic-heuristic}{\code{KendallHeuristic$heuristic()}}
+\item \href{#method-KendallHeuristic-clone}{\code{KendallHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-KendallHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-KendallHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -46,8 +40,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-KendallHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-KendallHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Test for association between paired samples using Kendall's
 tau value.
@@ -75,8 +69,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-KendallHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-KendallHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

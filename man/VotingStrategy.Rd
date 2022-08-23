@@ -17,17 +17,17 @@ Abstract class used to define new \code{\link{SingleVoting}} and
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{VotingStrategy$new()}}
-\item \href{#method-getVotingSchemes}{\code{VotingStrategy$getVotingSchemes()}}
-\item \href{#method-getMetrics}{\code{VotingStrategy$getMetrics()}}
-\item \href{#method-execute}{\code{VotingStrategy$execute()}}
-\item \href{#method-getName}{\code{VotingStrategy$getName()}}
-\item \href{#method-clone}{\code{VotingStrategy$clone()}}
+\item \href{#method-VotingStrategy-new}{\code{VotingStrategy$new()}}
+\item \href{#method-VotingStrategy-getVotingSchemes}{\code{VotingStrategy$getVotingSchemes()}}
+\item \href{#method-VotingStrategy-getMetrics}{\code{VotingStrategy$getMetrics()}}
+\item \href{#method-VotingStrategy-execute}{\code{VotingStrategy$execute()}}
+\item \href{#method-VotingStrategy-getName}{\code{VotingStrategy$getName()}}
+\item \href{#method-VotingStrategy-clone}{\code{VotingStrategy$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-VotingStrategy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-VotingStrategy-new}{}}}
 \subsection{Method \code{new()}}{
 Abstract method used to initialize the object arguments
 during runtime.
@@ -37,8 +37,8 @@ during runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getVotingSchemes"></a>}}
-\if{latex}{\out{\hypertarget{method-getVotingSchemes}{}}}
+\if{html}{\out{<a id="method-VotingStrategy-getVotingSchemes"></a>}}
+\if{latex}{\out{\hypertarget{method-VotingStrategy-getVotingSchemes}{}}}
 \subsection{Method \code{getVotingSchemes()}}{
 The function returns the voting schemes that will
 participate in the voting strategy.
@@ -52,8 +52,8 @@ class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMetrics"></a>}}
-\if{latex}{\out{\hypertarget{method-getMetrics}{}}}
+\if{html}{\out{<a id="method-VotingStrategy-getMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-VotingStrategy-getMetrics}{}}}
 \subsection{Method \code{getMetrics()}}{
 The function is used to get the metric that will be used
 during the voting strategy.
@@ -66,8 +66,8 @@ A \link{character} vector.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-VotingStrategy-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-VotingStrategy-execute}{}}}
 \subsection{Method \code{execute()}}{
 Abstract function used to implement the operation of the
 voting schemes.
@@ -87,8 +87,8 @@ the prediction achieved for each cluster.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getName"></a>}}
-\if{latex}{\out{\hypertarget{method-getName}{}}}
+\if{html}{\out{<a id="method-VotingStrategy-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-VotingStrategy-getName}{}}}
 \subsection{Method \code{getName()}}{
 The function returns the name of the voting scheme.
 \subsection{Usage}{
@@ -100,8 +100,8 @@ A \link{character} vector of size 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-VotingStrategy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-VotingStrategy-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

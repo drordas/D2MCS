@@ -24,20 +24,14 @@ classify N items into C mutually exclusive categories.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Kappa$new()}}
-\item \href{#method-compute}{\code{Kappa$compute()}}
-\item \href{#method-clone}{\code{Kappa$clone()}}
+\item \href{#method-Kappa-new}{\code{Kappa$new()}}
+\item \href{#method-Kappa-compute}{\code{Kappa$compute()}}
+\item \href{#method-Kappa-clone}{\code{Kappa$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Kappa-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Kappa-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -54,8 +48,8 @@ basis to compute the performance.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-Kappa-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-Kappa-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{Kappa} achieved by the M.L.
 model.
@@ -83,8 +77,8 @@ occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Kappa-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Kappa-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

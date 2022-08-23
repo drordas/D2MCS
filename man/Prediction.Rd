@@ -15,17 +15,17 @@ Allows to obtain predictions from the data provided using a pre-trained model.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Prediction$new()}}
-\item \href{#method-execute}{\code{Prediction$execute()}}
-\item \href{#method-getPrediction}{\code{Prediction$getPrediction()}}
-\item \href{#method-getModelName}{\code{Prediction$getModelName()}}
-\item \href{#method-getModelPerformance}{\code{Prediction$getModelPerformance()}}
-\item \href{#method-clone}{\code{Prediction$clone()}}
+\item \href{#method-Prediction-new}{\code{Prediction$new()}}
+\item \href{#method-Prediction-execute}{\code{Prediction$execute()}}
+\item \href{#method-Prediction-getPrediction}{\code{Prediction$getPrediction()}}
+\item \href{#method-Prediction-getModelName}{\code{Prediction$getModelName()}}
+\item \href{#method-Prediction-getModelPerformance}{\code{Prediction$getModelPerformance()}}
+\item \href{#method-Prediction-clone}{\code{Prediction$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Prediction-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Prediction-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -46,8 +46,8 @@ used as identifier.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-Prediction-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-Prediction-execute}{}}}
 \subsection{Method \code{execute()}}{
 Calculates predictions of the values passed by parameters
 using the corresponding model.
@@ -69,8 +69,8 @@ class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPrediction"></a>}}
-\if{latex}{\out{\hypertarget{method-getPrediction}{}}}
+\if{html}{\out{<a id="method-Prediction-getPrediction"></a>}}
+\if{latex}{\out{\hypertarget{method-Prediction-getPrediction}{}}}
 \subsection{Method \code{getPrediction()}}{
 The function is used to return the prediction values
 computed.
@@ -96,8 +96,8 @@ A \link{data.frame} with the computed prediction.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getModelName"></a>}}
-\if{latex}{\out{\hypertarget{method-getModelName}{}}}
+\if{html}{\out{<a id="method-Prediction-getModelName"></a>}}
+\if{latex}{\out{\hypertarget{method-Prediction-getModelName}{}}}
 \subsection{Method \code{getModelName()}}{
 Gets the model name.
 \subsection{Usage}{
@@ -109,8 +109,8 @@ The \link{character} value of model value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getModelPerformance"></a>}}
-\if{latex}{\out{\hypertarget{method-getModelPerformance}{}}}
+\if{html}{\out{<a id="method-Prediction-getModelPerformance"></a>}}
+\if{latex}{\out{\hypertarget{method-Prediction-getModelPerformance}{}}}
 \subsection{Method \code{getModelPerformance()}}{
 Gets the performance of the model.
 \subsection{Usage}{
@@ -122,8 +122,8 @@ The \link{numeric} value of the model's performance.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Prediction-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Prediction-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

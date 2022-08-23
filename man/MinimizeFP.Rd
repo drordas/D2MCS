@@ -19,21 +19,21 @@ class associated.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{MinimizeFP$new()}}
-\item \href{#method-getFinalPrediction}{\code{MinimizeFP$getFinalPrediction()}}
-\item \href{#method-clone}{\code{MinimizeFP$clone()}}
+\item \href{#method-MinimizeFP-new}{\code{MinimizeFP$new()}}
+\item \href{#method-MinimizeFP-getFinalPrediction}{\code{MinimizeFP$getFinalPrediction()}}
+\item \href{#method-MinimizeFP-clone}{\code{MinimizeFP$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="CombinedMetrics" data-id="getRequiredMetrics">}\href{../../D2MCS/html/CombinedMetrics.html#method-getRequiredMetrics}{\code{D2MCS::CombinedMetrics$getRequiredMetrics()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="CombinedMetrics" data-id="getRequiredMetrics"><a href='../../D2MCS/html/CombinedMetrics.html#method-CombinedMetrics-getRequiredMetrics'><code>D2MCS::CombinedMetrics$getRequiredMetrics()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-MinimizeFP-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MinimizeFP-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -50,8 +50,8 @@ Method for initializing the object arguments during runtime.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFinalPrediction"></a>}}
-\if{latex}{\out{\hypertarget{method-getFinalPrediction}{}}}
+\if{html}{\out{<a id="method-MinimizeFP-getFinalPrediction"></a>}}
+\if{latex}{\out{\hypertarget{method-MinimizeFP-getFinalPrediction}{}}}
 \subsection{Method \code{getFinalPrediction()}}{
 Function to obtain the final prediction based on different
 metrics.
@@ -87,8 +87,8 @@ positive class or not.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-MinimizeFP-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MinimizeFP-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

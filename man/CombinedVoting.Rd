@@ -23,26 +23,26 @@ class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{CombinedVoting$new()}}
-\item \href{#method-getCombinedMetrics}{\code{CombinedVoting$getCombinedMetrics()}}
-\item \href{#method-getMethodology}{\code{CombinedVoting$getMethodology()}}
-\item \href{#method-getFinalPred}{\code{CombinedVoting$getFinalPred()}}
-\item \href{#method-execute}{\code{CombinedVoting$execute()}}
-\item \href{#method-clone}{\code{CombinedVoting$clone()}}
+\item \href{#method-CombinedVoting-new}{\code{CombinedVoting$new()}}
+\item \href{#method-CombinedVoting-getCombinedMetrics}{\code{CombinedVoting$getCombinedMetrics()}}
+\item \href{#method-CombinedVoting-getMethodology}{\code{CombinedVoting$getMethodology()}}
+\item \href{#method-CombinedVoting-getFinalPred}{\code{CombinedVoting$getFinalPred()}}
+\item \href{#method-CombinedVoting-execute}{\code{CombinedVoting$execute()}}
+\item \href{#method-CombinedVoting-clone}{\code{CombinedVoting$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getMetrics">}\href{../../D2MCS/html/VotingStrategy.html#method-getMetrics}{\code{D2MCS::VotingStrategy$getMetrics()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getName">}\href{../../D2MCS/html/VotingStrategy.html#method-getName}{\code{D2MCS::VotingStrategy$getName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getVotingSchemes">}\href{../../D2MCS/html/VotingStrategy.html#method-getVotingSchemes}{\code{D2MCS::VotingStrategy$getVotingSchemes()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getMetrics"><a href='../../D2MCS/html/VotingStrategy.html#method-VotingStrategy-getMetrics'><code>D2MCS::VotingStrategy$getMetrics()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getName"><a href='../../D2MCS/html/VotingStrategy.html#method-VotingStrategy-getName'><code>D2MCS::VotingStrategy$getName()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getVotingSchemes"><a href='../../D2MCS/html/VotingStrategy.html#method-VotingStrategy-getVotingSchemes'><code>D2MCS::VotingStrategy$getVotingSchemes()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-CombinedVoting-new"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedVoting-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -71,8 +71,8 @@ previously defined during training stage.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getCombinedMetrics"></a>}}
-\if{latex}{\out{\hypertarget{method-getCombinedMetrics}{}}}
+\if{html}{\out{<a id="method-CombinedVoting-getCombinedMetrics"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedVoting-getCombinedMetrics}{}}}
 \subsection{Method \code{getCombinedMetrics()}}{
 The function returns the metrics used to combine the metrics
 results.
@@ -85,8 +85,8 @@ An object inherited from \code{\link{CombinedMetrics}} class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMethodology"></a>}}
-\if{latex}{\out{\hypertarget{method-getMethodology}{}}}
+\if{html}{\out{<a id="method-CombinedVoting-getMethodology"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedVoting-getMethodology}{}}}
 \subsection{Method \code{getMethodology()}}{
 The function gets the methodology used to execute the
 combined votings.
@@ -99,8 +99,8 @@ An object inherited from \code{\link{Methodology}} class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFinalPred"></a>}}
-\if{latex}{\out{\hypertarget{method-getFinalPred}{}}}
+\if{html}{\out{<a id="method-CombinedVoting-getFinalPred"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedVoting-getFinalPred}{}}}
 \subsection{Method \code{getFinalPred()}}{
 The function returns the predictions obtained after
 executing the combined-voting methodology.
@@ -132,8 +132,8 @@ A \link{data.frame} with the computed predictions.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-CombinedVoting-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedVoting-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the combined voting scheme.
 \subsection{Usage}{
@@ -153,8 +153,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-CombinedVoting-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-CombinedVoting-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

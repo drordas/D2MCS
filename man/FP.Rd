@@ -19,20 +19,14 @@ which the test result is positive. The value entered here must be non-negative.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FP$new()}}
-\item \href{#method-compute}{\code{FP$compute()}}
-\item \href{#method-clone}{\code{FP$clone()}}
+\item \href{#method-FP-new}{\code{FP$new()}}
+\item \href{#method-FP-compute}{\code{FP$compute()}}
+\item \href{#method-FP-clone}{\code{FP$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FP-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FP-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -49,8 +43,8 @@ used as basis to define the type of compute the \code{FP} measure.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-FP-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-FP-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{FP} achieved by the M.L.
 model.
@@ -78,8 +72,8 @@ an error occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FP-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FP-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

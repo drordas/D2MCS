@@ -17,21 +17,21 @@ probabilities can be computed.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{UseProbability$new()}}
-\item \href{#method-execute}{\code{UseProbability$execute()}}
-\item \href{#method-clone}{\code{UseProbability$clone()}}
+\item \href{#method-UseProbability-new}{\code{UseProbability$new()}}
+\item \href{#method-UseProbability-execute}{\code{UseProbability$execute()}}
+\item \href{#method-UseProbability-clone}{\code{UseProbability$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SummaryFunction" data-id="getMeasures">}\href{../../D2MCS/html/SummaryFunction.html#method-getMeasures}{\code{D2MCS::SummaryFunction$getMeasures()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SummaryFunction" data-id="getMeasures"><a href='../../D2MCS/html/SummaryFunction.html#method-SummaryFunction-getMeasures'><code>D2MCS::SummaryFunction$getMeasures()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-UseProbability-new"></a>}}
+\if{latex}{\out{\hypertarget{method-UseProbability-new}{}}}
 \subsection{Method \code{new()}}{
 The function defined during runtime the usage of seven
 measures: 'ROC', 'Sens', 'Kappa', 'Accuracy', 'TCR_9', 'MCC' and 'PPV'.
@@ -41,8 +41,8 @@ measures: 'ROC', 'Sens', 'Kappa', 'Accuracy', 'TCR_9', 'MCC' and 'PPV'.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-UseProbability-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-UseProbability-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function computes the performance across resamples using
 the previously defined measures.
@@ -68,8 +68,8 @@ A vector of performance estimates.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-UseProbability-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-UseProbability-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

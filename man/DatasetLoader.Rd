@@ -33,13 +33,13 @@ Wrapper class able to automatically create a
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{DatasetLoader$new()}}
-\item \href{#method-load}{\code{DatasetLoader$load()}}
+\item \href{#method-DatasetLoader-new}{\code{DatasetLoader$new()}}
+\item \href{#method-DatasetLoader-load}{\code{DatasetLoader$load()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-DatasetLoader-new"></a>}}
+\if{latex}{\out{\hypertarget{method-DatasetLoader-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -49,8 +49,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-load"></a>}}
-\if{latex}{\out{\hypertarget{method-load}{}}}
+\if{html}{\out{<a id="method-DatasetLoader-load"></a>}}
+\if{latex}{\out{\hypertarget{method-DatasetLoader-load}{}}}
 \subsection{Method \code{load()}}{
 Stores the input source into a \code{\link{Dataset}} or
 \code{\link{HDDataset}} type object.

@@ -23,20 +23,14 @@ Predictions)}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Accuracy$new()}}
-\item \href{#method-compute}{\code{Accuracy$compute()}}
-\item \href{#method-clone}{\code{Accuracy$clone()}}
+\item \href{#method-Accuracy-new}{\code{Accuracy$new()}}
+\item \href{#method-Accuracy-compute}{\code{Accuracy$compute()}}
+\item \href{#method-Accuracy-clone}{\code{Accuracy$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Accuracy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Accuracy-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -53,8 +47,8 @@ basis to compute the performance.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-compute"></a>}}
-\if{latex}{\out{\hypertarget{method-compute}{}}}
+\if{html}{\out{<a id="method-Accuracy-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-Accuracy-compute}{}}}
 \subsection{Method \code{compute()}}{
 The function computes the \strong{Accuracy} achieved by the
 M.L. model.
@@ -82,8 +76,8 @@ occurred.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Accuracy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Accuracy-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

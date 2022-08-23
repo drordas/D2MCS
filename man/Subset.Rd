@@ -24,24 +24,24 @@ Use \code{\link{Dataset}} to ensure the creation of a valid
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Subset$new()}}
-\item \href{#method-getColumnNames}{\code{Subset$getColumnNames()}}
-\item \href{#method-getFeatures}{\code{Subset$getFeatures()}}
-\item \href{#method-getID}{\code{Subset$getID()}}
-\item \href{#method-getIterator}{\code{Subset$getIterator()}}
-\item \href{#method-getClassValues}{\code{Subset$getClassValues()}}
-\item \href{#method-getClassBalance}{\code{Subset$getClassBalance()}}
-\item \href{#method-getClassIndex}{\code{Subset$getClassIndex()}}
-\item \href{#method-getClassName}{\code{Subset$getClassName()}}
-\item \href{#method-getNcol}{\code{Subset$getNcol()}}
-\item \href{#method-getNrow}{\code{Subset$getNrow()}}
-\item \href{#method-getPositiveClass}{\code{Subset$getPositiveClass()}}
-\item \href{#method-isBlinded}{\code{Subset$isBlinded()}}
+\item \href{#method-Subset-new}{\code{Subset$new()}}
+\item \href{#method-Subset-getColumnNames}{\code{Subset$getColumnNames()}}
+\item \href{#method-Subset-getFeatures}{\code{Subset$getFeatures()}}
+\item \href{#method-Subset-getID}{\code{Subset$getID()}}
+\item \href{#method-Subset-getIterator}{\code{Subset$getIterator()}}
+\item \href{#method-Subset-getClassValues}{\code{Subset$getClassValues()}}
+\item \href{#method-Subset-getClassBalance}{\code{Subset$getClassBalance()}}
+\item \href{#method-Subset-getClassIndex}{\code{Subset$getClassIndex()}}
+\item \href{#method-Subset-getClassName}{\code{Subset$getClassName()}}
+\item \href{#method-Subset-getNcol}{\code{Subset$getNcol()}}
+\item \href{#method-Subset-getNrow}{\code{Subset$getNrow()}}
+\item \href{#method-Subset-getPositiveClass}{\code{Subset$getPositiveClass()}}
+\item \href{#method-Subset-isBlinded}{\code{Subset$isBlinded()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Subset-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -75,8 +75,8 @@ used as identifier.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getColumnNames"></a>}}
-\if{latex}{\out{\hypertarget{method-getColumnNames}{}}}
+\if{html}{\out{<a id="method-Subset-getColumnNames"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getColumnNames}{}}}
 \subsection{Method \code{getColumnNames()}}{
 Get the name of the columns comprising the subset.
 \subsection{Usage}{
@@ -88,8 +88,8 @@ A \link{character} vector containing the name of each column.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFeatures"></a>}}
-\if{latex}{\out{\hypertarget{method-getFeatures}{}}}
+\if{html}{\out{<a id="method-Subset-getFeatures"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getFeatures}{}}}
 \subsection{Method \code{getFeatures()}}{
 Gets the values of all features or those indicated by
 arguments.
@@ -110,8 +110,8 @@ A \link{character} vector or NULL if subset is empty.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getID"></a>}}
-\if{latex}{\out{\hypertarget{method-getID}{}}}
+\if{html}{\out{<a id="method-Subset-getID"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getID}{}}}
 \subsection{Method \code{getID()}}{
 Gets the column name used as identifier.
 \subsection{Usage}{
@@ -124,8 +124,8 @@ defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getIterator"></a>}}
-\if{latex}{\out{\hypertarget{method-getIterator}{}}}
+\if{html}{\out{<a id="method-Subset-getIterator"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getIterator}{}}}
 \subsection{Method \code{getIterator()}}{
 Creates the \link{DIterator} object.
 \subsection{Usage}{
@@ -149,8 +149,8 @@ A \code{\link{DIterator}} object to transverse through
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassValues"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
+\if{html}{\out{<a id="method-Subset-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 Gets all the values of the target class.
 \subsection{Usage}{
@@ -162,8 +162,8 @@ A \link{factor} vector with all the values of the target class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassBalance"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassBalance}{}}}
+\if{html}{\out{<a id="method-Subset-getClassBalance"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getClassBalance}{}}}
 \subsection{Method \code{getClassBalance()}}{
 The function is used to compute the ratio of each class
 value in the \code{\link{Subset}}.
@@ -184,8 +184,8 @@ A \link{numeric} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassIndex"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassIndex}{}}}
+\if{html}{\out{<a id="method-Subset-getClassIndex"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getClassIndex}{}}}
 \subsection{Method \code{getClassIndex()}}{
 The function is used to obtain the index of the column
 containing the target class.
@@ -198,8 +198,8 @@ A \link{numeric} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassName"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassName}{}}}
+\if{html}{\out{<a id="method-Subset-getClassName"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getClassName}{}}}
 \subsection{Method \code{getClassName()}}{
 The function is used to specify the name of the column
 containing the target class.
@@ -212,8 +212,8 @@ A \link{character} value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNcol"></a>}}
-\if{latex}{\out{\hypertarget{method-getNcol}{}}}
+\if{html}{\out{<a id="method-Subset-getNcol"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getNcol}{}}}
 \subsection{Method \code{getNcol()}}{
 The function is in charge of obtaining the number of columns
 comprising the \code{\link{Subset}}. See \code{\link{ncol}} for more
@@ -227,8 +227,8 @@ An \link{integer} of length 1 or \link{NULL}.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNrow"></a>}}
-\if{latex}{\out{\hypertarget{method-getNrow}{}}}
+\if{html}{\out{<a id="method-Subset-getNrow"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getNrow}{}}}
 \subsection{Method \code{getNrow()}}{
 The function is used to determine the number of rows present
 in the \code{\link{Subset}}. See \code{\link{nrow}} for more information.
@@ -241,8 +241,8 @@ An \link{integer} of length 1 or \link{NULL}.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPositiveClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
+\if{html}{\out{<a id="method-Subset-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 The function returns the value of the positive class.
 \subsection{Usage}{
@@ -254,8 +254,8 @@ A \link{character} vector of size 1 or \link{NULL} if not defined.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isBlinded"></a>}}
-\if{latex}{\out{\hypertarget{method-isBlinded}{}}}
+\if{html}{\out{<a id="method-Subset-isBlinded"></a>}}
+\if{latex}{\out{\hypertarget{method-Subset-isBlinded}{}}}
 \subsection{Method \code{isBlinded()}}{
 The function is used to check if the \link{Subset} contains
 a target class.

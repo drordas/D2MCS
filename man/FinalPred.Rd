@@ -16,19 +16,19 @@ executing an specific voting scheme.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FinalPred$new()}}
-\item \href{#method-set}{\code{FinalPred$set()}}
-\item \href{#method-getProb}{\code{FinalPred$getProb()}}
-\item \href{#method-getRaw}{\code{FinalPred$getRaw()}}
-\item \href{#method-getClassValues}{\code{FinalPred$getClassValues()}}
-\item \href{#method-getPositiveClass}{\code{FinalPred$getPositiveClass()}}
-\item \href{#method-getNegativeClass}{\code{FinalPred$getNegativeClass()}}
-\item \href{#method-clone}{\code{FinalPred$clone()}}
+\item \href{#method-FinalPred-new}{\code{FinalPred$new()}}
+\item \href{#method-FinalPred-set}{\code{FinalPred$set()}}
+\item \href{#method-FinalPred-getProb}{\code{FinalPred$getProb()}}
+\item \href{#method-FinalPred-getRaw}{\code{FinalPred$getRaw()}}
+\item \href{#method-FinalPred-getClassValues}{\code{FinalPred$getClassValues()}}
+\item \href{#method-FinalPred-getPositiveClass}{\code{FinalPred$getPositiveClass()}}
+\item \href{#method-FinalPred-getNegativeClass}{\code{FinalPred$getNegativeClass()}}
+\item \href{#method-FinalPred-clone}{\code{FinalPred$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FinalPred-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object variables during runtime.
 \subsection{Usage}{
@@ -37,8 +37,8 @@ Method for initializing the object variables during runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set"></a>}}
-\if{latex}{\out{\hypertarget{method-set}{}}}
+\if{html}{\out{<a id="method-FinalPred-set"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-set}{}}}
 \subsection{Method \code{set()}}{
 Sets the computed probabilities after executing an specific
 voting scheme.
@@ -64,8 +64,8 @@ class.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getProb"></a>}}
-\if{latex}{\out{\hypertarget{method-getProb}{}}}
+\if{html}{\out{<a id="method-FinalPred-getProb"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-getProb}{}}}
 \subsection{Method \code{getProb()}}{
 Gets the probabilities of the prediction for a specific
 voting scheme.
@@ -79,8 +79,8 @@ specific voting scheme.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRaw"></a>}}
-\if{latex}{\out{\hypertarget{method-getRaw}{}}}
+\if{html}{\out{<a id="method-FinalPred-getRaw"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-getRaw}{}}}
 \subsection{Method \code{getRaw()}}{
 Gets the raw results of the prediction for a specific voting
 scheme.
@@ -94,8 +94,8 @@ specific voting scheme.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassValues"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassValues}{}}}
+\if{html}{\out{<a id="method-FinalPred-getClassValues"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-getClassValues}{}}}
 \subsection{Method \code{getClassValues()}}{
 Gets the class values (positive class + negative class).
 \subsection{Usage}{
@@ -107,8 +107,8 @@ The \link{vector} value of class values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getPositiveClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getPositiveClass}{}}}
+\if{html}{\out{<a id="method-FinalPred-getPositiveClass"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-getPositiveClass}{}}}
 \subsection{Method \code{getPositiveClass()}}{
 Gets the positive class.
 \subsection{Usage}{
@@ -120,8 +120,8 @@ The \link{character} value of positive class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNegativeClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getNegativeClass}{}}}
+\if{html}{\out{<a id="method-FinalPred-getNegativeClass"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-getNegativeClass}{}}}
 \subsection{Method \code{getNegativeClass()}}{
 Gets the negative class.
 \subsection{Usage}{
@@ -133,8 +133,8 @@ The \link{character} value of negative class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FinalPred-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FinalPred-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

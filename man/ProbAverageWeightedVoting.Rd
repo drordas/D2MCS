@@ -23,25 +23,25 @@ model on each cluster.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ProbAverageWeightedVoting$new()}}
-\item \href{#method-getClassTie}{\code{ProbAverageWeightedVoting$getClassTie()}}
-\item \href{#method-getWeights}{\code{ProbAverageWeightedVoting$getWeights()}}
-\item \href{#method-setWeights}{\code{ProbAverageWeightedVoting$setWeights()}}
-\item \href{#method-execute}{\code{ProbAverageWeightedVoting$execute()}}
-\item \href{#method-clone}{\code{ProbAverageWeightedVoting$clone()}}
+\item \href{#method-ProbAverageWeightedVoting-new}{\code{ProbAverageWeightedVoting$new()}}
+\item \href{#method-ProbAverageWeightedVoting-getClassTie}{\code{ProbAverageWeightedVoting$getClassTie()}}
+\item \href{#method-ProbAverageWeightedVoting-getWeights}{\code{ProbAverageWeightedVoting$getWeights()}}
+\item \href{#method-ProbAverageWeightedVoting-setWeights}{\code{ProbAverageWeightedVoting$setWeights()}}
+\item \href{#method-ProbAverageWeightedVoting-execute}{\code{ProbAverageWeightedVoting$execute()}}
+\item \href{#method-ProbAverageWeightedVoting-clone}{\code{ProbAverageWeightedVoting$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff">}\href{../../D2MCS/html/SimpleVoting.html#method-getCutoff}{\code{D2MCS::SimpleVoting$getCutoff()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred">}\href{../../D2MCS/html/SimpleVoting.html#method-getFinalPred}{\code{D2MCS::SimpleVoting$getFinalPred()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getCutoff"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getCutoff'><code>D2MCS::SimpleVoting$getCutoff()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="SimpleVoting" data-id="getFinalPred"><a href='../../D2MCS/html/SimpleVoting.html#method-SimpleVoting-getFinalPred'><code>D2MCS::SimpleVoting$getFinalPred()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ProbAverageWeightedVoting-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageWeightedVoting-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -67,8 +67,8 @@ default.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassTie"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassTie}{}}}
+\if{html}{\out{<a id="method-ProbAverageWeightedVoting-getClassTie"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageWeightedVoting-getClassTie}{}}}
 \subsection{Method \code{getClassTie()}}{
 The function gets the class value assigned to solve ties.
 \subsection{Usage}{
@@ -80,8 +80,8 @@ A \link{character} vector of length 1.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getWeights"></a>}}
-\if{latex}{\out{\hypertarget{method-getWeights}{}}}
+\if{html}{\out{<a id="method-ProbAverageWeightedVoting-getWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageWeightedVoting-getWeights}{}}}
 \subsection{Method \code{getWeights()}}{
 The function returns the value of the majority class.
 \subsection{Usage}{
@@ -94,8 +94,8 @@ majority class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setWeights"></a>}}
-\if{latex}{\out{\hypertarget{method-setWeights}{}}}
+\if{html}{\out{<a id="method-ProbAverageWeightedVoting-setWeights"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageWeightedVoting-setWeights}{}}}
 \subsection{Method \code{setWeights()}}{
 The function allows changing the value of the weights.
 \subsection{Usage}{
@@ -111,8 +111,8 @@ The function allows changing the value of the weights.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-ProbAverageWeightedVoting-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageWeightedVoting-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function implements the cluster-weighted probabilistic
 voting procedure.
@@ -133,8 +133,8 @@ needed.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ProbAverageWeightedVoting-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ProbAverageWeightedVoting-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -17,21 +17,15 @@ Creates a default \code{\link[recipes]{recipe}} and
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{DefaultModelFit$new()}}
-\item \href{#method-createFormula}{\code{DefaultModelFit$createFormula()}}
-\item \href{#method-createRecipe}{\code{DefaultModelFit$createRecipe()}}
-\item \href{#method-clone}{\code{DefaultModelFit$clone()}}
+\item \href{#method-DefaultModelFit-new}{\code{DefaultModelFit$new()}}
+\item \href{#method-DefaultModelFit-createFormula}{\code{DefaultModelFit$createFormula()}}
+\item \href{#method-DefaultModelFit-createRecipe}{\code{DefaultModelFit$createRecipe()}}
+\item \href{#method-DefaultModelFit-clone}{\code{DefaultModelFit$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-DefaultModelFit-new"></a>}}
+\if{latex}{\out{\hypertarget{method-DefaultModelFit-new}{}}}
 \subsection{Method \code{new()}}{
 Method for initializing the object arguments during runtime.
 \subsection{Usage}{
@@ -40,8 +34,8 @@ Method for initializing the object arguments during runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createFormula"></a>}}
-\if{latex}{\out{\hypertarget{method-createFormula}{}}}
+\if{html}{\out{<a id="method-DefaultModelFit-createFormula"></a>}}
+\if{latex}{\out{\hypertarget{method-DefaultModelFit-createFormula}{}}}
 \subsection{Method \code{createFormula()}}{
 The function is responsible of creating a
 \code{\link{formula}} for M.L. model.
@@ -68,8 +62,8 @@ A \code{\link{formula}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-createRecipe"></a>}}
-\if{latex}{\out{\hypertarget{method-createRecipe}{}}}
+\if{html}{\out{<a id="method-DefaultModelFit-createRecipe"></a>}}
+\if{latex}{\out{\hypertarget{method-DefaultModelFit-createRecipe}{}}}
 \subsection{Method \code{createRecipe()}}{
 The function is responsible of creating a
 \code{\link[recipes]{recipe}} with five operations over the data:
@@ -101,8 +95,8 @@ An object of class \code{\link[recipes]{recipe}}.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-DefaultModelFit-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-DefaultModelFit-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

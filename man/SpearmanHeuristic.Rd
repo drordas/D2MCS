@@ -22,20 +22,14 @@ a bivariate normal distribution.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{SpearmanHeuristic$new()}}
-\item \href{#method-heuristic}{\code{SpearmanHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{SpearmanHeuristic$clone()}}
+\item \href{#method-SpearmanHeuristic-new}{\code{SpearmanHeuristic$new()}}
+\item \href{#method-SpearmanHeuristic-heuristic}{\code{SpearmanHeuristic$heuristic()}}
+\item \href{#method-SpearmanHeuristic-clone}{\code{SpearmanHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-SpearmanHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SpearmanHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a \link{SpearmanHeuristic} object.
 \subsection{Usage}{
@@ -44,8 +38,8 @@ Creates a \link{SpearmanHeuristic} object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-SpearmanHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-SpearmanHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 Test for correlation between paired samples using Spearman
 rho statistic.
@@ -73,8 +67,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-SpearmanHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SpearmanHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

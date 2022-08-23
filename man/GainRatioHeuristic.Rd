@@ -17,20 +17,14 @@ Performs the feature-clustering using entropy-based filters.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{GainRatioHeuristic$new()}}
-\item \href{#method-heuristic}{\code{GainRatioHeuristic$heuristic()}}
-\item \href{#method-clone}{\code{GainRatioHeuristic$clone()}}
+\item \href{#method-GainRatioHeuristic-new}{\code{GainRatioHeuristic$new()}}
+\item \href{#method-GainRatioHeuristic-heuristic}{\code{GainRatioHeuristic$heuristic()}}
+\item \href{#method-GainRatioHeuristic-clone}{\code{GainRatioHeuristic$clone()}}
 }
-}
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-GainRatioHeuristic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GainRatioHeuristic-new}{}}}
 \subsection{Method \code{new()}}{
 Empty function used to initialize the object arguments in
 runtime.
@@ -40,8 +34,8 @@ runtime.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-heuristic"></a>}}
-\if{latex}{\out{\hypertarget{method-heuristic}{}}}
+\if{html}{\out{<a id="method-GainRatioHeuristic-heuristic"></a>}}
+\if{latex}{\out{\hypertarget{method-GainRatioHeuristic-heuristic}{}}}
 \subsection{Method \code{heuristic()}}{
 The algorithms find weights of discrete attributes basing on
 their correlation with continuous class attribute.
@@ -69,8 +63,8 @@ occurs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-GainRatioHeuristic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GainRatioHeuristic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

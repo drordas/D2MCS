@@ -16,32 +16,32 @@ function for bi-class problems.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TwoClass$new()}}
-\item \href{#method-create}{\code{TwoClass$create()}}
-\item \href{#method-getTrFunction}{\code{TwoClass$getTrFunction()}}
-\item \href{#method-setClassProbs}{\code{TwoClass$setClassProbs()}}
-\item \href{#method-getMeasures}{\code{TwoClass$getMeasures()}}
-\item \href{#method-getType}{\code{TwoClass$getType()}}
-\item \href{#method-setSummaryFunction}{\code{TwoClass$setSummaryFunction()}}
-\item \href{#method-clone}{\code{TwoClass$clone()}}
+\item \href{#method-TwoClass-new}{\code{TwoClass$new()}}
+\item \href{#method-TwoClass-create}{\code{TwoClass$create()}}
+\item \href{#method-TwoClass-getTrFunction}{\code{TwoClass$getTrFunction()}}
+\item \href{#method-TwoClass-setClassProbs}{\code{TwoClass$setClassProbs()}}
+\item \href{#method-TwoClass-getMeasures}{\code{TwoClass$getMeasures()}}
+\item \href{#method-TwoClass-getType}{\code{TwoClass$getType()}}
+\item \href{#method-TwoClass-setSummaryFunction}{\code{TwoClass$setSummaryFunction()}}
+\item \href{#method-TwoClass-clone}{\code{TwoClass$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getAllowParallel">}\href{../../D2MCS/html/TrainFunction.html#method-getAllowParallel}{\code{D2MCS::TrainFunction$getAllowParallel()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getClassProbs">}\href{../../D2MCS/html/TrainFunction.html#method-getClassProbs}{\code{D2MCS::TrainFunction$getClassProbs()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getNumberFolds">}\href{../../D2MCS/html/TrainFunction.html#method-getNumberFolds}{\code{D2MCS::TrainFunction$getNumberFolds()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getResamplingMethod">}\href{../../D2MCS/html/TrainFunction.html#method-getResamplingMethod}{\code{D2MCS::TrainFunction$getResamplingMethod()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getSavePredictions">}\href{../../D2MCS/html/TrainFunction.html#method-getSavePredictions}{\code{D2MCS::TrainFunction$getSavePredictions()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getSeed">}\href{../../D2MCS/html/TrainFunction.html#method-getSeed}{\code{D2MCS::TrainFunction$getSeed()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getVerboseIter">}\href{../../D2MCS/html/TrainFunction.html#method-getVerboseIter}{\code{D2MCS::TrainFunction$getVerboseIter()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getAllowParallel"><a href='../../D2MCS/html/TrainFunction.html#method-TrainFunction-getAllowParallel'><code>D2MCS::TrainFunction$getAllowParallel()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getClassProbs"><a href='../../D2MCS/html/TrainFunction.html#method-TrainFunction-getClassProbs'><code>D2MCS::TrainFunction$getClassProbs()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getNumberFolds"><a href='../../D2MCS/html/TrainFunction.html#method-TrainFunction-getNumberFolds'><code>D2MCS::TrainFunction$getNumberFolds()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getResamplingMethod"><a href='../../D2MCS/html/TrainFunction.html#method-TrainFunction-getResamplingMethod'><code>D2MCS::TrainFunction$getResamplingMethod()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getSavePredictions"><a href='../../D2MCS/html/TrainFunction.html#method-TrainFunction-getSavePredictions'><code>D2MCS::TrainFunction$getSavePredictions()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getSeed"><a href='../../D2MCS/html/TrainFunction.html#method-TrainFunction-getSeed'><code>D2MCS::TrainFunction$getSeed()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="TrainFunction" data-id="getVerboseIter"><a href='../../D2MCS/html/TrainFunction.html#method-TrainFunction-getVerboseIter'><code>D2MCS::TrainFunction$getVerboseIter()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TwoClass-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TwoClass$new(
@@ -90,8 +90,8 @@ during model training stage.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-create"></a>}}
-\if{latex}{\out{\hypertarget{method-create}{}}}
+\if{html}{\out{<a id="method-TwoClass-create"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-create}{}}}
 \subsection{Method \code{create()}}{
 Creates a \code{\link[caret]{trainControl}} requires for the
 training stage.
@@ -116,8 +116,8 @@ in each resample}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTrFunction"></a>}}
-\if{latex}{\out{\hypertarget{method-getTrFunction}{}}}
+\if{html}{\out{<a id="method-TwoClass-getTrFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-getTrFunction}{}}}
 \subsection{Method \code{getTrFunction()}}{
 Function used to return the
 \code{\link[caret]{trainControl}} object.
@@ -130,8 +130,8 @@ A \code{\link[caret]{trainControl}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setClassProbs"></a>}}
-\if{latex}{\out{\hypertarget{method-setClassProbs}{}}}
+\if{html}{\out{<a id="method-TwoClass-setClassProbs"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-setClassProbs}{}}}
 \subsection{Method \code{setClassProbs()}}{
 The function allows changing the class computation
 capabilities.
@@ -150,8 +150,8 @@ and \link{FALSE} otherwise.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMeasures"></a>}}
-\if{latex}{\out{\hypertarget{method-getMeasures}{}}}
+\if{html}{\out{<a id="method-TwoClass-getMeasures"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-getMeasures}{}}}
 \subsection{Method \code{getMeasures()}}{
 Returns the measures used to optimize model hyperparameters.
 \subsection{Usage}{
@@ -163,8 +163,8 @@ A \link{character} vector.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getType"></a>}}
-\if{latex}{\out{\hypertarget{method-getType}{}}}
+\if{html}{\out{<a id="method-TwoClass-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-getType}{}}}
 \subsection{Method \code{getType()}}{
 Obtains the type of classification problem ("Bi-class" or
 "Multi-class").
@@ -177,8 +177,8 @@ A \link{character} vector with "Bi-class" value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setSummaryFunction"></a>}}
-\if{latex}{\out{\hypertarget{method-setSummaryFunction}{}}}
+\if{html}{\out{<a id="method-TwoClass-setSummaryFunction"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-setSummaryFunction}{}}}
 \subsection{Method \code{setSummaryFunction()}}{
 Function used to change the \code{\link{SummaryFunction}}
 used in the training stage.
@@ -196,8 +196,8 @@ used in the training stage.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TwoClass-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TwoClass-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

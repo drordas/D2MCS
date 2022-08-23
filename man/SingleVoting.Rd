@@ -21,23 +21,23 @@ checks the compatibility of defined voting schemes.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{SingleVoting$new()}}
-\item \href{#method-execute}{\code{SingleVoting$execute()}}
-\item \href{#method-clone}{\code{SingleVoting$clone()}}
+\item \href{#method-SingleVoting-new}{\code{SingleVoting$new()}}
+\item \href{#method-SingleVoting-execute}{\code{SingleVoting$execute()}}
+\item \href{#method-SingleVoting-clone}{\code{SingleVoting$clone()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getMetrics">}\href{../../D2MCS/html/VotingStrategy.html#method-getMetrics}{\code{D2MCS::VotingStrategy$getMetrics()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getName">}\href{../../D2MCS/html/VotingStrategy.html#method-getName}{\code{D2MCS::VotingStrategy$getName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getVotingSchemes">}\href{../../D2MCS/html/VotingStrategy.html#method-getVotingSchemes}{\code{D2MCS::VotingStrategy$getVotingSchemes()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getMetrics"><a href='../../D2MCS/html/VotingStrategy.html#method-VotingStrategy-getMetrics'><code>D2MCS::VotingStrategy$getMetrics()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getName"><a href='../../D2MCS/html/VotingStrategy.html#method-VotingStrategy-getName'><code>D2MCS::VotingStrategy$getName()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="D2MCS" data-topic="VotingStrategy" data-id="getVotingSchemes"><a href='../../D2MCS/html/VotingStrategy.html#method-VotingStrategy-getVotingSchemes'><code>D2MCS::VotingStrategy$getVotingSchemes()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-SingleVoting-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SingleVoting-new}{}}}
 \subsection{Method \code{new()}}{
 The function initializes the object arguments during runtime.
 \subsection{Usage}{
@@ -57,8 +57,8 @@ perform the voting strategy.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-SingleVoting-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-SingleVoting-execute}{}}}
 \subsection{Method \code{execute()}}{
 The function is used to execute all the previously defined
 (and compatible) voting schemes.
@@ -78,8 +78,8 @@ all the predictions computed in the classification stage.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-SingleVoting-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SingleVoting-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
