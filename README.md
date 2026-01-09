@@ -1,8 +1,6 @@
 
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/D2MCS)](https://cran.r-project.org/package=D2MCS)
-[![rstudio\_mirror\_downloads](http://cranlogs.r-pkg.org/badges/D2MCS)](https://github.com/metacran/cranlogs.app)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/D2MCS)](https://cran.r-project.org/package=D2MCS)
-[![build\_status](https://travis-ci.com/drordas/D2MCS.svg?branch=develop)](https://travis-ci.com/drordas/D2MCS)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![codecov](https://codecov.io/gh/drordas/D2MCS/branch/develop/graph/badge.svg)](https://codecov.io/gh/drordas/D2MCS)
 
