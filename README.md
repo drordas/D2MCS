@@ -119,6 +119,11 @@ To cite **D2MCS** please use:
 > ligands. J Cheminform. Volume 11, pp. 66. BMC BioInformatics.
 > <https://doi.org/10.1186/s13321-019-0389-9>
 
+> Ferreiro-Díaz, Miguel; Cotos-Yáñez, Tomás R; Méndez, José R; Ruano-Ordás, David. (2021).
+> The bdpar Package: Big Data Pipelining Architecture for R. The R Journal. Vol 13 (1),
+> pp. 131-145. 
+> <https://doi.org/10.32614/RJ-2021-065> 
+
 ## Authors ✒️
 
 -   **Miguel Ferreiro Díaz** - *Developer* -
