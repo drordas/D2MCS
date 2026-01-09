@@ -1,5 +1,5 @@
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/D2MCS)](https://cran.r-project.org/package=D2MCS)
+<!-- [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/D2MCS)](https://cran.r-project.org/package=D2MCS) -->
 [![](https://cranlogs.r-pkg.org/badges/grand-total/D2MCS)](https://cran.r-project.org/package=D2MCS)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![codecov](https://codecov.io/gh/drordas/D2MCS/branch/develop/graph/badge.svg)](https://codecov.io/gh/drordas/D2MCS)
@@ -11,7 +11,7 @@
 D2MCS provides a novel framework to able to automatically develop and
 deploy an accurate Multiple Classifier System (MCS) based on the
 feature-clustering distribution achieved from an input dataset. D2MCS
-was developed focused on four main aspects: (i) the ability to determine
+was developed, focused on four main aspects: (i) the ability to determine
 an effective method to evaluate the independence of features, (ii) the
 identification of the optimal number of feature clusters, (iii) the
 training and tuning of ML models and (iv) the execution of voting
@@ -22,19 +22,19 @@ schemes to combine the outputs of each classifier comprising the MCS.
 ## Description 📄
 
 The D2MCS architecture is based on the interaction of four components
-associated with each phase of the process for the building the MCS and
-its operation. As show in Figure 1, it is possible to appreciate the
+associated with each phase of the process for building the MCS and
+its operation. As shown in Figure 1, it is possible to appreciate the
 different steps followed to carry out each stage.
 
 The tool starts with the use of data in CSV format to obtain the
-*Subset* and *Trainset* structures necessary to be the input for the
+*Subset* and *Trainset* structures are necessary to be the input for the
 successive tasks (first component). The first structure is designed to
 discover the best distribution of features through the selected
 clustering strategy (second component) and is used to perform the
 prediction of the included data through different types of voting
 systems (fourth component). On the other hand, the *Trainset* structure,
 obtained directly from the initial dataset or as an output of the
-clustering technique used, contains the data and the groups of features
+clustering technique used contains the data and the groups of features
 selected to build the SMC with the best possible performance (third
 component).
 
